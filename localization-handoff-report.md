@@ -6,14 +6,14 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\hyperv_on_windows\user_guide\export_import.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/e91e0025a4e7cbefde36c4084e36417b1e76e6e2/virtualization/hyperv_on_windows/user_guide/export_import.md) | HandedOff | [Details](#2cc583a503b2ec2bbd7b725709a5390466709ce8163)
+ [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/5d7560de49ae51c6752ef98c430f40c1eb48032c/virtualization/windowscontainers/management/container_networking.md) | HandedOff | [Details](#c2fccbebf31fda8f478bc62f12694a3da87c285a208)
 
 ## Item Details
-##### <a name='2cc583a503b2ec2bbd7b725709a5390466709ce8163'></a> Source: [virtualization\hyperv_on_windows\user_guide\export_import.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/e91e0025a4e7cbefde36c4084e36417b1e76e6e2/virtualization/hyperv_on_windows/user_guide/export_import.md)
+##### <a name='c2fccbebf31fda8f478bc62f12694a3da87c285a208'></a> Source: [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/5d7560de49ae51c6752ef98c430f40c1eb48032c/virtualization/windowscontainers/management/container_networking.md)
 * Status: HandedOff
 * Target File: 
-* Handoff File: [export_import.c0c14674ac282e57d9bff1c585b3081c9fcc2b14.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/b69994f1cd003ed1321fecd9cb4a90458238af3b/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/export_import.c0c14674ac282e57d9bff1c585b3081c9fcc2b14.de-de.xlf)
-* Handoff Datetime: 2015-12-11 06:29:25
+* Handoff File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/c1762d0904129c72a96fe97fdee182db19729df9/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
+* Handoff Datetime: 2015-12-11 08:25:12
 * Handoff Reason: Include
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
