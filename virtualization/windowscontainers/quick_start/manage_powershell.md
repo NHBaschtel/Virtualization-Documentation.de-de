@@ -1,31 +1,31 @@
-# Schnellstartanleitung: Windows-Container und PowerShell
+# Windows Containers Quick Start - PowerShell
 
-Mithilfe von Windows-Containern können viele isolierte Anwendungen rasch auf einem einzelnen Computersystem bereitgestellt werden. Diese Schnellstartanleitung veranschaulicht die Bereitstellung und Verwaltung von Windows Server- und Hyper-V-Containern mithilfe von PowerShell. In dieser Übung erstellen Sie von Grund auf eine sehr einfache “Hello World“-Anwendung, die sowohl in einem Windows Server- als auch einem Hyper-V-Container ausgeführt wird. Während dieses Vorgangs erstellen Sie Containerimages, arbeiten mit freigegebenen Ordnern und verwalten den Containerlebenszyklus. Am Ende sind Sie mit der Bereitstellung und Verwaltung von Windows-Containern grundlegend vertraut.
+Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application, running in both a Windows Server and a Hyper-V Container. During this process, you will create container images, work with container shared folders, and manage the container lifecycle. When completed, you will have a basic understanding of Widows Container deployment and management.
 
-In dieser exemplarischen Vorgehensweise werden sowohl Windows Server- als auch Hyper-V-Container detailliert behandelt. Jeder Containertyp hat eigene Grundanforderungen. In der Dokumentation zu Windows-Containern wird ein Verfahren für die schnelle Bereitstellung eines Containerhosts beschrieben. Dies ist die einfachste Möglichkeit, schnell mit Windows-Containern zu starten. Wenn Sie noch keinen Containerhost haben, lesen Sie die [Schnellstartanleitung zur Bereitstellung von Containerhosts](./container_setup.md).
+This walkthrough details both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
-Die folgenden Elemente werden für jede Übung benötigt.
+The following items are required for each exercise.
 
-**Windows Server-Container:**
+**Windows Server Containers:**
 
-- Ein Windows-Containerhost unter Windows Server 2016, entweder lokal oder in Azure.
+- A Windows Container Host running Windows Server 2016 Core, either on-prem or in Azure.
 
-**Hyper-V-Container:**
+**Hyper-V Containers:**
 
-- Ein Windows-Containerhost mit aktivierter geschachtelter Virtualisierung.
-- Das Windows Server 2016-Installationsmedium: [Herunterladen](https://aka.ms/tp4/serveriso).
+- A Windows Container host enabled with Nested Virtualization.
+- The Windows Server 2016 Media - [Download](https://aka.ms/tp4/serveriso).
 
-> Microsoft Azure unterstützt keine Hyper-V-Container. Für Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
+> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
 
-## Windows Server-Container
+## Windows Server Container
 
-Windows Server-Container bieten eine isolierte, portierbare Betriebsumgebung mit Ressourcenkontrolle für das Ausführen von Anwendungen und Hosten von Prozessen. Windows Server-Container bieten zwischen Container und Host sowie zwischen auf dem Host ausgeführten Containern eine Isolation, indem Prozesse und Namespaces voneinander getrennt werden.
+Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, and between containers running on the host, through process and namespace isolation.
 
-### Erstellen eines Containers
+### Create Container <!--1-->
 
-In der Version TP4 erfordern Windows Server-Container unter Windows Server 2016 oder Windows Server 2016 Core das Windows Server 2016 Core-Betriebssystemimage.
+At the time of TP4, Windows Server Containers running on a Windows Server 2016, or a Windows Server 2016 core, require the Windows Server 2016 Core OS Image.
 
-Starten Sie eine PowerShell-Sitzung, indem Sie `powershell` eingeben.
+Start a PowerShell session by typing `powershell`.
 
 ```powershell
 C:\> powershell
@@ -35,7 +35,7 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 PS C:\>
 ```
 
-Um zu überprüfen, ob das Betriebssystemimage für Windows Server Core installiert wurde, verwenden Sie den Befehl `Get-ContainerImage`. Es werden ggf. mehrere Betriebssystemimages angezeigt.
+To validate that the Windows Server Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, which is ok.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -46,7 +46,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-Mit dem Befehl `New-Container` können Sie einen Windows Server-Container erstellen. Im folgenden Beispiel wird ein Container namens `TP4Demo` anhand des Betriebssystemimages `WindowsServerCore` erstellt und der Container mit einem VM-Switch mit dem Namen `Virtual Switch` verbunden. Beachten Sie, dass die Ausgabe (ein Objekt, das den Container darstellt) in der Variablen `$con` gespeichert wird. Diese Variable wird in allen nachfolgenden Befehlen verwendet.
+To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note that the output, an object representing the container, is stored in a variable `$con`. This variable is used in subsequent commands.
 
 ```powershell
 PS C:\> New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
@@ -56,13 +56,23 @@ Name    State Uptime   ParentImageName
 TP4Demo Off   00:00:00 WindowsServerCore
 ```
 
-Starten Sie die Container mit dem Befehl `Start-Container`.
+To visualize exisiting containers, use the `Get-Container` command.
+
+```powershell
+PS C:\> Get-Container
+
+Name    State Uptime   ParentImageName
+----    ----- ------   ---------------
+TP4Demo Off   00:00:00 WindowsServerCore
+```
+
+Start the container using the `Start-Container` command.
 
 ```powershell
 PS C:\> Start-Container -Name TP4Demo
 ```
 
-Stellen Sie mit dem Befehl `Enter-PSSession` die Verbindung zum Container her. Nachdem die PowerShell-Sitzung mit dem Container erstellt wurde, ändert sich die PowerShell-Eingabeaufforderung entsprechend dem Containernamen.
+Connect to the container using the `Enter-PSSession` command. Notice that when the PowerShell session has been created with the container, the PowerShell prompt changes to reflect the container name.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerName TP4Demo -RunAsAdministrator
@@ -70,11 +80,11 @@ PS C:\> Enter-PSSession -ContainerName TP4Demo -RunAsAdministrator
 [TP4Demo]: PS C:\Windows\system32>
 ```
 
-### Erstellen des IIS-Images
+### Create IIS Image <!--1-->
 
-Sie können den Container jetzt ändern und diese Änderungen erfassen, um ein neues Containerimage zu erstellen. In diesem Beispiel wird IIS installiert.
+Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS is installed.
 
-Verwenden Sie zum Installieren der IIS-Rolle im Container den Befehl `Install-WindowsFeature`.
+To install the IIS role in the container, use the `Install-WindowsFeature` command.
 
 ```powershell
 [TP4Demo]: PS C:\> Install-WindowsFeature web-server
@@ -84,22 +94,22 @@ Success Restart Needed Exit Code      Feature Result
 True    No             Success        {Common HTTP Features, Default Document, D...
 ```
 
-Verlassen Sie nach Abschluss der Installation von IIS den Container durch Eingabe von `exit`. Die PowerShell-Sitzung kehrt zu derjenigen mit dem Containerhost zurück.
+When the IIS installation has completed, exit the container by typing `exit`. This returns the PowerShell session to that of the container host.
 
 ```powershell
 [TP4Demo]: PS C:\> exit
 PS C:\>
 ```
 
-Beenden Sie den Container abschließend mit dem Befehl `Stop-Container`.
+Finally, stop the container using the `Stop-Container` command.
 
 ```powershell
 PS C:\> Stop-Container -Name TP4Demo
 ```
 
-Der Status dieses Containers kann jetzt in einem neuen Containerimage erfasst werden. Verwenden Sie hierzu den Befehl `New-ContainerImage`.
+The state of this container can now be captured into a new container image. Do so using the `New-ContainerImage` command.
 
-Dieses Beispiel erstellt ein neues Containerimage mit dem Namen `WindowsServerCoreIIS`. Der Herausgeber ist `Demo`, und die Version ist `1.0`.
+This example creates a new container image named `WindowsServerCoreIIS`, with a publisher of `Demo`, and a version `1.0`.
 
 ```powershell
 PS C:\> New-ContainerImage -ContainerName TP4Demo -Name WindowsServerCoreIIS -Publisher Demo -Version 1.0
@@ -109,9 +119,16 @@ Name                 Publisher Version IsOSImage
 WindowsServerCoreIIS CN=Demo   1.0.0.0 False
 ```
 
-### Erstellen des IIS-Containers
+Now that the container has been captured into the new image, it is no longer needed. You may remove it using the `Remove-Container` command.
 
-Erstellen Sie einen neuen Container, in diesem Fall anhand des Containerimages `WindowsServerCoreIIS`.
+```powershell
+PS C:\> Remove-Container -Name TP4Demo -Force
+```
+
+
+### Create IIS Container <!--1-->
+
+Create a new container, this time from the `WindowsServerCoreIIS` container image.
 
 ```powershell
 PS C:\> New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchName "Virtual Switch"
@@ -119,20 +136,20 @@ PS C:\> New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -Switch
 Name State Uptime   ParentImageName
 ---- ----- ------   ---------------
 IIS  Off   00:00:00 WindowsServerCoreIIS
-```
-Starten Sie den Container.
+```    
+Start the container.
 
 ```powershell
 PS C:\> Start-Container -Name IIS
 ```
 
-### Konfigurieren des Netzwerks
+### Configure Networking <!--1-->
 
-Die Standardnetzwerkkonfiguration für die Windows Container-Schnellstartanleitung sieht Container vor, die mit einem virtuellen Switch verbunden sind, der mit Netzwerkadressenübersetzung (NAT) konfiguriert ist. Deshalb muss zum Herstellen einer Verbindung mit einer in einem Container ausgeführten Anwendung ein Port auf dem Containerhost einem Port im Container zugeordnet werden.
+The default network configuration for the Windows Container Quick Starts, is to have containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container.
 
-Für diese Übung wird eine Website in Internetinformationsdienste (IIS) gehostet, die im Container ausgeführt werden. Ordnen Sie für den Zugriff auf die Website an Port 80 den Port 80 der IP-Adresse des Containerhosts dem Port 80 der IP-Adresse des Containers zu.
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
 
-Führen Sie Folgendes aus, um die IP-Adresse des Containers zurückzugeben.
+Run the following to return the IP address of the container.
 
 ```powershell
 PS C:\> Invoke-Command -ContainerName IIS {ipconfig}
@@ -149,7 +166,7 @@ Ethernet adapter vEthernet (Virtual Switch-7570F6B1-E1CA-41F1-B47D-F3CA73121654-
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-Verwenden Sie zum Erstellen der NAT-Portzuordnung den Befehl `Add-NetNatStaticMapping`. Im folgenden Beispiel wird überprüft, ob eine Portzuordnungsregel vorhanden ist. Ist dies nicht der Fall, wird eine erstellt. `-InternalIPAddress` muss mit der IP-Adresse des Containers übereinstimmen.
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example checks for an existing port mapping rule, and if one does not exist, creates it. Note, the `-InternalIPAddress` needs to match the IP address of the container.
 
 ```powershell
 if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
@@ -157,7 +174,7 @@ Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress
 }
 ```
 
-Nachdem die Portzuordnung erstellt wurde, müssen Sie auch eine eingehende Firewallregel für den konfigurierten Port konfigurieren. Führen Sie hierzu für Port 80 das folgende Skript aus. Wenn Sie eine NAT-Regel für einen anderen externen Port als 80 erstellt haben, muss die Firewallregel entsprechend erstellt werden.
+When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -165,72 +182,72 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-Wenn Sie in Azure arbeiten und nicht bereits eine Netzwerksicherheitsgruppe erstellt haben, müssen Sie jetzt eine erstellen. Weitere Informationen zu Netzwerksicherheitsgruppen finden Sie im Artikel: [Was ist eine Netzwerksicherheitsgruppe?](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/)
+If you are working in Azure, and have not already created a Network Security Group, you need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
-### Erstellen einer Anwendung
+### Create Application <!--1-->
 
-Nachdem ein Container anhand des IIS-Images erstellt und die Netzwerkverbindung konfiguriert wurde, wechseln Sie in einem Browser zur IP-Adresse des Containerhosts. Der IIS-Begrüßungsbildschirm sollte angezeigt werden.
+Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host. You should see the IIS splash screen.
 
 ![](media/iis1.png)
 
-Nachdem Sie geprüft haben, ob die IIS-Instanzen ausgeführt werden, können Sie eine „Hello World“-Anwendung erstellen und in der IIS-Instanz hosten. Richten Sie dazu eine PowerShell-Sitzung mit dem Container ein.
+With the IIS instances verified as running, you can now create a ‘Hello World’ application, and host this in the IIS instance. To do so, create a PowerShell session with the container.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerName IIS -RunAsAdministrator
 [IIS]: PS C:\Windows\system32>
 ```
 
-Führen Sie zum Entfernen des IIS-Begrüßungsbildschirms den folgenden Befehl aus.
+Run the following command to remove the IIS splash screen.
 
 ```powershell
 [IIS]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
 ```
-Führen Sie den folgenden Befehl aus, um die IIS-Standardwebsite durch eine neue statische Website zu ersetzen.
+Run the following command to replace the default IIS site with a new static site.
 
 ```powershell
 [IIS]: PS C:\> "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
-Navigieren Sie erneut zur IP-Adresse des Containerhosts. Jetzt sollte die „Hello World“-Anwendung angezeigt werden. Hinweis: Möglicherweise müssen Sie alle vorhandenen Browserverbindungen schließen oder den Browsercache leeren, um die aktualisierte Anwendung anzuzeigen.
+Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
 ![](media/HWWINServer.png)
 
-Beenden Sie die Remotesitzung mit dem Container.
+Exit the remote container session.
 
 ```powershell
 [IIS]: PS C:\> exit
 PS C:\>
 ```
 
-### Entfernen eines Containers
+### Remove Container
 
-Ein Container muss beendet werden, bevor er entfernt werden kann.
+A container needs to be stopped, before it can be removed.
 
 ```powershell
 PS C:\> Stop-Container -Name IIS
 ```
 
-Nachdem der Container beendet wurde, kann er mit dem Befehl `Remove-Container` entfernt werden.
+When the container has been stopped, it can be removed with the `Remove-Container` command.
 
 ```powershell
 PS C:\> Remove-Container -Name IIS -Force
 ```
 
-Abschließend kann ein Containerimage mithilfe des Befehls `Remove-ContainerImage` entfernt werden.
+Finally, a container image can be removed using the `Remove-ContainerImage` command.
 
 ```powershell
 PS C:\> Remove-ContainerImage -Name WindowsServerCoreIIS -Force
 ```
 
-## Hyper-V-Container
+## Hyper-V Container
 
-Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem überaus optimierten virtuellen Computer erstellt. Ein Windows Server-Container teils sich einen Kernel mit dem Containerhost und allen anderen Windows Server-Containern, die auf diesem Host ausgeführt werden. Dagegen ist ein Hyper-V-Container vollständig von anderen Containern isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Hyper-V Containers](../management/hyperv_container.md).
+Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, and all other Windows Server Containers running on that host, a Hyper-V container is completely isolated from other containers. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
 
-> Microsoft Azure unterstützt keine Hyper-V-Container. Für die Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
+> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
 
-### Erstellen eines Containers
+### Create Container <!--2-->
 
-In der TP4-Version müssen Hyper-V-Container ein Nano Server Core-Betriebssystemimage verwenden. Um zu überprüfen, ob das Betriebssystemimage für Nano Server installiert wurde, verwenden Sie den Befehl `Get-ContainerImage`.
+At the time of TP4, Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server OS image has been installed, use the `Get-ContainerImage` command.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -241,7 +258,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-Verwenden Sie zum Erstellen eines Hyper-V-Containers den Befehl `New-Container` mit Angabe einer Laufzeit von Hyper-V.
+To create a Hyper-V container, use the `New-Container` command, specifying a Runtime of HyperV.
 
 ```powershell
 PS C:\> New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
@@ -251,13 +268,13 @@ Name State Uptime   ParentImageName
 HYPV Off   00:00:00 NanoServer
 ```
 
-Starten Sie den erstellten Container **nicht**.
+When the container has been created, **do not start it**.
 
-### Erstellen eines freigegebenen Ordners
+### Create a Shared Folder
 
-Freigegebene Ordner machen ein Verzeichnis auf dem Containerhost für den Container verfügbar. Nachdem ein freigegebener Ordner erstellt wurde, stehen alle Dateien im freigegebenen Ordner dem Container zur Verfügung. In diesem Beispiel wird ein freigegebener Ordner zum Kopieren der Nano Server-IIS-Pakete in den Container verwendet. Diese Pakete dienen anschließend zum Installieren von IIS. Weitere Informationen zu freigegebenen Ordnern finden Sie unter [Managing Container Data](../management/manage_data.md).
+Shared folders expose a directory from the container host, to the container. When a shared folder has been created, any files placed in the shared folder are available in the container. A shared folder is used in this example to copy the Nano Server IIS packages into the container. These packages will then be used to install IIS. For more information on shared folder see [Managing Container Data](../management/manage_data.md). 
 
-Erstellen Sie auf dem Containerhost ein Verzeichnis mit dem Namen `c:\share\en-us`.
+Create a directory named `c:\share\en-us` on the container host.
 
 ```powershell
 S C:\> New-Item -Type Directory c:\share\en-us
@@ -269,9 +286,9 @@ Mode                LastWriteTime         Length Name
 d-----       11/18/2015   5:27 PM                en-us
 ```
 
-Mit dem Befehl `Add-ContainerSharedFolder` können Sie einen neuen freigegebenen Ordner im neuen Container erstellen.
+Use the `Add-ContainerSharedFolder` command to create a new shared folder on the new container.
 
-> Damit ein Container erstellt werden kann, muss sein Status „Beendet“ sein.
+> The container must be in a stopped stated when creating a shared folder.
 
 ```powershell
 PS C:\> Add-ContainerSharedFolder -ContainerName HYPV -SourcePath c:\share -DestinationPath c:\iisinstall
@@ -281,18 +298,18 @@ ContainerName SourcePath DestinationPath AccessMode
 HYPV          c:\share   c:\iisinstall   ReadWrite
 ```
 
-Starten Sie den Container, nachdem der freigegebene Ordner erstellt wurde.
+When the shared folder has been created, start the container.
 
 ```powershell
 PS C:\> Start-Container -Name HYPV
 ```
-Um eine PowerShell-Remotesitzung mit dem Container herzustellen, verwenden Sie den Befehl `Enter-PSSession`.
+Create a PowerShell remote session with the container using the `Enter-PSSession` command.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerName HYPV -RunAsAdministrator
 [HYPV]: PS C:\windows\system32\config\systemprofile\Documents>cd /
 ```
-Beachten Sie in der Remotesitzung, dass der freigegebene Ordner `c:\iisinstall\en-us` zwar erstellt wurde, aber leer ist.
+When in the remote session, notice that the shared folder `c:\iisinstall\en-us` has been created, however is empty.
 
 ```powershell
 [HYPV]: PS C:\> ls c:\iisinstall
@@ -304,15 +321,15 @@ Mode                LastWriteTime         Length Name
 d-----       11/18/2015   5:27 PM                en-us
 ```
 
-### Erstellen des IIS-Images
+### Create IIS Image <!--2-->
 
-Da im Container ein Nano Server-Betriebssystemimage ausgeführt wird, sind für die Installation von IIS die IIS-Pakete für Nano Server erforderlich. Diese finden Sie auf dem Windows Server 2016 TP4-Installationsmedium im Verzeichnis `NanoServer\Packages`.
+Because the container is running a Nano Server OS Image, the Nano Server IIS packages are needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
 
-Kopieren Sie `Microsoft-NanoServer-IIS-Package.cab` aus `NanoServer\Packages` nach `c:\share` auf dem Containerhost.
+Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
 
-Kopieren Sie `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` nach `c:\share\en-us` auf dem Containerhost.
+Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\share\en-us` on the container host.
 
-Erstellen Sie im Ordner „c:\share“ eine Datei namens „Unattend.xml“, und kopieren Sie diesen Text in die Datei „Unattend.xml“.
+Create a file in the c:\share folder named unattend.xml, copy this text into the unattend.xml file.
 
 ```powershell
 <?xml version="1.0" encoding="utf-8"?>
@@ -330,7 +347,7 @@ Erstellen Sie im Ordner „c:\share“ eine Datei namens „Unattend.xml“, und
 </unattend>
 ```
 
-Abschließend sollte das Verzeichnis `c:\share` auf dem Containerhost wie folgt konfiguriert sein.
+When completed, the `c:\share` directory, on the container host, should be configured like this.
 
 ```
 c:\share
@@ -341,7 +358,7 @@ c:\share
 |-- unattend.xml
 ```
 
-Zurück in der Remotesitzung mit dem Container werden Sie feststellen, dass die IIS-Pakete und die „Unattended.xml“-Dateien jetzt im Verzeichnis „c:\iisinstall“ enthalten sind.
+Back in the remote session on the container, note that the IIS packages and unattended.xml files are now visible in the c:\iisinstall directory.
 
 ```powershell
 [HYPV]: PS C:\> ls c:\iisinstall
@@ -355,7 +372,7 @@ d-----       11/18/2015   5:32 PM                en-us
 -a----       11/18/2015   5:31 PM            789 unattend.xml
 ```
 
-Führen Sie zum Installieren von IIS den folgenden Befehl aus.
+Run the following command to install IIS.
 
 ```powershell
 [HYPV]: PS C:\> dism /online /apply-unattend:c:\iisinstall\unattend.xml
@@ -375,7 +392,7 @@ Image Version: 10.0.10586.0
 [===============            26.2%                          ]
 ```
 
-Wenn die IIS-Installation abgeschlossen ist, starten Sie IIS manuell mit dem folgenden Befehl.
+When the IIS installation has complete, manually start IIS with the following command.
 
 ```powershell
 [HYPV]: PS C:\> Net start w3svc
@@ -383,21 +400,21 @@ The World Wide Web Publishing Service service is starting.
 The World Wide Web Publishing Service service was started successfully.
 ```
 
-Beenden Sie die Containersitzung.
+Exit the container session.
 
 ```powershell
 [HYPV]: PS C:\> exit
 ```
 
-Beenden Sie den Container.
+Stop the container.
 
 ```powershell
 PS C:\> Stop-Container -Name HYPV
 ```
 
-Der Status dieses Containers kann jetzt in einem neuen Containerimage erfasst werden.
+The state of this container can now be captured into a new container image.
 
-Dieses Beispiel erstellt ein neues Containerimage mit dem Namen `NanoServerIIS`. Der Herausgeber ist `Demo`, und die Version ist `1.0`.
+This example creates a new container image named `NanoServerIIS`, with a publisher of `Demo`, and a version `1.0`.
 
 ```powershell
 PS C:\> New-ContainerImage -ContainerName HYPV -Name NanoServerIIS -Publisher Demo -Version 1.0
@@ -407,9 +424,9 @@ Name          Publisher Version IsOSImage
 NanoServerIIS CN=Demo   1.0.0.0 False
 ```
 
-### Erstellen des IIS-Containers
+### Create IIS Container <!--2-->
 
-Erstellen Sie einen neuen Hyper-V-Container anhand des IIS-Images mithilfe des Befehls `New-Container`.
+Create a new Hyper-V container from the IIS image using the `New-Container` command.
 
 ```powershell
 PS C:\> New-Container -Name IISApp -ContainerImageName NanoServerIIS -SwitchName "Virtual Switch" -RuntimeType HyperV
@@ -419,19 +436,19 @@ Name   State Uptime   ParentImageName
 IISApp Off   00:00:00 NanoServerIIS
 ```
 
-Starten Sie den Container.
+Start the container.
 
 ```powershell
 PS C:\> Start-Container -Name IISApp
 ```
 
-### Konfigurieren des Netzwerks
+### Configure Networking <!--2-->
 
-Die Standardnetzwerkkonfiguration für die Windows Container-Schnellstartanleitung sieht Container vor, die mit einem virtuellen Switch verbunden sind, der mit Netzwerkadressenübersetzung (NAT) konfiguriert ist. Deshalb muss zum Herstellen einer Verbindung mit einer in einem Container ausgeführten Anwendung ein Port auf dem Containerhost einem Port im Container zugeordnet werden.
+The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container.
 
-Für diese Übung wird eine Website in Internetinformationsdienste (IIS) gehostet, die im Container ausgeführt werden. Ordnen Sie für den Zugriff auf die Website an Port 80 den Port 80 der IP-Adresse des Containerhosts dem Port 80 der IP-Adresse des Containers zu.
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
 
-Führen Sie Folgendes aus, um die IP-Adresse des Containers zurückzugeben.
+Run the following to return the IP address of the container.
 
 ```powershell
 PS C:\> Invoke-Command -ContainerName IISApp {ipconfig}
@@ -448,14 +465,14 @@ Ethernet adapter Ethernet:
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-Verwenden Sie zum Erstellen der NAT-Portzuordnung den Befehl `Add-NetNatStaticMapping`. In den folgenden Beispielen wird überprüft, ob eine Portzuordnungsregel vorhanden ist. Ist dies nicht der Fall, wird eine erstellt. `-InternalIPAddress` muss mit der IP-Adresse des Containers übereinstimmen.
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following examples checks for an existing port mapping rule, and if one does not exist, creates it. Note, the `-InternalIPAddress` needs to match the IP address of the container.
 
 ```powershell
 if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 }
 ```
-Sie müssen auch Port 80 auf dem Containerhost öffnen. Wenn Sie eine NAT-Regel für einen anderen externen Port als 80 erstellt haben, muss die Firewallregel entsprechend erstellt werden.
+You also need to open up port 80 on the container host. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -463,40 +480,36 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-### Erstellen einer Anwendung
+### Create Application <!--2-->
 
-Nachdem ein Container anhand des IIS-Images erstellt und die Netzwerkverbindung konfiguriert wurde, wechseln Sie in einem Browser zur IP-Adresse des Containerhosts. Der IIS-Begrüßungsbildschirm sollte angezeigt werden.
+Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host, you should see the IIS splash screen.
 
 ![](media/iis1.png)
 
-Nachdem Sie geprüft haben, ob die IIS-Instanzen ausgeführt werden, können Sie eine „Hello World“-Anwendung erstellen und in der IIS-Instanz hosten. Richten Sie dazu eine PowerShell-Sitzung mit dem Container ein.
+With the IIS instances verified as running, you can now create a ‘Hello World’ application, and host this on the IIS instance. To do so, create a PowerShell session with the container.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerName IISApp -RunAsAdministrator
 [IISApp]: PS C:\windows\system32\config\systemprofile\Documents>
 ```
 
-Führen Sie zum Entfernen des IIS-Begrüßungsbildschirms den folgenden Befehl aus.
+Run the following command to remove the IIS splash screen.
 
 ```powershell
 [IIS]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
 ```
-Führen Sie den folgenden Befehl aus, um die IIS-Standardwebsite durch eine neue statische Website zu ersetzen.
+Run the following command to replace the default IIS site with a new static site.
 
 ```powershell
 [IISApp]: PS C:\> "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
 ```
 
-Navigieren Sie erneut zur IP-Adresse des Containerhosts. Jetzt sollte die „Hello World“-Anwendung angezeigt werden. Hinweis: Möglicherweise müssen Sie alle vorhandenen Browserverbindungen schließen oder den Browsercache leeren, um die aktualisierte Anwendung anzuzeigen.
+Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
 ![](media/HWWINServer.png)
 
-Beenden Sie die Remotesitzung mit dem Container.
+Exit the remote container session.
 
 ```powershell
 exit
 ```
-
-
-
-
