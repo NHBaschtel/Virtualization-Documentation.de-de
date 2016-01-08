@@ -44,7 +44,7 @@ Melden Sie am virtuellen Computer mit dem Benutzernamen und Kennwort an, das Sie
 
 ## Video mit exemplarischer Vorgehensweise
 
-<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player#ccLang=de" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
 ## Nächste Schritte: Nutzen von Containern
