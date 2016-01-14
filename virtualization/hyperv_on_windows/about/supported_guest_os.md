@@ -9,7 +9,7 @@ Unterstützung bedeutet, dass Microsoft diese Host-/Gast-Kombinationen getestet 
 Microsoft bietet auf folgende Weise Unterstützung für Gastbetriebssysteme:
 * Der Microsoft-Support hilft beim Lösen von Problemen in Microsoft-Betriebssystemen und -Integrationsdiensten.
 * Für Probleme in anderen Betriebssystemen, die vom Anbieter des Betriebssystems für die Ausführung unter Hyper-V zertifiziert wurden, wird der Support vom Anbieter geleistet.
-* Andere in den Betriebssystemen ermittelte Probleme werden von Microsoft an die Support-Community mehrerer Anbieter, [](http://www.tsanet.org/ "TSANet"), weitergeleitet.
+* Andere in den Betriebssystemen ermittelte Probleme werden von Microsoft an die Support-Community mehrerer Anbieter, [](http://www.tsanet.org/) TSANet,  weitergeleitet.
 
 Um unterstützt zu werden, müssen Hyper-V-Host und -Gast über Windows Update mit allen wichtigen Updates aktualisiert werden.
 
@@ -33,7 +33,7 @@ Um Unterstützung zu erhalten, müssen Windows-Gastbetriebssysteme und das Hostb
 | Windows Home Server 2011| 4| |
 | Windows Small Business Server 2011| Essentials Edition - 2, Standard Edition - 4| |
 
-> Windows 10 kann als Gastbetriebssystem auf Hyper-V-Hosts mit Windows 8.1 und Windows Server 2012 R2 ausgeführt werden.
+>Windows 10 kann als Gastbetriebssystem auf Hyper-V-Hosts mit Windows 8.1 und Windows Server 2012 R2 ausgeführt werden.
 
 ## Unterstützung für Linux und FreeBSD
 
@@ -51,3 +51,4 @@ Weitere Informationen einschließlich Angaben zur Unterstützung früherer Versi
 
 
 
+<!--HONumber=Dec15_HO1-->
