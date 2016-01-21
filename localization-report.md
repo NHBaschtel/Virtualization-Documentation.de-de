@@ -1178,12 +1178,12 @@
 
 ##### <a name='1741b59667074192e6da0da57eb30cf23e644bcd76'></a> Source: [virtualization\hyperv_on_windows\about\supported_guest_os.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/beb2ff361edf5d86391458d4e37c8cef9fc6d1ae/virtualization/hyperv_on_windows/about/supported_guest_os.md)
 * Status: InSyncHandedBackSuccess
-* Target File: [virtualization\hyperv_on_windows\about\supported_guest_os.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/39a93713fa1234abc1982ce644a004155e8f0478/virtualization/hyperv_on_windows/about/supported_guest_os.md)
+* Target File: [virtualization\hyperv_on_windows\about\supported_guest_os.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/a08d10ba8373a853777f8f052da8f213ab1e837d/virtualization/hyperv_on_windows/about/supported_guest_os.md)
 * Handoff File: [supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/444e4232e2df717cf7ee972a78abe484f702dc5d/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf)
 * Handoff Datetime: 2015-12-03 10:33:50
 * Handoff Reason: Include
-* Handback File: [supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/6e9258b4c6adab5421b1cc368e3852c77ae4f097/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf)
-* Handback Datetime: 2016-01-14 19:00:24
+* Handback File: [supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/a714095d12a495039bd3d63db857aca82a26ca70/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf)
+* Handback Datetime: 2016-01-21 00:25:07
 * [Back to Top](#report-top)
 
 ##### <a name='bf7c9a1b7e544d684898d97e3a260f8d89586e6677'></a> Source: [virtualization\hyperv_on_windows\about\whats_new.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/beb2ff361edf5d86391458d4e37c8cef9fc6d1ae/virtualization/hyperv_on_windows/about/whats_new.md)

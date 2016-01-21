@@ -1,6 +1,6 @@
 {
   "LastProcessedCommit": "0e474918caeaae4e235a98e06470daa94088a5d6",
-  "LastTranslatedCommit": "a246ad5bc387f401ed9386de4e12b8c7e041326e",
+  "LastTranslatedCommit": "a08d10ba8373a853777f8f052da8f213ab1e837d",
   "Items": {
     "5090f6d60b5cbdce0990242d795d9e4e3736e791": {
       "FileHash": "5090f6d60b5cbdce0990242d795d9e4e3736e791",
@@ -85,14 +85,14 @@
       "HandoffDateTime": "2015-12-03T10:33:50.9463341Z",
       "HandoffException": null,
       "HandoffFailureTimes": 0,
-      "TargetFileCommit": "39a93713fa1234abc1982ce644a004155e8f0478",
+      "TargetFileCommit": "a08d10ba8373a853777f8f052da8f213ab1e837d",
       "TargetFilePath": "virtualization\\hyperv_on_windows\\about\\supported_guest_os.md",
       "HandbackFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf",
-      "HandbackFileCommit": "6e9258b4c6adab5421b1cc368e3852c77ae4f097",
-      "HandbackDateTime": "2016-01-14T19:00:24.8449904Z",
+      "HandbackFileCommit": "a714095d12a495039bd3d63db857aca82a26ca70",
+      "HandbackDateTime": "2016-01-21T00:25:07.9166125Z",
       "HandbackException": null,
       "HandbackFailureTimes": 0,
-      "UpdatedDateTime": "2016-01-14T19:00:24.8449904Z"
+      "UpdatedDateTime": "2016-01-21T00:25:07.9166125Z"
     },
     "bf7c9a1b7e544d684898d97e3a260f8d89586e66": {
       "FileHash": "bf7c9a1b7e544d684898d97e3a260f8d89586e66",
