@@ -9,7 +9,7 @@ Unterstützung bedeutet, dass Microsoft diese Host-/Gast-Kombinationen getestet 
 Microsoft bietet auf folgende Weise Unterstützung für Gastbetriebssysteme:
 * Der Microsoft-Support hilft beim Lösen von Problemen in Microsoft-Betriebssystemen und -Integrationsdiensten.
 * Für Probleme in anderen Betriebssystemen, die vom Anbieter des Betriebssystems für die Ausführung unter Hyper-V zertifiziert wurden, wird der Support vom Anbieter geleistet.
-* Andere in den Betriebssystemen ermittelte Probleme werden von Microsoft an die Support-Community mehrerer Anbieter, [](http://www.tsanet.org/) TSANet,  weitergeleitet.
+* Andere in den Betriebssystemen ermittelte Probleme werden von Microsoft an die Support-Community mehrerer Anbieter, [TSANet](http://www.tsanet.org/) weitergeleitet.
 
 Um unterstützt zu werden, müssen Hyper-V-Host und -Gast über Windows Update mit allen wichtigen Updates aktualisiert werden.
 
