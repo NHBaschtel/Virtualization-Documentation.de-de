@@ -1,54 +1,55 @@
-# Beiträge zu den Dokumenten leisten
+# Contribute to the docs
 
-> **Hinweis:** Um Beiträge erstellen zu können, benötigen Sie ein [GitHub-Konto](https://www.github.com).
+>**Note:**  In order to contribute, you must have a [GitHub](https://www.github.com) account.
 
-## Bearbeiten eines vorhandenen Dokuments
+## Edit an existing doc
 
-1. Suchen Sie das Dokument, das Sie bearbeiten möchten.
+1. Find the doc you'd like to edit.
 
-2. Klicken Sie auf die entsprechende Schaltfläche (**Contribute to this Topic**), um einen Beitrag zu leisten.  
-    ![](media/editDoc.png)
+2. Select **Contribute to this topic**
+![](media/editDoc.png)
 
-    Sie werden daraufhin automatisch zu der in GitHub mit dieser Datei verknüpften Markdowndatei weitergeleitet.
+This will automatically redirect you to the markdown file in GitHub associated with this file.
 
-    Stellen Sie sicher, dass Sie bei GitHub angemeldet sind. Melden Sie sich andernfalls an, oder erstellen Sie ein GitHub-Konto.
+Make sure you are signed into GitHub. If not, either sign in or create a GitHub account.
 
-    ![](media/GitHubView.png)
+![](media/GitHubView.png)
 
-3. Klicken Sie auf das Symbol „Bearbeiten“, um den im Browser enthaltenen Editor aufzurufen.
+3. Select the edit icon to edit with the in browser editor.
 
-    ![](media/GitHubEdit.png)
+![](media/GitHubEdit.png)
 
-4. Achten Sie bei Änderungen auf den Kontext.
+4. Make changes inline.
 
-    Mögliche Aktionen:
-    1. Datei bearbeiten
-    2. Änderungen als Vorschau anzeigen
-    3. Datei umbenennen (was Sie vermutlich nicht tun möchten)
+Possible actions:
+1. Edit file
+2. Preview changes
+3. Rename the file (it's very unlikely you'll want to do this)
 
-    ![](media/GitHubEditor.png)
+![](media/GitHubEditor.png)
 
-5. Änderungen als Pull-Anforderung vorschlagen
+5. Propose your changes as a pull request
 
-    ![](media/GitHubProposeChange.png)
+![](media/GitHubProposeChange.png)
 
-6. Überprüfen Ihrer Änderungen
+6. Review your changes
 
-    **Bei einer Pull-Anforderung achten wir auf Folgendes**
-    * Die Änderung ist richtig: Sie spiegelt die Technologie genau wieder.
-    * Rechtschreibung und Grammatik sind richtig.
-    * Sie befindet sich an einer logischen Position in der Dokumentation.
+**What we're looking for in a pull request**
+* The change is correct -- it accurately represents the technology
+* Spelling/grammar are correct
+* Logical location in the documentation
 
-    ![](media/GitHubCreatePR.png)
+![](media/GitHubCreatePR.png)
 
-7. Erstellen einer [Pull-Anforderung](contribute_to_docs.md#pull-requests)
+7. Create a [pull request](contribute_to_docs.md#pull-requests)
 
-## Pull-Anforderungen
+## Pull requests
 
-Die meisten Änderungen werden per Pull-Anforderung ausgeführt. Eine Pull-Anforderung ist eine Möglichkeit, ein Changeset gemeinsam mit mehrere Reviewern zu überprüfen, die den aktuellen Inhalt ändern und kommentieren können.
-
-
+Most changes will be committed via pull request. A pull request is a way of reviewing a change set with multiple reviewers, changing, and commenting on the current content.
 
 
 
 
+
+
+<!--HONumber=Jan16_HO1-->
