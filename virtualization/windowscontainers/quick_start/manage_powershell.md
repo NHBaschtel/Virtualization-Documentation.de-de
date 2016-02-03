@@ -1,6 +1,6 @@
 # Schnellstartanleitung: Windows-Container und PowerShell
 
-Mithilfe von Windows-Containern können viele isolierte Anwendungen schnell auf einem einzelnen Computersystem bereitgestellt werden. Diese Schnellstartanleitung veranschaulicht die Bereitstellung und Verwaltung von Windows Server- und Hyper-V-Containern mithilfe von PowerShell. In dieser Übung erstellen Sie von Grund auf eine sehr einfache “Hello World“-Anwendung, die sowohl in einem Windows Server- als auch einem Hyper-V-Container ausgeführt wird. Während dieses Vorgangs erstellen Sie Containerimages, arbeiten mit freigegebenen Ordnern und verwalten den Containerlebenszyklus. Am Ende sind Sie mit der Bereitstellung und Verwaltung von Windows-Containern grundlegend vertraut.
+Mithilfe von Windows-Containern können viele isolierte Anwendungen schnell auf einem einzelnen Computersystem bereitgestellt werden. Diese Schnellstartanleitung veranschaulicht die Bereitstellung und Verwaltung von Windows Server- und Hyper-V-Containern mithilfe von PowerShell. In dieser Übung erstellen Sie von Grund auf eine sehr einfache „Hello World“-Anwendung, die sowohl in einem Windows Server- als auch einem Hyper-V-Container ausgeführt wird. Während dieses Vorgangs erstellen Sie Containerimages, arbeiten mit freigegebenen Ordnern und verwalten den Containerlebenszyklus. Am Ende sind Sie mit der Bereitstellung und Verwaltung von Windows-Containern grundlegend vertraut.
 
 In dieser exemplarischen Vorgehensweise werden sowohl Windows Server- als auch Hyper-V-Container detailliert behandelt. Jeder Containertyp hat eigene Grundanforderungen. In der Dokumentation zu Windows-Containern wird ein Verfahren für die schnelle Bereitstellung eines Containerhosts beschrieben. Dies ist die einfachste Möglichkeit, schnell mit Windows-Containern zu starten. Wenn Sie noch keinen Containerhost haben, lesen Sie die [Schnellstartanleitung zur Bereitstellung von Containerhosts](./container_setup.md).
 
@@ -25,7 +25,7 @@ Windows Server-Container bieten eine isolierte, portierbare Betriebsumgebung mit
 
 In der Version TP4 erfordern Windows Server-Container unter Windows Server 2016 oder Windows Server 2016 Core das Windows Server 2016 Core-Betriebssystemimage.
 
-Starten Sie eine PowerShell-Sitzung, indem Sie `powershell` eingeben.
+Geben Sie `powershell` ein, um eine PowerShell-Sitzung zu starten.
 
 ```powershell
 C:\> powershell
@@ -46,7 +46,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-Mit dem Befehl `New-Container` können Sie einen Windows Server-Container erstellen. Im folgenden Beispiel wird ein Container namens `TP4Demo` anhand des Betriebssystemimages `WindowsServerCore` erstellt und der Container mit einem VM-Switch mit dem Namen `Virtual Switch` verbunden. Beachten Sie, dass die Ausgabe (ein Objekt, das den Container darstellt) in der Variablen `$con` gespeichert wird. Diese Variable wird in allen nachfolgenden Befehlen verwendet.
+Mit dem Befehl `New-Container` können Sie einen Windows Server-Container erstellen. Das folgende Beispiel erstellt einen Container namens `TP4Demo` aus dem Betriebssystemimage `WindowsServerCore` und verbindet den Container mit einem VM-Switch mit dem Namen `Virtual Switch`.
 
 ```powershell
 PS C:\> New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
@@ -145,7 +145,7 @@ PS C:\> Start-Container -Name IIS
 
 ### Konfigurieren des Netzwerks
 
-Die Standardnetzwerkkonfiguration für die Windows Container-Schnellstartanleitung sieht Container vor, die mit einem virtuellen Switch verbunden sind, der mit Netzwerkadressenübersetzung (NAT) konfiguriert ist. Deshalb muss zum Herstellen einer Verbindung mit einer in einem Container ausgeführten Anwendung ein Port auf dem Containerhost einem Port im Container zugeordnet werden.
+Die Standardnetzwerkkonfiguration für die Windows Container-Schnellstartanleitung sieht Container vor, die mit einem virtuellen Switch verbunden sind, der mit Netzwerkadressenübersetzung (NAT) konfiguriert ist. Deshalb muss zum Herstellen einer Verbindung mit einer in einem Container ausgeführten Anwendung ein Port auf dem Containerhost einem Port im Container zugeordnet werden. Ausführliche Informationen zu Containernetzwerk-Funktionen finden Sie unter [Containernetzwerke](../management/container_networking.md).
 
 Für diese Übung wird eine Website in Internetinformationsdienste (IIS) gehostet, die im Container ausgeführt werden. Ordnen Sie für den Zugriff auf die Website an Port 80 den Port 80 der IP-Adresse des Containerhosts dem Port 80 der IP-Adresse des Containers zu.
 
@@ -182,7 +182,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-Wenn Sie in Azure arbeiten und nicht bereits eine Netzwerksicherheitsgruppe erstellt haben, müssen Sie jetzt eine erstellen. Weitere Informationen zu Netzwerksicherheitsgruppen finden Sie im Artikel: [Was ist eine Netzwerksicherheitsgruppe?](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/)
+Wenn Sie in Azure arbeiten und noch keine Netzwerksicherheitsgruppe erstellt haben, holen Sie dies nun nach. Weitere Informationen zu Netzwerksicherheitsgruppen finden Sie im Artikel: [Was ist eine Netzwerksicherheitsgruppe?](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/)
 
 ### Erstellen einer Anwendung
 
@@ -241,7 +241,7 @@ PS C:\> Remove-ContainerImage -Name WindowsServerCoreIIS -Force
 
 ## Hyper-V-Container
 
-Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem überaus optimierten virtuellen Computer erstellt. Ein Windows Server-Container teils sich einen Kernel mit dem Containerhost und allen anderen Windows Server-Containern, die auf diesem Host ausgeführt werden. Dagegen ist ein Hyper-V-Container vollständig von anderen Containern isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Hyper-V Containers](../management/hyperv_container.md).
+Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem hoch optimierten virtuellen Computer erstellt. Ein Windows Server-Container teils sich einen Kernel mit dem Containerhost und allen anderen Windows Server-Containern, die auf diesem Host ausgeführt werden. Dagegen ist ein Hyper-V-Container vollständig von anderen Containern isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Verwalten von Hyper-V-Containern](../management/hyperv_container.md).
 
 >Microsoft Azure unterstützt keine Hyper-V-Container. Für die Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
 
@@ -272,7 +272,7 @@ Starten Sie den erstellten Container **nicht**.
 
 ### Erstellen eines freigegebenen Ordners
 
-Freigegebene Ordner machen ein Verzeichnis auf dem Containerhost für den Container verfügbar. Nachdem ein freigegebener Ordner erstellt wurde, stehen alle Dateien im freigegebenen Ordner dem Container zur Verfügung. In diesem Beispiel wird ein freigegebener Ordner zum Kopieren der Nano Server-IIS-Pakete in den Container verwendet. Diese Pakete dienen anschließend zum Installieren von IIS. Weitere Informationen zu freigegebenen Ordnern finden Sie unter [Managing Container Data](../management/manage_data.md).
+Freigegebene Ordner machen ein Verzeichnis auf dem Containerhost für den Container verfügbar. Nachdem ein freigegebener Ordner erstellt wurde, stehen alle Dateien im freigegebenen Ordner dem Container zur Verfügung. In diesem Beispiel wird ein freigegebener Ordner zum Kopieren der Nano Server-IIS-Pakete in den Container verwendet. Diese Pakete dienen anschließend zum Installieren von IIS. Weitere Informationen zu freigegebenen Ordnern finden Sie unter [Container und freigegebene Ordner](../management/manage_data.md).
 
 Erstellen Sie auf dem Containerhost ein Verzeichnis mit dem Namen `c:\share\en-us`.
 
@@ -303,7 +303,7 @@ Starten Sie den Container, nachdem der freigegebene Ordner erstellt wurde.
 ```powershell
 PS C:\> Start-Container -Name HYPV
 ```
-Um eine PowerShell-Remotesitzung mit dem Container herzustellen, verwenden Sie den Befehl `Enter-PSSession`.
+Erstellen Sie eine PowerShell-Remotesitzung mit dem Container mithilfe des Befehls `Enter-PSSession`.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerName HYPV -RunAsAdministrator

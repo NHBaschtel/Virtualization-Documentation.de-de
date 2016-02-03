@@ -14,10 +14,10 @@ Der Docker-Daemon und die Befehlszeilenschnittstelle (CLI) gehören nicht zum Fu
 
 Der Docker-Daemon und die Docker-Befehlszeilenschnittstelle wurden in der Sprache Go entwickelt. Derzeit lässt sich „docker.exe“ nicht als Windows-Dienst installieren. Der Windows-Dienst kann auf unterschiedliche Weise erstellt werden. In einem hier gezeigten Beispiel wird `nssm.exe` verwendet.
 
-Laden Sie „docker.exe“ von `https://aka.ms/ContainerTools` herunter, und speichern Sie die Datei auf dem Containerhost im Verzeichnis „System32“.
+Laden Sie „docker.exe“ von `https://aka.ms/tp4/docker` herunter, und speichern Sie die Datei auf dem Containerhost im Verzeichnis „System32“.
 
 ```powershell
-PS C:\> wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
+PS C:\> wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Erstellen Sie ein Verzeichnis mit dem Namen `c:\programdata\docker`. Erstellen Sie in diesem Verzeichnis eine Datei namens `runDockerDaemon.cmd`.
@@ -112,7 +112,7 @@ PS C:\> sc.exe delete Docker
 
 ### Installieren von Docker
 
-Laden Sie „docker.exe“ von `https://aka.ms/ContainerTools` herunter, und speichern Sie die Datei auf dem Nano Server-Containerhost im Ordner `windows\system32`.
+Laden Sie „docker.exe“ von `https://aka.ms/tp4/docker` herunter, und speichern Sie die Datei auf dem Nano Server-Containerhost im Ordner `windows\system32`.
 
 Führen Sie den folgenden Befehl aus, um den Docker-Daemon zu starten: Dieser Befehl muss jedes Mal ausgeführt werden, wenn der Containerhost gestartet wird. Dieser Befehl startet den Docker-Daemon, gibt einen virtuellen Switch für die Netzwerkverbindung des Containers an und legt den Daemon so fest, dass dieser Port 2375 auf eingehende Docker-Anforderungen überwacht. In dieser Konfiguration kann Docker von einem Remotecomputer aus verwaltet werden.
 
@@ -128,6 +128,50 @@ Um den Docker-Daemon und die CLI von Nano Server zu entfernen, löschen Sie `doc
 PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
 ```
 
+### Interaktive Nano-Sitzung
+
+> Informationen zur Remoteverwaltung von Nano Server finden Sie unter [Erste Schritte mit Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
+
+Sie erhalten diesen Fehler, wenn Sie einen Container interaktiv auf einem Nano Server-Host verwalten.
+
+```powershell
+docker : cannot enable tty mode on non tty input
++ CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
++ FullyQualifiedErrorId : NativeCommandError 
+```
+
+Dies kann der Fall sein, wenn Sie versuchen, einen Container mit einer interaktiven Sitzung mithilfe von -it auszuführen:
+
+```powershell
+Docker run -it <image> <command>
+```
+Oder beim Anfügeversuch an einen aktiven Container:
+
+```powershell
+Docker attach <container name>
+```
+
+Um eine interaktive Sitzung mit einem mit Docker erstellten Container auf einem Nano Server-Host zu erstellen, muss der Docker-Daemon remote verwaltet werden. Laden Sie dazu „docker.exe“ von [diesem Speicherort](https://aka.ms/ContainerTools) herunter, und kopieren Sie die Datei auf ein Remotesystem.
+
+Zunächst müssen Sie den Docker-Daemon in Nano Server für das Lauschen auf Remotebefehle einrichten. Dies ist möglich, indem Sie in Nano Server diesen Befehl ausführen:
+
+```powershell
+docker daemon -D -H <ip address of Nano Server>:2375
+```
+
+Öffnen Sie jetzt auf Ihrem Computer eine PowerShell- oder CMD-Sitzung, und führen Sie die Docker-Befehle aus. Geben Sie dabei mit `-H` den Remotehost an.
+
+```powershell
+.\docker.exe -H tcp://<ip address of Nano Server>:2375
+```
+
+Wenn Sie beispielsweise die verfügbaren Images anzeigen möchten:
+
+```powershell
+.\docker.exe -H tcp://<ip address of Nano Server>:2375 images
+```
 
 
 
+
+<!--HONumber=Jan16_HO3-->

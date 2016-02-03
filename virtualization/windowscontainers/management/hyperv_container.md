@@ -4,7 +4,7 @@
 
 Die Windows-Containertechnologie umfasst zwei Arten von Containern: Windows Server-Container und Hyper-V-Container. Beide Arten von Containern werden auf gleiche Weise erstellt und verwaltet und funktionieren identisch. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
 
-**Windows Server-Containern**: Mehrere Container werden auf einem Host isoliert ausgeführt, was mithilfe von Namespace- und Prozessisolationstechnologie ermöglicht wird.
+**Windows Server-Container**: Mehrere Container werden auf einem Host isoliert ausgeführt, was mithilfe von Namespace- und Prozessisolationstechnologie ermöglicht wird.
 
 **Hyper-V-Container**: Mehrere Container werden auf einem Host ausgeführt, wobei jedoch jeder Container innerhalb eines dafür vorgesehenen virtuellen Computers ausgeführt wird. Dies ermöglicht eine Isolation auf Kernelebene zwischen einem Hyper-V-Container, dem Containerhost und anderen Containern, die auf dem Containerhost ausgeführt werden.
 
@@ -24,7 +24,7 @@ PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -Switc
 
 Zusätzlich zum Erstellen eines Containers als Hyper-V-Container zur Buildzeit können Container, die mit PowerShell erstellt wurden, auch von einem Windows Server-Container in einen Hyper-V-Container konvertiert werden.
 
-> Derzeit ist Nano Server das einzige Hostbetriebssystem, dass die Laufzeitkonvertierung von Containern unterstützt.
+>Derzeit ist Nano Server das einzige Hostbetriebssystem, dass die Laufzeitkonvertierung von Containern unterstützt.
 
 Erstellen Sie einen neuen Container mit der Standardlaufzeit.
 
@@ -41,7 +41,7 @@ ContainerName RuntimeType
 DEMO              Default
 ```
 
-Verwenden Sie den Befehl `Set-Container`, um die Containerlaufzeit zu ändern.
+Verwenden Sie den Befehl `set-container`, um die Containerlaufzeit zu ändern.
 
 ```powershell
 PS C:\> Set-Container $con -RuntimeType HyperV
@@ -61,7 +61,7 @@ DEMO               HyperV
 
 ### Erstellen eines Containers
 
-Das Verwalten von Hyper-V-Containern mit Docker ist nahezu identisch mit dem Verwalten von Windows Server-Containern. Beim Erstellen eines Hyper-V-Containers mit Docker wird der Parameter `–issolation=hyperv` verwendet.
+Das Verwalten von Hyper-V-Containern mit Docker ist nahezu identisch mit dem Verwalten von Windows Server-Containern. Beim Erstellen eines Hyper-V-Containers mit Docker wird der Parameter `–isolation=hyperv` verwendet.
 
 ```powershell
 docker run -it --isolation=hyperv 646d6317b02f cmd
@@ -214,3 +214,4 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 
 
 
+<!--HONumber=Jan16_HO1-->

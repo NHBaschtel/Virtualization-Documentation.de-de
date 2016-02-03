@@ -3,7 +3,7 @@
 Mit PowerShell Direct können Sie einen virtuellen Computer mit Windows 10 oder Windows Server Technical Preview auf einem Hyper-V-Host mit Windows 10 oder Windows Server Technical Preview remote verwalten. PowerShell Direct ermöglicht die PowerShell-Verwaltung innerhalb eines virtuellen Computers unabhängig von der Netzwerkkonfiguration oder den Remoteverwaltungseinstellungen des Hyper-V-Hosts oder virtuellen Computers. Dies erleichtert Hyper-V-Administratoren die Automatisierung und Erstellung von Skripts zur Verwaltung und Konfiguration virtueller Computer.
 
 Es gibt zwei Möglichkeiten, PowerShell Direct auszuführen:
-* Als interaktive Sitzung: [Wechseln Sie zu diesem Abschnitt](vmsession.md#create-and-exit-an-interactive-powershell-session), um eine PowerShell Direct-Sitzung mithilfe von „PSSession“-Cmdlets einzurichten und zu beenden.
+* Als interaktive Sitzung: [Wechseln Sie zu diesem Abschnitt](vmsession.md#create-and-exit-an-interactive-powershell-session), um eine PowerShell Direct-Sitzung mithilfe von PSSession-Cmdlets einzurichten und zu beenden.
 * Ausführen mehrerer Befehle oder eines Skripts: [Wechseln Sie zu diesem Abschnitt](vmsession.md#run-a-script-or-command-with-invoke-command), um mit dem Cmdlet „Invoke-Command“ ein Skript oder einen Befehl auszuführen.
 
 
@@ -36,7 +36,7 @@ Enter-PSSession -VMGUID <VMGUID>
 Exit-PSSession 
 ```
 
->Hinweis: Wenn für die Sitzung keine Verbindung hergestellt werden kann, vergewissern Sie sich, dass Sie Anmeldeinformationen für den virtuellen Computer, mit dem Sie sich verbinden möchten, und nicht für den Hyper-V-Host verwenden.
+> Hinweis: Wenn für die Sitzung keine Verbindung hergestellt werden kann, vergewissern Sie sich, dass Sie Anmeldeinformationen für den virtuellen Computer, mit dem Sie sich verbinden möchten, und nicht für den Hyper-V-Host verwenden.
 
 Weitere Informationen zu diesen Cmdlets finden Sie unter [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) und [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx).
 
@@ -60,31 +60,47 @@ PowerShell Direct zeigt eine kleine Menge von Fehlermeldungen an. Es folgen die 
 
 ### Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
 
-Fehlermeldung:
+**Fehlermeldung:**
 ```
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
-Mögliche Ursachen:
+**Mögliche Ursachen:**
 * Der virtuelle Computer wird nicht ausgeführt.
-* Das Gastbetriebssystem unterstützt PowerShell Direct nicht (siehe die [Anforderungen](#Requirements)).
+* Das Gastbetriebssystem unterstützt PowerShell Direct nicht (Informationen finden Sie in den [Anforderungen](#Requirements))).
 * PowerShell ist noch nicht auf dem Gast verfügbar.
-* Der Startvorgang des Betriebssystems ist noch nicht abgeschlossen.
-* Das Betriebssystem kann nicht ordnungsgemäß starten.
-* Bei einigen Ereignissen zur Startzeit sind Benutzereingaben erforderlich.
+  * Der Startvorgang des Betriebssystems ist noch nicht abgeschlossen.
+  * Das Betriebssystem kann nicht ordnungsgemäß starten.
+  * Bei einigen Ereignissen zur Startzeit sind Benutzereingaben erforderlich.
 * Die Gastanmeldeinformationen konnten nicht überprüft werden.
-* Die angegebenen Anmeldeinformationen sind falsch
-* Es gibt keine Benutzerkonten auf dem Gast (das Betriebssystem wurde noch nicht gestartet)
-* Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt. Weitere Informationen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh825104.aspx).
+  * Die angegebenen Anmeldeinformationen sind falsch
+  * Es gibt keine Benutzerkonten auf dem Gast (das Betriebssystem wurde noch nicht gestartet)
+  * Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt. Weitere Informationen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh825104.aspx).
 
 Mit dem Cmdlet [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) können Sie überprüfen, ob die von Ihnen verwendeten Anmeldeinformationen die Rolle „Hyper-V-Administrator“ enthalten und welche VMs lokal auf dem Host ausgeführt werden und gestartet wurden.
 
-## Beispiele
+### Fehler: Parametersatz kann nicht aufgelöst werden.
 
-Sehen Sie sich Beispiele auf [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93) an.
+**Fehlermeldung:**
+``` 
+Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
+```
 
-Unter [PowerShell Direct-Codeausschnitte](../develop/powershell_snippets.md) finden Sie zahlreiche Beispiel zur Nutzung von PowerShell Direct in Ihrer Umgebung sowie Tipps und Tricks zum Schreiben von Hyper-V-Skripts mit PowerShell.
+**Mögliche Ursachen:**  
+`-RunAsAdministrator` wird beim Herstellen von Verbindungen mit virtuellen Computern nicht unterstützt.
+
+PowerShell Direct zeigt unterschiedliche Verhaltensweisen beim Verbinden mit virtuellen Computern im Vergleich zu Windows-Containern. Beim Verbinden mit einem Windows-Container erlaubt das Flag `-RunAsAdministrator` Administratorverbindungen ohne explizite Anmeldeinformationen. Da virtuelle Computer dem Host keinen impliziten Administratorzugriff gewähren, müssen Sie die Anmeldeinformationen explizit eingeben.
+
+Administratoranmeldeinformationen können dem virtuellen Computer über den Parameter `-credential` übergeben oder auf Aufforderung manuell eingegeben werden.
+
+
+## Abtastungen
+
+Sehen Sie sich die Beispiele auf [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93) an.
+
+Unter [PowerShell Direct-Codeausschnitte](../develop/powershell_snippets.md) finden Sie zahlreiche Beispiele zur Nutzung von PowerShell Direct in Ihrer Umgebung sowie Tipps und Tricks zum Schreiben von Hyper-V-Skripts mit PowerShell.
 
 
 
-<!--HONumber=Jan16_HO1-->
+
+<!--HONumber=Jan16_HO2-->

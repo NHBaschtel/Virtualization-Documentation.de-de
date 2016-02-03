@@ -7,17 +7,17 @@ Dieser Artikel enthält ausführliche Informationen zum Verwalten von Integratio
 ## Aktivieren und Deaktivieren von Integrationsdiensten mit Hyper-V-Manager
 
 1. Wählen Sie einen virtuellen Computer aus, und öffnen Sie „Einstellungen“.
-    ![](./media/HyperVManager-OpenVMSettings.png)
+  ![](./media/HyperVManager-OpenVMSettings.png)
 
 2. Wechseln Sie im Fenster „Einstellungen“ des virtuellen Computers unter „Verwaltung“ zur Registerkarte „Integrationsdienste“.
 
-    ![](./media/HyperVManager-IntegrationServices.png)
+  ![](./media/HyperVManager-IntegrationServices.png)
 
-    Hier sehen Sie alle Integrationsdienste, die auf diesem Hyper-V-Host verfügbar sind. Wichtig ist der Hinweis, dass das Gastbetriebssystem ggf. nicht alle aufgeführten Integrationsdienste unterstützt.
+  Hier sehen Sie alle Integrationsdienste, die auf diesem Hyper-V-Host verfügbar sind. Wichtig ist der Hinweis, dass das Gastbetriebssystem ggf. nicht alle aufgeführten Integrationsdienste unterstützt.
 
 ## Aktivieren und Deaktivieren von Integrationsdiensten mit PowerShell
 
-Integrationsdienste können mit PowerShell aktiviert und deaktiviert werden, indem [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) und [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx) ausgeführt werden.
+Integrationsdienste können mit PowerShell aktiviert und deaktiviert werden, indem [`Enable-VMIntegrationService`](https://technet.microsoft.com/de-de/library/hh848500.aspx) und [`Disable-VMIntegrationService`](https://technet.microsoft.com/de-de/library/hh848488.aspx) ausgeführt werden.
 
 In diesem Beispiel aktivieren und deaktivieren wir den Integrationsdienst für das Kopieren von Gastdateien auf dem zuvor erwähnten virtuellen Computer „demovm“.
 
@@ -39,7 +39,7 @@ In diesem Beispiel aktivieren und deaktivieren wir den Integrationsdienst für d
   demovm      VSS                     True    OK
   ```
 
-2. Aktivieren Sie den Integrationsdienst `Guest Service Interface`.
+2. Aktivieren des Integrationsdiensts `Guest Service Interface`
 
    ``` PowerShell
    Enable-VMIntegrationService -VMName "demovm" -Name "Guest Service Interface"
@@ -47,7 +47,7 @@ In diesem Beispiel aktivieren und deaktivieren wir den Integrationsdienst für d
 
    Wenn Sie `Get-VMIntegrationService -VMName "demovm"` ausführen, sehen Sie, dass der Integrationsdienst „Guest Service Interface“ aktiviert ist.
 
-3. Deaktivieren Sie den Integrationsdienst `Guest Service Interface`.
+3. Deaktivieren des Integrationsdiensts `Guest Service Interface`
 
    ``` PowerShell
    Disable-VMIntegrationService -VMName "demovm" -Name "Guest Service Interface"
@@ -58,7 +58,7 @@ Integrationsdienste sind so konzipiert, dass sie für ein ordnungsgemäßes Funk
 
 ## Verwalten von Integrationsdiensten im Gastbetriebssystem (Windows)
 
-> **Hinweis:** Durch das Deaktivieren von Integrationsdiensten kann die Fähigkeit des Hosts zum Verwalten Ihres virtuellen Computers schwerwiegend eingeschränkt werden. Integrationsdienste müssen für einen ordnungsgemäßen Betrieb auf Host und Gast aktiviert sein.
+> **Hinweis:** Durch das Deaktivieren von Integrationsdiensten kann die Fähigkeit des Hosts zum Verwalten Ihres virtuellen Computers gravierend eingeschränkt werden. Integrationsdienste müssen für einen ordnungsgemäßen Betrieb auf Host und Gast aktiviert sein.
 
 Integrationsdienste werden unter Windows als Dienste angezeigt. Zum Aktivieren oder Deaktivieren eines Integrationsdiensts innerhalb des virtuellen Computers öffnen Sie den Windows-Dienste-Manager.
 
@@ -87,7 +87,7 @@ Stopped  vmicvmsession      Hyper-V VM Session Service
 Running  vmicvss            Hyper-V Volume Shadow Copy Requestor
 ```
 
-Starten oder beenden Sie Dienste mit [`Start-Service`](https://technet.microsoft.com/en-us/library/hh849825.aspx) bzw. [`Stop-Service`](https://technet.microsoft.com/en-us/library/hh849790.aspx).
+Starten oder beenden Sie Dienste mit [`Start-Service`](https://technet.microsoft.com/de-de/library/hh849825.aspx) bzw. [`Stop-Service`](https://technet.microsoft.com/de-de/library/hh849790.aspx).
 
 Standardmäßig sind alle Integrationsdienste im Gastbetriebssystem aktiviert.
 
@@ -147,9 +147,9 @@ Prüfen Sie, ob die Integrationsdiensttreiber und -daemons ausgeführt werden, i
   ```
 
   Daemons für Integrationsdienste, die ggf. angezeigt werden:
-* `hv_vss_daemon`: Dieser Daemon ist zum Erstellen von Sicherungen aktiver virtueller Linux-Computer erforderlich.
-* `hv_kvp_daemon`: Dieser Daemon ermöglicht das Festlegen und Abfragen interner und externer Schlüsselwertpaare.
-* `hv_fcopy_daemon`: Dieser Daemon implementiert einen Dateikopierdienst zwischen Host und Gast.
+  * **`hv_vss_daemon`**: Dieser Daemon ist zum Erstellen von Sicherungen aktiver virtueller Linux-Computer erforderlich.
+  * **`hv_kvp_daemon`**: Dieser Daemon ermöglicht das Festlegen und Abfragen interner und externer Schlüsselwertpaare.
+  * **`hv_fcopy_daemon`**: Dieser Daemon implementiert einen Dateikopierdienst zwischen Host und Gast.
 
 > **Hinweis:** Wenn die genannten Daemons für Integrationsdienste nicht verfügbar sind, werden sie möglicherweise auf Ihrem System nicht unterstützt oder sind nicht installiert. Weitere distributionsbezogene Informationen finden Sie [hier](https://technet.microsoft.com/en-us/library/dn531030.aspx).
 
@@ -188,11 +188,12 @@ Halten Sie Integrationsdienste auf dem neuesten Stand, um sich die bestmögliche
 | –| | |
 | Windows Server 2012 R2| Windows Update| |
 | Windows Server 2012| Windows Update| Benötigt den Integrationsdienst „Datenaustausch“.*****|
-| Windows Server 2008 R2| Windows Update| Benötigt den Integrationsdienst „Datenaustausch“.*****|
-| Windows Server 2008 (SP 2)| Windows Update| Benötigt den Integrationsdienst „Datenaustausch“.*****|
-| Windows Home Server 2011| Windows Update| Benötigt den Integrationsdienst „Datenaustausch“.*****|
-| Windows Small Business Server 2011| Windows Update| Benötigt den Integrationsdienst „Datenaustausch“.*****|
-
+| Windows Server 2008 R2 (SP 1)| Windows Update| Benötigt den Integrationsdienst „Datenaustausch“.*****|
+| Windows Server 2008 (SP 2)| Windows Update| Erweiterte Unterstützung nur in Server 2016 ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=12925)).|
+| Windows Home Server 2011| Windows Update| Nicht in Server 2016 unterstützt ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15820)).|
+| Windows Small Business Server 2011| Windows Update| Nicht im grundlegenden Support enthalten ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15817)).|
+| -| | |
+| Linux-Gastbetriebssysteme| Paket-Manager| Linux-Integrationskomponenten sind in die Distribution integriert. Es können jedoch optionale Updates verfügbar sein.********|
 
 **\*** Wenn der Integrationsdienst „Datenaustausch“ nicht aktiviert werden kann, stehen die Integrationskomponenten für diese Gastbetriebssysteme als CAB-Dateien im Downloadcenter [hier](https://support.microsoft.com/en-us/kb/3071740) zur Verfügung. Anweisungen zum Ausführen einer CAB-Datei finden Sie [hier](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
 
@@ -216,6 +217,9 @@ Halten Sie Integrationsdienste auf dem neuesten Stand, um sich die bestmögliche
 | Windows Small Business Server 2011| Integrationsdienste-Datenträger| |
 | Windows Server 2003 R2 (SP 2)| Integrationsdienste-Datenträger| |
 | Windows Server 2003 (SP 2)| Integrationsdienste-Datenträger| |
+| -| | |
+| Linux-Gastbetriebssysteme| Paket-Manager| Linux-Integrationskomponenten sind in die Distribution integriert. Es können jedoch optionale Updates verfügbar sein.********|
+
 
 **Für auf Windows 8-Hosts ausgeführte virtuelle Computer:**
 
@@ -235,11 +239,15 @@ Halten Sie Integrationsdienste auf dem neuesten Stand, um sich die bestmögliche
 | Windows Small Business Server 2011| Integrationsdienste-Datenträger| |
 | Windows Server 2003 R2 (SP 2)| Integrationsdienste-Datenträger| |
 | Windows Server 2003 (SP 2)| Integrationsdienste-Datenträger| |
+| -| | |
+| Linux-Gastbetriebssysteme| Paket-Manager| Linux-Integrationskomponenten sind in die Distribution integriert. Es können jedoch optionale Updates verfügbar sein.********|
+
 
 Eine Anleitung zur Aktualisierung mithilfe des Integrationsdienste-Datenträgers für Windows 8 und Windows 8.1 finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
 
-**\*\*** Weitere Informationen zu Linux-Gastbetriebssystemen finden Sie [hier](https://technet.microsoft.com/en-us/library/dn531030.aspx).
+ **\****** Weitere Informationen zu Linux-Gastbetriebssystemen finden Sie [hier](https://technet.microsoft.com/en-us/library/dn531030.aspx).
 
 
 
 
+<!--HONumber=Jan16_HO3-->

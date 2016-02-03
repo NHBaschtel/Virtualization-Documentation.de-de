@@ -60,7 +60,7 @@ Beenden Sie anschließend die interaktive Shellsitzung.
 C:\> exit
 ```
 
-Abschließend wird für den Container mithilfe von `docker commit` ein Commit in einem neuen Container ausgeführt. Dieses Beispiel erstellt ein neues Containerimage mit dem Namen `windowsservercoreiis`.
+Abschließend wird für den Container mithilfe von `docker commit` ein Commit in ein neues Containerimage ausgeführt. Dieses Beispiel erstellt ein neues Containerimage mit dem Namen `windowsservercoreiis`.
 
 ```powershell
 C:\> docker commit iisbase windowsservercoreiis
@@ -96,7 +96,7 @@ Sie sollten sich auch die IP-Adresse des Containerhosts notieren, da sie in der 
 
 Sie haben nun ein Container-Image, das IIS enthält und verwendet werden kann, um IIS-fähige Betriebsumgebungen bereitzustellen.
 
-Verwenden Sie zum Erstellen eines Containers aus dem neuen Image den Befehl `docker run`, wobei Sie diesmal den Namen des IIS-Images angeben. Beachten Sie, dass in diesem Beispiel der Parameter `-p-80:80` angegeben ist. Da der Container mit einem virtuellen Switch verbunden ist, der IP-Adressen über NAT (Netzwerkadressübersetzung) bereitstellt, muss ein Port auf dem Containerhost einem Port in der NAT-IP-Adresse des Containers zugeordnet werden. Weitere Informationen zum Parameter `-p` finden Sie in der [Referenz zu „Docker Run“ auf docker.com](https://docs.docker.com/engine/reference/run/).
+Verwenden Sie zum Erstellen eines Containers aus dem neuen Image den Befehl `docker run`, wobei Sie diesmal den Namen des IIS-Images angeben. Beachten Sie, dass in diesem Beispiel der Parameter `-p 80:80` angegeben ist. Da der Container mit einem virtuellen Switch verbunden ist, der IP-Adressen über NAT (Netzwerkadressübersetzung) bereitstellt, muss ein Port auf dem Containerhost einem Port in der NAT-IP-Adresse des Containers zugeordnet werden. Weitere Informationen zum Parameter `-p` finden Sie in der [Referenz zu „Docker Run“ auf docker.com](https://docs.docker.com/engine/reference/run/).
 
 ```powershell
 C:\> docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd
@@ -147,7 +147,7 @@ In der letzten Übung wurde ein Container manuell erstellt, geändert und dann i
 
 ### Erstellen des IIS-Images
 
-Erstellen Sie auf dem Containerhost das Verzeichnis `c:\build` und in diesem Verzeichnis eine Datei namens `Dockerfile`.
+Erstellen Sie auf dem Containerhost das Verzeichnis `c:\build` und in diesem Verzeichnis eine Datei namens `dockerfile`.
 
 ```powershell
 C:\> powershell new-item c:\build\dockerfile -Force
@@ -159,7 +159,7 @@ C:\> powershell new-item c:\build\dockerfile -Force
 C:\> notepad c:\build\dockerfile
 ```
 
-Kopieren Sie den folgenden Text in die Dockerfile, und speichern Sie sie. Diese Befehle weisen Docker an, ein neues Image mit `windosservercore` als Basis zu erstellen, und die mit `RUN` angegebenen Änderungen einzuschließen. Weitere Informationen zu Dockerfiles finden Sie in der [Referenz zu Dockerfiles auf docker.com](http://docs.docker.com/engine/reference/builder/).
+Kopieren Sie den folgenden Text in die Dockerfile, und speichern Sie sie. Diese Befehle weisen Docker an, ein neues Image mit `windowsservercore` als Basis zu erstellen und die mit `RUN` angegebenen Änderungen einzuschließen. Weitere Informationen zu Dockerfiles finden Sie in der [Referenz zu Dockerfiles auf docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -217,7 +217,7 @@ C:\> docker rmi iis
 
 ## Hyper-V-Container
 
-Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem überaus optimierten virtuellen Computer erstellt. Während sich ein Windows Server-Container einen Kernel mit dem Containerhost teilt, ist ein Hyper-V-Container vollständig isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Hyper-V Containers](../management/hyperv_container.md).
+Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem überaus optimierten virtuellen Computer erstellt. Während sich ein Windows Server-Container einen Kernel mit dem Containerhost teilt, ist ein Hyper-V-Container vollständig isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Verwalten von Hyper-V-Containern](../management/hyperv_container.md).
 
 >Microsoft Azure unterstützt keine Hyper-V-Container. Für die Hyper-V-Übungen benötigen Sie einen lokalen Containerhost.
 
@@ -225,7 +225,7 @@ Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätz
 
 Da im Container ein Nano Server-Betriebssystemimage ausgeführt wird, sind für die Installation von IIS die IIS-Pakete für Nano Server erforderlich. Diese finden Sie auf dem Windows Server 2016 TP4-Installationsmedium im Verzeichnis `NanoServer\Packages`.
 
-In diesem Beispiel wird ein Verzeichnis aus dem Containerhost dem ausgeführten Container über den Parameter `-v` von `docker run` zur Verfügung gestellt. Bevor Sie dies tun, muss das Quellverzeichnis konfiguriert werden.
+In diesem Beispiel wird dem ausgeführten Container über den Parameter `-v` von `docker run` ein Verzeichnis vom Containerhost zur Verfügung gestellt. Bevor Sie dies tun, muss das Quellverzeichnis konfiguriert werden.
 
 Erstellen Sie ein Verzeichnis auf dem Containerhost, das für den Container freigegeben wird. Wenn Sie bereits die exemplarische Vorgehensweise für PowerShell abgeschlossen haben, sind dieses Verzeichnis und die benötigten Dateien ggf. bereits vorhanden.
 
@@ -266,7 +266,7 @@ c:\share
 |-- unattend.xml
 ```
 
-Geben Sie zum Erstellen eines Hyper-V-Containers mit Docker den Parameter `--isolation=hyperv` an. Dieses Beispiel stellt das Verzeichnis `c:\share` auf dem Host für das Verzeichnis `c:\iisinstall` im Container bereit und erstellt dann eine interaktive PowerShell-Sitzung mit dem Container.
+Geben Sie zum Erstellen eines Hyper-V-Containers mit Docker den Parameter `–isolation=hyperv` an. Dieses Beispiel stellt das Verzeichnis `c:\share` auf dem Host für das Verzeichnis `c:\iisinstall` im Container bereit und erstellt dann eine interaktive Shellsitzung mit dem Container.
 
 ```powershell
 C:\> docker run --name iisnanobase -it -v c:\share:c:\iisinstall --isolation=hyperv nanoserver cmd

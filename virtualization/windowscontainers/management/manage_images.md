@@ -13,7 +13,7 @@ Es gibt zwei Arten von Containerimages:
 
 ### Auflisten von Images
 
-Führen Sie `get-containerImage` aus, um eine Liste der Images auf dem Containerhost zurückzugegeben. Die Eigenschaft `IsOSImage` dient zum Unterscheiden der Typen von Containerimages.
+Führen Sie `get-containerImage` aus, um eine Liste der Images auf dem Containerhost zurückzugeben. Die Eigenschaft `IsOSImage` dient zum Unterscheiden der Typen von Containerimages.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -43,7 +43,7 @@ NanoServer           10.0.10586.0            Container OS Image of Windows Serve
 WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
 ```
 
-Zum Herunterladen und Installieren des Basisbetriebssystem-Images für Nano Server führen Sie die folgenden Schritte aus.
+Zum Herunterladen und Installieren des Basisbetriebssystem-Images für Nano Server führen Sie die folgenden Schritte aus. Der Parameter `–version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
@@ -51,9 +51,9 @@ PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
-Mit diesem Befehl wird auch das Basisbetriebssystem-Image für Windows Server Core heruntergeladen und installiert.
+Mit diesem Befehl wird auch das Basisbetriebssystem-Image für Windows Server Core heruntergeladen und installiert. Der Parameter `–version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
 
-> **Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem „WindowsServerCore“-Containerimage. **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
+>**Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage. **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
@@ -91,7 +91,7 @@ PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 ### Image-Abhängigkeit
 
-Wenn ein neues Image erstellt wird, wird es vom Image abhängig, anhand dessen es erstellt wurde. Diese Abhängigkeit kann mit dem Befehl `Get-ContainerImage` angezeigt werden. Wenn ein übergeordnetes Image nicht aufgeführt ist, heißt dies, dass das Image eine Basisbetriebssystem-Image ist.
+Wenn ein neues Image erstellt wird, wird es vom Image abhängig, anhand dessen es erstellt wurde. Diese Abhängigkeit kann mit dem Befehl `get-containerimage` angezeigt werden. Wenn ein übergeordnetes Image nicht aufgeführt ist, heißt dies, dass das Image eine Basisbetriebssystem-Image ist.
 
 ```powershell
 PS C:\> Get-ContainerImage | select Name, ParentImage
@@ -177,7 +177,7 @@ f9e8a4cc8f6c: Pull complete
 b71a5b8be5a2: Download complete
 ```
 
-Bei Ausführung von `docker images` wird das Image angezeigt.
+Bei Ausführung von `docker images` wird das Image jetzt angezeigt.
 
 ```powershell
 C:\> docker images
@@ -202,3 +202,4 @@ IMAGE               CREATED             CREATED BY          SIZE                
 
 
 
+<!--HONumber=Jan16_HO1-->

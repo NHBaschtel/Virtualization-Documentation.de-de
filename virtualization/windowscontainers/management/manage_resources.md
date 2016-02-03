@@ -8,7 +8,7 @@ Für Windows-Container kann konfiguriert werden, wie viele CPU-, Datenträger-E/
 
 ### Arbeitsspeicher
 
-Arbeitsspeicherlimits für Container können festgelegt werden, wenn bei Ausführung des Befehls `New-Container` der Parameter `-MaximumMemoryBytes` angegeben wird. In diesem Beispiel wird der maximale Arbeitsspeicher auf 256 MB festgelegt.
+Arbeitsspeicherlimits für Container können festgelegt werden, wenn bei Ausführung des Befehls `New-Container` zum Erstellen eines Containers der Parameter `-MaximumMemoryBytes` angegeben wird. In diesem Beispiel wird der maximale Arbeitsspeicher auf 256 MB festgelegt.
 
 ```powershell
 PS C:\> New-Container –Name TestContainer –MaximumMemoryBytes 256MB -ContainerimageName WindowsServerCore
@@ -16,12 +16,12 @@ PS C:\> New-Container –Name TestContainer –MaximumMemoryBytes 256MB -Contain
 Mit dem Cmdlet `Set-ContainerMemory` können Sie auch das Arbeitsspeicherlimit eines vorhandenen Containers festlegen.
 
 ```powershell
-PS C:\> Set-ContainerMemory -ContainerName TestContainer -MaximumBytes 500mb
+PS C:\> Set-ContainerMemory -ContainerName TestContainer -MaximumBytes 256mb
 ```
 
 ### Netzwerkbandbreite
 
-Für einen vorhandenen Container können Limits für die Netzwerkbandbreite festgelegt werden. Stellen Sie zunächst mit dem Befehl `Get-ContainerNetworkAdapter` sicher, dass der Container über einen Netzwerkadapter verfügt. Wenn kein Netzwerkadapter vorhanden ist, erstellen Sie einen mit dem Befehl `Add-ContainerNetworkAdapter`. Führen Sie abschließend den Befehl `Set ContainerNetworkAdapter` aus, um die maximale ausgehende Netzwerkbandbreite zu begrenzen.
+Für einen vorhandenen Container können Limits für die Netzwerkbandbreite festgelegt werden. Stellen Sie zunächst mit dem Befehl `Get-ContainerNetworkAdapter` sicher, dass der Container über einen Netzwerkadapter verfügt. Wenn kein Netzwerkadapter vorhanden ist, erstellen Sie einen mit dem Befehl `Add-ContainerNetworkAdapter`. Führen Sie abschließend den Befehl `Set-ContainerNetworkAdapter` aus, um die maximale ausgehende Netzwerkbandbreite des Containers zu begrenzen.
 
 Im nachstehenden Beispiel ist die maximale Bandbreite auf 100 Mbit/s festgelegt.
 
@@ -36,7 +36,7 @@ Sie können die CPU-Kapazität eines Containers begrenzen, indem Sie entweder ei
 Im folgenden Beispiel wird die relative Gewichtung des Containers auf 1000 festgelegt. Die Standardgewichtung eines Containers ist 100, weshalb dieser Container eine um das Zehnfache höhere Priorität als ein Container hat, der auf den Standardwert festgelegt ist. Der Maximalwert ist 10.000.
 
 ```powershell
-PS C:\> Set-ContainerProcessor -ContainerName Container1 –RelativeWeight 10000.
+PS C:\> Set-ContainerProcessor -ContainerName Container1 –RelativeWeight 10000
 ```
 
 Sie können auch ein festes Limit für die CPU-Kapazität für einen Container mithilfe eines Prozentsatzes der CPU-Zeit festlegen. Standardmäßig kann ein Container die CPU zu 100 % nutzen. Im folgenden Beispiel wird der maximale Prozentsatz einer CPU, die ein Container nutzen kann, auf 30 % festgelegt. Durch Angeben des Kennzeichens „–Maximum“ wird „RelativeWeight“ automatisch auf 100 festgelegt.
@@ -62,7 +62,7 @@ Wir bieten die Möglichkeit, eine Teilmenge der Containerressourcen mit Docker z
 
 ### CPU
 
-CPU-Freigaben unter Containern können zur Laufzeit mithilfe des Kennzeichens „--cpu-shares“ verwaltet werden. Standardmäßig steht allen Container ein gleich großer Anteil der CPU-Zeit zur Verfügung. Um die relative CPU-Freigabe für Container zu ändern, geben Sie für das Kennzeichen „--cpu-shares“ einen Wert von 1 bis 10.000 an. Standardmäßig erhalten alle Container eine Gewichtung von 5000.
+CPU-Freigaben unter Containern können zur Laufzeit mithilfe des Kennzeichens „--cpu-shares“ verwaltet werden. Standardmäßig steht allen Container ein gleich großer Anteil der CPU-Zeit zur Verfügung. Um die relative CPU-Freigabe für Container zu ändern, geben Sie für das Kennzeichen „--cpu-shares“ einen Wert von 1 bis 10.000 an. Standardmäßig erhalten alle Container eine Gewichtung von 5000. Weitere Informationen zur CPU-Freigabeeinschränkung finden Sie in der [Referenz zu „Docker Run“](https://docs.docker.com/engine/reference/run/#cpu-share-constraint).
 
 ```powershell 
 C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
@@ -77,3 +77,4 @@ C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 
 
 
+<!--HONumber=Jan16_HO1-->

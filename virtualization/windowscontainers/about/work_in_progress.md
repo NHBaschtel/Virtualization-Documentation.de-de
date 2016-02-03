@@ -100,7 +100,7 @@ Wenn Sie über DHCP-VM-Switches eine Verbindung mit den Windows-Containern herst
 Die Container erhalten eine von APIPA zugewiesene IP-Adresse im Bereich „169.254.***.***“.
 
 **Abhilfe:**
-Dies ist ein Nebeneffekt der gemeinsamen Kernelnutzung. Alle Container verfügen eigentlich über dieselbe MAC-Adresse.
+Dies ist ein Nebeneffekt der gemeinsamen Kernelnutzung. Alle Container verfügen effektiv über dieselbe MAC-Adresse.
 
 Aktivieren Sie das Spoofing von MAC-Adressen auf dem Containerhost.
 
@@ -108,6 +108,9 @@ Dies kann mithilfe von PowerShell erreicht werden.
 ```
 Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
+### HTTPS und TLS werden nicht unterstützt.
+
+Windows Server-Container und Hyper-V-Container unterstützen weder HTTPS noch TLS. Wir arbeiten daran, diese Protokolle in Zukunft verfügbar zu machen.
 
 --------------------------
 
@@ -148,7 +151,7 @@ No Instance(s) Available.
 Dies ist ein Interoperabilitätsproblem mit dem Deduplizierungsfilter. Die Deduplizierung überprüft das Umbenennungsziel, um zu prüfen, ob eine Datei dedupliziert ist. Die Erstellung misslingt mit `STATUS_IO_REPARSE_TAG_NOT_HANDLED`, da der Filter „Windows Server-Container“ sich über der Deduplizierung befindet.
 
 
-Im [Artikel zur Anwendungskompatibilität](../reference/app_compat.md) finden Sie weitere Informationen dazu, welche Anwendungen containerisiert werden können.
+Im [Artikel zur Anwendungskompatibilität](../reference/app_compat.md) finden Sie weitere Informationen dazu, für welche Anwendungen Container verwendet werden können.
 
 --------------------------
 
@@ -162,9 +165,8 @@ In dieser Vorabversion ist die Docker-Kommunikation öffentlich (wenn Sie wissen
 
 ### Nicht alle Docker-Befehle funktionieren
 
-„docker exec“ funktioniert in Hyper-V-Containern nicht.
-
-Befehle im Zusammenhang mit DockerHub werden noch nicht unterstützt.
+* „docker exec“ funktioniert in Hyper-V-Containern nicht.
+* Befehle im Zusammenhang mit DockerHub werden noch nicht unterstützt.
 
 Wenn Fehler bei Vorgängen auftreten, die nicht in dieser Liste enthalten sind (oder ein Befehl anders als erwartet misslingt), lassen Sie es uns in den [Foren](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) wissen.
 
@@ -187,6 +189,11 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 ```
 
 
+--------------------------
+
+
+
+
 ## Remotedesktop
 
 Es ist in einer RDP-Sitzung in TP4 nicht möglich, Windows-Container zu verwalten bzw. mit ihnen zu interagieren.
@@ -200,8 +207,36 @@ Es ist in einer RDP-Sitzung in TP4 nicht möglich, Windows-Container zu verwalte
 
 Dies ist korrekt. Wir planen die vollständige Unterstützung von „cimsession“ in der Zukunft.
 
+### Das Beenden eines Containers in einem Nano Server-Containerhost ist nicht über „exit“ möglich
+
+Wenn Sie versuchen, einen Container zu beenden, der sich in einem Nano Server-Containerhost befindet, werden Sie durch den Befehl „exit“ vom Nano Server-Containerhost getrennt, und der Container wird nicht beendet.
+
+**Abhilfe:**
+Verwenden Sie stattdessen „Exit-PSSession“, um den Container zu beenden.
+
 Wenn Sie bestimmte Features wünschen, teilen Sie uns dies in den [Foren](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) mit.
 
 
+--------------------------
 
 
+
+## Benutzer und Domänen
+
+### Lokale Benutzer
+
+Lokale Benutzerkonten können erstellt und für die Ausführung von Windows-Diensten und -Anwendungen in Containern verwendet werden.
+
+
+### Domänenmitgliedschaft
+
+Container können keinen Active Directory-Domänen beitreten und Dienste oder Anwendungen nicht als Domänenbenutzer, Dienstkonten oder Computerkonten ausführen.
+
+Container sind so konzipiert, dass sie schnell in einem bekannten konsistenten Status gestartet werden, der von der Umgebung weitestgehend unabhängig ist. Durch den Beitritt zu einer Domäne und die Anwendung von Gruppenrichtlinieneinstellungen aus der Domäne würde die zum Starten eines Containers erforderliche Zeit verlängert, die Funktion des Containers mit der Zeit verändert und die Möglichkeit zum Verschieben oder Freigeben von Bildern zwischen Entwicklern und über Bereitstellungen hinweg begrenzt.
+
+Wir prüfen sorgfältig das Feedback dazu, wie Dienste und Anwendungen Active Directory einsetzen, sowie die Auswirkungen von deren Bereitstellung in Containern. Wenn Sie Details zu den von Ihnen bevorzugten Funktionen bereitstellen möchten, teilen Sie sie uns in den [Foren](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) mit. Wir suchen aktiv nach Lösungen für die Unterstützung solcher Szenarien.
+
+
+
+
+<!--HONumber=Jan16_HO3-->

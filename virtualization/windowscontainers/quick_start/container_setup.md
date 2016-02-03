@@ -8,12 +8,12 @@ Unter [Direkte Bereitstellung von Windows-Containerhosts](./inplace_setup.md) fi
 
 Für die Übungen zu **Windows Server-Containern** und **Hyper-V-Containern** in dieser Schnellstartanleitung ist Folgendes erforderlich:
 
-* System mit Windows 10 Build 1056 oder höher/Windows Server Technical Preview 4 oder höher.
-* Hyper-V-Rolle aktiviert ([siehe Anweisungen](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell))
+* System mit Windows 10 Build 10586 oder höher/Windows Server Technical Preview 4 oder höher.
+* Aktivierte Hyper-V-Rolle ([siehe Anweisungen](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)))
 * 20 GB Speicherplatz für Containerhostimage, Betriebssystem-Basis-Image und Setupskripts
 * Administratorberechtigungen auf dem Hyper-V-Host
 
-> Ein virtualisierter Containerhost mit ausgeführten Hyper-V-Containern erfordert die geschachtelte Virtualisierung. Auf dem physischen und virtuellen Host muss ein Betriebssystem ausgeführt werden, das die geschachtelte Virtualisierung unterstützt. Weitere Informationen finden Sie unter [Neuerungen bei Hyper-V in Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/dn765471.aspx#BKMK_nested).
+> Ein virtualisierter Containerhost mit ausgeführten Hyper-V-Containern erfordert die geschachtelte Virtualisierung. Auf dem physischen und virtuellen Host muss ein Betriebssystem ausgeführt werden, das die geschachtelte Virtualisierung unterstützt. Weitere Informationen finden Sie unter „Neuerungen bei Hyper-V“ in [Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/dn765471.aspx#BKMK_nested).
 
 ## Einrichten eines neuen Containerhosts auf einem neuen virtuellen Computer
 
@@ -39,7 +39,7 @@ Verwenden Sie den folgenden Befehl, um das Konfigurationsskript herunterzuladen.
 PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 ```
 
-Führen Sie den folgenden Befehl zum Erstellen und Konfigurieren des Containerhosts aus, wobei `<containerhost>` der Name des virtuellen Computers ist.
+Führen Sie den folgenden Befehl zum Erstellen und Konfigurieren des Containerhosts aus, wobei `&lt;containerhost&gt;` der Name des virtuellen Computers ist.
 
 ``` powershell
 PS C:\> c:\New-ContainerHost.ps1 –VmName <containerhost> -WindowsImage ServerDatacenterCore -Hyperv
@@ -71,3 +71,5 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
+
+<!--HONumber=Jan16_HO2-->

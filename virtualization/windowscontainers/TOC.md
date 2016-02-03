@@ -1,6 +1,6 @@
 # Informationen zu Windows-Containern
 
-## [Übersicht über die Container-Dokumentation](./containers_welcome.md)
+## [Übersicht über die Containerdokumentation](./containers_welcome.md)
 
 ## [Informationen zu Windows-Containern](about/about_overview.md)
 
@@ -12,9 +12,9 @@
 
 ## [Container in Azure](quick_start/azure_setup.md)
 
-## [Container in einem neuen virtuellen Hyper-V-Computer](quick_start/container_setup.md)
+## [Container in einer neuen Hyper-V-VM](quick_start/container_setup.md)
 
-## [Container in einem vorhandenen virtuellen oder physischen System](quick_start/inplace_setup.md)
+## [Container in einem vorhandenen System](quick_start/inplace_setup.md)
 
 ## [Schnellstartanleitung für PowerShell](quick_start/manage_powershell.md)
 
@@ -38,7 +38,7 @@
 
 ## [Containernetzwerk](management/container_networking.md)
 
-## [Containerdaten](management/manage_data.md)
+## [Container und freigegebene Ordner](management/manage_data.md)
 
 ## [Steuerung von Containerressourcen](management/manage_resources.md)
 
@@ -60,6 +60,9 @@
 
 ## [Anwendungskompatibilität](reference/app_compat.md)
 
-# [ENDBENUTZER-LIZENZVERTRAG](EULA.md)
+# [Microsoft-Software-Lizenzbedingungen für Windows Server](EULA.md)
+
+# [Microsoft-Software-Lizenzbedingungen für Nano Server](Nano_EULA.md)
 
 
+<!--HONumber=Jan16_HO1-->

@@ -70,7 +70,7 @@ In diesem Beispiel wird der Port **82** des Containerhosts dem Port **80** eines
 ```powershell
 Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
 ```
-> Für jeden externen Port ist eine entsprechende Firewallregel erforderlich. Diese kann mit `New-NetFirewallRule` erstellt werden. Weitere Informationen finden Sie in der [Referenz zu New-NetFirewallRule](https://technet.microsoft.com/en-us/library/jj554908.aspx).
+>Für jeden externen Port ist eine entsprechende Firewallregel erforderlich. Diese kann mit `New-NetFirewallRule` erstellt werden. Weitere Informationen finden Sie in der [Referenz zu New-NetFirewallRule](https://technet.microsoft.com/en-us/library/jj554908.aspx).
 
 Nachdem die Portzuordnung erstellt wurde, kann eine Containeranwendung über die IP-Adresse des Containerhosts (physisch oder virtuell) und den verfügbar gemachten externen Port aufgerufen werden. Das folgende Diagramm zeigt beispielsweise eine NAT-Konfiguration mit einer Anforderung für den externen Port **82** des Containerhosts. Aufgrund der Portzuordnung würde diese Anforderung die in Container 2 gehostete Anwendung zurückgeben.
 
@@ -128,7 +128,7 @@ Starten Sie anschließend den Dienst.
 Start-Service docker
 ```
 
-## Verwalten von Containernetzwerkadaptern
+## Verwalten von Netzwerkadaptern
 
 Unabhängig von der Netzwerkkonfiguration („NAT“ oder „Transparent“) stehen mehrere PowerShell-Befehle zum Verwalten von Verbindungen zu Containernetzwerkadaptern und virtuellen Switches zur Verfügung.
 
@@ -149,3 +149,4 @@ Weitere Einzelheiten zu diesem Befehl finden Sie in der [Referenz zur Container-
 
 
 
+<!--HONumber=Jan16_HO1-->
