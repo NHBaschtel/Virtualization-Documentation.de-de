@@ -1,6 +1,6 @@
 {
   "LastProcessedCommit": "4c8a58f3bb3c8defe213d77f23529f8950747780",
-  "LastTranslatedCommit": "9f817d7038593cd62a6208eb25ef4db36261f15c",
+  "LastTranslatedCommit": "86be55ef4a57ca54564b79e2426fbc636d33b53a",
   "Items": {
     "5090f6d60b5cbdce0990242d795d9e4e3736e791": {
       "FileHash": "5090f6d60b5cbdce0990242d795d9e4e3736e791",
@@ -4489,14 +4489,14 @@
       "HandoffDateTime": "2016-01-05T20:41:57.210076Z",
       "HandoffException": null,
       "HandoffFailureTimes": 0,
-      "TargetFileCommit": null,
-      "TargetFilePath": null,
-      "HandbackFilePath": null,
-      "HandbackFileCommit": null,
-      "HandbackDateTime": "0001-01-01T00:00:00",
+      "TargetFileCommit": "86be55ef4a57ca54564b79e2426fbc636d33b53a",
+      "TargetFilePath": "virtualization\\windowscontainers\\Nano_EULA.md",
+      "HandbackFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\Nano_EULA.dc5fd75e218dabebc3dde5de2ed83d8f59835aa5.de-de.xlf",
+      "HandbackFileCommit": "c16b4ec2da06624679677d66de616efc9ae1a420",
+      "HandbackDateTime": "2016-02-05T03:18:22.1097742Z",
       "HandbackException": null,
       "HandbackFailureTimes": 0,
-      "UpdatedDateTime": "0001-01-01T00:00:00",
+      "UpdatedDateTime": "2016-02-05T03:18:22.1097742Z",
       "ArchiveFilePath": null,
       "ArchiveFileCommit": null,
       "ArchiveFileDateTime": "0001-01-01T00:00:00",
