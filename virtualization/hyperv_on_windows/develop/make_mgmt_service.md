@@ -1,6 +1,6 @@
-# Erstellen eines neuen Verwaltungsdiensts
+# Erstellen eigener Integrationsdienste
 
-Ab Windows 10 erlaubt Hyper-V registrierte Socketverbindungen zwischen dem Hyper-V-Gast und -Host ohne Rückgriff auf eine Netzwerkverbindung. Bei Verwenden von Hyper-V-Sockets können Dienste unabhängig vom Netzwerkstapel ausgeführt werden, wobei alle Daten im gleichen physischen Speicher verbleiben.
+Ab Windows 10 kann jeder einen Dienst, der den integrierten Hyper-V-Integrationsdiensten ähnelt, mithilfe eines neuen socketbasierten Kommunikationskanals zwischen dem Hyper-V-Host und den darauf ausgeführten virtuellen Computern erstellen. Bei Verwenden dieser Hyper-V-Sockets können Dienste unabhängig vom Netzwerkstapel ausgeführt werden, wobei alle Daten im gleichen physischen Speicher verbleiben.
 
 Dieses Dokument bietet eine exemplarische Vorgehensweise zum Erstellen einer einfachen auf Hyper-V-Sockets basierenden Anwendung und Nutzen dieser Sockets.
 
@@ -31,7 +31,7 @@ Derzeit sind Hyper-V-Sockets in systemeigenem Code (C/C++) verfügbar.
 Zum Schreiben einer einfachen Anwendung benötigen Sie Folgendes:
 * C-Compiler. Wenn Sie keinen haben, probieren Sie [Visual Studio Code](https://aka.ms/vs) aus.
 * Einen Computer, auf dem Hyper-V und ein virtueller Computer ausgeführt werden.
-    * Das Betriebssystem von Host- und Gastcomputer (VM) muss Windows 10, Windows Server Technical Preview 3 oder höher sein.
+  * Das Betriebssystem von Host- und Gastcomputer (VM) muss Windows 10, Windows Server Technical Preview 3 oder höher sein.
 * Windows SDK: Hier ist ein Link zum [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk), das `hvsocket.h` enthält.
 
 ## Registrieren einer neuen Anwendung
@@ -191,3 +191,5 @@ select
 
 
 
+
+<!--HONumber=Feb16_HO1-->

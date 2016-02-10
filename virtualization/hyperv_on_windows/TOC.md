@@ -1,6 +1,6 @@
 # Informationen zu Hyper-V unter Windows
 
-## [Hyper-V in Windows](./windows_welcome.md)
+## [Hyper-V in Windows 10](./windows_welcome.md)
 
 ## [Einführung in Hyper-V](./about/hyperv_on_windows.md)
 
@@ -46,7 +46,7 @@
 
 ## [PowerShell-Beispiele](develop/powershell_snippets.md)
 
-## [Verwaltungsdienst](develop/make_mgmt_service.md)
+## [Erstellen eines Integrationsdiensts](develop/make_mgmt_service.md)
 
 ## [Hyper-V-WMI-Anbieter (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 
@@ -57,3 +57,4 @@
 ## [Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
 
 
+<!--HONumber=Feb16_HO1-->

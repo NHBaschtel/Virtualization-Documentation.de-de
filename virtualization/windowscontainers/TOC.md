@@ -4,7 +4,7 @@
 
 ## [Informationen zu Windows-Containern](about/about_overview.md)
 
-## [Laufende Arbeiten](about/work_in_progress.md)
+## [In Bearbeitung](about/work_in_progress.md)
 
 ## [Häufig gestellte Fragen](about/faq.md)
 
@@ -24,9 +24,11 @@
 
 ## [Systemanforderungen](deployment/system_requirements.md)
 
-## [Bereitstellen von Containerhosts](deployment/deployment.md)
+## [Container unter Windows Server](deployment/deployment.md)
 
-## [Bereitstellen von Docker unter Windows](deployment/docker_windows.md)
+## [Container unter Nano-Server](deployment/deployment_nano.md)
+
+## [Docker unter Windows](deployment/docker_windows.md)
 
 # Verwalten von Windows-Containern
 
@@ -60,9 +62,9 @@
 
 ## [Anwendungskompatibilität](reference/app_compat.md)
 
-# [Microsoft-Software-Lizenzbedingungen für Windows Server](EULA.md)
+# [Endbenutzer-Lizenzvertrag für Windows Server](EULA.md)
 
-# [Microsoft-Software-Lizenzbedingungen für Nano Server](Nano_EULA.md)
+# [Endbenutzer-Lizenzvertrag für Nano Server](Nano_EULA.md)
 
 
-<!--HONumber=Jan16_HO1-->
+<!--HONumber=Feb16_HO1-->

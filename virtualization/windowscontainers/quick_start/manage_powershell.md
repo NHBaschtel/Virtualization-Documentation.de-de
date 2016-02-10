@@ -15,7 +15,7 @@ Die folgenden Elemente werden für jede Übung benötigt.
 - Ein Windows-Containerhost mit aktivierter geschachtelter Virtualisierung.
 - Das Windows Server 2016-Installationsmedium: [Herunterladen](https://aka.ms/tp4/serveriso).
 
->Microsoft Azure unterstützt keine Hyper-V-Container. Für die Hyper-V-Übungen benötigen Sie einen lokalen Containerhost.
+> Microsoft Azure unterstützt keine Hyper-V-Container. Für die Hyper-V-Übungen benötigen Sie einen lokalen Containerhost.
 
 ## Windows Server-Container
 
@@ -182,7 +182,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-Wenn Sie in Azure arbeiten und noch keine Netzwerksicherheitsgruppe erstellt haben, holen Sie dies nun nach. Weitere Informationen zu Netzwerksicherheitsgruppen finden Sie im Artikel: [Was ist eine Netzwerksicherheitsgruppe?](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/)
+Wenn Sie in Azure arbeiten und noch keine Netzwerksicherheitsgruppe erstellt haben, holen Sie dies nun nach. Weitere Informationen zu Netzwerksicherheitsgruppen finden Sie im Artikel: [Was ist eine Netzwerksicherheitsgruppe](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/)?
 
 ### Erstellen einer Anwendung
 
@@ -243,7 +243,7 @@ PS C:\> Remove-ContainerImage -Name WindowsServerCoreIIS -Force
 
 Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem hoch optimierten virtuellen Computer erstellt. Ein Windows Server-Container teils sich einen Kernel mit dem Containerhost und allen anderen Windows Server-Containern, die auf diesem Host ausgeführt werden. Dagegen ist ein Hyper-V-Container vollständig von anderen Containern isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Verwalten von Hyper-V-Containern](../management/hyperv_container.md).
 
->Microsoft Azure unterstützt keine Hyper-V-Container. Für die Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
+> Microsoft Azure unterstützt keine Hyper-V-Container. Für die Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
 
 ### Erstellen eines Containers
 
@@ -288,7 +288,7 @@ d-----       11/18/2015   5:27 PM                en-us
 
 Mit dem Befehl `Add-ContainerSharedFolder` können Sie einen neuen freigegebenen Ordner im neuen Container erstellen.
 
->Damit ein Container erstellt werden kann, muss sein Status „Beendet“ sein.
+> Damit ein Container erstellt werden kann, muss sein Status „Beendet“ sein.
 
 ```powershell
 PS C:\> Add-ContainerSharedFolder -ContainerName HYPV -SourcePath c:\share -DestinationPath c:\iisinstall
@@ -517,4 +517,4 @@ exit
 
 
 
-<!--HONumber=Jan16_HO1-->
+<!--HONumber=Feb16_HO1-->

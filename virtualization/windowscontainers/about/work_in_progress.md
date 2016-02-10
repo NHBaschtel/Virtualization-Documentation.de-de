@@ -234,9 +234,10 @@ Container können keinen Active Directory-Domänen beitreten und Dienste oder An
 
 Container sind so konzipiert, dass sie schnell in einem bekannten konsistenten Status gestartet werden, der von der Umgebung weitestgehend unabhängig ist. Durch den Beitritt zu einer Domäne und die Anwendung von Gruppenrichtlinieneinstellungen aus der Domäne würde die zum Starten eines Containers erforderliche Zeit verlängert, die Funktion des Containers mit der Zeit verändert und die Möglichkeit zum Verschieben oder Freigeben von Bildern zwischen Entwicklern und über Bereitstellungen hinweg begrenzt.
 
-Wir prüfen sorgfältig das Feedback dazu, wie Dienste und Anwendungen Active Directory einsetzen, sowie die Auswirkungen von deren Bereitstellung in Containern. Wenn Sie Details zu den von Ihnen bevorzugten Funktionen bereitstellen möchten, teilen Sie sie uns in den [Foren](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) mit. Wir suchen aktiv nach Lösungen für die Unterstützung solcher Szenarien.
+Wir prüfen sorgfältig das Feedback dazu, wie Dienste und Anwendungen Active Directory einsetzen, sowie die Auswirkungen von deren Bereitstellung in Containern. Wenn Sie Details zu den von Ihnen bevorzugten Funktionen bereitstellen möchten, teilen Sie sie uns in den [Foren](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) mit.
+
+Wir suchen aktiv nach Lösungen für die Unterstützung solcher Szenarien.
 
 
 
-
-<!--HONumber=Jan16_HO3-->
+<!--HONumber=Feb16_HO1-->

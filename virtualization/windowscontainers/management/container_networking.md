@@ -12,7 +12,7 @@ In diesem Dokument werden die Vorteile und die Konfiguration jedes Modus ausfüh
 
 ## NAT-Netzwerkmodus
 
-**Netzwerkadressübersetzung** (Network Address Translation): Diese Konfiguration umfasst einen internen Netzwerkswitch vom Typ NAT sowie WinNat. In dieser Konfiguration verfügt der Containerhost über eine „externe“ IP-Adresse, die in einem Netzwerk erreichbar ist. Allen Containern wird eine „interne“ Adresse zugewiesen, auf die nicht in einem Netzwerk zugegriffen werden kann. Um einen Container in dieser Konfiguration zugänglich zu machen, wird ein externer Port des Hosts einem internen Port des Containers zugeordnet. Diese Zuordnungen werden in einer NAT-Portzuordnungstabelle gespeichert. Der Container ist über die IP-Adresse und den externen Port des Hosts zugänglich, der Datenverkehr an die interne IP-Adresse und den Port des Containers weiterleitet. Der Vorteil von NAT ist, dass der Containerhost auf Hunderte von Containern skaliert werden kann, während er nur eine extern verfügbare IP-Adresse nutzt. Darüber hinaus erlaubt NAT mehreren Containern das Hosten von Anwendungen, die möglicherweise identische Kommunikationsports erfordern.
+**Netzwerkadressübersetzung**: Diese Konfiguration umfasst einen internen Netzwerkswitch vom Typ NAT sowie WinNat. In dieser Konfiguration verfügt der Containerhost über eine „externe“ IP-Adresse, die in einem Netzwerk erreichbar ist. Allen Containern wird eine „interne“ Adresse zugewiesen, auf die nicht in einem Netzwerk zugegriffen werden kann. Um einen Container in dieser Konfiguration zugänglich zu machen, wird ein externer Port des Hosts einem internen Port des Containers zugeordnet. Diese Zuordnungen werden in einer NAT-Portzuordnungstabelle gespeichert. Der Container ist über die IP-Adresse und den externen Port des Hosts zugänglich, der Datenverkehr an die interne IP-Adresse und den Port des Containers weiterleitet. Der Vorteil von NAT ist, dass der Containerhost auf Hunderte von Containern skaliert werden kann, während er nur eine extern verfügbare IP-Adresse nutzt. Darüber hinaus erlaubt NAT mehreren Containern das Hosten von Anwendungen, die möglicherweise identische Kommunikationsports erfordern.
 
 ### Hostkonfiguration
 
@@ -70,7 +70,7 @@ In diesem Beispiel wird der Port **82** des Containerhosts dem Port **80** eines
 ```powershell
 Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
 ```
->Für jeden externen Port ist eine entsprechende Firewallregel erforderlich. Diese kann mit `New-NetFirewallRule` erstellt werden. Weitere Informationen finden Sie in der [Referenz zu New-NetFirewallRule](https://technet.microsoft.com/en-us/library/jj554908.aspx).
+> Für jeden externen Port ist eine entsprechende Firewallregel erforderlich. Diese kann mit `New-NetFirewallRule` erstellt werden. Weitere Informationen finden Sie in der [Referenz zu New-NetFirewallRule](https://technet.microsoft.com/en-us/library/jj554908.aspx).
 
 Nachdem die Portzuordnung erstellt wurde, kann eine Containeranwendung über die IP-Adresse des Containerhosts (physisch oder virtuell) und den verfügbar gemachten externen Port aufgerufen werden. Das folgende Diagramm zeigt beispielsweise eine NAT-Konfiguration mit einer Anforderung für den externen Port **82** des Containerhosts. Aufgrund der Portzuordnung würde diese Anforderung die in Container 2 gehostete Anwendung zurückgeben.
 
@@ -117,7 +117,7 @@ Führen Sie den folgenden PowerShell-Befehl aus, um den Dienst zu beenden:
 Stop-Service docker
 ```
 
-Die Konfigurationsdatei finden Sie unter „C:\programdata\docker\runDockerDaemon.cmd“. Bearbeiten Sie die folgende Zeile, indem Sie `Virtual Switch` durch den Namen des vom Docker-Dienst zu verwendenden virtuellen Switches ersetzen.
+Die Konfigurationsdatei finden Sie unter `c:\programdata\docker\runDockerDaemon.cmd`. Bearbeiten Sie die folgende Zeile, indem Sie `Virtual Switch` durch den Namen des vom Docker-Dienst zu verwendenden virtuellen Switches ersetzen.
 
 ```powershell
 docker daemon -D -b “New Switch Name"
@@ -135,9 +135,9 @@ Unabhängig von der Netzwerkkonfiguration („NAT“ oder „Transparent“) ste
 Verwalten eines Containernetzwerkadapters
 
 - Add-ContainerNetworkAdapter: Fügt einem Container einen Netzwerkadapter hinzu.
-- Set-ContainerNetworkAdapter: Ändert einen Containernetzwerkadapter.
-- Remove-ContainerNetworkAdapter: Entfernt einen Containernetzwerkadapter.
-- Get-ContainerNetworkAdapter: Gibt Daten über einen Containernetzwerkadapter zurück.
+- Set-ContainerNetworkAdapter: Ändert den Netzwerkadapter eines Containers.
+- Remove-ContainerNetworkAdapter: Entfernt den Netzwerkadapter eines Containers.
+- Get-ContainerNetworkAdapter: Gibt Daten über den Netzwerkadapter eines Containers zurück.
 
 Verwalten Sie die Verbindung zwischen einem Containernetzwerkadapter und einem virtuellen Switch.
 
@@ -149,4 +149,4 @@ Weitere Einzelheiten zu diesem Befehl finden Sie in der [Referenz zur Container-
 
 
 
-<!--HONumber=Jan16_HO1-->
+<!--HONumber=Feb16_HO1-->

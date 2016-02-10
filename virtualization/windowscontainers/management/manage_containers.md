@@ -10,7 +10,7 @@ Informationen zur Verwaltung von Windows-Containern mit Docker finden Sie im Doc
 
 ### Erstellen eines Containers
 
-Wenn Sie einen neuen Container erstellen möchten, benötigen Sie den Namen eines Containerimages, das als Grundlage des Containers fungieren soll. Führen Sie hierzu den Befehl `Get-ContainerImageName` aus.
+Wenn Sie einen neuen Container erstellen möchten, benötigen Sie den Namen eines Containerimages, das als Grundlage des Containers fungieren soll. Führen Sie hierzu den Befehl `Get-ContainerImage` aus.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -198,3 +198,4 @@ Weitere Informationen zum Befehl „Docker rm“ finden Sie in der [Referenz zu 
 
 
 
+<!--HONumber=Feb16_HO1-->
