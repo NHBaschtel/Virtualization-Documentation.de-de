@@ -1,11 +1,29 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 0
+ Total Files | 1
 
 ## File List
+ Source File | Status | Details 
+ ----------- | ------ | ------- 
+ [virtualization\windowscontainers\management\hyperv_container.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d6bd98351e0a533df24bc72d9d933c9794215e77/virtualization/windowscontainers/management/hyperv_container.md) | OutofSyncHandedBackSuccess | [Details](#c036077146d20d76c282077758d83fe298daa15c219)
 
 ## Item Details
+##### <a name='c036077146d20d76c282077758d83fe298daa15c219'></a> Source: [virtualization\windowscontainers\management\hyperv_container.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d6bd98351e0a533df24bc72d9d933c9794215e77/virtualization/windowscontainers/management/hyperv_container.md)
+* Status: OutofSyncHandedBackSuccess
+* Target File: 
+* Handoff File: [hyperv_container.081f9802174235940087cf2891a3f48eaec73707.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/d92aec2cef95df8b1fcdd65df800129ce4115368/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/hyperv_container.081f9802174235940087cf2891a3f48eaec73707.de-de.xlf)
+* Handoff Datetime: 2016-02-11 18:48:36
+* Handoff Reason: Include
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* Current Target File: [virtualization\windowscontainers\management\hyperv_container.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/c6d330706a7fbe95e138297695517765c1ef4eed/virtualization/windowscontainers/management/hyperv_container.md)
+* Current Handback File: [hyperv_container.081f9802174235940087cf2891a3f48eaec73707.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5880947cfdac66d03b9aad135418aefae0b4b9d/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/hyperv_container.081f9802174235940087cf2891a3f48eaec73707.de-de.xlf)
+* Current Handback Datetime: 2016-02-03 21:58:16
+* [Back to Top](#report-top)
+
 
 ## Error Details
 
