@@ -73,7 +73,10 @@ PS C:\> docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 
 Weitere Informationen zur Datenverwaltung in Containern mit Docker finden Sie unter [Docker Volumes auf Docker.com](https://docs.docker.com/userguide/dockervolumes/).
 
+## Video mit exemplarischer Vorgehensweise
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-3-Shared-Folders/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
 
-
+<!--HONumber=Feb16_HO1-->

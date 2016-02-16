@@ -16,7 +16,7 @@ Die Rolle „Hyper-V“ kann bei diesen Versionen nicht installiert werden:
 - Windows 10 Mobile
 - Windows 10 Mobile Enterprise
 
-> Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 Professional erfolgen. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
+>Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 Professional erfolgen. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
 ## Hardwareanforderungen
 
@@ -45,8 +45,9 @@ Hyper-V Requirements: A hypervisor has been detected. Features required for Hype
 
 ## Nächster Schritt – Installieren von Hyper-V
 
-[Nächster Schritt – Installieren von Hyper-V](walkthrough_install.md)
+[Installieren von Hyper-V](walkthrough_install.md)
 
 
 
 
+<!--HONumber=Feb16_HO2-->

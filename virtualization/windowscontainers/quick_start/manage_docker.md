@@ -15,7 +15,7 @@ Die folgenden Elemente werden für jede Übung benötigt.
 - Ein Windows-Containerhost mit aktivierter geschachtelter Virtualisierung.
 - Das Windows Server 2016-Installationsmedium: [Herunterladen](https://aka.ms/tp4/serveriso).
 
->Microsoft Azure unterstützt keine Hyper-V-Container. Für die Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
+> Microsoft Azure unterstützt keine Hyper-V-Container. Für die Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
 
 ## Windows Server-Container
 
@@ -82,7 +82,7 @@ nanoserver             latest              8572198a60f1        2 weeks ago      
 
 ### Konfigurieren des Netzwerks
 
-Vor dem Erstellen eines Containers mit Docker muss eine Regel für die Windows-Firewall erstellt werden, die eine Netzwerkverbindung mit dem Container zulässt. Führen Sie Folgendes aus, um eine Regel für Port 80 zu erstellen.
+Vor dem Erstellen eines Containers mit Docker muss eine Regel für die Windows-Firewall erstellt werden, die eine Netzwerkverbindung mit dem Container zulässt. Führen Sie folgendes PowerShell-Skript aus, um eine Regel für Port 80 zu erstellen. Hinweis: Das Skript muss aus einer PowerShell-Sitzung heraus ausgeführt werden.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -219,7 +219,7 @@ C:\> docker rmi iis
 
 Hyper-V-Container bieten im Vergleich mit Windows Server-Containern eine zusätzliche Ebene der Isolation. Jeder Hyper-V-Container wird in einem überaus optimierten virtuellen Computer erstellt. Während sich ein Windows Server-Container einen Kernel mit dem Containerhost teilt, ist ein Hyper-V-Container vollständig isoliert. Hyper-V-Container werden wie Windows Server-Container erstellt und verwaltet. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Verwalten von Hyper-V-Containern](../management/hyperv_container.md).
 
->Microsoft Azure unterstützt keine Hyper-V-Container. Für die Hyper-V-Übungen benötigen Sie einen lokalen Containerhost.
+> Microsoft Azure unterstützt keine Hyper-V-Container. Für die Hyper-V-Übungen benötigen Sie einen lokalen Containerhost.
 
 ### Erstellen eines Containers
 
@@ -348,4 +348,4 @@ C:\> exit
 
 
 
-<!--HONumber=Jan16_HO1-->
+<!--HONumber=Feb16_HO2-->

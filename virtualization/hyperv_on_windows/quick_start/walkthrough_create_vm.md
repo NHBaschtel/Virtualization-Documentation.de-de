@@ -16,33 +16,35 @@ Sie führen die folgenden Schritte aus, um einen virtuellen Computer manuell zu 
 
 4. Wählen Sie einen Pfad, in dem die Dateien des virtuellen Computers gespeichert werden, z. B. **c:\VM**. Sie können auch den Standardspeicherort übernehmen. Klicken Sie, sobald Sie fertig sind, auf **Weiter**.
 
-    ![](media/new_vm_upd.png)
+  ![](media/new_vm_upd.png)
 
 5. Wählen Sie eine Generation für den virtuellen Computer aus, und klicken Sie auf **Weiter**.
 
-    Virtuelle Computer der Generation 2 wurden mit Windows Server 2012 R2 eingeführt und bieten ein vereinfachtes virtuelles Hardwaremodell und verschiedene Zusatzfunktionen. Auf virtuellen Computern der Generation 2 kann nur ein 64-Bit-Betriebssystem installiert werden. Weitere Informationen zu virtuellen Computern der 2. Generation finden Sie unter [Virtuelle Computer der Generation 2 (Übersicht)](https://technet.microsoft.com/en-us/library/dn282285.aspx).
+  Virtuelle Computer der Generation 2 wurden mit Windows Server 2012 R2 eingeführt und bieten ein vereinfachtes virtuelles Hardwaremodell und verschiedene Zusatzfunktionen. Auf virtuellen Computern der Generation 2 kann nur ein 64-Bit-Betriebssystem installiert werden. Weitere Informationen zu virtuellen Computern der 2. Generation finden Sie unter [Virtuelle Computer der Generation 2 (Übersicht)](https://technet.microsoft.com/en-us/library/dn282285.aspx).
 
-6. Wählen Sie **2048** als Wert für **Arbeitsspeicher beim Start**, und lassen Sie **Dynamischen Arbeitsspeicher aktivieren** ausgewählt. Klicken Sie auf die Schaltfläche **Weiter**.
+> Wenn der neue virtuelle Computer als Generation 2 konfiguriert wird und eine Linux-Distribution ausführt, muss der sichere Start deaktiviert werden. Weitere Informationen zum sicheren Start finden Sie unter [Sicherer Start](https://technet.microsoft.com/en-us/library/dn486875.aspx).
 
-    Arbeitsspeicher wird von einem Hyper-V-Host und dem auf diesem ausgeführten virtuellen Computer gemeinsam genutzt. Die Anzahl der virtuellen Computer, die auf einem Host ausgeführt werden können, hängt zum Teil vom verfügbaren Arbeitsspeicher ab. Ein virtueller Computer kann auch für die Verwendung von dynamischem Arbeitsspeicher konfiguriert werden. Falls aktiviert, gibt die dynamische Arbeitsspeicherfunktion vom ausgeführten virtuellen Computer nicht genutzten Arbeitsspeicher frei. Dadurch können mehr virtuelle Computer auf dem Host ausgeführt werden. Weitere Informationen zu dynamischem Arbeitsspeicher finden Sie unter [Dynamischer Hyper-V-Arbeitsspeicher – Übersicht](https://technet.microsoft.com/en-us/library/hh831766.aspx).
+6. Wählen Sie **2048** als Wert für **Arbeitsspeicher beim Start**, und lassen Sie **Dynamischen Arbeitsspeicher verwenden** aktiviert. Klicken Sie auf die Schaltfläche **Weiter**.
+
+  Arbeitsspeicher wird von einem Hyper-V-Host und dem auf diesem ausgeführten virtuellen Computer gemeinsam genutzt. Die Anzahl der virtuellen Computer, die auf einem Host ausgeführt werden können, hängt zum Teil vom verfügbaren Arbeitsspeicher ab. Ein virtueller Computer kann auch für die Verwendung von dynamischem Arbeitsspeicher konfiguriert werden. Falls aktiviert, gibt die dynamische Arbeitsspeicherfunktion vom ausgeführten virtuellen Computer nicht genutzten Arbeitsspeicher frei. Dadurch können mehr virtuelle Computer auf dem Host ausgeführt werden. Weitere Informationen zu dynamischem Arbeitsspeicher finden Sie unter [Dynamischer Hyper-V-Arbeitsspeicher – Übersicht](https://technet.microsoft.com/en-us/library/hh831766.aspx).
 
 7. Wählen Sie im Assistenten „Netzwerk konfigurieren“ einen virtuellen Switch für den virtuellen Computer, und klicken Sie auf **Weiter**. Weitere Informationen finden Sie unter [Erstellen eines virtuellen Switches](walkthrough_virtual_switch.md).
 
 8. Benennen Sie die virtuellen Festplatte, wählen Sie einen Speicherort, oder übernehmen Sie die Standardeinstellung, und geben Sie eine Größe an. Klicken Sie im Anschluss auf **Weiter**.
 
-    Eine virtuelle Festplatte bietet dem virtuellen Computer Speicher, der mit einer physischen Festplatte vergleichbar ist. Eine virtuelle Festplatte ist erforderlich, damit Sie ein Betriebssystem auf dem virtuellen Computer installieren können.
+  Eine virtuelle Festplatte bietet dem virtuellen Computer Speicher, der mit einer physischen Festplatte vergleichbar ist. Eine virtuelle Festplatte ist erforderlich, damit Sie ein Betriebssystem auf dem virtuellen Computer installieren können.
 
-    ![](media/new_vhd_upd.png)
+  ![](media/new_vhd_upd.png)
 
-9. Wählen Sie im Assistenten „Installationsoptionen“ **Betriebssystem von startfähiger Imagedatei installieren** aus, und wählen Sie dann eine ISO-Datei des Betriebssystems aus. Klicken Sie danach auf **Weiter**.
+9. Wählen Sie im Installationsoptionen-Assistenten die Option **Betriebssystem von startfähiger Imagedatei installieren** aus, und wählen Sie dann eine ISO-Datei des Betriebssystems aus. Klicken Sie danach auf **Weiter**.
 
-    Beim Erstellen eines virtuellen Computers können Sie verschiedene Installationsoptionen für das Betriebssystem konfigurieren. Drei Optionen sind verfügbar:
+  Beim Erstellen eines virtuellen Computers können Sie verschiedene Installationsoptionen für das Betriebssystem konfigurieren. Drei Optionen sind verfügbar:
 
-    - **Betriebssystem zu einem späteren Zeitpunkt installieren**: Bei Wahl dieser Option erfolgen keine weiteren Änderungen am virtuellen Computer.
+  - **Betriebssystem zu einem späteren Zeitpunkt installieren**: Bei Wahl dieser Option erfolgen keine weiteren Änderungen am virtuellen Computer.
 
-    - **Betriebssystem von startfähiger Imagedatei installieren**: Dies ist vergleichbar mit dem Einlegen einer CD in das physische CD-ROM-Laufwerk eines physischen Computers. Um diese Option zu konfigurieren, wählen Sie ein ISO-Image aus. Dieses Image wird auf dem virtuellen CD-ROM-Laufwerk des virtuellen Computers bereitgestellt. Die Startreihenfolge des virtuellen Computers wird so geändert, dass der Start zuerst vom CD-ROM-Laufwerk erfolgt.
+  - **Betriebssystem von startfähiger Imagedatei installieren**: Dies ist vergleichbar mit dem Einlegen einer CD in das physische CD-ROM-Laufwerk eines physischen Computers. Um diese Option zu konfigurieren, wählen Sie ein ISO-Image aus. Dieses Image wird auf dem virtuellen CD-ROM-Laufwerk des virtuellen Computers bereitgestellt. Die Startreihenfolge des virtuellen Computers wird so geändert, dass der Start zuerst vom CD-ROM-Laufwerk erfolgt.
 
-    - **Betriebssystem von einem netzwerkbasierten Installationsserver installieren**: Diese Option ist erst verfügbar, nachdem Sie den virtuellen Computer mit einem Netzwerkswitch verbunden haben. Bei dieser Konfiguration wird versucht, den virtuellen Computer über das Netzwerk zu starten.
+  - **Betriebssystem von einem netzwerkbasierten Installationsserver installieren**: Diese Option ist erst verfügbar, nachdem Sie den virtuellen Computer mit einem Netzwerkswitch verbunden haben. Bei dieser Konfiguration wird versucht, den virtuellen Computer über das Netzwerk zu starten.
 
 10. Überprüfen Sie die Details des virtuellen Computers, und klicken Sie zum Abschließen der Erstellung auf **Fertig stellen**.
 
@@ -82,13 +84,14 @@ Um die Erstellung des virtuellen Computers abzuschließen, müssen Sie den virtu
 
 3. Der virtuelle Computer wird mit der Setup-Phase gestartet. Durchlaufen Sie die Installation wie auf einem physischen Computer.
 
-    ![](media/OSDeploy_upd.png)
+  ![](media/OSDeploy_upd.png)
 
 > **Hinweis:** Um Windows auf einem virtuellen Computer ausführen zu können, benötigen Sie eine separate Lizenz, es sei denn, Sie führen eine Volumenlizenzversion von Windows aus. Das Betriebssystem des virtuellen Computers ist unabhängig vom Betriebssystem des Hosts.
 
-## Nächster Schritt – Prüfpunkte für virtuelle Computer
+## Nächster Schritt: Arbeiten mit PowerShell und Hyper-V
 
 [Hyper-V und Windows PowerShell](walkthrough_powershell.md)
 
 
 
+<!--HONumber=Feb16_HO2-->

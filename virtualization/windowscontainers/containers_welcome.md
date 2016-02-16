@@ -2,7 +2,7 @@
 
 Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene und damit die Ausführung mehrerer isolierter Anwendungen auf einem einzigen System. Das Feature stellt zwei verschiedene Arten von Containerlaufzeiten mit zwei unterschiedlichen Anwendungsisolierungsgraden bereit. Windows Server-Container erreichen die Isolierung durch Namespace- und Prozessisolierung . Hyper-V-Container kapseln jeden Container in einer Lightweight-VM. Zusätzlich zu zwei Laufzeiten können beide sowohl mit PowerShell oder Docker verwaltet werden. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="25" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="25" cellspacing="5">
 <tr>
 <td><center>![](media/try.png)</center></td>
 <td>**Schnellstart**<br /><br />
@@ -43,6 +43,16 @@ Hier erfahren Sie mehr über das Verwalten von Windows-Containern unter Windows 
 </td>
 </tr>
 <tr>
+<td><center>![](media/video.png)</center></td>
+<td>**Video**<br /><br />
+Sie interessieren sich für Demos und Interviews des Windows-Container-Teams?<br /><br />
+<ul>
+<li>[Containers Channel](https://channel9.msdn.com/Blogs/containers)</li>
+</ul>
+<br />
+</td>
+</tr>
+<tr>
 <td><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
 Hier können Sie mit der Community interagieren, Beispiele testen und weitere Ressourcen finden.<br /><br />
@@ -58,3 +68,4 @@ Hier können Sie mit der Community interagieren, Beispiele testen und weitere Re
 
 
 
+<!--HONumber=Feb16_HO1-->

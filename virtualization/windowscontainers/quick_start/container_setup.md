@@ -42,7 +42,7 @@ PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-Container
 Führen Sie den folgenden Befehl zum Erstellen und Konfigurieren des Containerhosts aus, wobei `&lt;containerhost&gt;` der Name des virtuellen Computers ist.
 
 ``` powershell
-PS C:\> c:\New-ContainerHost.ps1 –VmName <containerhost> -WindowsImage ServerDatacenterCore -Hyperv
+PS C:\> powershell.exe -NoProfile c:\New-ContainerHost.ps1 –VmName testcont -WindowsImage ServerDatacenterCore -Hyperv
 ```
 
 Bei Start des Skripts werden Sie zur Eingabe eines Kennworts aufgefordert. Dies ist das Kennwort, das dem Administratorkonto zugewiesen wurde.
@@ -72,4 +72,4 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Jan16_HO2-->
+<!--HONumber=Feb16_HO2-->

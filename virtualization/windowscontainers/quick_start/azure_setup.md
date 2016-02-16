@@ -4,9 +4,9 @@ Vor dem Erstellen und Verwalten von Windows Server-Containern in Azure müssen S
 
 > Microsoft Azure unterstützt keine Hyper-V-Container. Für Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
 
-## Starten Sie mit dem Verwenden des Azure-Portals
+## Starten mit dem Azure-Portal
 
-Wenn Sie ein Azure-Konto haben, fahren Sie direkt mit [Erstellen einer Containerhost-VM](#CreateacontainerhostVM) fort.
+Wenn Sie ein Azure-Konto haben, fahren Sie mit [Erstellen einer Containerhost-VM fort](#CreateacontainerhostVM).
 
 1. Wechseln Sie zu [azure.com](https://azure.com), und befolgen Sie die Anleitung zum Beziehen einer [kostenlosen Azure-Testversion](https://azure.microsoft.com/en-us/pricing/free-trial/).
 2. Melden Sie sich mit Ihrem Microsoft-Konto an.
@@ -38,7 +38,7 @@ Wenn die Bereitstellung des virtuellen Computers abgeschlossen ist, klicken Sie 
 
 ![](media/newazure6.png)
 
-Melden Sie am virtuellen Computer mit dem Benutzernamen und Kennwort an, das Sie im Assistenten zum Erstellen virtueller Computer angegeben haben. Nach der Anmeldung sehen Sie die Windows-Eingabeaufforderung.
+Melden Sie sich am virtuellen Computer mit dem Benutzernamen und Kennwort an, die Sie im Assistenten zum Erstellen virtueller Computer angegeben haben. Nach der Anmeldung sehen Sie die Windows-Eingabeaufforderung.
 
 ![](media/newazure7.png)
 
@@ -56,3 +56,4 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
+<!--HONumber=Feb16_HO1-->

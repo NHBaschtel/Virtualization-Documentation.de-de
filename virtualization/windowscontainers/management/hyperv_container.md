@@ -2,11 +2,11 @@
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
 
-Die Windows-Containertechnologie umfasst zwei Arten von Containern: Windows Server-Container und Hyper-V-Container. Beide Arten von Containern werden auf gleiche Weise erstellt und verwaltet und funktionieren identisch. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
+Die Windows-Containertechnologie umfasst zwei Arten von Containern: Windows Server-Container und Hyper-V-Container. Beide Arten von Containern werden auf gleiche Weise erstellt und verwaltet und funktionieren identisch. Sie erzeugen und nutzen sogar die gleichen Containerimages. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
 
-**Windows Server-Container**: Mehrere Container werden auf einem Host isoliert ausgeführt, was mithilfe von Namespace- und Prozessisolationstechnologie ermöglicht wird.
+**Windows Server-Container**: Mehrere Container-Instanzen können gleichzeitig auf einem Host ausgeführt werden, wobei die Isolation mithilfe von Namespace-, Ressourcensteuerungs- und Prozessisolationstechnologie erfolgt. Die Windows Server-Container und der Host verwenden den gleichen Kernel.
 
-**Hyper-V-Container**: Mehrere Container werden auf einem Host ausgeführt, wobei jedoch jeder Container innerhalb eines dafür vorgesehenen virtuellen Computers ausgeführt wird. Dies ermöglicht eine Isolation auf Kernelebene zwischen einem Hyper-V-Container, dem Containerhost und anderen Containern, die auf dem Containerhost ausgeführt werden.
+**Hyper-V-Container**: Auf einem Host können mehrere Containerinstanzen gleichzeitig ausgeführt werden, jeder Container wird jedoch innerhalb eines speziellen virtuellen Computers ausgeführt. Dadurch wird zwischen den einzelnen Hyper-V-Containern und dem Containerhost eine Isolation auf Kernelebene erreicht.
 
 ## Hyper-V-Container – PowerShell
 
@@ -24,7 +24,7 @@ PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -Switc
 
 Zusätzlich zum Erstellen eines Containers als Hyper-V-Container zur Buildzeit können Container, die mit PowerShell erstellt wurden, auch von einem Windows Server-Container in einen Hyper-V-Container konvertiert werden.
 
->Derzeit ist Nano Server das einzige Hostbetriebssystem, dass die Laufzeitkonvertierung von Containern unterstützt.
+> Derzeit ist Nano Server das einzige Hostbetriebssystem, dass die Laufzeitkonvertierung von Containern unterstützt.
 
 Erstellen Sie einen neuen Container mit der Standardlaufzeit.
 
@@ -211,7 +211,11 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     243      13     1732       5512 ...18     4.23   3484   2 csrss
 ```
 
+## Video mit exemplarischer Vorgehensweise
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-5-Hyper-V-Containers/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
 
-<!--HONumber=Jan16_HO1-->
+
+<!--HONumber=Feb16_HO2-->

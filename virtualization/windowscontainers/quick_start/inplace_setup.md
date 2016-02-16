@@ -34,14 +34,14 @@ Verwenden Sie den folgenden Befehl, um das Setupskript herunterzuladen. Das Skri
 PS C:\> wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 ```
 
-Führen Sie das Skript nach dem Herunterladen aus.
+ Führen Sie das Skript nach dem Herunterladen aus.
 ``` PowerShell
-PS C:\> C:\Install-ContainerHost.ps1 -HyperV
+PS C:\> powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
 ```
 
 Das Skript beginnt dann mit dem Herunterladen und Konfigurieren der Windows Container-Komponenten. Aufgrund des großen Downloads kann der Prozess einige Zeit dauern. Der Computer wird möglicherweise während des Vorgangs neu gestartet. Im Anschluss wird der Computer konfiguriert und ist anschließend bereit für das Erstellen und Verwalten von Windows-Containern und Windows-Containerimages mit sowohl PowerShell als auch Docker.
 
-Nach Abschluss dieser Schritte ist Ihr System für das Arbeiten mit Windows-Containern bereit.
+ Nach Abschluss dieser Schritte ist Ihr System für das Arbeiten mit Windows-Containern bereit.
 
 ## Nächste Schritte: Nutzen von Containern
 
@@ -54,4 +54,4 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Jan16_HO1-->
+<!--HONumber=Feb16_HO2-->
