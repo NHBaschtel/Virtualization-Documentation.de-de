@@ -11,7 +11,7 @@ Hyper-V unter Windows 10 kennt zwei Typen von Prüfpunkten:
 Produktionsprüfpunkte sind standardmäßig aktiviert, was aber im Hyper-V-Manager oder über PowerShell geändert werden kann.
 
 > **Hinweis:** Das PowerShell-Modul „Hyper-V“ hat mehrere Aliase, sodass die Begriffe „Prüfpunkt“ und „Snapshot“ austauschbar verwendet werden können.  
->   In diesem Dokument wird „Checkpoint“ verwendet, es ist aber möglich, dass ein ähnlicher Befehl mit dem Begriff „Snapshot“ verwendet wird.
+>  In diesem Dokument wird „Checkpoint“ verwendet, es ist aber möglich, dass ein ähnlicher Befehl mit dem Begriff „Snapshot“ verwendet wird.
 
 ## Ändern des Prüfpunkttyps
 
@@ -60,7 +60,7 @@ So erstellen Sie einen Prüfpunkt:
 Erstellen Sie einen Prüfpunkt mit dem Befehl **CheckPoint-VM**.
 
 ```powershell
-Checkpoint-VM –Name <VMName>
+Checkpoint-VM -Name <VMName>
 ```
 
 Rufen Sie nach Abschluss des Prüfpunktprozesses mithilfe des Befehls **Get-VMCheckpoint** eine Liste mit Prüfpunkten für einen virtuellen Computer auf.
@@ -78,11 +78,11 @@ Wenn Sie einen virtuellen Computer auf einen früheren Zeitpunkt zurücksetzen m
 1.  Wählen Sie im **Hyper-V-Manager** unter **Virtuelle Computer** den virtuellen Computer aus.
 2.  Klicken Sie im Abschnitt „Prüfpunkte“ mit der rechten Maustaste auf den gewünschten Prüfpunkt, und klicken Sie dann auf **Übernehmen**.
 3.  Ein Dialogfeld mit den folgenden Optionen wird angezeigt:
-    * **Prüfpunkt erstellen und anwenden**: Erstellt einen neuen Prüfpunkt des virtuellen Computers, bevor der frühere Prüfpunkt angewendet wird.
-    * **Übernehmen**: Gilt nur für den ausgewählten Prüfpunkt. Diese Aktion kann nicht rückgängig gemacht werden.
-    * **Abbrechen**: Schließt das Dialogfeld, ohne eine Änderung zu übernehmen.
+  * **Prüfpunkt erstellen und anwenden**: Erstellt einen neuen Prüfpunkt des virtuellen Computers, bevor der frühere Prüfpunkt angewendet wird.
+  * **Übernehmen**: Gilt nur für den ausgewählten Prüfpunkt. Diese Aktion kann nicht rückgängig gemacht werden.
+  * **Abbrechen**: Schließt das Dialogfeld, ohne eine Änderung zu übernehmen.
 
-    Wählen Sie eine der Optionen zum Übernehmen, um den Prüfpunkt anzuwenden.
+  Wählen Sie eine der Optionen zum Übernehmen, um den Prüfpunkt anzuwenden.
 
 **Verwenden von PowerShell**
 
@@ -104,7 +104,7 @@ Viele Prüfpunkte werden zu einem bestimmten Zeitpunkt erstellt. Weisen Sie ihne
 Standardmäßig ist der Name eines Prüfpunkts der Name des virtuellen Computers in Kombination mit Datum und Uhrzeit der Prüfpunkterstellung. Dies ist das Standardformat:
 
 ```
-virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM)
+virtual_machine_name (MM/DD/YYY -hh:mm:ss AM\PM)
 ```
 
 Namen dürfen maximal 100 Zeichen haben, und der Name darf nicht leer bleiben.
@@ -113,13 +113,13 @@ Namen dürfen maximal 100 Zeichen haben, und der Name darf nicht leer bleiben.
 
 1.  Wählen Sie im **Hyper-V-Manager** den virtuellen Computer aus.
 2.  Klicken Sie mit der rechten Maustaste auf den Prüfpunkt, und wählen Sie **Umbenennen** aus.
-3.  Geben Sie den neuen Namen für den Prüfpunkt an. Der Name muss weniger als 100 Zeichen haben, und das Feld darf nicht leer bleiben.
+3.  Geben Sie den neuen Namen für den Prüfpunkt. Es muss weniger als 100 Zeichen sein, und das Feld darf nicht leer sein.
 4.  Drücken Sie anschließend die **EINGABETASTE**.
 
 **Verwenden von PowerShell**
 
 ``` powershell
-Rename-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name> --NewName <new checkpoint name>
+Rename-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> --NewName <new checkpoint name>
 ```
 
 ## Löschen von Prüfpunkten
@@ -136,11 +136,11 @@ So löschen Sie einen Prüfpunkt ordnungsgemäß
 
 1.  Wählen Sie im **Hyper-V-Manager** den virtuellen Computer aus.
 2.  Klicken Sie im Abschnitt **Prüfpunkte** mit der rechten Maustaste auf den zu löschenden Prüfpunkt, und klicken Sie dann auf Löschen“. Sie können auch einen Prüfpunkt und alle nachfolgenden Prüfpunkte löschen. Klicken Sie hierzu mit der rechten Maustaste auf den frühesten Prüfpunkt, den Sie löschen möchten, und klicken Sie dann auf **Prüfpunktunterstruktur löschen**.
-3.  Sie werden gefragt, ob Sie den Prüfpunkt wirklich löschen möchten. Vergewissern Sie sich, dass der richtige Prüfpunkt ausgewählt wurde, und klicken Sie dann auf **Löschen**.
+3.  Sie u. u. Vergewissern Sie sich, dass den Prüfpunkt gelöscht werden soll. Vergewissern Sie sich, dass der richtige Prüfpunkt ausgewählt wurde, und klicken Sie dann auf **Löschen**.
 
 **Verwenden von PowerShell**
 ```powershell
-Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
+Remove-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name>
 ```
 
 ## Exportieren von Prüfpunkten
@@ -149,15 +149,15 @@ Beim Exportieren wird der Prüfpunkt als virtueller Computer gebündelt, sodass 
 
 **Verwenden von PowerShell**
 ``` powershell
-Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> -Path <path for export>
+Export-VMCheckpoint -VMName <virtual machine name>  -Name <checkpoint name> -Path <path for export>
 ```
 
 ## Aktivieren oder Deaktivieren von Prüfpunkten
 
 1.  Klicken Sie im **Hyper-V-Manager** mit der rechten Maustaste auf den Namen des virtuellen Computers, und klicken Sie dann auf **Einstellungen**.
 2.  Wählen Sie im Abschnitt **Verwaltung** den Eintrag **Prüfpunkte** aus.
-3.  Damit für diesen virtuellen Computer Prüfpunkte erstellt werden können, muss „Prüfpunkte aktivieren“ ausgewählt sein, was standardmäßig der Fall ist.  
-    Zum Deaktivieren von Prüfpunkten deaktivieren Sie das Kontrollkästchen **Prüfpunkte aktivieren**.
+3.  Damit können Prüfpunkte, die aus diesem virtuellen Computer ausgeführt werden, stellen Sie sicher, dass Sie Prüfpunkte aktivieren auswählen--ist dies das Standardverhalten.  
+Zum Deaktivieren von Prüfpunkten deaktivieren Sie das Kontrollkästchen **Prüfpunkte aktivieren**.
 4.  Klicken Sie auf **Übernehmen**, um die Änderungen zu speichern. Wenn Sie fertig sind, klicken Sie auf **OK**, um das Dialogfeld zu schließen.
 
 ## Konfigurieren der Prüfpunktspeicherorts
@@ -230,3 +230,4 @@ Nachdem der Produktionsprüfpunkt angewendet wurde, werden Sie feststellen, dass
 
 
 
+<!--HONumber=Feb16_HO4-->

@@ -1,8 +1,12 @@
-# Bereitstellung von Containerhosts – Windows Server
+
+
+
+
+# Containerhostbereitstellung: Windows Server
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
 
-Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. Die Schritte in diesem Dokument dienen dazu, Windows Server 2016 oder Windows Server Core 2016 auf einem physischen oder virtuellen System einen Windows-Containerhost bereitzustellen. Informationen zum Installieren eines Windows-Containerhosts auf Nano Server finden Sie unter [Bereitstellung von Containerhosts – Nano Server](./deployment_nano.md).
+Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. Die Schritte in diesem Dokument dienen dazu, einen Windows-Containerhost entweder für Windows Server 2016 oder Windows Server Core 2016 auf einem physischen oder virtuellen System bereitzustellen. Informationen zum Installieren eines Windows-Containerhosts für Nano Server finden Sie unter [Containerhostbereitstellung: Nano Server](./deployment_nano.md).
 
 Einzelheiten zu Systemanforderungen finden Sie unter [Systemanforderungen von Windows-Containerhosts](./system_requirements.md).
 
@@ -41,7 +45,7 @@ Anhand der Schritte in dieser Tabelle kann ein Containerhost unter Windows Serve
 </tr>
 </table>
 
-Bei Verwendung von Hyper-V-Containern müssen diese Schritte ausgeführt werden. Beachten Sie, dass die mit * gekennzeichneten Schrittes nur erforderlich sind, wenn es sich beim Containerhost selbst um einen virtuellen Hyper-V-Computer handelt.
+Diese Schritte müssen ausgeführt werden, wenn Hyper-V-Container verwendet werden. Beachten Sie, dass die Schritte mit * gekennzeichneten Schritte nur dann erforderlich sind, wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -57,15 +61,15 @@ Bei Verwendung von Hyper-V-Containern müssen diese Schritte ausgeführt werden.
 <td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss „Geschachtelte Virtualisierung“ aktiviert werden.</td>
 </tr>
 <tr>
-<td>[Konfigurieren virtueller Prozessoren *](#proc)</td>
+<td>[Konfigurieren virtueller Prozessoren](#proc)</td>
 <td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, müssen mindestens zwei virtuelle Prozessoren konfiguriert werden.</td>
 </tr>
 <tr>
-<td>[Deaktivieren des dynamischen Speichers *](#dyn)</td>
+<td>[Deaktivieren des dynamischen Speichers](#dyn)</td>
 <td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss dynamischer Arbeitsspeicher deaktiviert werden.</td>
 </tr>
 <tr>
-<td>[Konfigurieren des Spoofings von MAC-Adressen *](#mac)</td>
+<td>[Konfigurieren des Spoofings von MAC-Adressen](#mac)</td>
 <td>Wenn der Containerhost virtualisiert ist, muss das Spoofing von MAC-Adressen aktiviert werden.</td>
 </tr>
 </table>
@@ -74,7 +78,7 @@ Bei Verwendung von Hyper-V-Containern müssen diese Schritte ausgeführt werden.
 
 ### <a name=role></a>Installieren des Features „Container“
 
-Das Feature „Container“ kann unter Windows Server 2016 oder Windows Server 2016 Core mithilfe von Windows Server-Manager oder PowerShell installiert werden.
+Die Feature „Container“ kann unter Windows Server 2016 oder Windows Server 2016 Core mithilfe von Windows Server-Manager oder PowerShell installiert werden.
 
 Um die Rolle mithilfe von PowerShell zu installieren, führen Sie den folgenden Befehl in einem PowerShell-Sitzung mit erhöhten Rechten aus.
 
@@ -98,7 +102,7 @@ WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
 
 ### <a name=vswitch></a>Erstellen des virtuellen Switches
 
-Jeder Container muss an einen virtuellen Switch angefügt werden, um über ein Netzwerk zu kommunizieren. Ein virtueller Switch wird mit dem Befehl `New-VMSwitch` erstellt. Container unterstützen einen virtuellen Switch vom Typ `Extern` oder `NAT`. Weitere Informationen zu Windows-Containernetzwerken finden Sie unter [Containernetzwerke](../management/container_networking.md).
+Jeder Container muss an einen virtuellen Switch angefügt werden, um über ein Netzwerk zu kommunizieren. Ein virtueller Switch wird mit dem Befehl `New-VMSwitch` erstellt. Container unterstützen einen virtuellen Switch vom Typ `Extern` oder `NAT`. Weitere Informationen zu Windows-Containernetzwerk-Funktionen finden Sie unter [Containernetzwerke](../management/container_networking.md).
 
 In diesem Beispiel wird ein virtueller Switch mit dem Namen „Virtual Switch“ mit dem Typ NAT und dem NAT-Subnetz 172.16.0.0/12 erstellt.
 
@@ -162,7 +166,7 @@ PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
 Downloaded in 0 hours, 2 minutes, 28 seconds.
 ```
 
-**Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage.<br /> **Abhilfe**: Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
+**Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage.<br /> **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
 
 Überprüfen Sie mit dem Befehl `Get-ContainerImage`, ob die Images Installiert wurden.
 
@@ -186,13 +190,13 @@ Der Docker-Daemon und die Befehlszeilenschnittstelle gehören nicht zum Funktion
 
 ### <a name=hypv></a>Aktivieren der Hyper-V-Rolle
 
-Bei der Bereitstellung von Hyper-V-Containern muss die Hyper-V-Rolle auf dem Containerhost aktiviert werden. Die Hyper-V-Rolle kann unter Windows Server 2016 oder Windows Server 2016 Core mithilfe des Befehls `Install-WindowsFeature` installiert werden. Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss zuerst die geschachtelte Virtualisierung aktiviert werden. Lesen Sie dazu [Konfigurieren der geschachtelten Virtualisierung](#nest).
+Bei der Bereitstellung von Hyper-V-Containern muss die Hyper-V-Rolle auf dem Containerhost aktiviert werden. Die Hyper-V-Rolle kann unter Windows Server 2016 oder Windows Server 2016 Core mithilfe des Befehls `Install-WindowsFeature` installiert werden. Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss zuerst die geschachtelte Virtualisierung aktiviert werden. Informationen dazu finden Sie unter [Konfigurieren der geschachtelten Virtualisierung](#nest).
 
 ```powershell
 PS C:\> Install-WindowsFeature hyper-v
 ```
 
-### <a name=nest></a>Konfigurieren der geschachtelten Virtualisierung
+### <a name=nest></a>Geschachtelte Virtualisierung
 
 Wenn der Containerhost selbst auf einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, muss die geschachtelte Virtualisierung aktiviert werden. Dies kann mithilfe des folgenden PowerShell-Befehls erreicht werden:
 
@@ -209,7 +213,7 @@ Wenn der Containerhost selbst auf einem virtuellen Hyper-V-Computer ausgeführt 
 **Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
 
 ```poweshell
-PS C:\> Set-VMProcessor –VMName <VM Name> -Count 2
+PS C:\> Set-VMProcessor -VMName <VM Name> -Count 2
 ```
 
 ### <a name=dyn></a>Deaktivieren des dynamischen Speichers
@@ -222,7 +226,7 @@ Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss auf dem 
 PS C:\> Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 ```
 
-### <a name=mac></a>Konfigurieren des Spoofings von MAC-Adressen
+### <a name=mac></a>Spoofing von MAC-Adressen
 
 Wenn schließlich der Containerhost in einem virtuellen Hyper-V-Computer ausgeführt wird, muss das Spoofing von MAC-Adressen aktiviert werden. Dadurch kann jeder Container eine IP-Adresse erhalten. Um das Spoofing von MAC-Adressen zu aktivieren, führen Sie auf dem Hyper-V-Host den folgenden Befehl aus. Die „VMName“-Eigenschaft entspricht dem Namen des Containerhosts.
 
@@ -234,4 +238,4 @@ PS C:\> Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddres
 
 
 
-<!--HONumber=Feb16_HO1-->
+<!--HONumber=Feb16_HO4-->

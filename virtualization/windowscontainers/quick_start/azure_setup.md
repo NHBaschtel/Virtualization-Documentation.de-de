@@ -1,18 +1,22 @@
+
+
+
+
 # Azure – Schnellstart
 
 Vor dem Erstellen und Verwalten von Windows Server-Containern in Azure müssen Sie ein Image von Windows Server 2016 Technical Preview bereitstellen, das mit dem Feature „Windows Server-Container“ vorkonfiguriert wurde. In dieser Anleitung begleiten wir Sie durch diesen Prozess.
 
 > Microsoft Azure unterstützt keine Hyper-V-Container. Für Übungen mit Hyper-V-Containern benötigen Sie einen lokalen Containerhost.
 
-## Starten mit dem Azure-Portal
+## Starten Sie mithilfe von Azure-Portal
 
-Wenn Sie ein Azure-Konto haben, fahren Sie mit [Erstellen einer Containerhost-VM fort](#CreateacontainerhostVM).
+Wenn Sie ein Azure-Konto haben, fahren Sie mit [Erstellen einer Containerhost-VM](#CreateacontainerhostVM) fort.
 
 1. Wechseln Sie zu [azure.com](https://azure.com), und befolgen Sie die Anleitung zum Beziehen einer [kostenlosen Azure-Testversion](https://azure.microsoft.com/en-us/pricing/free-trial/).
-2. Melden Sie sich mit Ihrem Microsoft-Konto an.
+2. Melden Sie sich mit Ihrem Microsoft-Konto.
 3. Wenn Ihr Konto einsatzbereit ist, melden Sie sich beim [Azure-Verwaltungsportal](https://portal.azure.com) an.
 
-## Erstellen einer Containerhost-VM
+## Erstellen Sie einen Container-Host-VM
 
 Suchen Sie in Azure Marketplace nach „Container“. Als Ergebnis erhalten Sie „Windows Server 2016 Core with Containers Tech Preview 4“.
 
@@ -22,11 +26,11 @@ Wählen Sie das Image aus, und klicken Sie auf `Erstellen`.
 
 ![](./media/tp41.png)
 
-Geben Sie dem virtuellen Computer einen Namen. Wählen Sie einen Benutzernamen und ein Kennwort.
+Geben Sie den virtuellen Computer einen Namen ein, wählen Sie einen Benutzernamen und ein Kennwort.
 
 ![](media/newazure2.png)
 
-Wählen Sie „Optionale Konfiguration > Endpunkte“ aus, und geben Sie einen HTTP-Endpunkt mit dem privaten und öffentlichen Port 80 ein (siehe unten). Klicken Sie im Anschluss zweimal auf „OK“.
+Wählen Sie die optionale Konfiguration > Endpunkte >, und geben Sie einen HTTP-Endpunkt mit einem privaten und öffentlichen Port 80, wie unten dargestellt. Wenn Fertig klicken Sie auf "ok" zweimal.
 
 ![](./media/newazure3.png)
 
@@ -34,15 +38,15 @@ Klicken Sie auf die Schaltfläche `Erstellen`, um den Bereitstellungsprozess fü
 
 ![](media/newazure2.png)
 
-Wenn die Bereitstellung des virtuellen Computers abgeschlossen ist, klicken Sie auf die Schaltfläche „Verbinden“, um eine RDP-Sitzung mit dem Windows Server-Containerhost zu starten.
+Wenn die VM-Bereitstellung abgeschlossen ist, wählen Sie die Schaltfläche "Verbinden", um eine RDP-Sitzung mit dem Windows Server-Host-Container zu starten.
 
 ![](media/newazure6.png)
 
-Melden Sie sich am virtuellen Computer mit dem Benutzernamen und Kennwort an, die Sie im Assistenten zum Erstellen virtueller Computer angegeben haben. Nach der Anmeldung sehen Sie die Windows-Eingabeaufforderung.
+Melden Sie sich auf dem virtuellen Computer mit dem Benutzernamen und Kennwort angegeben werden, während der Assistent zum Erstellen von VM. Nach der Anmeldung in Suchen Sie in einer Windows-Befehlszeile.
 
 ![](media/newazure7.png)
 
-## Video mit exemplarischer Vorgehensweise
+## Video zur exemplarischen Vorgehensweise
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player#ccLang=de" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
@@ -56,4 +60,4 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Feb16_HO1-->
+<!--HONumber=Feb16_HO3-->

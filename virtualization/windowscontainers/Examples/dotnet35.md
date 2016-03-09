@@ -1,3 +1,7 @@
+
+
+
+
 # Erstellen eines .NET 3.5 Server Core-Containerimages
 
 In dieser Anleitung wird erläutert, wie Sie einen Windows Server Core-Container erstellen, der das .NET 3.5-Framework umfasst. Bevor Sie mit dieser Übung beginnen, benötigen Sie die ISO-Datei für Windows Server 2016 oder Zugriff auf das Windows Server 2016-Installationsmedium.
@@ -47,7 +51,7 @@ New-Container -Name dotnet35 -ContainerImageName windowsservercore -SwitchName �
 Erstellen Sie einen freigegebenen Ordner für den neuen Container. Darin wird die .NET 3.5-CAB-Datei innerhalb des neuen Container zugänglich gemacht. Beachten Sie, dass der Container bei der Ausführung des folgenden Befehls beendet werden muss.
 
 ```powershell
-Add-ContainerShareFolder -ContainerName dotnet35 -SourcePath C:\dotnet3.5\source -DestinationPath c:\sxs
+Add-ContainerSharedFolder -ContainerName dotnet35 -SourcePath C:\dotnet3.5\source -DestinationPath c:\sxs
 ```
 
 Starten Sie den Container, und führen Sie zum Installieren von .NET 3.5 den folgenden Befehl aus.
@@ -109,3 +113,4 @@ docker images
 
 
 
+<!--HONumber=Feb16_HO4-->
