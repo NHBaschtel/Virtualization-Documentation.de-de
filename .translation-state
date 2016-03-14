@@ -1,6 +1,6 @@
 {
   "LastProcessedCommit": "c054e861687299283311b26165cc5e37dec33e0a",
-  "LastTranslatedCommit": "0285b360d89812b214e04479aadbddaa5e2c1bc6",
+  "LastTranslatedCommit": "4122b24beecafca2d17515f1b2562147ecb6b676",
   "Items": {
     "5090f6d60b5cbdce0990242d795d9e4e3736e791": {
       "FileHash": "5090f6d60b5cbdce0990242d795d9e4e3736e791",
@@ -6549,14 +6549,14 @@
       "HandoffPriority": "",
       "HandoffException": null,
       "HandoffFailureTimes": 0,
-      "TargetFileCommit": "57bfa0e33d38771cc22bcf0b16743f58aa1416d2",
+      "TargetFileCommit": "4122b24beecafca2d17515f1b2562147ecb6b676",
       "TargetFilePath": "virtualization\\hyperv_on_windows\\develop\\tlfs.md",
       "HandbackFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\tlfs.09da6c81a2f6035a13f0b2354b5f7fb114ee2f27.de-de.xlf",
-      "HandbackFileCommit": "f694161b5d9b34467cb73f2d5a4c105477f1f64b",
-      "HandbackDateTime": "2016-03-09T17:09:25.6407944Z",
+      "HandbackFileCommit": "3f9e909e0704936207872321aafd73019e50250d",
+      "HandbackDateTime": "2016-03-14T05:27:18.8847187Z",
       "HandbackException": null,
       "HandbackFailureTimes": 0,
-      "UpdatedDateTime": "2016-03-09T17:09:25.6407944Z",
+      "UpdatedDateTime": "2016-03-14T05:27:18.8847187Z",
       "ArchiveFilePath": "ol-handoff\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\archive\\tlfs.09da6c81a2f6035a13f0b2354b5f7fb114ee2f27.de-de.xlf",
       "ArchiveFileCommit": "fa55da77b91bec8f155506e9d758c5c3600c38a0",
       "ArchiveFileDateTime": "2016-02-29T06:55:29.6776709Z",
