@@ -1,6 +1,6 @@
-
-
-
+---
+author: scooley
+---
 
 # Anwendungskompatibilität im Windows-Containern
 
@@ -29,7 +29,7 @@ Wir haben versucht, die folgenden Programme in einem Windows Server-Container au
 | ASP.NET| 5 Beta 6| Ja| Ja| x64 und x86|
 | Django| | Ja| Ja| |
 | Go| 1.4.2| Ja| Ja| |
-| Internet-Informationsdienste| 10.0| Ja| Ja| VC++-Laufzeit wird nicht installiert, wenn der „dedup“-Filter geladen wird.Entladen Sie „dedup“ mithilfe von `fltmc unload dedup`.|
+| Internet-Informationsdienste| 10.0| Ja| Ja| HTTPS/TLS funktioniert nicht.VC++-Laufzeit wird nicht installiert, wenn der „dedup“-Filter geladen wird.Entladen Sie „dedup“ mithilfe von `fltmc unload dedup`.|
 | Java| 1.8.0_51| Ja| Ja| Verwenden Sie die Serverversion.Die Clientversion wird nicht ordnungsgemäß installiert.|
 | MongoDB| 3.0.4| Ja| Unbekannt| |
 | MySQL| 5.6.26| Ja| Ja| |
@@ -59,7 +59,7 @@ Wir haben versucht, die folgenden Programme in einem Hyper-V-Container auszufüh
 | ASP.NET| 5 Beta 6| Ja| x64 und x86|
 | Django| | Ja| Wenn das Image mit einer DockerFile erstellt wird und Python-Binärdateien als Teil davon kopiert werden, funktioniert Python nicht.Starten Sie den Container, und kopieren Sie die Python-Binärdateien.|
 | Go| 1.4.2| Ja| |
-| Internet-Informationsdienste| 10.0| Ja| Mithilfe von „dism“ kann IIS nicht direkt installiert.Führen Sie eine unbeaufsichtigte Installation von IIS mithilfe von „dism“-Befehlen aus.|
+| Internet-Informationsdienste| 10.0| Ja| HTTPS/TLS funktioniert nicht.Mithilfe von „dism“ kann IIS nicht direkt installiert.Führen Sie eine unbeaufsichtigte Installation von IIS mithilfe von „dism“-Befehlen aus.|
 | Java| 1.8.0_51| Ja| Verwenden Sie die Serverversion.Die Clientversion wird nicht ordnungsgemäß installiert.|
 | MySQL| 5.6.26| Ja| |
 | NGinx| 1.9.3| Ja| |
@@ -77,4 +77,4 @@ Ist etwas nicht in dieser Liste? Lassen Sie uns über [die Foren](https://social
 
 
 
-<!--HONumber=Feb16_HO3-->
+<!--HONumber=Mar16_HO2-->
