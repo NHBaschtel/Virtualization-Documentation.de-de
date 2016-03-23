@@ -1,6 +1,6 @@
-
-
-
+---
+author: neilpeterson
+---
 
 # Azure – Schnellstart
 
@@ -46,6 +46,16 @@ Melden Sie sich auf dem virtuellen Computer mit dem Benutzernamen und Kennwort a
 
 ![](media/newazure7.png)
 
+## Aktualisieren des Docker-Moduls
+
+Zur Verwendung von `docker pull` mit dem Azure Windows Container Technical Preview-Image, muss das Docker-Modul aktualisiert werden. Führen Sie die folgenden PowerShell-Befehle auf dem virtuellen Azure-Computer aus, um das Update abzuschließen.
+
+```powershell
+PS C:\> wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/live/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile Update-ContainerHost.ps1
+
+PS C:\> ./Update-ContainerHost.ps1
+```
+
 ## Video zur exemplarischen Vorgehensweise
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player#ccLang=de" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
@@ -60,4 +70,4 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Feb16_HO3-->
+<!--HONumber=Mar16_HO3-->
