@@ -45,7 +45,7 @@ Wir haben versucht, die folgenden Programme in einem Windows Server-Container au
 | Ruby| 2.2.2| Ja| Ja| X 64- und X 86|
 | Ruby on Rails| 4.2.3| Ja| Ja| |
 | SQLite| 3.8.11.1| Ja| Nein| |
-| SQL Server Express| 2014 LocalDB| Nein| Nein| |
+| SQL Server Express| 2014| Ja| Unbekannt| Sie können schnell beginnen, indem Sie diese [von der Community bereitgestellte Dockerfile](https://github.com/brogersyh/Dockerfiles-for-windows/tree/master/sqlexpress) zum Installieren von SQL Express 2014 erstellen.|
 | Sysinternals-Tools| *| Ja| Ja| Versucht, nur diejenigen, die eine GUI nicht.PsExec funktioniert mit dem aktuellen Design nicht.|
 
 ## Hyper-V-Container
