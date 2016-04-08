@@ -1,27 +1,11 @@
 # <a name='report-top'></a> Localization Handback Report
 
 ## Summary
- Total Files | 1
+ Total Files | 0
 
 ## File List
- Source File | Status | Details 
- ----------- | ------ | ------- 
- [virtualization\hyperv_on_windows\develop\media\flightingSDK.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/025cf28322111758d4ea47778246fb494358e9f6/virtualization/hyperv_on_windows/develop/media/flightingSDK.png) | InSyncHandedBackSuccess | [Details](#224b91fc286f31a5c23fe3d7c9d36b178f6b04c387)
 
 ## Item Details
-##### <a name='224b91fc286f31a5c23fe3d7c9d36b178f6b04c387'></a> Source: [virtualization\hyperv_on_windows\develop\media\flightingSDK.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/025cf28322111758d4ea47778246fb494358e9f6/virtualization/hyperv_on_windows/develop/media/flightingSDK.png)
-* Status: InSyncHandedBackSuccess
-* Target File: [virtualization\hyperv_on_windows\develop\media\flightingSDK.png](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/2af9e42b7151d4c3e263b55974dd9462522e2584/virtualization/hyperv_on_windows/develop/media/flightingSDK.png)
-* Handoff File: [224b91fc286f31a5c23fe3d7c9d36b178f6b04c3.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/e9866f0bf4d805ee0903befd657c2c787ff5a7a2/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/224b91fc286f31a5c23fe3d7c9d36b178f6b04c3.png)
-* Handoff Datetime: 2016-03-22 00:54:08
-* Handoff Reason: IsDependency
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: [224b91fc286f31a5c23fe3d7c9d36b178f6b04c3.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/eb41c1d81f2906babf7310759a3d4df3c07cc9e8/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/224b91fc286f31a5c23fe3d7c9d36b178f6b04c3.png)
-* Handback Datetime: 2016-04-08 01:25:26
-* Dependency From: virtualization\hyperv_on_windows\develop\make_mgmt_service.md
-* [Back to Top](#report-top)
-
 
 ## Error Details
 
