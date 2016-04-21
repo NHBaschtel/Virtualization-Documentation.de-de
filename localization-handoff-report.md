@@ -1,29 +1,11 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 1
+ Total Files | 0
 
 ## File List
- Source File | Status | Details 
- ----------- | ------ | ------- 
- [virtualization\hyperv_on_windows\user_guide\nesting.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/bf9c401921d3a6e7c6ea8cd6fcdf7f7a8667b166/virtualization/hyperv_on_windows/user_guide/nesting.md) | OutofSyncHandedBackSuccess | [Details](#cd904696e077578d89d9b7408f2f24fca9e2fcf7200)
 
 ## Item Details
-##### <a name='cd904696e077578d89d9b7408f2f24fca9e2fcf7200'></a> Source: [virtualization\hyperv_on_windows\user_guide\nesting.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/bf9c401921d3a6e7c6ea8cd6fcdf7f7a8667b166/virtualization/hyperv_on_windows/user_guide/nesting.md)
-* Status: OutofSyncHandedBackSuccess
-* Target File: 
-* Handoff File: [nesting.ece03f90d41cea4ab592ff16c6288e2349863da7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/34dae53969caf687691bcd5dca2092868af24ddb/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/nesting.ece03f90d41cea4ab592ff16c6288e2349863da7.de-de.xlf)
-* Handoff Datetime: 2016-04-20 23:43:19
-* Handoff Reason: Include
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\hyperv_on_windows\user_guide\nesting.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/26d80ab3554db1dff0ff5ac896dabc9f4469316b/virtualization/hyperv_on_windows/user_guide/nesting.md)
-* Current Handback File: [nesting.ece03f90d41cea4ab592ff16c6288e2349863da7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/6fe6cf1d1d2d0878cee3ee004e94484fe9e4bda0/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/nesting.ece03f90d41cea4ab592ff16c6288e2349863da7.de-de.xlf)
-* Current Handback Datetime: 2016-01-04 21:49:18
-* [Back to Top](#report-top)
-
 
 ## Error Details
 
