@@ -1,6 +1,6 @@
-
-
-
+---
+author: neilpeterson
+---
 
 # Schnellstartanleitung: Windows-Container und PowerShell
 
@@ -281,7 +281,7 @@ Freigegebene Ordner machen ein Verzeichnis auf dem Containerhost für den Contai
 Erstellen Sie auf dem Containerhost ein Verzeichnis mit dem Namen `c:\share\en-us`.
 
 ```powershell
-S C:\> New-Item -Type Directory c:\share\en-us
+PS C:\> New-Item -Type Directory c:\share\en-us
 
     Directory: C:\share
 
@@ -500,7 +500,7 @@ PS C:\> Enter-PSSession -ContainerName IISApp -RunAsAdministrator
 Führen Sie zum Entfernen des IIS-Begrüßungsbildschirms den folgenden Befehl aus.
 
 ```powershell
-[IIS]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
+[IISApp]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
 ```
 Führen Sie den folgenden Befehl aus, um die IIS-Standardwebsite durch eine neue statische Website zu ersetzen.
 
@@ -523,6 +523,6 @@ exit
 
 
 
-<!--HONumber=Feb16_HO3-->
+<!--HONumber=Mar16_HO1-->
 
 
