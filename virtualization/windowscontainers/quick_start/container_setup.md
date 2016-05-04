@@ -1,6 +1,6 @@
-
-
-
+---
+author: neilpeterson
+---
 
 # Bereitstellen eines Windows-Containerhosts auf einem neuen virtuellen Hyper-V-Computer
 
@@ -70,6 +70,12 @@ Melden Sie sich nach Ausführung des Konfigurationsskripts am virtuellen Compute
 
 Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Windows-Container“ verfügen, können Sie in den folgenden Anleitungen erfahren, wie Sie mit Windows Server- und Hyper-V-Containern arbeiten.
 
+Sie können den Befehl `Enter-PSSession` auf dem Hyper-V-Verwaltungshost verwenden, um die Verbindung zum Containerhost herzustellen.
+
+```powershell
+PS C:\> Enter-PSSession -VMName <VM Name>
+```
+
 [Schnellstart: Windows-Container und PowerShell](./manage_powershell.md)  
 [Schnellstart: Windows-Container und Docker](./manage_docker.md)
 
@@ -78,6 +84,6 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Feb16_HO4-->
+<!--HONumber=Mar16_HO3-->
 
 

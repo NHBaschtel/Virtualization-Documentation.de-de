@@ -1,6 +1,6 @@
-
-
-
+---
+author: neilpeterson
+---
 
 # Containerimages
 
@@ -10,34 +10,21 @@ Containerimages dienen zum Bereitstellen von Containern. Diese Images können ei
 
 Es gibt zwei Arten von Containerimages:
 
-- Basisbetriebssystem-Images, die von Microsoft bereitgestellt werden und die wesentlichen Betriebssystemkomponenten enthalten.
-- Containerimages, die anhand eines Basisbetriebssystem-Images erstellt wurden.
+- **Basisbetriebssystemimages**: Werden von Microsoft bereitgestellt und enthalten die wesentlichen Betriebssystemkomponenten.
+- **Containerimages**: Ein benutzerdefiniertes Containerimage, das vom Basisbetriebssystemimage abgeleitet wird.
 
-## PowerShell
+## Basisbetriebssystemimages
 
-### Auflisten von Images
+### Installieren eines Images
 
-Führen Sie `get-containerImage` aus, um eine Liste der Images auf dem Containerhost zurückzugeben. Die Eigenschaft `IsOSImage` dient zum Unterscheiden der Typen von Containerimages.
-
-```powershell
-PS C:\> Get-ContainerImage
-
-Name                    Publisher       Version         IsOSImage
-----                    ---------       -------         ---------
-NanoServer              CN=Microsoft    10.0.10586.0    True
-WindowsServerCore       CN=Microsoft    10.0.10586.0    True
-WindowsServerCoreIIS    CN=Demo         1.0.0.0         False
-```
-
-### Installieren von Basisbetriebssystem-Images
-
-Containerbetriebssystem-Images können mithilfe des PowerShell-Moduls „ContainerProvider“ bestimmt und installiert werden. Sie müssen dieses Modul erst installieren, um es verwenden zu können. Installieren Sie das Modul über die folgenden Befehle.
+Containerbetriebssystemimages können für die PowerShell- und Docker-Verwaltung mithilfe des PowerShell-Moduls „ContainerProvider“ bestimmt und installiert werden. Sie müssen dieses Modul erst installieren, um es verwenden zu können. Installieren Sie das Modul mit dem folgenden Befehl.
 
 ```powershell
 PS C:\> Install-PackageProvider ContainerProvider -Force
 ```
 
-So geben Sie eine Liste der Images aus dem PowerShell OneGet-Paket-Manager zurück:
+Nach der Installation kann mit `Find-ContainerImage` eine Liste der Basisbetriebssystemimages zurückgegeben werden.
+
 ```powershell
 PS C:\> Find-ContainerImage
 
@@ -55,9 +42,9 @@ PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
-Mit diesem Befehl wird auch das Basisbetriebssystem-Image für Windows Server Core heruntergeladen und installiert. Der Parameter `–version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
+Mit diesem Befehl wird auch das Basisbetriebssystemimage für Windows Server Core heruntergeladen und installiert. Der Parameter `–version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
 
-> **Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage. **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
+> **Problem**: Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung möglicherweise nicht mit einem WindowsServerCore-Containerimage. **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
@@ -75,9 +62,100 @@ Name              Publisher    Version      IsOSImage
 NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
-Weitere Informationen zur Verwaltung von Containerimages finden Sie unter [Windows-Containerimages](../management/manage_images.md).
+
+> Mit **Install-ContainerImage** wird ein Basisbetriebssystemimage zur Verwendung in Containern installiert, die von PowerShell oder Docker verwaltet werden. Wenn das Basisbetriebssystemimage heruntergeladen wurde, aber beim Ausführen von `docker images` nicht angezeigt wird, starten Sie den Docker-Dienst mithilfe des Systemsteuerungs-Applets für Dienste oder den Befehlen „sc docker stop“ und „sc docker start“ neu.
+
+### Offineinstallation
+
+Basisbetriebssystemimages können auch ohne Internetzugang installiert werden. Dazu werden die Images auf einen Computer mit Internetverbindung heruntergeladen, auf das Zielsystem kopiert und dann mit dem Befehl `Install-ContainerOSImages` importiert.
+
+Bereiten Sie das System vor dem Herunterladen des Basisbetriebssystemimages durch Ausführen des folgenden Befehls mit dem Containerimageanbieter vor.
+
+```powershell
+PS C:\> Install-PackageProvider ContainerProvider -Force
+```
+
+So geben Sie eine Liste der Images aus dem PowerShell OneGet-Paket-Manager zurück:
+
+```powershell
+PS C:\> Find-ContainerImage
+
+Name                 Version                 Description
+----                 -------                 -----------
+NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+```
+
+Um ein Image herunterzuladen, verwenden Sie den Befehl `Save-ContainerImage`.
+
+```powershell
+PS C:\> Save-ContainerImage -Name NanoServer -Destination c:\container-image\NanoServer.wim
+```
+
+Das heruntergeladene Containerimage kann jetzt auf einen anderen Containerhost kopiert und mit dem Befehl `Install-ContainerOSImage` installiert werden.
+
+```powershell
+Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
+```
+
+### Kennzeichnen von Images
+
+Wenn auf ein Containerimage anhand des Namens verwiesen wird, sucht das Docker-Modul nach der neuesten Version des Images. Wenn die neueste Version nicht bestimmt werden kann, wird der folgende Fehler ausgelöst.
+
+```powershell
+PS C:\> docker run -it windowsservercore cmd
+
+Unable to find image 'windowsservercore:latest' locally
+Pulling repository docker.io/library/windowsservercore
+C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
+```
+
+Nach der Installation von Windows Server Core- oder Nano Server-Basisbetriebssystemimages müssen diese mit „Latest“ als neueste Versionen gekennzeichnet werden. Verwenden Sie hierzu den Befehl `docker tag`.
+
+Weitere Informationen zu `docker tag` finden Sie auf „docker.com“ unter [Tag, push, and pull your image](https://docs.docker.com/mac/step_six/).
+
+```powershell
+PS C:\> docker tag <image id> windowsservercore:latest
+```
+
+Nach dem Kennzeichnen werden in der Ausgabe von `docker images` zwei Versionen desselben Images angezeigt: eines mit dem Tag der Imageversion und ein zweites mit dem Tag „Latest“. Jetzt kann mit dem Namen auf das Image verwiesen werden.
+
+```powershell
+PS C:\> docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
+windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
+windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
+```
+
+### Deinstallieren des Betriebssystemimages
+
+Basisbetriebssystemimages können mit dem Befehl `Uninstall-ContainerOSImage` deinstalliert werden. Im folgende Beispiel wird das NanoServer-Basisbetriebssystemimage deinstalliert.
+
+```powershell
+Get-ContainerImage -Name NanoServer | Uninstall-ContainerOSImage
+```
+
+## Containerimages, PowerShell
+
+### Auflisten von Images
+
+Führen Sie `Get-ContainerImage` aus, um eine Liste der Images auf dem Containerhost zurückzugeben. Die Eigenschaft `IsOSImage` dient zum Unterscheiden der Typen von Containerimages.
+
+```powershell
+PS C:\> Get-ContainerImage
+
+Name                    Publisher       Version         IsOSImage
+----                    ---------       -------         ---------
+NanoServer              CN=Microsoft    10.0.10586.0    True
+WindowsServerCore       CN=Microsoft    10.0.10586.0    True
+WindowsServerCoreIIS    CN=Demo         1.0.0.0         False
+```
 
 ### Erstellen eines neuen Images
+
+Sie können ein neues Containerimage aus einem vorhandenen Container erstellen. Verwenden Sie hierzu den Befehl `New-ContainerImage`.
 
 ```powershell
 PS C:\> New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Version 1.0
@@ -95,7 +173,7 @@ PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 ### Image-Abhängigkeit
 
-Wenn ein neues Image erstellt wird, wird es vom Image abhängig, anhand dessen es erstellt wurde. Diese Abhängigkeit kann mit dem Befehl `get-containerimage` angezeigt werden. Wenn ein übergeordnetes Image nicht aufgeführt ist, heißt dies, dass das Image eine Basisbetriebssystem-Image ist.
+Wenn ein neues Image erstellt wird, wird es vom Image abhängig, anhand dessen es erstellt wurde. Diese Abhängigkeit kann mit dem Befehl `Get-ContainerImage` angezeigt werden. Wenn ein übergeordnetes Image nicht aufgeführt ist, heißt dies, dass das Image eine Basisbetriebssystem-Image ist.
 
 ```powershell
 PS C:\> Get-ContainerImage | select Name, ParentImage
@@ -107,7 +185,16 @@ NanoServer
 WindowsServerCore
 ```
 
-## Docker
+### Verschieben des Imagerepositorys
+
+Wenn Sie ein neues Containerimage mit dem Befehl `New-ContainerImage` erstellen, wird dieses Image im Standardverzeichnis „C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store“ gespeichert. Dieses Repository kann mit dem Befehl `Move-ContainerImageRepository` verschoben werden. Mit dem folgenden Befehl würde beispielsweise ein neues Containerimagerepository unter „C:\container-images“ erstellt.
+
+```powershell
+Move-ContainerImageRepository -Path c:\container-images
+```
+> Der mit dem Befehl `Move-ContainerImageRepository` verwendete Pfad braucht beim Ausführen des Befehls noch nicht vorhanden zu sein.
+
+## Containerimages, Docker
 
 ### Auflisten von Images
 
@@ -121,6 +208,8 @@ nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago      
 ```
 
 ### Erstellen eines neuen Images
+
+Sie können ein neues Containerimage aus einem vorhandenen Container erstellen. Verwenden Sie hierzu den Befehl `docker commit`. Dieses Beispiel erstellt ein neues Containerimage mit dem Namen „windowsservercoreiis“.
 
 ```powershell
 C:\> docker commit 475059caef8f windowsservercoreiis
@@ -141,11 +230,25 @@ Untagged: windowsservercoreiis:latest
 Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
+### Image-Abhängigkeit
+
+Zum Anzeigen von Image-Abhängigkeiten mit Docker dient der Befehl `docker history`.
+
+```powershell
+C:\> docker history windowsservercoreiis
+
+IMAGE               CREATED             CREATED BY          SIZE                COMMENT
+2236b49aaaef        3 minutes ago       cmd                 171.2 MB
+6801d964fda5        2 weeks ago                             0 B
+```
+
 ### Docker Hub
 
 Die Docker Hub-Registrierung enthält vordefinierte Images, die auf einen Containerhost heruntergeladen werden können. Sobald diese Images heruntergeladen wurden, können sie als Basis für Windows-Containeranwendungen verwendet werden.
 
-Über den Befehl `docker search` können Sie eine Liste der auf Docker Hub verfügbaren Images anzeigen. Hinweis: Das Basisbetriebssystem-Image für Windows Server Core muss installiert sein, ehe von Windows Server Core abhängige Images von Docker Hub bezogen werden.
+Über den Befehl `docker search` können Sie eine Liste der auf Docker Hub verfügbaren Images anzeigen. Hinweis: Das Basisbetriebssystemimage für Windows Server Core oder Nano Server muss installiert werden, ehe diese abhängigen Images von Docker Hub bezogen werden.
+
+> Die Images, die mit „nano-“ beginnen, sind vom Nano Server-Basisbetriebssystemimage abhängig.
 
 ```powershell
 C:\> docker search *
@@ -167,6 +270,16 @@ microsoft/rails         Ruby on Rails installed in a Windows Serve...   1       
 microsoft/redis         Redis installed in a Windows Server Core b...   1                    [OK]
 microsoft/ruby          Ruby installed in a Windows Server Core ba...   1                    [OK]
 microsoft/sqlite        SQLite installed in a Windows Server Core ...   1                    [OK]
+microsoft/nano-golang   Go Programming Language installed in a Nan...   1                    [OK]
+microsoft/nano-httpd    Apache httpd installed in a Nano Server ba...   1                    [OK]
+microsoft/nano-iis      Internet Information Services (IIS) instal...   1         [OK]       [OK]
+microsoft/nano-mysql    MySQL installed in a Nano Server based con...   1                    [OK]
+microsoft/nano-nginx    Nginx installed in a Nano Server based con...   1                    [OK]
+microsoft/nano-node     Node installed in a Nano Server based cont...   1                    [OK]
+microsoft/nano-python   Python installed in a Nano Server based co...   1                    [OK]
+microsoft/nano-rails    Ruby on Rails installed in a Nano Server b...   1                    [OK]
+microsoft/nano-redis    Redis installed in a Nano Server based con...   1                    [OK]
+microsoft/nano-ruby     Ruby installed in a Nano Server based cont...   1                    [OK]
 ```
 
 Über den Befehl `docker pull` können Sie ein Image von Docker Hub herunterladen.
@@ -192,22 +305,11 @@ windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
-### Image-Abhängigkeit
-
-Zum Anzeigen von Image-Abhängigkeiten mit Docker dient der Befehl `docker history`.
-
-```powershell
-C:\> docker history windowsservercoreiis
-
-IMAGE               CREATED             CREATED BY          SIZE                COMMENT
-2236b49aaaef        3 minutes ago       cmd                 171.2 MB
-6801d964fda5        2 weeks ago                             0 B
-```
 
 
 
 
 
-<!--HONumber=Feb16_HO4-->
+<!--HONumber=Mar16_HO3-->
 
 

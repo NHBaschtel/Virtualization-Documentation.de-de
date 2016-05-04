@@ -1,6 +1,6 @@
-
-
-
+---
+author: neilpeterson
+---
 
 # Windows-Container
 
@@ -16,7 +16,7 @@ Im Grunde ist ein Container einer isolierten Stelle, wo eine Anwendung ohne den 
 
 Wenn Sie sich in einem Container befänden, sähe es dort so aus, als befänden Sie sich in einem frisch installierten physischen Container bzw. virtuellen Computer. Und mit [Docker](https://www.docker.com/) kann ein Windows Server-Container auf die gleiche Weise wie jeder andere Container verwaltet werden.
 
-## Windows-Container
+## Windows-Containertypen
 
 Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten.
 
@@ -81,6 +81,6 @@ src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-an
 
 
 
-<!--HONumber=Feb16_HO3-->
+<!--HONumber=Mar16_HO2-->
 
 
