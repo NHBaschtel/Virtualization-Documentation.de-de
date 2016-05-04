@@ -1,35 +1,43 @@
+
+
+
+
 # Aufbauen eines Containerökosystems
 
-Um zu verstehen, warum das Aufbauen eines Containerökosystems so wichtig ist, lassen Sie zunächst über Docker reden.
+Um zu verstehen, warum ein Ökosystem Container erstellen so wichtig ist, zunächst sprechen wir über Docker.
 
-## Der Charme von Docker
+## Docker der Beschwerde
 
-Das Konzept von Containern (Isolation von Namespaces und Ressourcenkontrolle) ist nicht wirklich neu und geht zurück auf BSD Jails, Solaris Zones und den grundlegenden UNIX-Mechanismus „chroot (change root)“. Was Docker beigetragen hat, ist ein allgemeines Toolset, ein Paketerstellungsmodell und ein Bereitstellungsmechanismus. Dadurch vereinfacht Docker die Containerisierung und Verteilung von Clientanwendungen erheblich. Diese Anwendungen können dann überall auf beliebigen Linux-Hosts ausgeführt werden. Diese Funktionalität bieten wir auch unter Windows.
+Das Konzept von Containern (Namespace Isolierung und Ressource Governance) wurde für lange Zeit schon zurückgehen BSD Jails, Solaris-Zonen und der grundlegenden UNIX Chroot (Change-Stamm)-Mechanismus. Also Docker ist ein gemeinsamer Satz von Tools, Paketerstellungsmodell und Bereitstellungsmechanismus bereitzustellen. Auf diese Weise vereinfacht Docker erheblich die Containerization und die Verteilung von Clientanwendungen. Diese Anträge können dann an einer beliebigen Stelle auf einem Linux-Host eine Funktion ausführen, die wir unter Windows als auch bereitstellen.
 
-Diese weit verbreitete Technologie vereinfacht nicht nur die Verwaltung durch das Anbieten derselben Verwaltungsbefehle auf beliebigen Hosts, sondern ebnet auch den Weg für reibungslose DevOps.
+Diese weit verbreitete Technologie vereinfacht nicht nur die Verwaltung von bietet die gleichen Management-Befehle für alle Hosts, erstellt auch eine einmalige Gelegenheit für eine nahtlose DevOps.
 
-Sie können ein Docker-Image erstellen, das in Sekunden in beliebigen Umgebungen bereitgestellt werden kann, z. B. auf dem Desktop-PC des Entwicklers, auf einem Testcomputer oder auf Produktionscomputern. Mittlerweile gibt es eine riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind, und zwar in DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung.
+Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Dieser Artikel hat eine massive erstellt und wachsenden Ökosystem von Clientanwendungen verpackt in Docker-Containern mit DockerHub, öffentliche Containern Anwendung Registrierung, die Docker verwaltet.
 
-Docker bietet eine überzeugende Grundlage für die Entwicklung.
+Docker bietet eine großartige Grundlage für die Entwicklung.
 
-Nun wollen wir uns mit diesem Ökosystem und damit beschäftigen, wie Sie auf Docker-Konzepten aufbauen können, um einen Entwicklungs- und Bereitstellungsworkflow entsprechend Ihren Anforderungen einzurichten.
+Jetzt sehen wir reden, Ökosystem Anwendungstypen und wie Sie Docker Konzepte zum Erstellen eines Workflows für Entwicklung und Bereitstellung erstellen können an Ihre Bedürfnisse geeignet ist.
 
 
 ## Komponenten eines Containerökosystems
 
 Windows-Container sind eine wichtige Komponente eines großen Containerökosystems. Wir arbeiten mit der gesamten Branche zusammen, um Entwicklern Optionen auf allen Ebenen des Lösungsstapels zu bieten.
 
-Das Containerökosystem bietet Methoden zum Verwalten von Containern, Freigeben von Containern und Entwickeln von in Containern ausgeführten Apps.
+Das Container-Ökosystem bietet Methoden zum Container verwalten, Freigeben von Containern und Entwickeln von apps, die in Containern ausgeführt.
 
 ![](media/containerEcosystem.png)
 
+Microsoft möchte Developer-Auswahl und Produktivität zu ermöglichen, während sie diese apps der nächsten Generation erstellen. Unser Ziel ist es, Treibstoff Entwicklerproduktivität, d. ermöglichen des Anwendungszugriffs h. auf die Cloud von Microsoft ohne ändern, schreiben oder neu konfigurieren, Code als Ziel.
 
-Microsoft möchte bei der Entwicklung dieser Apps der nächsten Generation Entwicklern mehr Optionen und Produktivität bieten. Unser Ziel ist das Steigern der Entwicklerproduktivität, was bedeutet, dass Anwendungen für beliebige Microsoft-Clouds geschrieben werden können, ohne das Code geändert, neu geschrieben oder neu konfiguriert werden muss.
-
-Microsoft setzt sich für ein offenes Ökosystem ein. Wir unterstützen aktiv das Zusammenkommen mehrerer wichtiger Ökosysteme für Entwickler, wie z. B. Windows und Linux, um Innovationen voranzutreiben.
+Microsoft ist bestrebt, die geöffnet wird und das Ökosystem Anzeigenamen. Die Einführung von mehrere Entwickler Ökosysteme von Interesse – wie Windows und Linux – Innovationen zusammen unterstützt aktiv.
 
 In den nächsten Monaten werden wir weitere Informationen zu zusätzliche Partnern in diesem sich entwickelnden Ökosystem veröffentlichen.
 
 
+
+
+
+
+<!--HONumber=Feb16_HO4-->
 
 

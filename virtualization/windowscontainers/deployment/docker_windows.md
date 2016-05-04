@@ -1,3 +1,7 @@
+
+
+
+
 # Docker und Windows
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
@@ -26,7 +30,7 @@ Erstellen Sie ein Verzeichnis mit dem Namen `c:\programdata\docker`. Erstellen S
 PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Kopieren Sie den folgenden Text in die Datei `runDockerDaemon.cmd`. Diese Batchdatei startet den Docker-Daemon mit dem Befehl `docker daemon –D –b „Virtueller Switch“`. Hinweis: Der Name des virtuellen Switches in dieser Datei muss dem Namen des virtuellen Switches entsprechen, den Container für das Verbinden mit dem Netzwerk nutzen.
+Kopieren Sie den folgenden Text in die Datei `runDockerDaemon.cmd`. Diese Batchdatei startet den Docker-Daemon mit dem Befehl `docker daemon -D -b „Virtueller Switch“`. Hinweis: Der Name des virtuellen Switches in dieser Datei muss dem Namen des virtuellen Switches entsprechen, den Container für das Verbinden mit dem Netzwerk nutzen.
 
 ```powershell
 @echo off
@@ -70,7 +74,7 @@ Registerkarte „Anwendung“:
 
 - **Startverzeichnis:** C:\Windows\System32
 
-- **Argumente:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
+- **Argumente:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd < nul
 
 - **Dienstname:** Docker
 
@@ -174,4 +178,8 @@ Wenn Sie beispielsweise die verfügbaren Images anzeigen möchten:
 
 
 
-<!--HONumber=Jan16_HO3-->
+
+
+<!--HONumber=Feb16_HO4-->
+
+

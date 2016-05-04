@@ -1,10 +1,14 @@
+
+
+
+
 # Bereitstellen eines Windows-Containerhosts auf einem neuen virtuellen Hyper-V-Computer
 
 In diesem Dokument werden die Schritte zum Verwenden eines PowerShell-Skripts zum Bereitstellen eines neuen virtuellen Hyper-V-Computers vorgestellt, der anschließend als Windows-Containerhost konfiguriert wird.
 
 Unter [Direkte Bereitstellung von Windows-Containerhosts](./inplace_setup.md) finden Sie Informationen zur skriptgesteuerten Bereitstellung eines Windows-Containerhosts auf einem virtuellen oder physischen System.
 
-**VOR DEM INSTALLIEREN DES CONTAINERBETRIEBSSYSTEM-IMAGES BITTE LESEN:** Die Lizenzbedingungen für die Microsoft Windows Server-Pre-Release-Software („Lizenzbedingungen“) gelten für Ihre Nutzung der Zusatzsoftware in Form des Microsoft Windows-Containerbetriebssystem-Images (der „Zusatzsoftware“). Durch Herunterladen und Verwenden der Zusatzsoftware stimmen Sie den Lizenzbedingungen zu. Eine Nutzung ist nur gestattet, wenn Sie den Lizenzbedingungen zugestimmt haben. Die Windows Server-Pre-Release-Software und Zusatzsoftware werden von der Microsoft Corporation lizenziert.
+**VOR DEM INSTALLIEREN DES CONTAINERBETRIEBSSYSTEM-IMAGES BITTE LESEN:** Die Lizenzbedingungen für die Microsoft Windows Server-Pre-Release-Software („Lizenzbedingungen“) gelten für Ihre Nutzung der Zusatzsoftware in Form des Microsoft Windows-Containerbetriebssystem-Images (der „Zusatzsoftware“). Durch Herunterladen und verwenden die Zusatzsoftware, stimmen Sie dem Lizenzvertrag und können Sie nicht verwenden, wenn Sie dem Lizenzvertrag nicht akzeptiert haben. Die Windows Server-Pre-Release-Software und Zusatzsoftware werden von der Microsoft Corporation lizenziert.
 
 Für die Übungen zu **Windows Server-Containern** und **Hyper-V-Containern** in dieser Schnellstartanleitung ist Folgendes erforderlich:
 
@@ -30,7 +34,7 @@ Stellen Sie vor dem Herunterladen und Ausführen des Skripts sicher, dass ein ex
 Führen Sie Folgendes aus, um eine Liste externer virtueller Switches zurückzugeben. Falls nichts zurückgegeben wird, erstellen Sie einen neuen externen virtuellen Switch und fahren dann mit dem nächsten Schritt in dieser Anleitung fort.
 
 ```powershell
-PS C:\> Get-VMSwitch | where {$_.SwitchType –eq “External”}
+PS C:\> Get-VMSwitch | where {$_.SwitchType -eq “External”}
 ```
 
 Verwenden Sie den folgenden Befehl, um das Konfigurationsskript herunterzuladen. Das Skript kann auch von dieser Adresse ([Konfigurationsskript](https://aka.ms/tp4/New-ContainerHost)) manuell heruntergeladen werden.
@@ -42,7 +46,7 @@ PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-Container
 Führen Sie den folgenden Befehl zum Erstellen und Konfigurieren des Containerhosts aus, wobei `&lt;containerhost&gt;` der Name des virtuellen Computers ist.
 
 ``` powershell
-PS C:\> powershell.exe -NoProfile c:\New-ContainerHost.ps1 –VmName testcont -WindowsImage ServerDatacenterCore -Hyperv
+PS C:\> powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName testcont -WindowsImage ServerDatacenterCore -Hyperv
 ```
 
 Bei Start des Skripts werden Sie zur Eingabe eines Kennworts aufgefordert. Dies ist das Kennwort, das dem Administratorkonto zugewiesen wurde.
@@ -72,4 +76,8 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Feb16_HO2-->
+
+
+<!--HONumber=Feb16_HO4-->
+
+

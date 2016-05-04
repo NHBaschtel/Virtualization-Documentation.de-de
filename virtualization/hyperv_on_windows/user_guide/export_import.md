@@ -68,7 +68,7 @@ Beim Import eines virtuellen Computers führt der Assistent die folgenden Schrit
 
 3. Er erstellt eine Fehlerliste. Diese Liste zeigt auf, wo Konfigurationsbedarf besteht, und bestimmt somit, welche Assistentenseiten als nächstes angezeigt werden.
 
-4. Er zeigt die relevanten Seiten nach Kategorien an. Der Assistent erläutert jede bestehende Inkompatibilität, um Ihnen zu zeigen, was neu konfiguriert werden muss, damit der virtuelle Computer mit dem neuen Host kompatibel ist.
+4. Zeigt die relevanten Seiten, einer Kategorie zu einem Zeitpunkt. Der Assistent wird erläutert, jede Inkompatibilität, mit denen Sie den virtuellen Computer neu konfigurieren, damit er mit dem neuen Host kompatibel ist.
 
 5. Er entfernt die Kopie der Konfigurationsdatei. Danach kann der virtuelle Computer gestartet werden.
 
@@ -92,10 +92,15 @@ Import-VM -Path ‘C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx
 Für einen Kopierimportvorgang und das Verschieben der Dateien für den virtuellen Computer an den Hyper-V-Standardspeicherort wählen Sie einen Befehl wie diesen.
 
 ``` PowerShell
-Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' –Copy -GenerateNewId
+Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' -Copy -GenerateNewId
 ```
 
 Weitere Informationen finden Sie unter [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
 
+
+
+
+
+<!--HONumber=Feb16_HO4-->
 
 

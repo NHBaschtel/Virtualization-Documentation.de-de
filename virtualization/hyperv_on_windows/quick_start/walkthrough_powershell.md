@@ -2,13 +2,13 @@
 
 Nachdem Sie sich mit den Grundlagen der Bereitstellung von Hyper-V sowie dem Erstellen und Verwalten virtueller Computer vertraut gemacht haben, wollen wir uns nun ansehen, wie viele dieser Aktivitäten mithilfe von PowerShell automatisiert werden können.
 
-### Abrufen einer Liste von Hyper-V-Befehlen
+### Zurückgeben einer Liste von Hyper-V-Befehle
 
 1.  Klicken Sie auf die Windows-Schaltfläche „Start“, und geben Sie **powershell** ein.
 2.  Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
 
  ```powershell
-get-command –module hyper-v | out-gridview
+get-command -module hyper-v | out-gridview
  ```
   Sie erhalten eine Rückgabe wie diese:
 
@@ -40,31 +40,31 @@ get-vm
 2. Um nur eingeschaltete virtuelle Computer zurückzugeben, fügen Sie dem Befehl `get-vm` einen Filter hinzu. Ein Filter kann mit dem „Where-Object“-Befehl hinzugefügt werden. Weitere Informationen zum Filtern finden Sie in der Dokumentation zum [Verwenden von „Where-Object“](https://technet.microsoft.com/en-us/library/ee177028.aspx).
 
  ```powershell
- get-vm | where {$_.State –eq ‘Running’}
+ get-vm | where {$_.State -eq ‘Running’}
  ```
-3.  Zum Auflisten aller virtuellen Computer im ausgeschalteten Zustand führen Sie den folgenden Befehl aus. Dieser Befehl ist eine Kopie des Befehls aus Schritt 2, wobei der Filter von „Running“ in „Off“ geändert wurde.
+3.  Listen Sie alle virtuellen Computer in einen funktionsfähigen Status, off, führen Sie den folgenden Befehl. Mit diesem Befehl wird eine Kopie des Befehls aus Schritt 2 mit dem Filter aus 'Running' auf 'Off' geändert.
 
  ```powershell
- get-vm | where {$_.State –eq ‘Off’}
+ get-vm | where {$_.State -eq ‘Off’}
  ```
 
-### Starten und Herunterfahren virtueller Computer
+### Starten und Herunterfahren von virtuellen Maschinen
 
-1. Um einen bestimmten virtuellen Computer zu starten, führen Sie den folgenden Befehl mit dem Namen des virtuellen Computers aus:
+1. Um einen bestimmten virtuellen Computer zu starten, führen Sie den folgenden Befehl mit dem Namen des virtuellen Computers:
 
  ```powershell
- Start-vm –Name <virtual machine name>
+ Start-vm -Name <virtual machine name>
  ```
 
 2. Zum Starten aller derzeit ausgeschalteten virtuellen Computer rufen Sie eine Liste dieser VMs ab, die Sie an den Befehl „start-vm“ übergeben:
 
   ```powershell
- get-vm | where {$_.State –eq ‘Off’} | start-vm
+ get-vm | where {$_.State -eq ‘Off’} | start-vm
   ```
 3. Zum Herunterfahren aller ausgeführten virtuellen Computer führen Sie diesen Befehl aus:
 
   ```powershell
- get-vm | where {$_.State –eq ‘Running’} | stop-vm
+ get-vm | where {$_.State -eq ‘Running’} | stop-vm
   ```
 
 ### Erstellen eines VM-Prüfpunkts
@@ -98,10 +98,15 @@ Im folgenden Beispiel wird das Erstellen ein neues virtuellen Computers in der P
  New-VM @VM
   ```
 
-## Zusammenfassung und Referenzen
+## Wrappen und Verweise
 
-In diesem Dokument wurden einige einfache Schritte mit dem PowerShell-Modul für Hyper-V sowie verschiedene Beispielszenarien vorgestellt. Weitere Informationen zum PowerShell-Modul für Hyper-V finden Sie in der [Referenz zu Hyper-V-Cmdlets in Windows PowerShell](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).
+Dieses Dokument hat einige einfache Schritte zum Explorer das Hyper-V-PowerShell-Modul sowie einige Beispielszenarios gezeigt. Weitere Informationen zum PowerShell-Modul für Hyper-V finden Sie in der [Referenz zu Hyper-V-Cmdlets in Windows PowerShell](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).
 
 
+
+
+
+
+<!--HONumber=Feb16_HO4-->
 
 

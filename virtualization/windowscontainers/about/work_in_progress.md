@@ -1,3 +1,7 @@
+
+
+
+
 # Laufende Arbeiten
 
 Falls Ihr Problem hier nicht behandelt wird oder Sie Fragen haben, stellen Sie diese im [Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
@@ -15,16 +19,7 @@ Wenn Sie Updates für das Betriebssystem des Windows-Containerhosts installieren
 
 
 **Abhilfe:**   
-Laden Sie ein Containerbasis-Image herunter, das der Betriebssystemversion und Patchebene des Containerhosts entspricht.
-
-### Alle Laufwerke außer C:/ werden in Containern angezeigt
-
-Alle Laufwerke außer C:/, die dem Container zur Verfügung stehen, werden automatisch in neu ausgeführten Windows-Containern zugeordnet.
-
-Derzeit besteht keine Möglichkeit, Ordner in einem Container selektiv zuzuordnen. Als Zwischenlösung werden Laufwerke automatisch zugeordnet.
-
-*Abhilfe:*  
-Wir arbeiten daran. Künftig wird es Ordnerfreigaben geben.
+Herunterladen und Installieren eines Container-Basisabbilds Abgleich der Betriebssystemebene und Patchebene des Container-Hosts.
 
 ### Standardverhalten der Firewall
 
@@ -34,7 +29,7 @@ In einem Containerhost und in der Containerumgebung gibt es nur die Firewall des
 
 Wenn der Start Ihres Containers länger als 30 Sekunden dauert, erfolgen ggf. doppelte Virenscans.
 
-Viele Antischadsoftwarelösungen, wie z. B. Windows Defender, scannen ggf. unnötigerweise Daten innerhalb von Containerimages, einschließlich aller Binärdateien des Betriebssystems und Dateien im Containerbetriebssystem-Image. Dieser Fehler tritt immer dann auf, wenn ein neuer Container erstellt wird und aus Sicht der Antischadsoftware alle „Dateien im Container“ wie neue Dateien aussehen, die noch nicht gescannt wurden. Wenn dann Prozesse innerhalb des Containers versuchen, diese Dateien zu lesen, werden sie zuerst von den Komponenten der Antischadsoftware gescannt, ehe der Zugriff auf die Dateien erlaubt wird. Tatsächlich wurden diese Dateien bereits gescannt, als das Containerimage auf den Server importiert oder übertragen wurde. In künftigen Vorschauversionen wird es neue Infrastruktur geben, sodass Antischadsoftwarelösungen wie Windows Defender mit diesen Situationen zurechtkommen und entsprechend agieren, um Mehrfachscans zu vermeiden.
+Viele Anti-Malware-Lösungen, wie z. B. Windows Defender, vielleicht Dateien mit-in Container Bilder, einschließlich aller OS-Binärdateien und Dateien im Container Betriebssystemabbild unnötigerweise scannen. Dieser Fehler tritt bei jedem ein neuer Container erstellt wird und hinsichtlich der Anti-Malware Aussehen aller Dateien"des Containers" neue Dateien, die zuvor noch nicht gescannt. Also wenn Prozesse innerhalb des Containers versuchen, diese Dateien lesen Scannen Antimalware-Komponenten zuerst diese vor dem Zugriff auf die Dateien. In Wirklichkeit wurden diese Dateien bereits gescannt, wenn das Container-Bild importiert oder an den Server abgerufen wurde. In künftigen Vorschauversionen wird es neue Infrastruktur geben, sodass Antischadsoftwarelösungen wie Windows Defender mit diesen Situationen zurechtkommen und entsprechend agieren, um Mehrfachscans zu vermeiden.
 
 ### Starten/Beenden misslingt gelegentlich, wenn der Arbeitsspeicher auf weniger als 48 MB beschränkt ist
 
@@ -88,17 +83,17 @@ Erhöhen Sie die Anzahl der für den Container verfügbaren Prozessoren, geben S
 
 ### Begrenzte Netzwerkdepots
 
-In dieser Version unterstützt wir ein Netzwerkdepot pro Container. Dies bedeutet, dass wenn Sie einen Container mit mehreren Netzwerkadaptern haben, Sie nicht auf jedem Adapter auf denselben Port zugreifen können (wenn z. B. 192.168.0.1:80 und 192.168.0.2:80 zum selben Container gehören).
+In dieser Version unterstützt wir ein Netzwerkdepot pro Container. Dies bedeutet, dass wenn Sie einen Container mit mehreren Netzwerkadaptern verfügen, den gleichen Netzwerkport für die einzelnen Adapter zugreifen kann (z. B. 192.168.0.1:80 und 192.168.0.2:80, die auf den gleichen Container gehört).
 
 *Abhilfe:*  
-Wenn mehrere Endpunkte einem Container zur Verfügung gestellt werden müssen, verwenden Sie die NAT-Portzuordnung.
+Wenn mehrere Endpunkte von einem Container verfügbar gemacht werden müssen, verwenden Sie die NAT-Port-Zuordnung.
 
 
-### Statische NAT-Zuordnungen können mit Portzuordnungen über Docker in Konflikt stehen.
+### Statische NAT-Zuordnungen können zu Konflikten mit Portzuordnungen über Docker führen.
 
-Wenn Sie Container mithilfe von Windows PowerShell und durch Hinzufügen von statischen NAT-Zuordnungen erstellen, können diese Konflikte verursachen, wenn Sie sie nicht vor dem Starten eines Containers mit `docker -p &lt;Quelle&gt;:&lt;Ziel&gt;` entfernen
+Wenn Sie Container mithilfe von Windows PowerShell erstellen und statische NAT-Zuordnungen hinzufügen, können diese Konflikte verursachen, wenn Sie sie nicht entfernen, bevor Sie einen Container mit `docker -p &lt;src&gt;:&lt;dst&gt;` starten.
 
-Nachfolgend finden Sie ein Beispiel für einen Konflikt mit einer statischen Zuordnung an Port 80
+Hier finden Sie ein Beispiel für einen Konflikt mit einer statischen Zuordnung an Port 80.
 ```
 PS C:\IISDemo> Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress
  172.16.0.2 -InternalPort 80 -ExternalPort 80
@@ -138,13 +133,13 @@ duplicate name exists on the network. If joining a domain, go to System in Contr
 
 
 ***Lösung***
-Der Konflikt kann durch Entfernen der Portzuordnung mithilfe von PowerShell behoben werden. Dadurch wird der im oben stehenden Beispiel verursachte Port 80-Konflikt beseitigt.
+Dieser Konflikt kann durch Entfernen der Portzuordnung mithilfe von PowerShell behoben werden. Dadurch wird der im oben stehenden Beispiel verursachte Port 80-Konflikt beseitigt.
 ```powershell
 Get-NetNatStaticMapping | ? ExternalPort -eq 80 | Remove-NetNatStaticMapping
 ```
 
 
-### Windows-Container erhalten keine IP-Adressen
+### Windows-Container werden IP-Adressen nicht abrufen.
 
 Wenn Sie über DHCP-VM-Switches eine Verbindung mit den Windows-Containern herstellen, ist es möglich, dass der Containerhost eine IP-Adresse erhält, die Container hingegen nicht.
 
@@ -292,4 +287,8 @@ Wir suchen aktiv nach Lösungen für die Unterstützung solcher Szenarien.
 
 
 
-<!--HONumber=Feb16_HO1-->
+
+
+<!--HONumber=Feb16_HO4-->
+
+

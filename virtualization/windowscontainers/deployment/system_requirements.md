@@ -1,3 +1,7 @@
+
+
+
+
 # Anforderungen von Windows-Containern
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
@@ -48,4 +52,8 @@ Wenn ein Windows-Containerhost von einem virtuellen Hyper-V-Computer ausgeführt
 
 
 
-<!--HONumber=Jan16_HO1-->
+
+
+<!--HONumber=Feb16_HO3-->
+
+

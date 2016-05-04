@@ -1,3 +1,7 @@
+
+
+
+
 # Schnellstartanleitung: Windows-Container und PowerShell
 
 Mithilfe von Windows-Containern können viele isolierte Anwendungen schnell auf einem einzelnen Computersystem bereitgestellt werden. Diese Schnellstartanleitung veranschaulicht die Bereitstellung und Verwaltung von Windows Server- und Hyper-V-Containern mithilfe von PowerShell. In dieser Übung erstellen Sie von Grund auf eine sehr einfache „Hello World“-Anwendung, die sowohl in einem Windows Server- als auch einem Hyper-V-Container ausgeführt wird. Während dieses Vorgangs erstellen Sie Containerimages, arbeiten mit freigegebenen Ordnern und verwalten den Containerlebenszyklus. Am Ende sind Sie mit der Bereitstellung und Verwaltung von Windows-Containern grundlegend vertraut.
@@ -517,4 +521,8 @@ exit
 
 
 
-<!--HONumber=Feb16_HO1-->
+
+
+<!--HONumber=Feb16_HO3-->
+
+

@@ -1,3 +1,7 @@
+
+
+
+
 # Containerimages
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
@@ -53,7 +57,7 @@ Downloaded in 0 hours, 0 minutes, 10 seconds.
 
 Mit diesem Befehl wird auch das Basisbetriebssystem-Image für Windows Server Core heruntergeladen und installiert. Der Parameter `–version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
 
->**Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage. **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
+> **Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage. **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
@@ -202,4 +206,8 @@ IMAGE               CREATED             CREATED BY          SIZE                
 
 
 
-<!--HONumber=Jan16_HO1-->
+
+
+<!--HONumber=Feb16_HO4-->
+
+

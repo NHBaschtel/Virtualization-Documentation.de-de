@@ -1,10 +1,14 @@
+
+
+
+
 # Bereitstellen eines Windows-Containerhosts auf einem vorhandenen virtuellen oder physischen System
 
 In diesem Dokument werden die Schritte zum Bereitstellen und Konfigurieren der Windows-Containerrolle auf einem vorhandenen physischen oder virtuellen System mithilfe eines PowerShell-Skripts vorgestellt.
 
 Unter [Neuer Hyper-V-Windows-Containerhost](./container_setup.md) finden Sie Informationen zur skriptgesteuerten Bereitstellung eines neuen virtuellen Hyper-V-Computers, der als Windows-Containerhost konfiguriert wird.
 
-**VOR DEM INSTALLIEREN DES CONTAINERBETRIEBSSYSTEM-IMAGES BITTE LESEN:** Die Lizenzbedingungen für die Microsoft Windows Server-Pre-Release-Software („Lizenzbedingungen“) gelten für Ihre Nutzung der Zusatzsoftware in Form des Microsoft Windows-Containerbetriebssystem-Images (der „Zusatzsoftware“). Durch Herunterladen und Verwenden der Zusatzsoftware stimmen Sie den Lizenzbedingungen zu. Eine Nutzung ist nur gestattet, wenn Sie den Lizenzbedingungen zugestimmt haben. Die Windows Server-Pre-Release-Software und Zusatzsoftware werden von der Microsoft Corporation lizenziert.
+**VOR DEM INSTALLIEREN DES CONTAINERBETRIEBSSYSTEM-IMAGES BITTE LESEN:** Die Lizenzbedingungen für die Microsoft Windows Server-Pre-Release-Software („Lizenzbedingungen“) gelten für Ihre Nutzung der Zusatzsoftware in Form des Microsoft Windows-Containerbetriebssystem-Images (der „Zusatzsoftware“). Durch Herunterladen und verwenden die Zusatzsoftware, stimmen Sie dem Lizenzvertrag und können Sie nicht verwenden, wenn Sie dem Lizenzvertrag nicht akzeptiert haben. Die Windows Server-Pre-Release-Software und Zusatzsoftware werden von der Microsoft Corporation lizenziert.
 
 Für die Übungen zu Windows Server- und Hyper-V-Containern in dieser Schnellstartanleitung ist Folgendes erforderlich:
 
@@ -16,25 +20,25 @@ Für die Übungen zu Windows Server- und Hyper-V-Containern in dieser Schnellsta
 
 Windows-Container benötigen die Basis-Images für Containerbetriebssysteme. Wir haben ein Skript zusammengestellt, mit diesen Hilfe diese Elemente für Sie heruntergeladen und installiert werden. Führen Sie diese Schritte aus, um Ihr System als Windows-Containerhost zu konfigurieren. Weitere Informationen finden Sie unter „Neuerungen bei Hyper-V“ in [Windows Server 2016 Technical Preview](https://tnstage.redmond.corp.microsoft.com/en-US/library/dn765471.aspx#BKMK_nested).
 
-Starten Sie eine PowerShell-Sitzung als Administrator. Dies kann erfolgen, indem Sie den folgenden Befehl über die Befehlszeile ausführen.
+Starten einer PowerShell-Sitzungs als Administrator an. Dies kann erfolgen, indem Sie den folgenden Befehl von der Befehlszeile aus ausführen.
 
 ``` powershell
 PS C:\> powershell.exe
 ```
 
-Stellen Sie sicher, dass der Titel des Fensters „Administrator: Windows PowerShell“ lautet. Falls nicht, führen Sie diesen Befehl aus, um den vorherigen Befehl mit Administratorrechten auszuführen:
+Stellen Sie sicher, dass der Titel des Windows "Administrator: Windows PowerShell". Wenn sie Administrator nicht dazu aufgefordert werden, führen Sie diesen Befehl mit Admin-Berechtigungen ausgeführt:
 
 ``` powershell
 PS C:\> start-process powershell -Verb runas
 ```
 
-Verwenden Sie den folgenden Befehl, um das Setupskript herunterzuladen. Das Skript kann auch von dieser Adresse ([Konfigurationsskript](https://aka.ms/tp4/Install-ContainerHost)) manuell heruntergeladen werden.
+Verwenden Sie den folgenden Befehl aus, um das Setup-Skript herunterzuladen. Das Skript kann auch von dieser Adresse ([Konfigurationsskript](https://aka.ms/tp4/Install-ContainerHost)) manuell heruntergeladen werden.
 
 ``` PowerShell
 PS C:\> wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 ```
 
- Führen Sie das Skript nach dem Herunterladen aus.
+ Nachdem der Download abgeschlossen ist, führen Sie das Skript.
 ``` PowerShell
 PS C:\> powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
 ```
@@ -54,4 +58,8 @@ Nun da Sie über ein Windows Server 2016-System mit ausgeführtem Feature „Win
 
 
 
-<!--HONumber=Feb16_HO2-->
+
+
+<!--HONumber=Feb16_HO3-->
+
+

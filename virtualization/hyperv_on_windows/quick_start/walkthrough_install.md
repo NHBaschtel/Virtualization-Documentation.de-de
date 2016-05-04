@@ -25,7 +25,7 @@ Nach Abschluss der Installation werden Sie aufgefordert, den Computer neu zu sta
 2. Führen Sie den folgenden Befehl aus:
 
 ```powershell
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
 Nach Abschluss der Installation müssen Sie den Computer neu starten.
 
@@ -33,9 +33,9 @@ Nach Abschluss der Installation müssen Sie den Computer neu starten.
 
 Das DISM-Tool (Deployment Image Servicing and Management) dient zum Warten von Windows-Images und Vorbereiten von Windows-Prä-Installationsumgebungen. DISM kann auch verwendet werden, um Windows-Features zu aktivieren, während das Betriebssystem ausgeführt wird. Weitere Informationen finden Sie in der [technischen Referenz zu DISM](https://technet.microsoft.com/en-us/library/hh824821.aspx).
 
-So aktivieren Sie die Rolle „Hyper-V“ mithilfe von DISM
+So aktivieren Sie die Hyper-V-Rolle mithilfe von DISM
 
-1. Starten Sie eine PowerShell- oder Befehlszeilensitzung als Administrator.
+1. Öffnen Sie ein PowerShell oder CMD-Sitzung als Administrator.
 
 2. Geben Sie den folgenden Befehl ein:
 
@@ -49,5 +49,11 @@ DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
 
 [Erstellen eines virtuellen Switches](walkthrough_virtual_switch.md)
 
+
+
+
+
+
+<!--HONumber=Feb16_HO4-->
 
 

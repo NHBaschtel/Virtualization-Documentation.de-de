@@ -1,3 +1,7 @@
+
+
+
+
 # Schnellstartanleitung: Windows-Container und Docker
 
 Mithilfe von Windows-Containern können viele isolierte Anwendungen schnell auf einem einzelnen Computersystem bereitgestellt werden. In dieser Übung wird das Erstellen und Verwalten von Windows-Containern mit Docker demonstriert. Im Anschluss sollten Sie grundlegend damit vertraut sein, wie Docker und Windows-Container integriert sind, nachdem Sie praktische Erfahrung mit dieser Technologie gesammelt haben.
@@ -82,12 +86,10 @@ nanoserver             latest              8572198a60f1        2 weeks ago      
 
 ### Konfigurieren des Netzwerks
 
-Vor dem Erstellen eines Containers mit Docker muss eine Regel für die Windows-Firewall erstellt werden, die eine Netzwerkverbindung mit dem Container zulässt. Führen Sie folgendes PowerShell-Skript aus, um eine Regel für Port 80 zu erstellen. Hinweis: Das Skript muss aus einer PowerShell-Sitzung heraus ausgeführt werden.
+Vor dem Erstellen eines Containers mit Docker muss eine Regel für die Windows-Firewall erstellt werden, die eine Netzwerkverbindung mit dem Container zulässt. Führen Sie Folgendes aus, um eine Regel für Port 80 zu erstellen.
 
 ```powershell
-if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
-    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
-}
+powershell.exe "if(!(Get-NetFirewallRule | where {$_.Name -eq 'TCP80'})) { New-NetFirewallRule -Name 'TCP80' -DisplayName 'HTTP on TCP/80' -Protocol tcp -LocalPort 80 -Action Allow -Enabled True }" 
 ```
 
 Sie sollten sich auch die IP-Adresse des Containerhosts notieren, da sie in der gesamten Übung verwendet wird.
@@ -159,7 +161,7 @@ C:\> powershell new-item c:\build\dockerfile -Force
 C:\> notepad c:\build\dockerfile
 ```
 
-Kopieren Sie den folgenden Text in die Dockerfile, und speichern Sie sie. Diese Befehle weisen Docker an, ein neues Image mit `windowsservercore` als Basis zu erstellen und die mit `RUN` angegebenen Änderungen einzuschließen. Weitere Informationen zu Dockerfiles finden Sie in der [Referenz zu Dockerfiles auf docker.com](http://docs.docker.com/engine/reference/builder/).
+Kopieren Sie den folgenden Text in die Dockerfile, und speichern Sie sie. Diese Befehle weisen Docker an, ein neues Image mit `windowsservercore` als Basis zu erstellen und die mit `RUN` angegebenen Änderungen einzuschließen. Weitere Informationen zu „Dockerfiles“ finden Sie in der [Referenz zu Dockerfiles auf docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -348,4 +350,8 @@ C:\> exit
 
 
 
-<!--HONumber=Feb16_HO2-->
+
+
+<!--HONumber=Feb16_HO4-->
+
+

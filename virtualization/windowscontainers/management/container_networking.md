@@ -1,3 +1,7 @@
+
+
+
+
 # Containernetzwerk
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
@@ -106,7 +110,7 @@ Der externe virtuelle Switch kann jetzt mit einem Container verbunden werden, de
 Beim Starten des Docker-Daemons können Sie eine Netzwerkbrücke auswählen. Wenn Sie Docker unter Windows ausführen, ist dies der externe virtuelle Switch oder der virtuelle NAT-Switch. Im folgenden Beispiel wird der Docker-Daemon unter Angabe eines virtuellen Switches namens `Virtual Switch` gestartet.
 
 ```powershell
-Docker daemon –D –b “Virtual Switch” -H 0.0.0.0:2375
+Docker daemon -D -b “Virtual Switch” -H 0.0.0.0:2375
 ```
 
 Wenn Sie den Containerhost bereitgestellt haben, und Docker die in der Windows-Container-Schnellstartanleitung angegebenen Skripts verwendet, wird ein interner virtueller Switch vom Typ NAT erstellt. Zudem wird ein Docker-Dienst erstellt und für die Verwendung dieses Switches vorkonfiguriert. Um den vom Docker-Dienst verwendeten virtuellen Switch zu ändern, beenden Sie den Docker-Dienst, ändern die Konfigurationsdatei und starten den Dienst erneut.
@@ -149,4 +153,8 @@ Weitere Einzelheiten zu diesem Befehl finden Sie in der [Referenz zur Container-
 
 
 
-<!--HONumber=Feb16_HO1-->
+
+
+<!--HONumber=Feb16_HO4-->
+
+

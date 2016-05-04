@@ -1,3 +1,7 @@
+
+
+
+
 # Verwaltung von Containerressourcen
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.**
@@ -11,7 +15,7 @@ Für Windows-Container kann konfiguriert werden, wie viele CPU-, Datenträger-E/
 Arbeitsspeicherlimits für Container können festgelegt werden, wenn bei Ausführung des Befehls `New-Container` zum Erstellen eines Containers der Parameter `-MaximumMemoryBytes` angegeben wird. In diesem Beispiel wird der maximale Arbeitsspeicher auf 256 MB festgelegt.
 
 ```powershell
-PS C:\> New-Container –Name TestContainer –MaximumMemoryBytes 256MB -ContainerimageName WindowsServerCore
+PS C:\> New-Container -Name TestContainer -MaximumMemoryBytes 256MB -ContainerimageName WindowsServerCore
 ```
 Mit dem Cmdlet `Set-ContainerMemory` können Sie auch das Arbeitsspeicherlimit eines vorhandenen Containers festlegen.
 
@@ -26,7 +30,7 @@ Für einen vorhandenen Container können Limits für die Netzwerkbandbreite fest
 Im nachstehenden Beispiel ist die maximale Bandbreite auf 100 Mbit/s festgelegt.
 
 ```powershell
-PS C:\> Set-ContainerNetworkAdapter –ContainerName TestContainer –MaximumBandwidth 100000000
+PS C:\> Set-ContainerNetworkAdapter -ContainerName TestContainer -MaximumBandwidth 100000000
 ```
 
 ### CPU
@@ -36,10 +40,10 @@ Sie können die CPU-Kapazität eines Containers begrenzen, indem Sie entweder ei
 Im folgenden Beispiel wird die relative Gewichtung des Containers auf 1000 festgelegt. Die Standardgewichtung eines Containers ist 100, weshalb dieser Container eine um das Zehnfache höhere Priorität als ein Container hat, der auf den Standardwert festgelegt ist. Der Maximalwert ist 10.000.
 
 ```powershell
-PS C:\> Set-ContainerProcessor -ContainerName Container1 –RelativeWeight 10000
+PS C:\> Set-ContainerProcessor -ContainerName Container1 -RelativeWeight 10000
 ```
 
-Sie können auch ein festes Limit für die CPU-Kapazität für einen Container mithilfe eines Prozentsatzes der CPU-Zeit festlegen. Standardmäßig kann ein Container die CPU zu 100 % nutzen. Im folgenden Beispiel wird der maximale Prozentsatz einer CPU, die ein Container nutzen kann, auf 30 % festgelegt. Durch Angeben des Kennzeichens „–Maximum“ wird „RelativeWeight“ automatisch auf 100 festgelegt.
+Sie können auch ein festes Limit für die CPU-Kapazität für einen Container mithilfe eines Prozentsatzes der CPU-Zeit festlegen. Standardmäßig kann ein Container die CPU zu 100 % nutzen. Im folgenden Beispiel wird der maximale Prozentsatz einer CPU, die ein Container nutzen kann, auf 30 % festgelegt. Durch Angeben des Kennzeichens „-Maximum“ wird „RelativeWeight“ automatisch auf 100 festgelegt.
 
 ```powershell
 PS C:\> Set-ContainerProcessor -ContainerName Container1 -Maximum 30
@@ -65,7 +69,7 @@ Wir bieten die Möglichkeit, eine Teilmenge der Containerressourcen mit Docker z
 CPU-Freigaben unter Containern können zur Laufzeit mithilfe des Kennzeichens „--cpu-shares“ verwaltet werden. Standardmäßig steht allen Container ein gleich großer Anteil der CPU-Zeit zur Verfügung. Um die relative CPU-Freigabe für Container zu ändern, geben Sie für das Kennzeichen „--cpu-shares“ einen Wert von 1 bis 10.000 an. Standardmäßig erhalten alle Container eine Gewichtung von 5000. Weitere Informationen zur CPU-Freigabeeinschränkung finden Sie in der [Referenz zu „Docker Run“](https://docs.docker.com/engine/reference/run/#cpu-share-constraint).
 
 ```powershell 
-C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
+C:\> docker run -it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 ```
 
 ## Bekannte Probleme
@@ -73,12 +77,16 @@ C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 - Für Hyper-V-Container wird die Steuerung von CPU- und E/A-Ressourcen derzeit nicht unterstützt.
 - Die Steuerung von E/A-Ressourcen wird derzeit nicht für freigegebene Ordner in einem Container unterstützt.
 
-## Video mit exemplarischer Vorgehensweise
+## Video zur exemplarischen Vorgehensweise
 
-<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-4-Resource-Management/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
-
-
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-4-Resource-Management/player#ccLang=de" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
 
-<!--HONumber=Feb16_HO1-->
+
+
+
+
+<!--HONumber=Feb16_HO4-->
+
+
