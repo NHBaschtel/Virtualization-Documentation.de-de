@@ -9,7 +9,7 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
         <td><center>![](./media/MeetsRequirements_65.png)</center></td>
         <td valign="top">
             <p><strong>Informationen zu Hyper-V unter Windows</strong></p>
-            <p>Die folgenden Artikel bieten eine Einführung und Informationen zu Hyper-V unter Windows.</p>
+            <p>Die folgenden Artikel enthalten eine Einführung und Informationen zu Hyper-V unter Windows.</p>
             <ul>
                 <li class="unordered">[Einführung in Hyper-V](./about/hyperv_on_windows.md)<br /><br /></li>
                 <li class="unordered">[Neuerungen in Hyper-V für Windows Server 10](./about/whats_new.md)<br /><br /></li>
@@ -25,7 +25,7 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
             <ul>
                 <li class="unordered">[Überprüfen der Systemanforderungen](quick_start\walkthrough_compatibility.md)<br /><br /></li>
                 <li class="unordered">[Installieren von Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
-                <li class="unordered">[Erstellen eines virtuellen Switch](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
+                <li class="unordered">[Erstellen eines virtuellen Switches](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
                 <li class="unordered">[Erstellen eines virtuellen Computers](quick_start\walkthrough_create_vm.md)<br /><br /></li>
                 <li class="unordered">[Hyper-V und PowerShell](quick_start\walkthrough_powershell.md)<br /><br /></li>
             </ul>
@@ -38,7 +38,7 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
             <p>Zusätzliche technische Support- und Communityressourcen.</p>
             <ul>
                 <li class="unordered">[Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
-                <li class="unordered">[Communityressourcen für Hyper-V- und Windows-Container](/virtualization/community/community_overview.md)<br /><br /></li>
+                <li class="unordered">[Communityressourcen für Hyper-V- und Windows-Container](/virtualization/community/community_overview)<br /><br /></li>
             </ul>   
         </td>
     </tr>
@@ -47,4 +47,8 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
 
 
 
-<!--HONumber=Jan16_HO1-->
+
+
+<!--HONumber=Mar16_HO3-->
+
+

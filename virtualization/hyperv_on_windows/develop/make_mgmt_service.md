@@ -6,15 +6,16 @@ Dieses Dokument bietet eine exemplarische Vorgehensweise zum Erstellen einer ein
 
 [PowerShell Direct](../user_guide/vmsession.md) ist ein Beispiel einer Anwendung (in diesem Fall eines integrierten Windows-Diensts), die Hyper-V-Sockets zum Kommunizieren verwendet.
 
-**Unterstützte Hostbetriebssysteme**
-* Windows 10
-* Windows Server Technical Preview 3
-* Künftige Versionen (Server 2016 +)
+**Unterstützte Host-BS**
+* Windows 10, Build 14290 und höher
+* Windows Server Technical Preview 4 und höher
+* Zukünftige Versionen (Server 2016 +)
 
 **Unterstützte Gastbetriebssysteme**
-* Windows 10
-* Windows Server Technical Preview 3
-* Künftige Versionen (Server 2016 +)
+* Windows-10
+* Windows Server Technical Preview 4 und höher
+* Zukünftige Versionen (Server 2016 +)
+* Linux-Gastcomputer mit Linux Integration Services (siehe [Unterstützte virtuelle Linux- und FreeBSD-Computer für Hyper-V auf Windows](https://technet.microsoft.com/library/dn531030(ws.12).aspx))
 
 **Stärken und Schwächen**
 * Unterstützt den Kernelmodus oder Benutzermodusaktionen
@@ -32,7 +33,22 @@ Zum Schreiben einer einfachen Anwendung benötigen Sie Folgendes:
 * C-Compiler. Wenn Sie keinen haben, probieren Sie [Visual Studio Code](https://aka.ms/vs) aus.
 * Einen Computer, auf dem Hyper-V und ein virtueller Computer ausgeführt werden.
   * Das Betriebssystem von Host- und Gastcomputer (VM) muss Windows 10, Windows Server Technical Preview 3 oder höher sein.
-* Windows SDK: Hier ist ein Link zum [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk), das `hvsocket.h` enthält.
+* [Windows 10 SDK](http://aka.ms/flightingSDK), auf dem Hyper-V-Host installiert
+
+**Details zu Windows SDK**
+
+Links zum Windows SDK:
+* [Windows 10 SDK Insider Preview](http://aka.ms/flightingSDK)
+* [Windows 10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk)
+
+Die API für Hyper-V-Sockets ist seit Windows 10, Build 14290 verfügbar; das Flighting-Download entspricht dem neuesten Insider Fast Track Flighting-Build.  
+Wenn Sie ein seltsames Verhalten feststellen, teilen Sie uns dies im [TechNet-Forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet-Foren") mit. Machen Sie in Ihrem Beitrag bitte folgende Angaben:
+* Beschreibung des unerwarteten Verhaltens
+* Betriebssystem und Buildnummern von Host, Gast und SDK
+
+  Die SDK-Buildnummer wird in der Titelleiste des SDK-Installationsprogramms angezeigt:  
+  ![](./media/flightingSDK.png)
+
 
 ## Registrieren einer neuen Anwendung
 
@@ -49,7 +65,7 @@ $friendlyName = "HV Socket Demo"
 
 # Create a new random GUID and add it to the services list then add the name as a value
 
-$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
+$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ((New-Guid).Guid)
 
 $service.SetValue("ElementName", $friendlyName)
 
@@ -57,14 +73,14 @@ $service.SetValue("ElementName", $friendlyName)
 $service.PSChildName | clip.exe
 ```
 
-*Registrierungsspeicherort und Informationen*
+** Registrierungsspeicherort und Informationen **
 
 ``` 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```
-An diesem Registrierungsspeicherort sehen Sie mehrere GUIDs. Diese gehören zu unseren Standarddiensten.
+An diesem Registrierungsspeicherort sehen Sie mehrere GUIDs. Unsere integrierte Dienste sind.
 
-Dienstbezogene Informationen in der Registrierung:
+Die Informationen in der Registrierung nach Dienst:
 * `Dienst-GUID`
     * `ElementName (REG_SZ)`: Dies ist der Anzeigename des Diensts.
 
@@ -83,7 +99,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 > ** Tipp: ** Führen Sie Folgendes aus, um eine GUID in PowerShell zu generieren und in die Zwischenablage zu kopieren:
 ``` PowerShell
-[System.Guid]::NewGuid().ToString() | clip.exe
+(New-Guid).Guid | clip.exe
 ```
 
 ## Erstellen eines Hyper-V-Sockets
@@ -104,11 +120,11 @@ SOCKET WSAAPI socket(
 
 Für ein Hyper-V-Socket:
 * Adressfamilie: `AF_HYPERV`
-* Typ: `SOCK_STREAM`, `SOCK_DGRAM` oder `SOCK_RAW`
+* Typ: `SOCK_STREAM`
 * Protokoll: `HV_PROTOCOL_RAW`
 
 
-Hier ein Beispiel einer Deklaration/Instanziierung:
+Hier sehen Sie eine Beispieldeklaration/-instanziierung:
 ``` C
 SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
@@ -145,7 +161,7 @@ struct SOCKADDR_HV
 ```
 
 Anstelle von IP-Adresse oder Hostname arbeiten AF_HYPERV-Endpunkte hauptsächlich mit zwei GUIDs:
-* VM-ID: Dies ist die eindeutige ID, die VM-bezogen zugewiesen wird. Eine VM-ID kann mit dem folgenden PowerShell-Codeausschnitt gefunden werden.
+* VM-ID – ist dies die eindeutige ID, die pro virtueller Maschine zugewiesen. Eine VM-ID kann mit dem folgenden PowerShell-Codeausschnitt gefunden werden.
   ```PowerShell
   (Get-VM -Name $VMName).Id
   ```
@@ -192,4 +208,8 @@ select
 
 
 
-<!--HONumber=Feb16_HO1-->
+
+
+<!--HONumber=Mar16_HO4-->
+
+
