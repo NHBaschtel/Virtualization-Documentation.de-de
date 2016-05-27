@@ -1,27 +1,53 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 1
+ Total Files | 3
 
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\quick_start\manage_docker.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/bd4b5200e75f56dd42d60e9d949614145b9a02c4/virtualization/windowscontainers/quick_start/manage_docker.md) | OutofSyncHandedBackSuccess | [Details](#8deff9eeb66ebef03d6b96aa358cd9c1d4ebea4a271)
+ [virtualization\windowscontainers\about\work_in_progress.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/52a6de400892ae63b1c04b0532350874b2e7f5ff/virtualization/windowscontainers/about/work_in_progress.md) | OutofSyncHandedBackSuccess | [Details](#e278e8e8e66c2b7fc9e8279d4bebf10ba16c7799222)
+ [virtualization\windowscontainers\quick_start\quick_start_windows_10.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1bd4fbbafe5b9fe8ec6886012d50bcebb0b78f8c/virtualization/windowscontainers/quick_start/quick_start_windows_10.md) | HandedOffSuccess | [Details](#9e788127d635a2f0dc164c89631df3ae2ffdb625314)
+ [virtualization\windowscontainers\quick_start\quick_start_windows_server.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/3bd03de38a47356e03e0e3391f5e7f5d1d7f9c82/virtualization/windowscontainers/quick_start/quick_start_windows_server.md) | HandedOffSuccess | [Details](#300d04067aa235878e155af33f6223fb7752764a315)
 
 ## Item Details
-##### <a name='8deff9eeb66ebef03d6b96aa358cd9c1d4ebea4a271'></a> Source: [virtualization\windowscontainers\quick_start\manage_docker.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/bd4b5200e75f56dd42d60e9d949614145b9a02c4/virtualization/windowscontainers/quick_start/manage_docker.md)
+##### <a name='e278e8e8e66c2b7fc9e8279d4bebf10ba16c7799222'></a> Source: [virtualization\windowscontainers\about\work_in_progress.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/52a6de400892ae63b1c04b0532350874b2e7f5ff/virtualization/windowscontainers/about/work_in_progress.md)
 * Status: OutofSyncHandedBackSuccess
 * Target File: 
-* Handoff File: [manage_docker.d8787c7831358fa02dcde847d887fa29a1767ee5.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/2be12113c9fcabe99b66ac086d10bbbcb8924e33/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_docker.d8787c7831358fa02dcde847d887fa29a1767ee5.de-de.xlf)
-* Handoff Datetime: 2016-05-27 05:24:34
+* Handoff File: [work_in_progress.4d0e298514e64fd94d18eb197e270fbbf7e07fd8.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/513f5152545cad38ca074ecd3cad8ba076af52de/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/work_in_progress.4d0e298514e64fd94d18eb197e270fbbf7e07fd8.de-de.xlf)
+* Handoff Datetime: 2016-05-27 15:53:13
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\windowscontainers\quick_start\manage_docker.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/e84aa3ec6fdce9e164718f7290471479e8b34a44/virtualization/windowscontainers/quick_start/manage_docker.md)
-* Current Handback File: [manage_docker.d8787c7831358fa02dcde847d887fa29a1767ee5.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/3663d6d028899cb7fb371b7002a406b9243c14f6/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_docker.d8787c7831358fa02dcde847d887fa29a1767ee5.de-de.xlf)
+* Current Target File: [virtualization\windowscontainers\about\work_in_progress.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/e84aa3ec6fdce9e164718f7290471479e8b34a44/virtualization/windowscontainers/about/work_in_progress.md)
+* Current Handback File: [work_in_progress.4d0e298514e64fd94d18eb197e270fbbf7e07fd8.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/3663d6d028899cb7fb371b7002a406b9243c14f6/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/work_in_progress.4d0e298514e64fd94d18eb197e270fbbf7e07fd8.de-de.xlf)
 * Current Handback Datetime: 2016-05-04 09:01:29
+* [Back to Top](#report-top)
+
+##### <a name='9e788127d635a2f0dc164c89631df3ae2ffdb625314'></a> Source: [virtualization\windowscontainers\quick_start\quick_start_windows_10.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1bd4fbbafe5b9fe8ec6886012d50bcebb0b78f8c/virtualization/windowscontainers/quick_start/quick_start_windows_10.md)
+* Status: HandedOffSuccess
+* Target File: 
+* Handoff File: [quick_start_windows_10.5f887ea7d45d865c81fe971abab095fb8e272cc8.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/513f5152545cad38ca074ecd3cad8ba076af52de/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_10.5f887ea7d45d865c81fe971abab095fb8e272cc8.de-de.xlf)
+* Handoff Datetime: 2016-05-27 15:53:13
+* Handoff Reason: Include
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* [Back to Top](#report-top)
+
+##### <a name='300d04067aa235878e155af33f6223fb7752764a315'></a> Source: [virtualization\windowscontainers\quick_start\quick_start_windows_server.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/3bd03de38a47356e03e0e3391f5e7f5d1d7f9c82/virtualization/windowscontainers/quick_start/quick_start_windows_server.md)
+* Status: HandedOffSuccess
+* Target File: 
+* Handoff File: [quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/513f5152545cad38ca074ecd3cad8ba076af52de/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf)
+* Handoff Datetime: 2016-05-27 15:53:13
+* Handoff Reason: Include
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
 * [Back to Top](#report-top)
 
 
