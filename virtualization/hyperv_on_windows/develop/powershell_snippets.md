@@ -1,3 +1,16 @@
+---
+title: &1856538592 PowerShell-Codeausschnitte
+description: PowerShell-Codeausschnitte
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: &679657282 windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: dc33c703-c5bc-434e-893b-0c0976b7cb88
+---
+
 # PowerShell-Codeausschnitte
 
 PowerShell ist ein sehr leistungsfähiges Skripterstellungs-, Automatisierungs- und Verwaltungstool für Hyper-V.  In diesem Artikel stellen wir verschiedene Aufgaben vor, die Sie mit PowerShell erledigen können!
@@ -60,14 +73,14 @@ Hyper-V-Skripts erfordern häufig die Verarbeitung von Anmeldeinformationen für
 Es gibt beim Arbeiten mit PowerShell Direct oder standardmäßigem PowerShell-Remoting mehrere Methoden, wie Sie dies erreichen können:
 
 1. Die erste (und einfachste) Möglichkeit ist das Verwenden der gleichen gültigen Anmeldeinformationen im Host und Gast bzw. lokalen und Remotehost.  
-    Dies ist recht einfach, wenn Sie sich mit Ihrem Microsoft-Konto anmelden oder sich in einer Domänenumgebung befinden.  
-    In diesem Szenario können Sie einfach `Invoke-Command -VMName "test" {get-process}` ausführen.
+  Dies ist recht einfach, wenn Sie sich mit Ihrem Microsoft-Konto anmelden oder sich in einer Domänenumgebung befinden.  
+  In diesem Szenario können Sie einfach `Invoke-Command -VMName "test" {get-process}` ausführen.
 
 2. Von PowerShell zur Eingabe von Anmeldeinformationen auffordern lassen  
-    Wenn Ihre Anmeldeinformationen nicht übereinstimmen, erhalten Sie automatisch eine Anmeldeaufforderung, sodass Sie die entsprechenden Anmeldeinformationen für den virtuellen Computer angeben können.
+  Wenn Ihre Anmeldeinformationen nicht übereinstimmen, erhalten Sie automatisch eine Anmeldeaufforderung, sodass Sie die entsprechenden Anmeldeinformationen für den virtuellen Computer angeben können.
 
 3. Speichern Sie Anmeldeinformationen zur Wiederverwendung in einer Variablen.
-    Führen Sie einen einfachen Befehl wie diesen aus:
+  Führen Sie einen einfachen Befehl wie diesen aus:
   ``` PowerShell
   $localCred = Get-Credential
   ```
@@ -78,9 +91,9 @@ Es gibt beim Arbeiten mit PowerShell Direct oder standardmäßigem PowerShell-Re
   Das bedeutet, dass Sie pro Skript-/PowerShell-Sitzung nur einmal zur Eingabe Ihrer Anmeldeinformationen aufgefordert werden.
 
 4. Programmieren Sie Ihre Anmeldeinformationen in Ihre Skripts. **Machen Sie das auf keinen Fall für reale Workloads oder Systeme.**
-    > Warnung: Gehen Sie bei einem Produktionssystem auf keinen Fall so vor. Verwenden Sie keine echten Kennwörter.
+> Warnung: Gehen Sie bei einem Produktionssystem auf keinen Fall so vor. Verwenden Sie keine echten Kennwörter.
 
-    Sie können ein „PSCredential“-Objekt mit Code wie dem folgenden manuell erstellen:
+  Sie können ein „PSCredential“-Objekt mit Code wie dem folgenden manuell erstellen:
   ``` PowerShell
   $localCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist "Administrator", (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) 
   ```
@@ -88,5 +101,10 @@ Es gibt beim Arbeiten mit PowerShell Direct oder standardmäßigem PowerShell-Re
 
 
 
+
+
+
+
+<!--HONumber=May16_HO1-->
 
 

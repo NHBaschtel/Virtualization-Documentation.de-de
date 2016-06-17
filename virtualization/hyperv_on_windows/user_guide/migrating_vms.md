@@ -1,3 +1,7 @@
+---
+redirect_url: http://aka.ms/upgradevmconfig
+---
+
 # Migrieren und Aktualisieren virtueller Computer
 
 Wenn Sie virtuelle Computer auf Ihren Windows 10-Host verschieben, der ursprünglich mit Hyper-V unter Windows 8.1 oder früher erstellt wurde, können Sie die neuen Features für virtuelle Computer erst nutzen, nachdem Sie die Konfigurationsversion des virtuellen Computers manuell aktualisiert haben.
@@ -106,5 +110,10 @@ Die folgende Tabelle enthält die standardmäßigen Dateispeicherorte für neue 
 
 
 
+
+
+
+
+<!--HONumber=May16_HO1-->
 
 

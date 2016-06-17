@@ -1,3 +1,16 @@
+---
+title: &479582873 Spezifikationen für Hypervisor
+description: Spezifikationen für Hypervisor
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: &141013637 windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: aee64ad0-752f-4075-a115-2d6b983b4f49
+---
+
 # Spezifikationen für Hypervisor
 
 ## Funktionsspezifikation der obersten Ebene für Hypervisor
@@ -25,4 +38,8 @@ Für Windows-Betriebssysteme muss eine bestimmte Auswahl von Hypervisorschnittst
 
 
 
-<!--HONumber=Mar16_HO2-->
+
+
+<!--HONumber=May16_HO1-->
+
+
