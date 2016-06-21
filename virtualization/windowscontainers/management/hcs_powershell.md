@@ -1,18 +1,25 @@
-
-
-
+---
+title: HCS PowerShell
+description: Arbeiten mit HCS PowerShell und Windows-Containern.
+keywords: docker, containers
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 45144ec5-f76a-4460-abd1-9b60e47506d6
+---
 
 # Verwaltungsinteroperabilität
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
-
-Zumeist gilt, dass mit PowerShell erstellte Windows-Container mit PowerShell und mit Docker erstellte Container mit Docker verwaltet werden müssen. Allerdings bietet das PowerShell-Modul „Host Computing“ die Möglichkeit **ausgeführte** Container zu ermitteln und zu beenden, und zwar unabhängig davon, wie sie erstellt wurden. Dieses Modul verhält sich wie ein Task-Manager für Container, die auf einem Containerhost ausgeführt werden.
+**Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
 ## Anzeigen aller Container
 
-Mit dem Befehl `Get-ComputeProcess` können Sie eine Liste der Container zurückgeben.
+Verwenden Sie den Befehl `Get-ComputeProcess`, um eine Liste der Container zurückzugeben.
 
-```powershell
+```none
 PS C:\> Get-ComputeProcess
 
 Id                                                Name                                      Owner       Type
@@ -25,19 +32,15 @@ e49cd35542..                                      e49cd35542..                  
 
 ## Beenden eines Containers
 
-Mit dem Befehl `Stop-ComputeProcess` können Sie einer Container unabhängig davon, ob er mit PowerShell oder Docker erstellt wurde, beenden.
+Mit dem Befehl `Stop-ComputeProcess` können Sie einer Container beenden, unabhängig davon, ob er mit PowerShell oder Docker erstellt wurde.
 
-> Zum Zeitpunkt der Verfassung dieses Artikels musste der VMMS-Dienst neu gestartet werden, damit bei Verwenden des Befehls `Get-Container` die Container als beendet angezeigt werden.
+> Zum Zeitpunkt der Verfassung dieses Artikels muss der VMMS-Dienst neu gestartet werden, damit bei Verwendung des Befehls `Get-Container` die Container als beendet angezeigt werden.
 
-```powershell
+```none
 PS C:\> Stop-ComputeProcess -Id 2088E0FA-1F7C-44DE-A4BC-1E29445D082B -Force
 ```
 
 
-
-
-
-
-<!--HONumber=Feb16_HO3-->
+<!--HONumber=May16_HO3-->
 
 

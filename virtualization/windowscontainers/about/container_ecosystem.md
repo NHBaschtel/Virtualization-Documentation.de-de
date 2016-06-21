@@ -1,6 +1,15 @@
-
-
-
+---
+title: Containerökosystem
+description: Aufbauen eines Containerökosystems.
+keywords: metadata, containers
+author: scooley
+manager: timlt
+ms.date: 04/20/2016
+ms.topic: about-article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
+---
 
 # Aufbauen eines Containerökosystems
 
@@ -8,7 +17,7 @@ Um zu verstehen, warum ein Ökosystem Container erstellen so wichtig ist, zunäc
 
 ## Docker der Beschwerde
 
-Das Konzept von Containern (Namespace Isolierung und Ressource Governance) wurde für lange Zeit schon zurückgehen BSD Jails, Solaris-Zonen und der grundlegenden UNIX Chroot (Change-Stamm)-Mechanismus. Also Docker ist ein gemeinsamer Satz von Tools, Paketerstellungsmodell und Bereitstellungsmechanismus bereitzustellen. Auf diese Weise vereinfacht Docker erheblich die Containerization und die Verteilung von Clientanwendungen. Diese Anträge können dann an einer beliebigen Stelle auf einem Linux-Host eine Funktion ausführen, die wir unter Windows als auch bereitstellen.
+Das Konzept von Containern (Namespace Isolierung und Ressource Governance) wurde für lange Zeit schon zurückgehen BSD Jails, Solaris-Zonen und der grundlegenden UNIX Chroot (Change-Stamm)-Mechanismus.   Also Docker ist ein gemeinsamer Satz von Tools, Paketerstellungsmodell und Bereitstellungsmechanismus bereitzustellen.  Auf diese Weise vereinfacht Docker erheblich die Containerization und die Verteilung von Clientanwendungen.  Diese Anträge können dann an einer beliebigen Stelle auf einem Linux-Host eine Funktion ausführen, die wir unter Windows als auch bereitstellen.
 
 Diese weit verbreitete Technologie vereinfacht nicht nur die Verwaltung von bietet die gleichen Management-Befehle für alle Hosts, erstellt auch eine einmalige Gelegenheit für eine nahtlose DevOps.
 
@@ -27,17 +36,13 @@ Das Container-Ökosystem bietet Methoden zum Container verwalten, Freigeben von 
 
 ![](media/containerEcosystem.png)
 
-Microsoft möchte Developer-Auswahl und Produktivität zu ermöglichen, während sie diese apps der nächsten Generation erstellen. Unser Ziel ist es, Treibstoff Entwicklerproduktivität, d. ermöglichen des Anwendungszugriffs h. auf die Cloud von Microsoft ohne ändern, schreiben oder neu konfigurieren, Code als Ziel.
+Microsoft möchte Developer-Auswahl und Produktivität zu ermöglichen, während sie diese apps der nächsten Generation erstellen.  Unser Ziel ist es, Treibstoff Entwicklerproduktivität, d. ermöglichen des Anwendungszugriffs h. auf die Cloud von Microsoft ohne ändern, schreiben oder neu konfigurieren, Code als Ziel.
 
-Microsoft ist bestrebt, die geöffnet wird und das Ökosystem Anzeigenamen. Die Einführung von mehrere Entwickler Ökosysteme von Interesse – wie Windows und Linux – Innovationen zusammen unterstützt aktiv.
+Microsoft ist bestrebt, die geöffnet wird und das Ökosystem Anzeigenamen.  Die Einführung von mehrere Entwickler Ökosysteme von Interesse – wie Windows und Linux – Innovationen zusammen unterstützt aktiv.
 
 In den nächsten Monaten werden wir weitere Informationen zu zusätzliche Partnern in diesem sich entwickelnden Ökosystem veröffentlichen.
 
 
-
-
-
-
-<!--HONumber=Feb16_HO4-->
+<!--HONumber=May16_HO3-->
 
 

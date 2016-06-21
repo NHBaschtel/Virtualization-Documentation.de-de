@@ -1,242 +1,194 @@
 ---
+title: Bereitstellen von Windows-Containern unter Nano Server
+description: Bereitstellen von Windows-Containern unter Nano Server
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/26/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 ---
-
 
 # Bereitstellung von Containerhosts: Nano Server
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
+**Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. Die Schritte in diesem Dokument dienen dazu, einen Windows-Containerhost für Nano Server auf einem physischen oder virtuellen System bereitzustellen. Informationen zum Installieren eines Windows-Containerhosts für Windows Server finden Sie unter [Containerhostbereitstellung: Windows Server](./deployment.md).
+Bevor Sie einen Windows-Container unter Nano Server konfigurieren können, benötigen Sie ein System, auf dem Nano Server ausgeführt wird, sowie eine PowerShell-Remoteverbindung mit diesem System.
 
-Einzelheiten zu Systemanforderungen finden Sie unter [Systemanforderungen von Windows-Containerhosts](./system_requirements.md).
+Weitere Informationen zur Bereitstellung und zum Herstellen einer Verbindung mit Nano Server finden Sie unter [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx) (Erste Schritte mit Nano Server).
 
-PowerShell-Skripts stehen zum Automatisieren der Bereitstellung eines Windows-Containerhosts zur Verfügung.
-- [Bereitstellen eines Containerhosts auf einem neuen virtuellen Hyper-V-Computer](../quick_start/container_setup.md).
-- [Bereitstellen eines Containerhost auf einem vorhandenen System](../quick_start/inplace_setup.md).
+Eine Evaluierungsversion von Nano Server finden Sie [hier](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula).
 
+## Installieren des Containerfeatures
 
-# Nano Server-Host
+Installieren Sie den Anbieter für die Nano Server-Paketverwaltung.
 
-Anhand der Schritte in dieser Tabelle kann ein Containerhost unter Nano Server bereitgestellt werden. Enthalten sind die für Windows Server- und Hyper-V-Container erforderlichen Konfigurationen.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td width="30%"><strong>Bereitstellungsaktion</strong></td>
-<td width="70%"><strong>Details</strong></td>
-</tr>
-<tr>
-<td>[Vorbereiten von Nano Server für Container](#nano)</td>
-<td>Bereiten Sie eine Nano Server-VHD mit den Container- und Hyper-V-Funktionen vor.</td>
-</tr>
-<tr>
-<td>[Erstellen des virtuellen Switches](#vswitch)</td>
-<td>Container verbinden sich über einen virtuellen Switch mit dem Netzwerk.</td>
-</tr>
-<tr>
-<td>[Konfigurieren von NAT](#nat)</td>
-<td>Wenn ein virtueller Switch mit Netzwerkadressübersetzung (Network Address Translation, NAT) konfiguriert ist, muss NAT selbst konfiguriert werden.</td>
-</tr>
-<tr>
-<td>[Installieren von Containerbetriebssystem-Images](#img)</td>
-<td>Betriebssystemimages bilden die Basis für Containerbereitstellungen.</td>
-</tr>
-<tr>
-<td>[Installieren von Docker](#docker)</td>
-<td>Optional, jedoch erforderlich, um Windows-Container mit Docker zu erstellen und zu verwalten. </td>
-</tr>
-</table>
-
-Diese Schritte müssen ausgeführt werden, wenn Hyper-V-Container verwendet werden. Beachten Sie, dass die Schritte mit * gekennzeichneten Schritte nur dann erforderlich sind, wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td width="30%"><strong>Bereitstellungsaktion</strong></td>
-<td width="70%"><strong>Details</strong></td>
-</tr>
-<tr>
-<td>[Aktivieren der Hyper-V-Rolle](#hypv) </td>
-<td>Hyper-V ist nur erforderlich, wenn Hyper-V-Container verwendet werden.</td>
-</tr>
-<tr>
-<td>[Aktivieren der geschachtelten Virtualisierung *](#nest)</td>
-<td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss „Geschachtelte Virtualisierung“ aktiviert werden.</td>
-</tr>
-<tr>
-<td>[Konfigurieren virtueller Prozessoren](#proc)</td>
-<td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, müssen mindestens zwei virtuelle Prozessoren konfiguriert werden.</td>
-</tr>
-<tr>
-<td>[Deaktivieren des dynamischen Speichers](#dyn)</td>
-<td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss dynamischer Arbeitsspeicher deaktiviert werden.</td>
-</tr>
-<tr>
-<td>[Konfigurieren des Spoofings von MAC-Adressen](#mac)</td>
-<td>Wenn der Containerhost virtualisiert ist, muss das Spoofing von MAC-Adressen aktiviert werden.</td>
-</tr>
-</table>
-
-## Bereitstellungsschritte
-
-### <a name=nano></a> Vorbereiten von Nano Server
-
-Das Bereitstellen von Nano Server umfasst das Erstellen einer vorbereiteten virtuellen Festplatte, die das Nano Server-Betriebssystem enthält, und weiterer Featurepakete. In dieser Anleitung erfahren Sie, wie Sie eine virtuelle Nano Server-Festplatte vorbereiten, die für Windows-Container verwendet werden kann. Weitere Informationen zu Nano Server und zu verschiedenen Nano Server-Bereitstellungsoptionen finden Sie in der [Dokumentation zu Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx).
-
-Erstellen Sie einen Ordner mit dem Namen `nano`.
-
-```powershell
-PS C:\> New-Item -ItemType Directory c:\nano
+```none
+Install-PackageProvider NanoServerPackage
 ```
 
-Ermitteln Sie auf dem Windows Server-Installationsmedium im Ordner „Nano Server“ die Dateien `NanoServerImageGenerator.psm1` und `Convert-WindowsImage.ps1`. Kopieren Sie beide nach `c:\nano`.
+Nach der Installation des Paketanbieters installieren Sie das Containerfeature.
 
-```powershell
-#Set path to Windows Server 2016 Media
-PS C:\> $WindowsMedia = "C:\Users\Administrator\Desktop\TP4 Release Media"
-
-PS C:\> Copy-Item $WindowsMedia\NanoServer\Convert-WindowsImage.ps1 c:\nano
-
-PS C:\> Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator.psm1 c:\nano
-```
-Führen Sie Folgendes aus, um eine virtuelle Festplatte für Nano Server zu erstellen. Der Parameter `-Containers` gibt an, dass das Containerpaket installiert wird und der Parameter `-Compute` ist für das Hyper-V-Paket bestimmt. Hyper-V ist nur erforderlich, wenn Hyper-V-Container verwendet werden.
-
-```powershell
-PS C:\> Import-Module C:\nano\NanoServerImageGenerator.psm1
-
-PS C:\> New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
-```
-Erstellen Sie im Anschluss einen virtuellen Computer anhand der Datei `NanoContainer.vhdx`. Auf diesem virtuellen Computer werden das Nano Server-Betriebssystem und optionale Pakete ausgeführt.
-
-### <a name=vswitch></a>Erstellen des virtuellen Switches
-
-Jeder Container muss an einen virtuellen Switch angefügt werden, um über ein Netzwerk zu kommunizieren. Ein virtueller Switch wird mit dem Befehl `New-VMSwitch` erstellt. Container unterstützen einen virtuellen Switch vom Typ `Extern` oder `NAT`. Weitere Informationen zu Windows-Containernetzwerk-Funktionen finden Sie unter [Containernetzwerke](../management/container_networking.md).
-
-In diesem Beispiel wird ein virtueller Switch mit dem Namen „Virtual Switch“ mit dem Typ NAT und dem NAT-Subnetz 172.16.0.0/12 erstellt.
-
-```powershell
-PS C:\> New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
+```none
+Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 ```
 
-### <a name=nat></a>Konfigurieren von NAT
+Der Nano Server-Host muss nach der Installation dieser Features neu gestartet werden.
 
-Zusätzlich zur Erstellung des virtuellen Switches muss, wenn der Switchtyp NAT ist, ein NAT-Objekt erstellt werden. Dies erfolgt über den Befehl `New-NetNat`. In diesem Beispiel werden ein NAT-Objekt mit dem Namen `ContainerNat` und ein Adresspräfix erstellt, das dem NAT-Subnetz entspricht, das dem Containerswitch zugewiesen ist.
+## Installieren von Docker
 
-```powershell
-PS C:\> New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
+Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Installieren Sie mithilfe der folgenden Schritte den Docker-Daemon.
 
-Name                             : ContainerNat
-ExternalIPInterfaceAddressPrefix :
-InternalIPInterfaceAddressPrefix : 172.16.0.0/12
-IcmpQueryTimeout                 : 30
-TcpEstablishedConnectionTimeout  : 1800
-TcpTransientConnectionTimeout    : 120
-TcpFilteringBehavior             : AddressDependentFiltering
-UdpFilteringBehavior             : AddressDependentFiltering
-UdpIdleSessionTimeout            : 120
-UdpInboundRefresh                : False
-Store                            : Local
-Active                           : True
+Laden Sie den Docker-Daemon herunter, und kopieren Sie ihn in das Verzeichnis `$env:SystemRoot\system32\` auf dem Containerhost. Nano Server unterstützt derzeit `Invoke-Webrequest` nicht, dies muss über ein Remotesystem ausgeführt werden.
+
+```none
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile .\dockerd.exe
 ```
 
-### <a name=img></a>Installieren von Betriebssystemimages
+Installieren Sie Docker als Windows-Dienst.
 
-Ein Betriebssystemimage dient als Basis aller Windows Server- oder Hyper-V-Container. Das Image wird zum Bereitstellen eines Containers verwendet, der anschließend geändert und in einem neuen Containerimage erfasst werden kann. Betriebssystemimages werden mit Windows Server Core und Nano Server als zugrunde liegendem Betriebssystem erstellt.
-
-Containerbetriebssystem-Images können mithilfe des PowerShell-Moduls „ContainerProvider“ bestimmt und installiert werden. Sie müssen dieses Modul erst installieren, um es verwenden zu können. Installieren Sie das Modul über die folgenden Befehle.
-
-```powershell
-PS C:\> Install-PackageProvider ContainerProvider -Force
+```none
+dockerd.exe --register-service
 ```
 
-Verwenden Sie `Find-ContainerImage`, um eine Liste der Images aus dem PowerShell OneGet-Paket-Manager zurückzugeben.
+Starten Sie den Docker-Dienst.
 
-```powershell
-PS C:\> Find-ContainerImage
-
-Name                 Version                 Description
-----                 -------                 -----------
-NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-```
-**Hinweis**: Zurzeit ist nur das Nano Server-Betriebssystemimage mit einem Nano Server-Containerhost kompatibel. Zum Herunterladen und Installieren des Basisbetriebssystem-Images für Nano Server führen Sie die folgenden Schritte aus.
-
-```powershell
-PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
-
-Downloaded in 0 hours, 0 minutes, 10 seconds.
+```none
+Start-Service Docker
 ```
 
-Überprüfen Sie mit dem Befehl `Get-ContainerImage`, ob das Image Installiert wurde.
+## Installieren von Basisimages für Container
 
-```powershell
-PS C:\> Get-ContainerImage
+Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe des Containerimageanbieters installiert werden. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
 
-Name              Publisher    Version      IsOSImage
-----              ---------    -------      ---------
-NanoServer        CN=Microsoft 10.0.10586.0 True
+Der folgende Befehl kann verwendet werden, um den Containerimageanbieter zu installieren.
+
+```none
+Install-PackageProvider ContainerImage -Force
 ```
-Weitere Informationen zur Verwaltung von Containerimages finden Sie unter [Windows-Containerimages](../management/manage_images.md).
 
+Zum Herunterladen und Installieren des Basisimages für Nano Server führen Sie die folgenden Schritte aus:
 
-### <a name=docker></a>Installieren von Docker
+```none
+Install-ContainerImage -Name NanoServer
+```
 
-Der Docker-Daemon und die Befehlszeilenschnittstelle gehören nicht zum Funktionsumfang von Windows und werden nicht mit dem Feature „Windows-Container“ installiert. Docker ist keine Voraussetzung für das Arbeiten mit Windows-Containern. Wenn Sie Docker installieren möchten, befolgen Sie die Anweisungen im Artikel [Docker und Windows](./docker_windows.md).
+**Hinweis**: Zurzeit ist nur das Nano Server-Basisimage mit Nano Server-Containerhosts kompatibel.
 
-Sie können den Befehl `Enter-PSSession` auf dem Hyper-V-Verwaltungshost verwenden, um die Verbindung zum Containerhost herzustellen.
+Starten Sie den Docker-Dienst neu.
 
-```powershell
-PS C:\> Enter-PSSession -VMName <VM Name>
+```none
+Restart-Service Docker
+```
+
+Abschließend muss das Image als neueste Version („latest“) gekennzeichnet werden. Führen Sie dazu den folgenden Befehl aus.
+
+```none
+docker tag nanoserver:10.0.14300.1010 nanoserver:latest
 ```
 
 ## Hyper-V-Containerhost
 
-### <a name=hypv></a>Aktivieren der Hyper-V-Rolle
+Um Hyper-V-Container bereitzustellen, ist die Hyper-V-Rolle erforderlich. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter „Geschachtelte Virtualisierung“.
 
-Unter Nano Server kann dies beim Erstellen des Nano Server-Images erfolgen. Diese Anweisungen finden Sie unter [Vorbereiten von Nano Server für Container](#nano).
+### Geschachtelte Virtualisierung
 
-### <a name=nest></a>Geschachtelte Virtualisierung
+Das folgende Skript konfiguriert die geschachtelte Virtualisierung für den Containerhost. Das Skript wird auf dem Hyper-V-Computer ausgeführt, der den virtuellen Containerhostcomputer hostet. Stellen Sie sicher, dass der virtuelle Containerhostcomputer ausgeschaltet ist, wenn dieses Skript ausgeführt wird.
 
-Wenn der Containerhost selbst auf einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, muss die geschachtelte Virtualisierung aktiviert werden. Dies kann mithilfe des folgenden PowerShell-Befehls erreicht werden:
+```none
+#replace with the virtual machine name
+$vm = "<virtual-machine>"
 
-**Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
+#configure virtual processor
+Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
 
-```powershell
-PS C:\> Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true
+#disable dynamic memory
+Set-VMMemory $vm -DynamicMemoryEnabled $false
+
+#enable mac spoofing
+Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-### <a name=proc></a>Konfigurieren virtueller Prozessoren
+### Aktivieren der Hyper-V-Rolle
 
-Wenn der Containerhost selbst auf einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, erfordert der virtuelle Computer mindestens zwei Prozessoren. Dies kann über die Einstellungen des virtuellen Computers oder mit dem folgenden Befehl konfiguriert werden.
-
-**Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
-
-```poweshell
-PS C:\> Set-VMProcessor -VMName <VM Name> -Count 2
+```none
+Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
 ```
 
-### <a name=dyn></a>Deaktivieren des dynamischen Speichers
+## Verwalten von Docker unter Nano Server
 
-Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss auf dem virtuellen Containerhostcomputer der dynamische Arbeitsspeicher deaktiviert werden. Dies kann über die Einstellungen des virtuellen Computers oder mit dem folgenden Befehl konfiguriert werden.
+**Vorbereiten des Docker-Daemons:**
 
-**Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
+Um optimale Ergebnisse zu erzielen, verwalten Sie Docker unter Nano Server über ein Remotesystem. Zu diesem Zweck müssen die folgenden Schritte ausgeführt werden.
 
-```poweshell
-PS C:\> Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
+Erstellen Sie auf dem Containerhost eine Firewallregel für die Docker-Verbindung. Verwenden Sie Port `2375` für eine unsichere Verbindung oder Port `2376` für eine sichere Verbindung.
+
+```none
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
 ```
 
-### <a name=mac></a>Spoofing von MAC-Adressen
+Konfigurieren Sie den Docker-Daemon so, dass eingehende Verbindungen über TCP akzeptiert werden.
 
-Wenn schließlich der Containerhost in einem virtuellen Hyper-V-Computer ausgeführt wird, muss das Spoofing von MAC-Adressen aktiviert werden. Dadurch kann jeder Container eine IP-Adresse erhalten. Um das Spoofing von MAC-Adressen zu aktivieren, führen Sie auf dem Hyper-V-Host den folgenden Befehl aus. Die „VMName“-Eigenschaft entspricht dem Namen des Containerhosts.
+Erstellen Sie zuerst eine `daemon.json`-Datei in `c:\ProgramData\docker\config\daemon.json`.
 
-```powershell
-PS C:\> Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
+```none
+new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
+Kopieren Sie anschließend den folgenden JSON-Code in die Datei. Damit wird der Docker-Daemon so konfiguriert, dass eingehende Verbindungen über TCP-Port 2375 akzeptiert werden. Dies ist eine unsichere Verbindung und wird nicht empfohlen, für isolierte Tests kann sie jedoch verwendet werden.
 
+```none
+{
+    "hosts": ["tcp://0.0.0.0:2375", "npipe://"]
+}
+```
 
+Das folgende Beispiel konfiguriert eine sichere Remoteverbindung. Die TLS-Zertifikate müssen erstellt und in die richtigen Speicherorte kopiert werden. Weitere Informationen finden Sie unter [Docker-Daemon unter Windows](./docker_windows.md).
 
+```none
+{
+    "hosts": ["tcp://0.0.0.0:2376", "npipe://"],
+    "tlsverify": true,
+    "tlscacert": "C:\\ProgramData\\docker\\certs.d\\ca.pem",
+    "tlscert": "C:\\ProgramData\\docker\\certs.d\\server-cert.pem",
+    "tlskey": "C:\\ProgramData\\docker\\certs.d\\server-key.pem",
+}
+```
 
+Starten Sie den Docker-Dienst neu.
 
-<!--HONumber=Mar16_HO3-->
+```none
+Restart-Service docker
+```
+
+**Vorbereiten des Docker-Clients:**
+
+Laden Sie den Docker-Client auf das Remoteverwaltungssystem herunter.
+
+```none
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:SystemRoot\system32\docker.exe
+```
+
+Nach Abschluss dieses Vorgangs kann mit dem Parameter `Docker -H` auf den Docker-Daemon zugegriffen werden.
+
+```none
+docker -H tcp://10.0.0.5:2376 run -it nanoserver cmd
+```
+
+Sie können eine Umgebungsvariable `DOCKER_HOST` erstellen, sodass die Verwendung des Parameters `-H` nicht mehr erforderlich ist. Dazu können Sie den folgenden PowerShell-Befehl verwenden:
+
+```none
+$env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
+```
+
+Wenn diese Variable festgelegt ist, sieht der Befehl folgendermaßen aus.
+
+```none
+docker run -it nanoserver cmd
+```
+
+<!--HONumber=May16_HO5-->
 
 

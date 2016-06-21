@@ -1,241 +1,134 @@
-
-
-
+---
+title: Bereitstellen von Windows-Containern unter Windows Server
+description: Bereitstellen von Windows-Containern unter Windows Server
+keywords: docker, containers
+author: neilpeterson
+manager: timlt
+ms.date: 05/26/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
+---
 
 # Containerhostbereitstellung: Windows Server
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
+**Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. Die Schritte in diesem Dokument dienen dazu, einen Windows-Containerhost entweder für Windows Server 2016 oder Windows Server Core 2016 auf einem physischen oder virtuellen System bereitzustellen. Informationen zum Installieren eines Windows-Containerhosts für Nano Server finden Sie unter [Containerhostbereitstellung: Nano Server](./deployment_nano.md).
+Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. In diesem Dokument wird erläutert, wie Sie einen Windows-Containerhost entweder für Windows Server 2016 oder für Windows Server Core 2016 auf einem physischen oder virtuellen System bereitstellen.
 
-Einzelheiten zu Systemanforderungen finden Sie unter [Systemanforderungen von Windows-Containerhosts](./system_requirements.md).
+## Installieren des Containerfeatures
 
-Es stehen auch PowerShell-Skripts zum Automatisieren der Bereitstellung eines Windows-Containerhosts zur Verfügung.
-- [Bereitstellen eines Containerhosts auf einem neuen virtuellen Hyper-V-Computer](../quick_start/container_setup.md).
-- [Bereitstellen eines Containerhost auf einem vorhandenen System](../quick_start/inplace_setup.md).
+Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus. 
 
-# Windows Server-Host
-
-Anhand der Schritte in dieser Tabelle kann ein Containerhost unter Windows Server 2016 und Windows Server 2016 Core bereitgestellt werden. Enthalten sind die für Windows Server- und Hyper-V-Container erforderlichen Konfigurationen.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td width="30%"><strong>Bereitstellungsaktion</strong></td>
-<td width="70%"><strong>Details</strong></td>
-</tr>
-<tr>
-<td>[Installieren des Features „Container“](#role)</td>
-<td>Das Feature „Container“ ermöglicht die Verwendung von Windows Server- und Hyper-V-Containern.</td>
-</tr>
-<tr>
-<td>[Erstellen des virtuellen Switches](#vswitch)</td>
-<td>Container verbinden sich über einen virtuellen Switch mit dem Netzwerk.</td>
-</tr>
-<tr>
-<td>[Konfigurieren von NAT](#nat)</td>
-<td>Wenn ein virtueller Switch mit Netzwerkadressübersetzung (Network Address Translation, NAT) konfiguriert ist, muss NAT selbst konfiguriert werden.</td>
-</tr>
-<tr>
-<td>[Installieren von Containerbetriebssystem-Images](#img)</td>
-<td>Betriebssystemimages bilden die Basis für Containerbereitstellungen.</td>
-</tr>
-<tr>
-<td>[Installieren von Docker](#docker)</td>
-<td>Optional, jedoch erforderlich, um Windows-Container mit Docker zu erstellen und zu verwalten.</td>
-</tr>
-</table>
-
-Diese Schritte müssen ausgeführt werden, wenn Hyper-V-Container verwendet werden. Beachten Sie, dass die Schritte mit * gekennzeichneten Schritte nur dann erforderlich sind, wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td width="30%"><strong>Bereitstellungsaktion</strong></td>
-<td width="70%"><strong>Details</strong></td>
-</tr>
-<tr>
-<td>[Aktivieren der Hyper-V-Rolle](#hypv) </td>
-<td>Hyper-V ist nur erforderlich, wenn Hyper-V-Container verwendet werden.</td>
-</tr>
-<tr>
-<td>[Aktivieren der geschachtelten Virtualisierung *](#nest)</td>
-<td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss „Geschachtelte Virtualisierung“ aktiviert werden.</td>
-</tr>
-<tr>
-<td>[Konfigurieren virtueller Prozessoren](#proc)</td>
-<td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, müssen mindestens zwei virtuelle Prozessoren konfiguriert werden.</td>
-</tr>
-<tr>
-<td>[Deaktivieren des dynamischen Speichers](#dyn)</td>
-<td>Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss dynamischer Arbeitsspeicher deaktiviert werden.</td>
-</tr>
-<tr>
-<td>[Konfigurieren des Spoofings von MAC-Adressen](#mac)</td>
-<td>Wenn der Containerhost virtualisiert ist, muss das Spoofing von MAC-Adressen aktiviert werden.</td>
-</tr>
-</table>
-
-## Bereitstellungsschritte
-
-### <a name=role></a>Installieren des Features „Container“
-
-Die Feature „Container“ kann unter Windows Server 2016 oder Windows Server 2016 Core mithilfe von Windows Server-Manager oder PowerShell installiert werden.
-
-Um die Rolle mithilfe von PowerShell zu installieren, führen Sie den folgenden Befehl in einem PowerShell-Sitzung mit erhöhten Rechten aus.
-
-```powershell
-PS C:\> Install-WindowsFeature containers
-```
-Das System muss neu gestartet werden, nachdem die Containerrolleninstallation abgeschlossen wurde.
-
-```powershell
-PS C:\> shutdown /r 
-```
-Führen Sie nach dem Neustart des Systems den Befehl `Get-ContainerHost` aus, um sicherzustellen, dass die Containerrolle erfolgreich installiert wurde:
-
-```powershell
-PS C:\> Get-ContainerHost
-
-Name            ContainerImageRepositoryLocation
-----            --------------------------------
-WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
+```none
+Install-WindowsFeature containers
 ```
 
-### <a name=vswitch></a>Erstellen des virtuellen Switches
+Starten Sie den Computer neu, wenn die Installation des Features abgeschlossen ist.
 
-Jeder Container muss an einen virtuellen Switch angefügt werden, um über ein Netzwerk zu kommunizieren. Ein virtueller Switch wird mit dem Befehl `New-VMSwitch` erstellt. Container unterstützen einen virtuellen Switch vom Typ `Extern` oder `NAT`. Weitere Informationen zu Windows-Containernetzwerk-Funktionen finden Sie unter [Containernetzwerke](../management/container_networking.md).
+## Installieren von Docker
 
-In diesem Beispiel wird ein virtueller Switch mit dem Namen „Virtual Switch“ mit dem Typ NAT und dem NAT-Subnetz 172.16.0.0/12 erstellt.
+Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Für diese Übung werden beide installiert.
 
-```powershell
-PS C:\> New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
+Erstellen Sie einen Ordner für die ausführbaren Docker-Dateien.
+
+```none
+New-Item -Type Directory -Path 'C:\Program Files\docker\'
 ```
 
-### <a name=nat></a>Konfigurieren von NAT
+Laden Sie den Docker-Daemon herunter.
 
-Zusätzlich zur Erstellung des virtuellen Switches muss, wenn der Switchtyp NAT ist, ein NAT-Objekt erstellt werden. Dies erfolgt über den Befehl `New-NetNat`. In diesem Beispiel werden ein NAT-Objekt mit dem Namen `ContainerNat` und ein Adresspräfix erstellt, das dem NAT-Subnetz entspricht, das dem Containerswitch zugewiesen ist.
-
-```powershell
-PS C:\> New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
-
-Name                             : ContainerNat
-ExternalIPInterfaceAddressPrefix :
-InternalIPInterfaceAddressPrefix : 172.16.0.0/12
-IcmpQueryTimeout                 : 30
-TcpEstablishedConnectionTimeout  : 1800
-TcpTransientConnectionTimeout    : 120
-TcpFilteringBehavior             : AddressDependentFiltering
-UdpFilteringBehavior             : AddressDependentFiltering
-UdpIdleSessionTimeout            : 120
-UdpInboundRefresh                : False
-Store                            : Local
-Active                           : True
+```none
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
 ```
 
-### <a name=img></a>Installieren von Betriebssystemimages
+Laden Sie den Docker-Client herunter.
 
-Ein Betriebssystemimage dient als Basis aller Windows Server- oder Hyper-V-Container. Das Image wird zum Bereitstellen eines Containers verwendet, der anschließend geändert und in einem neuen Containerimage erfasst werden kann. Betriebssystemimages werden mit Windows Server Core und Nano Server als zugrunde liegendem Betriebssystem erstellt.
-
-Containerbetriebssystem-Images können mithilfe des PowerShell-Moduls „ContainerProvider“ bestimmt und installiert werden. Sie müssen dieses Modul erst installieren, um es verwenden zu können. Installieren Sie das Modul über die folgenden Befehle.
-
-```powershell
-PS C:\> Install-PackageProvider ContainerProvider -Force
+```none
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
 ```
 
-Verwenden Sie `Find-ContainerImage`, um eine Liste der Images aus dem PowerShell OneGet-Paket-Manager zurückzugeben:
-```powershell
-PS C:\> Find-ContainerImage
+Fügen Sie das Docker-Verzeichnis zum Systempfad hinzu.
 
-Name                 Version                 Description
-----                 -------                 -----------
-NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-```
-Zum Herunterladen und Installieren des Basisbetriebssystem-Images für Nano Server führen Sie die folgenden Schritte aus.
-
-```powershell
-PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
-
-Downloaded in 0 hours, 0 minutes, 10 seconds.
+```none
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
-Mit diesem Befehl wird auch das Basisbetriebssystem-Image für Windows Server Core heruntergeladen und installiert.
+Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
 
-```powershell
-PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
+Führen Sie den folgenden Befehl aus, um Docker als Windows-Dienst zu installieren.
 
-Downloaded in 0 hours, 2 minutes, 28 seconds.
+```none
+dockerd --register-service
 ```
 
-**Problem:** Die Cmdlets „Save-ContainerImage“ und „Install-ContainerImage“ funktionieren in einer PowerShell-Remotesitzung nicht mit einem WindowsServerCore-Containerimage.<br /> **Lösung:** Melden Sie sich über Remotedesktop am Computer an, und verwenden Sie das Cmdlet „Save-ContainerImage“ direkt.
+Nach Abschluss der Installation kann der Dienst gestartet werden.
 
-Überprüfen Sie mit dem Befehl `Get-ContainerImage`, ob die Images Installiert wurden.
-
-```powershell
-PS C:\> Get-ContainerImage
-
-Name              Publisher    Version      IsOSImage
-----              ---------    -------      ---------
-NanoServer        CN=Microsoft 10.0.10586.0 True
-WindowsServerCore CN=Microsoft 10.0.10586.0 True
+```none
+Start-Service Docker
 ```
-Weitere Informationen zur Verwaltung von Containerimages finden Sie unter [Windows-Containerimages](../management/manage_images.md).
 
+## Installieren von Basisimages für Container
 
-### <a name=docker></a>Installieren von Docker
+Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems für den Container heruntergeladen werden. Im folgenden Beispiel wird das Betriebssystem-Basisimage für Windows Server Core heruntergeladen. Mit dem gleichen Verfahren können Sie das Basisimage für Nano Server installieren. Mit dem gleichen Verfahren können Sie das Basisimage für Nano Server installieren. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
+    
+Installieren Sie zunächst den Paketanbieter für Containerimages.
 
-Der Docker-Daemon und die Befehlszeilenschnittstelle gehören nicht zum Funktionsumfang von Windows und werden nicht mit dem Feature „Windows-Container“ installiert. Docker ist keine Voraussetzung für das Arbeiten mit Windows-Containern. Wenn Sie Docker installieren möchten, befolgen Sie die Anweisungen im Artikel [Docker und Windows](./docker_windows.md).
+```none
+Install-PackageProvider ContainerImage -Force
+```
 
+Installieren Sie dann das Windows Server Core-Image. Dieser Vorgang kann einige Zeit dauern. Sie können also eine Pause machen und den Vorgang fortsetzen, sobald der Download abgeschlossen ist.
+
+```none 
+Install-ContainerImage -Name WindowsServerCore    
+```
+
+Nachdem das Basisimage installiert wurde, muss der Docker-Dienst neu gestartet werden.
+
+```none
+Restart-Service docker
+```
+
+Abschließend muss das Image als neueste Version („latest“) gekennzeichnet werden. Führen Sie dazu den folgenden Befehl aus.
+
+```none
+docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
+```
 
 ## Hyper-V-Containerhost
 
-### <a name=hypv></a>Aktivieren der Hyper-V-Rolle
+Um Hyper-V-Container bereitzustellen, ist die Hyper-V-Rolle erforderlich. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-Bei der Bereitstellung von Hyper-V-Containern muss die Hyper-V-Rolle auf dem Containerhost aktiviert werden. Die Hyper-V-Rolle kann unter Windows Server 2016 oder Windows Server 2016 Core mithilfe des Befehls `Install-WindowsFeature` installiert werden. Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss zuerst die geschachtelte Virtualisierung aktiviert werden. Informationen dazu finden Sie unter [Konfigurieren der geschachtelten Virtualisierung](#nest).
+### Geschachtelte Virtualisierung
 
-```powershell
-PS C:\> Install-WindowsFeature hyper-v
+Das folgende Skript konfiguriert die geschachtelte Virtualisierung für den Containerhost. Das Skript wird auf dem Hyper-V-Computer ausgeführt, der den virtuellen Containerhostcomputer hostet. Stellen Sie sicher, dass der virtuelle Containerhostcomputer ausgeschaltet ist, wenn dieses Skript ausgeführt wird.
+
+```none
+#replace with the virtual machine name
+$vm = "<virtual-machine>"
+
+#configure virtual processor
+Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
+
+#disable dynamic memory
+Set-VMMemory $vm -DynamicMemoryEnabled $false
+
+#enable mac spoofing
+Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-### <a name=nest></a>Geschachtelte Virtualisierung
+### Aktivieren der Hyper-V-Rolle
 
-Wenn der Containerhost selbst auf einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, muss die geschachtelte Virtualisierung aktiviert werden. Dies kann mithilfe des folgenden PowerShell-Befehls erreicht werden:
+Um das Hyper-V-Feature mithilfe von PowerShell zu installieren, führen Sie den folgenden Befehl in einem PowerShell-Sitzung mit erhöhten Rechten aus.
 
-**Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
-
-```powershell
-PS C:\> Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true
-```
-
-### <a name=proc></a>Konfigurieren virtueller Prozessoren
-
-Wenn der Containerhost selbst auf einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, erfordert der virtuelle Computer mindestens zwei Prozessoren. Dies kann über die Einstellungen des virtuellen Computers oder mit dem folgenden Befehl konfiguriert werden.
-
-**Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
-
-```poweshell
-PS C:\> Set-VMProcessor -VMName <VM Name> -Count 2
-```
-
-### <a name=dyn></a>Deaktivieren des dynamischen Speichers
-
-Wenn der Containerhost selbst ein virtueller Hyper-V-Computer ist, muss auf dem virtuellen Containerhostcomputer der dynamische Arbeitsspeicher deaktiviert werden. Dies kann über die Einstellungen des virtuellen Computers oder mit dem folgenden Befehl konfiguriert werden.
-
-**Hinweis**: Beim Ausführen dieses Befehls muss der virtuelle Computer ausgeschaltet sein.
-
-```poweshell
-PS C:\> Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
-```
-
-### <a name=mac></a>Spoofing von MAC-Adressen
-
-Wenn schließlich der Containerhost in einem virtuellen Hyper-V-Computer ausgeführt wird, muss das Spoofing von MAC-Adressen aktiviert werden. Dadurch kann jeder Container eine IP-Adresse erhalten. Um das Spoofing von MAC-Adressen zu aktivieren, führen Sie auf dem Hyper-V-Host den folgenden Befehl aus. Die „VMName“-Eigenschaft entspricht dem Namen des Containerhosts.
-
-```powershell
-PS C:\> Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
+```none
+Install-WindowsFeature hyper-v
 ```
 
 
 
+<!--HONumber=May16_HO4-->
 
 
-<!--HONumber=Feb16_HO4-->

@@ -1,221 +1,102 @@
+---
+title: Hyper-V-Container
+description: Bereitstellen von Hyper-V-Containern
+keywords: docker, containers
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
+---
+
 # Hyper-V-Container
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
+**Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Die Windows-Containertechnologie umfasst zwei Arten von Containern: Windows Server-Container und Hyper-V-Container. Beide Arten von Containern werden auf gleiche Weise erstellt und verwaltet und funktionieren identisch. Sie erzeugen und nutzen sogar die gleichen Containerimages. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
+Die Windows-Containertechnologie umfasst zwei Arten von Containern: Windows Server-Container und Hyper-V-Container. Beide Arten von Containern werden auf gleiche Weise erstellt und verwaltet und funktionieren identisch. Sie erzeugen und nutzen auch die gleichen Containerimages. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
 
-**Windows Server-Container**: Mehrere Container-Instanzen können gleichzeitig auf einem Host ausgeführt werden, wobei die Isolation mithilfe von Namespace-, Ressourcensteuerungs- und Prozessisolationstechnologie erfolgt. Die Windows Server-Container und der Host verwenden den gleichen Kernel.
+**Windows Server-Container**: Mehrere Containerinstanzen können auf einem Host gleichzeitig isoliert ausgeführt werden, was mithilfe von Technologien zur Isolation von Namespaces, Ressourcensteuerung und Prozessen ermöglicht wird.  Windows Server-Container teilen sich untereinander und mit dem Host den gleichen Kernel.
 
-**Hyper-V-Container**: Auf einem Host können mehrere Containerinstanzen gleichzeitig ausgeführt werden, jeder Container wird jedoch innerhalb eines speziellen virtuellen Computers ausgeführt. Dadurch wird zwischen den einzelnen Hyper-V-Containern und dem Containerhost eine Isolation auf Kernelebene erreicht.
+**Hyper-V-Container**: Mehrere Containerinstanzen können auf einem Host gleichzeitig ausgeführt werden, jeder Container wird jedoch auf einem speziellen virtuellen Computer ausgeführt. Dadurch wird eine Isolation auf Kernelebene zwischen jedem Hyper-V-Container und dem Containerhost erreicht.
 
-## Hyper-V-Container – PowerShell
-
-### Erstellen eines Containers
-
-Ein Hyper-V-Container wird genauso wie ein Windows Server-Container erstellt. Der einzige Unterschied ist, dass der „Runtime“-Parameter angibt, dass es sich um einen Hyper-V-Container handelt.
-
-Beispiel für das Erstellen eines Hyper-V-Containers mit PowerShell
-
-```powershell
-PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
-```
-
-### Konvertieren eines Containers
-
-Zusätzlich zum Erstellen eines Containers als Hyper-V-Container zur Buildzeit können Container, die mit PowerShell erstellt wurden, auch von einem Windows Server-Container in einen Hyper-V-Container konvertiert werden.
-
-> Derzeit ist Nano Server das einzige Hostbetriebssystem, dass die Laufzeitkonvertierung von Containern unterstützt.
-
-Erstellen Sie einen neuen Container mit der Standardlaufzeit.
-
-```powershell
-PS C:\> New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
-```
-Rufen Sie die Laufzeiteigenschaft aus dem Container ab. Wie Sie sehen, ist „RuntimeTyp“ auf „Default“ festgelegt.
-
-```powershell
-PS C:\> Get-Container | Select ContainerName, RuntimeType
-
-ContainerName RuntimeType
-------------- -----------
-DEMO              Default
-```
-
-Verwenden Sie den Befehl `set-container`, um die Containerlaufzeit zu ändern.
-
-```powershell
-PS C:\> Set-Container $con -RuntimeType HyperV
-```
-
-Rufen Sie schließlich die Laufzeiteigenschaft nochmals ab, um die Änderung zu prüfen.
-
-```powershell
-PS C:\> Get-Container | select ContainerName, RuntimeType
-
-ContainerName RuntimeType
-------------- -----------
-DEMO               HyperV
-```
-
-## Hyper-V-Container – Docker
+## Hyper-V-Container
 
 ### Erstellen eines Containers
 
-Das Verwalten von Hyper-V-Containern mit Docker ist nahezu identisch mit dem Verwalten von Windows Server-Containern. Beim Erstellen eines Hyper-V-Containers mit Docker wird der Parameter `–isolation=hyperv` verwendet.
+Die Verwaltung von Hyper-V-Containern mit Docker ist nahezu identisch mit der Verwaltung von Windows Server-Containern. Beim Erstellen eines Hyper-V-Containers mit Docker wird der Parameter`--isolation=hyperv` verwendet.
 
-```powershell
-docker run -it --isolation=hyperv 646d6317b02f cmd
+```none
+docker run -it --isolation=hyperv windowsservercore cmd
 ```
 
-## Besonderheiten
+### Erläuterung zur Isolation
 
-### VM-Arbeitsprozess
+Dieses Beispiel stellt die Isolationsfähigkeiten von Windows- und Hyper-V-Containern gegenüber. 
 
-Für jeden Hyper-V-Container, der erstellt wird, wird ein entsprechender VM-Arbeitsprozess erstellt.
+Hier wird ein Windows Server-Container bereitgestellt und hostet einen Pingprozess mit langer Ausführungsdauer.
 
-```powershell
-PS C:\> Get-Container | Select Name, RuntimeType, ContainerID | Where {$_.RuntimeType -eq 'Hyperv'}
-
-Name RuntimeType ContainerId
----- ----------- -----------
-TST3      HyperV 239def76-d29a-405e-ab64-765fb4de9176
-TST       HyperV b8d7b55a-6b27-4832-88d8-4774df98f208
-TST2      HyperV ccdf6a6e-3358-4419-8dda-ffe87f1de184
+```none
+docker run -d windowsservercore ping localhost -t
 ```
 
-Beachten Sie, dass der Container anhand der Container-ID und des Prozessbenutzernamens mit einem Prozess abgeglichen werden kann.
+Mithilfe des `docker top`-Befehls wird der Pingprozess zurückgegeben, wie im Container zu sehen. Der Prozess in diesem Beispiel weist die ID 3964 auf.
 
-![](media/process.png)
+```none
+docker top 1f8bf89026c8f66921a55e773bac1c60174bb6bab52ef427c6c8dbc8698f9d7a
 
-Diese Beziehung kann auch mithilfe des Befehls `Get-ComputeProcess` angezeigt werden.
-
-```powershell
-PS C:\> Get-ComputeProcess
-
-Id                                   Name Owner      Type
---                                   ---- -----      ----
-239DEF76-D29A-405E-AB64-765FB4DE9176 TST3 VMMS  Container
-B8D7B55A-6B27-4832-88D8-4774DF98F208 TST  VMMS  Container
-CCDF6A6E-3358-4419-8DDA-FFE87F1DE184 TST2 VMMS  Container
+3964 ping
 ```
 
-Weitere Informationen zum Befehl `Get-ComputeProcess` finden Sie unter [Verwaltungsinteroperabilität](./hcs_powershell.md).
+Auf dem Containerhost kann der `get-process`-Befehl verwendet werden, um einen beliebigen ausgeführten Pingprozess vom Host zurückzugeben. In diesem Beispiel ist ein solcher Prozess vorhanden, und die Prozess-ID entspricht der ID im Container. Es handelt sich um den gleichen Prozess, der sowohl im Container als auch auf dem Host sichtbar ist.
 
-## Demo der Isolation
-
-### Windows Server-Container
-
-Mithilfe der folgenden Übung kann die Isolation eines Hyper-V-Containers veranschaulicht werden. In dieser Übung wird sowohl ein Windows-Server- als auch ein Hyper-V-Container erstellt. Der auf dem Containerhost ausgeführte Prozess wird untersucht. Dabei wird erkennbar, wie der Windows Server-Containerprozess auf dem Containerhost gemeinsam genutzt wird, während dies beim Hyper-V-Containerprozess nicht der Fall ist.
-
-```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
+```none
+get-process -Name ping
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
-    255      12     1820       4000 ...98     0.53    532   0 csrss
-    116      11     1284       3700 ...94     0.25    608   1 csrss
-    246      13     1844       5504 ...17     3.45   3484   2 csrss
+     67       5      820       3836 ...71     0.03   3964   3 PING
 ```
 
-Erstellen Sie einen neuen Windows Server-Container:
+Dieses Beispiel startet ebenfalls einen Hyper-V-Container mit einem Pingprozess. 
 
-```powershell
-PS C:\> New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+```none
+docker run -d --isolation=hyperv nanoserver ping -t localhost
 ```
 
-Starten Sie den Container:
+Ebenso kann `docker top` verwendet werden, um die ausgeführten Prozesse vom Container zurückzugeben.
 
-```powershell
-PS C:\> Start-Container $con
+```none
+docker top 5d5611e38b31a41879d37a94468a1e11dc1086dcd009e2640d36023aa1663e62
+
+1732 ping
 ```
 
-Richten Sie eine PowerShell-Remotesitzung mit dem Container ein.
+Beim Suchen nach dem Prozess auf dem Containerhost wird jedoch kein Pingprozess gefunden, und es wird ein Fehler ausgegeben.
 
-```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+```none
+get-process -Name ping
+
+get-process : Cannot find a process with the name "ping". Verify the process name and call the cmdlet again.
+At line:1 char:1
++ get-process -Name ping
++ ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (ping:String) [Get-Process], ProcessCommandException
+    + FullyQualifiedErrorId : NoProcessFoundForGivenName,Microsoft.PowerShell.Commands.GetProcessCommand
 ```
 
-Geben Sie aus der Remotecontainersitzung alle Prozesse mit dem Namen „csrss“ zurück. Notieren Sie die Prozess-ID des laufenden „csrss“-Prozesses (im Beispiel unten 1228).
+Auf dem Host ist der Prozess `vmwp` sichtbar, bei dem es sich um den ausgeführten virtuellen Computer handelt, der den ausgeführten Container kapselt und die ausgeführten Prozesse vor dem Hostbetriebssystem schützt.
 
-```powershell
-[WINCONT]: PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
+```none
+get-process -Name vmwp
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
-    167       9     1276       3720 ...97     0.20   1228   3 csrss
+   1737      15    39452      19620 ...61     5.55   2376   0 vmwp
 ```
 
-Geben Sie nun die Liste der „csrss“-Prozesse auf dem Containerhost zurück. Beachten Sie, dass der gleiche „csrss“-Prozess auch vom Containerhost zurückgegeben wird.
 
-```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
-
-Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
--------  ------    -----      ----- -----   ------     --  -- -----------
-    252      11     1712       3968 ...98     0.53    532   0 csrss
-    113      11     1176       3676 ...93     0.25    608   1 csrss
-    175       9     1260       3708 ...97     0.20   1228   3 csrss
-    243      13     1736       5512 ...17     3.77   3484   2 csrss
-```
-### Hyper-V-Container
-
-Geben Sie nun eine Liste der „csrss“-Prozesse auf dem Containerhost zurück.
-
-```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
-
-Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
--------  ------    -----      ----- -----   ------     --  -- -----------
-    261      12     1820       4004 ...98     0.53    532   0 csrss
-    116      11     1284       3704 ...94     0.25    608   1 csrss
-    246      13     1844       5536 ...17     3.83   3484   2 csrss
-```
-
-Erstellen Sie jetzt einen Hyper-V-Container.
-
-```powershell
-PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
-```
-
-Starten Sie den Hyper-V-Container.
-
-```powershell
-PS C:\> Start-Container $con
-```
-
-Richten Sie eine PowerShell-Remotesitzung mit dem Hyper-V-Container ein.
-
-```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
-```
-
-Geben Sie nun eine Liste der „csrss“-Prozesse zurück, die im Hyper-V-Container ausgeführt werden. Notieren Sie die Prozess-ID des „csrss“-Prozesses (im Beispiel unten 956).
-
-```powershell
-[HYPVCON]: PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
-
-Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
--------  ------    -----      ----- -----   ------     --  -- -----------
-              4      452       1520 ...63     0.06    956   1 csrss
-```
-
-Geben Sie nun eine Liste der „csrss“-Prozesse auf dem Containerhost zurück. Beachten Sie, dass im Gegensatz zum Windows Server-Container, bei dem der „csrss“-Prozess sowohl im Container als auch auf dem Containerhost sichtbar war, der Hyper-V-Containerprozess nur im Container selbst sichtbar ist. Der Grund ist, dass ein Hyper-V-Container in einem dafür vorgesehenen virtuellen Computer gekapselt ist und der Prozess für diesen virtuellen Computer isoliert ist.
-
-```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
-
-Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
--------  ------    -----      ----- -----   ------     --  -- -----------
-    255      12     1716       3972 ...98     0.56    532   0 csrss
-    113      11     1176       3676 ...93     0.25    608   1 csrss
-    243      13     1732       5512 ...18     4.23   3484   2 csrss
-```
-
-## Video mit exemplarischer Vorgehensweise
-
-<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-5-Hyper-V-Containers/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+<!--HONumber=May16_HO3-->
 
 
-
-
-<!--HONumber=Feb16_HO2-->

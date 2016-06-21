@@ -1,86 +1,111 @@
+---
+title: Containerdatenvolumes
+description: Erstellen und Verwalten von Datenvolumes mit Windows-Containern.
+keywords: docker, containers
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: f5998534-917b-453c-b873-2953e58535b1
+---
 
+# Containerdatenvolumes
 
+**Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
+Beim Erstellen von Containern müssen Sie möglicherweise ein neues Datenverzeichnis erstellen oder dem Container ein vorhandenes Verzeichnis hinzufügen. Dies erreichen Sie durch Hinzufügen von Datenvolumes. Datenvolumes sind sowohl für den Container als auch für den Containerhost sichtbar, und Daten können von beiden gemeinsam genutzt werden. Datenvolumes können auch von mehreren Containern auf demselben Containerhost gemeinsam genutzt werden. Dieses Dokument beschreibt die Erstellung, Überprüfung und Entfernung von Datenvolumes.
 
-# Container und freigegebene Ordner
+## Datenvolumes
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
+### Erstellen eines neuen Datenvolumes
 
-Freigegebene Ordner ermöglichen, dass Daten von einem Containerhost und Container gemeinsam genutzt werden. Nach seiner Erstellung steht der freigegebene Ordner im Container zur Verfügung. Daten, die vom Host im freigegebenen Ordner abgelegt werden, sind im Container verfügbar. Daten, die vom Container im freigegebenen Ordner abgelegt werden, sind im Host verfügbar. Ein einzelnen Ordner auf dem Host kann für viele Container freigegeben werden, und diese Konfigurationsdaten können von ausgeführten Containern gemeinsam genutzt werden.
+Erstellen Sie ein neues Datenvolume mit dem Parameter `-v` des Befehls `docker run`. Neue Datenvolumes werden auf dem Host standardmäßig unter „c:\ProgramData\Docker\volumes“ gespeichert.
 
-## Verwalten von Daten – PowerShell
+Dieses Beispiel erstellt ein Datenvolume mit dem Namen „new-data-volume“. Der ausgeführte Container kann unter „c:\new-data-volume“ auf dieses Datenvolume zugreifen.
 
-### Erstellen eines freigegebenen Ordners
-
-Mit dem Befehl `Add-ContainerSharedFolder` können Sie einen freigegebenen Ordner erstellen. Im folgenden Beispiel wird ein Verzeichnis im Container `c:\shared_data` erstellt, der einem Verzeichnis auf dem Host `c:\data_source` zugeordnet wird.
-
-> Damit ein Container einem freigegebenen Ordner hinzugefügt werden kann, muss sein Status „Beendet“ sein.
-
-```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\data_source -DestinationPath c:\shared_data
-
-ContainerName SourcePath       DestinationPath AccessMode
-------------- ----------       --------------- ----------
-DEMO          c:\data_source   c:\shared_data  ReadWrite
+```none
+docker run -it -v c:\new-data-volume windowsservercore cmd
 ```
 
-### Schreibgeschützte freigegebene Ordner
+Weitere Informationen zum Erstellen von Volumes finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#data-volumes) (Verwalten von Daten in Containern).
 
-```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
+### Einbinden eines vorhandenen Verzeichnisses
 
-ContainerName SourcePath DestinationPath AccessMode
-------------- ---------- --------------- ----------
-DEMO         c:\sf1     c:\sf2          ReadOnly
+Zusätzlich zum Erstellen eines neuen Datenvolumes können Sie ein vorhandenes Verzeichnis aus dem Host an den Container übergeben. Auch dies lässt sich mit dem Parameter `-v` des Befehls `docker run` erreichen. Alle Dateien im Hostverzeichnis sind im Container ebenfalls verfügbar. Jegliche Dateien, die vom Container im eingebundenen Volume erstellt werden, sind auf dem Host verfügbar. Ein und dasselbe Verzeichnis kann in mehrere Container eingebunden werden. In dieser Konfiguration können Daten von Containern gemeinsam genutzt werden.
+
+In diesem Beispiel ist das Quellverzeichnis „c:\source“ als „c:\destination“ in einen Container eingebunden..
+
+```none
+docker run -it -v c:\source:c:\destination windowsservercore cmd
 ```
 
-### Auflisten freigegebener Ordner
+Weitere Informationen zum Einbinden von Hostverzeichnissen finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume) (Verwalten von Daten in Containern).
 
-Um eine Liste freigegebener Ordner für einen bestimmten Container anzuzeigen, verwenden Sie den Befehl `Get-ContainerSharedFolder`.
+### Einbinden einzelner Dateien
 
-```powershell
-PS C:\> Get-ContainerSharedFolder -ContainerName DEMO2
+Eine einzelne Datei kann in einer Container eingebunden werden, indem der Dateiname explizit angegeben wird. In diesem Beispiel enthält das freigegebene Verzeichnis viele Dateien, es ist jedoch nur die Datei „config.ini“ innerhalb des Containers verfügbar. 
 
-ContainerName SourcePath DestinationPath AccessMode
-------------- ---------- --------------- ----------
-DEMO         c:\source  c:\source       ReadWrite
+```none
+docker run -it -v c:\container-share\config.ini windowsservercore cmd
 ```
 
-### Ändern eines freigegebenen Ordners
+Im ausgeführten Container ist nur die Datei „config.ini“ sichtbar.
 
-Mit dem Befehl `Set-ContainerSharedFolder` können Sie eine vorhandene Konfiguration eines freigegebenen Ordners ändern.
+```none
+c:\container-share>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 7CD5-AC14
 
-```powershell
-PS C:\> Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
+ Directory of c:\container-share
+
+04/04/2016  12:53 PM    <DIR>          .
+04/04/2016  12:53 PM    <DIR>          ..
+04/04/2016  12:53 PM    <SYMLINKD>     config.ini
+               0 File(s)              0 bytes
+               3 Dir(s)  21,184,208,896 bytes free
 ```
 
-### Entfernen eines freigegebenen Ordners
+Weitere Informationen zum Einbinden von einzelnen Dateien finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume) (Verwalten von Daten in Containern).
 
-Mit dem Befehl `Remove-ContainerSharedFolder` können Sie einen freigegebenen Ordner entfernen.
+### Datenvolumecontainer
 
-> Damit ein Container entfernt werden kann, muss sein Status „Beendet“ sein.
+Datenvolumes können durch Verwendung des Parameters `--volumes-from` des Befehls `docker run` aus anderen ausgeführten Containern geerbt werden. Mithilfe dieser Vererbung kann ein Container explizit zum Hosten von Datenvolumes von Anwendungen mit Containern erstellt werden. 
 
-```powershell
-PS C:\> Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
-```
-## Verwalten von Daten – Docker
+Dieses Beispiel bindet die Datenvolumes aus dem Container „cocky_bell“ in einen neuen Container ein. Sobald der neue Container gestartet wurde, stehen die Daten in diesen Volumes den Anwendungen zur Verfügung, die im Container ausgeführt werden.  
 
-### Bereitstellen von Volumes
-
-Bei der Verwaltung von Windows-Containern mit Docker können Volumes mithilfe der Option `-v` bereitgestellt werden.
-
-In dem folgenden Beispiel ist „c:\source“ der Quellordner und „c:\destination“ der Zielordner.
-
-```powershell
-PS C:\> docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
+```none
+docker run -it --volumes-from cocky_bell windowsservercore cmd
 ```
 
-Weitere Informationen zur Datenverwaltung in Containern mit Docker finden Sie unter [Docker Volumes auf Docker.com](https://docs.docker.com/userguide/dockervolumes/).
+Weitere Informationen zu Datencontainern finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-file-as-a-data-volume) (Verwalten von Daten in Containern).
 
-## Video zur exemplarischen Vorgehensweise
+### Überprüfen von freigegebenen Datenvolumes
 
-<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-3-Shared-Folders/player#ccLang=de" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+Eingebundene Volumes können mithilfe des Befehls `docker inspect` angezeigt werden.
+
+```none
+docker inspect backstabbing_kowalevski
+```
+
+Dieser Befehl gibt Informationen zum Container zurück, einschließlich eines Abschnitts namens „Mounts“, der Daten über die eingebundenen Volumes enthält, z. B. das Quell- und das Zielverzeichnis.
+
+```none
+"Mounts": [
+    {
+        "Source": "c:\\container-share",
+        "Destination": "c:\\data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+}
+```
+
+Weitere Informationen zum Überprüfen von Volumes finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#locating-a-volume) (Verwalten von Daten in Containern).
 
 
 
-<!--HONumber=Feb16_HO3-->
+<!--HONumber=May16_HO4-->
+
+
