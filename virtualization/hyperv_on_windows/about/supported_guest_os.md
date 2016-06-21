@@ -1,6 +1,19 @@
+---
+title: Unterstützte Windows-Gäste
+description: Unterstützte Windows-Gäste.
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: &96184625 windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
+---
+
 # Unterstützte Windows-Gäste
 
-In diesem Artikel werden die in Hyper-V unter Windows unterstützten Betriebssystemkombinationen aufgelistet. Ferner finden Sie eine Einführung in Integrationsdienste und andere unterstützte Faktoren.
+In diesem Artikel werden die in Hyper-V unter Windows unterstützten Betriebssystemkombinationen aufgelistet. Er dient auch als Einführung in Integrationsdienste und andere unterstützte Faktoren.
 
 ## Was bedeutet Unterstützung?
 
@@ -9,7 +22,7 @@ Unterstützung bedeutet, dass Microsoft diese Host-/Gast-Kombinationen getestet 
 Microsoft bietet auf folgende Weise Unterstützung für Gastbetriebssysteme:
 * Der Microsoft-Support hilft beim Lösen von Problemen in Microsoft-Betriebssystemen und -Integrationsdiensten.
 * Für Probleme in anderen Betriebssystemen, die vom Anbieter des Betriebssystems für die Ausführung unter Hyper-V zertifiziert wurden, wird der Support vom Anbieter geleistet.
-* Andere in den Betriebssystemen ermittelte Probleme werden von Microsoft an die Support-Community mehrerer Anbieter, [TSANet](http://www.tsanet.org/) weitergeleitet.
+* Andere in den Betriebssystemen ermittelte Probleme werden von Microsoft an die Supportcommunity mehrerer Anbieter weitergeleitet, <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">TSANet</g><g id="2CapsExtId3" ctype="x-title"></g></g>.
 
 Um unterstützt zu werden, müssen Hyper-V-Host und -Gast über Windows Update mit allen wichtigen Updates aktualisiert werden.
 
@@ -33,22 +46,26 @@ Um Unterstützung zu erhalten, müssen Windows-Gastbetriebssysteme und das Hostb
 | Windows Home Server 2011| 4| |
 | Windows Small Business Server 2011| Essentials Edition - 2, Standard Edition - 4| |
 
->Windows 10 kann als Gastbetriebssystem auf Hyper-V-Hosts mit Windows 8.1 und Windows Server 2012 R2 ausgeführt werden.
+> Windows 10 kann als Gastbetriebssystem auf Hyper-V-Hosts mit Windows 8.1 und Windows Server 2012 R2 ausgeführt werden.
 
 ## Unterstützung für Linux und FreeBSD
 
 | Gastbetriebssystem| |
 |:-----|:------|
-| [CentOS und Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx)| |
-| [Virtuelle Debian-Computer in Hyper-V](https://technet.microsoft.com/library/dn614985.aspx)| |
-| [SUSE](https://technet.microsoft.com/en-us/library/dn531027.aspx)| |
-| [Oracle Linux](https://technet.microsoft.com/en-us/library/dn609828.aspx)| |
-| [Ubuntu](https://technet.microsoft.com/en-us/library/dn531029.aspx)| |
-| [FreeBSD](https://technet.microsoft.com/library/dn848318.aspx)| |
+| <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">CentOS und Red Hat Enterprise Linux </g><g id="1CapsExtId3" ctype="x-title"></g></g>| |
+| <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Virtuelle Debian-Computer in Hyper-V</g><g id="1CapsExtId3" ctype="x-title"></g></g>| |
+| <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">SUSE</g><g id="1CapsExtId3" ctype="x-title"></g></g>| |
+| <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Oracle Linux</g><g id="1CapsExtId3" ctype="x-title"></g></g>| |
+| <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Ubuntu</g><g id="1CapsExtId3" ctype="x-title"></g></g>| |
+| <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">FreeBSD</g><g id="1CapsExtId3" ctype="x-title"></g></g>| |
 
-Weitere Informationen einschließlich Angaben zur Unterstützung früherer Versionen von Hyper-V finden Sie unter [Virtuelle Linux- und FreeBSD- Computer in Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
-
-
+Weitere Informationen einschließlich Angaben zur Unterstützung früherer Versionen von Hyper-V finden Sie unter <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">Linux and FreeBSD Virtual Machines on Hyper-V</g><g id="2CapsExtId3" ctype="x-title"></g></g> (Virtuelle Linux- und FreeBSD-Computer in Hyper-V).
 
 
-<!--HONumber=Dec15_HO1-->
+
+
+
+
+<!--HONumber=May16_HO1-->
+
+

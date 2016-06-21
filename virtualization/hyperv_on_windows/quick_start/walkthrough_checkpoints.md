@@ -1,8 +1,12 @@
-# Verwenden von Prüfpunkten in Hyper-V unter Windows 10
+---
+redirect_url: ../user_guide/checkpoints
+---
 
-**Dieses Dokument ist veraltet.**
+# Umgeleitet – ohne Titel
 
-Informationen zu Prüfpunkten finden Sie [in diesem Benutzerhandbuch](../user_guide/checkpoints.md).
 
+
+
+<!--HONumber=May16_HO1-->
 
 

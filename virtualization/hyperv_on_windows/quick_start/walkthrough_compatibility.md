@@ -1,6 +1,19 @@
+---
+title: &396143525 Systemanforderungen von Hyper-V unter Windows 10
+description: Systemanforderungen von Hyper-V unter Windows 10
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: &1749853639 windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
+---
+
 # Systemanforderungen von Hyper-V unter Windows 10
 
-Hyper-V unter Windows 10 funktioniert nur mit einer bestimmten Gruppe von Hardware- und Betriebssystemkonfigurationen. In diesem Dokument werden die Software- und Hardwareanforderungen von Hyper-V kurz vorgestellt. Außerdem wird erläutert, wie Sie Ihr System auf Kompatibilität mit Hyper-V überprüfen. Wenngleich in diesem Dokument nicht alle mit Hyper-V kompatiblen Systemkonfigurationen im Detail behandelt werden, können Sie anhand dieser Informationen schnell herausfinden, ob Ihr aktuelles System virtuelle Hyper-V-Computer hosten kann.
+Hyper-V unter Windows 10 funktioniert nur mit einer bestimmten Gruppe von Hardware- und Betriebssystemkonfigurationen. Dieses Dokument zeigt die Hyper-V-Anforderungen, und wie Sie Ihr System auf Kompatibilität überprüfen können.
 
 ## Betriebssystemanforderungen
 
@@ -10,13 +23,13 @@ Die Rolle „Hyper-V“ kann bei diesen Versionen von Windows 10 aktiviert werde
 - Windows 10 Professional
 - Windows 10 Education
 
-Die Rolle „Hyper-V“ kann bei diesen Versionen nicht installiert werden:
+Die Rolle „Hyper-V“ kann bei diesen Versionen <g id="2" ctype="x-strong">nicht</g> installiert werden:
 
 - Windows 10 Home
 - Windows 10 Mobile
 - Windows 10 Mobile Enterprise
 
->Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 Professional erfolgen. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
+>Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 Professional erfolgen. Öffnen Sie dazu <g id="2" ctype="x-strong">Einstellungen</g> > <g id="4" ctype="x-strong">Update und Sicherheit</g> > <g id="6" ctype="x-strong">Aktivierung</g>. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
 ## Hardwareanforderungen
 
@@ -32,12 +45,11 @@ Die folgenden Elemente müssen im BIOS des Systems aktiviert sein:
 
 ## Überprüfen der Hardwarekompatibilität
 
-Öffnen Sie zum Überprüfen der Kompatibilität PowerShell oder eine Eingabeaufforderung (cmd.exe), und geben Sie **systeminfo.exe** ein. Hiermit werden Informationen zur Hyper-V-Kompatibilität zurückgegeben.
-Wenn alle aufgelisteten Hyper-V-Anforderungen den Wert **Ja** haben, kann die Rolle „Hyper-V“ auf Ihrem System ausgeführt werden. Wenn für ein Element **Nein** zurückgegeben wird, überprüfen Sie die in diesem Dokument aufgeführten Anforderungen und nehmen, sofern möglich, Anpassungen vor.
+Öffnen Sie zum Überprüfen der Kompatibilität PowerShell oder eine Eingabeaufforderung (cmd.exe), und geben Sie <g id="2" ctype="x-strong">systeminfo.exe</g> ein. Wenn alle aufgelisteten Hyper-V-Anforderungen den Wert <g id="2" ctype="x-strong">Ja</g> haben, kann die Rolle „Hyper-V“ auf Ihrem System ausgeführt werden. Wenn für ein Element <g id="2" ctype="x-strong">Nein</g> zurückgegeben wird, überprüfen Sie die in diesem Dokument aufgeführten Anforderungen und nehmen, sofern möglich, Anpassungen vor.
 
-![](media/SystemInfo_upd.png)
+<g id="1" ctype="x-linkText"></g>
 
-Wenn Sie **systeminfo.exe** auf einem vorhandenen Hyper-V-Host ausführen, enthält der Abschnitt „Hyper-V-Anforderungen“ Folgendes:
+Wenn Sie <g id="2" ctype="x-strong">systeminfo.exe</g> auf einem vorhandenen Hyper-V-Host ausführen, enthält der Abschnitt „Hyper-V-Anforderungen“ Folgendes:
 
 ```
 Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V are not be displayed.
@@ -45,9 +57,13 @@ Hyper-V Requirements: A hypervisor has been detected. Features required for Hype
 
 ## Nächster Schritt – Installieren von Hyper-V
 
-[Installieren von Hyper-V](walkthrough_install.md)
+<g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Installieren von Hyper-V</g><g id="1CapsExtId3" ctype="x-title"></g></g>
 
 
 
 
-<!--HONumber=Feb16_HO2-->
+
+
+<!--HONumber=May16_HO1-->
+
+
