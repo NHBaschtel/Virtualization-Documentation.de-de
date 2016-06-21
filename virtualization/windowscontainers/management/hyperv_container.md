@@ -28,7 +28,7 @@ Die Windows-Containertechnologie umfasst zwei Arten von Containern: Windows Serv
 Die Verwaltung von Hyper-V-Containern mit Docker ist nahezu identisch mit der Verwaltung von Windows Server-Containern. Beim Erstellen eines Hyper-V-Containers mit Docker wird der Parameter`--isolation=hyperv` verwendet.
 
 ```none
-docker run -it --isolation=hyperv windowsservercore cmd
+docker run -it --isolation=hyperv nanoserver cmd
 ```
 
 ### Erläuterung zur Isolation
@@ -97,6 +97,6 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 ```
 
 
-<!--HONumber=May16_HO3-->
+<!--HONumber=Jun16_HO2-->
 
 
