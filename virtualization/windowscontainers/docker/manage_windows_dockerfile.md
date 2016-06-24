@@ -101,14 +101,14 @@ RUN ["<executable", "<param 1>", "<param 2>"
 RUN <command>
 ```
 
-Der Unterschied zwischen dem Exec- und Shell-Format liegt in der Art und Weise, wie die `RUN`-Anweisung ausgeführt wird. Bei Verwendung der Exec-Methode wird das angegebene Programm explizit ausgeführt. 
+Das Exec- und Shell-Format unterscheiden sich darin, wie die `RUN`-Anweisung ausgeführt wird. Bei Verwendung des Exec-Formats wird das angegebene Programm explizit ausgeführt. 
 
-Im folgenden Beispiel wird das Exec- Format verwendet.
+Im folgenden Beispiel wird das Exec-Format verwendet.
 
 ```none
 FROM windowsservercore
 
-RUN ["powershell","New-Item","c:/test"]
+RUN ["powershell", "New-Item", "c:/test"]
 ```
 
 Am resultierenden Image ist zu erkennen, dass der Befehl `powershell new-item c:/test` ausgeführt wurde.
@@ -142,7 +142,7 @@ IMAGE               CREATED             CREATED BY                              
 Wenn unter Windows die `RUN`-Anweisung mit dem Exec-Format verwendet wird, müssen umgekehrte Schrägstriche mit Escapezeichen versehen werden.
 
 ```none
-RUN ["powershell","New-Item","c:\\test"]
+RUN ["powershell", "New-Item", "c:\\test"]
 ```
 
 **Beispiele**
@@ -179,7 +179,7 @@ COPY ["<source>" "<destination>"]
 
 **Bei Windows zu berücksichtigende Aspekte**
  
-Unter Windows müssen im Zielformat Schrägstriche verwendet werden. Dies sind z. B. gültige `ADD`-Anweisungen.
+Unter Windows müssen im Zielformat Schrägstriche verwendet werden. Dies sind z. B. gültige `COPY`-Anweisungen.
 
 ```none
 COPY test1.txt /temp/
@@ -203,6 +203,8 @@ In diesem Beispiel werden alle Dateien, die mit „config“ beginnen, dem `c:\t
 ```none
 COPY config* c:/temp/
 ```
+
+Ausführliche Informationen zur `COPY`-Anweisung finden Sie in der [COPY-Referenz auf Docker.com]( https://docs.docker.com/engine/reference/builder/#copy).
 
 ### HINZUFÜGEN
 
@@ -297,7 +299,7 @@ Die `CMD`-Anweisung weist dieses Format auf:
 ```none
 # exec form
 
-CMD ["<executable";"<param>"]
+CMD ["<executable", "<param>"]
 
 # shell form
 
@@ -311,7 +313,7 @@ Unter Windows müssen in Dateipfaden, die in der `CMD`-Anweisung angegeben werde
 ```none
 # exec form
 
-CMD ["c:\\Apache24\\bin\\httpd.exe","-w"]
+CMD ["c:\\Apache24\\bin\\httpd.exe", "-w"]
 
 # shell form
 
@@ -371,7 +373,7 @@ RUN powershell.exe -Command \
 
 In einigen Fällen kann es hilfreich sein, ein Skript in die Container zu kopieren, das während des Prozesses der Imageerstellung verwendet wird, und dann aus dem Container heraus auszuführen. Hinweis: Dies beschränkt jegliche Zwischenspeicherung von Imageebenen und verringert die Lesbarkeit der Dockerfile-Datei.
 
-In diesem Beispiel wird ein Skript vom Buildcomputer mithilfe der `ADD`-Anweisung in den Container kopiert. Dieses Skript wird mit der RUN-Anweisung ausgeführt.
+In diesem Beispiel wird ein Skript vom Buildcomputer mithilfe der `ADD`-Anweisung in den Container kopiert. Dieses Skript wird dann mit der RUN-Anweisung ausgeführt.
 
 ```
 FROM windowsservercore
@@ -381,7 +383,7 @@ RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 
 ## Docker Build 
 
-Sobald Sie eine Dockerfile-Datei erstellt und auf der Festplatte gespeichert haben, kann `docker build` ausgeführt werden, um das neue Image zu erstellen. Der `docker build`-Befehl unterstützt verschiedene optionale Parameter und einen Pfad zur Dockerfile-Datei. Eine vollständige Dokumentation zu Docker Build einschließlich einer Liste aller Buildoptionen finden Sie in der [Build-Referenz auf Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+Sobald Sie eine Dockerfile-Datei erstellt und auf der Festplatte gespeichert haben, kann `docker build` ausgeführt werden, um das neue Image zu erstellen. Der `docker build`-Befehl unterstützt verschiedene optionale Parameter und einen Pfad zur Dockerfile-Datei. Eine vollständige Dokumentation zu Docker Build einschließlich einer Liste aller Buildoptionen finden Sie in der [Build-Referenz auf Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build).
 
 ```none
 Docker build [OPTIONS] PATH
@@ -440,6 +442,6 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 [Dockerfile-Referenz auf Docker.com](https://docs.docker.com/engine/reference/builder/)
 
 
-<!--HONumber=May16_HO4-->
+<!--HONumber=Jun16_HO3-->
 
 

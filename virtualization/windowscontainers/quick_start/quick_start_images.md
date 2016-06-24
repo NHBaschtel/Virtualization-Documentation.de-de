@@ -48,6 +48,8 @@ echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.ht
 
 Wechseln Sie auf einem anderen System zur IP-Adresse des Containerhosts. Die „Hello World“-Anwendung sollte jetzt angezeigt werden.
 
+**Hinweis:** Wenn Sie in Azure arbeiten, muss eine Netzwerksicherheits-Gruppenregel vorhanden sein, die Datenverkehr über Port 80 zulässt. Weitere Informationen finden Sie unter [Erstellen einer Regel in einer Netzwerksicherheitsgruppe]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
+
 ![](media/hello.png)
 
 Wenn Sie zurück im Container sind, beenden Sie die interaktive Containersitzung.
@@ -159,6 +161,6 @@ docker rm -f cranky_brown
 
 [Windows-Container unter Windows 10](./quick_start_windows_10.md)
 
-<!--HONumber=May16_HO4-->
+<!--HONumber=Jun16_HO2-->
 
 

@@ -42,17 +42,17 @@ Produktionsprüfpunkte sind standardmäßig aktiviert, was aber im Hyper-V-Manag
 
 Die folgenden Befehle können ausgeführt werden, um den Prüfpunkt mit PowerShell zu ändern. 
 
-Legt den Standardprüfpunkt fest:
+Auf Standardprüfpunkt festlegen:
 ```powershell
 Set-VM -Name <vmname> -CheckpointType Standard
 ```
 
-Legt den Produktionsprüfpunkt fest. Wenn dieser fehlschlägt, wird ein Standardprüfpunkt erstellt:
+Auf Produktionsprüfpunkt festlegen. Wenn der Produktionsprüfpunkt fehlerhaft ist, wird ein Standardprüfpunkt erstellt:
 ```powershell
 Set-VM -Name <vmname> -CheckpointType Production
 ```
 
-Legt den Produktionsprüfpunkt fest. Wenn dieser fehlschlägt, wird kein Standardprüfpunkt erstellt: 
+Auf Produktionsprüfpunkt festlegen. Wenn der Produktionsprüfpunkt fehlerhaft ist, wird kein Standardprüfpunkt erstellt: 
 ```powershell
 Set-VM -Name <vmname> -CheckpointType ProductionOnly
 ```
@@ -162,7 +162,7 @@ Beim Exportieren wird der Prüfpunkt als virtueller Computer gebündelt, sodass 
 
 **Mithilfe der PowerShell**
 ``` powershell
-Export-VMCheckpoint -VMName <virtual machine name>  -Name <checkpoint name> -Path <path for export>
+Export-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -Path <path for export>
 ```
 
 ## Aktivieren oder Deaktivieren von Prüfpunkten
@@ -245,6 +245,6 @@ Nachdem der Produktionsprüfpunkt angewendet wurde, werden Sie feststellen, dass
 2. Wie Sie sehen, wurde die Textdatei wiederhergestellt. Doch im Gegensatz zum Standardprüfpunkt ist Editor nicht geöffnet.   
 
 
-<!--HONumber=May16_HO3-->
+<!--HONumber=Jun16_HO3-->
 
 

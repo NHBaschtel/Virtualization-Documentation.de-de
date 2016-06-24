@@ -13,9 +13,9 @@ ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 
 # Windows-Container unter Windows Server
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.** 
+**Dieser Inhalt ist vorläufig und kann geändert werden.**
 
-Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features unter Windows Server. Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Windows Server-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart). 
+Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features unter Windows Server. Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Windows Server-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart).
 
 Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2016. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
@@ -25,13 +25,17 @@ Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows S
 
 ## 1. Installieren des Containerfeatures
 
-Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus. 
+Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus.
 
 ```none
 Install-WindowsFeature containers
 ```
 
 Starten Sie den Computer neu, wenn die Installation des Features abgeschlossen ist.
+
+```none
+Restart-Computer -Force
+```
 
 ## 2. Installieren von Docker
 
@@ -70,22 +74,22 @@ dockerd --register-service
 Nach Abschluss der Installation kann der Dienst gestartet werden.
 
 ```none
-Start-Service Docker
+Start-Service docker
 ```
 
 ## 3. Installieren von Basiscontainerimages
 
-Windows-Container werden in Vorlagen oder Images bereitgestellt. Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems heruntergeladen werden. Mit den folgenden Befehlen wird das Basisimage für Windows Server Core heruntergeladen. 
-    
+Windows-Container werden in Vorlagen oder Images bereitgestellt. Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems heruntergeladen werden. Mit den folgenden Befehlen wird das Basisimage für Windows Server Core heruntergeladen.
+
 Installieren Sie zunächst den Paketanbieter für Containerimages.
 
 ```none
 Install-PackageProvider ContainerImage -Force
 ```
 
-Installieren Sie dann das Windows Server Core-Image. Dieser Vorgang kann einige Zeit dauern, Sie können also eine Pause machen und zurückkehren, wenn der Download abgeschlossen ist.
+Installieren Sie dann das Windows Server Core-Image. Dieser Vorgang kann einige Zeit dauern. Sie können also eine Pause machen und den Vorgang fortsetzen, sobald der Download abgeschlossen ist.
 
-```none 
+```none
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
@@ -175,6 +179,8 @@ CONTAINER ID    IMAGE                             COMMAND               CREATED 
 
 Öffnen Sie auf einem anderen Computer einen Webbrowser, und geben Sie die IP-Adresse des Containerhosts ein. Wenn alles richtig konfiguriert wurde, sollte der IIS-Begrüßungsbildschirm angezeigt werden. Dies erfolgt über die IIS-Instanz, die im Windows-Container gehostet wird.
 
+**Hinweis:** Wenn Sie in Azure arbeiten, muss eine Netzwerksicherheits-Gruppenregel vorhanden sein, die Datenverkehr über Port 80 zulässt. Weitere Informationen finden Sie unter [Erstellen einer Regel in einer Netzwerksicherheitsgruppe]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
+
 ![](media/iis1.png)
 
 Wenn Sie wieder auf dem Containerhost zurück sind, entfernen Sie den Container mit dem `docker rm`-Befehl. Hinweis – Ersetzen Sie den Namen des Containers in diesem Beispiel durch den tatsächlichen Containernamen.
@@ -189,6 +195,6 @@ docker rm -f grave_jang
 [Windows-Container unter Windows 10](./quick_start_windows_10.md)
 
 
-<!--HONumber=May16_HO4-->
+<!--HONumber=Jun16_HO3-->
 
 

@@ -13,19 +13,23 @@ ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 
 # Containerhostbereitstellung: Windows Server
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.** 
+**Dieser Inhalt ist vorläufig und kann geändert werden.**
 
 Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. In diesem Dokument wird erläutert, wie Sie einen Windows-Containerhost entweder für Windows Server 2016 oder für Windows Server Core 2016 auf einem physischen oder virtuellen System bereitstellen.
 
 ## Installieren des Containerfeatures
 
-Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus. 
+Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus.
 
 ```none
 Install-WindowsFeature containers
 ```
 
 Starten Sie den Computer neu, wenn die Installation des Features abgeschlossen ist.
+
+```none
+Restart-Computer -Force
+```
 
 ## Installieren von Docker
 
@@ -49,7 +53,7 @@ Laden Sie den Docker-Client herunter.
 Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
 ```
 
-Fügen Sie das Docker-Verzeichnis zum Systempfad hinzu.
+Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
 
 ```none
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
@@ -71,8 +75,8 @@ Start-Service Docker
 
 ## Installieren von Basisimages für Container
 
-Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems für den Container heruntergeladen werden. Im folgenden Beispiel wird das Betriebssystem-Basisimage für Windows Server Core heruntergeladen. Mit dem gleichen Verfahren können Sie das Basisimage für Nano Server installieren. Mit dem gleichen Verfahren können Sie das Basisimage für Nano Server installieren. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
-    
+Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems für den Container heruntergeladen werden. Im folgenden Beispiel wird das Betriebssystem-Basisimage für Windows Server Core heruntergeladen. Mit dem gleichen Verfahren können Sie das Basisimage für Nano Server installieren. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
+
 Installieren Sie zunächst den Paketanbieter für Containerimages.
 
 ```none
@@ -81,7 +85,7 @@ Install-PackageProvider ContainerImage -Force
 
 Installieren Sie dann das Windows Server Core-Image. Dieser Vorgang kann einige Zeit dauern. Sie können also eine Pause machen und den Vorgang fortsetzen, sobald der Download abgeschlossen ist.
 
-```none 
+```none
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
@@ -99,11 +103,11 @@ docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
 
 ## Hyper-V-Containerhost
 
-Um Hyper-V-Container bereitzustellen, ist die Hyper-V-Rolle erforderlich. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+Um Hyper-V-Container auszuführen, ist die Hyper-V-Rolle erforderlich. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ### Geschachtelte Virtualisierung
 
-Das folgende Skript konfiguriert die geschachtelte Virtualisierung für den Containerhost. Das Skript wird auf dem Hyper-V-Computer ausgeführt, der den virtuellen Containerhostcomputer hostet. Stellen Sie sicher, dass der virtuelle Containerhostcomputer ausgeschaltet ist, wenn dieses Skript ausgeführt wird.
+Das folgende Skript konfiguriert die geschachtelte Virtualisierung für den Containerhost. Dieses Skript wird auf dem übergeordneten Hyper-V-Computer ausgeführt. Stellen Sie sicher, dass der virtuelle Containerhostcomputer ausgeschaltet ist, wenn dieses Skript ausgeführt wird.
 
 ```none
 #replace with the virtual machine name
@@ -128,7 +132,6 @@ Install-WindowsFeature hyper-v
 ```
 
 
-
-<!--HONumber=May16_HO4-->
+<!--HONumber=Jun16_HO2-->
 
 
