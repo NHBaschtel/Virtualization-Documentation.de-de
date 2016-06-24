@@ -52,7 +52,7 @@ Stop-Service docker
 Sie finden die Konfigurationsdatei hier: `c:\programdata\docker\runDockerDaemon.cmd`. Bearbeiten Sie die folgende Codezeile durch Hinzufügen von `-b "none"`
 
 ```none
-dockerd -b "none"
+dockerd <options> -b “none”
 ```
 
 Starten Sie den Dienst neu.
@@ -102,24 +102,47 @@ IsDeleted          : False
 
 ### NAT-Netzwerk
 
-**Netzwerkadressübersetzung** – dieser Netzwerkmodus eignet sich, um Containern schnell private IP-Adressen zuzuweisen. Der externe Zugriff auf einen Container erfolgt durch Zuordnung zwischen der externen IP-Adresse und dem externen Port (Container) sowie der internen IP-Adresse und dem internen Port des Containers. Sämtlicher Netzwerkdatenverkehr, der an der Kombination externe IP-Adresse / externer Port empfangen wird, wird mit einer WinNAT-Portzuordnungstabelle verglichen und an die IP-Adresse bzw. den Port des richtigen Containers weitergeleitet. Darüber hinaus erlaubt NAT mehreren Containern das Hosten von Anwendungen, die möglicherweise identische (interne) Kommunikationsports erfordern, indem diese eindeutigen externen Ports zugeordnet werden. In TP5 darf nur ein NAT-Netzwerk vorhanden sein.
+**Netzwerkadressübersetzung** – dieser Netzwerkmodus eignet sich, um Containern schnell private IP-Adressen zuzuweisen. Der externe Zugriff auf einen Container erfolgt durch Zuordnung zwischen der externen IP-Adresse und dem externen Port (Container) sowie der internen IP-Adresse und dem internen Port des Containers. Sämtlicher Netzwerkdatenverkehr, der an der Kombination externe IP-Adresse / externer Port empfangen wird, wird mit einer WinNAT-Portzuordnungstabelle verglichen und an die IP-Adresse bzw. den Port des richtigen Containers weitergeleitet. Darüber hinaus erlaubt NAT mehreren Containern das Hosten von Anwendungen, die möglicherweise identische (interne) Kommunikationsports erfordern, indem diese eindeutigen externen Ports zugeordnet werden. Windows unterstützt nur das Vorhandensein eines internen NAT-Netzwerkpräfixes pro Host. Weitere Informationen finden Sie im Blogbeitrag [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/) (Stärken und Schwächen von WinNAT). 
 
-> In TP5 wird für alle statischen NAT-Portzuordnungen automatisch eine Firewallregel erstellt. Diese Firewallregel gilt global für den Containerhost und ist nicht auf einen bestimmten Containerendpunkt oder Netzwerkadapter begrenzt.
+> Ab TP5 wird für alle statischen NAT-Portzuordnungen automatisch eine Firewallregel erstellt. Diese Firewallregel gilt global für den Containerhost und ist nicht auf einen bestimmten Containerendpunkt oder Netzwerkadapter begrenzt.
 
 #### Hostkonfiguration <!--1-->
 
-Um den NAT-Netzwerkmodus zu verwenden, erstellen Sie ein Containernetzwerk mit dem Treiber namens „nat“.
+Um den NAT-Netzwerkmodus zu verwenden, erstellen Sie ein Containernetzwerk mit dem Treiber namens „nat“. 
+
+> Da pro Host nur ein Standardnetzwerk des Typs _nat_ erstellt werden kann, vergewissern Sie sich, dass Sie nur dann ein neues NAT-Netzwerk erstellen, wenn alle anderen NAT-Netzwerke entfernt wurden und der Daemon von Docker mit der Option '-b "none"' ausgeführt wird. Wenn Sie einfach nur steuern möchten, welches interne IP-Netzwerk von NAT verwendet wird, können Sie die Option _--fixed-cidr=<NAT-internes Präfix/Maske>_ dem docker-Befehl in „C:\ProgramData\docker\runDockerDaemon.cmd“ hinzufügen.
 
 ```none
-docker network create -d nat MyNatNetwork
+docker network create -d nat MyNatNetwork [--subnet=<string[]>] [--gateway=<string[]>]
 ```
-
-Dem Docker-Befehl zur Erstellung des Netzwerks können Parameter wie eine Gateway-IP-Adresse (--gateway=<string[]>) und ein Subnetzpräfix (--subnet=<string[]>) hinzugefügt werden. Weitere Informationen finden Sie weiter unten in diesem Dokument.
 
 Um ein NAT-Netzwerk mithilfe von PowerShell zu erstellen, verwenden Sie die folgende Syntax. Beachten Sie, dass mithilfe von PowerShell zusätzliche Parameter wie DNSServers und DNSSuffix angegeben werden können. Wenn diese Einstellungen nicht angegeben werden, werden sie aus dem Containerhost geerbt.
 
 ```none
 New-ContainerNetwork -Name MyNatNetwork -Mode NAT -SubnetPrefix "172.16.0.0/12" [-GatewayAddress <address>] [-DNSServers <address>] [-DNSSuffix <string>]
+```
+
+> In Windows Server 2016 Technical Preview 5 und den jüngsten Windows Insider Preview (WIP)-Builds gibt es das bekannte Problem, dass beim Upgrade auf einen neuen Build ein Containernetzwerk und vSwitch dupliziert werden. Führen Sie das folgende Skript aus, um dieses Problem zu umgehen.
+```none
+PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+PS> $keys = get-childitem $KeyPath
+PS> foreach($key in $keys)
+PS> {
+PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
+PS>    {
+PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
+PS>       Remove-Item -Path $newKeyPath -Recurse
+PS>    }
+PS> }
+PS> remove-netnat -Confirm:$false
+PS> Get-ContainerNetwork | Remove-ContainerNetwork
+PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+PS> Stop-Service docker
+PS> Set-Service docker -StartupType Disabled
+Reboot Host
+PS> Get-NetNat | Remove-NetNat
+PS> Set-Service docker -StartupType automaticac
+PS> Start-Service docker 
 ```
 
 ### Transparentes Netzwerk
@@ -140,18 +163,14 @@ In diesem Beispiel wird ein transparentes Netzwerk erstellt und diesem ein Gatew
 docker network create -d transparent --gateway=10.50.34.1 "MyTransparentNet"
 ```
 
-Der PowerShell-Befehl sieht wie folgt aus:
-
-```none
-New-ContainerNetwork -Name MyTransparentNet -Mode Transparent -NetworkAdapterName "Ethernet"
-```
-
 Wenn der Containerhost virtualisiert ist und Sie DHCP für die IP-Zuweisung verwenden möchten, müssen Sie MACAddressSpoofing im Netzwerkadapter der virtuellen Computer aktivieren.
 
 ```none
 Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
+> Wenn Sie mehr als ein transparentes (oder l2bridge-) Netzwerk erstellen möchten, müssen Sie angeben, mit welchem (virtuellen) Netzwerkadapter der (automatisch erstellte) virtuelle Hyper-V-Switch eine Bindung herstellen soll.
+ 
 ### L2-Brückennetzwerk
 
 **L2-Brückennetzwerk**: In dieser Konfiguration fungiert die VFP-vSwitch-Erweiterung (Virtual Filtering Platform) im Containerhost als Brücke und führt die Layer-2-Adressübersetzung (Umschreiben der MAC-Adresse) wie erforderlich aus. Die Layer-3-IP-Adressen und Layer-4-Ports bleiben unverändert. IP-Adressen können statisch zugewiesen werden, um dem IP-Subnetzpräfix des physischen Netzwerks oder – im Fall einer privaten Microsoft-Cloudbereitstellung – einer IP aus dem Subnetzpräfix des virtuellen Netzwerks zu entsprechen.
@@ -164,12 +183,6 @@ Um den Netzwerkmodus mit L2-Brücke zu verwenden, erstellen Sie ein Containernet
 docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyBridgeNetwork
 ```
 
-Der PowerShell-Befehl sieht wie folgt aus:
-
-```none
-New-ContainerNetwork -Name MyBridgeNetwork -Mode L2Bridge -NetworkAdapterName "Ethernet"
-```
-
 ## Entfernen eines Netzwerks
 
 Verwenden Sie `docker network rm`, um ein Containernetzwerk zu löschen.
@@ -178,11 +191,6 @@ Verwenden Sie `docker network rm`, um ein Containernetzwerk zu löschen.
 docker network rm "<network name>"
 ```
 In PowerShell verwenden Sie `Remove-ContainerNetwork`:
-
-Über PowerShell
-```
-Remove-ContainerNetwork -Name <network name>
-```
 
 Dieser Befehl löscht alle virtuellen Hyper-V-Switches, die vom Containernetzwerk verwendet wurden, sowie alle Objekte für die Netzwerkadressübersetzung, die für NAT-Containernetzwerke erstellt wurden.
 
@@ -217,7 +225,6 @@ docker network create -d transparent -o com.docker.network.windowsshim.interface
 Auf einem einzelnen Containerhost können mehrere Containernetzwerke erstellt werden. Dabei gelten folgende Einschränkungen:
 * Pro Containerhost kann nur ein NAT-Netzwerk erstellt werden.
 * Wenn mehrere Netzwerke vorhanden sind, die einen externen vSwitch für die Verbindung verwenden (z. B. transparent, L2-Brücke, L2 transparent), muss für jedes Netzwerk ein eigener Netzwerkadapter verwendet werden.
-* Verschiedene Netzwerke müssen verschiedene vSwitches verwenden.
 
 ### Netzwerkauswahl
 
@@ -231,7 +238,7 @@ docker run -it --net=MyTransparentNet windowsservercore cmd
 
 ### Statische IP-Adresse
 
-Statische IP-Adressen werden in den Netzwerkadaptern der Container festgelegt und nur für die Netzwerkmodi NAT, transparent und L2-Brücke unterstützt. Darüber hinaus wird die statische IP-Zuweisung für die Standardoption „nat“ von Docker nicht unterstützt.
+Statische IP-Adressen werden für die Netzwerkadapter der Container festgelegt und nur für die Netzwerkmodi NAT, Transparent (anstehend), [PR](https://github.com/docker/docker/pull/22208) und L2Bridge unterstützt. Darüber hinaus wird die statische IP-Zuweisung für die Standardoption „nat“ von Docker nicht unterstützt.
 
 ```none
 docker run -it --net=MyTransparentNet --ip=10.80.123.32 windowsservercore cmd
@@ -303,7 +310,6 @@ Hier die Anforderung aus Sicht eines Internetbrowsers.
 
 ![](./media/PortMapping.png)
 
-
 ## Tipps und Einschränkungen
 
 ### Firewall
@@ -327,6 +333,6 @@ Die folgenden Netzwerkoptionen werden in Windows Docker zurzeit nicht unterstüt
  * --internal
  * --ip-range
 
-<!--HONumber=May16_HO3-->
+<!--HONumber=Jun16_HO1-->
 
 

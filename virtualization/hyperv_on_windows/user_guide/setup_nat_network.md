@@ -24,12 +24,12 @@ Anforderungen:
 * Windows-Build 14295 oder höher
 * Hyper-V-Rolle ist aktiviert (Anweisungen [hier](../quick_start/walkthrough_create_vm.md))
 
-> **Hinweis:**  Derzeit lässt Hyper-V nur das Erstellen eines einzigen NAT-Netzwerks zu.
+> **Hinweis:**  Derzeit lässt Hyper-V nur das Erstellen eines einzigen NAT-Netzwerks zu. Weitere Informationen zur Windows-NAT-Implementierung (WinNAT), Funktionen und Einschränkungen finden Sie im Blogbeitrag [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/) (Stärken und Schwächen von WinNAT).
 
 ## NAT-Überblick
-NAT ermöglicht einem virtuellen Computer unter Verwendung der IP-Adresse des Hostcomputers und eines Ports Zugriff auf Netzwerkressourcen.
+NAT ermöglicht einem virtuellen Computer unter Verwendung der IP-Adresse des Hostcomputers und eines Ports über einen internen virtuellen Hyper-V-Switch Zugriff auf Netzwerkressourcen.
 
-Netzwerkadressübersetzung (NAT, Network Address Translation) ist ein Netzwerkmodus zur Konservierung von IP-Adressen durch Zuordnung einer externen IP-Adresse und eines Ports zu einem wesentlich größeren Satz interner IP-Adressen.  Im Grunde leitet ein NAT Switch den Netzwerkverkehr mittels einer NAT-Zuordnungstabelle von einer IP-Adresse und Portnummer an die richtige interne IP-Adresse, die einem Gerät im Netzwerk (VM, Computer, Container etc.) zugeordnet ist.
+Netzwerkadressübersetzung (NAT, Network Address Translation) ist ein Netzwerkmodus zur Konservierung von IP-Adressen durch Zuordnung einer externen IP-Adresse und eines Ports zu einem wesentlich größeren Satz interner IP-Adressen.  Im Wesentlichen nutzt ein NAT eine Flusstabelle zum Weiterleiten von Datenverkehr von einer IP-Adresse und Portnummer zur richtigen internen IP-Adresse, die einem Gerät im Netzwerk (VM, Computer, Container usw.) zugeordnet ist.
 
 Darüber hinaus erlaubt NAT mehreren VMs das Hosten von Anwendungen, die identische (interne) Kommunikationsports erfordern, indem diese eindeutigen externen Ports zugeordnet werden.
 
@@ -121,6 +121,88 @@ Gratulation!  Sie haben jetzt ein virtuelles NAT-Netzwerk!  Um dem NAT-Netzwerk 
 
 Um einen virtuellen Computer mit Ihrem neuen NAT-Netzwerk zu verbinden, verbinden Sie den internen Switch, den Sie im ersten Schritt des Abschnitts [Erstellen eines virtuellen NAT-Netzwerks](setup_nat_network.md#create-a-nat-virtual-network) erstellt haben, mithilfe des Menüs „VM-Einstellungen“ mit dem virtuellen Computer.
 
+Da WinNAT nicht selbst IP-Adressen reserviert und einem Endpunkt (z. B. einer VM) zuweist, müssen Sie diese Aufgabe in der VM selbst manuell ausführen, d. h. die IP-Adresse im Bereich des NAT-internen Präfixes, die IP-Adresse des Standardgateways und die DNS-Serverinformationen festlegen. Die einzige Einschränkung liegt vor, wenn der Endpunkt an den Container angefügt ist. In diesem Fall wird der Host Compute Service (HCS) vom Host Network Service (HNS) so zugeordnet und verwendet, dass die IP-Adresse, Gateway-IP-Adresse und DNS-Informationen dem Container direkt zugewiesen werden.
+
+
+## Konfigurationsbeispiel: Anfügen von VMs und Containern an ein NAT-Netzwerk
+_Wenn Sie mehrere VMs und Containern an ein einzelnes NAT anfügen müssen, ist sicherzustellen, dass das NAT-interne Subnetzpräfix für die IP-Bereiche groß genug ist, die verschiedenen Anwendungen oder Diensten (z. B. Docker für Windows und Windows-Container, HNS) zugewiesen sind. Dieser Vorgang erfordert entweder eine Zuweisung von IP-Adressen auf Anwendungsebene und Netzwerkkonfiguration oder eine manuelle Konfiguration, die von einem Administrator vorgenommen werden muss und sicherstellt, dass vorhandene IP-Adresszuweisungen nicht auf demselben Host wiederverwendet werden._
+
+### Docker für Windows (Linux-VM) und Windows-Container
+Die nachstehend beschriebene Lösung ermöglicht sowohl Docker für Windows (in Linux-VM ausgeführten Linux-Containern) und Windows-Containern die gemeinsame Nutzung derselben WinNAT-Instanz unter Verwendung getrennter interner vSwitches. Konnektivität zwischen Linux- und Windows-Containern ist gegeben.
+
+Der Benutzer hat VMs über den internen vSwitch „VMNAT“ mit einem NAT-Netzwerk verbunden und möchte nun das Feature „Windows-Container“ mit dem Docker-Modul installieren.
+```none
+PS C:\> Get-NetNat “VMNAT”| Remove-NetNat (this will remove the NAT but keep the internal vSwitch).
+Install Windows Container Feature
+DO NOT START Docker Service (daemon)
+Edit the arguments passed to the docker daemon (dockerd) by adding –fixed-cidr=<container prefix> parameter. This tells docker to create a default nat network with the IP subnet <container prefix> (e.g. 192.168.1.0/24) so that HNS can allocate IPs from this prefix.
+PS C:\> Start-Service Docker; Stop-Service Docker
+PS C:\> Get-NetNat | Remove-NetNAT (again, this will remove the NAT but keep the internal vSwitch)
+PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>
+PS C:\> Start-Service docker
+```
+Docker/HNS weist Windows-Containern IP-Adressen aus dem <container prefix> zu. Der Administrator weist den VMs IP-Adressen aus dem Differenzsatz von <shared prefix> zu. <container prefix>
+
+Der Benutzer hat das Feature „Windows-Container“ mit ausgeführtem Docker-Modul installiert und möchte nun VMs mit dem NAT-Netzwerk verbinden.
+```none
+PS C:\> Stop-Service docker
+PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork -force
+PS C:\> Get-NetNat | Remove-NetNat (this will remove the NAT but keep the internal vSwitch)
+Edit the arguments passed to the docker daemon (dockerd) by adding -b “none” option to the end of docker daemon (dockerd) command to tell docker not to create a default NAT network.
+PS C:\> New-ContainerNetwork –name nat –Mode NAT –subnetprefix <container prefix> (create a new NAT and internal vSwitch – HNS will allocate IPs to container endpoints attached to this network from the <container prefix>)
+PS C:\> Get-Netnat | Remove-NetNAT (again, this will remove the NAT but keep the internal vSwitch)
+PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>
+PS C:\> New-VirtualSwitch -Type internal (attach VMs to this new vSwitch)
+PS C:\> Start-Service docker
+```
+Docker/HNS weist Windows-Containern IP-Adressen aus dem <container prefix> zu. Der Administrator weist den VMs IP-Adressen aus dem Differenzsatz von <shared prefix> zu. <container prefix>
+
+Am Ende verfügen Sie über zwei interne VM-Switches und einem NetNat, das von diesen gemeinsam verwendet wird.
+
+## Problembehandlung
+Stellen Sie sicher, dass Sie nur eine NAT haben.
+```none
+Get-NetNat
+```
+Wenn bereits eine NAT vorhanden ist, löschen Sie sie.
+```none
+Get-NetNat | Remove-NetNat
+```
+Stellen Sie sicher, dass Sie nur über einen „internen“ VM-Switch für die Anwendung oder das Feature (z. B. Windows-Container) verfügen. Notieren Sie den Namen des vSwitches.
+```none
+Get-VMSwitch
+```
+Prüfen Sie, ob private IP-Adressen (z. B. die NAT-Standard-Gateway-IP-Adresse – in der Regel „*.1“) der alten NAT noch einem Adapter zugewiesen sind.
+```none
+Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
+```
+Wenn eine alte private IP-Adresse verwendet wird, löschen Sie sie.
+```none
+Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
+```
+Entfernen mehrerer NATsWir haben Berichte über die versehentliche Erstellung mehrerer NAT-Netzwerke erhalten. Die Ursache ist ein Fehler in den letzten Builds: Windows Server 2016 Technical Preview 5 und Windows 10 Insider Preview. Wenn nach Ausführung von „docker network ls“ oder „Get-ContainerNetwork“ mehrere NAT-Netzwerke vorhanden sind, führen Sie über eine PowerShell mit erhöhten Berechtigungen den folgenden Befehl aus:
+
+```none
+PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+PS> $keys = get-childitem $KeyPath
+PS> foreach($key in $keys)
+PS> {
+PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
+PS>    {
+PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
+PS>       Remove-Item -Path $newKeyPath -Recurse
+PS>    }
+PS> }
+PS> remove-netnat -Confirm:$false
+PS> Get-ContainerNetwork | Remove-ContainerNetwork
+PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+PS> Stop-Service docker
+PS> Set-Service docker -StartupType Disabled
+Reboot Host
+PS> Get-NetNat | Remove-NetNat
+PS> Set-Service docker -StartupType automaticac
+PS> Start-Service docker 
+```
 
 ## Problembehandlung
 
@@ -190,6 +272,6 @@ Schließlich sollten Sie über zwei interne vSwitches verfügen – einen namens
 Erfahren Sie mehr über [NAT-Netzwerke](https://en.wikipedia.org/wiki/Network_address_translation).
 
 
-<!--HONumber=May16_HO5-->
+<!--HONumber=Jun16_HO1-->
 
 
