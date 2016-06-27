@@ -20813,9 +20813,9 @@
       "ArchiveFileCommit": "81fd1b7de208335f6a75f8a0fe6b9b93292eab0d",
       "ArchiveFileDateTime": "2016-06-23T19:28:48.0708063Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf",
+      "BilingualFileCommit": "79e233326d7d60d6c1a5a4a39828fb3e7c2ef0a5",
+      "BilingualDateTime": "2016-06-27T12:34:39.1639706Z",
       "BilingualException": null
     },
     "f2790186aa641378b1981a1f946665ca46fdbd73": {
@@ -20848,9 +20848,9 @@
       "ArchiveFileCommit": "81fd1b7de208335f6a75f8a0fe6b9b93292eab0d",
       "ArchiveFileDateTime": "2016-06-23T19:28:48.0708063Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf",
+      "BilingualFileCommit": "79e233326d7d60d6c1a5a4a39828fb3e7c2ef0a5",
+      "BilingualDateTime": "2016-06-27T12:34:39.1639706Z",
       "BilingualException": null
     },
     "7270493b8c42935434f72b01524530079d5fb539": {
@@ -20918,9 +20918,9 @@
       "ArchiveFileCommit": "81fd1b7de208335f6a75f8a0fe6b9b93292eab0d",
       "ArchiveFileDateTime": "2016-06-23T19:28:48.0708063Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\nesting.ece03f90d41cea4ab592ff16c6288e2349863da7.de-de.xlf",
+      "BilingualFileCommit": "79e233326d7d60d6c1a5a4a39828fb3e7c2ef0a5",
+      "BilingualDateTime": "2016-06-27T12:34:39.1639706Z",
       "BilingualException": null
     },
     "b84b4b501ce18409561abfc5aae3ca0fa1c7c541": {
@@ -20988,9 +20988,9 @@
       "ArchiveFileCommit": "81fd1b7de208335f6a75f8a0fe6b9b93292eab0d",
       "ArchiveFileDateTime": "2016-06-23T19:28:48.0708063Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf",
+      "BilingualFileCommit": "79e233326d7d60d6c1a5a4a39828fb3e7c2ef0a5",
+      "BilingualDateTime": "2016-06-27T12:34:39.1639706Z",
       "BilingualException": null
     },
     "71e0fb430498f8a5ae4ac5b297cf5e4a2c904098": {
