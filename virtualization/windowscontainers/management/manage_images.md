@@ -9,6 +9,9 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: d8163185-9860-4ee4-9e96-17b40fb508bc
+ms.sourcegitcommit: 3db43b433e7b1a9484d530cf209ea80ef269a307
+ms.openlocfilehash: 505cc64fa19fb9fc8c2d5c109830f460f09332dd
+
 ---
 
 # Windows-Containerimages
@@ -197,7 +200,6 @@ Verwenden Sie den Befehl `docker search`, um eine Liste der auf Docker Hub verf�
 
 Die meisten dieser Images verfügen über eine Windows Server Core- und eine Nano Server-Version. Um eine bestimmte Version abzurufen, fügen Sie das Tag „:windowsservercore“ oder „:nanoserver“ hinzu. Das Tag „latest“ gibt standardmäßig die Windows Server Core-Version zurück, sofern nicht nur eine Nano Server-Version verfügbar ist.
 
-> Die Images, die mit „nano-“ beginnen, sind vom Nano Server-Basisbetriebssystemimage abhängig.
 
 ```none
 docker search *
@@ -219,7 +221,9 @@ microsoft/sample-ruby    Ruby installed in a Windows Server Core ba...   1      
 microsoft/sample-sqlite  SQLite installed in a Windows Server Core ...   1                    [OK]
 ```
 
-Verwenden Sie den Befehl `docker pull`, um ein Image von Docker Hub herunterzuladen.
+### Docker Pull
+
+Verwenden Sie den Befehl `docker pull`, um ein Image von Docker Hub herunterzuladen. Weitere Informationen finden Sie unter [Docker Pull auf Docker.com](https://docs.docker.com/engine/reference/commandline/pull/).
 
 ```none
 docker pull microsoft/aspnet
@@ -242,8 +246,50 @@ windowsservercore   10.0.14300.1000     6801d964fda5        2 weeks ago         
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
+> Wenn in Docker ein Fehler auftritt, stellen Sie sicher, dass auf dem Containerhost die neuesten kumulativen Updates installiert wurden. Das TP5-Update finden Sie unter [KB3157663]( https://support.microsoft.com/en-us/kb/3157663).
+
+### Docker Push
+
+Containerimages können auch auf Docker Hub oder in eine vertrauenswürdige Docker Trusted Registry hochgeladen werden. Nachdem diese Bilder hochgeladen wurden, können sie heruntergeladen und in verschiedenen Windows-Container-Umgebungen verwendet werden.
+
+Um ein Containerimage in Docker Hub hochzuladen, melden Sie sich zuerst bei der Registrierung an. Weitere Informationen finden Sie unter [Docker Login auf Docker.com]( https://docs.docker.com/engine/reference/commandline/login/).
+
+```none
+docker login
+
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: username
+Password:
+
+Login Succeeded
+```
+
+Nachdem Sie sich bei Docker Hub oder Docker Trusted Registry angemeldet haben, können Sie ein Containerimage mit `docker push` hochladen. Auf das Containerimage kann anhand des Namens oder der ID verwiesen werden. Weitere Informationen finden Sie unter [Docker Push auf Docker.com]( https://docs.docker.com/engine/reference/commandline/push/).
+
+```none
+docker push username/containername
+
+The push refers to a repository [docker.io/username/containername]
+b567cea5d325: Pushed
+00f57025c723: Pushed
+2e05e94480e9: Pushed
+63f3aa135163: Pushed
+469f4bf35316: Pushed
+2946c9dcfc7d: Pushed
+7bfd967a5e43: Pushed
+f64ea92aaebc: Pushed
+4341be770beb: Pushed
+fed398573696: Pushed
+latest: digest: sha256:ae3a2971628c04d5df32c3bbbfc87c477bb814d5e73e2787900da13228676c4f size: 2410
+```
+
+Jetzt ist das Containerimage verfügbar, und Sie können mit `docker pull` darauf zugreifen.
 
 
-<!--HONumber=May16_HO4-->
+
+
+
+
+<!--HONumber=Jun16_HO3-->
 
 
