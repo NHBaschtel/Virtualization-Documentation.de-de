@@ -327,6 +327,40 @@ CMD c:\Apache24\bin\httpd.exe -w
 
 Ausführliche Informationen über die `CMD`-Anweisung finden Sie in der [CMD-Referenz auf Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
 
+## Escapezeichen
+
+Eine Dockerfile-Anweisung muss häufig mehrere Zeilen umfassen. Dazu wird das Escapezeichen verwendet. In einer Dockerfile-Anweisung wird als Escapezeichen standardmäßig ein umgekehrter Schrägstrich verwendet: `\`. Da der umgekehrte Schrägstrich unter Windows auch ein Dateipfadtrennzeichen ist, kann dies problematisch sein. Zum Ändern des Standardescapezeichens kann eine Parser-Anweisung verwendet werden. Weitere Informationen zu Parser-Anweisungen finden Sie im Artikel zu Parser-Anweisungen auf [Docker.com]( https://docs.docker.com/engine/reference/builder/#parser-directives).
+
+Das folgende Beispiel zeigt eine einzelne mehrere Zeilen umfassende RUN-Anweisung, für die das Standardescapezeichen verwendet wird.
+
+```none
+FROM windowsservercore
+
+RUN powershell.exe -Command \
+    $ErrorActionPreference = 'Stop'; \
+    wget https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
+    Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+    Remove-Item c:\python-3.5.1.exe -Force
+```
+
+Platzieren Sie zum Ändern des Escapezeichens eine Escape-Parser-Anweisung in der ersten Zeile der Dockerfile-Datei. Dies wird im folgenden Beispiel veranschaulicht.
+
+> Beachten Sie, dass nur zwei Werte als Escapezeichen verwendet werden können: `\` und `` ` ``.
+
+```none
+# escape=`
+
+FROM windowsservercore
+
+RUN powershell.exe -Command `
+    $ErrorActionPreference = 'Stop'; `
+    wget https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; `
+    Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; `
+    Remove-Item c:\python-3.5.1.exe -Force
+```
+
+Weitere Informationen zur Escape-Parser-Anweisung finden Sie im Artikel zur Escape-Parser-Anweisung auf [Docker.com]( https://docs.docker.com/engine/reference/builder/#escape).
+
 ## PowerShell in Dockerfile
 
 ### PowerShell-Befehle
@@ -442,6 +476,6 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 [Dockerfile-Referenz auf Docker.com](https://docs.docker.com/engine/reference/builder/)
 
 
-<!--HONumber=Jun16_HO3-->
+<!--HONumber=Jun16_HO4-->
 
 
