@@ -1,6 +1,6 @@
 {
   "LastProcessedCommit": "eae45c2c81c7edc94d963da69dcdee2b6f08f37d",
-  "LastTranslatedCommit": "5267033d1f6790fcb107f4440c0d2d69c552fd67",
+  "LastTranslatedCommit": "9ab3af6efe29209e54cba298951b0c37380db614",
   "Items": {
     "5090f6d60b5cbdce0990242d795d9e4e3736e791": {
       "FileHash": "5090f6d60b5cbdce0990242d795d9e4e3736e791",
@@ -19238,7 +19238,7 @@
       "TargetFilePath": "virtualization\\windowscontainers\\quick_start\\quick_start.md",
       "HandbackFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf",
       "HandbackFileCommit": "e975b9de8e735dc6dbad628f068b25b81f4699e0",
-      "HandbackDateTime": "2016-06-30T15:40:30.7171495Z",
+      "HandbackDateTime": "2016-06-30T16:09:35.8484359Z",
       "HandbackException": {
         "internal_error_code": "handback_transform_failed",
         "internal_error_message": "Handback file: C:\\ol\\master\\VDP.handback\\0e62d1\\ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf failed.",
@@ -19248,7 +19248,7 @@
         "stack_trace": "   at Microsoft.OpenLocalization.Transformer.TransformerClient.XliffToMarkdown(Stream xliffStream, Stream skeletonStream, Stream targetStream) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization.Transformer.Core\\TransformerClient.cs:line 119\r\n   at Microsoft.OpenLocalization.Helper.XliffTransformUtil.XliffToMarkdown(String skeletonFile, String xliffFile, String mdfile, Boolean useJavascriptTransformer) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Helper\\XliffTransformUtil.cs:line 92\r\n   at Microsoft.OpenLocalization.Localization.LocalizationCore.<>c__DisplayClass5_0.<GetHandbackFiles>b__0(String file) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Localization\\HandbackCore.cs:line 406",
         "extended_information": null
       },
-      "HandbackFailureTimes": 4,
+      "HandbackFailureTimes": 5,
       "UpdatedDateTime": "2016-06-21T13:48:48.4666859Z",
       "ArchiveFilePath": "ol-handoff\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\archive\\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf",
       "ArchiveFileCommit": "7837728b3ef4312546cb113807956447842742ce",
