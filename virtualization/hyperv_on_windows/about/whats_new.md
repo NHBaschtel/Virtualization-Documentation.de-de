@@ -1,5 +1,9 @@
 ---
 redirect_url: ../windows_welcome
+translationtype: Human Translation
+ms.sourcegitcommit: 3491d21a31a92f0a97de572afafc29ae8e661c12
+ms.openlocfilehash: 54b496f535b94f0b9aa83cce3ae5504830faee65
+
 ---
 
 ## Hinzufügen und Entfernen von Netzwerkadaptern und Arbeitsspeicher bei laufendem Systembetrieb
@@ -84,6 +88,7 @@ Virtuelle Computer verwenden nun ein neues Konfigurationsdateiformat, das entwor
 
 > **Wichtig**: Die VMCX-Datei hat ein binäres Format. Ein direktes Bearbeiten der VMCX- oder VMRS-Datei wird nicht unterstützt.
 
-<!--HONumber=Jun16_HO2-->
+
+<!--HONumber=Jun16_HO4-->
 
 
