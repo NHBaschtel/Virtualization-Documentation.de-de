@@ -9,9 +9,14 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
+ms.sourcegitcommit: 7113f1dc1e9a0a18d4eb25e6d604e89f96f826c4
+ms.openlocfilehash: 1fddaff6fc260c0cf91c8626a60d768a06995e53
+
 ---
 
-Das Docker-Modul ist nicht im Lieferumfang von Windows enthalten und muss separat installiert und konfiguriert werden. Docker-Daemon kann zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. In diesem Dokument wird beschrieben, wie Sie den Docker-Daemon installieren und konfigurieren, und es werden einige Beispiele für gängige Konfigurationen vorgestellt.
+# Docker-Daemon unter Windows
+
+Das Docker-Modul ist nicht im Lieferumfang von Windows enthalten und muss einzeln installiert und konfiguriert werden. Docker-Daemon kann zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. In diesem Dokument wird beschrieben, wie Sie den Docker-Daemon installieren und konfigurieren, und es werden einige Beispiele für gängige Konfigurationen vorgestellt.
 
 ## Installieren von Docker
 
@@ -151,6 +156,7 @@ Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausfüh
 ```
 
 
-<!--HONumber=Jun16_HO2-->
+
+<!--HONumber=Jun16_HO4-->
 
 

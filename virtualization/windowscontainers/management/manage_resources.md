@@ -9,6 +9,10 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b2192e64-9d74-474e-8af0-2d8b3ad1deee
+translationtype: Human Translation
+ms.sourcegitcommit: cfa3c14e932f8b86edf6667200ac028ea0a16b67
+ms.openlocfilehash: 82cc37e4bcf001e938dcff7308be16978fa955e2
+
 ---
 
 # Verwaltung von Containerressourcen
@@ -34,6 +38,7 @@ docker run -it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 - Für Hyper-V-Container wird die Steuerung von CPU- und E/A-Ressourcen derzeit nicht unterstützt.
 - Die Steuerung von E/A-Ressourcen wird derzeit für freigegebene Containerdatenvolumes nicht unterstützt.
 
-<!--HONumber=May16_HO3-->
+
+<!--HONumber=Jun16_HO4-->
 
 
