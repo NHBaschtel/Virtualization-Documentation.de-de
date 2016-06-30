@@ -1,6 +1,6 @@
 ---
-title: Verwenden von Prüfpunkten
-description: Verwenden von Prüfpunkten
+title: "Verwenden von Prüfpunkten"
+description: "Verwenden von Prüfpunkten"
 keywords: windows 10, hyper-v
 author: scooley
 manager: timlt
@@ -9,6 +9,10 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
+translationtype: Human Translation
+ms.sourcegitcommit: 4cdf81cace246c5de041d378391dca9b9d318dd5
+ms.openlocfilehash: bd0ee06f4e5eab4f33bb7e7c6dd71119dddde5c9
+
 ---
 
 # Zurücksetzen virtueller Computer in einen vorherigen Zustand mithilfe von Prüfpunkten
@@ -245,6 +249,7 @@ Nachdem der Produktionsprüfpunkt angewendet wurde, werden Sie feststellen, dass
 2. Wie Sie sehen, wurde die Textdatei wiederhergestellt. Doch im Gegensatz zum Standardprüfpunkt ist Editor nicht geöffnet.   
 
 
-<!--HONumber=Jun16_HO3-->
+
+<!--HONumber=Jun16_HO4-->
 
 

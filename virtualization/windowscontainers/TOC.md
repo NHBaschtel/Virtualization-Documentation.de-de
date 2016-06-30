@@ -1,6 +1,5 @@
 # Informationen zu Windows-Containern
 ## [Übersicht über Windows-Container](about/about_overview.md)
-## [In Bearbeitung](about/work_in_progress.md)
 ## [FAQ](about/faq.md)
 
 # Schnellstartanleitung für Container
@@ -42,6 +41,6 @@
 
 
 
-<!--HONumber=Jun16_HO2-->
+<!--HONumber=Jun16_HO4-->
 
 

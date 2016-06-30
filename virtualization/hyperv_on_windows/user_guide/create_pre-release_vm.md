@@ -1,6 +1,6 @@
 ---
-title: Testen von Features der Vorabversion für Hyper-V
-description: Testen von Features der Vorabversion für Hyper-V
+title: "Testen von Features der Vorabversion für Hyper-V"
+description: "Testen von Features der Vorabversion für Hyper-V"
 keywords: windows 10, hyper-v
 author: scooley
 manager: timlt
@@ -9,6 +9,10 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 426c87cc-fa50-4b8d-934e-0b653d7dea7d
+translationtype: Human Translation
+ms.sourcegitcommit: 7d97a2177a14f455ed5b54b0773e3003969303e2
+ms.openlocfilehash: 7dee9e53f0e95b0c3b0ec0afc5b9d510c1962dbc
+
 ---
 
 # Testen von Features der Vorabversion für Hyper-V
@@ -48,6 +52,7 @@ Hier einige weitere Beispiele, in denen Sie das Flag „-Prerelease“ verwenden
 - [Supported virtual machine configuration versions](https://technet.microsoft.com/library/mt695898.aspx#BKMK_SupportedConfigVersions) (Unterstützte Konfigurationsversionen für virtuelle Computer): Erfahren Sie, wie Sie die Konfigurationsversion des virtuellen Computers überprüfen und welche Versionen von Microsoft unterstützt werden.
 
 
-<!--HONumber=May16_HO5-->
+
+<!--HONumber=Jun16_HO4-->
 
 

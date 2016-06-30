@@ -1,6 +1,6 @@
 ---
 title: Informationen zu Windows-Containern
-description: Erfahren Sie mehr über Windows-Container.
+description: "Erfahren Sie mehr über Windows-Container."
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
@@ -9,6 +9,10 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
+translationtype: Human Translation
+ms.sourcegitcommit: cfa3c14e932f8b86edf6667200ac028ea0a16b67
+ms.openlocfilehash: 180ebc929e4203973ac5e0b4e108777b6c90b0fc
+
 ---
 
 # Windows-Container
@@ -31,7 +35,7 @@ Wenn Sie sich in einem Container befänden, sähe es dort so aus, als befänden 
 
 Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten.
 
-**Windows Server-Container**: Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Server-Container teilt sich einen Kernel mit dem Containerhost und allen Container, die auf dem Host ausgeführt werden.
+**Windows Server-Container**: – Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Server-Container teilt sich einen Kernel mit dem Containerhost und allen Container, die auf dem Host ausgeführt werden.
 
 **Hyper-V-Container**: Erweitern die von Windows Server-Containern bereitgestellte Isolation, indem jeder Container auf einem hochgradig optimierten virtuellen Computer ausgeführt wird. Bei dieser Konfiguration wird der Kernel des Containerhosts nicht gemeinsam mit den Hyper-V-Containern verwendet.
 
@@ -86,6 +90,7 @@ src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-an
 
 
 
-<!--HONumber=May16_HO3-->
+
+<!--HONumber=Jun16_HO4-->
 
 

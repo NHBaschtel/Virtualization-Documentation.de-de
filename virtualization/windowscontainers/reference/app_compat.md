@@ -1,6 +1,6 @@
 ---
-title: Anwendungskompatibilität im Windows-Containern
-description: Anwendungskompatibilität in Windows-Containern.
+title: "Anwendungskompatibilität im Windows-Containern"
+description: "Anwendungskompatibilität in Windows-Containern."
 keywords: docker, containers
 author: scooley
 manager: timlt
@@ -9,6 +9,10 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 3e524458-bd03-400e-913f-210335add8dc
+translationtype: Human Translation
+ms.sourcegitcommit: cfa3c14e932f8b86edf6667200ac028ea0a16b67
+ms.openlocfilehash: 2830dc81317311dd54dfcca45251b668f3d2cc29
+
 ---
 
 # Anwendungskompatibilität im Windows-Containern
@@ -85,6 +89,7 @@ Wir haben versucht, die folgenden Programme in einem Hyper-V-Container auszufüh
 Ist etwas nicht in dieser Liste?  Lassen Sie uns über die [Foren](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) wissen, was in Ihrer Umgebung funktioniert und was nicht.
 
 
-<!--HONumber=May16_HO3-->
+
+<!--HONumber=Jun16_HO4-->
 
 
