@@ -4465,7 +4465,7 @@
 * Archive File: [quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/7837728b3ef4312546cb113807956447842742ce/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/archive/quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf)
 * Archive Datetime: 2016-06-30 07:21:48
 * Handback File: [quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e975b9de8e735dc6dbad628f068b25b81f4699e0/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf)
-* Handback Datetime: 2016-06-30 14:39:18
+* Handback Datetime: 2016-06-30 15:08:33
 * Handback Error: [handback_transform_failed](#c0176d4f5445263a5fd522a80ce2a9dca7ac90e6313handback_transform_failed)
 * Bilingual File: [quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e975b9de8e735dc6dbad628f068b25b81f4699e0/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf)
 * Bilingual Datetime: 2016-06-21 13:49:20
