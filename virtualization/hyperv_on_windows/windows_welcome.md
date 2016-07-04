@@ -1,21 +1,25 @@
 ---
-title: &479582873 Hyper-V in Windows 10
+title: Hyper-V in Windows 10
 description: Hyper-V in Windows 10
 keywords: windows 10, hyper-v
 author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: &1480447760 windows-10-hyperv
+ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
+translationtype: Human Translation
+ms.sourcegitcommit: e14ede0a2b13de08cea0a955b37a21a150fb88cf
+ms.openlocfilehash: 4d5c2ad7515b8b536da30ad2dd3b4ffc2cee5832
+
 ---
 
-# Hyper-V in Windows 10
+# Hyper-V in Windows 10 
 
 Viele Versionen von Windows 10 enthalten die Hyper-V-Virtualisierungstechnologie. Hyper-V ermöglicht das Ausführen virtualisierter Computersysteme auf einem physischen Host. Diese virtualisierte Systeme können wie physische Computersysteme genutzt und verwaltet werden, befinden sich aber in einer virtualisierten und isolierten Umgebung. Eine Hypervisor genannte Spezialsoftware dient zum Verwalten des Zugriffs zwischen den virtuellen Systemen und physischen Hardwareressourcen. Die Virtualisierung ermöglicht die schnelle Bereitstellung von Computersystemen, bietet einen schnellen Weg zum Wiederherstellen von Systemen in einem vorherigen fehlerfreien Zustand und erlaubt das Migrieren von Systemen zwischen physischen Hosts.
 
-In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail beschrieben. Außerdem finden Sie eine Schnellstartanleitung und Links zu weiteren Ressourcen und Communityforen.
+In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail beschrieben. Außerdem finden Sie eine Schnellstartanleitung und Links zu weiteren Ressourcen und Communityforen. 
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
     <tr valign="top">
@@ -58,9 +62,6 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
 
 
 
-
-
-
-<!--HONumber=May16_HO1-->
+<!--HONumber=Jun16_HO4-->
 
 

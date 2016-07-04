@@ -1,104 +1,100 @@
-# EULA für Windows Server
+# Endbenutzer-Lizenzvertrag für Windows Server
 
-MICROSOFT-LIZENZBESTIMMUNGEN FÜR EIN VIRTUELLES FESTPLATTENABBILD DER FOLGENDEN SOFTWARE:  
-MICROSOFT WINDOWS SERVER
+MICROSOFT-LIZENZBEDINGUNGEN FÜR EIN VHD-IMAGE DER FOLGENDEN SOFTWARE:  
+MICROSOFT WINDOWS SERVER 
 
 ---------------------
 
+Diese Lizenzbedingungen stellen einen Vertrag zwischen Microsoft Corporation (oder je nach Ihrem Wohnort einem verbundenen Unternehmen) und Ihnen dar. Bitte lesen Sie diese aufmerksam durch. Sie gelten für das oben genannte Softwareprodukt und jegliche Dokumentation, was die Medien einschließt, auf denen Sie es erhalten haben (zusammenfassend als „Software“ oder „VHD“ bezeichnet). Die Bedingungen gelten auch für alle auf Microsoft Internet basierenden Dienste für diese Software.
 
-Diese Lizenzbestimmungen sind ein Vertrag zwischen Ihnen und der Microsoft Corporation (bzw. abhängig von Ihrem Wohnsitz einem mit Microsoft verbundenem Unternehmen). Bitte lesen Sie die Bestimmungen aufmerksam durch. Sie gelten für das oben genannte Softwareprodukt und etwaige Dokumentation, darunter die Medien, auf denen Sie diese erhalten haben (gemeinsam als „Software“ oder „VHD“ bezeichnet). Die Bestimmungen gelten auch für internetbasierte Dienste von Microsoft für diese Software.
-
-**DURCH DIE VERWENDUNG DER SOFTWARE ERKENNEN SIE DIESE BESTIMMUNGEN AN. FALLS SIE DIE BESTIMMUNGEN NICHT AKZEPTIEREN, SIND SIE NICHT BERECHTIGT, DIE SOFTWARE ZU VERWENDEN.  
+**MIT NUTZUNG DER SOFTWARE AKZEPTIEREN SIE DIESE BEDINGUNGEN. WENN SIE SIE NICHT AKZEPTIEREN, DÜRFEN SIE DIE SOFTWARE NICHT VERWENDEN.  
 WIE WEITER UNTEN BESCHRIEBEN, GILT DIE VERWENDUNG EINIGER FEATURES AUCH ALS IHRE ZUSTIMMUNG ZUR ÜBERTRAGUNG BESTIMMTER STANDARDCOMPUTERINFORMATIONEN FÜR INTERNETBASIERTE DIENSTE.  
-IHR RECHT ZUR NUTZUNG DER SOFTWARE IST AUF EINEN BESTIMMTEN ZEITRAUM BESCHRÄNKT. WEITERE INFORMATIONEN FINDEN SIE IN ABSCHNITT 3.**
+IHR RECHT ZUR NUTZUNG DER SOFTWARE IST AUF EINEN ANGEGEBENEN ZEITRAUM BESCHRÄNKT. NÄHERE INFORMATIONEN FINDEN SIE IN ABSCHNITT 3.**
 
 ---------------------
 
+Wenn Sie diese Lizenzbedingungen einhalten, verfügen Sie über die im weiteren Verlauf aufgeführten Rechte.  
 
-Wenn Sie diese Lizenzbestimmungen einhalten, verfügen Sie über die nachfolgend aufgeführten Rechte:
-
-1. **RECHTE ZUR INSTALLATION UND NUTZUNG.**
-    *  Vorrang vor anderen Bestimmungen.  
-        Diese Lizenzbestimmungen haben Vorrang vor allen Bestimmungen eines Microsoft Software-Lizenzvertrages, bei dem Sie sich im Rahmen der Installation mit einem separaten Lizenzvertrag „einverstanden“ erklären müssen.
-    * Installation.  
-        Sie sind berechtigt, die Software auf dem Gerät zu installieren und zu nutzen, auf dem Sie Virtualisierungssoftware ausführen, die VHD-Formate (Virtual Hard Disk) unterstützt, einschließlich Microsoft Virtual Server.
-    * Beschränkte Nutzungsrechte.  
-        Sie sind berechtigt, die Software nur im virtuellen Festplattenabbild zu nutzen, um sie intern vorzuführen und zu testen. Sie sind nicht berechtigt, die Software in einer realen Betriebsumgebung zu nutzen.
-    * Keine Trennung.  
-        Die Microsoft-Software wird im virtuellen Festplattenabbild als einzelne Softwareeinheit lizenziert. Die Software kann Tools und Komponenten zur Unterstützung neuer Features des Betriebssystems umfassen. Sie dürfen diese Tools oder Komponenten nur zur Verwendung dieser neuen Features, die als Bestandteil des Betriebssystems verteilt werden, trennen, verwenden oder weitervertreiben. Beispielsweise ist Service Fabric eine Softwarekomponente, die nur vom Feature Netzwerkcontroller des Betriebssystems verwendet werden darf.
-    * Drittanbieterprogramme.  
-        Die Software kann urheberrechtlich geschützte Softwareprogramme Dritter enthalten, die unter eigenen Bestimmungen, die Ihnen angezeigt werden, lizenziert werden. Die Software kann auch Open Source-Programme von Dritten enthalten, die Microsoft, nicht der Dritte, unter Lizenzbestimmungen von Microsoft an Sie lizenziert. Hinweise für die Open Source-Programme von Dritten, sofern vorhanden, werden nur zu Ihrer Information angegeben.
-
+1. **INSTALLATION UND NUTZUNGSRECHTE.**
+  *  Ersetzen anderer Bestimmungen.  
+  Die Bestimmungen dieser Lizenz ersetzen die Bestimmungen jeder Microsoft Softwarelizenzvereinbarung, die während der Installation „Zustimmung“ zu einer separaten Lizenzvereinbarung fordert. 
+  * Installation.  
+  Sie können die Software auf Ihrem Gerät installieren und verwenden, auf dem Sie jede Virtualisierungssoftware ausführen, die virtuelle Festplattenformate (Virtual Hard Disk, VHD) inklusive Microsoft Virtual Server ausführen kann. 
+  * Begrenzte Nutzungsrechte.  
+  Sie dürfen die Software im VHD-Image nur intern zu Demonstration und Bewertung verwenden. Sie dürfen die Software nicht in einer echten Betriebsumgebung verwenden. 
+  * Keine Trennung.  
+  Die Microsoft Software im VHD-Image wird als einzelnes Softwareprodukt lizenziert. Die Software kann Tools und Komponenten zur Unterstützung neuer Features des Betriebssystems enthalten. Sie dürfen diese Tools oder Komponenten zu keinem anderen Zweck trennen, verwenden oder verteilen als zur Verwendung durch diese neuen Features, die als Teil des Betriebssystems weitergegeben werden. Service Fabric ist z. B. eine Softwarekomponente, die nur vom Netzwerkcontrollerfeature des Betriebssystems verwendet werden darf.
+  * Programme von Drittanbietern.  
+  Die Software kann Softwareprogramme von Drittanbietern enthalten, die unter geschützten Bedingungen lizenziert sind, die Ihnen angezeigt werden. Die Software kann auch Open Source-Programme von Drittanbietern enthalten, die von Microsoft und nicht vom Drittanbieter im Rahmen der Lizenzbedingungen von Microsoft an Sie lizenziert werden. Hinweise zu Open Source-Programmen sind, sofern vorhanden, nur zu Informationszwecken enthalten.
+  
 2. **INTERNETBASIERTE DIENSTE.**  
-    Microsoft stellt mit der Software möglicherweise internetbasierte Dienste bereit. Microsoft ist berechtigt, diese Dienste jederzeit zu ändern oder einzustellen. Sollte das Virtuelle Festplattenabbild so konfiguriert werden, dass eine Übertragung über das Internet erfolgt, gelten die nachfolgenden Bestimmungen:  
-    Zustimmung für internetbasierte Dienste. Da es sich bei dieser Software um eine Vorabversion handelt, haben wir einige internetbasierte Features standardmäßig eingeschaltet, um Feedback über diese zu erhalten. Diese nachfolgend und in der Datenschutzerklärung von Windows beschriebenen Features der Software stellen über das Internet eine Verbindung mit Computersystemen von Microsoft oder von Dienstanbietern her. In einigen Fällen erhalten Sie keinen gesonderten Hinweis, wenn die Verbindung hergestellt wird. In einigen Fällen können Sie diese Features abschalten oder nicht verwenden. Weitere Informationen zu diesen Features finden Sie unter go.microsoft.com/fwlink/?LinkId=506737. Durch die Verwendung dieser Features erklären Sie sich mit der Übertragung dieser Informationen in jedes Land, in dem Microsoft tätig ist, einverstanden. Die Liste unten ist möglicherweise nicht vollständig.
-    Computerinformationen. Einige Softwarefeatures verwenden Internetprotokolle, die an Microsoft (oder deren Lieferanten oder Dienstanbieter) Computerinformationen senden, wie z. B. Ihre Internetprotokolladresse, den Typ des Betriebssystems, den Typ des Browsers und den Namen und die Version der von Ihnen verwendeten Software sowie den Sprachcode des Geräts, auf dem Sie die Software installiert haben. Microsoft verwendet diese Informationen, um Ihnen die internetbasierten Dienste in Übereinstimmung mit der Datenschutzerklärung unter go.microsoft.com/fwlink/?LinkId=506737 zur Verfügung zu stellen.
-
-3. **ZEITKRITISCHE SOFTWARE.**
-    Die Software kann ab dem 15.07.2016 (Tag.Monat.Jahr) nicht mehr ausgeführt werden. Sie werden keine weitere Mitteilung erhalten. Wenn die Software nicht mehr ausgeführt wird, können Sie möglicherweise nicht mehr auf die mit der Software verwendeten Daten zugreifen.
-
+  Microsoft kann mit der Software internetbasierte Dienste bereitstellen. Diese können jederzeit geändert oder storniert werden. Wenn das VHD-Image zur Übertragung über das Internet konfiguriert werden sollte, gelten folgende Bedingungen:  
+  Zustimmung für internetbasierte Dienste. Da diese Software eine Vorabversion ist, haben wir standardmäßig einige internetbasierte Features aktiviert, um Feedback dazu zu erhalten. Die nachfolgend und in der Windows-Datenschutzerklärung beschriebenen Softwarefeatures stellen über das Internet eine Verbindung mit Computersystemen von Microsoft oder Dienstanbietern her. In einigen Fällen erhalten Sie keinen gesonderten Hinweis, wenn die Verbindung hergestellt wird. In einigen Fällen können Sie diese Features abschalten oder nicht verwenden. Weitere Informationen zu diesen Features finden Sie unter go.microsoft.com/fwlink/p/?LinkId=506737. Mit der Nutzung dieser Features stimmen Sie der Übertragung dieser Informationen in ein beliebiges Land zu, in dem Microsoft tätig ist. Die unten stehende Liste ist möglicherweise nicht vollständig.
+  Computerinformationen. Einige Softwarefeatures verwenden Internetprotokolle, die an Microsoft (oder seine Lieferanten bzw. Dienstanbieter) Computerinformationen senden, wie z. B. Ihre Internetprotokolladresse, den Typ des Betriebssystems, den Typ des Browsers, Name und Version der von Ihnen verwendeten Software sowie den Sprachcode des Geräts, auf dem Sie die Software installiert haben. Microsoft verwendet diese Informationen, um die internetbasierten Dienste gemäß der Datenschutzerklärung unter go.microsoft.com/fwlink/?LinkId=506737 für Sie verfügbar zu machen.
+  
+3. **ZEITEMPFINDLICHE SOFTWARE.**
+  Die Software wird am 15.7.2016 (Tag/Monat/Jahr) eingestellt. Sie erhalten darüber keine weitere Benachrichtigung. Wenn die Ausführung der Software nicht mehr möglich ist, können Sie möglicherweise nicht mehr auf Daten zugreifen, die Sie mit der Software verwendet haben. 
+  
 4. **AKTIVIERUNG.**  
-    Durch die Aktivierung wird die Nutzung der Software einem bestimmten Gerät zugeordnet. Während der Aktivierung sendet die Software Informationen über die Software und über das Gerät an Microsoft. Zu diesen Informationen gehören die Version, die Sprache und der Product Key der Software, die Internetprotokolladresse des Geräts sowie Informationen, die aus der Hardwarekonfiguration des Geräts abgeleitet werden. Weitere Informationen finden Sie unter go.microsoft.com/fwlink/?LinkId=39157. Durch die Nutzung der Software erklären Sie sich mit der Übertragung dieser Informationen einverstanden. Wenn die Software ordnungsgemäß lizenziert ist, sind Sie berechtigt, die im Installationsvorgang installierte Version der Software bis zum Ende des vorgesehenen Aktivierungszeitraums zu nutzen. Wenn die Software nicht aktiviert wird, haben Sie nach dem für die Aktivierung vorgesehenen Zeitraum kein Recht, die Software zu nutzen. Damit soll die nicht lizenzierte Nutzung der Software verhindert werden. Es ist Ihnen nicht gestattet, die Aktivierung zu umgehen. Wenn das Gerät mit dem Internet verbunden ist, stellt die Software für die Aktivierung möglicherweise automatisch eine Verbindung zu Microsoft her. Sie können die Software auch manuell über Internet oder Telefon aktivieren. Dabei fallen möglicherweise Internet- und Telefongebühren an. Wenn Sie an den Komponenten Ihres Computers oder der Software Änderungen vorgenommen haben, müssen Sie die Software möglicherweise erneut aktivieren. Solange Sie die Software nicht aktiviert haben, werden Sie automatisch an die Aktivierung erinnert.
-
+  Durch die Aktivierung wird die Verwendung der Software einem bestimmten Gerät zugeordnet. Während der Aktivierung werden Informationen über die Software und das Gerät an Microsoft gesendet. Diese Informationen umfassen die Version, die Sprache und den Product Key der Software, die IP-Adresse des Geräts sowie von der Hardwarekonfiguration des Geräts abgeleitete Informationen. Weitere Informationen finden Sie unter go.microsoft.com/fwlink/?LinkId=39157. Durch die Verwendung der Software erklären Sie sich mit der Übertragung dieser Informationen einverstanden. Wenn die Software ordnungsgemäß lizenziert ist, verfügen Sie über das Recht, die während des Installationsvorgangs installierte Version der Software bis zum für die Aktivierung zulässigen Zeitpunkt zu verwenden. Sofern die Software nicht aktiviert wird, haben Sie kein Recht, die Software nach dem für die Aktivierung zulässigen Zeitpunkt zu verwenden. Damit soll die nicht lizenzierte Verwendung der Software verhindert werden. Es ist Ihnen nicht gestattet, die Aktivierung zu umgehen. Wenn das Gerät mit dem Internet verbunden ist, stellt die Software für die Aktivierung möglicherweise automatisch eine Verbindung mit Microsoft her. Sie können die Software auch manuell über Internet oder Telefon aktivieren. Dabei fallen möglicherweise Internet- und Telefongebühren an. Einige Änderungen Ihrer Computerkomponenten oder Software können eine Reaktivierung der Software erfordern. Solange Sie die Software nicht aktiviert haben, werden Sie automatisch daran erinnert, sie zu aktivieren.
+  
 5. **PRODUCT KEYS.**  
-    Für die Installation der Software und den Zugriff auf sie ist möglicherweise ein Product Key erforderlich. Wenn dies der Fall ist, tragen Sie die Verantwortung für die Verwendung der Ihnen zugewiesenen Keys. Sie sind nicht berechtigt, Keys an Dritte weiterzugeben.
-
-6. **VORABVERSIONSSOFTWARE.**  
-    Bei dieser Software handelt es sich um eine Vorabversion. Die Funktionsweise der endgültigen Version kann sich von der der Vorabversion unterscheiden. Wir sind berechtigt, Änderungen an der endgültigen Version für den Handel vorzunehmen. Des Weiteren sind wir berechtigt, keine Version für den Handel auf den Markt zu bringen.
-
+  Für die Installation der Software oder für den Zugriff darauf ist möglicherweise ein Schlüssel erforderlich. Wenn dies der Fall ist, sind Sie für die Verwendung der Ihnen zugewiesenen Schlüsseln verantwortlich. Sie sollten die Schlüssel nicht Dritten gegenüber offenlegen.
+  
+6. **VORABVERSION DER SOFTWARE.**  
+  Diese Software ist eine Vorabversion. Sie funktioniert möglicherweise nicht so, wie es bei der endgültigen Version der Software der Fall sein wird. Wir könnten sie gegen die endgültige, kommerziell verfügbare Version austauschen. Möglicherweise geben wir auch keine kommerziell verfügbare Version heraus.
+  
 7. **FEEDBACK.**
-    Wenn Sie Microsoft Feedback zur Software geben, berechtigen Sie Microsoft, Ihr Feedback zu verwenden, an Dritte weiterzugeben und für kommerzielle Zwecke und in jeglicher Weise und für jeglichen Zweck zu nutzen, ohne dafür Gebühren zu berechnen. Des Weiteren treten Sie gebührenfrei jegliche Patentrechte an Dritte für deren Produkte, Technologien und Dienste ab, die zur Verwendung mit oder als Schnittstelle für spezifische Teile einer Microsoft-Software oder eines Microsoft-Diensts dienen, für die bzw. den Ihr Feedback verwendet wurde. Sie dürfen kein Feedback geben, das unter einen Lizenzvertrag fällt, der es erforderlich macht, dass Microsoft die eigene Software oder Dokumentation an Dritte lizenziert, weil Microsoft Ihr Feedback einfließen lässt. Diese Rechte sind über die Laufzeit dieses Vertrags hinaus gültig.
+  Wenn Sie Feedback zur Software an Microsoft senden, gewähren Sie Microsoft das Recht, Ihr Feedback zu verwenden, weiterzugeben und kommerziell in jeglicher Weise und für jeglichen Zweck kostenfrei zu nutzen.  Außerdem gewähren Sie Dritten das Recht zu, sämtliche Patentrechte, die dazu erforderlich sind, damit ihre Produkte, Technologien und Dienste bestimmte Teile der Microsoft-Software oder -Dienste, die Feedback enthalten, verwenden oder mit diesen verknüpfen können, kostenfrei zu nutzen. Sie geben kein Feedback, das unter einen Lizenzvertrag fällt, der es erforderlich macht, dass Microsoft ihre Software oder Dokumentation an Drittparteien lizenziert oder an diese bereitstellt. Diese Rechte gelten über den Ablauf dieser Vereinbarung hinaus. 
+  
+8. **.NET FRAMEWORK-SOFTWARE.**
+  Die Software enthält eine oder mehrere Komponenten von .NET Framework, die Sie nur wie unter go.microsoft.com/fwlink/?linkid=66406 beschrieben verwenden dürfen, wenn Sie die .NET Framework-Komponenten zur Durchführung interner Benchmark-Tests verwenden.
+  
+9. **VIDEOKOMPRIMIERUNGSSTANDARDS H.264/AVC UND MPEG-4 UND VIDEOSTANDARDS VC-1 UND MPEG-2** Diese Software kann H.264/AVC-, VC-1-, MPEG-4 Part 2- und MPEG-2-Komprimierungstechnologie enthalten. MPEG LA, L.L.C. erfordert diesen Hinweis:
 
-8. **SOFTWARE .NET FRAMEWORK.**
-    Die Software enthält eine oder mehrere Komponenten von .NET Framework, die Sie nur wie unter go.microsoft.com/fwlink/?linkid=66406 beschrieben verwenden dürfen, wenn Sie die .NET Framework-Komponenten zur Durchführung interner Vergleichstests verwenden.
+  DIESES PRODUKT IST UNTER DEN PATENTPORTFOLIOLIZENZEN FÜR AVC-, VC-1-, MPEG-4 PART 2 VISUAL- UND MPEG-2-VIDEOS LIZENZIERT FÜR DIE PERSÖNLICHE UND NICHT KOMMERZIELLE VERWENDUNG DURCH EINEN BENUTZER ZUR (i) VIDEOCODIERUNG GEMÄSS DER OBIGEN STANDARDS („VIDEOSTANDARDS“) UND/ODER (ii) DECODIERUNG VON AVC-, VC-1-, MPEG-4 PART 2- UND MPEG-2 VIDEOS, DIE VON EINEM BENUTZER IM RAHMEN EINER PERSÖNLICHEN UND NICHT KOMMERZIELLEN AKTIVITÄT CODIERT WURDEN, UND/ODER VON EINEM VIDEOANBIETER ENTGEGENGENOMMEN WURDEN, DER ZUM BEREITSTELLEN SOLCHER VIDEOS LIZENZIERT IST. EINE LIZENZ FÜR JEGLICHE ANDERE ZWECKE WIRD WEDER GEWÄHRT, NOCH IST SIE STILLSCHWEIGEND ENTHALTEN. WEITERE INFORMATIONEN ERHALTEN SIE VON MPEG LA, L.L.C, SIEHE WWW.MPEGLA.COM.
+  
+10. **ADOBE FLASH PLAYER**: Die Software kann eine Version von Adobe Flash Player enthalten. Sie akzeptieren, dass Ihre Verwendung von Adobe Flash Player den Lizenzbedingungen für Adobe Systems Incorporated unter go.microsoft.com/fwlink/?LinkID=248532 unterliegt. Adobe und Flash sind entweder eingetragene Marken oder Marken von Adobe Systems Incorporated in den USA und/oder anderen Ländern.
+  
+11. **UMFANG DER LIZENZ.**
+  Die Software wird lizenziert, nicht verkauft. Dieser Vertrag gewährt Ihnen lediglich einige Rechte zur Verwendung der Software. Microsoft behält sich alle anderen Rechte vor. Wenn nicht das geltende Recht trotz dieser Einschränkung mehr Rechte gewährt, dürfen Sie die Software nur wie in dieser Vereinbarung ausdrücklich gestattet verwenden. In diesem Fall müssen Sie alle technischen Beschränkungen in der Software einhalten, die eine Verwendung auf bestimmte Weise vorschreiben. Sie sind nicht berechtigt:
+  * Die Ergebnisse von Benchmarktests der Software – Microsoft .NET Framework ausgenommen (siehe separate Bedingung oben) – ohne die vorherige schriftliche Genehmigung durch Microsoft an Drittanbieter weiterzugeben;
+  * technischen Beschränkungen in der Software zu umgehen;
+  * die Software zurück zu entwickeln, zu dekompilieren oder zu demontieren, außer und nur in dem Maße, indem es durch geltendes Recht trotz der jeweiligen Beschränkung gestattet ist;
+  * mehr Kopien der Software anzufertigen, als in diesem Vertrag angegeben oder laut anwendbaren Recht ungeachtet dieser Einschränkung zulässig ist;
+  * die Software zum Kopieren durch andere Personen zu veröffentlichen;
+  * die Software zu vermieten, zu leasen oder zu verleihen;
+  * die Software oder diesen Vertrag an Dritte zu übertragen; oder
+  * die Software für kommerzielle Software-Hostingdienste zu verwenden.
+  
+12. **EXPORTEINSCHRÄNKUNGEN.**
+  Die Software unterliegt den Exportgesetzen und -bestimmungen der Vereinigten Staaten von Amerika. Sie müssen alle inländischen und internationalen Exportgesetzen und -bestimmungen, die für diese Software gelten, einhalten. Diese Bestimmungen umfassen Einschränkungen zu Zielorten, Endbenutzern und Endverwendung. Weitere Informationen finden Sie unter www.microsoft.com/exporting.
+  
+13. **SUPPORTLEISTUNGEN.**
+  Da diese Software „as is“ an sie verkauft wurde, stellt Microsoft möglicherweise keine Supportdienste für sie bereit.
+  
+14. **GESAMTE VEREINBARUNG.**
+  Dieser Vertrag und die Bedingungen für Ergänzungen, Updates, internetbasierte Dienste und Supportdienste, die Sie verwenden, stellen den gesamten Vertrag für die Software und die Supportservices dar.
+  
+15. **GELTENDES RECHT.**  
+  a.  USA. Wenn Sie die Software in den Vereinigten Staaten erworben haben, gilt für die Auslegung dieser Vereinbarung sowie für Ansprüche aufgrund von Vertragsverletzungen ungeachtet sonstiger gesetzlicher Regelungen das Gesetz des Staates Washington Regeln die Auslegung. Die Gesetze des Staates Ihres Wohnortes regeln alle anderen Ansprüche, einschließlich Ansprüche unter den Verbraucherschutzgesetzen des Staates, Gesetzen gegen unlauteren Wettbewerb und in einem Schadenersatzverfahren.  
+  b.  Außerhalb der Vereinigten Staaten. Wenn Sie die Software in einem anderen Land erworben haben, gelten die Gesetze dieses Landes.
+  
+16. **RECHTSKRÄFTIGKEIT.**
+  Dieser Vertrag beschreibt bestimmte gesetzliche Rechte. Möglicherweise stehen Ihnen unter den Gesetzen Ihres Staates oder Landes weitere Rechte zu. Möglicherweise besitzen Sie auch Rechte gegenüber den Dritten, von denen Sie die Software erworben haben. Dieser Vertrag ändert nicht Ihre Rechte unter den Gesetzen Ihres Staates oder Landes, sofern die Gesetze Ihres Staates oder Landes dies nicht zulassen.
+  
+17. **GARANTIEAUSSCHLUSS. DIE SOFTWARE WIRD „AS-IS“ LIZENZIERT. SIE TRAGEN DAS RISIKO DER VERWENDUNG. MICROSOFT GEWÄHRT KEINE AUSDRÜCKLICHEN GEWÄHRLEISTUNGEN, GARANTIEN ODER KONDITIONEN. MÖGLICHERWEISE VERFÜGEN SIE ÜBER WEITERE VERBRAUCHERRECHTE UNTER DEM AN IHREM STANDORT GELTENDEN RECHT, DAS VON DIESEM VERTRAG NICHT GEÄNDERT WERDEN KANN. IM VOM GELTENDEN RECHT ZULÄSSIGEN UMFANG SCHLIESST MICROSOFT DIE IMPLIZITEN GEWÄHRLEISTUNGEN DER HANDELSÜBLICHKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG DER RECHTE DRITTER AUS.
+FÜR AUSTRALIEN – UNTER DEM AUSTRALISCHEN VERBRAUCHERRECHT VERFÜGEN SIE ÜBER GESETZLICHE GARANTIEN, UND NICHTS IN DIESEN BEDINGUNGEN KANN DIESE RECHTE EINSCHRÄNKEN.**
 
-9. **VISUELLE STANDARDS H.264/AVC UND MPEG-4 UND VIDEO-STANDARDS VC-1 UND MPEG-2**
-    Diese Software enthält möglicherweise die visuellen Komprimierungstechnologien H.264/AVC, VC-1, MPEG-4 Part 2 und MPEG-2. MPEG LA, L.L.C. verlangt den folgenden Hinweis:
+18. **HAFTUNGSAUSSCHLUSS ALLER SCHÄDEN UND BESCHRÄNKUNG DES SCHADENERSATZES. SIE KÖNNEN GEGENÜBER MICROSOFT UND SEINEN ZULIEFERERN NUR DIREKTE SCHÄDEN VON BIS ZU USD 5,00 GELTEND MACHEN. SIE KÖNNEN KEINERLEI ANDERE SCHÄDEN – EINSCHLIESSLICH FOLGESCHÄDEN, ENTGANGENER GEWINNE, SPEZIELLER, INDIREKTER ODER ZUFÄLLIGER SCHÄDEN – GELTEND MACHEN.**  
 
-    DIESES PRODUKT WIRD UNTER DEN AVC-, VC-1, MPEG-4 PART 2 VISUAL- UND MPEG-2-VIDEO-PATENTPORTFOLIOLIZENZEN FÜR DIE PERSÖNLICHE UND NICHT KOMMERZIELLE NUTZUNG DURCH EINEN VERBRAUCHER LIZENZIERT, UM (i) VIDEO UNTER EINHALTUNG DER OBIGEN STANDARDS („VIDEO-STANDARDS“) ZU CODIEREN UND/ODER (ii) AVC-, VC-1, MPEG-4 PART 2- UND MPEG-2-VIDEO ZU DECODIEREN, DAS VON EINEM VERBRAUCHER, DER EINE PERSÖNLICHE UND NICHT KOMMERZIELLE NUTZUNG BETREIBT, CODIERT UND/ODER VON EINEM VIDEOPROVIDER, DER ÜBER EINE LIZENZ FÜR DIE BEREITSTELLUNG VON DERARTIGEM VIDEO VERFÜGT, ERWORBEN WURDE. ES WIRD KEINE LIZENZ ZU IRGENDEINEM ANDEREN ZWECK GEWÄHRT, AUCH NICHT KONKLUDENT. ZUSÄTZLICHE INFORMATIONEN ERHALTEN SIE VON MPEG LA, L.L.C. UNTER WWW.MPEGLA.COM.
+  Diese Einschränkung gilt für
+  * alles, was auf die Software, die Dienste, die Inhalte (einschließlich des Codes) auf Drittanbieterseiten oder in Drittanbieterprogrammen bezogen ist,
+  * sowie für Ansprüche aufgrund von Vertragsverletzungen, Verletzungen der Gewährleistung, Garantie oder Konditionen, der Kausalhaftung, Unterlassung oder anderer zivilrechtlicher Delikte im vom geltenden Recht zugelassenen Umfang
+  
+  Sie gilt auch dann, wenn Microsoft von der Möglichkeit der Schäden wusste oder hätte wissen müssen.  Obige Beschränkungen und obiger Ausschluss gelten möglicherweise nicht für Sie, weil Ihr Bundesland den Ausschluss oder die Beschränkung von beiläufig entstandenen Schäden, Folgeschäden oder sonstigen Schäden nicht gestattet. Wenn Sie Microsoft laut geltendem Recht für andere Schäden haftbar machen können, obwohl wir dies nicht gewähren, können Sie nicht mehr als USD 5,00 geltend machen, bzw. den Betrag, den Sie für die Software bezahlt haben – je nachdem, welcher Wert höher ist.
 
-10. **ADOBE FLASH PLAYER**
-    Möglicherweise enthält die Software eine Version von Adobe Flash Player. Sie erklären sich damit einverstanden, dass die Nutzung von Adobe Flash Player durch Sie von den Lizenzbestimmungen für Adobe Systems Incorporated unter go.microsoft.com/fwlink/?LinkID=248532 geregelt wird. Adobe und Flash sind Marken oder in den USA und/oder anderen Ländern eingetragene Marken der Adobe Systems Incorporated.
-
-11. **GÜLTIGKEITSBEREICH DER LIZENZ.**
-    Die Software wird lizenziert, nicht verkauft. Dieser Vertrag gewährt Ihnen lediglich bestimmte Rechte zur Nutzung der Software. Alle anderen Rechte verbleiben bei Microsoft. Sie dürfen die Software nur wie in diesem Vertrag ausdrücklich gestattet nutzen, es sei denn, anwendbares Recht gibt Ihnen ungeachtet dieser Einschränkung umfassendere Rechte. Dabei sind Sie verpflichtet, technische Beschränkungen zu beachten, die Ihnen die Nutzung der Software nur auf bestimmte Art und Weise ermöglichen. Sie sind nicht berechtigt,
-    * Ergebnisse der für eine andere Software als die Software Microsoft .NET Framework (siehe Sonderbestimmung oben) durchgeführten Vergleichstests ohne schriftliche Genehmigung von Microsoft an Dritte weiterzugeben,
-    * technische Beschränkungen der Software zu umgehen,
-    * die Software zurückzuentwickeln (Reverse Engineering), zu dekompilieren oder zu disassemblieren, außer und nur insoweit es trotz dieser Einschränkung anwendbares Recht ausdrücklich zulässt,
-    * mehr als die in diesem Vertrag vorgesehene oder eine trotz dieser Einschränkung laut anwendbarem Recht ausdrücklich gestattete Anzahl Kopien der Software anzufertigen,
-    * die Software zu veröffentlichen, damit andere sie kopieren können,
-    * die Software zu vermieten, zu verleasen oder zu verleihen
-    * die Software oder diesen Vertrag an Dritte zu übertragen oder
-    * die Software für kommerzielle Software-Hostingdienste zu verwenden.
-
-12. **AUSFUHRBESCHRÄNKUNGEN.**
-    Die Software unterliegt den Exportgesetzen und Exportbestimmungen der USA sowie des Lands, aus dem sie ausgeführt wird. Sie sind verpflichtet, alle nationalen und internationalen Exportgesetze und Exportbestimmungen einzuhalten, die für die Software gelten. Diese Gesetze enthalten auch Beschränkungen in Bezug auf Bestimmungsorte, Endbenutzer und die Endnutzung. Weitere Informationen finden Sie unter www.microsoft.com/exporting.
-
-13. **SUPPORTSERVICES.**
-    Da diese Software „wie besehen“ bereitgestellt wird, stellt Microsoft möglicherweise keine dedizierten Supportservices bereit.
-
-14. **GESAMTER VERTRAG.**
-    Dieser Vertrag sowie die Bestimmungen für von Ihnen genutzte Ergänzungen, Updates, internetbasierte Dienste und Supportservices stellen den gesamten Vertrag über die Software und die Supportservices dar.
-
-15. **ANWENDBARES RECHT.**  
-    a. Vereinigte Staaten. Wenn Sie die Software in den Vereinigten Staaten erworben haben, regelt das Gesetz des Staats Washington die Auslegung dieses Vertrags und gilt für Ansprüche, die aus einer Vertragsverletzung entstehen, ungeachtet der Bestimmungen des internationalen Privatrechts. Die Gesetze des Staats Ihres Wohnorts regeln alle anderen Ansprüche, einschließlich Ansprüche aus den Verbraucherschutzgesetzen des Staats, aus Gesetzen gegen unlauteren Wettbewerb und aus Deliktsrecht.  
-    b. Außerhalb der Vereinigten Staaten. Wenn Sie die Software in einem anderen Land erworben haben, gelten die Gesetze des betreffenden Lands.
-
-16. **RECHTSGÜLTIGKEIT.**
-    Dieser Vertrag beschreibt bestimmte Rechte. Möglicherweise sehen die Gesetze Ihres Lands andere Rechte vor. Möglicherweise haben Sie auch Rechte gegenüber der Partei, von der Sie die Software erworben haben. Dieser Vertrag ändert für Sie keine Rechte nach den Gesetzen Ihres Lands, wenn die Gesetze Ihres Lands eben dies ausschließen.
-
-17. **AUSSCHLUSS VON GARANTIEN. DIE SOFTWARE WIRD „WIE BESEHEN“ LIZENZIERT. SIE TRAGEN DAS MIT DER VERWENDUNG VERBUNDENE RISIKO. MICROSOFT GEWÄHRT KEINE AUSDRÜCKLICHEN GEWÄHRLEISTUNGEN ODER GARANTIEN. MÖGLICHERWEISE GELTEN UNTER DEN ÖRTLICH ANWENDBAREN GESETZEN ZUSÄTZLICHE VERBRAUCHERRECHTE ODER GESETZLICHE GARANTIEN, DIE DURCH DIESEN VERTRAG NICHT ABGEÄNDERT WERDEN KÖNNEN. IN DEM NACH IHREM ÖRTLICH ANWENDBAREN RECHT ZULÄSSIGEN UMFANG SCHLIESST MICROSOFT KONKLUDENTE GARANTIEN DER HANDELSÜBLICHKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG VON RECHTEN DRITTER AUS.
-    FÜR AUSTRALIEN: NACH DEM AUSTRALIAN CONSUMER LAW GELTEN GESETZLICHE GARANTIEN, UND ES BESTEHT AN KEINER STELLE IN DIESEN BESTIMMUNGEN DIE ABSICHT, DIESE RECHTE EINZUSCHRÄNKEN.**
-
-18. **BESCHRÄNKUNG UND AUSSCHLUSS VON ABHILFEANSPRÜCHEN UND SCHADENERSATZ. SIE KÖNNEN VON MICROSOFT UND DEREN LIEFERANTEN NUR EINEN ERSATZ FÜR DIREKTE SCHÄDEN BIS ZU EINEM BETRAG VON 5 US-DOLLAR ERHALTEN. SIE KÖNNEN KEINEN ERSATZ FÜR ANDERE SCHÄDEN ERHALTEN, EINSCHLIESSLICH FOLGESCHÄDEN, SCHÄDEN AUS ENTGANGENEM GEWINN, BEZIFFERBARER VERMÖGENSSCHÄDEN, SPEZIELLER, INDIREKTER ODER ZUFÄLLIGER SCHÄDEN.**
-
-    Diese Beschränkung gilt für
-    * alles im Zusammenhang mit der Software, Diensten, Inhalten (einschließlich Code) auf Internetseiten von Drittanbietern oder Programmen von Drittanbietern und
-    * Ansprüche aus Vertragsverletzungen, Verletzungen der Garantie oder der Gewährleistung, verschuldensunabhängiger Haftung, Fahrlässigkeit oder anderen unerlaubten Handlungen in dem nach anwendbarem Recht zulässigen Umfang.
-
-    Sie hat auch dann Gültigkeit, wenn Microsoft von der Möglichkeit der Schäden gewusst hat oder hätte wissen müssen. Obige Beschränkung und obiger Ausschluss gelten möglicherweise nicht für Sie, weil Ihr Land den Ausschluss oder die Beschränkung von zufälligen Schäden, Folgeschäden oder sonstigen Schäden nicht gestattet. Wenn Sie die Software in DEUTSCHLAND oder in ÖSTERREICH erworben haben, findet die Beschränkung im vorstehenden Absatz „Beschränkung und Ausschluss von Schadenersatz“ auf Sie keine Anwendung. Stattdessen gelten für Schadenersatz oder Ersatz vergeblicher Aufwendungen, gleich aus welchem Rechtsgrund einschließlich unerlaubter Handlung, die folgenden Regelungen: Microsoft haftet bei Vorsatz, grober Fahrlässigkeit, bei Ansprüchen nach dem Produkthaftungsgesetz sowie bei Verletzung von Leben, Körper oder der Gesundheit nach den gesetzlichen Vorschriften. Microsoft haftet nicht für leichte Fahrlässigkeit. Wenn Sie die Software jedoch in Deutschland erworben haben, haftet Microsoft auch für leichte Fahrlässigkeit, wenn Microsoft eine Vertragspflicht verletzt, deren Erfüllung die ordnungsgemäße Durchführung des Vertrags überhaupt erst ermöglicht, deren Verletzung die Erreichung des Vertragszwecks gefährdet und auf deren Einhaltung Sie regelmäßig vertrauen dürfen (sog. „Kardinalpflichten“). In diesen Fällen ist die Haftung von Microsoft auf typische und vorhersehbare Schäden beschränkt. In allen anderen Fällen haftet Microsoft auch in Deutschland nicht für leichte Fahrlässigkeit. Wenn Ihr örtlich anwendbares Recht es Ihnen gestattet, von Microsoft Ersatz für andere Schäden zu erhalten, obwohl wir dies ausschließen, können Sie maximal 5,00 USD oder den für die Software bezahlten Preis als Ersatz erhalten, wobei der höhere Betrag maßgeblich ist.
-
-**Bitte beachten Sie: Da diese Software in Quebec, Kanada, vertrieben wird, werden einige Klauseln aus diesem Vertrag nachfolgend auf Französisch bereitgestellt.**
+**Bitte beachten Sie: Da diese Software in Quebec, Kanada, verteilt wird, werden einige Klauseln in dieser Vereinbarung nachfolgend in Französisch aufgeführt.**
 
 **Remarque : Ce logiciel étant distribué au Québec, Canada, certaines des clauses dans ce contrat sont fournies ci-dessous en français.**
 
@@ -110,10 +106,11 @@ Cette limitation concerne :
 * tout  ce qui est relié au logiciel, aux services ou au contenu (y compris le code) figurant sur des sites Internet tiers ou dans des programmes tiers ; et
 * les réclamations au titre de violation de contrat ou de garantie, ou au titre de responsabilité stricte, de négligence ou d’une autre faute dans la limite autorisée par la loi en vigueur.
 
-Elle s’applique également, même si Microsoft connaissait ou devrait connaître l’éventualité d’un tel dommage. Si votre pays n’autorise pas l’exclusion ou la limitation de responsabilité pour les dommages indirects, accessoires ou de quelque nature que ce soit, il se peut que la limitation ou l’exclusion ci-dessus ne s’appliquera pas à votre égard.
+Elle s’applique également, même si Microsoft connaissait ou devrait connaître l’éventualité d’un tel dommage.  Si votre pays n’autorise pas l’exclusion ou la limitation de responsabilité pour les dommages indirects, accessoires ou de quelque nature que ce soit, il se peut que la limitation ou l’exclusion ci-dessus ne s’appliquera pas à votre égard.
 
-**EFFET JURIDIQUE.**  Le présent contrat décrit certains droits juridiques. Vous pourriez avoir d’autres droits prévus par les lois de votre pays. Le présent contrat ne modifie pas les droits que vous confèrent les lois de votre pays si celles ci ne le permettent pas.
+**EFFET JURIDIQUE.**  Le présent contrat décrit certains droits juridiques. Vous pourriez avoir d’autres droits prévus par les lois de votre pays.  Le présent contrat ne modifie pas les droits que vous confèrent les lois de votre pays si celles ci ne le permettent pas.
 
 
+<!--HONumber=Jun16_HO4-->
 
 

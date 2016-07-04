@@ -1,14 +1,18 @@
 ---
-title: &479582873 Installieren von Hyper-V unter Windows 10
-description: Installieren von Hyper-V unter Windows 10
+title: "Installieren von Hyper-V unter Windows 10"
+description: "Installieren von Hyper-V unter Windows 10"
 keywords: windows 10, hyper-v
 author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: &904450632 windows-10-hyperv
+ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
+translationtype: Human Translation
+ms.sourcegitcommit: e14ede0a2b13de08cea0a955b37a21a150fb88cf
+ms.openlocfilehash: 9e2b16f3e6c9882246a5a4c21683112eaa089ce8
+
 ---
 
 # Installieren von Hyper-V unter Windows 10
@@ -23,7 +27,7 @@ Die Rolle „Hyper-V“ muss aktiviert werden, bevor Sie virtuelle Computer unte
 
 2. Wählen Sie **Windows-Features aktivieren oder deaktivieren** aus.
 
-3. Wählen Sie **Hyper-V** aus, und klicken Sie auf **OK**.
+3. Wählen Sie **Hyper-V** aus, und klicken Sie auf **OK**.  
 
 ![](media/enable_role_upd.png)
 
@@ -59,14 +63,10 @@ DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
 
 
 ## Nächster Schritt: Erstellen eines virtuellen Switches
-
 [Erstellen eines virtuellen Switches](walkthrough_virtual_switch.md)
 
 
 
-
-
-
-<!--HONumber=May16_HO1-->
+<!--HONumber=Jun16_HO4-->
 
 

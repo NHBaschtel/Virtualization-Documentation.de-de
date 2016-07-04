@@ -1,14 +1,18 @@
 ---
-title: Windows-Container unter Windows 10
-description: Containerbereitstellung – Schnellstart
+title: "Windows-Container unter Windows 10"
+description: "Containerbereitstellung – Schnellstart"
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 06/28/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
+translationtype: Human Translation
+ms.sourcegitcommit: 3fc388632dee4d714ab5a7869fa852c079c11910
+ms.openlocfilehash: e2d86c6f1aba07c7c40d1f932b3884c99bfd8f0a
+
 ---
 
 # Windows-Container unter Windows 10
@@ -160,7 +164,13 @@ Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu
 docker run --isolation=hyperv --rm microsoft/sample-dotnet
 ```
 
-Das Ergebnis dieses Befehls ist, dass ein Hyper-V-Container auf Basis des Beispiel-DotNet-Images erstellt wurde, danach eine Beispiel-App ausgeführt (Ausgabeecho über die Shell) und dann der Container beendet und entfernt wurde. Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows 10.
+**Hinweis**: Wenn ein Fehler ausgelöst wird, der auf ein Zeitüberschreitungsereignis hinweist, führen Sie das folgende PowerShell-Skript aus, und wiederholen Sie den Vorgang.
+
+```none
+Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
+```
+
+Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis des Beispiel-DotNet-Images erstellt wurde, danach eine Beispiel-App ausgeführt (Ausgabeecho über die Shell) und dann der Container beendet und entfernt wurde. Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows 10.
 
 ## Nächste Schritte
 
@@ -169,6 +179,7 @@ Das Ergebnis dieses Befehls ist, dass ein Hyper-V-Container auf Basis des Beispi
 
 
 
-<!--HONumber=Jun16_HO2-->
+
+<!--HONumber=Jun16_HO4-->
 
 

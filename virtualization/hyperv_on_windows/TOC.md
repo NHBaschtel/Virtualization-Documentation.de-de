@@ -1,66 +1,35 @@
 # Informationen zu Hyper-V
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Hyper-V in Windows 10</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Einführung in Hyper-V</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Unterstützte Gastbetriebssysteme</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Linux und FreeBSD in Hyper-V</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
+## [Hyper-V in Windows 10](./windows_welcome.md)
+## [Einführung in Hyper-V](./about/hyperv_on_windows.md)
+## [Unterstützte Gastbetriebssysteme](about/supported_guest_os.md)
+## [Linux und FreeBSD in Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
 # Hyper-V-Schnellstart
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Systemanforderungen</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Installieren von Hyper-V</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Erstellen eines virtuellen Switches</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Erstellen eines virtuellen Computers</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Hyper-V und PowerShell</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
+## [Systemanforderungen](quick_start/walkthrough_compatibility.md)
+## [Installieren von Hyper-V](quick_start/walkthrough_install.md)
+## [Erstellen eines virtuellen Switches](quick_start/walkthrough_virtual_switch.md)
+## [Erstellen eines virtuellen Computers](quick_start/walkthrough_create_vm.md)
+## [Hyper-V und PowerShell](quick_start/walkthrough_powershell.md)
 # Verwalten virtueller Computer mit Hyper-V
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Migrieren und Aktualisieren virtueller Computer</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Verwalten von Integrationsdiensten</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Arbeiten mit Prüfpunkten</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Exportieren und Importieren virtueller Computer</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Herstellen einer Verbindung mit PowerShell Direct</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Erstellen von Vorabversion virtueller Computer</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
+## [Migrieren und Aktualisieren virtueller Computer](http://aka.ms/upgradevmconfig)
+## [Verwalten von Integrationsdiensten](user_guide/managing_ics.md)
+## [Arbeiten mit Prüfpunkten](user_guide/checkpoints.md)
+## [Exportieren und Importieren virtueller Computer](user_guide/export_import.md)
+## [Herstellen einer Verbindung mit PowerShell Direct](user_guide/vmsession.md)
+## [Erstellen von Vorabversionen virtueller Computer](user_guide/create_pre-release_vm.md) 
 # Verwalten der Hyper-V-Hosts
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Verwalten von Hyper-V-Remotehosts</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Aktivieren der geschachtelten Virtualisierung</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Einrichten eines NAT-Netzwerks</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Erstellen eines Integrationsdiensts</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
+## [Verwalten von Hyper-V-Remotehosts](user_guide/remote_host_management.md)
+## [Aktivieren der geschachtelten Virtualisierung](user_guide/nesting.md)
+## [Einrichten eines NAT-Netzwerks](user_guide/setup_nat_network.md)
+## [Erstellen eines Integrationsdiensts](develop/make_mgmt_service.md)
 # Community und Support
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Hyper-V-Foren</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
+## [Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
 # Verweis
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Hyper-V PowerShell</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Hyper-V-WMI-Anbieter (V2)</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Hyper-V-Architektur</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-
-## <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Spezifikationen für Hypervisor</g><g id="1CapsExtId3" ctype="x-title"></g></g>
+## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
+## [Hyper-V-WMI-Anbieter (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
+## [Hyper-V-Architektur](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
+## [Spezifikationen für Hypervisor](develop/tlfs.md)
 
 
-
-
-<!--HONumber=May16_HO1-->
+<!--HONumber=Jun16_HO4-->
 
 

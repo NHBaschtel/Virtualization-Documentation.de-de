@@ -1,64 +1,63 @@
 ---
 author: scooley
 redirect_url: ./manage_docker
+translationtype: Human Translation
+ms.sourcegitcommit: 745b0b26e15ec1179e8b55cd1b3d2ab3e3fe34d2
+ms.openlocfilehash: f01125a9e6f8a952ae6a82fb2d1df20bb5f6c900
+
 ---
 
-# Vergleichen der Verwaltung von Windows-Containern mit PowerShell und Docker
+# Vergleichen der Verwaltung von Windows-Containern mit PowerShell und Docker 
 
 Es gibt viele Methoden zum Verwalten von Windows-Containern sowohl mit integrierten Windows-Tools (in dieser Vorschau PowerShell) als auch Open-Source-Verwaltungstools wie Docker.  
 Führungslinien Gliedern beide einzeln erhältlich hier:
-* <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Verwalten von Windows-Containern mit Docker</g><g id="1CapsExtId3" ctype="x-title"></g></g>
-* <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Verwalten von Windows-Containern mit PowerShell</g><g id="1CapsExtId3" ctype="x-title"></g></g>
+* [Verwalten von Windows-Containern mit Docker](../quick_start/manage_docker.md)
+* [Verwalten von Windows-Containern mit PowerShell](../quick_start/manage_powershell.md) 
 
 Diese Seite ist einem mehr Tiefe Referenz Vergleich von Docker-Tools und PowerShell-Verwaltungstools.
 
 ## PowerShell für Container im Vergleich zu Hyper-V-VMs
-
 Sie können Windows-Container mithilfe von PowerShell-Cmdlets erstellen, ausführen und damit interagieren. Alles, was Sie brauchen, ist standardmäßig verfügbar.
 
-Wenn Sie Hyper-V-PowerShell verwendet haben, sollte das Design der Cmdlets Recht vertraut sein. Ein Großteil der Workflow ist ähnlich wie eine virtuelle Maschine mit dem Hyper-V-Modul verwaltet. Anstelle von <g id="2" ctype="x-code">New-VM</g>, <g id="4" ctype="x-code">Get-VM</g>, <g id="6" ctype="x-code">Start-VM</g> und <g id="8" ctype="x-code">Stop-VM</g> verwenden Sie <g id="10" ctype="x-code">New-Container</g>, <g id="12" ctype="x-code">Get-Container</g>, <g id="14" ctype="x-code">Start-Container</g> und <g id="16" ctype="x-code">Stop-Container</g>. Es gibt einige Container-spezifische Cmdlets und Parameter, aber die allgemeine Lebenszyklus und Verwaltung von Windows-Container sieht in etwa wie eine Hyper-V-VM.
+Wenn Sie Hyper-V-PowerShell verwendet haben, sollte das Design der Cmdlets Recht vertraut sein. Ein Großteil der Workflow ist ähnlich wie eine virtuelle Maschine mit dem Hyper-V-Modul verwaltet. Anstelle von `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM` haben Sie `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  Es gibt einige Container-spezifische Cmdlets und Parameter, aber die allgemeine Lebenszyklus und Verwaltung von Windows-Container sieht in etwa wie eine Hyper-V-VM.
 
-## Wie Vergleich PowerShell Management im zu Docker?
-
+## Wie Vergleich PowerShell Management im zu Docker? 
 Die Container-PowerShell-Cmdlets verfügbar machen eine API, die nicht ganz identisch mit der Docker ist. die Cmdlets sind in der Regel genauer Vorgang. Einige Befehle Docker sind unkompliziert Parallels in PowerShell:
 
-| Docker-Befehl| PowerShell-Cmdlets|
+| Docker-Befehl |  PowerShell-Cmdlets |
 |----|----|
-| <g id="1" ctype="x-code">docker ps -a</g>| <g id="1" ctype="x-code">Get-Container</g>|
-| <g id="1" ctype="x-code">docker images</g>| <g id="1" ctype="x-code">Get-ContainerImage</g>|
-| <g id="1" ctype="x-code">docker rm</g>| <g id="1" ctype="x-code">Remove-Container</g>|
-| <g id="1" ctype="x-code">docker rmi</g>| <g id="1" ctype="x-code">Remove-ContainerImage</g>|
-| <g id="1" ctype="x-code">docker create</g>| <g id="1" ctype="x-code">New-Container</g>|
-| <g id="1" ctype="x-code">docker commit <Container-ID></g>| <g id="1" ctype="x-code">New-ContainerImage -Container &lt;Container&gt;</g>|
-| <g id="1" ctype="x-code">docker load &lt;tarball&gt;</g>| <g id="1" ctype="x-code">Import-ContainerImage <AppX-Paket></g>|
-| <g id="1" ctype="x-code">docker save</g>| <g id="1" ctype="x-code">Export-ContainerImage</g>|
-| <g id="1" ctype="x-code">docker start</g>| <g id="1" ctype="x-code">Start-Container</g>|
-| <g id="1" ctype="x-code">docker stop</g>| <g id="1" ctype="x-code">Stop-Container</g>|
+| `docker ps -a`    | `Get-Container` |
+| `docker images`   | `Get-ContainerImage` |
+| `docker rm`   | `Remove-Container` |
+| `docker rmi` | `Remove-ContainerImage` |
+| `docker create`   | `New-Container` |
+| `docker commit <container ID>` | `New-ContainerImage -Container <container>` |
+| `docker load <tarball>` | `Import-ContainerImage <AppX package>` |
+| `docker save` |   `Export-ContainerImage` |
+| `docker start` |  `Start-Container` |
+| `docker stop` |   `Stop-Container` |
 
-Die PowerShell-Cmdlets sind keine exakten perfekten Gegenstücke. Es gibt ziemlich viele Befehle, für die wir keine PowerShell-Entsprechung bieten* (insbesondere <g id="2" ctype="x-code">docker build</g> und <g id="4" ctype="x-code">docker cp</g>). Es wird Ihnen jedoch möglicherweise auffallen, dass es keinen einzeiligen Ersatz für <g id="2" ctype="x-code">docker run</g> gibt.
+Die PowerShell-Cmdlets sind keine exakten perfekten Gegenstücke. Es gibt ziemlich viele Befehle, für die keine PowerShell-Entsprechung bereitgestellt werden* (insbesondere `docker build` und `docker cp`). Es wird Ihnen jedoch möglicherweise auffallen, dass es keinen einzeiligen Ersatz für `docker run` gibt.
 
-\ * Vorbehalten.
+\* Änderungen vorbehalten.
 
-### Aber ich Docker ausführen! Was ist passiert?
-
+### Aber ich Docker ausführen! Was ist passiert?  
 Wir machen, ein paar Dinge, die eine etwas vertrauter Interaktionsmodell für Benutzer bereitstellen, die ihre PowerShell bereits vertraut sind. Wenn Sie die Art und Weise Docker arbeitet verwendet, wird dies natürlich etwas ein Umdenken sein.
 
-1.  Der Lebenszyklus eines Containers im PowerShell-Modell ist etwas anders. Im PowerShell-Modul für Container machen wir die differenzierteren Vorgänge <g id="2" ctype="x-code">New-Container</g> (wodurch ein neuer Container erstellt wird, der beendet wird) und <g id="4" ctype="x-code">Start-Container</g> verfügbar.
-
+1.  Der Lebenszyklus eines Containers im PowerShell-Modell ist etwas anders. Das PowerShell-Modul für Container stellt die differenzierteren Vorgänge `New-Container` (wodurch ein neuer Container erstellt wird, der beendet wird) und `Start-Container` zur Verfügung.
+  
   Zwischen erstellen, und starten den Container, können Sie auch den Container Einstellungen konfigurieren. für TP3 ist nur anderen Konfigurationen, die wir bereitstellen möchten die Möglichkeit, die Netzwerkschnittstelle für den Container festlegen. verwenden die (hinzufügen/entfernen/Verbindung herstellen/trennen/Get/Set)-ContainerNetworkAdapter-Cmdlets.
 
-2.  Derzeit kann keinen auszuführenden Befehl innerhalb des Containers auf "Start" übergeben werden. Sie können allerdings weiter eine interaktive PowerShell-Sitzung mit einem ausgeführten Container einrichten. Verwenden Sie dazu <g id="2" ctype="x-code">Enter-PSSession -ContainerId <ID eines ausgeführten Containers)</g>. Sie können auch einen Befehl in einem ausgeführten Container ausführen. Verwenden Sie dazu <g id="4" ctype="x-code">Invoke-Command -ContainerId <Container-ID> -ScriptBlock {im Container auszuführender Code}</g> oder <g id="6" ctype="x-code">Invoke-Command -ContainerId <Container-ID> -FilePath <Pfad zum Skript></g>.  
-Beide Befehle lassen das optionale Kennzeichen <g id="2" ctype="x-code">-RunAsAdministrator</g> für Aktionen mit höheren Berechtigungen zu.
+2.  Derzeit kann keinen auszuführenden Befehl innerhalb des Containers auf "Start" übergeben werden. Allerdings können Sie mit `Enter-PSSession -ContainerId <ID of a running container>` immer noch eine interaktive PowerShell-Sitzung mit einem ausgeführten Container erhalten, und Sie können mit `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }` oder `Invoke-Command -ContainerId <container id> -FilePath <path to script>` einen Befehl innerhalb eines ausgeführten Containers ausführen.  
+Beide Befehle lassen das optionale Flag `-RunAsAdministrator` für Aktionen mit höheren Berechtigungen zu.  
 
 
-## Einschränkungen und bekannte Probleme
-
+## Vorbehalte und bekannte Probleme
 1.  Jetzt, die Container-Cmdlets haben keine Kenntnis über Container oder Bilder, die durch Docker erstellt und Docker weiß nicht, alles zu Containern und Images, die über die PowerShell erstellt. Wenn Sie in der Docker erstellt, mit der Docker verwalten; Wenn Sie es über PowerShell erstellt haben, können verwalten Sie sich über PowerShell.
 
 2.  Wir haben eine ziemlich viel Arbeit, die wir tun, damit um der Endbenutzer – verbesserte Fehlermeldungen, bessere Fortschrittsberichte, ungültiges Ereigniszeichenfolgen usw. zu optimieren möchten. Wenn Sie eine Situation auftreten versehentlich, wo sollen Sie waren Weitere erste, oder Informationen besser, wir gerne Vorschläge zu den Foren zu senden.
 
 ## Eine schnelle runthrough
-
 Im folgenden wird erörtert einige allgemeine Workflows.
 
 Dabei wird vorausgesetzt, Sie ein Betriebssystemabbild-Container mit dem Namen "ServerDatacenterCore" installiert haben, und erstellt einen virtuellen Switch mit dem Namen "Virtueller Switch" (mit dem New-VMSwitch).
@@ -152,15 +151,14 @@ Start-Container -Container $container2
 ```
 
 ### Erstellen Sie Ihre eigenen Beispiel
+Mit `Get-Command -Module Containers` können Sie alle Containers-Cmdlets anzeigen.  Es gibt mehrere andere Cmdlets, die hier nicht beschrieben werden, die wir Ihnen Informationen auf Ihren eigenen lassen.    
+**Hinweis** Die Cmdlets `Enter-PSSession` und `Invoke-Command`, die zu den wichtigsten PowerShell-Cmdlets gehören, werden dadurch nicht zurückgegeben.
 
-Mit dem Befehl <g id="2" ctype="x-code">Get-Command -Module Containers</g> können Sie alle Cmdlets für Container anzeigen. Es gibt mehrere andere Cmdlets, die hier nicht beschrieben werden, die wir Ihnen Informationen auf Ihren eigenen lassen.    
-<g id="1" ctype="x-strong">Hinweis</g> Die Cmdlets <g id="3" ctype="x-code">Enter-PSSession</g> und <g id="5" ctype="x-code">Invoke-Command</g>, die Teil der wichtigsten PowerShell-Cmdlets sind, werden dadurch nicht zurückgegeben.
-
-Über <g id="2" ctype="x-code">Get-Help [Name des Cmdlets]</g> oder <g id="4" ctype="x-code">[Name des Cmdlets] -?</g> erhalten Sie Hilfe zu sämtlichen Cmdlets. Heute Hilfe wird automatisch generiert und teilt Ihnen nur die Syntax für Befehle. Wir werden weitere Dokumentation hinzufügen werden wie wir näher erhalten an das Cmdlet-Design abschließen.
+Außerdem können Sie mit `Get-Help [cmdlet name]` bzw. `[cmdlet name] -?` Hilfe zu jedem Cmdlet anzeigen.  Heute Hilfe wird automatisch generiert und teilt Ihnen nur die Syntax für Befehle. Wir werden weitere Dokumentation hinzufügen werden wie wir näher erhalten an das Cmdlet-Design abschließen.
 
 Eine nützlicher Möglichkeit, die Syntax zu ermitteln ist PowerShell ISE, die Sie nicht vor dem besprochen haben können, wenn Sie PowerShell sehr viel verwendet haben. Wenn Sie auf eine SKU, die es ermöglicht ausgeführt, starten Sie das Befehlsfenster zu öffnen, und wählen im Modul "Container" der grafisch dargestellt, die Cmdlets und ihren Parameter angezeigt, für die ISE.
 
-PS: Um nachzuweisen, dass es möglich ist, hier nun eine PowerShell-Funktion, die aus einigen der Cmdlets besteht, die wir bereits als Ersatz für <g id="2" ctype="x-code">docker run</g> gesehen haben. (Klar gesagt werden, ist dies eine Machbarkeitsstudie nicht in der aktiven Entwicklung.)
+PS: Um nachzuweisen, dass es möglich ist, hier nun eine PowerShell-Funktion, die aus einigen der Cmdlets besteht, die Sie bereits als Ersatz für `docker run` kennen gelernt haben. (Klar gesagt werden, ist dies eine Machbarkeitsstudie nicht in der aktiven Entwicklung.)
 
 ``` PowerShell
 function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
@@ -183,18 +181,14 @@ function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name",
 ```
 
 ## Docker
+Windows-Container können mit Docker-Befehlen verwaltet werden.  Während Windows-Container mit ihren Linux-Entsprechungen vergleichbar sein sollten und über Docker gleich verwaltet werden sollten, gibt es einige Docker-Befehle, die für einen Windows-Container schlicht nicht sinnvoll sind.  Andere einfach noch nicht getestet wurden (wir gehen vorhanden).
 
-Windows-Container können mit Docker-Befehlen verwaltet werden. Während Windows-Container mit ihren Linux-Entsprechungen vergleichbar sein sollten und über Docker gleich verwaltet werden sollten, gibt es einige Docker-Befehle, die für einen Windows-Container schlicht nicht sinnvoll sind. Andere einfach noch nicht getestet wurden (wir gehen vorhanden).
-
-In dem Bestreben, die in Docker verfügbare API-Dokumentation nicht zu duplizieren, finden Sie <g id="2" ctype="x-html"></g>hier<g id="4" ctype="x-html"></g> einen Link zu Ihren Verwaltungs-APIs. Die exemplarischen Vorgehensweisen sind fantastisch.
+In dem Bestreben, die in Docker verfügbare API-Dokumentation nicht zu duplizieren, finden Sie <a href="https://docs.docker.com/engine/reference/commandline/cli/" >hier</a> einen Link zu Ihren Verwaltungs-APIs.  Die exemplarischen Vorgehensweisen sind fantastisch.
 
 Wir überwachen die Dinge, die funktionieren und nicht in die Docker-APIs in unser Dokument In Bearbeitung.
 
 
 
-
-
-
-<!--HONumber=Apr16_HO4-->
+<!--HONumber=Jun16_HO4-->
 
 

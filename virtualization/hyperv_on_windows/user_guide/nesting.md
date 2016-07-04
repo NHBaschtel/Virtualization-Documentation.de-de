@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
-ms.sourcegitcommit: ef18b63c454b3c12a7067d3604ba142d55403226
-ms.openlocfilehash: 2d1679ffe4876ddd4eefe1b457098e8797899492
+ms.sourcegitcommit: 26a8adb426a7cf859e1a9813da2033e145ead965
+ms.openlocfilehash: d17413fc572e59ec21ff513ef5de994c6716aa08
 
 ---
 
 # Ausführen von Hyper-V auf einem virtuellen Computer mit geschachtelter Virtualisierung
 
-Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem virtuellen Hyper-V-Computer ausführen können. Anders ausgedrückt kann mit der geschachtelten Virtualisierung ein Hyper-V-Host selbst virtualisiert werden. Anwendungsbeispiele für die geschachtelte Virtualisierung sind beispielsweise das Ausführen eines Hyper-V-Containers auf einem virtualisierten Containerhost, das Einrichten eines Hyper-V-Labs in einer virtualisierten Umgebung oder das Testen von Szenarien mit mehreren Computern, ohne dass spezielle Hardware benötigt wird. Dieses Dokument enthält die Software- und Hardwareanforderungen, Konfigurationsschritte und Informationen zur Fehlerbehebung.
+Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem virtuellen Hyper-V-Computer ausführen können. Anders ausgedrückt kann mit der geschachtelten Virtualisierung ein Hyper-V-Host selbst virtualisiert werden. Anwendungsbeispiele für die geschachtelte Virtualisierung sind beispielsweise das Ausführen eines Hyper-V-Containers auf einem virtualisierten Containerhost, das Einrichten eines Hyper-V-Labs in einer virtualisierten Umgebung oder das Testen von Szenarien mit mehreren Computern, ohne dass spezielle Hardware benötigt wird. Dieses Dokument enthält die Software- und Hardwareanforderungen, Konfigurationsschritte und Informationen zur Fehlerbehebung. Wenn Sie Hyper-V unter der Windows Insider-Vorabversion 14361 oder höher ausführen, finden Sie weitere Informationen in der [Vorschau zur geschachtelten Virtualisierung für Windows Insiders: Build 14361 und höher](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting#nested-virtualization-preview-for-windows-insiders-builds-14361-).
 
 ## Voraussetzungen
 
@@ -89,8 +89,51 @@ Mein virtueller Computer startet nicht. Was muss ich tun?
 
 Nutzen Sie für Rückmeldungen die Windows-Feedback-App, die [Virtualisierungsforen](https://social.technet.microsoft.com/Forums/windowsserver/En-us/home?forum=winserverhyperv) oder [GitHub](https://github.com/Microsoft/Virtualization-Documentation).
 
+##Vorschau zur geschachtelten Virtualisierung für Windows Insiders: Build 14361 und höher
+Vor einigen Monaten haben wir eine frühe Vorschau der geschachtelten Hyper-V-Virtualisierung mit Build 10565 angekündigt. Wir waren überwältigt von dem großen Zuspruch, den dieses Feature auslöste, und freuen uns, ein Update für Windows Insider freigeben zu können.
+
+###Eine neue VM-Version für die geschachtelte Virtualisierung
+Beginnend mit Build 14361 ist für virtuelle Computer mit aktivierter geschachtelter Virtualisierung Version 8.0 erforderlich. Dazu ist für virtuelle Computer mit aktivierter geschachtelter Virtualisierung, die auf älteren Hosts erstellt wurden, ein Versionsupdate erforderlich. 
+
+####Aktualisieren der VM-Version
+Um die geschachtelte Virtualisierung weiterhin verwenden zu können, müssen Sie die VM-Version auf 8.0 aktualisieren. Das bedeutet, dass der gespeicherte Zustand entfernt und der virtuelle Computer heruntergefahren werden muss. Das folgende PowerShell-Cmdlet aktualisiert die VM-Version:
+```none
+Update-VMVersion -Name <VMName>
+```
+####Deaktivieren der geschachtelten Virtualisierung
+Wenn Sie den virtuellen Computer nicht aktualisieren möchten, können Sie die geschachtelte Virtualisierung deaktivieren, damit der virtuelle Computer gestartet werden kann:
+```none
+Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $false
+```
+
+###Neues Verhalten in VM-Version 8.0 
+In dieser Vorschau gibt es mehrere Änderungen der Funktionsweise virtueller Computer mit aktivierter geschachtelter Virtualisierung:
+-   Das Erstellen und Anwenden von Prüfpunkten für virtuelle Computer mit aktivierter geschachtelter Virtualisierung ist jetzt möglich.
+-   Sie können virtuelle Computer mit aktivierter geschachtelter Virtualisierung jetzt speichern und starten.
+-   Virtuelle Computer mit aktivierter geschachtelter Virtualisierung können jetzt auf Hosts mit aktivierter virtualisierungsbasierter Sicherheit (einschließlich Device Guard und Credential Guard) ausgeführt werden.
+-   Wir haben die Fehlermeldungen für die vorhandene Beschränkungen verbessert.
+
+###Funktionale Beschränkungen
+-   Geschachtelte Virtualisierung wurde zum Ausführen von Hyper-V auf einem virtuellen Hyper-V-Computer entwickelt. Virtualisierungsanwendungen von Drittanbietern werden nicht unterstützt und führen auf virtuellen Hyper-V-Computern wahrscheinlich zu Fehlern.
+-   Dynamischer Arbeitsspeicher ist nicht kompatibel mit geschachtelter Virtualisierung. Wenn Hyper-V auf einem virtuellen Computer ausgeführt wird, kann der Arbeitsspeicher des virtuellen Computers nicht zur Laufzeit geändert werden. 
+-   Das Ändern der Größe des Laufzeitspeichers ist nicht kompatibel mit geschachtelter Virtualisierung. Wird die Größe des Arbeitsspeichers eines virtuellen Computers geändert, während Hyper-V ausgeführt wird, tritt ein Fehler auf. 
+-   Geschachtelte Virtualisierung wird nur auf Intel-Systemen unterstützt.
+
+###Bekanntes Problem
+In Build 14361 ist ein Problem bekannt: Virtuelle Computer der Generation 2 können nicht gestartet werden, und folgender Fehler wird angezeigt:
+```none
+“Cannot modify property without enabling VirtualizationBasedSecurityOptOut”
+```
+Dies kann durch Deaktivieren der geschachtelten Virtualisierung oder der virtualisierungsbasierten Sicherheit vorübergehend behoben werden:
+```none
+Set-VMSecurity -VMName <vmname> -VirtualizationBasedSecurityOptOut $true
+```
+
+###Wir hören Ihnen zu
+Senden Sie uns bitte weiterhin Ihr Feedback zu. Verwenden Sie dazu die Windows-Feedback-App. Wenn Sie Fragen haben, starten Sie bitte auf der [GitHub](https://github.com/Microsoft/Virtualization-Documentation)-Dokumentationsseite eine Anfrage. 
 
 
-<!--HONumber=Jun16_HO3-->
+
+<!--HONumber=Jun16_HO4-->
 
 

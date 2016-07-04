@@ -1,6 +1,6 @@
 ---
-title: Containerbereitstellung – Schnellstart – Images
-description: Containerbereitstellung – Schnellstart
+title: "Containerbereitstellung – Schnellstart – Images"
+description: "Containerbereitstellung – Schnellstart"
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
@@ -9,13 +9,17 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
+translationtype: Human Translation
+ms.sourcegitcommit: eae45c2c81c7edc94d963da69dcdee2b6f08f37d
+ms.openlocfilehash: ac9596d210e72b9fd576f728e8e6bbdc293597d7
+
 ---
 
 # Containerimages unter Windows Server
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Im vorhergehenden Windows Server-Schnellstart wurde ein Windows-Container auf der Basis eines bereits vorhandenen Containerimages erstellt. In dieser Übung erfahren Sie im Detail, wie Sie eigene Containerimages manuell und Images mit einer Dockerfile-Datei erstellen.
+Im vorhergehenden Windows Server-Schnellstart wurde ein Windows-Container auf der Basis eines bereits vorhandenen Containerimages erstellt. In dieser Übung erfahren Sie im Detail, wie Sie benutzerdefinierte Containerimages manuell unter Verwendung einer Dockerfile-Datei erstellen.
 
 Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2016. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis. 
 
@@ -161,6 +165,7 @@ docker rm -f cranky_brown
 
 [Windows-Container unter Windows 10](./quick_start_windows_10.md)
 
-<!--HONumber=Jun16_HO2-->
+
+<!--HONumber=Jun16_HO5-->
 
 

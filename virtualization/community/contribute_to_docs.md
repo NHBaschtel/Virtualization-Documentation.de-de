@@ -1,97 +1,100 @@
 ---
-title: &815299562 Communityressourcen
+title: Communityressourcen
 description: Communityressourcen
 keywords: windows 10, hyper-v, container, docker
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: &1136166802 virtualization
+ms.prod: virtualization
 ms.service: virtualization
 ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
+translationtype: Human Translation
+ms.sourcegitcommit: e14ede0a2b13de08cea0a955b37a21a150fb88cf
+ms.openlocfilehash: 5d41a694d4b6cac6b6381379bda4a8f959ec4854
+
 ---
 
 # Beiträge zu den Dokumenten leisten
 
-> <g id="1" ctype="x-strong">Hinweis</g>: Um Beiträge erstellen zu können, benötigen Sie ein Konto auf <g id="3CapsExtId1" ctype="x-link"><g id="3CapsExtId2" ctype="x-linkText">GitHub</g><g id="3CapsExtId3" ctype="x-title"></g></g>.
+> **Hinweis:** Um Beiträge erstellen zu können, benötigen Sie ein Konto auf [GitHub](https://www.github.com).
 
 ## Bearbeiten eines vorhandenen Dokuments
 
-1. Suchen Sie das Dokument, das Sie bearbeiten möchten.
+1. Suchen Sie das Dokument, das Sie bearbeiten möchten.  
 
-2. Klicken Sie auf die entsprechende Schaltfläche (<g id="2" ctype="x-strong">Contribute to this Topic</g>), um einen Beitrag zu leisten.  
-  <g id="1" ctype="x-linkText"></g>
-
+2. Klicken Sie auf die entsprechende Schaltfläche (**Contribute to this Topic**), um einen Beitrag zu leisten.  
+  ![](media/editDoc.png)
+  
   Sie werden daraufhin automatisch zu der in GitHub mit dieser Datei verknüpften Markdowndatei weitergeleitet.
-
-  Stellen Sie sicher, dass Sie bei GitHub angemeldet sind. Melden Sie sich andernfalls an, oder erstellen Sie ein GitHub-Konto.
-
-  <g id="1" ctype="x-linkText"></g>
-
+  
+  Stellen Sie sicher, dass Sie bei GitHub angemeldet sind.  Melden Sie sich andernfalls an, oder erstellen Sie ein GitHub-Konto.
+  
+  ![](media/GitHubView.png)
+  
 3. Klicken Sie auf das Symbol „Bearbeiten“, um den im Browser enthaltenen Editor aufzurufen.
-
-  <g id="1" ctype="x-linkText"></g>
+  
+  ![](media/GitHubEdit.png)
 
 4. Achten Sie bei Änderungen auf den Kontext.
-
+  
   Mögliche Aktionen:
   1. Datei bearbeiten
   2. Änderungen als Vorschau anzeigen
   3. Datei umbenennen (was Sie vermutlich nicht tun möchten)
-
-  <g id="1" ctype="x-linkText"></g>
-
+  
+  ![](media/GitHubEditor.png)
+  
 5. Änderungen als Pull-Anforderung vorschlagen
-
-  <g id="1" ctype="x-linkText"></g>
+  
+  ![](media/GitHubProposeChange.png)
 
 6. Überprüfen Ihrer Änderungen
-
-  <g id="1" ctype="x-strong">Bei einer Pull-Anforderung achten wir auf Folgendes</g>
+  
+  **Bei einer Pull-Anforderung achten wir auf Folgendes**  
   * Die Änderung ist richtig – sie spiegelt die Technologie genau wider.
   * Rechtschreibung und Grammatik sind richtig.
   * Sie befindet sich an einer logischen Position in der Dokumentation.
+    
+  ![](media/GitHubCreatePR.png)
 
-  <g id="1" ctype="x-linkText"></g>
-
-7. Erstellen einer <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">Pull-Anforderung</g><g id="2CapsExtId3" ctype="x-title"></g></g>
+7. Erstellen einer [Pull-Anforderung](contribute_to_docs.md#pull-requests)  
 
 ## Pull-Anforderungen
 
-Die meisten Änderungen werden per Pull-Anforderung ausgeführt. Eine Pull-Anforderung ist eine Möglichkeit, ein Changeset gemeinsam mit mehrere Reviewern zu überprüfen, die den aktuellen Inhalt ändern und kommentieren können.
+Die meisten Änderungen werden per Pull-Anforderung ausgeführt.  Eine Pull-Anforderung ist eine Möglichkeit, ein Changeset gemeinsam mit mehrere Reviewern zu überprüfen, die den aktuellen Inhalt ändern und kommentieren können.
 
 
 ## Verzweigen des Repositorys und lokales Bearbeiten
 
 Wenn Sie länger mit Dokumenten arbeiten müssen, klonen Sie das Repository lokal, und arbeiten Sie auf Ihrem Computer.
 
-Die folgende Anleitung zeigt, wie Sie mein (Sarah Cooleys) Setup emulieren. Es gibt viele alternative Setups, die ebenso gut funktionieren.
+Die folgende Anleitung zeigt, wie Sie mein (Sarah Cooleys) Setup emulieren.  Es gibt viele alternative Setups, die ebenso gut funktionieren.
 
-> <g id="1" ctype="x-strong">Hinweis:</g> All diese Dokumenttools funktionieren ebenso gut unter Linux/OS X. Wenn Sie weitere Anleitungen möchten, fragen Sie uns bitte.
+> **Hinweis:** All diese Dokumenttools funktionieren ebenso gut unter Linux/OS X.  Wenn Sie weitere Anleitungen möchten, fragen Sie uns bitte.
 
 Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
-* <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Einrichten von Git</g><g id="1CapsExtId3" ctype="x-title"></g></g>
+* [Einrichten von Git](contribute_to_docs.md#set-up-git)
   * Installieren von Git
   * Anfängliches Setup
   * Verzweigen des Dokumentationsrepositorys
   * Klonen Ihrer Kopie auf Ihrem lokalen Computer
-* <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Verwalten der anfänglichen Anmeldeinformationen</g><g id="1CapsExtId3" ctype="x-title"></g></g>
+* [Verwalten der anfänglichen Anmeldeinformationen](contribute_to_docs.md#validate-and-stash-credentials)
   * Informationen über das Ausführen eines Stashs für Anmeldeinformationen und über Hilfsprogramme für Anmeldeinformationen
-* <g id="1CapsExtId1" ctype="x-link"><g id="1CapsExtId2" ctype="x-linkText">Einrichten der Dokumentumgebung</g><g id="1CapsExtId3" ctype="x-title"></g></g>
+* [Einrichten der Dokumentumgebung](contribute_to_docs.md#set-up-markdown-editing-environment)
   * Installieren von VSCode
   * Exemplarische Vorgehensweise für VSCode für Git – einige nützliche Funktionen
   * Ausführen des ersten Commits
 
 ### Einrichten von Git
 
-1. Installieren Sie Git (unter Windows) von <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">hier</g><g id="2CapsExtId3" ctype="x-title"></g></g>.
+1. Installieren Sie Git (unter Windows) von [hier](https://git-for-windows.github.io/).
 
   In dieser Installation müssen Sie nur einen Wert ändern:
 
-  <g id="1" ctype="x-strong">Anpassen Ihrer PATH-Umgebung</g>
-  Verwenden Sie Git über die Windows-Eingabeaufforderung.
+  **Anpassen Ihrer PATH-Umgebung** Verwenden Sie Git über die Windows-Eingabeaufforderung.
 
-  <g id="1" ctype="x-linkText"></g>
+  ![](media/GitFromWinCMD.png)
 
   So können Sie Git-Befehle in der PowerShell-Konsole und in jeder anderen Windows-Konsole verwenden.
 
@@ -106,15 +109,15 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
 
   Git verwendet diese Werte, um Ihre Commits zu bezeichnen.
 
-> Wenn folgender Fehler angezeigt wird, ist Git möglicherweise nicht ordnungsgemäß installiert, oder Sie müssen PowerShell neu starten.
->    ``` PowerShell
->    git: Der Begriff 'git' wurde nicht als Name eines Cmdlets, einer Funktion, einer Skriptdatei oder eines ausführbaren Programms erkannt. Prüfen Sie die Schreibweise des Namens bzw. stellen Sie sicher, dass der Pfad korrekt angegeben wurde, und versuchen Sie es erneut.
->    ```
+  > Wenn folgender Fehler angezeigt wird, ist Git möglicherweise nicht ordnungsgemäß installiert, oder Sie müssen PowerShell neu starten.
+    ``` PowerShell
+    git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+    ```
 
 3. Konfigurieren Sie Ihre Git-Umgebung.
 
    Richten Sie ein Hilfsprogramm für Anmeldeinformationen ein, damit Sie Benutzername und Kennwort (zumindest auf diesem Computer) nur einmal eingeben müssen.
-   Ich habe dieses einfache <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">Windows-Hilfsprogramm für Anmeldeinformationen</g><g id="2CapsExtId3" ctype="x-title"></g></g> verwendet.
+   Ich habe dieses einfache [Windows-Hilfsprogramm für Anmeldeinformationen](https://github.com/Microsoft/Git-Credential-Manager-for-Windows#download-and-install) verwendet.
 
    Nach der Installation führen Sie folgende Befehle aus, um das Programm zu aktivieren und das Pushverhalten einzurichten:
    ```
@@ -131,8 +134,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
    password:
    authcode (app): 562689
    ```
-   Damit wird automatisch ein <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">Persönliches Zugriffstoken</g><g id="2CapsExtId3" ctype="x-title"></g></g> mit den richtigen Berechtigungen für GitHub erstellt.
-   Speichern Sie dieses Token an einem sicheren Ort auf dem lokalen Computer. Bei späteren Anmeldungen werden Sie nicht mehr zur Eingabe von Anmeldeinformationen aufgefordert.
+   Damit wird automatisch ein [persönliches Zugriffstoken](https://github.com/settings/tokens) mit den richtigen Berechtigungen für GitHub erstellt. Speichern Sie dieses Token an einem sicheren Ort auf dem lokalen Computer. Bei späteren Anmeldungen werden Sie nicht mehr zur Eingabe von Anmeldeinformationen aufgefordert.
 
 4. Verzweigen Sie das Repository
 
@@ -140,14 +142,14 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
 
   „git clone“ erstellt eine lokale Kopie des Git-Repositorys mit den richtigen Hooks zur Synchronisierung mit anderen Klonen des gleichen Repositorys.
 
-  Standardmäßig erstellt der Befehl einen Ordner mit dem gleichen Namen wie das Repository im aktuellen Verzeichnis. Ich speichere all meine Git-Repositorys in meinem Benutzerverzeichnis. Weitere Informationen über „git clone“ finden Sie <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">hier</g><g id="2CapsExtId3" ctype="x-title"></g></g>.
+  Standardmäßig erstellt der Befehl einen Ordner mit dem gleichen Namen wie das Repository im aktuellen Verzeichnis.  Ich speichere all meine Git-Repositorys in meinem Benutzerverzeichnis.  Weitere Informationen über „git clone“ finden Sie [hier](http://git-scm.com/docs/git-clone).
 
   ``` PowerShell
   cd ~
   git clone https://github.com/Microsoft/Virtualization-Documentation.git
   ```
 
-  Wenn der Befehl erfolgreich ausgeführt wurde, verfügen Sie jetzt über einen Ordner <g id="2" ctype="x-code">Virtualization Documentation</g>.
+  Wenn der Befehl erfolgreich ausgeführt wurde, verfügen Sie jetzt über einen Ordner `Virtualization-Documentation`.
 
   ``` PowerShell
   cd Virtualization-Documentation
@@ -155,13 +157,13 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
 
 5. (Optional) Richten Sie Posh-Git ein.
 
-  Posh-Git ist ein von der Community erstelltes PowerShell-Modul, das die Verwendung von Git in PowerShell etwas benutzerfreundlicher gestaltet. Das Modul fügt die Vervollständigung per Tabulatortaste zu PowerShell hinzu und ermöglicht die Anzeige von Informationen zu Verzweigung und Dateistatus an der Eingabeaufforderung. Weitere Informationen dazu finden Sie <g id="2CapsExtId1" ctype="x-link"><g id="2CapsExtId2" ctype="x-linkText">hier</g><g id="2CapsExtId3" ctype="x-title"></g></g>. Sie können Posh-Git installieren, indem Sie folgenden Befehl in einer PowerShell-Administratorkonsole ausführen.
+  Posh-Git ist ein von der Community erstelltes PowerShell-Modul, das die Verwendung von Git in PowerShell etwas benutzerfreundlicher gestaltet.  Das Modul fügt die Vervollständigung per Tabulatortaste zu PowerShell hinzu und ermöglicht die Anzeige von Informationen zu Verzweigung und Dateistatus an der Eingabeaufforderung.  Weitere Informationen dazu finden Sie [hier](https://github.com/dahlbyk/posh-git).  Sie können Posh-Git installieren, indem Sie folgenden Befehl in einer PowerShell-Administratorkonsole ausführen.
 
   ``` PowerShell
   Install-Module -Name posh-git
   ```
 
-  Um Posh-Git so einzurichten, dass es bei jedem Start von PowerShell aktiviert wird, fügen Sie Ihrem PowerShell-Profil (z. B. <g id="2" ctype="x-code">%UserProfile%\My Documents\WindowsPowerShell\profile.ps1 </g>) folgenden Befehl hinzu:
+  Um Posh-Git so einzurichten, dass es bei jedem Start von PowerShell aktiviert wird, fügen Sie Ihrem PowerShell-Profil (z. B. `%UserProfile%\My Documents\WindowsPowerShell\profile.ps1 `) folgenden Befehl hinzu:
 
   ``` PowerShell
   Import-Module posh-git
@@ -191,16 +193,13 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
 
 1. Laden Sie VSCode herunter.
 
-6. Führen Sie einen Testcommit aus. Wenn ein ordnungsgemäßer Stash für Ihre Anmeldeinformationen ausgeführt wurde, sollte alles reibungslos funktionieren.
+6. Führen Sie einen Testcommit aus.  Wenn ein ordnungsgemäßer Stash für Ihre Anmeldeinformationen ausgeführt wurde, sollte alles reibungslos funktionieren.
 
 
 
 
 
 
-
-
-
-<!--HONumber=May16_HO1-->
+<!--HONumber=Jun16_HO4-->
 
 
