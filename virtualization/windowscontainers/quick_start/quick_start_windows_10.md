@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 3fc388632dee4d714ab5a7869fa852c079c11910
-ms.openlocfilehash: e2d86c6f1aba07c7c40d1f932b3884c99bfd8f0a
+ms.sourcegitcommit: 5980babe886024de93f6d6c5f04eaed47407209d
+ms.openlocfilehash: 188c85a9e6f5d1c334e51853efd8fa3ca461837c
 
 ---
 
@@ -55,7 +55,7 @@ Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht a
 Erstellen Sie einen Ordner für die ausführbaren Docker-Dateien.
 
 ```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
+New-Item -Type Directory -Path $env:ProgramFiles\docker\
 ```
 
 Laden Sie den Docker-Daemon herunter.
@@ -73,7 +73,7 @@ Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:ProgramFiles\docker\\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
 Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
@@ -180,6 +180,6 @@ Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis 
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Jul16_HO1-->
 
 
