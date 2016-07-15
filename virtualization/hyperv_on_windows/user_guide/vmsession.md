@@ -1,7 +1,7 @@
 ---
 title: Verwalten von virtuellen Windows-Computern mit PowerShell Direct
 description: Verwalten von virtuellen Windows-Computern mit PowerShell Direct
-keywords: windows 10, hyper-v
+keywords: windows 10, hyper-v, powershell, integration services, integration components, automation, powershell direct
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
@@ -10,19 +10,19 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 translationtype: Human Translation
-ms.sourcegitcommit: 6eb26eda92217917a3abe7d9dd4c77c48283c8dc
-ms.openlocfilehash: 91927b751021efa9ba2cf696516ba50af28c6e05
+ms.sourcegitcommit: 87f8fb2ae8958c9c6177f6eda90678708054fce7
+ms.openlocfilehash: 75186d48346efbaaac264b00f0f92fe82fcfe424
 
 ---
 
-# Verwalten von virtuellen Windows-Computern mit PowerShell Direct
+# Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
  
-PowerShell Direct können Sie um eine Windows 10 oder Technical Preview für Windows Server-virtuellen Computer von einem Windows 10 oder Windows Server Technische Vorschau Hyper-V-Host Remote zu verwalten. PowerShell Direct ermöglicht die Verwaltung von PowerShell innerhalb eines virtuellen Computers, unabhängig von der Netzwerkkonfiguration oder Remoteverwaltungseinstellungen auf dem Hyper-V-Host oder dem virtuellen Computer. Dies erleichtert Hyper-V-Administratoren die Automatisierung und Skripterstellung für Verwaltungs- und Konfigurationsaufgaben.
+Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in einem virtuellen Computer unter Windows 10 oder Windows Server Technical Preview von Ihrem Hyper-V-Host aus auszuführen – unabhängig von der Netzwerkkonfiguration oder den Einstellungen für die Remoteverwaltung.
 
 **Es gibt zwei Möglichkeiten, PowerShell Direct auszuführen:**  
 * Als interaktive Sitzung – [klicken Sie hier](vmsession.md#create-and-exit-an-interactive-powershell-session), um eine interaktive PowerShell-Sitzung mithilfe von Enter-PSSession zu erstellen und zu beenden.
 * Als einmalige Sitzung zur Ausführung eines einzelnen Befehls oder Skripts – [klicken Sie hier](vmsession.md#run-a-script-or-command-with-invoke-command), um ein Skript oder einen Befehl mithilfe von Invoke-Command auszuführen.
-* Als permanente Sitzung (Build 14280 und höher) – [klicken Sie hier](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item), um eine permanente Sitzung mithilfe von New-PSSession zu erstellen.  
+* Als permanente Sitzung (Build 14280 und höher) – [Klicken Sie hier](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item), um eine permanente Sitzung mithilfe von New-PSSession zu erstellen.  
 Fahren Sie fort, indem Sie eine Datei mithilfe von Copy-Item vom und auf den virtuellen Computer kopieren. Trennen Sie anschließend die Sitzung mithilfe von Remove-PSSession.
 
 ## Anforderungen
@@ -281,6 +281,6 @@ Unter [PowerShell Direct-Codeausschnitte](../develop/powershell_snippets.md) fin
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Jul16_HO1-->
 
 

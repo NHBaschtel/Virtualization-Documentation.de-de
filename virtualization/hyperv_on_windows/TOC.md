@@ -26,10 +26,11 @@
 # Verweis
 ## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
 ## [Hyper-V-WMI-Anbieter (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
+## [Hyper-V-Integrationsdienste](reference/ic_info.md)
 ## [Hyper-V-Architektur](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
-## [Spezifikationen für Hypervisor](develop/tlfs.md)
+## [Spezifikationen für Hypervisor](reference/tlfs.md)
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Jun16_HO5-->
 
 
