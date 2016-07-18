@@ -8,9 +8,9 @@
 [ Handoff Success Files ](#handoff-success-list)| 0
 [ Archive Failed Files ](#archive-failed-list)| 0
 [ Archive Success Files ](#archive-success-list)| 0
-[ Handback Failed Files ](#handback-failed-list)| 1
+[ Handback Failed Files ](#handback-failed-list)| 0
 [ Out Of Sync Handback Files ](#outofsync-handback-success-list)| 42
-[ In Sync Handback Files ](#insync-handback-success-list)| 95
+[ In Sync Handback Files ](#insync-handback-success-list)| 96
 [ Ignored Files ](#ignored-list)| 331
 
 ## <a name='handoff-failed-list'></a> Handoff Failed File List
@@ -22,9 +22,6 @@
 ## <a name='archive-success-list'></a> Archive Success File List
 
 ## <a name='handback-failed-list'></a> Handback Failed File List
- Source File | Status | Details 
- ----------- | ------ | ------- 
- [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/80238e2f42ed6c21f7e84b38cfe99bdbe6f9e27f/virtualization/windowscontainers/quick_start/media/hello.png) | HandedBackFailed | [Details](#19c1070cee496d52eba1b2ce80f4f939edccdffd297)
 
 ## <a name='outofsync-handback-success-list'></a> Out Of Sync Handback Success File List
  Source File | Status | Details 
@@ -155,6 +152,7 @@
  [virtualization\windowscontainers\quick_start\manage_docker.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/bd4b5200e75f56dd42d60e9d949614145b9a02c4/virtualization/windowscontainers/quick_start/manage_docker.md) | InSyncHandedBackSuccess | [Details](#8deff9eeb66ebef03d6b96aa358cd9c1d4ebea4a274)
  [virtualization\windowscontainers\quick_start\manage_docker_hyperv.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/96c7d1b9e72f574ad66577a09ca1cd382e75f290/virtualization/windowscontainers/quick_start/manage_docker_hyperv.md) | InSyncHandedBackSuccess | [Details](#3b788e7e393323d8f010b5c1a75a5cc20524c162275)
  [virtualization\windowscontainers\quick_start\manage_powershell.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/df4003b43c1115689e5383f6ed66edba18cc53a9/virtualization/windowscontainers/quick_start/manage_powershell.md) | InSyncHandedBackSuccess | [Details](#77b4bb84508a692e387829d6a02b2a6b88fa72cd276)
+ [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/80238e2f42ed6c21f7e84b38cfe99bdbe6f9e27f/virtualization/windowscontainers/quick_start/media/hello.png) | InSyncHandedBackSuccess | [Details](#19c1070cee496d52eba1b2ce80f4f939edccdffd297)
  [virtualization\windowscontainers\quick_start\media\HWWINServer.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/0324f75320b60d13d75630d005c5655eab9434e9/virtualization/windowscontainers/quick_start/media/HWWINServer.png) | InSyncHandedBackSuccess | [Details](#b3f2e35411bc72a4b95febc8f74a01e5ba78af38298)
  [virtualization\windowscontainers\quick_start\media\newazure1.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/df4003b43c1115689e5383f6ed66edba18cc53a9/virtualization/windowscontainers/quick_start/media/newazure1.png) | InSyncHandedBackSuccess | [Details](#7eaf82d3cdd0a4881f239ce4071eb262b3104dfd303)
  [virtualization\windowscontainers\quick_start\media\newazure2.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/df4003b43c1115689e5383f6ed66edba18cc53a9/virtualization/windowscontainers/quick_start/media/newazure2.png) | InSyncHandedBackSuccess | [Details](#36eaa0e483cac9b07a024964cd5fb4f36ac84853304)
@@ -4268,17 +4266,16 @@
 * [Back to Top](#report-top)
 
 ##### <a name='19c1070cee496d52eba1b2ce80f4f939edccdffd297'></a> Source: [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/80238e2f42ed6c21f7e84b38cfe99bdbe6f9e27f/virtualization/windowscontainers/quick_start/media/hello.png)
-* Status: HandedBackFailed
-* Target File: 
+* Status: InSyncHandedBackSuccess
+* Target File: [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/7136f4f5be85ff63b6a51b79c95dfc33d26334af/virtualization/windowscontainers/quick_start/media/hello.png)
 * Handoff File: [19c1070cee496d52eba1b2ce80f4f939edccdffd.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/f2ccdfb1cc3d19fb838888fa13bc3a9ff1cd52db/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/19c1070cee496d52eba1b2ce80f4f939edccdffd.png)
 * Handoff Datetime: 2016-04-27 13:39:53
 * Handoff Reason: IsDependency
 * Dependency From: virtualization\windowscontainers\quick_start\manage_docker.md, virtualization\windowscontainers\quick_start\quick_start_images.md
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Handback Error: [handback_transform_failed](#19c1070cee496d52eba1b2ce80f4f939edccdffd297handback_transform_failed)
+* Handback File: [19c1070cee496d52eba1b2ce80f4f939edccdffd.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/a844b81aaa2983ccfb644ee50a20dde8849492d6/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/poison/19c1070cee496d52eba1b2ce80f4f939edccdffd.png)
+* Handback Datetime: 2016-07-18 08:44:40
 * [Back to Top](#report-top)
 
 ##### <a name='b3f2e35411bc72a4b95febc8f74a01e5ba78af38298'></a> Source: [virtualization\windowscontainers\quick_start\media\HWWINServer.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/0324f75320b60d13d75630d005c5655eab9434e9/virtualization/windowscontainers/quick_start/media/HWWINServer.png)
@@ -4501,7 +4498,7 @@
 * Archive File: [quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/7837728b3ef4312546cb113807956447842742ce/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/archive/quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf)
 * Archive Datetime: 2016-06-30 07:21:48
 * Handback File: [quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e975b9de8e735dc6dbad628f068b25b81f4699e0/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf)
-* Handback Datetime: 2016-06-30 16:39:16
+* Handback Datetime: 2016-07-18 08:44:40
 * Handback Error: [handback_transform_failed](#c0176d4f5445263a5fd522a80ce2a9dca7ac90e6315handback_transform_failed)
 * Bilingual File: [quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e975b9de8e735dc6dbad628f068b25b81f4699e0/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf)
 * Bilingual Datetime: 2016-06-21 13:49:20
@@ -6366,17 +6363,11 @@
 
 
 ## Error Details
-##### <a name='19c1070cee496d52eba1b2ce80f4f939edccdffd297handback_transform_failed'></a> Source: [virtualization\windowscontainers\quick_start\media\hello.png](#19c1070cee496d52eba1b2ce80f4f939edccdffd297)
-* Error Code: handback_transform_failed
-* Error Message: Handback file: C:\ol\master\VDP.handback\0e62d1\ol-handback\Microsoft\Virtualization-Documentation-Private.de-de\live\19c1070cee496d52eba1b2ce80f4f939edccdffd.png failed.
-* Retriable: False
-* Error Details: {"internal_error_code":"handback_transform_failed","internal_error_message":"Handback file: C:\\ol\\master\\VDP.handback\\0e62d1\\ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\19c1070cee496d52eba1b2ce80f4f939edccdffd.png failed.","internal_error_retriable":false,"exception_message":"Invalid character in the given encoding. Line 1, position 1.","exception_type":"System.Xml.XmlException","stack_trace":"   at System.Xml.XmlTextReaderImpl.Throw(Exception e)\r\n   at System.Xml.XmlTextReaderImpl.InvalidCharRecovery(Int32& bytesCount, Int32& charsCount)\r\n   at System.Xml.XmlTextReaderImpl.GetChars(Int32 maxCharsCount)\r\n   at System.Xml.XmlTextReaderImpl.ReadData()\r\n   at System.Xml.XmlTextReaderImpl.ParseXmlDeclaration(Boolean isTextDecl)\r\n   at System.Xml.XmlTextReaderImpl.Read()\r\n   at System.Xml.Linq.XDocument.Load(XmlReader reader, LoadOptions options)\r\n   at System.Xml.Linq.XDocument.Load(String uri, LoadOptions options)\r\n   at Microsoft.OpenLocalization.Localization.LocalizationCore.ValidateHandbackFile(TranslationStateItem translationStateItem, String filePath, String handbackPriority, String handoffFilePath) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Localization\\HandbackCore.cs:line 205\r\n   at Microsoft.OpenLocalization.Localization.LocalizationCore.<>c__DisplayClass5_0.<GetHandbackFiles>b__0(String file) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Localization\\HandbackCore.cs:line 396","extended_information":null}
-
 ##### <a name='c0176d4f5445263a5fd522a80ce2a9dca7ac90e6315handback_transform_failed'></a> Source: [virtualization\windowscontainers\quick_start\quick_start.md](#c0176d4f5445263a5fd522a80ce2a9dca7ac90e6315)
 * Error Code: handback_transform_failed
-* Error Message: Handback file: C:\ol\master\VDP.handback\0e62d1\ol-handback\Microsoft\Virtualization-Documentation-Private.de-de\live\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf failed.
+* Error Message: Handback file: C:\ol\master\VDP.handback\0e62d1\ol-handback\Microsoft\Virtualization-Documentation-Private.de-de\live\poison\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf failed.
 * Retriable: False
-* Error Details: {"internal_error_code":"handback_transform_failed","internal_error_message":"Handback file: C:\\ol\\master\\VDP.handback\\0e62d1\\ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf failed.","internal_error_retriable":false,"exception_message":"Fail to transform from xliff to markdown with invalid metadata: Invalid yaml header when parsing:\ntitle: Schnellstartanleitung: Windows-Container\ndescription: Schnellstartanleitung: Windows-Container.\nkeywords: docker, containers\nauthor: neilpeterson\nmanager: timlt\nms.date: 05/26/2016\nms.topic: article\nms.prod: windows-contianers\nms.service: windows-containers\nms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147\nError message: (Line: 1, Col: 29, Idx: 28) - (Line: 1, Col: 29, Idx: 28): Mapping values are not allowed in this context.","exception_type":"System.IO.InvalidDataException","stack_trace":"   at Microsoft.OpenLocalization.Transformer.TransformerClient.XliffToMarkdown(Stream xliffStream, Stream skeletonStream, Stream targetStream) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization.Transformer.Core\\TransformerClient.cs:line 119\r\n   at Microsoft.OpenLocalization.Helper.XliffTransformUtil.XliffToMarkdown(String skeletonFile, String xliffFile, String mdfile, Boolean useJavascriptTransformer) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Helper\\XliffTransformUtil.cs:line 92\r\n   at Microsoft.OpenLocalization.Localization.LocalizationCore.<>c__DisplayClass5_0.<GetHandbackFiles>b__0(String file) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Localization\\HandbackCore.cs:line 406","extended_information":null}
+* Error Details: {"internal_error_code":"handback_transform_failed","internal_error_message":"Handback file: C:\\ol\\master\\VDP.handback\\0e62d1\\ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\poison\\quick_start.95cf1adf4b4529454f2de8a25554a6b86638acc7.de-de.xlf failed.","internal_error_retriable":false,"exception_message":"Fail to transform from xliff to markdown with invalid metadata: Invalid yaml header when parsing:\ntitle: Schnellstartanleitung: Windows-Container\ndescription: Schnellstartanleitung: Windows-Container.\nkeywords: docker, containers\nauthor: neilpeterson\nmanager: timlt\nms.date: 05/26/2016\nms.topic: article\nms.prod: windows-contianers\nms.service: windows-containers\nms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147\nError message: (Line: 1, Col: 29, Idx: 28) - (Line: 1, Col: 29, Idx: 28): Mapping values are not allowed in this context.","exception_type":"System.IO.InvalidDataException","stack_trace":"   at Microsoft.OpenLocalization.Transformer.TransformerClient.XliffToMarkdown(Stream xliffStream, Stream skeletonStream, Stream targetStream) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization.Transformer.Core\\TransformerClient.cs:line 119\r\n   at Microsoft.OpenLocalization.Helper.XliffTransformUtil.XliffToMarkdown(String skeletonFile, String xliffFile, String mdfile, Boolean useJavascriptTransformer) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Helper\\XliffTransformUtil.cs:line 92\r\n   at Microsoft.OpenLocalization.Localization.LocalizationCore.<>c__DisplayClass7_0.<GetHandbackFiles>b__1(String file) in C:\\Jenkins\\workspace\\OpenLocalization-Prod\\src\\OpenLocalization\\Localization\\HandbackCore.cs:line 418","extended_information":null}
 
 
 Generated by OpenLocalization.
