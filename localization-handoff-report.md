@@ -1,11 +1,45 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 0
+ Total Files | 2
 
 ## File List
+ Source File | Status | Details 
+ ----------- | ------ | ------- 
+ [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/493b669bc47fc589486a82cfea73a0bb1e88cf79/virtualization/windowscontainers/management/manage_data.md) | OutofSyncHandedBackSuccess | [Details](#26c010e79a4913b2e138f6d1d78f9406dbacbc6b256)
+ [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/80238e2f42ed6c21f7e84b38cfe99bdbe6f9e27f/virtualization/windowscontainers/quick_start/media/hello.png) | OutofSyncHandedBackSuccess | [Details](#19c1070cee496d52eba1b2ce80f4f939edccdffd297)
 
 ## Item Details
+##### <a name='26c010e79a4913b2e138f6d1d78f9406dbacbc6b256'></a> Source: [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/493b669bc47fc589486a82cfea73a0bb1e88cf79/virtualization/windowscontainers/management/manage_data.md)
+* Status: OutofSyncHandedBackSuccess
+* Target File: 
+* Handoff File: [manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/d24e3c230a371ccd04c088ab3c2b91bc12432650/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf)
+* Handoff Datetime: 2016-07-18 17:21:10
+* Handoff Reason: Include
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* Current Target File: [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/11b24d13f1155807313a85b8a42f8c0150721091/virtualization/windowscontainers/management/manage_data.md)
+* Current Handback File: [manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/079a97d54f537c87d3ae2fa51081aef378437664/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf)
+* Current Handback Datetime: 2016-06-30 12:07:49
+* Bilingual File: [manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/079a97d54f537c87d3ae2fa51081aef378437664/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf)
+* Bilingual Datetime: 2016-06-30 12:12:11
+* [Back to Top](#report-top)
+
+##### <a name='19c1070cee496d52eba1b2ce80f4f939edccdffd297'></a> Source: [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/80238e2f42ed6c21f7e84b38cfe99bdbe6f9e27f/virtualization/windowscontainers/quick_start/media/hello.png)
+* Status: OutofSyncHandedBackSuccess
+* Target File: [virtualization\windowscontainers\quick_start\media\hello.png](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/7136f4f5be85ff63b6a51b79c95dfc33d26334af/virtualization/windowscontainers/quick_start/media/hello.png)
+* Handoff File: [19c1070cee496d52eba1b2ce80f4f939edccdffd.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/d24e3c230a371ccd04c088ab3c2b91bc12432650/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/19c1070cee496d52eba1b2ce80f4f939edccdffd.png)
+* Handoff Datetime: 2016-07-18 17:21:10
+* Handoff Reason: IsDependency
+* Dependency From: virtualization\windowscontainers\quick_start\manage_docker.md, virtualization\windowscontainers\quick_start\quick_start_images.md
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: [19c1070cee496d52eba1b2ce80f4f939edccdffd.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/a844b81aaa2983ccfb644ee50a20dde8849492d6/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/poison/19c1070cee496d52eba1b2ce80f4f939edccdffd.png)
+* Handback Datetime: 2016-07-18 08:44:40
+* [Back to Top](#report-top)
+
 
 ## Error Details
 
