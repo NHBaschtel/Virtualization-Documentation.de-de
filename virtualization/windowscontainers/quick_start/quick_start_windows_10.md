@@ -4,14 +4,14 @@ description: "Containerbereitstellung – Schnellstart"
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 06/28/2016
+ms.date: 07/07/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 5980babe886024de93f6d6c5f04eaed47407209d
-ms.openlocfilehash: 188c85a9e6f5d1c334e51853efd8fa3ca461837c
+ms.sourcegitcommit: 5f42cae373b1f8f0484ffac82f5ebc761c37d050
+ms.openlocfilehash: 9ef41ff031e8b7bc463e71f39ee6a3b8e4fd846e
 
 ---
 
@@ -19,7 +19,7 @@ ms.openlocfilehash: 188c85a9e6f5d1c334e51853efd8fa3ca461837c
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features unter Windows 10 (Insiders-Build 14352 und höher). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart). 
+Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 (Insiders-Build 14372 und höher). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart). 
 
 Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
@@ -61,19 +61,19 @@ New-Item -Type Directory -Path $env:ProgramFiles\docker\
 Laden Sie den Docker-Daemon herunter.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd.exe -OutFile $env:ProgramFiles\docker\dockerd.exe
 ```
 
 Laden Sie den Docker-Client herunter.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:ProgramFiles\docker\docker.exe
 ```
 
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:ProgramFiles\docker\\Docker", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:ProgramFiles\docker\", [EnvironmentVariableTarget]::Machine)
 ```
 
 Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
@@ -94,28 +94,18 @@ Start-Service Docker
 
 Windows-Container werden in Vorlagen oder Images bereitgestellt. Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems für den Container heruntergeladen werden. Die folgenden Befehle laden das Nano Server-Basisiamge herunter.
     
-Legen Sie die PowerShell-Ausführungsrichtlinie für den aktuellen PowerShell-Prozess fest. Dies wirkt sich nur auf Skripts aus, die in der aktuellen PowerShell-Sitzung ausgeführt werden, jedoch gehen Sie beim Ändern der Ausführungsrichtlinie mit Vorsicht vor.
+> Dieses Verfahren gilt für Windows Insider-Builds größer als 14372 und vorübergehend so lange, bis „Docker Pull“ funktionsfähig ist.
+
+Laden Sie das Nano Server-Basisimage herunter. 
 
 ```none
-Set-ExecutionPolicy Bypass -scope Process
+Start-BitsTransfer https://aka.ms/tp5/6b/docker/nanoserver -Destination nanoserver.tar.gz
 ```
 
-Installieren Sie den Anbieter des Containerimagepakets.
+Installieren Sie das Basisimage.
 
 ```none  
-Install-PackageProvider ContainerImage -Force
-```
-
-Installieren Sie als Nächstes das Nano Server-Image.
-
-```none
-Install-ContainerImage -Name NanoServer
-```
-
-Nachdem das Basisimage installiert wurde, muss der Docker-Dienst neu gestartet werden.
-
-```none
-Restart-Service docker
+docker load -i nanoserver.tar.gz
 ```
 
 In dieser Phase gibt die Ausführung von `docker images` eine Liste der installierten Images zurück, in diesem Fall das Nano Server-Image.
@@ -124,13 +114,13 @@ In dieser Phase gibt die Ausführung von `docker images` eine Liste der installi
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1016     3f5112ddd185        3 weeks ago         810.2 MB
+nanoserver          10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
 ```
 
 Bevor Sie fortfahren, müssen Sie die Version dieses Images als „latest“ (neueste) kennzeichnen. Führen Sie dazu den folgenden Befehl aus:
 
 ```none
-docker tag nanoserver:10.0.14300.1016 nanoserver:latest
+docker tag microsoft/nanoserver:10.0.14300.1030 nanoserver:latest
 ```
 
 Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
@@ -148,11 +138,11 @@ docker pull microsoft/sample-dotnet
 Dies kann mit dem `docker images`-Befehl überprüft werden.
 
 ```none
-docker images
+docker 
 
 REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
 microsoft/sample-dotnet  latest              28da49c3bff4        41 hours ago        918.3 MB
-nanoserver               10.0.14300.1016     3f5112ddd185        3 weeks ago         810.2 MB
+nanoserver               10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
 nanoserver               latest              3f5112ddd185        3 weeks ago         810.2 MB
 ```
 
@@ -180,6 +170,6 @@ Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis 
 
 
 
-<!--HONumber=Jul16_HO1-->
+<!--HONumber=Jul16_HO2-->
 
 
