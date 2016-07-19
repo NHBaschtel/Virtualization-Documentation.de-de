@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 translationtype: Human Translation
-ms.sourcegitcommit: eae8f504039a1b3732ecfb31b8068667aab104f9
-ms.openlocfilehash: 633a6b2f3fe737a6e7515fd3f923335e39cf9d17
+ms.sourcegitcommit: 94e00095a41163c5f635685af01c215f4b4efce5
+ms.openlocfilehash: e1c0404ee45ad8e775dc2319359cd16c6487ef12
 
 ---
 
@@ -20,6 +20,13 @@ ms.openlocfilehash: 633a6b2f3fe737a6e7515fd3f923335e39cf9d17
 Integrationsdienste (oft als „Integrationskomponenten“ bezeichnet) ermöglichen dem virtuellen Computer das Kommunizieren mit dem Hyper-V-Host. Viele dieser Dienste stellen Vorteile dar, während andere sehr wichtig für die problemlose Funktion des virtuellen Computers sein können.
 
 Dieser Artikel stellt eine Referenz für jeden in Windows verfügbaren Integrationsdienst dar.  Er fungiert auch als Ausgangspunkt für alle Informationen im Zusammenhang mit bestimmten Integrationsdiensten oder ihren Verläufen.
+
+**Benutzerhandbücher:**  
+* [Aktivieren/Deaktivieren von Integrationsdiensten vom Hyper-V-Host aus](../user_guide/managing_ics.md#enable-or-disable-integration-services-using-powershell)
+* Aktivieren/Deaktivieren von Integrationsdiensten im virtuellen Computer
+  * [Windows](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-windows)
+  * [Linux](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-linux)
+* [Updates und Wartung von Integrationsdiensten](../user_guide/managing_ics.md#integration-service-maintenance)
 
 
 ## Kurzübersicht
@@ -69,7 +76,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 
 **Name des Windows-Diensts:** vmicshutdown  
 **Name des Linux-Daemons:** hv_utils  
-**Beschreibung:** ermöglicht dem Hyper-V-Host, das Herunterfahren des virtuellen Computers anzufordern.  Der Host kann die Abschaltung des virtuellen Computers immer erzwingen. Dies entspräche aber mehr dem Ziehen des Netzsteckers als dem normalen Herunterfahren.
+**Beschreibung:** ermöglicht dem Hyper-V-Host, das Herunterfahren des virtuellen Computers anzufordern.  Der Host kann die Abschaltung des virtuellen Computers immer erzwingen, was aber aber mehr dem Ziehen des Netzsteckers als dem normalen Herunterfahren entspricht.
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
 **Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahrvorgänge sind erzwungene Systemabschaltungen, was zu Datenverlusten oder Datenbeschädigungen führen kann.
 
@@ -89,7 +96,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 **Name des Linux-Daemons:** hv_kvp_daemon  
 **Beschreibung:** bietet einen Mechanismus zum Austausch von grundlegenden Metadaten zwischen dem virtuellen Computer und dem Host.  
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
-**Auswirkung:** Wenn der Dienst deaktiviert ist, erhalten virtuelle Computer, auf denen Windows 8 oder Windows Server 2012 oder früher ausgeführt wird, keine Updates zu Hyper-V-Integrationsdiensten.  Das Deaktivieren des Datenaustauschs kann auch Auswirkungen auf einige Überwachungsdiagnosen und Diagnosen aufseiten des Hosts haben.
+**Auswirkung:** Falls deaktiviert, erhalten virtuelle Computer, auf denen Windows 8 oder Windows Server 2012 oder früher ausgeführt wird, keine Updates zu Hyper-V-Integrationsdiensten.  Das Deaktivieren des Datenaustauschs kann auch Auswirkungen auf einige Überwachungsdiagnosen und Diagnosen aufseiten des Hosts haben.
 
 Der Datenaustauschdienst (manchmal auch als KVP bezeichnet) gibt kleine Mengen Computerinformationen zwischen virtuellen Computern und dem Hyper-V-Host mithilfe von Schlüssel-Wert-Paaren (key-value pairs; KVP) durch die Windows-Registrierung frei.  Der gleiche Mechanismus kann auch verwendet werden, um benutzerdefinierte Daten zwischen dem virtuellen Computer und dem Host freizugeben.
 
@@ -149,16 +156,7 @@ PowerShell Direct ermöglicht die Verwaltung von PowerShell innerhalb eines virt
 * [Kopieren von Dateien zu und aus einem virtuellen Computer](../user_guide/vmsession.md#copy-files-with-new-pssession-and-copy-item)
 
 
-## Weitere Ressourcen
 
-**Benutzerhandbücher:**  
-* [Aktivieren/Deaktivieren von Integrationsdiensten vom Hyper-V-Host aus](../user_guide/managing_ics.md#enable-or-disable-integration-services-using-powershell)
-* Aktivieren/Deaktivieren von Integrationsdiensten vom virtuellen Computer aus
-** [Windows](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-windows)
-** [Linux](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-linux)
-* [Updates und Wartung von Integrationsdiensten](../user_guide/managing_ics.md#integration-service-maintenance)
-
-
-<!--HONumber=Jul16_HO1-->
+<!--HONumber=Jul16_HO2-->
 
 
