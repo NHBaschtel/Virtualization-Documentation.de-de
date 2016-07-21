@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 translationtype: Human Translation
-ms.sourcegitcommit: 94e00095a41163c5f635685af01c215f4b4efce5
-ms.openlocfilehash: e1c0404ee45ad8e775dc2319359cd16c6487ef12
+ms.sourcegitcommit: 03c3ede85ff8b2fe4783581c717c1c97810b3bdd
+ms.openlocfilehash: a2fc8845bdc3e5f977d50b99ca9687b3dafd0cb6
 
 ---
 
@@ -76,9 +76,9 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 
 **Name des Windows-Diensts:** vmicshutdown  
 **Name des Linux-Daemons:** hv_utils  
-**Beschreibung:** ermöglicht dem Hyper-V-Host, das Herunterfahren des virtuellen Computers anzufordern.  Der Host kann die Abschaltung des virtuellen Computers immer erzwingen, was aber aber mehr dem Ziehen des Netzsteckers als dem normalen Herunterfahren entspricht.
+**Beschreibung:** ermöglicht dem Hyper-V-Host, das Herunterfahren des virtuellen Computers anzufordern.  Der Host kann die Abschaltung des virtuellen Computers immer erzwingen, was aber aber mehr dem Ziehen des Netzsteckers als dem normalen Herunterfahren entspricht.  
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
-**Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahrvorgänge sind erzwungene Systemabschaltungen, was zu Datenverlusten oder Datenbeschädigungen führen kann.
+**Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahrvorgänge sind erzwungene Systemabschaltungen, was zu Datenverlusten oder Datenbeschädigungen führen kann.  
 
 
 ## Hyper-V-Zeitsynchronisierungsdienst
@@ -96,7 +96,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 **Name des Linux-Daemons:** hv_kvp_daemon  
 **Beschreibung:** bietet einen Mechanismus zum Austausch von grundlegenden Metadaten zwischen dem virtuellen Computer und dem Host.  
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
-**Auswirkung:** Falls deaktiviert, erhalten virtuelle Computer, auf denen Windows 8 oder Windows Server 2012 oder früher ausgeführt wird, keine Updates zu Hyper-V-Integrationsdiensten.  Das Deaktivieren des Datenaustauschs kann auch Auswirkungen auf einige Überwachungsdiagnosen und Diagnosen aufseiten des Hosts haben.
+**Auswirkung:** Falls deaktiviert, erhalten virtuelle Computer, auf denen Windows 8 oder Windows Server 2012 oder früher ausgeführt wird, keine Updates zu Hyper-V-Integrationsdiensten.  Das Deaktivieren des Datenaustauschs kann auch Auswirkungen auf einige Überwachungsdiagnosen und Diagnosen aufseiten des Hosts haben.  
 
 Der Datenaustauschdienst (manchmal auch als KVP bezeichnet) gibt kleine Mengen Computerinformationen zwischen virtuellen Computern und dem Hyper-V-Host mithilfe von Schlüssel-Wert-Paaren (key-value pairs; KVP) durch die Windows-Registrierung frei.  Der gleiche Mechanismus kann auch verwendet werden, um benutzerdefinierte Daten zwischen dem virtuellen Computer und dem Host freizugeben.
 
@@ -106,7 +106,7 @@ Der Datenaustauschdienst ist ein großartiges Tool, um Informationen zum virtuel
 
 
 **Benutzerhandbücher:**  
-* [Freigeben von Informationen zwischen dem Host und dem Gast auf Hyper-V mithilfe von Schlüssel-Wert-Paaren](https://technet.microsoft.com/en-us/library/dn798287.aspx).
+* [Freigeben von Informationen zwischen dem Host und dem Gast auf Hyper-V mithilfe von Schlüssel-Wert-Paaren](https://technet.microsoft.com/en-us/library/dn798287.aspx).  
 
 
 ## Hyper-V-Volumeschattenkopie-Anforderer
