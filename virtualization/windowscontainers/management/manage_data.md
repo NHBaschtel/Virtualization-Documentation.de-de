@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: f5998534-917b-453c-b873-2953e58535b1
 translationtype: Human Translation
-ms.sourcegitcommit: 111a4ca9f5d693cd1159f7597110409d670f0f5c
-ms.openlocfilehash: b8eca51e347f17e787095b7e4349337cc3ae69a7
+ms.sourcegitcommit: 493b669bc47fc589486a82cfea73a0bb1e88cf79
+ms.openlocfilehash: 26c010e79a4913b2e138f6d1d78f9406dbacbc6b
 
 ---
 
@@ -73,6 +73,20 @@ c:\container-share>dir
 
 Weitere Informationen zum Einbinden von einzelnen Dateien finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume) (Verwalten von Daten in Containern).
 
+### Einbinden des gesamten Laufwerks
+
+Sie können ein gesamtes Laufwerk mithilfe eines ähnlichen Befehls wie diesem einbinden: Beachten Sie jedoch, dass der Befehl keinen umgekehrten Schrägstrich enthalten darf.
+
+```none
+docker run -it -v d: windowsservercore cmd
+```
+
+Zum aktuellen Zeitpunkt ist keine Teileinbindung des zweiten Laufwerks möglich. Beispielsweise ist Folgendes nicht möglich:
+
+```none
+docker run -it -v d:\source:d:\destination windowsservercore cmd
+```
+
 ### Datenvolumecontainer
 
 Datenvolumes können durch Verwendung des Parameters `--volumes-from` des Befehls `docker run` aus anderen ausgeführten Containern geerbt werden. Mithilfe dieser Vererbung kann ein Container explizit zum Hosten von Datenvolumes von Anwendungen mit Containern erstellt werden. 
@@ -111,6 +125,6 @@ Weitere Informationen zum Überprüfen von Volumes finden Sie auf docker.com unt
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Jul16_HO3-->
 
 

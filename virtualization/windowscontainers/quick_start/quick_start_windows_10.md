@@ -4,14 +4,14 @@ description: "Containerbereitstellung – Schnellstart"
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 07/07/2016
+ms.date: 07/13/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 5f42cae373b1f8f0484ffac82f5ebc761c37d050
-ms.openlocfilehash: 9ef41ff031e8b7bc463e71f39ee6a3b8e4fd846e
+ms.sourcegitcommit: edf2c2597e57909a553eb5e6fcc75cdb820fce68
+ms.openlocfilehash: b37d402f2e6c950db061f5de0c86f0e9aace62b4
 
 ---
 
@@ -46,6 +46,12 @@ Starten Sie den Computer neu, wenn die Installation abgeschlossen ist.
 
 ```none
 Restart-Computer -Force
+```
+
+Führen Sie den folgenden Befehl aus, sobald der Computer neu gestartet wurde, um ein bekanntes Problem mit der Technical Preview des Features „Windows-Container“ zu beheben.  
+
+ ```none
+Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
 ```
 
 ## 2. Installieren von Docker
@@ -127,40 +133,51 @@ Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalt
 
 ## 4. Bereitstellen Ihres ersten Containers
 
-Für dieses einfache Beispiel wurde bereits ein .NET Core-Image erstellt. Laden Sie dieses Image mit dem `docker pull`-Befehl herunter.
+In diesem einfachen Beispiel wird ein „Hello World“-Containerimage erstellt und bereitgestellt. Am besten führen Sie diese Befehle in einer Windows-Befehlsshell mit erhöhten Rechten aus.
 
-Bei der Ausführung wird ein Container gestartet, die einfache .NET Core-Anwendung ausgeführt und dann der Container beendet. 
-
-```none
-docker pull microsoft/sample-dotnet
-```
-
-Dies kann mit dem `docker images`-Befehl überprüft werden.
+Starten Sie zuerst einen Container mit einer interaktiven Sitzung aus dem `nanoserver`-Image. Sobald der Container gestartet wurde, wird Ihnen eine Befehlsshell für den Inhalt des Containers angezeigt.  
 
 ```none
-docker 
-
-REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
-microsoft/sample-dotnet  latest              28da49c3bff4        41 hours ago        918.3 MB
-nanoserver               10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
-nanoserver               latest              3f5112ddd185        3 weeks ago         810.2 MB
+docker run -it nanoserver cmd
 ```
 
-Führen Sie den Container mit dem `docker run`-Befehl aus. Das folgende Beispiel legt den `--rm`-Parameter fest. Dies weist das Docker-Modul an, den Container zu löschen, sobald er nicht mehr ausgeführt wird. 
-
-Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu „Docker Run“ auf Docker.com]( https://docs.docker.com/engine/reference/run/).
+Erstellen Sie nun innerhalb des Containers ein einfaches „Hello World“-Skript.
 
 ```none
-docker run --isolation=hyperv --rm microsoft/sample-dotnet
-```
+powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
+```   
 
-**Hinweis**: Wenn ein Fehler ausgelöst wird, der auf ein Zeitüberschreitungsereignis hinweist, führen Sie das folgende PowerShell-Skript aus, und wiederholen Sie den Vorgang.
+Wenn Sie den Vorgang abgeschlossen haben, beenden Sie den Container.
 
 ```none
-Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
+exit
 ```
 
-Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis des Beispiel-DotNet-Images erstellt wurde, danach eine Beispiel-App ausgeführt (Ausgabeecho über die Shell) und dann der Container beendet und entfernt wurde. Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows 10.
+Erstellen Sie jetzt ein neues Containerimage aus dem geänderten Container. Führen Sie Folgendes aus, und notieren Sie sich die Container-ID, um eine Liste der Container anzuzeigen:
+
+```none
+docker ps -a
+```
+
+Führen Sie den folgenden Befehl aus, um ein neues „Hello World“-Image zu erstellen: Ersetzen Sie <containerid> durch die ID Ihres Containers.
+
+```none
+docker commit <containerid> helloworld
+```
+
+Nach Beendigung des Vorgangs verfügen Sie über ein benutzerdefiniertes Image, das ein „Hello World“-Skript enthält. Sie können es mit dem folgenden Befehl anzeigen:
+
+```none
+docker images
+```
+
+Verwenden Sie abschließend den Befehl `docker run`, um den Container auszuführen.
+
+```none
+docker run --rm helloworld powershell c:\helloworld.ps1
+```
+
+Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis des „Hello World“-Images erstellt wurde, danach ein „Hello World“-Beispielskript ausgeführt (Ausgabeecho über die Shell) und anschließend der Container beendet und entfernt wurde. Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows 10.
 
 ## Nächste Schritte
 

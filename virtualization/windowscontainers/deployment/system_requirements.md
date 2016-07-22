@@ -1,7 +1,7 @@
 ---
 title: Anforderungen von Windows-Containern
 description: Anforderungen von Windows-Containern.
-keywords: metadata, containers
+keywords: Metadaten, Container
 author: neilpeterson
 manager: timlt
 ms.date: 05/26/2016
@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
 translationtype: Human Translation
-ms.sourcegitcommit: cc216f56acd5e547d05a48beea57450ba5fcb28b
-ms.openlocfilehash: 12ae565f012dc87a2cab883c0486322db42b1dcc
+ms.sourcegitcommit: 6f1d9c09774adde047508835caf9dcf54deab9d2
+ms.openlocfilehash: 9d015a570a0b1a9d7304e601daa7ace73df4e827
 
 ---
 
@@ -23,7 +23,7 @@ In diesen Handbüchern sind die Anforderungen für einen Windows-Containerhost a
 
 ## Betriebssystemanforderungen
 
-- Die Rolle „Windows-Container“ ist nur unter Windows Server 2016 TP5 (Vollversion und Core) und Nano Server sowie Windows 10 (Insiders-Build 14352 und höher) verfügbar.
+- Das Feature „Windows-Container“ ist nur für Windows Server 2016 (Core und mit Desktopdarstellung), Nano Server und Windows 10 Professional und Enterprise (Insider-Build 14352 und höher) verfügbar.
 - Wenn Hyper-V-Container ausgeführt werden, muss die Rolle „Hyper-V“ installiert werden.
 - Bei Windows Server-Containerhosts muss Windows auf Laufwerk c:\\ installiert werden. Wenn nur Hyper-V-Container bereitgestellt werden, gilt diese Einschränkung nicht.
 
@@ -74,6 +74,6 @@ Windows Server Technical Preview 5 wird mit zwei Container-Betriebssystemimages,
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Jul16_HO3-->
 
 
