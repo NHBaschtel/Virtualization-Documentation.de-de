@@ -6,23 +6,23 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\deployment\system_requirements.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/6f1d9c09774adde047508835caf9dcf54deab9d2/virtualization/windowscontainers/deployment/system_requirements.md) | OutofSyncHandedBackSuccess | [Details](#9d015a570a0b1a9d7304e601daa7ace73df4e827245)
+ [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/5cb7dca9469a687add1348753d89d04dc4a633b7/virtualization/windowscontainers/management/container_networking.md) | OutofSyncHandedBackSuccess | [Details](#406966a2bc80cdfc6fbe7461bf478fab317ed7e5251)
 
 ## Item Details
-##### <a name='9d015a570a0b1a9d7304e601daa7ace73df4e827245'></a> Source: [virtualization\windowscontainers\deployment\system_requirements.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/6f1d9c09774adde047508835caf9dcf54deab9d2/virtualization/windowscontainers/deployment/system_requirements.md)
+##### <a name='406966a2bc80cdfc6fbe7461bf478fab317ed7e5251'></a> Source: [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/5cb7dca9469a687add1348753d89d04dc4a633b7/virtualization/windowscontainers/management/container_networking.md)
 * Status: OutofSyncHandedBackSuccess
 * Target File: 
-* Handoff File: [system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/ca1c9337da1b8c87876e3d7e8bbb54b943e1a4db/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf)
-* Handoff Datetime: 2016-07-20 18:28:58
+* Handoff File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/3bd1a880f76d4e9c415c3f7f18d0534f3fcacd08/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
+* Handoff Datetime: 2016-07-29 20:10:35
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\windowscontainers\deployment\system_requirements.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/11b24d13f1155807313a85b8a42f8c0150721091/virtualization/windowscontainers/deployment/system_requirements.md)
-* Current Handback File: [system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/079a97d54f537c87d3ae2fa51081aef378437664/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf)
+* Current Target File: [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/11b24d13f1155807313a85b8a42f8c0150721091/virtualization/windowscontainers/management/container_networking.md)
+* Current Handback File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/079a97d54f537c87d3ae2fa51081aef378437664/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
 * Current Handback Datetime: 2016-06-30 12:07:49
-* Bilingual File: [system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/079a97d54f537c87d3ae2fa51081aef378437664/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf)
+* Bilingual File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/079a97d54f537c87d3ae2fa51081aef378437664/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
 * Bilingual Datetime: 2016-06-30 12:12:11
 * [Back to Top](#report-top)
 
