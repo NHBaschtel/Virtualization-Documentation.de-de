@@ -1,7 +1,7 @@
 ---
 title: Windows-Containernetzwerk
 description: "Konfigurieren Sie das Netzwerk für Windows-Container."
-keywords: docker, containers
+keywords: Docker, Container
 author: jmesser81
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 translationtype: Human Translation
-ms.sourcegitcommit: cd344ef02f03149129171b99bfdd92338ffdf24f
-ms.openlocfilehash: 161aaeed6c625d92b45be59dde4357836934956b
+ms.sourcegitcommit: 5cb7dca9469a687add1348753d89d04dc4a633b7
+ms.openlocfilehash: 406966a2bc80cdfc6fbe7461bf478fab317ed7e5
 
 ---
 
@@ -145,7 +145,7 @@ PS> Stop-Service docker
 PS> Set-Service docker -StartupType Disabled
 Reboot Host
 PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automaticac
+PS> Set-Service docker -StartupType automatic
 PS> Start-Service docker 
 ```
 
@@ -220,6 +220,11 @@ Zusätzliche Anpassungen eines Containernetzwerks können über Docker mithilfe 
 Um anzugeben, welcher Netzwerkadapter auf dem Containerhost für ein transparentes, L2-Brücken- oder L2-Tunnelnetzwerk verwendet werden soll, legen Sie die Option *com.docker.network.windowsshim.interface* fest. 
 ```none
 docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" "TransparentNetTwo"
+```
+
+Der Wert für *com.docker.network.windowsshim.interface* ist der *Name* des Adapters aus: 
+```none
+Get-NetAdapter
 ```
 
 > Mithilfe von PowerShell erstellte Containernetzwerke sind in Docker erst verfügbar, wenn der Docker-Daemon neu gestartet wird. Sämtliche Änderungen an einem Containernetzwerk, die über PowerShell vorgenommen werden, erfordern ebenfalls einen Neustart des Docker-Daemons.
@@ -338,6 +343,6 @@ Die folgenden Netzwerkoptionen werden in Windows Docker zurzeit nicht unterstüt
  * --ip-range
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Jul16_HO5-->
 
 
