@@ -22886,9 +22886,9 @@
       "ArchiveFileCommit": "a5070f5ddf3d44f350b4835dfb3d0b59d4428623",
       "ArchiveFileDateTime": "2016-08-11T07:09:10.667249Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf",
+      "BilingualFileCommit": "6a55c0bf01861f09917d790c56283abbe90915f4",
+      "BilingualDateTime": "2016-08-12T13:48:45.8878637Z",
       "BilingualException": null
     },
     "5a1cb0964034db491481e2d6db84221730264fa0": {
