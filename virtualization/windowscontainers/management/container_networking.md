@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 translationtype: Human Translation
-ms.sourcegitcommit: 5cb7dca9469a687add1348753d89d04dc4a633b7
-ms.openlocfilehash: 406966a2bc80cdfc6fbe7461bf478fab317ed7e5
+ms.sourcegitcommit: fa636f08858353664a3b2ff9fe0d4471d965db54
+ms.openlocfilehash: e680dac160c5da92a2329babefb397faa8654c91
 
 ---
 
@@ -128,25 +128,27 @@ New-ContainerNetwork -Name MyNatNetwork -Mode NAT -SubnetPrefix "172.16.0.0/12" 
 
 > In Windows Server 2016 Technical Preview 5 und den jüngsten Windows Insider Preview (WIP)-Builds gibt es das bekannte Problem, dass beim Upgrade auf einen neuen Build ein Containernetzwerk und vSwitch dupliziert werden. Führen Sie das folgende Skript aus, um dieses Problem zu umgehen.
 ```none
-PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
-PS> $keys = get-childitem $KeyPath
-PS> foreach($key in $keys)
-PS> {
-PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
-PS>    {
-PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
-PS>       Remove-Item -Path $newKeyPath -Recurse
-PS>    }
-PS> }
-PS> remove-netnat -Confirm:$false
-PS> Get-ContainerNetwork | Remove-ContainerNetwork
-PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
-PS> Stop-Service docker
-PS> Set-Service docker -StartupType Disabled
-Reboot Host
-PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automatic
-PS> Start-Service docker 
+$KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+$keys = get-childitem $KeyPath
+foreach($key in $keys)
+{
+   if ($key.GetValue("FriendlyName") -eq 'nat')
+   {
+      $newKeyPath = $KeyPath+"\"+$key.PSChildName
+      Remove-Item -Path $newKeyPath -Recurse
+   }
+}
+remove-netnat -Confirm:$false
+Get-ContainerNetwork | Remove-ContainerNetwork
+Get-VmSwitch -Name nat | Remove-VmSwitch # Note: failure is expected
+Stop-Service docker
+Set-Service docker -StartupType Disabled
+```
+> Starten Sie den Host neu, und führen Sie die verbleibenden Schritte aus:
+```none
+Get-NetNat | Remove-NetNat -Confirm $false
+Set-Service docker -StartupType automatic
+Start-Service docker 
 ```
 
 ### Transparentes Netzwerk
@@ -343,6 +345,7 @@ Die folgenden Netzwerkoptionen werden in Windows Docker zurzeit nicht unterstüt
  * --ip-range
 
 
-<!--HONumber=Jul16_HO5-->
+
+<!--HONumber=Aug16_HO2-->
 
 
