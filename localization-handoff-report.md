@@ -6,24 +6,24 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/b0b422a1f42210daac2ae7447cef3fb138dc17e3/virtualization/windowscontainers/management/container_networking.md) | HandedOffSuccess | [Details](#d9353162d8357a5355335a38e026c35e8c45394f251)
+ [virtualization\windowscontainers\management\manage_images.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ea3a8ec35174c9e2d1961d4b55c5b69a2b018063/virtualization/windowscontainers/management/manage_images.md) | HandedOffSuccess | [Details](#61c54210e683032184503103f689938cc576ea4c257)
 
 ## Item Details
-##### <a name='d9353162d8357a5355335a38e026c35e8c45394f251'></a> Source: [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/b0b422a1f42210daac2ae7447cef3fb138dc17e3/virtualization/windowscontainers/management/container_networking.md)
+##### <a name='61c54210e683032184503103f689938cc576ea4c257'></a> Source: [virtualization\windowscontainers\management\manage_images.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ea3a8ec35174c9e2d1961d4b55c5b69a2b018063/virtualization/windowscontainers/management/manage_images.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/14db78bae0e3b494877d92b84a4ff4bccda18913/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
-* Handoff Datetime: 2016-08-22 18:18:45
+* Handoff File: [manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/ace3f0227cf80c59e2358f6bf250b87487fbfe01/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf)
+* Handoff Datetime: 2016-08-22 21:49:15
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\windowscontainers\management\container_networking.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/131ac6f6f1f39f62d780bca17374f59573e228bb/virtualization/windowscontainers/management/container_networking.md)
-* Current Handback File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/b45c2ef81012d9a6e23d42e5b8233f674975e747/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
-* Current Handback Datetime: 2016-08-22 07:53:41
-* Bilingual File: [container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/b45c2ef81012d9a6e23d42e5b8233f674975e747/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/container_networking.7cf72391b3aa727681997232feeeb0a32d363edc.de-de.xlf)
-* Bilingual Datetime: 2016-08-22 07:54:28
+* Current Target File: [virtualization\windowscontainers\management\manage_images.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/dcf43cc32854f46ee6872e824bda367b3b94ae4a/virtualization/windowscontainers/management/manage_images.md)
+* Current Handback File: [manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/38a7492b28d7040c43e64ac274f23a359e7c60f3/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf)
+* Current Handback Datetime: 2016-06-30 14:17:21
+* Bilingual File: [manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/38a7492b28d7040c43e64ac274f23a359e7c60f3/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_images.6d8d709cbc19bb63cc7d4553991616c57920cdfd.de-de.xlf)
+* Bilingual Datetime: 2016-06-30 14:19:39
 * [Back to Top](#report-top)
 
 
