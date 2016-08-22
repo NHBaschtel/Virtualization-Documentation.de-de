@@ -1,7 +1,7 @@
 ---
 title: Einrichten eines NAT-Netzwerks
 description: Einrichten eines NAT-Netzwerks
-keywords: windows 10, hyper-v
+keywords: Windows 10, Hyper-V
 author: jmesser81
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
 translationtype: Human Translation
-ms.sourcegitcommit: b22150198f199f9b2be38a9c08e0e08972781f6e
-ms.openlocfilehash: d98445932ccbe77b6a4e798c3c2edb9c63bd351b
+ms.sourcegitcommit: 03a72e6608c08d6adcf32fc5665533831904a032
+ms.openlocfilehash: 5a1cb0964034db491481e2d6db84221730264fa0
 
 ---
 
@@ -129,6 +129,7 @@ Da WinNAT nicht selbst IP-Adressen reserviert und einem Endpunkt (z. B. einer VM
 
 
 ## Konfigurationsbeispiel: Anfügen von VMs und Containern an ein NAT-Netzwerk
+
 _Wenn Sie mehrere VMs und Containern an ein einzelnes NAT anfügen müssen, ist sicherzustellen, dass das NAT-interne Subnetzpräfix für die IP-Bereiche groß genug ist, die verschiedenen Anwendungen oder Diensten (z. B. Docker für Windows und Windows-Container, HNS) zugewiesen sind. Dieser Vorgang erfordert entweder eine Zuweisung von IP-Adressen auf Anwendungsebene und Netzwerkkonfiguration oder eine manuelle Konfiguration, die von einem Administrator vorgenommen werden muss und sicherstellt, dass vorhandene IP-Adresszuweisungen nicht auf demselben Host wiederverwendet werden._
 
 ### Docker für Windows (Linux-VM) und Windows-Container
@@ -163,84 +164,6 @@ Docker/HNS weist Windows-Containern IP-Adressen aus dem <container prefix> zu. D
 
 Am Ende verfügen Sie über zwei interne VM-Switches und einem NetNat, das von diesen gemeinsam verwendet wird.
 
-## Problembehandlung
-Stellen Sie sicher, dass Sie nur eine NAT haben.
-```none
-Get-NetNat
-```
-Wenn bereits eine NAT vorhanden ist, löschen Sie sie.
-```none
-Get-NetNat | Remove-NetNat
-```
-Stellen Sie sicher, dass Sie nur über einen „internen“ VM-Switch für die Anwendung oder das Feature (z. B. Windows-Container) verfügen. Notieren Sie den Namen des vSwitches.
-```none
-Get-VMSwitch
-```
-Prüfen Sie, ob private IP-Adressen (z. B. die NAT-Standard-Gateway-IP-Adresse – in der Regel „*.1“) der alten NAT noch einem Adapter zugewiesen sind.
-```none
-Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
-```
-Wenn eine alte private IP-Adresse verwendet wird, löschen Sie sie.
-```none
-Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
-```
-Entfernen mehrerer NATs: Wir haben Berichte über die versehentliche Erstellung mehrerer NAT-Netzwerke erhalten. Die Ursache ist ein Fehler in den letzten Builds: Windows Server 2016 Technical Preview 5 und Windows 10 Insider Preview. Wenn nach Ausführung von „docker network ls“ oder „Get-ContainerNetwork“ mehrere NAT-Netzwerke vorhanden sind, führen Sie über eine PowerShell mit erhöhten Berechtigungen den folgenden Befehl aus:
-
-```none
-PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
-PS> $keys = get-childitem $KeyPath
-PS> foreach($key in $keys)
-PS> {
-PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
-PS>    {
-PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
-PS>       Remove-Item -Path $newKeyPath -Recurse
-PS>    }
-PS> }
-PS> remove-netnat -Confirm:$false
-PS> Get-ContainerNetwork | Remove-ContainerNetwork
-PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
-PS> Stop-Service docker
-PS> Set-Service docker -StartupType Disabled
-Reboot Host
-PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automaticac
-PS> Start-Service docker 
-```
-
-## Problembehandlung
-
-Dieser Workflow setzt voraus, dass keine anderen NATs auf dem Host vorhanden sind. Jedoch erfordern manchmal mehrere Anwendungen oder Dienste eine NAT-Nutzung. Da Windows (WinNAT) nur ein internes NAT-Subnetzpräfix unterstützt, setzt der Versuch, mehrere NATs zu erstellen, das System in einen unbekannten Zustand.
-
-### Schritte zur Fehlerbehebung
-1. Stellen Sie sicher, dass Sie nur eine NAT haben.
-
-  ``` PowerShell
-  Get-NetNat
-  ```
-2. Wenn bereits eine NAT vorhanden ist, löschen Sie sie.
-
-  ``` PowerShell
-  Get-NetNat | Remove-NetNat
-  ```
-
-3. Stellen Sie sicher, dass Sie nur einen „internen“ VMSwitch für die NAT haben. Notieren Sie den Namen des vSwitches für Schritt 4.
-
-  ``` PowerShell
-  Get-VMSwitch
-  ```
-
-4. Überprüfen Sie, ob private IP-Adressen (z. B. die NAT-Standard-Gateway-IP-Adresse – in der Regel „*.1“) des alten NAT noch einem Adapter zugewiesen sind.
-
-  ``` PowerShell
-  Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
-  ```
-
-5. Wenn eine alte private IP-Adresse verwendet wird, löschen Sie sie.  
-   ``` PowerShell
-  Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
-  ```
-
 ## Verwendung der gleichen NAT durch mehrere Anwendungen
 
 In einigen Szenarien müssen mehrere Anwendungen oder Dienste die gleiche NAT verwenden. In diesem Fall muss der folgende Workflow eingehalten werden, damit mehrere Anwendungen/Dienste ein größeres NAT-internes Subnetzpräfix verwenden können.
@@ -272,11 +195,67 @@ In einigen Szenarien müssen mehrere Anwendungen oder Dienste die gleiche NAT ve
 Schließlich sollten Sie über zwei interne vSwitches verfügen – einen namens „DockerNAT“ und einen anderen namens „NAT“. Bei Ausführung von Get-NetNat erhalten Sie nur die Bestätigung eines NAT-Netzwerks (10.0.0.0/17). IP-Adressen für Windows-Container werden durch den Windows Host Network Service (HNS) aus dem Subnetz 10.0.76.0/24 zugewiesen. IP-Adressen für Docker 4 Windows werden basierend auf dem vorhandenen Skript „MobyLinux.ps1“ aus dem Subnetz 10.0.75.0/24 zugewiesen.
 
 
+## Problembehandlung
+
+### Mehrere NAT-Netzwerke werden nicht unterstützt.  
+In dieser Anleitung wird vorausgesetzt, dass keine anderen NATs auf dem Host vorhanden sind. Allerdings setzen Anwendungen und Dienste die Verwendung einer NAT voraus und erstellen diese möglicherweise beim Setup. Da Windows (WinNAT) nur ein internes NAT-Subnetzpräfix unterstützt, setzt der Versuch, mehrere NATs zu erstellen, das System in einen unbekannten Zustand.
+
+Um herauszufinden, ob dies das Problem ist, stellen Sie sicher, dass Sie über nur eine NAT verfügen:
+``` PowerShell
+Get-NetNat
+```
+
+Wenn bereits eine NAT vorhanden ist, löschen Sie sie.
+``` PowerShell
+Get-NetNat | Remove-NetNat
+```
+Stellen Sie sicher, dass Sie nur über einen „internen“ VM-Switch für die Anwendung oder das Feature (z. B. Windows-Container) verfügen. Notieren Sie den Namen des vSwitches.
+``` PowerShell
+Get-VMSwitch
+```
+
+Prüfen Sie, ob private IP-Adressen (z. B. die NAT-Standard-Gateway-IP-Adresse – in der Regel „*.1“) der alten NAT noch einem Adapter zugewiesen sind.
+``` PowerShell
+Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
+```
+
+Wenn eine alte private IP-Adresse verwendet wird, löschen Sie sie.
+``` PowerShell
+Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
+```
+
+**Entfernen mehrerer NATs**  
+Wir haben Berichte über die versehentliche Erstellung mehrerer NAT-Netzwerke erhalten. Die Ursache ist ein Fehler in den letzten Builds: Windows Server 2016 Technical Preview 5 und Windows 10 Insider Preview. Wenn nach Ausführung von „docker network ls“ oder „Get-ContainerNetwork“ mehrere NAT-Netzwerke vorhanden sind, führen Sie über eine PowerShell mit erhöhten Berechtigungen den folgenden Befehl aus:
+
+```none
+PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+PS> $keys = get-childitem $KeyPath
+PS> foreach($key in $keys)
+PS> {
+PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
+PS>    {
+PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
+PS>       Remove-Item -Path $newKeyPath -Recurse
+PS>    }
+PS> }
+PS> remove-netnat -Confirm:$false
+PS> Get-ContainerNetwork | Remove-ContainerNetwork
+PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+PS> Stop-Service docker
+PS> Set-Service docker -StartupType Disabled
+Reboot Host
+PS> Get-NetNat | Remove-NetNat
+PS> Set-Service docker -StartupType automaticac
+PS> Start-Service docker 
+```
+
+In diesem [-Installationshandbuch für mehrere Anwendungen mit gleicher NAT](setup_nat_network.md#multiple-applications-using-the-same-nat) finden Sie Informationen zum Neuerstellen Ihrer NAT-Umgebung, falls erforderlich. 
+
 ## Verweise
 Erfahren Sie mehr über [NAT-Netzwerke](https://en.wikipedia.org/wiki/Network_address_translation).
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Aug16_HO2-->
 
 

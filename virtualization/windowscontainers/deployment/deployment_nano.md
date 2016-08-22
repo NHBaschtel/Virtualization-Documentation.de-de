@@ -1,7 +1,7 @@
 ---
 title: Bereitstellen von Windows-Containern unter Nano Server
 description: Bereitstellen von Windows-Containern unter Nano Server
-keywords: docker, containers
+keywords: Docker, Container
 author: neilpeterson
 manager: timlt
 ms.date: 07/06/2016
@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 translationtype: Human Translation
-ms.sourcegitcommit: e035a45e22eee04263861d935b338089d8009e92
-ms.openlocfilehash: 876ffb4f4da32495fb77b735391203c33c78cff3
+ms.sourcegitcommit: fac57150de3ffd6c7d957dd628b937d5c41c1b35
+ms.openlocfilehash: d2f19e96f06ba18ab7e23e62652f569265c6f43f
 
 ---
 
@@ -74,7 +74,7 @@ Stellen Sie, sobald er wieder verfügbar ist, die PowerShell-Remoteverbindung wi
 
 ## Installieren von Docker
 
-Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Installieren Sie mithilfe der folgenden Schritte den Docker-Daemon und -Client.
+Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Installieren Sie mithilfe der folgenden Schritte das Docker-Modul und den Docker-Client.
 
 Erstellen Sie auf dem Nano Server-Host einen Ordner für die ausführbaren Docker-Dateien.
 
@@ -82,7 +82,7 @@ Erstellen Sie auf dem Nano Server-Host einen Ordner für die ausführbaren Docke
 New-Item -Type Directory -Path $env:ProgramFiles'\docker\'
 ```
 
-Laden Sie den Docker-Daemon und -Client herunter, und kopieren Sie die Dateien in das Verzeichnis „C:\Programme\docker\'“ auf dem Container-Host. 
+Laden Sie das Docker-Modul und den Docker-Client herunter, und kopieren Sie die Dateien in das Verzeichnis „C:\Programme\docker\'“ auf dem Containerhost. 
 
 **Hinweis**: Nano Server unterstützt `Invoke-WebRequest` derzeit nicht. Die Downloads müssen über ein Remotesystem ausgeführt und anschließend zum Nano Server-Host kopiert werden.
 
@@ -96,7 +96,7 @@ Laden Sie den Docker-Client herunter.
 Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile .\docker.exe
 ```
 
-Kopieren Sie den Docker-Daemon und Client nach dem Herunterladen in den Ordner 'C:\Programme\docker\' im Nano Server-Containerhost. Die Firewall von Nano Server muss konfiguriert werden, um eingehende SMB-Verbindungen zuzulassen. Dies kann mithilfe von PowerShell oder der Wiederherstellungskonsole von Nano Server abgeschlossen werden. 
+Kopieren Sie das Docker-Modul und den Docker-Client nach dem Herunterladen in den Ordner „C:\Programme\docker\'“ im Nano Server-Containerhost. Die Firewall von Nano Server muss konfiguriert werden, um eingehende SMB-Verbindungen zuzulassen. Dies kann mithilfe von PowerShell oder der Wiederherstellungskonsole von Nano Server abgeschlossen werden. 
 
 ```none
 Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
@@ -116,7 +116,7 @@ Starten Sie den Docker-Dienst.
 Start-Service Docker
 ```
 
-## Installieren von Basisimages für Container
+## Installieren von Basiscontainerimages
 
 Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe des Containerimageanbieters installiert werden. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
 
@@ -158,7 +158,7 @@ Erstellen Sie auf dem Containerhost eine Firewallregel für die Docker-Verbindun
 netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
 ```
 
-Konfigurieren Sie den Docker-Daemon so, dass eingehende Verbindungen über TCP akzeptiert werden.
+Konfigurieren Sie das Docker-Modul so, dass eingehende Verbindungen über TCP akzeptiert werden.
 
 Erstellen Sie zunächst eine `daemon.json`-Datei unter `c:\ProgramData\docker\config\daemon.json` auf dem Nano Server-Host.
 
@@ -166,7 +166,7 @@ Erstellen Sie zunächst eine `daemon.json`-Datei unter `c:\ProgramData\docker\co
 new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
-Führen Sie als Nächstes den folgenden Befehl aus, um der `daemon.json` -Datei eine Verbindungskonfiguration hinzuzufügen. Damit wird der Docker-Daemon so konfiguriert, dass eingehende Verbindungen über TCP-Port 2375 akzeptiert werden. Dies ist eine unsichere Verbindung und wird nicht empfohlen, für isolierte Tests kann sie jedoch verwendet werden. Weitere Informationen zum Sichern dieser Verbindung finden Sie unter [Protect the Docker Daemon on Docker.com](https://docs.docker.com/engine/security/https/) (Schützen des Docker-Daemon auf Docker.com).
+Führen Sie als Nächstes den folgenden Befehl aus, um der `daemon.json` -Datei eine Verbindungskonfiguration hinzuzufügen. Damit wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über TCP-Port 2375 akzeptiert werden. Dies ist eine unsichere Verbindung und wird nicht empfohlen, für isolierte Tests kann sie jedoch verwendet werden. Weitere Informationen zum Sichern dieser Verbindung finden Sie unter [Protect the Docker Daemon on Docker.com](https://docs.docker.com/engine/security/https/) (Schützen des Docker-Daemon auf Docker.com).
 
 ```none
 Add-Content 'c:\programdata\docker\config\daemon.json' '{ "hosts": ["tcp://0.0.0.0:2375", "npipe://"] }'
@@ -238,6 +238,6 @@ Restart-Computer
 ```
 
 
-<!--HONumber=Jul16_HO1-->
+<!--HONumber=Aug16_HO3-->
 
 

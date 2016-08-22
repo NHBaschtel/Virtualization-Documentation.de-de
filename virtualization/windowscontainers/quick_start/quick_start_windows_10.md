@@ -4,14 +4,14 @@ description: "Containerbereitstellung – Schnellstart"
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 07/13/2016
+ms.date: 08/17/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 9aa443b24e5c8a004b08203f67e578dd2d104746
-ms.openlocfilehash: 0ee1231b923e25975a4dfddb70c16366a86c9565
+ms.sourcegitcommit: fac57150de3ffd6c7d957dd628b937d5c41c1b35
+ms.openlocfilehash: 57d35f9e871bdd3bd0798833bcbaf6a7948a65f2
 
 ---
 
@@ -19,7 +19,7 @@ ms.openlocfilehash: 0ee1231b923e25975a4dfddb70c16366a86c9565
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 (Insiders-Build 14372 und höher). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart). 
+Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 Professional oder Enterprise (Anniversary Edition). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart). 
 
 Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
@@ -169,6 +169,6 @@ Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis 
 
 
 
-<!--HONumber=Aug16_HO1-->
+<!--HONumber=Aug16_HO3-->
 
 

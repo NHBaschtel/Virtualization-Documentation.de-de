@@ -1,23 +1,23 @@
 ---
 title: Konfigurieren von Docker unter Windows
 description: Konfigurieren von Docker unter Windows
-keywords: docker, containers
+keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 07/15/2016
+ms.date: 08/17/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 translationtype: Human Translation
-ms.sourcegitcommit: 475240afdf97af117519cfaa287f1e4fec8837a5
-ms.openlocfilehash: 5b86442643fb5937b62a67d144ae0d1c98373b41
+ms.sourcegitcommit: fac57150de3ffd6c7d957dd628b937d5c41c1b35
+ms.openlocfilehash: 7ba03dbcedbe42d54c955ff321e9f3f180a5a674
 
 ---
 
-# Docker-Daemon unter Windows
+# Docker-Modul unter Windows
 
-Das Docker-Modul ist nicht im Lieferumfang von Windows enthalten und muss einzeln installiert und konfiguriert werden. Docker-Daemon kann zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. In diesem Dokument wird beschrieben, wie Sie den Docker-Daemon installieren und konfigurieren, und es werden einige Beispiele für gängige Konfigurationen vorgestellt.
+Das Docker-Modul und der Docker-Client sind nicht im Lieferumfang von Windows enthalten und müssen einzeln installiert und konfiguriert werden. Das Docker-Modul kann zudem zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. In diesem Dokument wird beschrieben, wie Sie das Docker-Modul installieren und konfigurieren, und es werden einige Beispiele für gängige Konfigurationen vorgestellt.
 
 ## Installieren von Docker
 
@@ -29,7 +29,7 @@ Erstellen Sie einen Ordner für die ausführbaren Docker-Dateien.
 New-Item -Type Directory -Path 'C:\Program Files\docker\'
 ```
 
-Laden Sie den Docker-Daemon herunter.
+Laden Sie das Docker-Modul herunter.
 
 ```none
 Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
@@ -63,9 +63,9 @@ Bevor Docker verwendet werden kann, müssen Containerimages installiert werden. 
 
 ## Docker-Konfigurationsdatei
 
-Die bevorzugte Methode zum Konfigurieren des Docker-Daemons ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\docker\config\daemon.json“. Wenn diese Datei nicht bereits vorhanden ist, kann sie erstellt werden.
+Die bevorzugte Methode zum Konfigurieren des Docker-Moduls ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\docker\config\daemon.json“. Wenn diese Datei nicht bereits vorhanden ist, kann sie erstellt werden.
 
-Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unter Windows anwendbar. Die nachfolgenden Beispiele zeigen für Windows gültige Optionen. Eine vollständige Dokumentation für die Konfiguration des Docker-Daemons (einschließlich Linux) finden Sie unter [Docker-Daemon]( https://docs.docker.com/v1.10/engine/reference/commandline/daemon/).
+Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unter Windows anwendbar. Die nachfolgenden Beispiele zeigen für Windows gültige Optionen. Eine vollständige Dokumentation für die Konfiguration des Docker-Moduls (einschließlich Linux) finden Sie unter [Docker-Daemon]( https://docs.docker.com/v1.10/engine/reference/commandline/daemon/).
 
 ```none
 {
@@ -101,7 +101,7 @@ Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unte
 }
 ```
 
-Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen hinzugefügt werden. In diesem Beispiel wird der Docker-Daemon so konfiguriert, dass eingehende Verbindungen über Port 2375 akzeptiert werden. Für alle weiteren Konfigurationsoptionen werden die Standardwerte verwendet.
+Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen hinzugefügt werden. In diesem Beispiel wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über Port 2375 akzeptiert werden. Für alle weiteren Konfigurationsoptionen werden die Standardwerte verwendet.
 
 ```none
 {
@@ -123,7 +123,7 @@ Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen h
 
 ## Dienststeuerungs-Manager
 
-Der Docker-Daemon kann auch konfiguriert werden, indem der Docker-Dienst mit `sc config` geändert wird. Bei Verwendung dieser Methode werden die Docker-Daemon-Flags direkt im Docker-Dienst festgelegt.
+Das Docker-Modul kann auch konfiguriert werden, indem der Docker-Dienst mit `sc config` geändert wird. Bei Verwendung dieser Methode werden die Flags des Docker-Moduls direkt im Docker-Dienst festgelegt.
 
 
 ```none
@@ -136,7 +136,7 @@ Die folgenden Beispiele für Konfigurationsdateien zeigen allgemeine Docker-Konf
 
 ### Erstellen eines Standardnetzwerks 
 
-Verwenden Sie den folgenden Befehl, um den Docker-Daemon so zu konfigurieren, dass kein NAT-Standardnetzwerk erstellt wird. Weitere Informationen finden Sie unter [Verwalten von Docker-Netzwerken](../management/container_networking.md).
+Verwenden Sie den folgenden Befehl, um das Docker-Modul so zu konfigurieren, dass kein NAT-Standardnetzwerk erstellt wird. Weitere Informationen finden Sie unter [Verwalten von Docker-Netzwerken](../management/container_networking.md).
 
 ```none
 {
@@ -146,7 +146,7 @@ Verwenden Sie den folgenden Befehl, um den Docker-Daemon so zu konfigurieren, da
 
 ### Festlegen der Docker-Sicherheitsgruppe
 
-Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausführen, werden diese Befehle über eine Named Pipe ausgeführt. Standardmäßig können nur Mitglieder der Administratorengruppe über die Named Pipe auf den Docker-Daemon zugreifen. Verwenden Sie das Flag `group`, um eine Sicherheitsgruppe mit diesem Zugriff festzulegen.
+Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausführen, werden diese Befehle über eine Named Pipe ausgeführt. Standardmäßig können nur Mitglieder der Administratorengruppe über die Named Pipe auf das Docker-Modul zugreifen. Verwenden Sie das Flag `group`, um eine Sicherheitsgruppe mit diesem Zugriff festzulegen.
 
 ```none
 {
@@ -171,9 +171,9 @@ restart-service docker
 Weitere Informationen finden Sie unter [Daemon Socket Options](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option) (Daemon-Socketoptionen) auf Docker.com.
 
 ## Sammeln von Protokollen
-Der Docker-Daemon protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
+Das Docker-Modul protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
 
-Beispielsweise zeigt dies die Docker-Daemon-Protokolle der letzten fünf Minuten an, angefangen mit dem ältesten.
+Beispielsweise werden dadurch die Protokolle des Docker-Moduls der letzten fünf Minuten angezeigt, angefangen mit dem ältesten.
 ```
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
 ```
@@ -184,6 +184,6 @@ Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-3
 
 
 
-<!--HONumber=Jul16_HO3-->
+<!--HONumber=Aug16_HO3-->
 
 

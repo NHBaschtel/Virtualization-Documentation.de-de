@@ -4,14 +4,14 @@ description: Anforderungen von Windows-Containern.
 keywords: Metadaten, Container
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 08/17/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
 translationtype: Human Translation
-ms.sourcegitcommit: 6f1d9c09774adde047508835caf9dcf54deab9d2
-ms.openlocfilehash: 9d015a570a0b1a9d7304e601daa7ace73df4e827
+ms.sourcegitcommit: fac57150de3ffd6c7d957dd628b937d5c41c1b35
+ms.openlocfilehash: f76dc45e6035c72fd7b07f25d4b4c55f2a95aafb
 
 ---
 
@@ -23,7 +23,7 @@ In diesen Handbüchern sind die Anforderungen für einen Windows-Containerhost a
 
 ## Betriebssystemanforderungen
 
-- Das Feature „Windows-Container“ ist nur für Windows Server 2016 (Core und mit Desktopdarstellung), Nano Server und Windows 10 Professional und Enterprise (Insider-Build 14352 und höher) verfügbar.
+- Das Feature „Windows-Container“ ist nur für Windows Server 2016 (Core und mit Desktopdarstellung), Nano Server und Windows 10 Professional und Enterprise (Anniversary Edition) verfügbar.
 - Wenn Hyper-V-Container ausgeführt werden, muss die Rolle „Hyper-V“ installiert werden.
 - Bei Windows Server-Containerhosts muss Windows auf Laufwerk c:\\ installiert werden. Wenn nur Hyper-V-Container bereitgestellt werden, gilt diese Einschränkung nicht.
 
@@ -65,7 +65,7 @@ Windows Server Technical Preview 5 wird mit zwei Container-Betriebssystemimages,
 <td><center>Nano Server-Image</center></td>
 </tr>
 <tr valign="top">
-<td><center>Windows 10 Insider-Versionen</center></td>
+<td><center>Windows 10 Anniversary Edition</center></td>
 <td><center>Nicht verfügbar</center></td>
 <td><center>Nano Server-Image</center></td>
 </tr>
@@ -74,6 +74,6 @@ Windows Server Technical Preview 5 wird mit zwei Container-Betriebssystemimages,
 
 
 
-<!--HONumber=Jul16_HO3-->
+<!--HONumber=Aug16_HO3-->
 
 
