@@ -1,17 +1,17 @@
 ---
 title: Windows-Containerimages
 description: Erstellen und Verwalten von Containerimages mit Windows-Containern.
-keywords: docker, containers
+keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 08/22/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: d8163185-9860-4ee4-9e96-17b40fb508bc
 translationtype: Human Translation
-ms.sourcegitcommit: 3db43b433e7b1a9484d530cf209ea80ef269a307
-ms.openlocfilehash: 505cc64fa19fb9fc8c2d5c109830f460f09332dd
+ms.sourcegitcommit: 7b5cf299109a967b7e6aac839476d95c625479cd
+ms.openlocfilehash: 8b9ec6370d1f9f9187fbb6d74168e9e88391b657
 
 ---
 
@@ -19,148 +19,34 @@ ms.openlocfilehash: 505cc64fa19fb9fc8c2d5c109830f460f09332dd
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-Containerimages dienen zum Bereitstellen von Containern. Diese Images können ein Betriebssystem, Anwendungen und sämtliche Anwendungsabhängigkeiten enthalten. Sie können z. B. ein Containerimage entwickeln, das mit Nano Server, IIS und einer in IIS ausgeführten Anwendung vorkonfiguriert wurde. Dieses Containerimage kann anschließend für die spätere Verwendung in einer Containerregistrierung gespeichert, auf einem beliebigen Windows-Containerhost (lokal, Cloud oder Containerdienst) bereitgestellt und außerdem als Basis für ein neues Containerimage verwendet werden.
+>Windows-Container werden mit Docker verwaltet. Die Dokumentation zu Windows-Containern ergänzt die Dokumentation, die Sie auf [docker.com](https://www.docker.com/) finden.
 
-Es gibt zwei Arten von Containerimages:
-
-**Basisbetriebssystemimages**: Werden von Microsoft bereitgestellt und enthalten die wesentlichen Betriebssystemkomponenten. 
-
-**Containerimages**: Ein benutzerdefiniertes Containerimage, das vom Basisbetriebssystemimage abgeleitet wird.
-
-## Basisbetriebssystemimages
+Containerimages dienen zum Bereitstellen von Containern. Diese Images können ein Anwendungen und sämtliche Anwendungsabhängigkeiten enthalten. Sie können z. B. ein Containerimage entwickeln, das mit Nano Server, IIS und einer in IIS ausgeführten Anwendung vorkonfiguriert wurde. Dieses Containerimage kann anschließend für die spätere Verwendung in einer Containerregistrierung gespeichert, auf einem beliebigen Windows-Containerhost (lokal, Cloud oder Containerdienst) bereitgestellt und außerdem als Basis für ein neues Containerimage verwendet werden.
 
 ### Installieren eines Images
 
-Images von Containerbetriebssystemen können mithilfe des PowerShell-Moduls „ContainerImage“ bestimmt und installiert werden. Sie müssen dieses Modul erst installieren, um es verwenden zu können. Installieren Sie das Modul mit dem folgenden Befehl. Weitere Informationen zur Verwendung des PowerShell-Moduls „Containers Image OneGet“ finden Sie unter [Container Image Provider](https://github.com/PowerShell/ContainerProvider) (Containerimageanbieter). 
+Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als zugrunde liegendem Betriebssystem verfügbar. Informationen zu den unterstützten Konfigurationen finden Sie unter [Systemanforderungen für Windows-Container](../deployment/system_requirements.md).
+
+Zum Installieren des Basisimages für Windows Server Core führen Sie folgenden Befehl aus:
 
 ```none
-Install-PackageProvider ContainerImage -Force
+docker pull microsoft/windowsservercore
 ```
 
-Nach der Installation kann mit `Find-ContainerImage` eine Liste der Basisbetriebssystemimages zurückgegeben werden.
+Zum Installieren des Basisimages für Nano Server führen Sie folgenden Befehl aus:
 
 ```none
-Find-ContainerImage
-
-Name                 Version          Source           Summary
-----                 -------          ------           -------
-NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
-WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+docker pull microsoft/nanoserver
 ```
-
-Zum Herunterladen und Installieren des Basisbetriebssystem-Images für Nano Server führen Sie die folgenden Schritte aus. Der Parameter `-version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
-
-```none
-Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
-```
-
-Mit diesem Befehl wird auch das Basisbetriebssystemimage für Windows Server Core heruntergeladen und installiert. Der Parameter `-version` ist optional. Wenn keine Version für das Basisbetriebssystem-Image angegeben wird, wird die neueste Version installiert.
-
-```none
-Install-ContainerImage -Name WindowsServerCore -Version 10.0.14300.1000
-```
-
-Überprüfen Sie mit dem Befehl `docker images`, ob die Images Installiert wurden. 
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
-windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
-```  
-
-Nach der Installation sollten Sie die Images auch mit dem Tag „latest“ kennzeichnen. Anweisungen dazu finden Sie im Abschnitt „Kennzeichnen von Images“ weiter unten.
-
-> Wenn das Basisbetriebssystemimage heruntergeladen wurde, aber beim Ausführen von `docker images` nicht angezeigt wird, starten Sie den Docker-Dienst mithilfe des Systemsteuerungs-Applets für Dienste oder den Befehlen „sc stop docker“ und „sc start docker“ neu.
-
-### Kennzeichnen von Images
-
-Wenn auf ein Containerimage anhand des Namens verwiesen wird, sucht das Docker-Modul nach der neuesten Version des Images. Wenn die neueste Version nicht bestimmt werden kann, wird der folgende Fehler ausgelöst.
-
-```none
-docker run -it windowsservercore cmd
-
-Unable to find image 'windowsservercore:latest' locally
-Pulling repository docker.io/library/windowsservercore
-C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
-```
-
-Nach der Installation von Windows Server Core- oder Nano Server-Basisbetriebssystemimages müssen diese mit „Latest“ als neueste Versionen gekennzeichnet werden. Verwenden Sie hierzu den Befehl `docker tag`. 
-
-Weitere Informationen zu `docker tag` finden Sie auf docker.com unter [Tag, push, and pull your image](https://docs.docker.com/mac/step_six/) (Kennzeichnung, Push- und Pullvorgänge für Ihr Image). 
-
-```none
-docker tag <image id> windowsservercore:latest
-```
-
-Nach dem Kennzeichnen werden in der Ausgabe von `docker images` zwei Versionen desselben Images angezeigt: eines mit dem Tag der Imageversion und ein zweites mit dem Tag „latest“. Jetzt kann mit dem Namen auf das Image verwiesen werden.
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     df03a4b28c50        2 days ago          783.2 MB
-windowsservercore   10.0.14300.1000     290ab6758cec        2 days ago          9.148 GB
-windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
-```
-
-### Offlineinstallation
-
-Basisbetriebssystemimages können auch ohne Internetzugang installiert werden. Laden Sie zu diesem Zweck das Image auf einen Computer mit Internetzugang herunter, kopieren Sie es auf das Zielsystem, und importieren Sie das Image dann mithilfe des Befehls `Install-ContainerOSImages`.
-
-Bereiten Sie das **mit dem Internet verbundene** System vor dem Herunterladen des Basisbetriebssystemimages durch Ausführen des folgenden Befehls mit dem Containerimageanbieter vor.
-
-```none
-Install-PackageProvider ContainerImage -Force
-```
-
-So geben Sie eine Liste der Images aus dem PowerShell OneGet-Paket-Manager zurück:
-
-```none
-Find-ContainerImage
-```
-
-Ausgabe:
-
-```none
-Name                 Version                 Description
-----                 -------                 -----------
-NanoServer           10.0.14300.1010         Container OS Image of Windows Server 2016 Techn...
-WindowsServerCore    10.0.14300.1000         Container OS Image of Windows Server 2016 Techn...
-```
-
-Verwenden Sie den Befehl `Save-ContainerImage`, um ein Image herunterzuladen.
-
-```none
-Save-ContainerImage -Name NanoServer -Path c:\container-image
-```
-
-Das heruntergeladene Containerimage kann jetzt auf den **Offlinecontainerhost** kopiert und mit dem Befehl `Install-ContainerOSImage` installiert werden.
-
-```none
-Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
-```
-
-### Deinstallieren des Betriebssystemimages
-
-Basisbetriebssystemimages können mithilfe des Befehls `Uninstall-ContainerOSImage` deinstalliert werden. Im folgende Beispiel wird das NanoServer-Basisbetriebssystemimage deinstalliert.
-
-```none
-Uninstall-ContainerOSImage -FullName CN=Microsoft_NanoServer_10.0.14304.1003
-```
-
-## Containerimages
 
 ### Auflisten von Images
 
 ```none
 docker images
 
-REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
-windowsservercoreiis   latest              ca40b33453f8        About a minute ago   44.88 MB
-windowsservercore      10.0.14300.1000     6801d964fda5        2 weeks ago          0 B
-nanoserver             10.0.14300.1010     8572198a60f1        2 weeks ago          0 B
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+microsoft/windowsservercore   latest              02cb7f65d61b        9 weeks ago         7.764 GB
+microsoft/nanoserver          latest              3a703c6e97a2        9 weeks ago         969.8 MB
 ```
 
 ### Erstellen eines neuen Images
@@ -291,6 +177,6 @@ Jetzt ist das Containerimage verfügbar, und Sie können mit `docker pull` darau
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Aug16_HO4-->
 
 

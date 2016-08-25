@@ -4,14 +4,14 @@ description: Bereitstellen von Windows-Containern unter Nano Server
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 07/06/2016
+ms.date: 08/23/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 translationtype: Human Translation
-ms.sourcegitcommit: fac57150de3ffd6c7d957dd628b937d5c41c1b35
-ms.openlocfilehash: d2f19e96f06ba18ab7e23e62652f569265c6f43f
+ms.sourcegitcommit: 2319649d1dd39677e59a9431fbefaf82982492c6
+ms.openlocfilehash: a79469987879656117812ff6f9563046584172c0
 
 ---
 
@@ -29,22 +29,20 @@ Im folgenden Abschnitt wird die Bereitstellung einer einfachen Nano Server-Konfi
 
 Laden Sie zunächst die Nano Server-Evaluierungs-VHD [hier](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula) herunter. Erstellen Sie einen virtuellen Computer aus dieser VHD, starten Sie den virtuellen Computer, und verbinden Sie ihn mittels der Hyper-V-Verbindungsoption oder einer anderen Option passend zur verwendeten Virtualisierungsplattform.
 
-Als Nächstes muss das Administratorkennwort festgelegt werden. Drücken Sie dazu `F11` in der Nano Server-Wiederherstellungskonsole. Dadurch wird das Dialogfeld „Kennwort ändern“ bereitgestellt.
-
 ### Erstellen einer Remote-PowerShell-Sitzung
 
-Da Nano Server nicht über interaktive Anmeldefunktionen verfügt, werden alle Verwaltungsaktivitäten von einer Remote-PowerShell-Sitzung aus abgeschlossen. Rufen Sie die IP-Adresse des Systems ab, das den Netzwerkabschnitt der Nano Server-Wiederherstellungskonsole verwendet, und führen Sie anschließend die folgenden Befehle auf dem Remotehost aus, um die Remotesitzung zu erstellen. Ersetzten Sie IPADDRESS mit der tatsächlichen IP-Adresse des Nano Server-Systems.
+Da Nano Server nicht über interaktive Anmeldefunktionen verfügt, werden alle Verwaltungsaktivitäten von einem Remotesystem aus unter Verwendung von PowerShell ausgeführt.
 
-Fügen Sie das Nano Server-System den vertrauenswürdigen Hosts hinzu.
+Fügen Sie das Nano Server-System zu den vertrauenswürdigen Hosts des Remotesystems hinzu. Ersetzen Sie die IP-Adresse durch die IP-Adresse der Nano Server-Instanz.
 
 ```none
-set-item WSMan:\localhost\Client\TrustedHosts IPADDRESS -Force
+Set-Item WSMan:\localhost\Client\TrustedHosts 192.168.1.50 -Force
 ```
 
 Erstellen Sie die Remote-PowerShell-Sitzung.
 
 ```none
-Enter-PSSession -ComputerName IPADDRESS -Credential ~\Administrator
+Enter-PSSession -ComputerName 192.168.1.50 -Credential ~\Administrator
 ```
 
 Wenn Sie diese Schritte abgeschlossen haben, befinden Sie sich in der PowerShell-Remotesitzung mit dem Nano Server-System. Die restlichen Schritte dieses Dokuments werden, sofern nicht anders angemerkt, von der Remotesitzung aus stattfinden.
@@ -74,7 +72,13 @@ Stellen Sie, sobald er wieder verfügbar ist, die PowerShell-Remoteverbindung wi
 
 ## Installieren von Docker
 
-Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Installieren Sie mithilfe der folgenden Schritte das Docker-Modul und den Docker-Client.
+Für die Arbeit mit Windows-Containern ist das Docker-Modul erforderlich. Installieren Sie das Docker-Modul mithilfe der folgenden Schritte.
+
+Stellen Sie zunächst sicher, dass die Nano Server-Firewall für SMB konfiguriert wurde. Dies kann durch Ausführen dieses Befehls auf dem Nano Server-Host erfolgen.
+
+```none
+Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
+```
 
 Erstellen Sie auf dem Nano Server-Host einen Ordner für die ausführbaren Docker-Dateien.
 
@@ -84,30 +88,34 @@ New-Item -Type Directory -Path $env:ProgramFiles'\docker\'
 
 Laden Sie das Docker-Modul und den Docker-Client herunter, und kopieren Sie die Dateien in das Verzeichnis „C:\Programme\docker\'“ auf dem Containerhost. 
 
-**Hinweis**: Nano Server unterstützt `Invoke-WebRequest` derzeit nicht. Die Downloads müssen über ein Remotesystem ausgeführt und anschließend zum Nano Server-Host kopiert werden.
+> `Invoke-WebRequest` wird derzeit von Nano Server nicht unterstützt. Der Download muss auf einem Remotesystem ausgeführt werden, und die Dateien müssen auf den Nano Server-Host kopiert werden.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile .\dockerd.exe
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
 ```
 
-Laden Sie den Docker-Client herunter.
+Extrahieren Sie das heruntergeladene Paket. Nachdem Sie diesen Schritt abgeschlossen haben, verfügen Sie über ein Verzeichnis, das die Dateien **dockerd.exe** und **docker.exe** enthält. Kopieren Sie diese beide Dateien in den Ordner **C:\Programme\docker\** auf dem Nano Server-Containerhost. 
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile .\docker.exe
+Expand-Archive .\docker-1.12.0.zip
 ```
 
-Kopieren Sie das Docker-Modul und den Docker-Client nach dem Herunterladen in den Ordner „C:\Programme\docker\'“ im Nano Server-Containerhost. Die Firewall von Nano Server muss konfiguriert werden, um eingehende SMB-Verbindungen zuzulassen. Dies kann mithilfe von PowerShell oder der Wiederherstellungskonsole von Nano Server abgeschlossen werden. 
+Fügen Sie das Docker-Verzeichnis zum Systempfad auf der Nano Server-Instanz hinzu.
+
+> Vergessen Sie nicht, wieder zur Nano Server-Remotesitzung zurückzukehren.
 
 ```none
-Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
+# for quick use, does not require shell to be restarted
+$env:path += “;C:\program files\docker”
+
+# for persistent use, will apply even after a reboot 
+setx PATH $env:path /M
 ```
 
-Die Dateien können jetzt mithilfe von Standard-SMB-Dateikopiermethoden kopiert werden.
-
-Führen Sie diesen Befehl aus, nachdem die Datei „dockerd.exe“ in den Host kopiert wurde. Damit installieren Sie Docker als einen Windows-Dienst.
+Installieren Sie Docker als Windows-Dienst.
 
 ```none
-& $env:ProgramFiles'\docker\dockerd.exe' --register-service
+dockerd --register-service
 ```
 
 Starten Sie den Docker-Dienst.
@@ -118,33 +126,15 @@ Start-Service Docker
 
 ## Installieren von Basiscontainerimages
 
-Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe des Containerimageanbieters installiert werden. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
-
-Der folgende Befehl kann verwendet werden, um den Containerimageanbieter zu installieren.
-
-```none
-Install-PackageProvider ContainerImage -Force
-```
+Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe von `docker pull` installiert werden. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
 
 Zum Herunterladen und Installieren des Basisimages für Nano Server führen Sie die folgenden Schritte aus:
 
 ```none
-Install-ContainerImage -Name NanoServer
+docker pull microsoft/nanoserver
 ```
 
-**Hinweis**: Zurzeit ist nur das Nano Server-Basisimage mit Nano Server-Containerhosts kompatibel.
-
-Starten Sie den Docker-Dienst neu.
-
-```none
-Restart-Service Docker
-```
-
-Markieren Sie das Nano Server-Basisimage als aktuellstes Image.
-
-```none
-& $env:ProgramFiles'\docker\docker.exe' tag nanoserver:10.0.14300.1016 nanoserver:latest
-```
+> Zurzeit ist nur das Nano Server-Basisimage mit Nano Server-Containerhosts kompatibel.
 
 ## Verwalten von Docker unter Nano Server
 
@@ -155,7 +145,7 @@ Als bewährte Methode und um optimale Ergebnisse zu erzielen, verwalten Sie Dock
 Erstellen Sie auf dem Containerhost eine Firewallregel für die Docker-Verbindung. Bei unsicheren Verbindungen wird Port `2375` verwendet, bei sicheren Verbindungen Port `2376`.
 
 ```none
-netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2375
 ```
 
 Konfigurieren Sie das Docker-Modul so, dass eingehende Verbindungen über TCP akzeptiert werden.
@@ -180,25 +170,27 @@ Restart-Service docker
 
 ### Vorbereiten des Remoteclients
 
-Erstellen Sie im Remotesystem, in dem Sie arbeiten werden, ein Verzeichnis das den Docker-Client enthalten soll.
+Laden Sie den Docker-Client in das Remotesystem herunter, in dem Sie arbeiten werden.
 
 ```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
 ```
 
-Laden Sie den Docker-Client in dieses Verzeichnis herunter.
+Extrahieren Sie das komprimierte Paket.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile "$env:ProgramFiles\docker\docker.exe"
+Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
 ```
 
-Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
+Führen Sie die folgenden beiden Befehle aus, um das Docker-Verzeichnis zum Systempfad hinzuzufügen.
 
 ```none
-$env:Path += ";$env:ProgramFiles\Docker"
-```
+# for quick use, does not require shell to be restarted
+$env:path += ";c:\program files\docker"
 
-Starten Sie die PowerShell- oder Befehlssitzung neu, damit der geänderte Pfad erkannt wird.
+# for persistent use, will apply even after a reboot 
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+```
 
 Nach Abschluss dieses Vorgangs kann mit dem Parameter `docker -H` auf den Docker-Remotehost zugegriffen werden.
 
@@ -238,6 +230,6 @@ Restart-Computer
 ```
 
 
-<!--HONumber=Aug16_HO3-->
+<!--HONumber=Aug16_HO4-->
 
 

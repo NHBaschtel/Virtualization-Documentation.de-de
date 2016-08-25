@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: fac57150de3ffd6c7d957dd628b937d5c41c1b35
-ms.openlocfilehash: 57d35f9e871bdd3bd0798833bcbaf6a7948a65f2
+ms.sourcegitcommit: 2319649d1dd39677e59a9431fbefaf82982492c6
+ms.openlocfilehash: 8d3c8263819688d1a47893726619458ee44be59b
 
 ---
 
@@ -25,7 +25,7 @@ Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weit
 
 **Voraussetzungen:**
 
-- Ein physisches Computersystem, das eine [Version von Windows 10 Insiders](https://insider.windows.com/) ausführt.   
+- Ein physisches Computersystem mit Windows 10 Anniversary Edition (Professional oder Enterprise).   
 - Dieser Schnellstart kann auf einem virtuellen Windows 10-Computer ausgeführt werden, doch die geschachtelte Virtualisierung muss aktiviert sein. Weitere Informationen finden Sie im [Handbuch „Geschachtelte Virtualisierung“](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ## 1. Installieren des Containerfeatures
@@ -63,19 +63,23 @@ Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht a
 Laden Sie das Docker-Modul und den Docker-Client als ZIP-Archiv herunter.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.13.0-dev.zip" -OutFile "$env:TEMP\docker-1.13.0-dev.zip" -UseBasicParsing
 ```
 
 Erweitern Sie das ZIP-Archiv in „Programme“, die Archivinhalte befinden sich bereits im Docker-Verzeichnis.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:ProgramFiles\docker\", [EnvironmentVariableTarget]::Machine)
+# for quick use, does not require shell to be restarted
+$env:path += ";c:\program files\docker"
+
+# for persistent use, will apply even after a reboot 
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
 Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
@@ -83,7 +87,7 @@ Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
 Führen Sie den folgenden Befehl aus, um Docker als Windows-Dienst zu installieren.
 
 ```none
-& $env:ProgramFiles\docker\dockerd.exe --register-service
+dockerd --register-service
 ```
 
 Nach Abschluss der Installation kann der Dienst gestartet werden.
@@ -120,7 +124,7 @@ In diesem einfachen Beispiel wird ein „Hello World“-Containerimage erstellt 
 Starten Sie zuerst einen Container mit einer interaktiven Sitzung aus dem `nanoserver`-Image. Sobald der Container gestartet wurde, wird Ihnen eine Befehlsshell für den Inhalt des Containers angezeigt.  
 
 ```none
-docker run -it nanoserver cmd
+docker run -it microsoft/nanoserver cmd
 ```
 
 Erstellen Sie nun innerhalb des Containers ein einfaches „Hello World“-Skript.
@@ -169,6 +173,6 @@ Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis 
 
 
 
-<!--HONumber=Aug16_HO3-->
+<!--HONumber=Aug16_HO4-->
 
 

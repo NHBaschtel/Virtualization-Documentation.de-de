@@ -4,14 +4,14 @@ description: Bereitstellen von Windows-Containern unter Windows Server
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 08/22/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 translationtype: Human Translation
-ms.sourcegitcommit: 6c7ce9f1767c6c6391cc6d33a553216bd815ff72
-ms.openlocfilehash: ce387b29f1bd311c70c17f3e7a98ae4f625bd3c2
+ms.sourcegitcommit: 2319649d1dd39677e59a9431fbefaf82982492c6
+ms.openlocfilehash: b60329a09ea0f119446fa2aa20de68e3edc2b245
 
 ---
 
@@ -59,9 +59,13 @@ Erweitern Sie das ZIP-Archiv in „Programme“, die Archivinhalte befinden sich
 Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
 ```
 
-Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
+Führen Sie die folgenden beiden Befehle aus, um das Docker-Verzeichnis zum Systempfad hinzuzufügen.
 
 ```none
+# for quick use, does not require shell to be restarted
+$env:path += ";c:\program files\docker"
+
+# for persistent use, will apply even after a reboot 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
@@ -70,7 +74,7 @@ Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
 Führen Sie den folgenden Befehl aus, um Docker als Windows-Dienst zu installieren.
 
 ```none
-& $env:ProgramFiles\docker\dockerd.exe --register-service
+dockerd --register-service
 ```
 
 Nach Abschluss der Installation kann der Dienst gestartet werden.
@@ -79,32 +83,20 @@ Nach Abschluss der Installation kann der Dienst gestartet werden.
 Start-Service Docker
 ```
 
-## Installieren von Basisimages für Container
+## Installieren von Basiscontainerimages
 
-Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems für den Container heruntergeladen werden. Im folgenden Beispiel wird das Betriebssystem-Basisimage für Windows Server Core heruntergeladen. Mit dem gleichen Verfahren können Sie das Basisimage für Nano Server installieren. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
+Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als zugrunde liegendem Betriebssystem verfügbar. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
 
-Installieren Sie zunächst den Paketanbieter für Containerimages.
+Zum Installieren des Basisimages für Windows Server Core führen Sie folgenden Befehl aus:
 
 ```none
-Install-PackageProvider ContainerImage -Force
+docker pull microsoft/windowsservercore
 ```
 
-Installieren Sie dann das Windows Server Core-Image. Dieser Vorgang kann einige Zeit dauern. Sie können also eine Pause machen und den Vorgang fortsetzen, sobald der Download abgeschlossen ist.
+Zum Installieren des Basisimages für Nano Server führen Sie folgenden Befehl aus:
 
 ```none
-Install-ContainerImage -Name WindowsServerCore    
-```
-
-Nachdem das Basisimage installiert wurde, muss der Docker-Dienst neu gestartet werden.
-
-```none
-Restart-Service docker
-```
-
-Abschließend muss das Image als neueste Version („latest“) gekennzeichnet werden. Führen Sie dazu den folgenden Befehl aus.
-
-```none
-docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
+docker pull microsoft/nanoserver
 ```
 
 ## Hyper-V-Containerhost
@@ -139,6 +131,6 @@ Install-WindowsFeature hyper-v
 
 
 
-<!--HONumber=Aug16_HO1-->
+<!--HONumber=Aug16_HO4-->
 
 
