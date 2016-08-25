@@ -4,14 +4,14 @@ description: "Konfigurieren Sie das Netzwerk für Windows-Container."
 keywords: Docker, Container
 author: jmesser81
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 08/22/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 translationtype: Human Translation
-ms.sourcegitcommit: c412171773e9c66569eab2252b5adfc187eedafd
-ms.openlocfilehash: eb7d2c25d929cb51abfad17c26a89105f6574a48
+ms.sourcegitcommit: 7b5cf299109a967b7e6aac839476d95c625479cd
+ms.openlocfilehash: 2e26177f3e653e9102dc91070b987e28ef713bed
 
 ---
 
@@ -37,7 +37,7 @@ Auf demselben Containerhost können zusätzliche Netzwerke, die einen anderen Tr
 
 - **L2-Tunnel** - _Dieser Modus sollte nur in einem Microsoft-Cloudstapel verwendet werden._
 
-> Informationen dazu, wie Sie Containerendpunkte mithilfe des Microsoft-SDN-Stapels mit einem virtuellen Overlaynetzwerk verbinden, finden Sie im Thema [Verbinden von Containern mit einem virtuellen Netzwerk](location).
+> Informationen dazu, wie Sie Containerendpunkte mithilfe des Microsoft-SDN-Stapels mit einem virtuellen Overlaynetzwerk verbinden, finden Sie im Thema [Verbinden von Containern mit einem virtuellen Netzwerk](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network).
 
 ## Einzelknoten
 
@@ -182,7 +182,7 @@ C:\> docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168
 
 Bei l2bridge-Netzwerken wird nur die statische IP-Adresszuweisung unterstützt. 
 
-> Bei Verwendung eines l2bridge-Netzwerks für ein SDN-Fabric wird nur die dynamische IP-Zuweisung unterstützt. Weitere Informationen finden Sie im Thema [Anfügen von Containern an ein virtuelles Netzwerk](location).
+> Bei Verwendung eines l2bridge-Netzwerks für ein SDN-Fabric wird nur die dynamische IP-Zuweisung unterstützt. Weitere Informationen finden Sie im Thema [Anfügen von Containern an ein virtuelles Netzwerk](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network).
 
 ## Weitere Vorgänge und Konfigurationen
 
@@ -291,6 +291,6 @@ Start-Service docker
 
 
 
-<!--HONumber=Aug16_HO3-->
+<!--HONumber=Aug16_HO4-->
 
 

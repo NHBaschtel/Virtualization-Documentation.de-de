@@ -1,7 +1,7 @@
 ---
 title: "Containerbereitstellung – Schnellstart – Images"
 description: "Containerbereitstellung – Schnellstart"
-keywords: docker, containers
+keywords: Docker, Container
 author: neilpeterson
 manager: timlt
 ms.date: 05/26/2016
@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 translationtype: Human Translation
-ms.sourcegitcommit: eae45c2c81c7edc94d963da69dcdee2b6f08f37d
-ms.openlocfilehash: ac9596d210e72b9fd576f728e8e6bbdc293597d7
+ms.sourcegitcommit: f2a3eec656acf5a3cd48a2be71169b76ce25400b
+ms.openlocfilehash: a9bc0b1511e161ef9b648bfafd4d0456966d8f9f
 
 ---
 
@@ -35,7 +35,7 @@ Für optimale Ergebnisse absolvieren Sie diese Übung in einer Windows-Befehlssh
 Der erste Schritt beim manuellen Erstellen eines Containerimages ist die Bereitstellung eines Containers. In diesem Beispiel stellen Sie einen IIS-Container auf der Basis des zuvor erstellten IIS-Images bereit. Nachdem der Container bereitgestellt wurde, arbeiten Sie in einer Shellsitzung innerhalb des Containers. Die interaktive Sitzung wird mit dem `-it`-Flag eingeleitet. Detaillierte Informationen zu „Docker Run“-Befehlen finden Sie unter [„Docker run reference“ auf Docker.com]( https://docs.docker.com/engine/reference/run/) („Docker Run“-Referenz). 
 
 ```none
-docker run -it -p 80:80 microsoft/iis:windowsservercore cmd
+docker run -it -p 80:80 microsoft/iis cmd
 ```
 
 Als Nächstes wird am Container eine Änderung vorgenommen. Führen Sie zum Entfernen des IIS-Begrüßungsbildschirms den folgenden Befehl aus.
@@ -68,7 +68,7 @@ Der geänderte Container kann jetzt in einem neuen Containerimage erfasst werden
 docker ps -a
 
 CONTAINER ID     IMAGE                             COMMAND   CREATED             STATUS   PORTS   NAMES
-489b0b447949     microsoft/iis:windowsservercore   "cmd"     About an hour ago   Exited           pedantic_lichterman
+489b0b447949     microsoft/iis   "cmd"     About an hour ago   Exited           pedantic_lichterman
 ```
 
 Um ein neues Containerimage zu erstellen, verwenden Sie den Befehl `docker commit`. „Docker Commit“ hat die Form „docker commit Containername Neuer_Imagename“. Hinweis – Ersetzen Sie den Namen des Containers in diesem Beispiel durch den tatsächlichen Containernamen.
@@ -112,7 +112,7 @@ Kopieren Sie den folgenden Text in die Dockerfile-Datei, und speichern Sie sie. 
 Weitere Informationen zu Dockerfile-Dateien finden Sie unter [Dockerfiles on Windows](../docker/manage_windows_dockerfile.md) (Dockerfile-Dateien unter Windows).
 
 ```none
-FROM microsoft/iis:windowsservercore
+FROM microsoft/iis
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
@@ -166,6 +166,7 @@ docker rm -f cranky_brown
 [Windows-Container unter Windows 10](./quick_start_windows_10.md)
 
 
-<!--HONumber=Jun16_HO5-->
+
+<!--HONumber=Aug16_HO3-->
 
 

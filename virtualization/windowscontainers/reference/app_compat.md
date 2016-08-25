@@ -1,17 +1,18 @@
 ---
 title: "Anwendungskompatibilität im Windows-Containern"
 description: "Anwendungskompatibilität in Windows-Containern."
-keywords: docker, containers
+keywords: Docker, Container
 author: scooley
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 08/19/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 3e524458-bd03-400e-913f-210335add8dc
+redirect_url: ../containers_welcome
 translationtype: Human Translation
-ms.sourcegitcommit: cfa3c14e932f8b86edf6667200ac028ea0a16b67
-ms.openlocfilehash: 2830dc81317311dd54dfcca45251b668f3d2cc29
+ms.sourcegitcommit: 3a65fd7630ca1399d7bfd9e0a8b10f0cbd4febcc
+ms.openlocfilehash: 48d455079f0668d95ac31d36c644dabb8d716eda
 
 ---
 
@@ -90,6 +91,6 @@ Ist etwas nicht in dieser Liste?  Lassen Sie uns über die [Foren](https://socia
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Aug16_HO3-->
 
 

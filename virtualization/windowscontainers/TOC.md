@@ -12,6 +12,7 @@
 ## [Systemanforderungen](deployment/system_requirements.md)
 ## [Containerhost – Windows Server](deployment/deployment.md)
 ## [Containerhost – Nano Server](deployment/deployment_nano.md)
+## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Docker unter Windows
 ## [Docker-Modul unter Windows](docker/configure_docker_daemon.md)
@@ -30,17 +31,13 @@
 ## [Dockerfiles – Nano Server](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nanoserver)
 
 # Community und Support
-## [Containerforen](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+## [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
-# Referenz
-## [Containerimageanbieter](https://github.com/PowerShell/ContainerProvider)
-## [Anwendungskompatibilität](reference/app_compat.md)
-## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 # [Endbenutzer-Lizenzvertrag für Windows Server](EULA.md)
 # [Endbenutzer-Lizenzvertrag für Nano Server](Nano_EULA.md)
 
 
 
-<!--HONumber=Aug16_HO3-->
+<!--HONumber=Aug16_HO4-->
 
 
