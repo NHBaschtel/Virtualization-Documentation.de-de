@@ -6,14 +6,14 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/08f893b646046d18def65602eb926bc0ea211804/virtualization/windowscontainers/management/manage_data.md) | HandedOffSuccess | [Details](#a175091c943cf596b2a810245b1b73b8baddb0c6256)
+ [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d186ef1b6da8e32d8de2cde9560113e3932785b6/virtualization/windowscontainers/management/manage_data.md) | HandedOffSuccess | [Details](#20b80a71fcfdec1c1fa177e9d8c0257db667a102256)
 
 ## Item Details
-##### <a name='a175091c943cf596b2a810245b1b73b8baddb0c6256'></a> Source: [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/08f893b646046d18def65602eb926bc0ea211804/virtualization/windowscontainers/management/manage_data.md)
+##### <a name='20b80a71fcfdec1c1fa177e9d8c0257db667a102256'></a> Source: [virtualization\windowscontainers\management\manage_data.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d186ef1b6da8e32d8de2cde9560113e3932785b6/virtualization/windowscontainers/management/manage_data.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/414887ca1b06b11ee898cefe2b6288a69e5bee32/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf)
-* Handoff Datetime: 2016-09-06 17:35:04
+* Handoff File: [manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/3ef38e6d0ac1645ee9bf4fe5fc7313b9742700fe/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_data.126a73641d5e96ee6d89d8d64e7ecfbdcacd6929.de-de.xlf)
+* Handoff Datetime: 2016-09-08 20:40:53
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
