@@ -1,7 +1,7 @@
 ---
 title: Verwalten von Hyper-V-Remotehosts mit Hyper-V-Manager
 description: Verwalten von Hyper-V-Remotehosts mit Hyper-V-Manager
-keywords: windows 10, hyper-v
+keywords: Windows 10, Hyper-V
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 2d34e98c-6134-479b-8000-3eb360b8b8a3
 translationtype: Human Translation
-ms.sourcegitcommit: eb6c8e904b9cd2c5d1ed25583ffbcdbdf0b9139c
-ms.openlocfilehash: fee2b24469b45efae982f4dfca4afb9f737b5bdf
+ms.sourcegitcommit: 07a07c790484c05ea49229a770ef75c80fad3cfa
+ms.openlocfilehash: 8a84da80199479907c3bf4cf0c7b1cfb1b44bf9d
 
 ---
 
@@ -27,8 +27,8 @@ Zum Herstellen einer Verbindung mit einem Hyper-V-Host im Hyper-V-Manager stelle
 
 ## Unterstützte Hyper-V-Hostkombinationen mit dem Hyper-V-Manager
 Mit dem Hyper-V-Manager in Windows 10 können Sie die folgenden Hyper-V-Hosts verwalten:
-* Windows 10
-* Windows 8.1
+* Windows 10
+* Windows 8.1
 * Windows 8
 * Windows Server 2016 + Windows Server Core, Nano Server und Hyper-V Server
 * Windows Server 2012 R2 + Windows Server Core, Datacenter und Hyper-V Server
@@ -36,7 +36,7 @@ Mit dem Hyper-V-Manager in Windows 10 können Sie die folgenden Hyper-V-Hosts ve
 
 Der Hyper-V Manager in Windows 8.1 und Windows Server 2012 R2 ermöglicht Ihnen das Verwalten von:
 * Windows 8.1
-* Windows 8
+* Windows 8
 * Windows Server 2012 R2 + Windows Server Core, Datacenter und Hyper-V Server
 * Windows 2012 + Windows Server Core, Datacenter und Hyper-V Server
 
@@ -117,12 +117,12 @@ Führen Sie auf dem verwaltenden PC den folgenden Befehl als Administrator aus:
 2. [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer „FQDN_des_Hyper-V-Hosts“
   * Alternativ können Sie alle zu verwaltenden Hosts als vertrauenswürdig einstufen:
   * [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer *
-3. Außerdem müssen Sie möglicherweise die folgenden Gruppenrichtlinien konfigurieren: ** Computerkonfiguration | Administrative Vorlagen | System | Delegierung von Anmeldeinformationen | Aktuelle Anmeldeinformationen mit reiner NTLM-Serverauthentifizierung zulassen **
+3. Außerdem müssen Sie möglicherweise die folgende Gruppenrichtlinie konfigurieren: ** Computerkonfiguration > Administrative Vorlagen > System > Delegierung von Anmeldeinformationen > Delegierung von aktuellen Anmeldeinformationen mit reiner NTLM-Serverauthentifizierung zulassen **
     * Klicken Sie auf **Aktivieren**, und fügen Sie *wsman/fqdn-of-hyper-v-host* hinzu.
     * Alternativ können Sie alle zu verwaltenden Hosts als vertrauenswürdig einstufen, indem Sie _wsman/*_ hinzufügen.
 
 
 
-<!--HONumber=Jun16_HO5-->
+<!--HONumber=Aug16_HO5-->
 
 
