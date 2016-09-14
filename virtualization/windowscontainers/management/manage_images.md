@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: d8163185-9860-4ee4-9e96-17b40fb508bc
 translationtype: Human Translation
-ms.sourcegitcommit: 7b5cf299109a967b7e6aac839476d95c625479cd
-ms.openlocfilehash: 8b9ec6370d1f9f9187fbb6d74168e9e88391b657
+ms.sourcegitcommit: eccce83d7e376be592694162f54ccb67be9d3c12
+ms.openlocfilehash: bb99d0c15d6d1dd9e126fde05207431153b4f94a
 
 ---
 
@@ -19,7 +19,7 @@ ms.openlocfilehash: 8b9ec6370d1f9f9187fbb6d74168e9e88391b657
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
->Windows-Container werden mit Docker verwaltet. Die Dokumentation zu Windows-Containern ergänzt die Dokumentation, die Sie auf [docker.com](https://www.docker.com/) finden.
+>Windows-Container werden mit Docker verwaltet. Die Dokumentation zu Windows-Containern ergänzt die Dokumentation, die Sie auf [docsdocker.com](https://docs.docker.com/) finden.
 
 Containerimages dienen zum Bereitstellen von Containern. Diese Images können ein Anwendungen und sämtliche Anwendungsabhängigkeiten enthalten. Sie können z. B. ein Containerimage entwickeln, das mit Nano Server, IIS und einer in IIS ausgeführten Anwendung vorkonfiguriert wurde. Dieses Containerimage kann anschließend für die spätere Verwendung in einer Containerregistrierung gespeichert, auf einem beliebigen Windows-Containerhost (lokal, Cloud oder Containerdienst) bereitgestellt und außerdem als Basis für ein neues Containerimage verwendet werden.
 
@@ -177,6 +177,6 @@ Jetzt ist das Containerimage verfügbar, und Sie können mit `docker pull` darau
 
 
 
-<!--HONumber=Aug16_HO4-->
+<!--HONumber=Sep16_HO1-->
 
 
