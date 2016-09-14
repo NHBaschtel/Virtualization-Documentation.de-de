@@ -1,7 +1,7 @@
 ---
 title: Containerdatenvolumes
 description: Erstellen und Verwalten von Datenvolumes mit Windows-Containern.
-keywords: docker, containers
+keywords: Docker, Container
 author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: f5998534-917b-453c-b873-2953e58535b1
 translationtype: Human Translation
-ms.sourcegitcommit: 493b669bc47fc589486a82cfea73a0bb1e88cf79
-ms.openlocfilehash: 26c010e79a4913b2e138f6d1d78f9406dbacbc6b
+ms.sourcegitcommit: 08f893b646046d18def65602eb926bc0ea211804
+ms.openlocfilehash: a175091c943cf596b2a810245b1b73b8baddb0c6
 
 ---
 
@@ -49,29 +49,17 @@ Weitere Informationen zum Einbinden von Hostverzeichnissen finden Sie auf docker
 
 ### Einbinden einzelner Dateien
 
-Eine einzelne Datei kann in einer Container eingebunden werden, indem der Dateiname explizit angegeben wird. In diesem Beispiel enthält das freigegebene Verzeichnis viele Dateien, es ist jedoch nur die Datei „config.ini“ innerhalb des Containers verfügbar. 
+Das Einbinden einer einzelnen Datei in einen Windows-Container ist nicht möglich. Die Ausführung des folgenden Befehls schlägt nicht fehl, aber der daraus resultierende Container wird die Datei nicht enthalten. 
 
 ```none
-docker run -it -v c:\container-share\config.ini windowsservercore cmd
+docker run -it -v c:\config\config.ini microsoft/windowsservercore cmd
 ```
 
-Im ausgeführten Container ist nur die Datei „config.ini“ sichtbar.
+Um dieses Problem zu umgehen, müssen alle Dateien, die in einen Container eingebunden werden sollen, aus einem Verzeichnis eingebunden werden.
 
 ```none
-c:\container-share>dir
- Volume in drive C has no label.
- Volume Serial Number is 7CD5-AC14
-
- Directory of c:\container-share
-
-04/04/2016  12:53 PM    <DIR>          .
-04/04/2016  12:53 PM    <DIR>          ..
-04/04/2016  12:53 PM    <SYMLINKD>     config.ini
-               0 File(s)              0 bytes
-               3 Dir(s)  21,184,208,896 bytes free
+docker run -it -v c:\config:c:\config microsoft/windowsservercore cmd
 ```
-
-Weitere Informationen zum Einbinden von einzelnen Dateien finden Sie auf docker.com unter [Manage data in containers](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume) (Verwalten von Daten in Containern).
 
 ### Einbinden des gesamten Laufwerks
 
@@ -125,6 +113,6 @@ Weitere Informationen zum Überprüfen von Volumes finden Sie auf docker.com unt
 
 
 
-<!--HONumber=Jul16_HO3-->
+<!--HONumber=Sep16_HO1-->
 
 
