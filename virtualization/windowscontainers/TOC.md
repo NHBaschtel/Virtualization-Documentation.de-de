@@ -14,17 +14,11 @@
 ## [Containerhost – Nano Server](deployment/deployment_nano.md)
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
-# Docker unter Windows
+# Verwalten von Docker unter Windows
 ## [Docker-Modul unter Windows](docker/configure_docker_daemon.md)
 ## [Dockerfiles unter Windows](docker/manage_windows_dockerfile.md)
 ## [Optimieren von Dockerfiles](docker/optimize_windows_dockerfile.md)
-
-# Verwalten von Windows-Containern
-## [Hyper-V-Container](management/hyperv_container.md)
-## [Containerimages](management/manage_images.md)
 ## [Containernetzwerk](management/container_networking.md)
-## [Containerdatenvolumes](management/manage_data.md)
-## [Steuerung von Containerressourcen](management/manage_resources.md)
 
 # Containerbeispiele
 ## [Dockerfiles – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)
@@ -38,6 +32,6 @@
 
 
 
-<!--HONumber=Aug16_HO4-->
+<!--HONumber=Sep16_HO2-->
 
 
