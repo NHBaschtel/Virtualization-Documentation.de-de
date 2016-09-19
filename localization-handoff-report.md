@@ -6,24 +6,24 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/c73e1fa48b21a4daf2821ba3aae756d9a46e9f94/virtualization/hyperv_on_windows/user_guide/remote_host_management.md) | HandedOffSuccess | [Details](#3fbcdb7b93941a0ccc1cdbe659e70f3881b9d0cd206)
+ [virtualization\hyperv_on_windows\user_guide\managing_ics.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/22d29dbde56319a2a9d7fbc8afd041d1dc224101/virtualization/hyperv_on_windows/user_guide/managing_ics.md) | HandedOffSuccess | [Details](#0779ef5b3f83bcf99f5681c13d445bcd33720dc6185)
 
 ## Item Details
-##### <a name='3fbcdb7b93941a0ccc1cdbe659e70f3881b9d0cd206'></a> Source: [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/c73e1fa48b21a4daf2821ba3aae756d9a46e9f94/virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
+##### <a name='0779ef5b3f83bcf99f5681c13d445bcd33720dc6185'></a> Source: [virtualization\hyperv_on_windows\user_guide\managing_ics.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/22d29dbde56319a2a9d7fbc8afd041d1dc224101/virtualization/hyperv_on_windows/user_guide/managing_ics.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/9eee65dfbe860c040bdfa2d998a9e5d01e128ef4/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
-* Handoff Datetime: 2016-09-19 13:38:56
+* Handoff File: [managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/ed717ebe3884857bc75e0097c3a141a30f8f2f53/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf)
+* Handoff Datetime: 2016-09-19 14:09:37
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/7c56a5984af64acb5fe6d0d811839af75eca832d/virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
-* Current Handback File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/59e6fab383e5a40c2c68141e1c5c0f4822313e25/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
-* Current Handback Datetime: 2016-09-09 11:04:25
-* Bilingual File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/59e6fab383e5a40c2c68141e1c5c0f4822313e25/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
-* Bilingual Datetime: 2016-09-09 11:04:59
+* Current Target File: [virtualization\hyperv_on_windows\user_guide\managing_ics.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/2cb186e3c7223af89d33c377a2d8dd733ab54008/virtualization/hyperv_on_windows/user_guide/managing_ics.md)
+* Current Handback File: [managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/7f7535971acbb6e4a309f79d0ea989aa64d03056/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf)
+* Current Handback Datetime: 2016-07-15 05:14:53
+* Bilingual File: [managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/7f7535971acbb6e4a309f79d0ea989aa64d03056/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/managing_ics.8df7555f0b61b9ddcddca7419ee655ef1d9a2119.de-de.xlf)
+* Bilingual Datetime: 2016-07-15 05:15:27
 * [Back to Top](#report-top)
 
 
