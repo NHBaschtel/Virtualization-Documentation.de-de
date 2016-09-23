@@ -1,7 +1,7 @@
 ---
 title: Verwalten von Hyper-V-Integrationsdiensten
 description: Verwalten von Hyper-V-Integrationsdiensten
-keywords: windows 10, hyper-v, integration services, integration components
+keywords: Windows 10, Hyper-V, Integrationsdienste, Integrationskomponenten
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 9cafd6cb-dbbe-4b91-b26c-dee1c18fd8c2
 translationtype: Human Translation
-ms.sourcegitcommit: 852f7fafe7192d85b0e9840ea3767a1206a1c285
-ms.openlocfilehash: e7abf05c899e2acca07312813b7808a5db00a9f7
+ms.sourcegitcommit: 22d29dbde56319a2a9d7fbc8afd041d1dc224101
+ms.openlocfilehash: 0779ef5b3f83bcf99f5681c13d445bcd33720dc6
 
 ---
 
@@ -32,7 +32,9 @@ Weitere Informationen zu den einzelnen Integrationsdiensten finden Sie unter [In
   
   ![](./media/HyperVManager-IntegrationServices.png)
   
-  Hier sehen Sie alle Integrationsdienste, die auf diesem Hyper-V-Host verfügbar sind.  Wichtig ist der Hinweis, dass das Gastbetriebssystem ggf. nicht alle aufgeführten Integrationsdienste unterstützt.
+  Hier sehen Sie alle Integrationsdienste, die auf diesem Hyper-V-Host verfügbar sind.  Wichtig ist der Hinweis, dass das Gastbetriebssystem ggf. nicht alle aufgeführten Integrationsdienste unterstützt. Um die Versionsinformationen eines Gastbetriebssystems zu ermitteln, melden Sie sich am Gastbetriebssystem an und führen an der Eingabeaufforderung den folgenden Befehl aus.
+
+REG QUERY "HKLM\Software\Microsoft\Virtual Machine\Auto" /v IntegrationServicesVersion
 
 ## Aktivieren und Deaktivieren von Integrationsdiensten mit PowerShell
 
@@ -205,14 +207,14 @@ Indem die Integrationsdienste auf dem neuesten Stand gehalten werden, können di
 
 | Gastbetriebssystem | Updatemechanismus | Anmerkungen |
 |:---------|:---------|:---------|
-| Windows 10 | Windows Update | |
-| Windows 8.1 | Windows Update | |
-| Windows 8 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
-| Windows 7 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
+| Windows 10 | Windows Update | |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
+| Windows 7 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | Windows Vista (SP 2) | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | - | | |
 | Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
+| Windows Server 2012 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | Windows Server 2008 R2 (SP 1) | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | Windows Server 2008 (SP 2) | Windows Update | Erweiterte Unterstützung nur in Server 2016 ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=12925)). |
 | Windows Home Server 2011 | Windows Update | Nicht in Server 2016 unterstützt ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15820)). |
@@ -228,16 +230,16 @@ Indem die Integrationsdienste auf dem neuesten Stand gehalten werden, können di
 
 | Gastbetriebssystem | Updatemechanismus | Anmerkungen |
 |:---------|:---------|:---------|
-| Windows 10 | Windows Update | |
-| Windows 8.1 | Windows Update | |
-| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 10 | Windows Update | |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Vista (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows XP (SP 2, SP 3) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | - | | |
-| Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Server 2008 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Home Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Small Business Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
@@ -251,15 +253,15 @@ Indem die Integrationsdienste auf dem neuesten Stand gehalten werden, können di
 
 | Gastbetriebssystem | Updatemechanismus | Anmerkungen |
 |:---------|:---------|:---------|
-| Windows 8.1 | Windows Update | |
-| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Vista (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows XP (SP 2, SP 3) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | - | | |
-| Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).|
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).|
 | Windows Server 2008 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Home Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Small Business Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
@@ -272,6 +274,6 @@ Indem die Integrationsdienste auf dem neuesten Stand gehalten werden, können di
 
 
 
-<!--HONumber=Jul16_HO1-->
+<!--HONumber=Sep16_HO3-->
 
 

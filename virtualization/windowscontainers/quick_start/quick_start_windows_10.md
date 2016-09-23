@@ -10,16 +10,16 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 39e480b8bf3f90cfe9b7d4d17141b9dbec5f93e5
-ms.openlocfilehash: 78c67351f3e5606b8225c71d221a871e58530e57
+ms.sourcegitcommit: 16630b534367791114a4844c3c1f582f13d09d6d
+ms.openlocfilehash: 02b4e01e404fe5ab3a6fadbb3481c741cb4aa563
 
 ---
 
 # Windows-Container unter Windows 10
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.** 
+**Dieser Inhalt ist vorläufig und kann geändert werden.**
 
-Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 Professional oder Enterprise (Anniversary Edition). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart). 
+Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 Professional oder Enterprise (Anniversary Edition). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart).
 
 Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
@@ -30,7 +30,7 @@ Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weit
 
 ## 1. Installieren des Containerfeatures
 
-Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus. 
+Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
@@ -48,7 +48,7 @@ Starten Sie den Computer neu, wenn die Installation abgeschlossen ist.
 Restart-Computer -Force
 ```
 
-Führen Sie den folgenden Befehl aus, sobald der Computer neu gestartet wurde, um ein bekanntes Problem mit der Technical Preview des Features „Windows-Container“ zu beheben.  
+Führen Sie den folgenden Befehl aus, sobald der Computer neu gestartet wurde, um ein bekanntes Problem mit den Windows-Containern unter Windows 10 zu beheben.  
 
  ```none
 Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
@@ -58,7 +58,7 @@ Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtua
 
 ## 2. Installieren von Docker
 
-Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Für diese Übung werden beide installiert. Führen Sie dazu die folgenden Befehle aus. 
+Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Für diese Übung werden beide installiert. Führen Sie dazu die folgenden Befehle aus.
 
 Laden Sie das Docker-Modul und den Docker-Client als ZIP-Archiv herunter.
 
@@ -78,7 +78,7 @@ Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
 # For quick use, does not require shell to be restarted.
 $env:path += ";c:\program files\docker"
 
-# For persistent use, will apply even after a reboot. 
+# For persistent use, will apply even after a reboot.
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
@@ -100,7 +100,7 @@ Start-Service Docker
 
 Windows-Container werden in Vorlagen oder Images bereitgestellt. Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems für den Container heruntergeladen werden. Die folgenden Befehle laden das Nano Server-Basisiamge herunter.
 
-Rufen Sie das Nano Server-Basisimage per Pull ab. 
+Rufen Sie das Nano Server-Basisimage per Pull ab.
 
 ```none
 docker pull microsoft/nanoserver
@@ -163,7 +163,8 @@ Verwenden Sie abschließend den Befehl `docker run`, um den Container auszuführ
 docker run --rm helloworld powershell c:\helloworld.ps1
 ```
 
-Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis des „Hello World“-Images erstellt wurde, danach ein „Hello World“-Beispielskript ausgeführt (Ausgabeecho über die Shell) und anschließend der Container beendet und entfernt wurde. Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows 10.
+Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis des „Hello World“-Images erstellt wurde, danach ein „Hello World“-Beispielskript ausgeführt (Ausgabeecho über die Shell) und anschließend der Container beendet und entfernt wurde.
+Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows 10.
 
 ## Nächste Schritte
 
@@ -171,8 +172,6 @@ Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis 
 
 
 
-
-
-<!--HONumber=Aug16_HO4-->
+<!--HONumber=Sep16_HO3-->
 
 

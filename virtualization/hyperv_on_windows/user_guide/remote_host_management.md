@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 2d34e98c-6134-479b-8000-3eb360b8b8a3
 translationtype: Human Translation
-ms.sourcegitcommit: 07a07c790484c05ea49229a770ef75c80fad3cfa
-ms.openlocfilehash: 8a84da80199479907c3bf4cf0c7b1cfb1b44bf9d
+ms.sourcegitcommit: c73e1fa48b21a4daf2821ba3aae756d9a46e9f94
+ms.openlocfilehash: 3fbcdb7b93941a0ccc1cdbe659e70f3881b9d0cd
 
 ---
 
@@ -30,23 +30,27 @@ Mit dem Hyper-V-Manager in Windows 10 können Sie die folgenden Hyper-V-Hosts ve
 * Windows 10
 * Windows 8.1
 * Windows 8
-* Windows Server 2016 + Windows Server Core, Nano Server und Hyper-V Server
-* Windows Server 2012 R2 + Windows Server Core, Datacenter und Hyper-V Server
-* Windows 2012 + Windows Server Core, Datacenter und Hyper-V Server
+* Windows Server 2016: Alle Editionen und Installationsoptionen, einschließlich Nano Server, und die entsprechende Version von Hyper-V-Server
+* Windows Server 2012 R2: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
+* Windows Server 2012: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
 
-Der Hyper-V Manager in Windows 8.1 und Windows Server 2012 R2 ermöglicht Ihnen das Verwalten von:
-* Windows 8.1
+Hyper-V-Manager in Windows 8.1 und Windows Server 2012 R2 ermöglicht Ihnen das Verwalten von:
+* Windows 8.1
 * Windows 8
-* Windows Server 2012 R2 + Windows Server Core, Datacenter und Hyper-V Server
-* Windows 2012 + Windows Server Core, Datacenter und Hyper-V Server
+* Windows Server 2012 R2: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
+* Windows Server 2012: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
 
-Der Hyper-V Manager in Windows 8 und Windows Server 2012 ermöglicht Ihnen das Verwalten von:
-* Windows 8
-* Windows 2012 + Windows Server Core, Datacenter und Hyper-V Server
+Hyper-V-Manager in Windows 8 und Windows Server 2012 ermöglicht Ihnen das Verwalten von:
+* Windows 8
+* Windows Server 2012: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
 
-Hyper-V ist unter Windows seit Windows 8 verfügbar.  Vor Windows 8.1/Server 2012 konnten mit dem Hyper-V-Manager nur entsprechende Versionen von Hyper-V verwaltet werden.
+Hyper-V-Manager in Windows 7 und Windows Server 2008 R2 ermöglicht Ihnen das Verwalten von:
+* Windows Server 2008 R2: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
 
-> **Hinweis:** Die Hyper-V-Manager-Funktionalität entspricht der Funktionalität, welche für die von Ihnen verwaltete Version verfügbar ist.  Wenn Sie also einen Windows Server 2012-Remotehost in Windows Server 2012 R2 verwalten, stehen die neuen Hyper-V-Manager-Tools in Windows Server 2012 R2 nicht zur Verfügung.
+Hyper-V-Manager in Windows Vista und Windows Server 2008 ermöglicht Ihnen das Verwalten von:
+* Windows Server 2008: Alle Editionen und Installationsoptionen und die entsprechende Version von Hyper-V-Server
+
+> **Hinweis:** Die Hyper-V-Manager-Funktionalität entspricht der Funktionalität, welche für die von Ihnen verwaltete Version verfügbar ist. Wenn Sie also einen Windows Server 2012-Remotehost in Windows Server 2012 R2 verwalten, stehen die neuen Hyper-V-Manager-Features von Windows Server 2012 R2 nicht zur Verfügung.
 
 ## Verwalten von „localhost“ ##
 Um dem Hyper-V-Manager „localhost“ als Hyper-V-Host hinzuzufügen, wählen Sie im Dialogfeld **Computer auswählen** die Option **Lokaler Computer** aus.
@@ -70,7 +74,7 @@ Um Hyper-V-Remotehosts zu verwalten, muss auf dem lokalen Computer und dem Remot
 Dies ist über `System Properties -> Remote Management Settings` oder den folgenden PowerShell-Befehl möglich, den Sie als Administrator ausführen müssen:  
 
 ``` PowerShell
-winrm quickconfig
+Enable-PSRemoting
 ```
 
 Wenn Ihr aktuelles Benutzerkonto mit einem Hyper-V-Administratorkonto auf dem Remotehost übereinstimmt, klicken Sie auf **OK**, um die Verbindung herzustellen.  
@@ -83,7 +87,7 @@ Mit einem Remotehost mit Windows 10 und höher können Sie sich über den Hostn
 
 
 ### Verbinden mit dem Remotehost als anderer Benutzer
-> Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Server 2016 Technical Preview 3 oder höher hergestellt wird.
+> Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Windows Server 2016 Technical Preview 3 oder höher hergestellt wird.
 
 Wenn Sie unter Windows 10 nicht das ordnungsgemäße Benutzerkonto für den Remotehost ausführen, können Sie eine Verbindung als ein anderer Benutzer mit alternativen Anmeldeinformationen herstellen.
 
@@ -93,15 +97,15 @@ Zum Angeben von Anmeldeinformationen für den Hyper-V-Remotehost wählen Sie im 
 
 
 ### Verbinden mit dem Remotehost über die IP-Adresse
-> Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Server 2016 Technical Preview 3 oder höher hergestellt wird.
+> Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Windows Server 2016 Technical Preview 3 oder höher hergestellt wird.
 
-Mitunter ist es einfacher, eine Verbindung über die IP-Adresse anstatt über den Hostnamen herzustellen.  Windows 10 ermöglicht genau dies.
+Mitunter ist es einfacher, eine Verbindung über die IP-Adresse anstatt über den Hostnamen herzustellen.Windows 10 ermöglicht genau dies.
 
 Um eine Verbindung mithilfe der IP-Adresse herzustellen, geben Sie die IP-Adresse in das Textfeld **Anderer Computer** ein.
 
 
 ## Verwalten eines Hyper-V-Hosts außerhalb der Domäne (oder ohne Domäne) ##
-> Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Server 2016 Technical Preview 3 oder höher hergestellt wird.
+> Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Windows Server 2016 Technical Preview 3 oder höher hergestellt wird.
 
 Führen Sie auf dem zu verwaltenden Hyper-V-Host Folgendes als Administrator aus:
 
@@ -123,6 +127,6 @@ Führen Sie auf dem verwaltenden PC den folgenden Befehl als Administrator aus:
 
 
 
-<!--HONumber=Aug16_HO5-->
+<!--HONumber=Sep16_HO3-->
 
 
