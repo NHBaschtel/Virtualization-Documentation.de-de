@@ -1,7 +1,7 @@
 ---
 title: Arbeiten mit Hyper-V und Windows PowerShell
 description: Arbeiten mit Hyper-V und Windows PowerShell
-keywords: windows 10, hyper-v
+keywords: Windows 10, Hyper-V
 author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
 translationtype: Human Translation
-ms.sourcegitcommit: e14ede0a2b13de08cea0a955b37a21a150fb88cf
-ms.openlocfilehash: a8e567b6447aa73f14825b7054d977d2b003a726
+ms.sourcegitcommit: cb573c6ecb658fc8f314d66d70a62558b183209d
+ms.openlocfilehash: 8b688e666c7189888af3a7f182002f06fa2e2c0b
 
 ---
 
@@ -25,16 +25,16 @@ Nachdem Sie sich mit den Grundlagen der Bereitstellung von Hyper-V sowie dem Ers
 2.  Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
 
  ```powershell
-get-command -module hyper-v | out-gridview
+Get-Command -Module hyper-v | Out-GridView
 ```
   Sie erhalten eine Rückgabe wie diese:
 
   ![](media\command_grid.png)
 
-3. Um weitere Informationen zu einem bestimmten PowerShell-Befehl zu erhalten, verwenden Sie `get-help`. Bei Ausführen des folgenden Befehls werden z. B. Informationen zum Hyper-V-Befehl `get-vm` zurückgegeben.
+3. Um weitere Informationen zu einem bestimmten PowerShell-Befehl zu erhalten, verwenden Sie `Get-Help`. Bei Ausführen des folgenden Befehls werden z. B. Informationen zum Hyper-V-Befehl `Get-VM` zurückgegeben.
 
   ```powershell
-get-help get-vm
+Get-Help Get-VM
 ```
  Die Ausgabe veranschaulicht die Struktur des Befehls, die erforderlichen und optionalen Parameter sowie die Aliase, die Sie verwenden können.
 
@@ -43,26 +43,26 @@ get-help get-vm
 
 ### Abrufen einer Liste virtueller Computer
 
-Mit dem Befehl `get-vm` können Sie eine Liste virtueller Computer zurückgeben.
+Mit `Get-VM` können Sie eine Liste virtueller Computer zurückgeben.
 
 1. Führen Sie in PowerShell folgenden Befehl aus:
  
  ```powershell
-get-vm
+Get-VM
 ```
  Die Ausgabe ist wie folgt:
 
  ![](media\get_vm.png)
 
-2. Um nur eingeschaltete virtuelle Computer zurückzugeben, fügen Sie dem Befehl `get-vm` einen Filter hinzu. Ein Filter kann mit dem „Where-Object“-Befehl hinzugefügt werden. Weitere Informationen zum Filtern finden Sie in der Dokumentation zum [Verwenden von „Where-Object“](https://technet.microsoft.com/en-us/library/ee177028.aspx).   
+2. Um nur eingeschaltete virtuelle Computer zurückzugeben, fügen Sie dem Befehl `Get-VM` einen Filter hinzu. Ein Filter kann mit dem `Where-Object`-Befehl hinzugefügt werden. Weitere Informationen zum Filtern finden Sie in der Dokumentation zum [Verwenden von „Where-Object“](https://technet.microsoft.com/en-us/library/ee177028.aspx).   
 
  ```powershell
- get-vm | where {$_.State -eq ‘Running’}
+ Get-VM | where {$_.State -eq 'Running'}
  ```
-3.  Listen Sie alle virtuellen Computer in einen funktionsfähigen Status, off, führen Sie den folgenden Befehl. Mit diesem Befehl wird eine Kopie des Befehls aus Schritt 2 mit dem Filter aus 'Running' auf 'Off' geändert.
+3.  Listen Sie alle virtuellen Computer in einen funktionsfähigen Status, off, führen Sie den folgenden Befehl. Mit diesem Befehl wird eine Kopie des Befehls aus Schritt 2 mit dem Filter aus „Running“ in „Off“ geändert.
 
  ```powershell
- get-vm | where {$_.State -eq ‘Off’}
+ Get-VM | where {$_.State -eq 'Off'}
  ```
 
 ### Starten und Herunterfahren von virtuellen Maschinen
@@ -70,33 +70,33 @@ get-vm
 1. Um einen bestimmten virtuellen Computer zu starten, führen Sie den folgenden Befehl mit dem Namen des virtuellen Computers:
 
  ```powershell
- Start-vm -Name <virtual machine name>
+ Start-VM -Name <virtual machine name>
  ```
 
-2. Zum Starten aller derzeit ausgeschalteten virtuellen Computer rufen Sie eine Liste dieser VMs ab, die Sie an den Befehl „start-vm“ übergeben:
+2. Um alle momentan ausgeschalteten virtuellen Computer zu starten, rufen Sie eine Liste dieser Computer ab, und übergeben Sie die Liste an den Befehl `Start-VM`:
 
   ```powershell
- get-vm | where {$_.State -eq ‘Off’} | start-vm
+ Get-VM | where {$_.State -eq 'Off'} | Start-VM
  ```
 3. Zum Herunterfahren aller ausgeführten virtuellen Computer führen Sie diesen Befehl aus:
  
   ```powershell
- get-vm | where {$_.State -eq ‘Running’} | stop-vm
+ Get-VM | where {$_.State -eq 'Running'} | Stop-VM
  ```
 
 ### Erstellen eines VM-Prüfpunkts
 
-Wählen Sie zum Erstellen eines Prüfpunkts mithilfe von PowerShell den virtuellen Computer mit dem Befehl `get-vm` aus, und übergeben Sie diesen an den Befehl `checkpoint-vm`. Benennen Sie abschließend den Prüfpunkt mit dem Befehl `-snapshotname`. Der vollständige Befehl sieht folgendermaßen aus:
+Wählen Sie zum Erstellen eines Prüfpunkts mithilfe von PowerShell den virtuellen Computer mit dem Befehl `Get-VM` aus, und übergeben Sie diesen an den Befehl `Checkpoint-VM`. Benennen Sie abschließend den Prüfpunkt mit dem Befehl `-SnapshotName`. Der vollständige Befehl sieht folgendermaßen aus:
 
  ```powershell
- get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
+ Get-VM -Name <VM Name> | Checkpoint-VM -SnapshotName <name for snapshot>
  ```
 ### Erstellen eines neuen virtuellen Computers
 
 Im folgenden Beispiel wird das Erstellen ein neues virtuellen Computers in der PowerShell ISE (Integrated Scripting Environment) gezeigt. Dies ist ein einfaches Beispiel, das mit zusätzlichen PowerShell-Features und komplexeren VM-Bereitstellungen erweitert werden kann.
 
 1. Geben Sie zum Öffnen der PowerShell ISE im Startmenü **PowerShell ISE** ein.
-2. Führen Sie den folgenden Code zum Erstellen eines virtuellen Computers aus. In der Dokumentation zu [New-VM](https://technet.microsoft.com/en-us/library/hh848537.aspx) finden Sie ausführliche Informationen zum Befehl „New-VM“.
+2. Führen Sie den folgenden Code zum Erstellen eines virtuellen Computers aus. In der Dokumentation zu [New-VM](https://technet.microsoft.com/en-us/library/hh848537.aspx) finden Sie ausführliche Informationen zum Befehl `New-VM`.
 
   ```powershell
  $VMName = "VMNAME"
@@ -108,8 +108,8 @@ Im folgenden Beispiel wird das Erstellen ein neues virtuellen Computers in der P
      NewVHDPath = "C:\Virtual Machines\$VMName\$VMName.vhdx"
      NewVHDSizeBytes = 53687091200
      BootDevice = "VHD"
-     Path = "C:\Virtual Machines\$VMName "
-     SwitchName = (get-vmswitch).Name[0]
+     Path = "C:\Virtual Machines\$VMName"
+     SwitchName = (Get-VMSwitch).Name[0]
  }
 
  New-VM @VM
@@ -121,6 +121,7 @@ Dieses Dokument hat einige einfache Schritte zum Explorer das Hyper-V-PowerShell
  
 
 
-<!--HONumber=Jun16_HO4-->
+
+<!--HONumber=Sep16_HO3-->
 
 
