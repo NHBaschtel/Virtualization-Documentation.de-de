@@ -1,11 +1,28 @@
 # <a name='report-top'></a> Localization Handback Report
 
 ## Summary
- Total Files | 0
+ Total Files | 1
 
 ## File List
+ Source File | Status | Details 
+ ----------- | ------ | ------- 
+ [virtualization\hyperv_on_windows\quick_start\walkthrough_powershell.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/cb573c6ecb658fc8f314d66d70a62558b183209d/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell.md) | InSyncHandedBackSuccess | [Details](#8b688e666c7189888af3a7f182002f06fa2e2c0b177)
 
 ## Item Details
+##### <a name='8b688e666c7189888af3a7f182002f06fa2e2c0b177'></a> Source: [virtualization\hyperv_on_windows\quick_start\walkthrough_powershell.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/cb573c6ecb658fc8f314d66d70a62558b183209d/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell.md)
+* Status: InSyncHandedBackSuccess
+* Target File: [virtualization\hyperv_on_windows\quick_start\walkthrough_powershell.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/e79f271e6f4e5f7a0c83486ef7bd833a4c01113a/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell.md)
+* Handoff File: [walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/de060e1f8f41939cd729f81a67dcdfd18c974e01/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf)
+* Handoff Datetime: 2016-09-20 02:08:26
+* Handoff Reason: Include
+* Archive File: [walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/851787524abee33b407e4144ff315534220e3aaf/ol-archive/Microsoft/Virtualization-Documentation-Private.de-de/live/walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf)
+* Archive Datetime: 2016-09-21 00:07:39
+* Handback File: [walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/fb0fc2661692ca6c3008f37dd49146a00c0b43eb/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf)
+* Handback Datetime: 2016-09-26 14:25:00
+* Bilingual File: [walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/033dbd1ddcdc46490fa187722b30a4f4bc972491/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/walkthrough_powershell.f20d7c387d05f1e6da38e694c8255c1b0044b10b.de-de.xlf)
+* Bilingual Datetime: 2016-07-04 06:45:02
+* [Back to Top](#report-top)
+
 
 ## Error Details
 
