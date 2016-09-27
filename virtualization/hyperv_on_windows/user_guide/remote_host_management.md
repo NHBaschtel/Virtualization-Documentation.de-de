@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 2d34e98c-6134-479b-8000-3eb360b8b8a3
 translationtype: Human Translation
-ms.sourcegitcommit: c73e1fa48b21a4daf2821ba3aae756d9a46e9f94
-ms.openlocfilehash: 3fbcdb7b93941a0ccc1cdbe659e70f3881b9d0cd
+ms.sourcegitcommit: e0d957ebb953f1e5b3e56de9764c7c3e560024c1
+ms.openlocfilehash: 852800b19fb39737f0d7104eb2d50521b6cca982
 
 ---
 
@@ -99,7 +99,7 @@ Zum Angeben von Anmeldeinformationen für den Hyper-V-Remotehost wählen Sie im 
 ### Verbinden mit dem Remotehost über die IP-Adresse
 > Dies ist nur möglich, wenn eine Verbindung mit einem Remotehost mit Windows 10 oder Windows Server 2016 Technical Preview 3 oder höher hergestellt wird.
 
-Mitunter ist es einfacher, eine Verbindung über die IP-Adresse anstatt über den Hostnamen herzustellen.Windows 10 ermöglicht genau dies.
+Mitunter ist es einfacher, eine Verbindung über die IP-Adresse anstatt über den Hostnamen herzustellen. Windows 10 ermöglicht genau dies.
 
 Um eine Verbindung mithilfe der IP-Adresse herzustellen, geben Sie die IP-Adresse in das Textfeld **Anderer Computer** ein.
 
@@ -115,15 +115,10 @@ Führen Sie auf dem zu verwaltenden Hyper-V-Host Folgendes als Administrator aus
 
 Führen Sie auf dem verwaltenden PC den folgenden Befehl als Administrator aus:
 
-1. Set-Item WSMan:\localhost\Client\TrustedHosts -value „FQDN_des_Hyper-V-Hosts“
-  * Alternativ können Sie alle zu verwaltenden Hosts als vertrauenswürdig einstufen:
-  * Set-Item WSMan:\localhost\Client\TrustedHosts -value * -force
+1. Set-Item WSMan:\localhost\Client\TrustedHosts -Value „FQDN_des_Hyper-V-Hosts“
 2. [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer „FQDN_des_Hyper-V-Hosts“
-  * Alternativ können Sie alle zu verwaltenden Hosts als vertrauenswürdig einstufen:
-  * [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer *
 3. Außerdem müssen Sie möglicherweise die folgende Gruppenrichtlinie konfigurieren: ** Computerkonfiguration > Administrative Vorlagen > System > Delegierung von Anmeldeinformationen > Delegierung von aktuellen Anmeldeinformationen mit reiner NTLM-Serverauthentifizierung zulassen **
     * Klicken Sie auf **Aktivieren**, und fügen Sie *wsman/fqdn-of-hyper-v-host* hinzu.
-    * Alternativ können Sie alle zu verwaltenden Hosts als vertrauenswürdig einstufen, indem Sie _wsman/*_ hinzufügen.
 
 
 
