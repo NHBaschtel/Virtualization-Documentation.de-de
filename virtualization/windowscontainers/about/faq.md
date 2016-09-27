@@ -1,7 +1,7 @@
 ---
 title: "Windows-Container – häufig gestellte Fragen"
 description: "Windows-Container – häufig gestellte Fragen"
-keywords: docker, containers
+keywords: Docker, Container
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 translationtype: Human Translation
-ms.sourcegitcommit: cfa3c14e932f8b86edf6667200ac028ea0a16b67
-ms.openlocfilehash: c3a7decaf087741c82419a8a541867ae01f0f4da
+ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
+ms.openlocfilehash: 68f563d62090097b6fe2dd335c7841ae5ba4a9f5
 
 ---
 
@@ -63,10 +63,6 @@ Ja. Hyper-V-Container bietet dieselben Integrations- und Verwaltungsmöglichkeit
 Die Plattform Docker erheblich vereinfachen und verbessern die Erfahrung der Arbeit über unser Container-Optionen. Eine Anwendung entwickelt wurde, mithilfe von Windows Server-Container kann als Hyper-V-Container ohne Änderung bereitgestellt werden.
 
 
-**Kann ich Windows-Container auf ESXi oder einem anderen Nicht-Hyper-V-Hypervisor ausführen?**
-
-Ja, Windows-Container können auf sämtlichen TP3 Server Core-Installationen ausgeführt werden.  Befolgen Sie die Anweisungen zum [direkten Aktivieren des Containerfeatures](../quick_start/inplace_setup.md).
-
 ## Das offene Ökosystem von Microsoft
 
 **Nimmt Microsoft an der Open Container Initiative (OCI) teil?**
@@ -84,6 +80,6 @@ Weitere Informationen finden Sie im Blogbeitrag [New Windows Server containers a
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Sep16_HO4-->
 
 
