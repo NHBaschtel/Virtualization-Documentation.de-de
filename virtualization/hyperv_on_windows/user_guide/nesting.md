@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 translationtype: Human Translation
-ms.sourcegitcommit: 4eb3e733990ca86f28620e23bf408ff71b879173
-ms.openlocfilehash: c94b7f2c9c90eaf2834a1d0c54fb1f9b2a8f9669
+ms.sourcegitcommit: 6f003c6e78fb6a0977f30611b7da135a30268f51
+ms.openlocfilehash: 46c43a38dc3a3ee56ac3136cda60c41019cc733d
 
 ---
 
@@ -30,8 +30,9 @@ Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem
 
 1. Erstellen Sie einen virtuellen Computer. Siehe die obigen erforderlichen Komponenten zum Bestimmen der erforderlichen Betriebssystem- und VM-Versionen.
 2. Während der virtuelle Computer den Status AUS hat, führen Sie den folgenden Befehl auf dem physischen Hyper-V-Host aus. Dadurch wird die geschachtelte Virtualisierung auf dem virtuellen Computer aktiviert.
+
 ```none
-    Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
+Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 ```
 3. Starten Sie einen virtuellen Computer.
 4. Installieren Sie Hyper-V auf dem virtuellen Computer ebenso wie auf einem physischen Server. Weitere Informationen zum Installieren von Hyper-V finden Sie unter [Installieren von Hyper-V]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install).
@@ -79,6 +80,6 @@ Andere Virtualisierungsanwendungen als Hyper-V werden auf virtuellen Hyper-V-Com
 
 
 
-<!--HONumber=Sep16_HO3-->
+<!--HONumber=Sep16_HO4-->
 
 
