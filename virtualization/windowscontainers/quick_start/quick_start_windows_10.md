@@ -4,20 +4,18 @@ description: "Containerbereitstellung – Schnellstart"
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 08/17/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 16630b534367791114a4844c3c1f582f13d09d6d
-ms.openlocfilehash: 02b4e01e404fe5ab3a6fadbb3481c741cb4aa563
+ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
+ms.openlocfilehash: 1bc3d9c5094eb5b30f2845c83b9842079edc22c4
 
 ---
 
 # Windows-Container unter Windows 10
-
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
 
 Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 Professional oder Enterprise (Anniversary Edition). Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Hyper-V-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart).
 
@@ -48,13 +46,7 @@ Starten Sie den Computer neu, wenn die Installation abgeschlossen ist.
 Restart-Computer -Force
 ```
 
-Führen Sie den folgenden Befehl aus, sobald der Computer neu gestartet wurde, um ein bekanntes Problem mit den Windows-Containern unter Windows 10 zu beheben.  
-
- ```none
-Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
-```
-
-> In aktuellen Versionen müssen Sie OpLocks deaktivieren, um Hyper-V-Container zuverlässig verwenden zu können. Zum erneuten Aktivieren von OpLocks verwenden Sie den folgenden Befehl:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
+> Wenn Sie die aus der Technical Preview 5 stammenden Basisimages für Container bereits für Hyper-V-Container in Windows 10 verwendet haben, dürfen Sie nicht vergessen, OpLocks erneut zu aktivieren. Führen Sie den folgenden Befehl aus:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
 
 ## 2. Installieren von Docker
 
@@ -81,8 +73,6 @@ $env:path += ";c:\program files\docker"
 # For persistent use, will apply even after a reboot.
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
-
-Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
 
 Führen Sie den folgenden Befehl aus, um Docker als Windows-Dienst zu installieren.
 
@@ -112,10 +102,12 @@ Nachdem das Image per Pull abgerufen wurde, gibt die Ausführung von `docker ima
 docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-microsoft/nanoserver   latest              3a703c6e97a2        7 weeks ago         969.8 MB
+microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
 ```
 
 Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
+
+> Bitte lesen Sie sich die [Lizenzbedingungen](../Images_EULA.md) zum Betriebssystemimage für Windows-Container durch.
 
 ## 4. Bereitstellen Ihres ersten Containers
 
@@ -172,6 +164,6 @@ Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und
 
 
 
-<!--HONumber=Sep16_HO3-->
+<!--HONumber=Sep16_HO4-->
 
 

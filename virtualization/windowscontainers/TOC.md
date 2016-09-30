@@ -1,12 +1,14 @@
 # Informationen zu Windows-Containern
 ## [Übersicht über Windows-Container](about/about_overview.md)
-## [FAQ](about/faq.md)
 
-# Schnellstartanleitung für Container
-## [1 – Konzepte und Terminologie](quick_start/quick_start.md)
-## [2 – Schnellstartanleitung für Windows Server](quick_start/quick_start_windows_server.md)
-## [3 – Windows Server-Images](quick_start/quick_start_images.md)
-## [4 – Schnellstartanleitung für Windows 10](quick_start/quick_start_windows_10.md)
+# Schnellstartanleitung für Windows Server
+## [Schritt 1 – Konzepte](quick_start/quick_start.md)
+## [Schritt 2 – Erster Container](quick_start/quick_start_windows_server.md)
+## [Schritt 3 – Containerimages](quick_start/quick_start_images.md)
+
+# Schnellstartanleitung für Windows 10
+## [Schritt 1 – Konzepte](quick_start/quick_start.md)
+## [Schritt 2 – Erster Container](quick_start/quick_start_windows_10.md)
 
 # Bereitstellen von Windows-Containern
 ## [Systemanforderungen](deployment/system_requirements.md)
@@ -27,11 +29,9 @@
 # Community und Support
 ## [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
-# [Endbenutzer-Lizenzvertrag für Windows Server](EULA.md)
-# [Endbenutzer-Lizenzvertrag für Nano Server](Nano_EULA.md)
+# [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)
 
 
-
-<!--HONumber=Sep16_HO2-->
+<!--HONumber=Sep16_HO4-->
 
 

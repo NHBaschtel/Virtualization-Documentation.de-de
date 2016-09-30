@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
 translationtype: Human Translation
-ms.sourcegitcommit: 59626096d428072dec098c7817e2d6b39c10e9cf
-ms.openlocfilehash: 2c9821ef7ac414640790b3cfdb7fd457710a67f4
+ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
+ms.openlocfilehash: 1ee40d330234f8800ba73d0c4abe36859cfa2989
 
 ---
 
@@ -23,12 +23,16 @@ Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene und d
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Schnellstart**<br /><br />
-Testen Sie Windows Server- und Hyper-V-Container mithilfe der folgenden Schnellstartanleitungen.<br /><br />
+Schnellstartanleitung für Windows Server<br /><br />
 <ul>
-<li>[1 – Konzepte und Terminologie](quick_start/quick_start.md)<br /><br /></li>
-<li>[2 – Container unter Windows Server](quick_start/quick_start_windows_server.md)<br /><br /></li>
-<li>[3 – Containerimages unter Windows Server](quick_start/quick_start_images.md)<br /><br /></li>
-<li>[4 – Container unter Windows 10](quick_start/quick_start_windows_10.md)<br /><br /></li>
+<li>[Schritt 1 – Konzepte und Terminologie](quick_start/quick_start.md)<br /><br /></li>
+<li>[Schritt 2 – Konfigurieren von Windows Server und des ersten Containers](quick_start/quick_start_windows_server.md)<br /><br /></li>
+<li>[Schritt 3 – Containerimages erstellen und mithilfe von Push übertragen](quick_start/quick_start_images.md)<br /><br /></li>
+</ul>
+Schnellstartanleitung für Windows 10<br /><br />
+<ul>
+<li>[Schritt 1 – Konzepte und Terminologie](quick_start/quick_start.md)<br /><br /></li>
+<li>[Schritt 2 – Konfigurieren von Windows 10 und erster Container](quick_start/quick_start_windows_10.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
@@ -84,6 +88,6 @@ Hier können Sie mit der Community interagieren, Beispiele testen und weitere Re
 
 
 
-<!--HONumber=Sep16_HO2-->
+<!--HONumber=Sep16_HO4-->
 
 

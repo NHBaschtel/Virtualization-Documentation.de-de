@@ -4,30 +4,20 @@ description: Bereitstellen von Windows-Containern unter Windows Server
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 08/22/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 translationtype: Human Translation
-ms.sourcegitcommit: 39e480b8bf3f90cfe9b7d4d17141b9dbec5f93e5
-ms.openlocfilehash: cc662d0c688eadeef8011a2b97e212ec6399060a
+ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
+ms.openlocfilehash: 4d7e8fb1fcbb7e9680b7d5bd143ef6d59e45035e
 
 ---
 
 # Containerhostbereitstellung: Windows Server
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
-
 Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. In diesem Dokument wird erläutert, wie Sie einen Windows-Containerhost entweder für Windows Server 2016 oder für Windows Server Core 2016 auf einem physischen oder virtuellen System bereitstellen.
-
-## Azure-Image 
-
-Ein vollständig konfiguriertes Windows Server-Image ist in Azure verfügbar. Um dieses Image zu verwenden, stellen Sie durch Klicken auf die Schaltfläche unten eine virtuelle Maschine bereit. Wenn Sie ein Windows-Containersystem mithilfe dieser Vorlage in Azure bereitstellen, kann der Rest dieses Dokuments übersprungen werden.
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVirtualization-Documentation%2Fmaster%2Fwindows-server-container-tools%2Fcontainers-azure-template%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
 
 ## Installieren des Containerfeatures
 
@@ -50,13 +40,13 @@ Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht a
 Laden Sie das Docker-Modul und den Docker-Client als ZIP-Archiv herunter.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Erweitern Sie das ZIP-Archiv in „Programme“, die Archivinhalte befinden sich bereits im Docker-Verzeichnis.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Führen Sie die folgenden beiden Befehle aus, um das Docker-Verzeichnis zum Systempfad hinzuzufügen.
@@ -68,8 +58,6 @@ $env:path += ";c:\program files\docker"
 # For persistent use, will apply even after a reboot. 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
-
-Starten Sie die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
 
 Führen Sie den folgenden Befehl aus, um Docker als Windows-Dienst zu installieren.
 
@@ -85,7 +73,7 @@ Start-Service Docker
 
 ## Installieren von Basiscontainerimages
 
-Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als zugrunde liegendem Betriebssystem verfügbar. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
+Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als zugrunde liegendem Betriebssystem verfügbar. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Ihrer eigenen Images auf docker.com).
 
 Zum Installieren des Basisimages für Windows Server Core führen Sie folgenden Befehl aus:
 
@@ -98,6 +86,8 @@ Zum Installieren des Basisimages für Nano Server führen Sie folgenden Befehl a
 ```none
 docker pull microsoft/nanoserver
 ```
+
+> Bitte lesen Sie sich die [Lizenzbedingungen](../Images_EULA.md) zum Betriebssystemimage für Windows-Container durch.
 
 ## Hyper-V-Containerhost
 
@@ -131,6 +121,6 @@ Install-WindowsFeature hyper-v
 
 
 
-<!--HONumber=Aug16_HO4-->
+<!--HONumber=Sep16_HO4-->
 
 

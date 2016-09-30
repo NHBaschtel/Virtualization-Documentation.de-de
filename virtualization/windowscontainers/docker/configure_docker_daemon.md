@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 translationtype: Human Translation
-ms.sourcegitcommit: 4dded90462c5438a6836ec32a165a9cc1019d6ec
-ms.openlocfilehash: 6ae49d82a89b2f30198de05aa4915726853172f5
+ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
+ms.openlocfilehash: f3eceaa84de7dfb4e6783835939a498a3e798e91
 
 ---
 
@@ -26,13 +26,13 @@ Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht a
 Laden Sie das Docker-Modul herunter.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Erweitern Sie das ZIP-Archiv in „Programme“.
 
 ```
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu. Starten Sie anschließend die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
@@ -55,7 +55,7 @@ Start-Service Docker
 
 Bevor Docker verwendet werden kann, müssen Containerimages installiert werden. Weitere Informationen finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
 
-## Docker-Konfigurationsdatei
+## Konfigurieren von Docker mit einer Konfigurationsdatei
 
 Die bevorzugte Methode zum Konfigurieren des Docker-Moduls ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\docker\config\daemon.json“. Wenn diese Datei nicht bereits vorhanden ist, kann sie erstellt werden.
 
@@ -115,7 +115,7 @@ Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen h
 }
 ```
 
-## Dienststeuerungs-Manager
+## Konfigurieren von Docker über den Docker-Dienst
 
 Das Docker-Modul kann auch konfiguriert werden, indem der Docker-Dienst mit `sc config` geändert wird. Bei Verwendung dieser Methode werden die Flags des Docker-Moduls direkt im Docker-Dienst festgelegt.
 
@@ -165,19 +165,22 @@ restart-service docker
 Weitere Informationen finden Sie unter [Daemon Socket Options](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option) (Daemon-Socketoptionen) auf Docker.com.
 
 ## Sammeln von Protokollen
+
 Das Docker-Modul protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
 
 Beispielsweise werden dadurch die Protokolle des Docker-Moduls der letzten fünf Minuten angezeigt, angefangen mit dem ältesten.
+
 ```
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
 ```
 
 Dies könnte auch einfach in eine CSV-Datei weitergeleitet werden, um dort von einem anderen Tool oder Arbeitsblatt gelesen zu werden.
+
 ```
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.csv ```
 
 
 
-<!--HONumber=Aug16_HO4-->
+<!--HONumber=Sep16_HO4-->
 
 

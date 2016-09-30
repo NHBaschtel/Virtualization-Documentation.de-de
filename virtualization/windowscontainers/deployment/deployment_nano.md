@@ -4,14 +4,14 @@ description: Bereitstellen von Windows-Containern unter Nano Server
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 08/23/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 translationtype: Human Translation
-ms.sourcegitcommit: 939a1b69f159504b998792adb95ccabc326db333
-ms.openlocfilehash: 538fb27d6170f0a8dab5c189b90040e40c546e14
+ms.sourcegitcommit: 185c83b69972765a72af2dbbf5d0c7d2551212ce
+ms.openlocfilehash: 6ada7de02bbdfab8986fdfeeda60b6373a6e2d96
 
 ---
 
@@ -91,13 +91,13 @@ Laden Sie das Docker-Modul und den Docker-Client herunter, und kopieren Sie die 
 > `Invoke-WebRequest` wird derzeit von Nano Server nicht unterstützt. Der Download muss auf einem Remotesystem ausgeführt werden, und die Dateien müssen auf den Nano Server-Host kopiert werden.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile .\docker.zip -UseBasicParsing
 ```
 
 Extrahieren Sie das heruntergeladene Paket. Nachdem Sie diesen Schritt abgeschlossen haben, verfügen Sie über ein Verzeichnis, das die Dateien **dockerd.exe** und **docker.exe** enthält. Kopieren Sie diese beide Dateien in den Ordner **C:\Programme\docker\** auf dem Nano Server-Containerhost. 
 
 ```none
-Expand-Archive .\docker-1.12.0.zip
+Expand-Archive .\docker.zip
 ```
 
 Fügen Sie das Docker-Verzeichnis zum Systempfad auf der Nano Server-Instanz hinzu.
@@ -126,15 +126,19 @@ Start-Service Docker
 
 ## Installieren von Basiscontainerimages
 
-Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe von `docker pull` installiert werden. Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
+Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe von `docker pull` installiert werden. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Ihrer eigenen Images auf docker.com).
 
-Zum Herunterladen und Installieren des Basisimages für Nano Server führen Sie die folgenden Schritte aus:
+Führen Sie die folgenden Befehle aus, um das Basisimage für Windows Server und Nano Server herunterzuladen und zu installieren.
 
 ```none
 docker pull microsoft/nanoserver
 ```
 
-> Zurzeit ist nur das Nano Server-Basisimage mit Nano Server-Containerhosts kompatibel.
+```none
+docker pull microsoft/windowsservercore
+```
+
+> Bitte lesen Sie sich die [Lizenzbedingungen](../Images_EULA.md) zum Betriebssystemimage für Windows-Container durch.
 
 ## Verwalten von Docker unter Nano Server
 
@@ -173,13 +177,13 @@ Restart-Service docker
 Laden Sie den Docker-Client in das Remotesystem herunter, in dem Sie arbeiten werden.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Extrahieren Sie das komprimierte Paket.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Führen Sie die folgenden beiden Befehle aus, um das Docker-Verzeichnis zum Systempfad hinzuzufügen.
@@ -231,6 +235,6 @@ Restart-Computer
 
 
 
-<!--HONumber=Sep16_HO2-->
+<!--HONumber=Sep16_HO4-->
 
 

@@ -4,20 +4,18 @@ description: "Containerbereitstellung – Schnellstart"
 keywords: Docker, Container
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 translationtype: Human Translation
-ms.sourcegitcommit: d4b509054aebf510b650ec21ede4df2515a87827
-ms.openlocfilehash: 6e2232c8a043d482c0d6b734a66762c2d22003fe
+ms.sourcegitcommit: 891c9e9805bf2089fd11f86420de5ed251916c3f
+ms.openlocfilehash: 77dca1499abf406b1d599c28afdb19dd823b8401
 
 ---
 
 # Windows-Container unter Windows Server
-
-**Dieser Inhalt ist vorläufig und kann geändert werden.**
 
 Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features unter Windows Server. Nach der Ausführung haben Sie die Containerrolle installiert und einen einfachen Windows Server-Container bereitgestellt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./quick_start.md) (Windows-Container – Schnellstart).
 
@@ -25,13 +23,7 @@ Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows S
 
 **Voraussetzungen:**
 
-Ein Computersystem (physisch oder virtuell), das [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview) ausführt.
-
-Ein vollständig konfiguriertes Windows Server-Image ist in Azure verfügbar. Um dieses Image zu verwenden, stellen Sie durch Klicken auf die Schaltfläche unten eine virtuelle Maschine bereit. Die Bereitstellung dauert ca. 10 Minuten. Sobald sie abgeschlossen ist, melden Sie sich beim virtuellen Azure-Computer an, und fahren Sie mit Schritt 4 dieses Tutorials fort. 
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVirtualization-Documentation%2Fmaster%2Fwindows-server-container-tools%2Fcontainers-azure-template%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
+Ein Computersystem (physisch oder virtuell), auf dem Windows Server 2016 ausgeführt wird Wenn Sie Windows Server 2016 TP5 verwenden, updaten Sie auf [Windows Server 2016 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016 ). 
 
 ## 1. Installieren des Containerfeatures
 
@@ -51,16 +43,16 @@ Restart-Computer -Force
 
 Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Für diese Übung werden beide installiert.
 
-Laden Sie das Docker-Modul und den Docker-Client als ZIP-Archiv herunter.
+Laden Sie die Release Candidate-Version der Commercially Supported Docker Engine und des Clients als ZIP-Archiv herunter.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.1.zip" -OutFile "$env:TEMP\docker-1.12.1.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Erweitern Sie das ZIP-Archiv in „Programme“.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.1.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
@@ -76,7 +68,7 @@ $env:path += ";c:\program files\docker"
 Führen Sie den folgenden Befehl aus, um Docker als Windows-Dienst zu installieren.
 
 ```none
-dockerd --register-service
+dockerd.exe --register-service
 ```
 
 Nach Abschluss der Installation kann der Dienst gestartet werden.
@@ -85,104 +77,61 @@ Nach Abschluss der Installation kann der Dienst gestartet werden.
 Start-Service docker
 ```
 
-## 3. Installieren von Basiscontainerimages
+## 3. Bereitstellen Ihres ersten Containers
 
-Windows-Container werden in Vorlagen oder Images bereitgestellt. Bevor ein Container bereitgestellt werden kann, muss ein Basisimage des Betriebssystems heruntergeladen werden. Mit dem folgenden Befehl wird das Basisimage für Windows Server Core heruntergeladen.
+Für diese Übung laden Sie ein vorab erstelltes .NET-Beispielimage von der Docker Hub-Registrierung herunter und stellen einen einfachen Container bereit, der eine Hello World .NET-Anwendung ausführt.  
 
-```none
-docker pull microsoft/windowsservercore
-```
-
-Dies kann einige Zeit dauern. Sie können also eine Pause machen und fortfahren, sobald der Pullvorgang abgeschlossen ist.
-
-Nachdem das Image per Pull abgerufen wurde, gibt die Ausführung von `docker images` eine Liste der installierten Images zurück, in diesem Fall das Windows Server Core-Image.
+Verwenden Sie `docker run`, um den .NET-Container bereitzustellen. Dabei wird auch das Containerimage heruntergeladen, was mehrere Minuten dauern kann.
 
 ```none
-docker images
-
-REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
+docker run microsoft/sample-dotnet
 ```
 
-Ausführliche Informationen zu Windows-Containerimages finden Sie unter [Verwalten von Containerimages](../management/manage_images.md).
-
-## 4. Bereitstellen Ihres ersten Containers
-
-Für diese Übung laden Sie ein vorab erstelltes IIS-Image von der Docker Hub-Registrierung herunter und stellen einen einfachen Container bereit, der IIS ausführt.  
-
-Um Docker Hub nach Windows-Containerimages zu durchsuchen, führen Sie `docker search Microsoft` aus.  
+Der Container startet, gibt die Hello World-Nachricht aus und wird beendet.
 
 ```none
-docker search microsoft
-
-NAME                                         DESCRIPTION
-microsoft/aspnet                             ASP.NET is an open source server-side Web ...
-microsoft/dotnet                             Official images for working with .NET Core...
-mono                                         Mono is an open source implementation of M...
-microsoft/azure-cli                          Docker image for Microsoft Azure Command L...
-microsoft/iis                                Internet Information Services (IIS) instal...
-microsoft/mssql-server-2014-express-windows  Microsoft SQL Server 2014 Express installe...
-microsoft/nanoserver                         Nano Server base OS image for Windows cont...
-microsoft/windowsservercore                  Windows Server Core base OS image for Wind...
-microsoft/oms                                Monitor your containers using the Operatio...
-microsoft/dotnet-preview                     Preview bits for microsoft/dotnet image
-microsoft/dotnet35
-microsoft/applicationinsights                Application Insights for Docker helps you ...
-microsoft/sample-redis                       Redis installed in Windows Server Core and...
-microsoft/sample-node                        Node installed in a Nano Server based cont...
-microsoft/sample-nginx                       Nginx installed in Windows Server Core and...
-microsoft/sample-httpd                       Apache httpd installed in Windows Server C...
-microsoft/sample-dotnet                      .NET Core running in a Nano Server container
-microsoft/sqlite                             SQLite installed in a Windows Server Core ...
-...
+       Welcome to .NET Core!
+    __________________
+                      \
+                       \
+                          ....
+                          ....'
+                           ....
+                        ..........
+                    .............'..'..
+                 ................'..'.....
+               .......'..........'..'..'....
+              ........'..........'..'..'.....
+             .'....'..'..........'..'.......'.
+             .'..................'...   ......
+             .  ......'.........         .....
+             .                           ......
+            ..    .            ..        ......
+           ....       .                 .......
+           ......  .......          ............
+            ................  ......................
+            ........................'................
+           ......................'..'......    .......
+        .........................'..'.....       .......
+     ........    ..'.............'..'....      ..........
+   ..'..'...      ...............'.......      ..........
+  ...'......     ...... ..........  ......         .......
+ ...........   .......              ........        ......
+.......        '...'.'.              '.'.'.'         ....
+.......       .....'..               ..'.....
+   ..       ..........               ..'........
+          ............               ..............
+         .............               '..............
+        ...........'..              .'.'............
+       ...............              .'.'.............
+      .............'..               ..'..'...........
+      ...............                 .'..............
+       .........                        ..............
+        .....
 ```
 
-Laden Sie das IIS-Image mit `docker pull` herunter.  
-
-```none
-docker pull microsoft/iis
-```
-
-Der Imagedownload kann mit dem `docker images`-Befehl überprüft werden. Beachten Sie dabei, dass sowohl das Basisimage (windowsservercore) als auch das IIS-Image angezeigt wird.
-
-```none
-docker images
-
-REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-microsoft/iis                 latest              accd044753c1        11 days ago         7.907 GB
-microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
-```
-
-Stellen Sie den IIS-Container mit `docker run` bereit.
-
-```none
-docker run -d -p 80:80 microsoft/iis ping -t localhost
-```
-
-Mit diesem Befehl wird das IIS-Image als Hintergrunddienst ausgeführt (-d) und das Netzwerk so konfiguriert, dass Port 80 des Containerhosts Port 80 des Containers zugeordnet ist.
 Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu „Docker Run“ auf Docker.com]( https://docs.docker.com/engine/reference/run/).
 
-
-Ausgeführte Container können mit dem `docker ps`-Befehl angezeigt werden. Notieren Sie sich den Containernamen, denn er wird in einem späteren Schritt verwendet.
-
-```none
-docker ps
-
-CONTAINER ID  IMAGE          COMMAND              CREATED             STATUS             PORTS               NAME
-09c9cc6e4f83  microsoft/iis  "ping -t localhost"  About a minute ago  Up About a minute  0.0.0.0:80->80/tcp  big_jang
-```
-
-Öffnen Sie auf einem anderen Computer einen Webbrowser, und geben Sie die IP-Adresse des Containerhosts ein. Wenn alles richtig konfiguriert wurde, sollte der IIS-Begrüßungsbildschirm angezeigt werden. Dies erfolgt über die IIS-Instanz, die im Windows-Container gehostet wird.
-
-**Hinweis:** Wenn Sie Azure verwenden, werden die externe IP-Adresse des virtuellen Computers und eine konfigurierte Netzwerksicherheit benötigt. Weitere Informationen finden Sie unter [Erstellen einer Regel in einer Netzwerksicherheitsgruppe]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
-
-![](media/iis1.png)
-
-Wenn Sie wieder auf dem Containerhost zurück sind, entfernen Sie den Container mit dem `docker rm`-Befehl. Hinweis – Ersetzen Sie den Namen des Containers in diesem Beispiel durch den tatsächlichen Containernamen.
-
-```none
-docker rm -f big_jang
-```
 ## Nächste Schritte
 
 [Containerimages unter Windows Server](./quick_start_images.md)
@@ -190,7 +139,6 @@ docker rm -f big_jang
 [Windows-Container unter Windows 10](./quick_start_windows_10.md)
 
 
-
-<!--HONumber=Sep16_HO3-->
+<!--HONumber=Sep16_HO4-->
 
 
