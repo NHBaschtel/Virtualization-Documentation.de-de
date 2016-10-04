@@ -3343,8 +3343,8 @@
 * Archive Datetime: 2016-09-29 07:14:32
 * Handback File: [deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/81a21a3e017e6ec42fc2f496b318f8a6a54b30d9/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf)
 * Handback Datetime: 2016-10-04 13:30:06
-* Bilingual File: [deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/256b9fec18a32951873ee25bf0dcd618c7def508/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf)
-* Bilingual Datetime: 2016-09-30 13:02:32
+* Bilingual File: [deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/81a21a3e017e6ec42fc2f496b318f8a6a54b30d9/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf)
+* Bilingual Datetime: 2016-10-04 13:30:32
 * [Back to Top](#report-top)
 
 ##### <a name='7eaf82d3cdd0a4881f239ce4071eb262b3104dfd228'></a> Source: [virtualization\windowscontainers\deployment\media\newazure1.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/af065ec180f1b5de9e40ef269e7278a16b0c3b7f/virtualization/windowscontainers/deployment/media/newazure1.png)
