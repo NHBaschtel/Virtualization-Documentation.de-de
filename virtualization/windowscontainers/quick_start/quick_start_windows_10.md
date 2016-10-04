@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
-ms.openlocfilehash: 1bc3d9c5094eb5b30f2845c83b9842079edc22c4
+ms.sourcegitcommit: 0fae34a5a85678a25c47b0312650e67aa6cd7efd
+ms.openlocfilehash: 74686f222e8eec1daacd45a9e388d94abf6381f4
 
 ---
 
@@ -25,6 +25,8 @@ Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weit
 
 - Ein physisches Computersystem mit Windows 10 Anniversary Edition (Professional oder Enterprise).   
 - Dieser Schnellstart kann auf einem virtuellen Windows 10-Computer ausgeführt werden, doch die geschachtelte Virtualisierung muss aktiviert sein. Weitere Informationen finden Sie im [Handbuch „Geschachtelte Virtualisierung“](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+
+> Wichtige Updates sind erforderlich, damit das Feature „Windows-Container“ funktioniert. Installieren Sie alle Updates, bevor Sie dieses Tutorial durcharbeiten.
 
 ## 1. Installieren des Containerfeatures
 
@@ -164,6 +166,6 @@ Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und
 
 
 
-<!--HONumber=Sep16_HO4-->
+<!--HONumber=Sep16_HO5-->
 
 

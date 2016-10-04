@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 translationtype: Human Translation
-ms.sourcegitcommit: 891c9e9805bf2089fd11f86420de5ed251916c3f
-ms.openlocfilehash: 77dca1499abf406b1d599c28afdb19dd823b8401
+ms.sourcegitcommit: 0fae34a5a85678a25c47b0312650e67aa6cd7efd
+ms.openlocfilehash: 4d02d6423cc910c2bd2fe0691cbb62bddcabb117
 
 ---
 
@@ -24,6 +24,8 @@ Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows S
 **Voraussetzungen:**
 
 Ein Computersystem (physisch oder virtuell), auf dem Windows Server 2016 ausgeführt wird Wenn Sie Windows Server 2016 TP5 verwenden, updaten Sie auf [Windows Server 2016 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016 ). 
+
+> Wichtige Updates sind erforderlich, damit das Feature „Windows-Container“ funktioniert. Installieren Sie alle Updates, bevor Sie dieses Tutorial durcharbeiten.
 
 ## 1. Installieren des Containerfeatures
 
@@ -139,6 +141,6 @@ Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu
 [Windows-Container unter Windows 10](./quick_start_windows_10.md)
 
 
-<!--HONumber=Sep16_HO4-->
+<!--HONumber=Sep16_HO5-->
 
 
