@@ -10,8 +10,8 @@ ms.prod: windows-contianers
 ms.service: windows-containers
 ms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147
 translationtype: Human Translation
-ms.sourcegitcommit: f721639b1b10ad97cc469df413d457dbf8d13bbe
-ms.openlocfilehash: f795cfde1174a62b85aefd58c6bd07e81e196718
+ms.sourcegitcommit: b5e52d567bcfafbdd412d4fcf24a14481f51c080
+ms.openlocfilehash: b11167ae429d4529a6bec679a4cd6b0ad6538e39
 
 ---
 
@@ -33,7 +33,7 @@ Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten.
 
 **Windows Server-Container**: – Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Server-Container teilt sich einen Kernel mit dem Containerhost und allen Container, die auf dem Host ausgeführt werden.
 
-**Hyper-V-Container**: Erweitern die von Windows Server-Containern bereitgestellte Isolation, indem jeder Container auf einem hochgradig optimierten virtuellen Computer ausgeführt wird. Bei dieser Konfiguration wird der Kernel des Containerhosts nicht gemeinsam mit den Hyper-V-Containern verwendet.
+**Hyper-V-Container**: Erweitern die von Windows Server-Containern bereitgestellte Isolation, indem jeder Container auf einem hochgradig optimierten virtuellen Computer ausgeführt wird. Bei dieser Konfiguration wird der Kernel des Containerhosts nicht gemeinsam mit anderen Hyper-V-Containern verwendet.
 
 ## 3. Grundlegendes zu Containern
 
@@ -58,6 +58,6 @@ Beim Arbeiten mit Containern bemerken Sie viele ähnlichkeiten zwischen einem Co
 
 
 
-<!--HONumber=Sep16_HO4-->
+<!--HONumber=Oct16_HO1-->
 
 
