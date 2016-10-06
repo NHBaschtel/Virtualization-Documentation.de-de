@@ -21,6 +21,7 @@
 ## [Dockerfiles unter Windows](docker/manage_windows_dockerfile.md)
 ## [Optimieren von Dockerfiles](docker/optimize_windows_dockerfile.md)
 ## [Containernetzwerk](management/container_networking.md)
+## [Verwalten von Docker mit PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 
 # Containerbeispiele
 ## [Dockerfiles – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)
@@ -32,6 +33,6 @@
 # [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)
 
 
-<!--HONumber=Sep16_HO4-->
+<!--HONumber=Oct16_HO1-->
 
 
