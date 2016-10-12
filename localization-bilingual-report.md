@@ -1,11 +1,28 @@
 # <a name='report-top'></a> Localization Bilingual Report
 
 ## Summary
- Total Files | 0
+ Total Files | 1
 
 ## File List
+ Source File | Status | Details 
+ ----------- | ------ | ------- 
+ [virtualization\windowscontainers\samples.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/839a3608cb6a36289330b3ef3c3fbafe6efb2f13/virtualization/windowscontainers/samples.md) | InSyncHandedBackSuccess | [Details](#4d0fb2ee5ce2be3fe1b616ff38f14269192f3fc9311)
 
 ## Item Details
+##### <a name='4d0fb2ee5ce2be3fe1b616ff38f14269192f3fc9311'></a> Source: [virtualization\windowscontainers\samples.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/839a3608cb6a36289330b3ef3c3fbafe6efb2f13/virtualization/windowscontainers/samples.md)
+* Status: InSyncHandedBackSuccess
+* Target File: [virtualization\windowscontainers\samples.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/03904d7db1cd0b0967a9c4c6d01b17814081c282/virtualization/windowscontainers/samples.md)
+* Handoff File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/fe12dd96f6744276f9ad91225b6259f9bc76cc1c/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
+* Handoff Datetime: 2016-10-07 00:43:54
+* Handoff Reason: Include
+* Archive File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/66cdc8e2824dbab6d29f8166b7e72828db6958e8/ol-archive/Microsoft/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
+* Archive Datetime: 2016-10-08 00:14:15
+* Handback File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/42641f0b26a68ffbe5402ab68eb4ccae8acef3c4/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
+* Handback Datetime: 2016-10-12 08:27:23
+* Bilingual File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/42641f0b26a68ffbe5402ab68eb4ccae8acef3c4/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
+* Bilingual Datetime: 2016-10-12 08:27:48
+* [Back to Top](#report-top)
+
 
 ## Error Details
 
