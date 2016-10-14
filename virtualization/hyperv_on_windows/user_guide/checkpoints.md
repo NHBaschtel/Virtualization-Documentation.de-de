@@ -1,7 +1,7 @@
 ---
 title: "Verwenden von Prüfpunkten"
 description: "Verwenden von Prüfpunkten"
-keywords: windows 10, hyper-v
+keywords: Windows 10, Hyper-V
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
@@ -10,8 +10,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 translationtype: Human Translation
-ms.sourcegitcommit: 4cdf81cace246c5de041d378391dca9b9d318dd5
-ms.openlocfilehash: bd0ee06f4e5eab4f33bb7e7c6dd71119dddde5c9
+ms.sourcegitcommit: 54f3855efd820d77b17c171b5b4c2a0c66957bc3
+ms.openlocfilehash: d3340019629a3ad92f856372345e4c2ceef85b6c
 
 ---
 
@@ -21,14 +21,14 @@ Einer der großen Vorteile der Virtualisierung ist die Möglichkeit, den Zustand
 
 Hyper-V unter Windows 10 kennt zwei Typen von Prüfpunkten:
 
-* **Standardprüfpunkte**: Dienen zum Erstellen einer Momentaufnahme des Zustands des virtuellen Computers und dessen Arbeitsspeicher zum Zeitpunkt der Prüfpunktinitiierung. Eine Momentaufnahme ist keine vollständige Sicherung und kann Probleme mit der Datenkonsistenz bei Systemen bewirken, die Daten zwischen verschiedenen Knoten replizieren, wie z. B. Active Directory.  Vor Windows 10 waren mit Hyper-V nur Standardprüfpunkte (früher als Snapshots bezeichnet) verfügbar.
+* **Standardprüfpunkte**: Dienen zum Erstellen einer Momentaufnahme des Zustands des virtuellen Computers und dessen Arbeitsspeicher zum Zeitpunkt der Prüfpunktinitiierung. Eine Momentaufnahme ist keine vollständige Sicherung und kann Probleme mit der Datenkonsistenz bei Systemen verursachen, die Daten zwischen verschiedenen Knoten replizieren, wie z.B. Active Directory.  Vor Windows 10 waren mit Hyper-V nur Standardprüfpunkte (früher als Snapshots bezeichnet) verfügbar.
 
 * **Produktionsprüfpunkte**: Nutzen den Volumenschattenkopie-Dienst oder das Einfrieren des Dateisystems auf einem virtuellen Linux-Computer, um eine datenkonsistente Sicherung des virtuellen Computers zu erstellen. Es wird keine Momentaufnahme des Arbeitsspeicherzustands des virtuellen Computers erstellt.
 
 Produktionsprüfpunkte sind standardmäßig aktiviert, was aber im Hyper-V-Manager oder über PowerShell geändert werden kann.
 
 > **Hinweis:** Das PowerShell-Modul „Hyper-V“ hat mehrere Aliase, sodass die Begriffe „Prüfpunkt“ und „Momentaufnahme“ austauschbar verwendet werden können.  
-  In diesem Dokument wird „Checkpoint“ verwendet, es ist aber möglich, dass ein ähnlicher Befehl mit dem Begriff „Snapshot“ verwendet wird.
+  In diesem Dokument wird „Prüfpunkt“ verwendet, es ist aber möglich, dass ähnliche Befehle mit dem Begriff „Momentaufnahme“ verwendet werden.
 
 ## Ändern des Prüfpunkttyps
 
@@ -250,6 +250,6 @@ Nachdem der Produktionsprüfpunkt angewendet wurde, werden Sie feststellen, dass
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Oct16_HO2-->
 
 
