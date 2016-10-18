@@ -34,10 +34,11 @@
 
 # Community und Support
 ## [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+## [Problembehandlung](troubleshooting.md)
 
 # [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)
 
 
-<!--HONumber=Oct16_HO1-->
+<!--HONumber=Oct16_HO3-->
 
 
