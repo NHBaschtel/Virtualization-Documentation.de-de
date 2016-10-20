@@ -10,8 +10,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 translationtype: Human Translation
-ms.sourcegitcommit: df9723e3a9d9ada778d01d43dcb36c99813dea8f
-ms.openlocfilehash: 9af33e6bce21aa339109f060100b2c7ab3c1eb91
+ms.sourcegitcommit: a2c78d3945f1d5b0ebe2a4af480802f8c0c656c2
+ms.openlocfilehash: a9d398de94cb0d6c54c2e82f4a024bb65de9806d
 
 ---
 
@@ -62,64 +62,28 @@ Restart-Computer
 
 Stellen Sie, sobald er wieder verfügbar ist, die PowerShell-Remoteverbindung wieder her.
 
-## Installieren des Containerfeatures
-
-Der Anbieter für die Nano Server-Paketverwaltung erlaubt die Installation von Rollen und Funktionen auf Nano Server. Installieren Sie den Anbieter mithilfe dieses Befehls.
-
-```none
-Install-PackageProvider NanoServerPackage
-```
-
-Nach der Installation des Paketanbieters installieren Sie das Containerfeature.
-
-```none
-Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
-```
-
-Der Nano Server-Host muss nach der Installation der Containerfeatures neu gestartet werden. 
-
-```none
-Restart-Computer
-```
-
-Stellen Sie, sobald er wieder verfügbar ist, die PowerShell-Remoteverbindung wieder her.
-
 ## Installieren von Docker
 
-Für die Arbeit mit Windows-Containern ist das Docker-Modul erforderlich. Installieren Sie das Docker-Modul mithilfe der folgenden Schritte.
+Für die Arbeit mit Windows-Containern ist Docker erforderlich. Verwenden Sie das [PowerShell-Modul von OneGet](https://github.com/oneget/oneget), um Docker zu installieren. Der Anbieter aktiviert die Containerfunktion auf Ihrem Computer und installiert Docker. Dies macht einen Neustart erforderlich. 
 
-Laden Sie das Docker-Modul und den Docker-Client als ZIP-Archiv herunter.
+Führen Sie die folgenden Befehle in Ihrer PowerShell-Remotesitzung aus.
+
+Zunächst installieren Sie das PowerShell-Modul von OneGet.
 
 ```none
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-Erweitern Sie das ZIP-Archiv in „Programme“, die Archivinhalte befinden sich bereits im Docker-Verzeichnis.
+Als Nächstes verwenden Sie OneGet, um die neueste Version von Docker zu installieren.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
+Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
-Fügen Sie das Docker-Verzeichnis zum Systempfad auf der Nano Server-Instanz hinzu.
+Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 
 ```none
-# For quick use, does not require shell to be restarted.
-$env:path += “;C:\program files\docker”
-
-# For persistent use, will apply even after a reboot.
-setx PATH $env:path /M
-```
-
-Installieren Sie Docker als Windows-Dienst.
-
-```none
-dockerd --register-service
-```
-
-Starten Sie den Docker-Dienst.
-
-```none
-Start-Service Docker
+Restart-Computer -Force
 ```
 
 ## Installieren von Basiscontainerimages
@@ -233,6 +197,6 @@ Restart-Computer
 
 
 
-<!--HONumber=Sep16_HO5-->
+<!--HONumber=Oct16_HO2-->
 
 
