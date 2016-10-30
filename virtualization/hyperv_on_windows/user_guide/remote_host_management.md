@@ -3,15 +3,14 @@ title: Verwalten von Hyper-V-Remotehosts mit Hyper-V-Manager
 description: Verwalten von Hyper-V-Remotehosts mit Hyper-V-Manager
 keywords: Windows 10, Hyper-V
 author: scooley
-manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 2d34e98c-6134-479b-8000-3eb360b8b8a3
 translationtype: Human Translation
-ms.sourcegitcommit: e0d957ebb953f1e5b3e56de9764c7c3e560024c1
-ms.openlocfilehash: 852800b19fb39737f0d7104eb2d50521b6cca982
+ms.sourcegitcommit: 906eba05c921757b9655505c3f419fcf003d5160
+ms.openlocfilehash: 9ae09f49af4a0d7a3dd91b739ec30d4989615799
 
 ---
 
@@ -71,7 +70,7 @@ Um einen Hyper-V-Remotehost zum Hyper-V-Manager hinzuzufügen, wählen Sie im Di
 
 Um Hyper-V-Remotehosts zu verwalten, muss auf dem lokalen Computer und dem Remotehost die Remoteverwaltung aktiviert sein.
 
-Dies ist über `System Properties -> Remote Management Settings` oder den folgenden PowerShell-Befehl möglich, den Sie als Administrator ausführen müssen:  
+Dies ist über `Server Manager -> Remote management` oder den folgenden PowerShell-Befehl möglich, den Sie als Administrator ausführen müssen: 
 
 ``` PowerShell
 Enable-PSRemoting
@@ -122,6 +121,6 @@ Führen Sie auf dem verwaltenden PC den folgenden Befehl als Administrator aus:
 
 
 
-<!--HONumber=Sep16_HO3-->
+<!--HONumber=Oct16_HO4-->
 
 
