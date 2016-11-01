@@ -2,16 +2,15 @@
 title: Bereitstellen von Windows-Containern unter Nano Server
 description: Bereitstellen von Windows-Containern unter Nano Server
 keywords: Docker, Container
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 09/28/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 translationtype: Human Translation
-ms.sourcegitcommit: a2c78d3945f1d5b0ebe2a4af480802f8c0c656c2
-ms.openlocfilehash: a9d398de94cb0d6c54c2e82f4a024bb65de9806d
+ms.sourcegitcommit: fa073b0347ee6c580f0a658b3cbdb471f0bbf909
+ms.openlocfilehash: ef5b189a56502ce8b76c094ecbd0c6174bb1bc4f
 
 ---
 
@@ -90,11 +89,13 @@ Restart-Computer -Force
 
 Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe von `docker pull` installiert werden. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Ihrer eigenen Images auf docker.com).
 
-Führen Sie die folgenden Befehle aus, um das Basisimage für Windows Server und Nano Server herunterzuladen und zu installieren.
+Führen Sie den folgenden Befehl aus, um das Basisimage für Windows Nano Server herunterzuladen und zu installieren.
 
 ```none
 docker pull microsoft/nanoserver
 ```
+
+Wenn Sie beabsichtigen, Hyper-V-Container zu verwenden, und Hyper-V-Hypervisor, auf Ihrem Nano Server-Host installiert haben, können Sie auch das Server Core-Image herunterladen. Wenn Sie die über den Azure-Katalog erhältliche Version von Server 2016 Nano verwenden, müssen Sie bedenken, dass Hyper-V nicht installiert ist.
 
 ```none
 docker pull microsoft/windowsservercore
@@ -197,6 +198,6 @@ Restart-Computer
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Oct16_HO4-->
 
 

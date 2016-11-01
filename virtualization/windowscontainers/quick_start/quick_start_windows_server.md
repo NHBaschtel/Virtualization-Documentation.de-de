@@ -2,16 +2,15 @@
 title: Windows-Container unter Windows Server
 description: "Containerbereitstellung – Schnellstart"
 keywords: Docker, Container
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 translationtype: Human Translation
-ms.sourcegitcommit: af648c1235ab9af181a88a65901401bfbd40656e
-ms.openlocfilehash: 791de65ac6e4222c4cae77fe9dd24f4e07e5a936
+ms.sourcegitcommit: 6c85bb2ac3922dac4b09939d3ea71d7fbb5e16ad
+ms.openlocfilehash: d06f38ddc9abf40a2842089203462c26765be672
 
 ---
 
@@ -50,7 +49,35 @@ Wenn PowerShell fragt, ob die Paketquelle „DockerDefault“ vertrauenswürdig 
 Restart-Computer -Force
 ```
 
-## 2. Bereitstellen Ihres ersten Containers
+## 2. Installieren von Windows-Updates
+
+Sie sollten Windows-Updates installieren, um sicherzustellen, dass Ihr Windows Server-System auf dem neuesten Stand ist. Führen Sie hierzu Folgendes aus:
+
+```none
+sconfig
+```
+
+Ihnen wird ein textbasiertes Konfigurationsmenü angezeigt, über das Sie die Option 6 „Updates herunterladen und installieren“ auswählen können:
+
+```none
+===============================================================================
+                         Server Configuration
+===============================================================================
+
+1) Domain/Workgroup:                    Workgroup:  WORKGROUP
+2) Computer Name:                       WIN-HEFDK4V68M5
+3) Add Local Administrator
+4) Configure Remote Management          Enabled
+
+5) Windows Update Settings:             DownloadOnly
+6) Download and Install Updates
+7) Remote Desktop:                      Disabled
+...
+```
+
+Wählen Sie nach Aufforderung die Option „A“, um alle Updates herunterzuladen.
+
+## 3. Bereitstellen Ihres ersten Containers
 
 Für diese Übung laden Sie ein vorab erstelltes .NET-Beispielimage von der Docker Hub-Registrierung herunter und stellen einen einfachen Container bereit, der eine Hello World .NET-Anwendung ausführt.  
 
@@ -113,6 +140,6 @@ Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Oct16_HO4-->
 
 
