@@ -1,17 +1,16 @@
 ---
 title: "Containerökosystem"
 description: "Aufbauen eines Containerökosystems."
-keywords: metadata, containers
-author: scooley
-manager: timlt
+keywords: Metadaten, Container
+author: PatrickLang
 ms.date: 04/20/2016
 ms.topic: about-article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
 translationtype: Human Translation
-ms.sourcegitcommit: cfa3c14e932f8b86edf6667200ac028ea0a16b67
-ms.openlocfilehash: 1aad093c2c4e1c64200fcc1c10cbdee6c93b80c5
+ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
+ms.openlocfilehash: 02e6869b2f242df29aed13fcc8a69ed641958727
 
 ---
 
@@ -25,7 +24,7 @@ Das Konzept von Containern (Namespace Isolierung und Ressource Governance) wurde
 
 Diese weit verbreitete Technologie vereinfacht nicht nur die Verwaltung von bietet die gleichen Management-Befehle für alle Hosts, erstellt auch eine einmalige Gelegenheit für eine nahtlose DevOps.
 
-Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Dieser Artikel hat eine massive erstellt und wachsenden Ökosystem von Clientanwendungen verpackt in Docker-Containern mit DockerHub, öffentliche Containern Anwendung Registrierung, die Docker verwaltet.
+Sie können ein Docker-Image erstellen, das in Sekunden in beliebigen Umgebungen bereitgestellt werden kann, z. B. auf dem Desktop-PC des Entwicklers, auf einem Testcomputer oder auf Produktionscomputern. Dieser Artikel hat eine massive erstellt und wachsenden Ökosystem von Clientanwendungen verpackt in Docker-Containern mit DockerHub, öffentliche Containern Anwendung Registrierung, die Docker verwaltet.
 
 Docker bietet eine großartige Grundlage für die Entwicklung.
 
@@ -48,6 +47,6 @@ In den nächsten Monaten werden wir weitere Informationen zu zusätzliche Partne
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Oct16_HO4-->
 
 

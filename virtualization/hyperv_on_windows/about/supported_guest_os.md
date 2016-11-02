@@ -1,17 +1,16 @@
 ---
 title: "Unterstützte Windows-Gäste"
 description: "Unterstützte Windows-Gäste."
-keywords: windows 10, hyper-v
+keywords: Windows 10, Hyper-V
 author: scooley
-manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
 translationtype: Human Translation
-ms.sourcegitcommit: 645b15f32e731b6d4044e8f66d8ab2374870904c
-ms.openlocfilehash: 19ecce49df066c5816741f375c4610b79d7ad802
+ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
+ms.openlocfilehash: f772a26f2ad52c8ed28d40ca35c91ed6f3eab872
 
 ---
 
@@ -42,7 +41,7 @@ Um Unterstützung zu erhalten, müssen Windows-Gastbetriebssysteme und das Hostb
 | Windows 7 | 4 | Ultimate, Enterprise und Professional Edition (32-Bit und 64-Bit). |
 | Windows Vista mit Service Pack 2 (SP2) | 2 | Business, Enterprise und Ultimate einschließlich N- und KN-Editionen. | 
 | - | | |
-| Windows Server 2012 R2 | 64 | |
+| Windows Server 2012 R2 | 64 | |
 | Windows Server 2012 | 64 | |
 | Windows Server 2008 R2 mit Service Pack 1 (SP 1) | 64 | Datacenter, Enterprise, Standard und Web Edition. |
 | Windows Server 2008 mit Service Pack 2 (SP 2) | 4 | Datacenter, Enterprise, Standard und Web Edition (32-Bit und 64-Bit). |
@@ -66,6 +65,6 @@ Weitere Informationen einschließlich Angaben zur Unterstützung früherer Versi
 
 
 
-<!--HONumber=Jun16_HO4-->
+<!--HONumber=Oct16_HO4-->
 
 
