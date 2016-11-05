@@ -9,8 +9,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: ed4a2cb6fb3cd4006a5085e4ce8e058a3f201e41
+ms.sourcegitcommit: 8f08c85921b9d41f10f3b8cff5e4bafe945bd4af
+ms.openlocfilehash: 4e887dc8c284dd189dc59a71aa9d22d6c8a231ea
 
 ---
 
@@ -62,7 +62,7 @@ Set-VM -Name <vmname> -CheckpointType ProductionOnly
 
 ## Erstellen von Prüfpunkten
 
-Erstellt einen Prüfpunkt des für den virtuellen Computer konfigurierten Typs. Im Abschnitt zum [Konfigurieren des Prüfpunkttyps](checkpoints.md#changing-the-checkpoint-type-for-a-VM) weiter oben in diesem Dokument finden Sie Anweisungen zum Ändern dieses Typs.
+Erstellt einen Prüfpunkt des für den virtuellen Computer konfigurierten Typs. Im Abschnitt zum [Konfigurieren des Prüfpunkttyps](checkpoints.md#changing-the-checkpoint-type) weiter oben in diesem Dokument finden Sie Anweisungen zum Ändern dieses Typs.
 
 **Verwenden des Hyper-V-Managers**
 
@@ -201,7 +201,7 @@ Diese Übung führt Sie durch das Erstellen und Anwenden eines Standardprüfpunk
 
 1. Melden Sie sich bei Ihrem virtuellen Computer an, und erstellen Sie eine Textdatei auf dem Desktop.
 2. Öffnen Sie die Datei mit Editor, und geben Sie den Text „Dies ist ein Standardprüfpunkt“ ein. **Speichern Sie die Datei nicht, und schließen Sie Editor nicht**.  
-3. Legen Sie den Prüfpunkt als Standardprüfpunkt fest. Anweisungen finden Sie [hier](checkpoints.md#changing-the-checkpoint-type-using-hyper-V-manager).
+3. Legen Sie den Prüfpunkt als Standardprüfpunkt fest. Anweisungen finden Sie [hier](checkpoints.md#changing-the-checkpoint-type).
 4. Erstellen Sie einen neuen Prüfpunkt.
 
 <br />
@@ -249,6 +249,6 @@ Nachdem der Produktionsprüfpunkt angewendet wurde, werden Sie feststellen, dass
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO1-->
 
 

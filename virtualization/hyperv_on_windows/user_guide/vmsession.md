@@ -9,8 +9,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 16624e181bec81d90c960df30e89f25eab23f7ea
+ms.sourcegitcommit: 8f08c85921b9d41f10f3b8cff5e4bafe945bd4af
+ms.openlocfilehash: 807043a744c4735158720371ec3afb22ebe7fc24
 
 ---
 
@@ -21,7 +21,7 @@ Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in eine
 **Es gibt zwei Möglichkeiten, PowerShell Direct auszuführen:**  
 * Als interaktive Sitzung – [klicken Sie hier](vmsession.md#create-and-exit-an-interactive-powershell-session), um eine interaktive PowerShell-Sitzung mithilfe von Enter-PSSession zu erstellen und zu beenden.
 * Als einmalige Sitzung zur Ausführung eines einzelnen Befehls oder Skripts – [klicken Sie hier](vmsession.md#run-a-script-or-command-with-invoke-command), um ein Skript oder einen Befehl mithilfe von Invoke-Command auszuführen.
-* Als permanente Sitzung (Build 14280 und höher) – [Klicken Sie hier](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item), um eine permanente Sitzung mithilfe von New-PSSession zu erstellen.  
+* Als permanente Sitzung (Build 14280 und höher) – [Klicken Sie hier](vmsession.md#copy-files-with-new-pssession-and-copy-item), um eine permanente Sitzung mithilfe von New-PSSession zu erstellen.  
 Fahren Sie fort, indem Sie eine Datei mithilfe von Copy-Item vom und auf den virtuellen Computer kopieren. Trennen Sie anschließend die Sitzung mithilfe von Remove-PSSession.
 
 ## Anforderungen
@@ -280,6 +280,6 @@ Unter [PowerShell Direct-Codeausschnitte](../develop/powershell_snippets.md) fin
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO1-->
 
 
