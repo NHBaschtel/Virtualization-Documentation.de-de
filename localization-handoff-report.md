@@ -1,29 +1,56 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 1
+ Total Files | 3
 
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\quick_start\quick_start_windows_server.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/13a33a6003cfa77d81a6e8e2afdf1da8d017ee30/virtualization/windowscontainers/quick_start/quick_start_windows_server.md) | HandedOffSuccess | [Details](#a5537a4cb56127e51e0a550220995cd5f6b93722322)
+ [virtualization\windowscontainers\management\manage_serviceaccounts.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/804008c172b80a4f354a92cd4d12a4e23e1d4328/virtualization/windowscontainers/management/manage_serviceaccounts.md) | HandedOffSuccess | [Details](#00a43f8d4d27327c61e318f3a915047106ad2aca266)
+ [virtualization\windowscontainers\management\media\serviceaccount_diagram.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/804008c172b80a4f354a92cd4d12a4e23e1d4328/virtualization/windowscontainers/management/media/serviceaccount_diagram.png) | HandedOffSuccess | [Details](#80a945647722718ba676f98512c9ad7875e7a414273)
+ [virtualization\windowscontainers\TOC.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/804008c172b80a4f354a92cd4d12a4e23e1d4328/virtualization/windowscontainers/TOC.md) | HandedOffSuccess | [Details](#2324054dcaf04999c572e04c30a373d2f5a98e9d326)
 
 ## Item Details
-##### <a name='a5537a4cb56127e51e0a550220995cd5f6b93722322'></a> Source: [virtualization\windowscontainers\quick_start\quick_start_windows_server.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/13a33a6003cfa77d81a6e8e2afdf1da8d017ee30/virtualization/windowscontainers/quick_start/quick_start_windows_server.md)
+##### <a name='00a43f8d4d27327c61e318f3a915047106ad2aca266'></a> Source: [virtualization\windowscontainers\management\manage_serviceaccounts.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/804008c172b80a4f354a92cd4d12a4e23e1d4328/virtualization/windowscontainers/management/manage_serviceaccounts.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/18341503248929f21a6a728075c32950d2714931/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf)
-* Handoff Datetime: 2016-11-04 16:08:50
+* Handoff File: [manage_serviceaccounts.54bcfc8aa29ac0c07540225468870ddb0ba3481f.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/f66fe433e6967c2096482c5c172601a7fe6227a6/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_serviceaccounts.54bcfc8aa29ac0c07540225468870ddb0ba3481f.de-de.xlf)
+* Handoff Datetime: 2016-11-05 00:04:03
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\windowscontainers\quick_start\quick_start_windows_server.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/e14f78134338ea6b9f16a5cb1a41dcc39c96d9c2/virtualization/windowscontainers/quick_start/quick_start_windows_server.md)
-* Current Handback File: [quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/8cc0d3a4b56e44a1cbf212be02f1e47e4e423ae6/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf)
-* Current Handback Datetime: 2016-11-02 12:01:37
-* Bilingual File: [quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/8cc0d3a4b56e44a1cbf212be02f1e47e4e423ae6/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_server.08fee0ad7baa994cf3e7a42d3d35aeda89c5e556.de-de.xlf)
-* Bilingual Datetime: 2016-11-02 12:03:55
+* [Back to Top](#report-top)
+
+##### <a name='80a945647722718ba676f98512c9ad7875e7a414273'></a> Source: [virtualization\windowscontainers\management\media\serviceaccount_diagram.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/804008c172b80a4f354a92cd4d12a4e23e1d4328/virtualization/windowscontainers/management/media/serviceaccount_diagram.png)
+* Status: HandedOffSuccess
+* Target File: 
+* Handoff File: [80a945647722718ba676f98512c9ad7875e7a414.png](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/f66fe433e6967c2096482c5c172601a7fe6227a6/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/80a945647722718ba676f98512c9ad7875e7a414.png)
+* Handoff Datetime: 2016-11-05 00:04:03
+* Handoff Reason: IsDependency
+* Dependency From: virtualization\windowscontainers\management\manage_serviceaccounts.md
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* [Back to Top](#report-top)
+
+##### <a name='2324054dcaf04999c572e04c30a373d2f5a98e9d326'></a> Source: [virtualization\windowscontainers\TOC.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/804008c172b80a4f354a92cd4d12a4e23e1d4328/virtualization/windowscontainers/TOC.md)
+* Status: HandedOffSuccess
+* Target File: 
+* Handoff File: [TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/f66fe433e6967c2096482c5c172601a7fe6227a6/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf)
+* Handoff Datetime: 2016-11-05 00:04:03
+* Handoff Reason: Include
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* Current Target File: [virtualization\windowscontainers\TOC.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/8369d8c7ca3595c190462d18ef1b095347d7aa9f/virtualization/windowscontainers/TOC.md)
+* Current Handback File: [TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/158ee5989701ca3da58bf76f43f1f35b2405bae9/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf)
+* Current Handback Datetime: 2016-10-18 22:34:18
+* Bilingual File: [TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/158ee5989701ca3da58bf76f43f1f35b2405bae9/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf)
+* Bilingual Datetime: 2016-10-18 22:35:52
 * [Back to Top](#report-top)
 
 
