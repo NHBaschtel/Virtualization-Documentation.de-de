@@ -9,8 +9,8 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 2d34e98c-6134-479b-8000-3eb360b8b8a3
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 7d7aee3d87237b93887ac7303c70cf6c9a02285d
+ms.sourcegitcommit: 8f08c85921b9d41f10f3b8cff5e4bafe945bd4af
+ms.openlocfilehash: c562e1a1370e9286680afa1b498d625195edebb2
 
 ---
 
@@ -18,7 +18,7 @@ ms.openlocfilehash: 7d7aee3d87237b93887ac7303c70cf6c9a02285d
 
 Hyper-V-Manager ist ein integriertes Tool für die Diagnose und Verwaltung Ihres lokalen Hyper-V-Hosts und einer kleinen Anzahl von Remotehosts.  Dieser Artikel beschreibt die Konfigurationsschritte für das Verbinden mit Hyper-V-Hosts mithilfe von Hyper-V-Manager in allen unterstützten Konfigurationen.
 
-> Der Hyper-V-Manager steht über **Programme und Funktionen** als **Hyper-V-Verwaltungstools** in [allen Windows-Betriebssystemen, die Hyper-V enthalten](../quick_start/walkthrough_compatibility.md#OperatingSystemRequirements), zur Verfügung.  Die Hyper-V-Plattform muss nicht aktiviert werden, um Remotehosts zu verwalten.
+> Der Hyper-V-Manager steht über **Programme und Funktionen** als **Hyper-V-Verwaltungstools** in [allen Windows-Betriebssystemen, die Hyper-V enthalten](../quick_start/walkthrough_compatibility.md#operating-system-requirements), zur Verfügung.  Die Hyper-V-Plattform muss nicht aktiviert werden, um Remotehosts zu verwalten.
 
 Zum Herstellen einer Verbindung mit einem Hyper-V-Host im Hyper-V-Manager stellen Sie sicher, dass im linken Bereich **Hyper-V-Manager** ausgewählt ist. Wählen Sie dann im rechten Bereich **Mit Server verbinden** aus.
 
@@ -121,6 +121,6 @@ Führen Sie auf dem verwaltenden PC den folgenden Befehl als Administrator aus:
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO1-->
 
 
