@@ -29294,9 +29294,9 @@
       "ArchiveFileCommit": "224e52b0977a848279a4544970b84fc9f7881bad",
       "ArchiveFileDateTime": "2016-11-05T00:08:11.5928915Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf",
+      "BilingualFileCommit": "5d833a677bc1bf51371506f67654bfc128480776",
+      "BilingualDateTime": "2016-11-05T16:19:42.668496Z",
       "BilingualException": null
     },
     "807043a744c4735158720371ec3afb22ebe7fc24": {
