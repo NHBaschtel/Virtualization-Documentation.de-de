@@ -7,10 +7,10 @@
 [ Handoff Failed Files ](#handoff-failed-list)| 0
 [ Handoff Success Files ](#handoff-success-list)| 0
 [ Archive Failed Files ](#archive-failed-list)| 0
-[ Archive Success Files ](#archive-success-list)| 10
+[ Archive Success Files ](#archive-success-list)| 9
 [ Handback Failed Files ](#handback-failed-list)| 0
 [ Out Of Sync Handback Files ](#outofsync-handback-success-list)| 0
-[ In Sync Handback Files ](#insync-handback-success-list)| 119
+[ In Sync Handback Files ](#insync-handback-success-list)| 120
 [ Ignored Files ](#ignored-list)| 357
 
 ## <a name='handoff-failed-list'></a> Handoff Failed File List
@@ -23,7 +23,6 @@
  Source File | Status | Details 
  ----------- | ------ | ------- 
  [virtualization\hyperv_on_windows\user_guide\checkpoints.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/8f08c85921b9d41f10f3b8cff5e4bafe945bd4af/virtualization/hyperv_on_windows/user_guide/checkpoints.md) | ArchivedSuccess | [Details](#4e887dc8c284dd189dc59a71aa9d22d6c8a231ea190)
- [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/8f08c85921b9d41f10f3b8cff5e4bafe945bd4af/virtualization/hyperv_on_windows/user_guide/remote_host_management.md) | ArchivedSuccess | [Details](#c562e1a1370e9286680afa1b498d625195edebb2214)
  [virtualization\hyperv_on_windows\user_guide\vmsession.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/8f08c85921b9d41f10f3b8cff5e4bafe945bd4af/virtualization/hyperv_on_windows/user_guide/vmsession.md) | ArchivedSuccess | [Details](#807043a744c4735158720371ec3afb22ebe7fc24217)
  [virtualization\windowscontainers\communitylinks.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/a06a7fe0aa77819a3ab004ce1c511dc93f1f1bde/virtualization/windowscontainers/communitylinks.md) | ArchivedSuccess | [Details](#0c841b3134550b4b11d720dd91e43c1088211092233)
  [virtualization\windowscontainers\containers_welcome.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1787637fdd2c3bf8ef453a7425dc965e65e5ce12/virtualization/windowscontainers/containers_welcome.md) | ArchivedSuccess | [Details](#a1b876d01b8076ee9feb275bd09247775bfcef69234)
@@ -105,6 +104,7 @@
  [virtualization\hyperv_on_windows\user_guide\media\std_checkpoint_upd.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/78f5cb78bdd2bf1ae8cf99094e25a8deb452c1cd/virtualization/hyperv_on_windows/user_guide/media/std_checkpoint_upd.png) | InSyncHandedBackSuccess | [Details](#3436e8146018e5a07a847a00dc72d134d19506a1211)
  [virtualization\hyperv_on_windows\user_guide\migrating_vms.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/e14ede0a2b13de08cea0a955b37a21a150fb88cf/virtualization/hyperv_on_windows/user_guide/migrating_vms.md) | InSyncHandedBackSuccess | [Details](#54db04f9096dc1ef9572594b321f400fbbfeada0212)
  [virtualization\hyperv_on_windows\user_guide\nesting.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ffdf89b0ae346197b9ae631ee5260e0565261c55/virtualization/hyperv_on_windows/user_guide/nesting.md) | InSyncHandedBackSuccess | [Details](#b0903a3e00b92bc60e26282dde072b66030ada09213)
+ [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/8f08c85921b9d41f10f3b8cff5e4bafe945bd4af/virtualization/hyperv_on_windows/user_guide/remote_host_management.md) | InSyncHandedBackSuccess | [Details](#c562e1a1370e9286680afa1b498d625195edebb2214)
  [virtualization\hyperv_on_windows\user_guide\setup_nat_network.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ffdf89b0ae346197b9ae631ee5260e0565261c55/virtualization/hyperv_on_windows/user_guide/setup_nat_network.md) | InSyncHandedBackSuccess | [Details](#9b2fa15937440b7c9ec8f17a06082708399b487c215)
  [virtualization\hyperv_on_windows\user_guide\troubleshooting.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ffdf89b0ae346197b9ae631ee5260e0565261c55/virtualization/hyperv_on_windows/user_guide/troubleshooting.md) | InSyncHandedBackSuccess | [Details](#eff2016da5c76489c7e0607d92509a63ff6153b1216)
  [virtualization\hyperv_on_windows\windows_welcome.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ffdf89b0ae346197b9ae631ee5260e0565261c55/virtualization/hyperv_on_windows/windows_welcome.md) | InSyncHandedBackSuccess | [Details](#d9d43bb2b3e7f8955d374905cc3050a37a585fe1218)
@@ -3187,18 +3187,15 @@
 * [Back to Top](#report-top)
 
 ##### <a name='c562e1a1370e9286680afa1b498d625195edebb2214'></a> Source: [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/8f08c85921b9d41f10f3b8cff5e4bafe945bd4af/virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
-* Status: ArchivedSuccess
-* Target File: 
+* Status: InSyncHandedBackSuccess
+* Target File: [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/ec485c7efc63ec765b72dc18b2042900c5c05662/virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
 * Handoff File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/dff3bbda396440d4a6e7a596f653afb2c3a1dbb4/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
 * Handoff Datetime: 2016-11-03 23:00:21
 * Handoff Reason: Include
 * Archive File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/224e52b0977a848279a4544970b84fc9f7881bad/ol-archive/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
 * Archive Datetime: 2016-11-05 00:08:11
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\hyperv_on_windows\user_guide\remote_host_management.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/f9b3f1ecebdccf972db488aa266535cf64b75156/virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
-* Current Handback File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
-* Current Handback Datetime: 2016-11-04 21:49:56
+* Handback File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5d833a677bc1bf51371506f67654bfc128480776/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
+* Handback Datetime: 2016-11-05 16:18:23
 * Bilingual File: [remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/remote_host_management.40d5636e508c5b95bb2917be75ca6b5aa426a915.de-de.xlf)
 * Bilingual Datetime: 2016-11-04 21:51:11
 * [Back to Top](#report-top)
