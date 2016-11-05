@@ -2,16 +2,15 @@
 title: Anforderungen von Windows-Containern
 description: Anforderungen von Windows-Containern.
 keywords: Metadaten, Container
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
 translationtype: Human Translation
-ms.sourcegitcommit: d4c453e800d4057b3ad0be06c28e7f23b81443f0
-ms.openlocfilehash: 008eff4731a8835b0b3f664edc9955f85c12a629
+ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
+ms.openlocfilehash: af8d8a05fc953dcc93672a0f936caca5e37f0de3
 
 ---
 
@@ -23,7 +22,7 @@ In diesen Handbüchern sind die Anforderungen für einen Windows-Containerhost a
 
 - Das Feature „Windows-Container“ ist nur für Windows Server 2016 (Core und mit Desktopdarstellung), Nano Server und Windows 10 Professional und Enterprise (Anniversary Edition) verfügbar.
 - Die Hyper-V-Rolle muss vor der Ausführung des Hyper-V-Containers installiert werden.
-- Bei Windows Server-Containerhosts muss Windows auf der Partition „C:\.“ installiert seinDiese Einschränkung entfällt, wenn nur Hyper-V-Container bereitgestellt werden.
+- Bei Windows Server Containerhosts muss Windows auf der Partition C:\. installiert sein. Diese Einschränkung gilt nicht, wenn nur Hyper-V-Container bereitgestellt werden.
 
 ## Virtualisierte Containerhosts
 
@@ -89,6 +88,6 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 Im Gegensatz zu Windows Server-Containern, bei denen sich die Container und der Host den Kernel teilen, verwendet jeder Hyper-V-Container eine eigene Instanz des Windows-Kernels.  Aus diesem Grund müssen die Versionen von Containerhost und Containerimage nicht übereinstimmen.  Aktuell können Builds mit einer Nummer größer gleich Windows Server 2016 GA (10.0.14393.206) die Windows Server 2016 GA-Images von Windows Server Core oder Nano Server unabhängig von der Revisionsnummer in einer unterstützten Konfiguration ausführen.  In Zukunft werden wir aufgrund des Kundenfeedbacks spezifische Informationen dazu anbieten, wie weit Buildnummern auseinanderliegen können.  Es ist wichtig, sich bewusst zu machen, dass die von den Windows-Updates bereitgestellte vollständige Funktionalität und Zuverlässigkeit sowie die umfassenden Sicherheitsgarantien nur gewährleistet sind, wenn Sie auf allen Systemen die neuesten Versionen installiert haben.  
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Oct16_HO4-->
 
 
