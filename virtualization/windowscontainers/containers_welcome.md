@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 144532bf835f8f8a67d378ec03e707b9517d5653
+ms.sourcegitcommit: 1787637fdd2c3bf8ef453a7425dc965e65e5ce12
+ms.openlocfilehash: a1b876d01b8076ee9feb275bd09247775bfcef69
 
 ---
 
@@ -79,6 +79,7 @@ Sie sind an Demos und Interviews mit dem Windows-Container-Team interessiert?<br
 Hier können Sie mit der Community interagieren, Beispiele testen und weitere Ressourcen finden.<br /><br />
 <ul>
 <li>[Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+<li>[Videos und Blogs der Community](communitylinks.md)<br /><br /></li>
 <li>[Containerressourcen](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
 </ul>
 </td>
@@ -87,6 +88,6 @@ Hier können Sie mit der Community interagieren, Beispiele testen und weitere Re
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO1-->
 
 
