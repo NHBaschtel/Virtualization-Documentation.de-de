@@ -3470,6 +3470,8 @@
 * Archive Datetime: 2016-11-03 07:05:38
 * Handback File: [communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5b067f6e735e29cf1e2345828f5a879947bc7d1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf)
 * Handback Datetime: 2016-11-08 14:41:30
+* Bilingual File: [communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5b067f6e735e29cf1e2345828f5a879947bc7d1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf)
+* Bilingual Datetime: 2016-11-08 14:41:55
 * [Back to Top](#report-top)
 
 ##### <a name='a1b876d01b8076ee9feb275bd09247775bfcef69236'></a> Source: [virtualization\windowscontainers\containers_welcome.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1787637fdd2c3bf8ef453a7425dc965e65e5ce12/virtualization/windowscontainers/containers_welcome.md)
@@ -3482,8 +3484,8 @@
 * Archive Datetime: 2016-11-03 07:05:38
 * Handback File: [containers_welcome.2c85b1345b8dfcc523a3848ed7661e25d5ffbb17.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5b067f6e735e29cf1e2345828f5a879947bc7d1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/containers_welcome.2c85b1345b8dfcc523a3848ed7661e25d5ffbb17.de-de.xlf)
 * Handback Datetime: 2016-11-08 14:41:30
-* Bilingual File: [containers_welcome.2c85b1345b8dfcc523a3848ed7661e25d5ffbb17.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/containers_welcome.2c85b1345b8dfcc523a3848ed7661e25d5ffbb17.de-de.xlf)
-* Bilingual Datetime: 2016-11-04 21:51:11
+* Bilingual File: [containers_welcome.2c85b1345b8dfcc523a3848ed7661e25d5ffbb17.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5b067f6e735e29cf1e2345828f5a879947bc7d1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/containers_welcome.2c85b1345b8dfcc523a3848ed7661e25d5ffbb17.de-de.xlf)
+* Bilingual Datetime: 2016-11-08 14:41:55
 * [Back to Top](#report-top)
 
 ##### <a name='1392cb13798c96f91b7daa036e529c97e560edbb237'></a> Source: [virtualization\windowscontainers\deployment\deployment.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ffdf89b0ae346197b9ae631ee5260e0565261c55/virtualization/windowscontainers/deployment/deployment.md)
@@ -4661,8 +4663,8 @@
 * Current Target File: [virtualization\windowscontainers\TOC.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/3b989b5eb7123469e4f20c3e2b7bcdd1e04325bf/virtualization/windowscontainers/TOC.md)
 * Current Handback File: [TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5b067f6e735e29cf1e2345828f5a879947bc7d1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf)
 * Current Handback Datetime: 2016-11-08 14:41:30
-* Bilingual File: [TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/158ee5989701ca3da58bf76f43f1f35b2405bae9/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf)
-* Bilingual Datetime: 2016-10-18 22:35:52
+* Bilingual File: [TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/c5b067f6e735e29cf1e2345828f5a879947bc7d1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf)
+* Bilingual Datetime: 2016-11-08 14:41:55
 * [Back to Top](#report-top)
 
 ##### <a name='71ce38a8d6cd75079558827c806fdbbc5a2bcfd2329'></a> Source: [virtualization\windowscontainers\troubleshooting.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/601acadfe25a13aaf28548d0b368b4b6fd461b03/virtualization/windowscontainers/troubleshooting.md)
