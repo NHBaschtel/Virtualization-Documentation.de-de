@@ -29512,9 +29512,9 @@
       "ArchiveFileCommit": "224e52b0977a848279a4544970b84fc9f7881bad",
       "ArchiveFileDateTime": "2016-11-05T00:08:11.5928915Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\TOC.13173dbdc376543cb6eb74ef16484f39c0ef0fdb.de-de.xlf",
+      "BilingualFileCommit": "5b601a36f8e5f96af668b76249817034a1590d49",
+      "BilingualDateTime": "2016-11-09T10:30:41.1599615Z",
       "BilingualException": null
     },
     "fc39e4ee3d3e5857237b36c96df212a13984c850": {
