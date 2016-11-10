@@ -3330,8 +3330,8 @@
 * Archive Datetime: 2016-11-07 01:08:23
 * Handback File: [faq.9230ef72e03dd569ad85af3ef02d21277aad0e46.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5fa220ba14a32461d379b674de1960310eb0c398/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/faq.9230ef72e03dd569ad85af3ef02d21277aad0e46.de-de.xlf)
 * Handback Datetime: 2016-11-10 16:05:39
-* Bilingual File: [faq.9230ef72e03dd569ad85af3ef02d21277aad0e46.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/faq.9230ef72e03dd569ad85af3ef02d21277aad0e46.de-de.xlf)
-* Bilingual Datetime: 2016-11-04 21:51:11
+* Bilingual File: [faq.9230ef72e03dd569ad85af3ef02d21277aad0e46.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5fa220ba14a32461d379b674de1960310eb0c398/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/faq.9230ef72e03dd569ad85af3ef02d21277aad0e46.de-de.xlf)
+* Bilingual Datetime: 2016-11-10 16:06:14
 * [Back to Top](#report-top)
 
 ##### <a name='7b2b5200e2da1b82e01c596da837387233322bf1225'></a> Source: [virtualization\windowscontainers\about\media\ContainerCreationLifeCycle.PNG](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/f0584aecd1148300e4075dd6e2e84e0ff92d50d5/virtualization/windowscontainers/about/media/ContainerCreationLifeCycle.PNG)
@@ -3765,8 +3765,8 @@
 * Archive Datetime: 2016-11-07 01:08:23
 * Handback File: [manage_windows_dockerfile.cf56579c9136245b4cbef41fabc5df7a6ab9832a.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5fa220ba14a32461d379b674de1960310eb0c398/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_windows_dockerfile.cf56579c9136245b4cbef41fabc5df7a6ab9832a.de-de.xlf)
 * Handback Datetime: 2016-11-10 16:05:39
-* Bilingual File: [manage_windows_dockerfile.cf56579c9136245b4cbef41fabc5df7a6ab9832a.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_windows_dockerfile.cf56579c9136245b4cbef41fabc5df7a6ab9832a.de-de.xlf)
-* Bilingual Datetime: 2016-11-04 21:51:11
+* Bilingual File: [manage_windows_dockerfile.cf56579c9136245b4cbef41fabc5df7a6ab9832a.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5fa220ba14a32461d379b674de1960310eb0c398/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_windows_dockerfile.cf56579c9136245b4cbef41fabc5df7a6ab9832a.de-de.xlf)
+* Bilingual Datetime: 2016-11-10 16:06:14
 * [Back to Top](#report-top)
 
 ##### <a name='73c445a896e76d54e002184ae1235c4c5c38ad9d259'></a> Source: [virtualization\windowscontainers\docker\optimize_windows_dockerfile.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ffdf89b0ae346197b9ae631ee5260e0565261c55/virtualization/windowscontainers/docker/optimize_windows_dockerfile.md)
@@ -3919,6 +3919,8 @@
 * Archive Datetime: 2016-11-05 00:08:11
 * Handback File: [manage_serviceaccounts.54bcfc8aa29ac0c07540225468870ddb0ba3481f.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5fa220ba14a32461d379b674de1960310eb0c398/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_serviceaccounts.54bcfc8aa29ac0c07540225468870ddb0ba3481f.de-de.xlf)
 * Handback Datetime: 2016-11-10 16:05:39
+* Bilingual File: [manage_serviceaccounts.54bcfc8aa29ac0c07540225468870ddb0ba3481f.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/5fa220ba14a32461d379b674de1960310eb0c398/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage_serviceaccounts.54bcfc8aa29ac0c07540225468870ddb0ba3481f.de-de.xlf)
+* Bilingual Datetime: 2016-11-10 16:06:14
 * [Back to Top](#report-top)
 
 ##### <a name='70d9d123171e564192e70631951058b0639e0f67270'></a> Source: [virtualization\windowscontainers\management\media\imagecommit.png](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/f0584aecd1148300e4075dd6e2e84e0ff92d50d5/virtualization/windowscontainers/management/media/imagecommit.png)
