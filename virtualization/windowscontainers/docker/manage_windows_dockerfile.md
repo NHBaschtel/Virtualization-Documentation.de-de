@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 6603289599e7ca51558d54f35ab809528f53bcd7
+ms.sourcegitcommit: 31515396358c124212b53540af8a0dcdad3580e4
+ms.openlocfilehash: 20dcc6d263488673bf0a025058c3dee8d30168a2
 
 ---
 
@@ -24,7 +24,7 @@ Das Docker-Modul umfasst Tools zum Automatisieren der Erstellung von Containerim
 
 Die Docker-Komponenten, die diese Automatisierung steuern, sind die Dockerfile-Datei und der `docker build`-Befehl.
 
-- **Dockerfile**-Datei – eine Textdatei mit der Anweisung, die erforderlich ist, um ein neues Containerimage zu erstellen. Diese Anweisungen beinhalten die Identifikation eines vorhandenen Images, das als Basis verwendet werden kann, Befehle, die während des Erstellungsprozesses ausgeführt werden, und einen Befehl, der bei der Bereitstellung neuer Instanzen des Containerimages ausgeführt wird.
+- **Dockerfile**: eine Textdatei mit Anweisungen, die erforderlich sind, um ein neues Containerimage zu erstellen. Diese Anweisungen beinhalten die Identifikation eines vorhandenen Images, das als Basis verwendet werden kann, Befehle, die während des Erstellungsprozesses ausgeführt werden, und einen Befehl, der bei der Bereitstellung neuer Instanzen des Containerimages ausgeführt wird.
 - **Docker Build** – der Docker-Modulbefehl, der eine Dockerfile-Datei nutzt und den Imageerstellungsprozess auslöst.
 
 Dieses Dokument stellt die Verwendung einer Dockerfile-Datei mit Windows-Containern vor, erläutert die Syntax und zeigt häufig verwendete Dockerfile-Anweisungen im Detail. 
@@ -43,7 +43,7 @@ In ihrer grundlegendsten Form kann eine Dockerfile-Datei sehr einfach sein. Das 
 # Sample Dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 # Metadata indicating an image maintainer.
 MAINTAINER jshelton@contoso.com
@@ -51,7 +51,7 @@ MAINTAINER jshelton@contoso.com
 # Uses dism.exe to install the IIS role.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 
-# Creates an html file and adds content to this file.
+# Creates an HTML file and adds content to this file.
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 
 # Sets a command or process that will run each time a container is run from the new image.
@@ -112,7 +112,7 @@ FROM windowsservercore
 RUN ["powershell", "New-Item", "c:/test"]
 ```
 
-Am resultierenden Image ist zu erkennen, dass der Befehl `powershell new-item c:/test` ausgeführt wurde.
+Am resultierenden Image ist zu erkennen, dass der Befehl `powershell New-Item c:/test` ausgeführt wurde.
 
 ```none
 docker history doc-exe-method
@@ -126,16 +126,16 @@ Im Gegensatz dazu wird im folgenden Beispiel der gleiche Vorgang mit dem Shell-F
 ```none
 FROM windowsservercore
 
-RUN powershell new-item c:\test
+RUN powershell New-Item c:\test
 ```
 
-Dies führt zur Ausführungsanweisung `cmd /S /C powershell new-item c:\test`. 
+Dies führt zur Ausführungsanweisung `cmd /S /C powershell New-Item c:\test`. 
 
 ```none
 docker history doc-shell-method
 
 IMAGE               CREATED             CREATED BY                              SIZE                COMMENT
-062a543374fc        19 seconds ago      cmd /S /C powershell new-item c:\test   30.76 MB
+062a543374fc        19 seconds ago      cmd /S /C powershell New-Item c:\test   30.76 MB
 ```
 
 **Bei Windows zu berücksichtigende Aspekte**
@@ -155,10 +155,10 @@ Dieses Beispiel verwendet DISM zum Installieren von IIS im Containerimage.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
-In diesem Beispiel wird das verteilbare Paket von Visual Studio installiert. Wie Sie sehen, werden `start-process` und der Parameter `-wait` verwendet, um das Installationsprogramm auszuführen. Dadurch wird gewährleistet, dass die Installation abgeschlossen wird, bevor in der Docker-Datei mit dem nächsten Schritt begonnen wird.
+In diesem Beispiel wird das verteilbare Paket von Visual Studio installiert. Wie Sie sehen, werden `Start-Process` und der Parameter `-Wait` verwendet, um das Installationsprogramm auszuführen. Dadurch wird gewährleistet, dass die Installation abgeschlossen wird, bevor in der Docker-Datei mit dem nächsten Schritt begonnen wird.
 
 ```none
-RUN start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
+RUN Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
 ``` 
 
 Ausführliche Informationen über die RUN-Anweisung finden Sie in der [RUN-Referenz auf Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
@@ -266,7 +266,7 @@ Ausführliche Informationen über die `ADD`-Anweisung finden Sie in der [ADD-Ref
 
 ### WORKDIR
 
-Die `WORKDIR`-Anweisung legt ein Arbeitsverzeichnis für andere Dockerfile-Anweisungen wie z. B. `RUN` und `CMD` fest, und auch das Arbeitsverzeichnis für ausgeführte Instanzen des Containerimages.
+Die `WORKDIR`-Anweisung legt ein Arbeitsverzeichnis für andere Dockerfile-Anweisungen wie z.B. `RUN` und `CMD` sowie das Arbeitsverzeichnis für ausgeführte Instanzen des Containerimages fest.
 
 **Format**
 
@@ -294,7 +294,7 @@ Ausführliche Informationen über die `WORKDIR`-Anweisung finden Sie in der [WOR
 
 ### CMD
 
-Die `CMD`-Anweisung legt fest, dass der Standardbefehl bei der Bereitstellung einer Instanz des Containerimages ausgeführt wird. Wenn der Container beispielsweise einen NGINX-Webserver hostet, könnte `CMD` Anweisungen zum Starten des Webservers enthalten, z. B. `nginx.exe`. Wenn mehrere `CMD`-Anweisungen in einer Dockerfile-Datei angegeben sind, wird nur die letzte ausgewertet.
+Die `CMD`-Anweisung legt den Standardbefehl fest, der bei der Bereitstellung einer Instanz des Containerimages ausgeführt werden soll. Wenn der Container beispielsweise einen NGINX-Webserver hostet, könnte `CMD` Anweisungen zum Starten des Webservers enthalten, z. B. `nginx.exe`. Wenn mehrere `CMD`-Anweisungen in einer Dockerfile-Datei angegeben sind, wird nur die letzte ausgewertet.
 
 **Format**
 
@@ -393,7 +393,7 @@ RUN powershell.exe -Command \
 
 > Invoke-WebRequest wird in Nano Server derzeit nicht unterstützt.
 
-Eine weitere Möglichkeit zur Verwendung von PowerShell zum Herunterladen von Dateien während des Prozesses der Imageerstellung ist die Verwendung der .net WebClient-Bibliothek. Dies kann die Downloadleistung verbessern. Im folgenden Beispiel wird die Python-Software mit der WebClient-Bibliothek heruntergeladen.
+Eine weitere Möglichkeit zur Verwendung von PowerShell zum Herunterladen von Dateien während des Prozesses der Imageerstellung ist die Verwendung der .NET WebClient-Bibliothek. Dies kann die Downloadleistung verbessern. Im folgenden Beispiel wird die Python-Software mit der WebClient-Bibliothek heruntergeladen.
 
 ```none
 FROM windowsservercore
@@ -481,6 +481,6 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO1-->
 
 

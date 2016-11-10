@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 90e32caabde1afafbd8170db77c6e84696395870
+ms.sourcegitcommit: 2ab9a4b09a2db72e5e2be71ced5d5400761a5ad8
+ms.openlocfilehash: b084bf179d9360e4a72e8e88b4fec80eafb2906c
 
 ---
 
@@ -26,16 +26,16 @@ Windows Server-Container stellen eine schlanke Methode zur Betriebssystemvirtual
 
 Sie können sich einen Hyper-V-Container als Windows Server-Container vorstellen, der in einer Hyper-V-Partition ausgeführt wird.
 
-Hyper-V-Container bieten eine zusätzliche Bereitstellungsoption zwischen hochgradig effizienten, HD-Windows Server-Container und der hoch isolierten virtualisierten Hardware Hyper-V virtuelle Computer. Umgebungen, in denen andere Clientanwendungen auf demselben Host Vertrauensgrenzen, möglicherweise zusätzliche Isolierung erforderlich. Hyper-V-Container bieten höheren Isolationsstufe, die mithilfe einer optimierten Virtualisierung und Windows Server-Betriebssystem, das Container voneinander und vom Host-Betriebssystem trennt. Beide Bereitstellungsoptionen für Container nutzen dieselben Verwaltungs-APIs, Tools und Imageformate. Zum Zeitpunkt der Bereitstellung können Kunden einfach den Bereitstellungsmodus wählen, der ihre Anforderungen am besten erfüllt.
+Hyper-V-Container bieten eine zusätzliche Bereitstellungsoption zwischen hochgradig effizienten, HD-Windows Server-Container und der hoch isolierten virtualisierten Hardware Hyper-V virtuelle Computer. In Umgebungen, in denen Anwendungen mit verschiedenen Vertrauensstellungsgrenzen auf demselben Host ausgeführt werden, ist möglicherweise eine zusätzliche Isolierung erforderlich. Hyper-V-Container bieten höheren Isolationsstufe, die mithilfe einer optimierten Virtualisierung und Windows Server-Betriebssystem, das Container voneinander und vom Host-Betriebssystem trennt. Beide Optionen zur Bereitstellung von Containern verwenden dieselben Verwaltungs-APIs, Tools und Imageformate. Kunden können zur Bereitstellungszeit einfach den Bereitstellungsmodus auswählen, der ihre Anforderungen am besten erfüllt.
 
 **Was ist der Unterschied zwischen Linux- und Windows Server-Containern?**
 
 Linux- und Windows Server-Container ähneln sich, denn beide implementieren ähnliche Technologien in ihrem Kernel und Kernbetriebssystem. Der Unterschied ergibt sich aus der Plattform und Arbeitslasten, die innerhalb des Containers ausgeführt.  
-Wenn ein Kunde Windows Server-Container verwendet, können sie vorhandene Windows-Technologien wie .NET, ASP.NET, PowerShell und vieles mehr integrieren.
+Wenn ein Kunde Windows Server-Container verwendet, können vorhandene Windows-Technologien wie .NET, ASP.NET, PowerShell und vieles mehr integriert werden.
 
 **Muss ich als Entwickler meine App für jeden Containertyp umschreiben?**
 
-Nein. Windows-Containerimages sind für Windows Server-Container und Hyper-V-Container gleich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht der Entwickler sind Windows Server-Containern und Hyper-V zwei Arten von dasselbe.  Diese Entwicklung, Programmierung und Verwaltung genauso bieten, werden offene und erweiterbare und das gleiche Maß an Integration und Support über Docker enthält.
+Nein. Windows-Containerimages sind für Windows Server-Container und Hyper-V-Container gleich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht der Entwickler sind Windows Server-Containern und Hyper-V zwei Arten von dasselbe. Diese Entwicklung, Programmierung und Verwaltung genauso bieten, werden offene und erweiterbare und das gleiche Maß an Integration und Support über Docker enthält.
 
 Ein Entwickler kann ein Container-Abbild, das mit einem Windows Server-Container erstellen und als Hyper-V-Container oder umgekehrt unverändert als das Festlegen der entsprechenden Common Language Runtime-Flag bereitstellen.
 
@@ -43,7 +43,7 @@ Windows Server-Containern bietet höhere Dichte und Leistung (z. B. niedrigere d
 
 **Sind Hyper-V-/Windows Server-Container ein Add-On, oder werden sie in Windows Server integriert?**
 
-Die Containerfunktionen werden in Windows Server 2016 integriert. Bleiben Sie dran, Weitere Informationen näher auf die allgemeine Verfügbarkeit.  
+Die Containerfunktionen sind in Windows Server 2016 integriert.  
 
 **Welche Beziehung besteht zwischen Windows Server-Containern und Drawbridge?**
 
@@ -79,6 +79,6 @@ Weitere Informationen finden Sie im Blogbeitrag [New Windows Server containers a
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO1-->
 
 
