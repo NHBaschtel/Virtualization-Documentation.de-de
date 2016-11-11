@@ -29800,9 +29800,9 @@
       "ArchiveFileCommit": "31602ead0df0702e5dbb51a15de1b3193d9564f8",
       "ArchiveFileDateTime": "2016-11-11T01:07:50.9473274Z",
       "ArchiveException": null,
-      "BilingualFilePath": null,
-      "BilingualFileCommit": null,
-      "BilingualDateTime": "0001-01-01T00:00:00",
+      "BilingualFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\configure_docker_daemon.593d065aaeaa40359a3e774b03d152311eb6570c.de-de.xlf",
+      "BilingualFileCommit": "87834ba27548240c52e9221f35fc6d1211677817",
+      "BilingualDateTime": "2016-11-11T14:49:56.5866065Z",
       "BilingualException": null
     },
     "c9f3a7669ae82e0b3a91956336d67225687c715b": {
