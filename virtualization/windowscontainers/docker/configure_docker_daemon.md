@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 569b8861ca01ee8a0b794e01b0acb1a1c501fa55
+ms.sourcegitcommit: 16220e5afd42ecbbef648c469822c68570f8577c
+ms.openlocfilehash: dee119983c9dca1cd9ce5caff1c4f87d4accab2a
 
 ---
 
@@ -35,19 +35,19 @@ Herunterladen des Docker-Moduls
 
 Sie erhalten die neueste Version immer unter https://master.dockerproject.org. Dieses Beispiel verwendet die neueste Version aus dem Zweig v1.13-development. 
 
-```none
+```powershell
 Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Erweitern Sie das ZIP-Archiv in „Programme“.
 
-```
+```powershell
 Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu. Starten Sie anschließend die PowerShell-Sitzung neu, damit der geänderte Pfad erkannt wird.
 
-```none
+```powershell
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
@@ -59,7 +59,7 @@ dockerd --register-service
 
 Nach Abschluss der Installation kann der Dienst gestartet werden.
 
-```none
+```powershell
 Start-Service Docker
 ```
 
@@ -172,14 +172,14 @@ Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausfüh
 
 Erstellen Sie eine Windows-Umgebungsvariable namens `HTTP_PROXY` oder `HTTPS_PROXY` und den Wert der Proxyinformationen, um Proxyinformationen für `docker search` und `docker pull` festzulegen. Sie können dies in PowerShell tun, indem Sie einen Befehl ähnlich dem folgenden verwenden:
 
-```none
+```powershell
 [Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://username:password@proxy:port/", [EnvironmentVariableTarget]::Machine)
 ```
 
 Starten Sie den Docker-Dienst neu, sobald die Variable festgelegt wurde.
 
-```none
-restart-service docker
+```powershell
+Restart-Service docker
 ```
 
 Weitere Informationen finden Sie unter [Windows Configuration File (Windows-Konfigurationsdatei)](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file) auf Docker.com.
@@ -187,6 +187,6 @@ Weitere Informationen finden Sie unter [Windows Configuration File (Windows-Konf
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO2-->
 
 
