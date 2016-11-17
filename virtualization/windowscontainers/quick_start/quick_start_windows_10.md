@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 34ab361ea415ab2d8d5133927beafc7911f1aaf1
+ms.sourcegitcommit: b7cd9b43f001fe8625b0c4ea8cc507c8f11de7ef
+ms.openlocfilehash: 1b57ad289368fb7d5f628e605cfc320748854c30
 
 ---
 
@@ -31,7 +31,9 @@ Dieser Schnellstart ist spezifisch für Hyper-V-Container unter Windows 10. Weit
 
 ## 1. Installieren des Containerfeatures
 
-Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit erhöhten Rechten aus.
+Das Containerfeature muss aktiviert werden, bevor Sie mit Windows-Containern arbeiten können. Führen Sie dazu den folgenden Befehl in einer PowerShell-Sitzung mit **erhöhten Rechten** aus.
+
+Wenn eine Fehlermeldung anzeigt, dass `Enable-WindowsOptionalFeature` nicht vorhanden ist, sollten Sie noch einmal überprüfen, ob Sie PowerShell als Administrator ausführen.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
@@ -167,6 +169,6 @@ Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO2-->
 
 
