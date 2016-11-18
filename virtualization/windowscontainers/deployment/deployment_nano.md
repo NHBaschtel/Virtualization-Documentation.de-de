@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: ccd1e0fc96b96349a04e6f3f33b97e5dc28582cd
+ms.sourcegitcommit: 9b99982abfbbda12758bb1c922ed1bd431ecca20
+ms.openlocfilehash: b90120bb085f0f44fde2eadd13cfa1b93011c5a7
 
 ---
 
@@ -105,7 +105,9 @@ docker pull microsoft/windowsservercore
 
 ## Verwalten von Docker unter Nano Server
 
-Als bewährte Methode und um optimale Ergebnisse zu erzielen, verwalten Sie Docker unter Nano Server über ein Remotesystem. Zu diesem Zweck müssen die folgenden Schritte ausgeführt werden.
+Als bewährte Methode und um optimale Ergebnisse zu erzielen, verwalten Sie Docker unter Nano Server über ein Remotesystem. Der Grund hierfür ist, dass PowerShell-Remoting derzeit die TTY-Terminal-Ausgabe einer interaktiven Containershell nicht zur ursprünglichen Eingabeaufforderung des Clients umleiten kann. Getrennte Container können mithilfe von `docker run -dt` gestartet und im Hintergrund ausgeführt werden. Interaktive Container, die `docker run -it` verwenden, funktionieren jedoch nicht wie erwartet. Außerdem bestehen bei der PowerShell ISE aus ähnlichen Gründen Probleme mit der interaktiven Ausgaben.
+
+Um einen Docker-Remoteserver zu verwalten, müssen folgende Aufgaben abgeschlossen werden.
 
 ### Vorbereiten des Containerhosts
 
@@ -198,6 +200,6 @@ Restart-Computer
 
 
 
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Nov16_HO2-->
 
 
