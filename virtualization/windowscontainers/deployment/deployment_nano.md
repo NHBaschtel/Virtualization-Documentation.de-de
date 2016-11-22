@@ -20,7 +20,7 @@ In diesem Dokument wird Schritt für Schritt eine sehr einfache Nano Server-Bere
 
 ## Vorbereiten von Nano Server
 
-Im folgenden Abschnitt wird die Bereitstellung einer einfachen Nano Server-Konfiguration ausführlich beschrieben. Eine gründlichere Erklärung der Bereitstellungs- und Konfigurationsoptionen für Nano Server finden Sie unter [Getting Started with Nano Server] (Erste Schritte mit Nano Server) (https://technet.microsoft.com/en-us/library/mt126167.aspx).
+Im folgenden Abschnitt wird die Bereitstellung einer einfachen Nano Server-Konfiguration ausführlich beschrieben. Eine gründlichere Erklärung der Bereitstellungs- und Konfigurationsoptionen für Nano Server finden Sie unter [Getting Started with Nano Server (Erste Schritte mit Nano Server)] (https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
 ### Erstellen einer Nano Server-VM
 
