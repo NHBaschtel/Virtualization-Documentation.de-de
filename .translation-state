@@ -1,6 +1,6 @@
 {
   "LastProcessedCommit": "6ffedfe75e2c82991fb3a85d9a49d2c32ce45472",
-  "LastTranslatedCommit": "cb90243ffa977a63f6b5bfe0daec2ead74fbbf04",
+  "LastTranslatedCommit": "2ee3db18be4b4fe4bc26d9a4c8a492c29786f741",
   "LastTansformerVersion": null,
   "Items": {
     "5090f6d60b5cbdce0990242d795d9e4e3736e791": {
@@ -29757,14 +29757,14 @@
       "HandoffPriority": "",
       "HandoffException": null,
       "HandoffFailureTimes": 0,
-      "TargetFileCommit": "1b5f24e8fd5333331f78af97a9473ff5ed4cc4d0",
+      "TargetFileCommit": "2ee3db18be4b4fe4bc26d9a4c8a492c29786f741",
       "TargetFilePath": "virtualization\\windowscontainers\\deployment\\deployment_nano.md",
       "HandbackFilePath": "ol-handback\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf",
-      "HandbackFileCommit": "51b9cdcf498142a081ef855748b70b5139fb753b",
-      "HandbackDateTime": "2016-11-18T15:42:06.9300896Z",
+      "HandbackFileCommit": "b3d890775829a0dea07d26f60e8697a423cd9617",
+      "HandbackDateTime": "2016-11-22T16:01:17.3657177Z",
       "HandbackException": null,
       "HandbackFailureTimes": 0,
-      "UpdatedDateTime": "2016-11-18T15:42:06.9300896Z",
+      "UpdatedDateTime": "2016-11-22T16:01:17.3657177Z",
       "ArchiveFilePath": "ol-archive\\Microsoft\\Virtualization-Documentation-Private.de-de\\live\\deployment_nano.b4ad903b48200665d4d0c8e4d0956bddc0d52f79.de-de.xlf",
       "ArchiveFileCommit": "31602ead0df0702e5dbb51a15de1b3193d9564f8",
       "ArchiveFileDateTime": "2016-11-11T01:07:50.9473274Z",
