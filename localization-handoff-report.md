@@ -1,37 +1,19 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 2
+ Total Files | 1
 
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\hyperv_on_windows\user_guide\vmsession.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/459aa45a762186929c5976eed814a10403565436/virtualization/hyperv_on_windows/user_guide/vmsession.md) | HandedOffSuccess | [Details](#38555b20b3ba87840d42be6f0136f307a61294dc220)
- [virtualization\windowscontainers\quick_start\quick_start_windows_10.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/fccccd3fdd765414b78576cbf733d78a59250ecc/virtualization/windowscontainers/quick_start/quick_start_windows_10.md) | HandedOffSuccess | [Details](#ff9be6bf5d067dbba9adb43e88dfda57db238bf1327)
+ [virtualization\windowscontainers\quick_start\quick_start_windows_10.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/2bb187fe68bda0430d703ba6b91c42187d65d25b/virtualization/windowscontainers/quick_start/quick_start_windows_10.md) | HandedOffSuccess | [Details](#561309f7792b41cc437c2a19b6318324b650503e327)
 
 ## Item Details
-##### <a name='38555b20b3ba87840d42be6f0136f307a61294dc220'></a> Source: [virtualization\hyperv_on_windows\user_guide\vmsession.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/459aa45a762186929c5976eed814a10403565436/virtualization/hyperv_on_windows/user_guide/vmsession.md)
+##### <a name='561309f7792b41cc437c2a19b6318324b650503e327'></a> Source: [virtualization\windowscontainers\quick_start\quick_start_windows_10.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/2bb187fe68bda0430d703ba6b91c42187d65d25b/virtualization/windowscontainers/quick_start/quick_start_windows_10.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [vmsession.5b8e9c3583d826412e0ae8e2f58f1deca9901582.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/1f7a9bbf17e2fccead9faa8f232e1bfa3ab5f413/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/vmsession.5b8e9c3583d826412e0ae8e2f58f1deca9901582.de-de.xlf)
-* Handoff Datetime: 2016-11-23 05:59:22
-* Handoff Reason: Include
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Current Target File: [virtualization\hyperv_on_windows\user_guide\vmsession.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/a8c30c2a0a9ee78a6222f4e57829c3a855063ff7/virtualization/hyperv_on_windows/user_guide/vmsession.md)
-* Current Handback File: [vmsession.5b8e9c3583d826412e0ae8e2f58f1deca9901582.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/b3d940b7e743726e178cdd00e4aebd8bda8dcfe2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/vmsession.5b8e9c3583d826412e0ae8e2f58f1deca9901582.de-de.xlf)
-* Current Handback Datetime: 2016-11-05 16:28:39
-* Bilingual File: [vmsession.5b8e9c3583d826412e0ae8e2f58f1deca9901582.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/b3d940b7e743726e178cdd00e4aebd8bda8dcfe2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/vmsession.5b8e9c3583d826412e0ae8e2f58f1deca9901582.de-de.xlf)
-* Bilingual Datetime: 2016-11-05 16:29:54
-* [Back to Top](#report-top)
-
-##### <a name='ff9be6bf5d067dbba9adb43e88dfda57db238bf1327'></a> Source: [virtualization\windowscontainers\quick_start\quick_start_windows_10.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/fccccd3fdd765414b78576cbf733d78a59250ecc/virtualization/windowscontainers/quick_start/quick_start_windows_10.md)
-* Status: HandedOffSuccess
-* Target File: 
-* Handoff File: [quick_start_windows_10.5f887ea7d45d865c81fe971abab095fb8e272cc8.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/1f7a9bbf17e2fccead9faa8f232e1bfa3ab5f413/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_10.5f887ea7d45d865c81fe971abab095fb8e272cc8.de-de.xlf)
-* Handoff Datetime: 2016-11-23 05:59:22
+* Handoff File: [quick_start_windows_10.5f887ea7d45d865c81fe971abab095fb8e272cc8.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/cbe83333b312df3f6d2c5a1e3e461a11b3bbf07e/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/quick_start_windows_10.5f887ea7d45d865c81fe971abab095fb8e272cc8.de-de.xlf)
+* Handoff Datetime: 2016-11-28 23:35:35
 * Handoff Reason: Include
 * Archive File: 
 * Archive Datetime: 0001-01-01 00:00:00
