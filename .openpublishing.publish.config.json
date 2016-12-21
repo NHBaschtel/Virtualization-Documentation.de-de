@@ -17,21 +17,6 @@
       },
       "build_entry_point": "docs",
       "template_folder": "_themes"
-    },
-    {
-      "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
-      "build_source_folder": "virtualization/windowscontainers",
-      "build_output_subfolder": "virtualization/windowscontainers",
-      "locale": "de-de",
-      "version": 0,
-      "open_to_public_contributors": false,
-      "type_mapping": {
-        "Conceptual": "Content",
-        "ManagedReference": "Content",
-        "RestApi": "Content"
-      },
-      "build_entry_point": "docs",
-      "template_folder": "_themes"
     }
   ],
   "notification_subscribers": [
