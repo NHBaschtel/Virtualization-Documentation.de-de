@@ -10,8 +10,12 @@
       "version": 0,
       "open_to_public_contributors": false,
       "type_mapping": {
-        "Conceptual": "Content"
-      }
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes"
     },
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
@@ -19,9 +23,13 @@
       "locale": "de-de",
       "version": 0,
       "open_to_public_contributors": false,
-      "type_mapping": {
-        "Conceptual": "Content"
-      }
+     "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes"
     },
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
@@ -30,8 +38,12 @@
       "version": 0,
       "open_to_public_contributors": false,
       "type_mapping": {
-        "Conceptual": "Content"
-      }
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes"
     }
   ],
   "notification_subscribers": [
@@ -40,14 +52,36 @@
   "branches_to_filter": [
     "master-oldev",
     "live-oldev",
-    "master"
+    "live"
   ],
   "skip_source_output_uploading": false,
   "dependent_repositories": [
     {
       "path_to_root": "_repo.en-us",
       "url": "https://github.com/Microsoft/Virtualization-Documentation-Private",
-      "branch": "live"
+      "branch": "live",
+      "branch_mapping": {
+        "live": "live",
+        "master": "master"
+      }
+    },
+    {
+      "path_to_root": "_repo.en-us",
+      "url": "https://github.com/Microsoft/Virtualization-Documentation-Private",
+      "branch": "live",
+      "branch_mapping": {
+        "live": "live",
+        "master": "master"
+      }
+    },
+    {
+      "path_to_root": "_repo.en-us",
+      "url": "https://github.com/Microsoft/Virtualization-Documentation-Private",
+      "branch": "live",
+      "branch_mapping": {
+        "live": "live",
+        "master": "master"
+      }
     }
   ],
   "need_generate_pdf_url_template": false
