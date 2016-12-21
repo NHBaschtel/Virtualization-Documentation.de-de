@@ -59,7 +59,7 @@
     }
   ],
   "notification_subscribers": [
-    "scooley@microsoft.com"
+    "mayast@microsoft.com"
   ],
   "branches_to_filter": [
     "master-oldev",
