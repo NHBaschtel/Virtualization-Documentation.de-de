@@ -1,5 +1,4 @@
-# Informationen zu Windows-Containern
-## [Übersicht über Windows-Container](about/about_overview.md)
+# [Informationen zu Windows-Containern](about/index.md)
 
 # Schnellstartanleitung für Windows Server
 ## [Schritt 1 – Konzepte](quick_start/quick_start.md)
@@ -42,6 +41,6 @@
 # [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)
 
 
-<!--HONumber=Nov16_HO1-->
+<!--HONumber=Nov16_HO3-->
 
 

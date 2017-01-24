@@ -1,23 +1,12 @@
 ---
-title: Containerdatenvolumes
-description: Erstellen und Verwalten von Datenvolumes mit Windows-Containern.
-keywords: Docker, Container
-author: scooley
-ms.date: 05/02/2016
-ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
-ms.assetid: f5998534-917b-453c-b873-2953e58535b1
 redirect_url: https://docs.docker.com/engine/tutorials/dockervolumes/
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 2fff6ab777fab77496b18cc101ad42102d3e4654
+ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
+ms.openlocfilehash: 94467b4dbebcc25009320d42460bf542fe3cab45
 
 ---
 
-# Dokument ist veraltet.
 
-
-<!--HONumber=Oct16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

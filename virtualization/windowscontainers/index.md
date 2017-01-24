@@ -9,8 +9,8 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
 translationtype: Human Translation
-ms.sourcegitcommit: 1787637fdd2c3bf8ef453a7425dc965e65e5ce12
-ms.openlocfilehash: a1b876d01b8076ee9feb275bd09247775bfcef69
+ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
+ms.openlocfilehash: 9b630e372b575ef1721c0d0926ec2caec3e5ec34
 
 ---
 
@@ -24,14 +24,14 @@ Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene und d
 <td>**Schnellstart**<br /><br />
 Schnellstartanleitung für Windows Server<br /><br />
 <ul>
-<li>[Schritt 1 – Konzepte und Terminologie](quick_start/quick_start.md)<br /><br /></li>
-<li>[Schritt 2 – Konfigurieren von Windows Server und des ersten Containers](quick_start/quick_start_windows_server.md)<br /><br /></li>
-<li>[Schritt 3 – Containerimages erstellen und mithilfe von Push übertragen](quick_start/quick_start_images.md)<br /><br /></li>
+<li>[Schritt 1 – Konzepte und Terminologie](quick-start/index.md)<br /><br /></li>
+<li>[Schritt 2 – Konfigurieren von Windows Server und des ersten Containers](quick-start/quick-start-windows-server.md)<br /><br /></li>
+<li>[Schritt 3 – Containerimages erstellen und mithilfe von Push übertragen](quick-start/quick-start-images.md)<br /><br /></li>
 </ul>
 Schnellstartanleitung für Windows 10<br /><br />
 <ul>
-<li>[Schritt 1 – Konzepte und Terminologie](quick_start/quick_start.md)<br /><br /></li>
-<li>[Schritt 2 – Konfigurieren von Windows 10 und erster Container](quick_start/quick_start_windows_10.md)<br /><br /></li>
+<li>[Schritt 1 – Konzepte und Terminologie](quick-start/index.md)<br /><br /></li>
+<li>[Schritt 2 – Konfigurieren von Windows 10 und erster Container](quick-start/quick-start-windows-10.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
@@ -40,9 +40,9 @@ Schnellstartanleitung für Windows 10<br /><br />
 <td>**Bereitstellung**<br /><br />
 Hier erfahren Sie, wie Sie Windows-Container unter Windows Server 2016 und Nano Server bereitstellen.<br /><br />
 <ul>
-<li>[Systemanforderungen](deployment/system_requirements.md)<br /><br /></li>
-<li>[Bereitstellen eines Containerhosts – Windows Server](deployment/deployment.md)<br /><br /></li>
-<li>[Bereitstellen eines Containerhosts – Nano Server](deployment/deployment_nano.md)<br /><br /></li>
+<li>[Systemanforderungen](deploy-containers/system-requirements.md)<br /><br /></li>
+<li>[Bereitstellen eines Containerhosts – Windows Server](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
+<li>[Bereitstellen eines Containerhosts – Nano Server](deploy-containers/deploy-containers-on-nano.md)<br /><br /></li>
 <li>[Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)<br /><br /></li>
 </ul>
 </td>
@@ -51,21 +51,20 @@ Hier erfahren Sie, wie Sie Windows-Container unter Windows Server 2016 und Nano
 <tr>
 <td ><center>![](media/explore.png)</center></td>
 <td>**Docker unter Windows**<br /><br />
-Hier finden Sie Informationen Sie zum Verwalten von Docker unter Windows.<br /><br />
+Hier finden Sie Informationen zum Verwalten von Docker unter Windows.<br /><br />
 <ul>
-<li>[Docker-Modul unter Windows](docker/configure_docker_daemon.md)<br /><br /></li>
-<li>[Dockerfiles unter Windows](docker/manage_windows_dockerfile.md)<br /><br /></li>
-<li>[Verwalten von Containerdaten](management/manage_data.md)<br /><br /></li>
-<li>[Optimieren von Dockerfiles](docker/optimize_windows_dockerfile.md)<br /><br /></li>
-<li>[Containernetzwerk](management/container_networking.md)<br /><br /></li>
+<li>[Docker-Modul unter Windows](manage-docker/configure-docker-daemon.md)<br /><br /></li>
+<li>[Dockerfiles unter Windows](manage-docker/manage-windows-dockerfile.md)<br /><br /></li>
+<li>[Optimieren von Dockerfiles](manage-docker/optimize-windows-dockerfile.md)<br /><br /></li>
+<li>[Containernetzwerk](manage-containers/container-networking.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
 
 <tr>
 <td ><center>![](media/video.png)</center></td>
-<td>**Überwachen**<br /><br />
-Sie sind an Demos und Interviews mit dem Windows-Container-Team interessiert?<br /><br />
+<td>**Anschauen**<br /><br />
+Sind Sie an Demos und Interviews mit dem Windows-Container-Team interessiert?<br /><br />
 <ul>
 <li>[Kanal zu Containern](https://channel9.msdn.com/Blogs/containers)</li>
 </ul>
@@ -88,6 +87,6 @@ Hier können Sie mit der Community interagieren, Beispiele testen und weitere Re
 
 
 
-<!--HONumber=Nov16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 
