@@ -6,14 +6,14 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\communitylinks.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/112d1ff5567265de2a0a2030a4c93ac078caf912/virtualization/windowscontainers/communitylinks.md) | HandedOffSuccess | [Details](#b2b8bbd6a125b71dd281cee5d46a8606bb14116c255)
+ [virtualization\hyper-v-on-windows\user-guide\make-integration-service.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/36e5e60ca392417a0f04e08f320645c4f02d8e0d/virtualization/hyper-v-on-windows/user-guide/make-integration-service.md) | HandedOffSuccess | [Details](#20c5581e82cf8f190a5d71c1e6bc9417ca16d004204)
 
 ## Item Details
-##### <a name='b2b8bbd6a125b71dd281cee5d46a8606bb14116c255'></a> Source: [virtualization\windowscontainers\communitylinks.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/112d1ff5567265de2a0a2030a4c93ac078caf912/virtualization/windowscontainers/communitylinks.md)
+##### <a name='20c5581e82cf8f190a5d71c1e6bc9417ca16d004204'></a> Source: [virtualization\hyper-v-on-windows\user-guide\make-integration-service.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/36e5e60ca392417a0f04e08f320645c4f02d8e0d/virtualization/hyper-v-on-windows/user-guide/make-integration-service.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/c2cd328d147e00b3683020f3b9dbfdbaa79aba8b/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf)
-* Handoff Datetime: 2017-02-08 23:35:41
+* Handoff File: [make-integration-service.c3268239155e1fcb3f21c78fc57128dead3831c3.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/815154889da0f6bdc0a499d48876ad8bbc7c7eae/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/make-integration-service.c3268239155e1fcb3f21c78fc57128dead3831c3.de-de.xlf)
+* Handoff Datetime: 2017-02-09 21:32:56
 * Handoff Reason: Include
 * Handoff Name: 
 * Archive File: 
@@ -21,10 +21,10 @@
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
 * Handback Name: 
-* Current Target File: [virtualization\windowscontainers\communitylinks.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/6c6f96dbd687188f2624f99812e45211aca6ad09/virtualization/windowscontainers/communitylinks.md)
-* Current Handback File: [communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf)
+* Current Target File: [virtualization\hyper-v-on-windows\user-guide\make-integration-service.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/6c6f96dbd687188f2624f99812e45211aca6ad09/virtualization/hyper-v-on-windows/user-guide/make-integration-service.md)
+* Current Handback File: [make-integration-service.c3268239155e1fcb3f21c78fc57128dead3831c3.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/make-integration-service.c3268239155e1fcb3f21c78fc57128dead3831c3.de-de.xlf)
 * Current Handback Datetime: 2017-01-24 13:18:46
-* Bilingual File: [communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/communitylinks.2bb7ea2ddbb713bc85f6355770d609c04778fa4e.de-de.xlf)
+* Bilingual File: [make-integration-service.c3268239155e1fcb3f21c78fc57128dead3831c3.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/make-integration-service.c3268239155e1fcb3f21c78fc57128dead3831c3.de-de.xlf)
 * Bilingual Datetime: 2017-01-24 13:21:33
 * [Back to Top](#report-top)
 
