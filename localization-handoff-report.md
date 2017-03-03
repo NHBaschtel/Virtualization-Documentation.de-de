@@ -1,11 +1,28 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 0
+ Total Files | 1
 
 ## File List
+ Source File | Status | Details 
+ ----------- | ------ | ------- 
+ [virtualization\hyper-v-on-windows\reference\tlfs.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/a193002059a4f1fd0e81689deae02846da01736f/virtualization/hyper-v-on-windows/reference/tlfs.md) | HandedOffSuccess | [Details](#495bd9228e93a1981a646f13e2e583a741eec217201)
 
 ## Item Details
+##### <a name='495bd9228e93a1981a646f13e2e583a741eec217201'></a> Source: [virtualization\hyper-v-on-windows\reference\tlfs.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/a193002059a4f1fd0e81689deae02846da01736f/virtualization/hyper-v-on-windows/reference/tlfs.md)
+* Status: HandedOffSuccess
+* Target File: 
+* Handoff File: [tlfs.1bc1ee9abc2adf060143e30b11346b0456729304.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/17f240c5829725fd6d5abe9128e2b5d5ea5f0afd/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/tlfs.1bc1ee9abc2adf060143e30b11346b0456729304.de-de.xlf)
+* Handoff Datetime: 2017-03-03 01:11:33
+* Handoff Reason: Include
+* Handoff Name: 
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* Handback Name: 
+* [Back to Top](#report-top)
+
 
 ## Error Details
 
