@@ -9,8 +9,9 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
 translationtype: Human Translation
-ms.sourcegitcommit: b721971f1ba0ab5369dc8b0917f57dfe187a618c
-ms.openlocfilehash: 81f84901bdbd9764db8d73b8e01527f49beeb774
+ms.sourcegitcommit: ff1ef85258a31a5c5a2a065b65019e39cab93125
+ms.openlocfilehash: b6c25285c3cee3a863bef40c34a1cf13b66b42fb
+ms.lasthandoff: 02/22/2017
 
 ---
 
@@ -38,15 +39,14 @@ Diese Seite enthält Links zu Videos und Blogs, die von Mitgliedern der Containe
 
 [Containerize Windows workloads with Image2Docker](https://blog.docker.com/2016/10/containerize-windows-workloads-image2docker/) (Windows-Workloads mit Image2Docker in Container verpacken) – Mano Marks
 
-[Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) (Verwenden Sie Docker Compose und Service Discovery unter Windows, um Ihre Multi-Service-Container-Anwendung zu skalieren) – Kallie Bracken und Jason Messer
+[Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) (Verwenden von Docker Compose und Service Discovery unter Windows, um ein Multi-Service-Containeranwendung zu skalieren) – Kallie Bracken und Jason Messer
+
+[PowerShell Desired State Configuration in Windows Containers using Docker](http://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/) (PSDSC in Windows-Containern mit Docker) – Nicholas Dille
 
 [Running Neo4j in Windows Containers](http://glennsarti.github.io/blog/neo4j-nano-containers) (Ausführen von Neo4j in Windows-Containern) – Glenn Sarti
 
 ## Konfiguration und Verwaltung
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) (So schützen Sie ein Windows 2016 Docker-Modul mit TLS) – Stefan Scherer
 
-
-
-<!--HONumber=Dec16_HO3-->
-
+[Windows #Container Performance of Layers](http://dille.name/blog/2017/01/13/windows-container-performance-of-layers/) (Leistungsfähige Layer für Windows-Container) – Nicholas Dille
 

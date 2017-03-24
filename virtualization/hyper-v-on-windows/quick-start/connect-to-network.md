@@ -9,8 +9,9 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
 translationtype: Human Translation
-ms.sourcegitcommit: 2cf6d04c4a8de0148a2f981d21bec72cff23f6e8
-ms.openlocfilehash: 8cba7f02a0633b50d239a414d408cef81bea9c6b
+ms.sourcegitcommit: f6ff0ec825091ad30016be958ff7f55ff6a907ed
+ms.openlocfilehash: 67513f6ee7d990f4d9086dfd63fb719374377b1f
+ms.lasthandoff: 03/01/2017
 
 ---
 
@@ -30,27 +31,29 @@ In dieser Übung wird das Erstellen eines externen virtuellen Switches behandelt
 1. Öffnen Sie den Hyper-V-Manager.  Die schnellste Möglichkeit dafür ist: Wählen Sie die Windows-Taste, und geben Sie dann „Hyper-V-Manager“ ein.  
 Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-Verwaltungstools nicht aktiviert.  Befolgen Sie die Anweisungen in [Aktivieren von Hyper-V](enable-hyper-v.md).
 
-2. Wählen Sie in Hyper-V-Manager **Virtueller Switch-Manager...** aus dem Menü „Aktionen“ auf der rechten Seite.
+2. Wählen Sie den Server im linken Bereich, oder klicken Sie im rechten Bereich auf „Verbindung zum Server...“.
 
-3. Wählen Sie unter „Virtuelle Switches“ die Option **Neuer virtueller Netzwerkswitch** aus.
+3. Wählen Sie in Hyper-V-Manager **Virtueller Switch-Manager...** aus dem Menü „Aktionen“ auf der rechten Seite. 
 
-4. Klicken Sie unter „Welche Art von virtuellem Switch möchten Sie erstellen?“ auf **Extern**.
+4. Wählen Sie unter „Virtuelle Switches“ die Option **Neuer virtueller Netzwerkswitch** aus.
 
-5. Klicken Sie auf die Schaltfläche **Virtuellen Switch erstellen**.
+5. Klicken Sie unter „Welche Art von virtuellem Switch möchten Sie erstellen?“ auf **Extern**.
 
-6. Geben Sie unter „Eigenschaften für virtuelle Switches“ dem neuen Switch einen Namen, z. B. **Externer VM-Switch**.
+6. Klicken Sie auf die Schaltfläche **Virtuellen Switch erstellen**.
 
-7. Stellen Sie unter „Verbindungstyp“ sicher, dass **Externes Netzwerk** ausgewählt wurde.
+7. Geben Sie unter „Eigenschaften für virtuelle Switches“ dem neuen Switch einen Namen, z. B. **Externer VM-Switch**.
 
-8. Wählen Sie die physische Netzwerkkarte, die mit dem neuen virtuellen Switch verbunden werden soll. Dies ist die Netzwerkkarte, die physisch mit dem Netzwerk verbunden ist.  
+8. Stellen Sie unter „Verbindungstyp“ sicher, dass **Externes Netzwerk** ausgewählt wurde.
+
+9. Wählen Sie die physische Netzwerkkarte, die mit dem neuen virtuellen Switch verbunden werden soll. Dies ist die Netzwerkkarte, die physisch mit dem Netzwerk verbunden ist.  
 
     ![](media/newSwitch_upd.png)
 
-9. Wählen Sie **Übernehmen** aus, um den virtuellen Switch zu erstellen. An dieser Stelle wird wahrscheinlich die folgende Meldung angezeigt. Klicken Sie auf **Ja**, um den Vorgang fortzusetzen.
+10. Wählen Sie **Übernehmen** aus, um den virtuellen Switch zu erstellen. An dieser Stelle wird wahrscheinlich die folgende Meldung angezeigt. Klicken Sie auf **Ja**, um den Vorgang fortzusetzen.
 
     ![](media/pen_changes_upd.png)  
 
-10. Klicken Sie auf **OK**, um das Fenster „Manager für virtuelle Switches“ zu schließen.
+11. Klicken Sie auf **OK**, um das Fenster „Manager für virtuelle Switches“ zu schließen.
 
 
 ### Erstellen eines virtuellen Switches mit PowerShell
@@ -98,9 +101,4 @@ Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen ein
 
 ## Nächster Schritt: Erstellen eines virtuellen Computers
 [Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

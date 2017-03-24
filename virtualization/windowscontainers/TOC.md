@@ -20,8 +20,10 @@
 ## [Docker-Modul unter Windows](docker/configure_docker_daemon.md)
 ## [Dockerfiles unter Windows](docker/manage_windows_dockerfile.md)
 ## [Optimieren von Dockerfiles](docker/optimize_windows_dockerfile.md)
-## [Containernetzwerk](management/container_networking.md)
+## [Container-Networking](management/container_networking.md)
+## [Erste Schritte mit dem Schwarmmodus](manage-containers/swarm-mode.md)
 ## [Verwalten von Docker mit PowerShell](https://github.com/Microsoft/Docker-PowerShell)
+## [Remoteverwaltung eines Windows-Docker-Hosts](management/manage_remotehost.md)
 
 # Containerbeispiele
 ## [Anwendungsframeworks](samples.md#Application-Frameworks)
@@ -39,8 +41,3 @@
 
 
 # [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)
-
-
-<!--HONumber=Nov16_HO3-->
-
-

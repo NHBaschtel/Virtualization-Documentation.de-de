@@ -9,8 +9,9 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 translationtype: Human Translation
-ms.sourcegitcommit: 804008c172b80a4f354a92cd4d12a4e23e1d4328
-ms.openlocfilehash: 00a43f8d4d27327c61e318f3a915047106ad2aca
+ms.sourcegitcommit: 1a327806514f1e1b5d2d234b0aa4ce300e26456f
+ms.openlocfilehash: 0e692f7521e4a15e3e56d4b98f7ca15fe94ee167
+ms.lasthandoff: 01/26/2017
 
 ---
 
@@ -38,7 +39,6 @@ Heute werden gruppenverwaltete Dienstkonten häufig verwendet, um Verbindungen z
 4. Lassen Sie den Zugriff anderer Dienste wie z.B. einer Datenbank oder Dateifreigaben auf ein gMSA zu.
 
 Beim Starten des Diensts erhält der in die Domäne eingebundene Host von Active Directory automatisch die gMSA-Geheimnisse und führt den Dienst mithilfe dieses Kontos aus. Da dieser Dienst als gMSA ausgeführt wird, kann er auf jede Ressource zugreifen, für die dem gMSA Zugriff gewährt wurde.
-
 
 Gehen Sie für Windows-Container in ähnlicher Weise vor:
 
@@ -84,8 +84,5 @@ EXEC sp_addrolemember 'db_datareader', 'WebApplication1'
 EXEC sp_addrolemember 'db_datawriter', 'WebApplication1'
 ```
 
-
-
-<!--HONumber=Nov16_HO1-->
-
+Sehen Sie sich dazu die [aufgezeichnet Demo](https://youtu.be/cZHPz80I-3s?t=2672) der Microsoft Ignite 2016-Sitzung „Walk the Path to Containerization - transforming workloads into containers“ an.
 

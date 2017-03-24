@@ -1,7 +1,7 @@
 ---
 title: Erstellen eigener Integrationsdienste
 description: Windows 10-Integrationsdienste.
-keywords: Windows 10, Hyper-V
+keywords: "Windows 10, Hyper-V, HVSocket, AF_HYPERV"
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
@@ -9,60 +9,44 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: 9e4be610f02e12f48fb88464eb8075b97996d5b2
+ms.sourcegitcommit: b6b63318ed71931c2b49039e57685414f869a945
+ms.openlocfilehash: 19e8cf269b0bef127fb06d2c99391107cd8683b1
+ms.lasthandoff: 02/16/2017
 
 ---
 
 # Erstellen eigener Integrationsdienste
 
-Ab Windows 10 kann jeder einen Dienst, der den integrierten Hyper-V-Integrationsdiensten ähnelt, mithilfe eines neuen socketbasierten Kommunikationskanals zwischen dem Hyper-V-Host und den darauf ausgeführten virtuellen Computern erstellen.  Bei Verwenden dieser Hyper-V-Sockets können Dienste unabhängig vom Netzwerkstapel ausgeführt werden, wobei alle Daten im gleichen physischen Speicher verbleiben.
+Ab Windows 10 Anniversary Update können Sie selbst Anwendungen erstellen, die zwischen dem Hyper-V-Host und dessen virtuellen Computern kommunizieren, und zwar mithilfe von Hyper-V-Sockets. Das sind Windows-Sockets mit einer neuen Adressfamilie und speziellen Endpunkten für die Auswahl von virtuellen Computern.  Die gesamte Kommunikation über Hyper-V-Sockets erfolgt ohne Networking, und alle Daten verbleiben auf dem gleichen physischen Speicher.   Anwendungen, die Hyper-V-Sockets verwenden, ähneln den Hyper-V-Integrationsdiensten.
 
-Dieses Dokument bietet eine exemplarische Vorgehensweise zum Erstellen einer einfachen auf Hyper-V-Sockets basierenden Anwendung und Nutzen dieser Sockets.
+Dieses Dokument erläutert die Erstellung eines einfachen Programms für Hyper-V-Sockets.
 
-[PowerShell Direct](../user-guide/powershell-direct.md) ist ein Beispiel einer Anwendung (in diesem Fall eines integrierten Windows-Diensts), die Hyper-V-Sockets zum Kommunizieren verwendet.
-
-**Unterstützte Host-BS**
-* Windows 10, Build 14290 und höher
-* Windows Server Technical Preview 4 und höher
-* Zukünftige Versionen (Server 2016 +)
+**Unterstützte Host-Betriebssysteme**
+* Unter Windows 10 unterstützt
+* Windows Server 2016
+* Künftige Versionen (Server 2016 +)
 
 **Unterstützte Gastbetriebssysteme**
-* Windows 10
+* Windows 10
 * Windows Server Technical Preview 4 und höher
-* Zukünftige Versionen (Server 2016 +)
+* Künftige Versionen (Server 2016 +)
 * Linux-Gastcomputer mit Linux Integration Services (siehe [Unterstützte virtuelle Linux- und FreeBSD-Computer für Hyper-V auf Windows](https://technet.microsoft.com/library/dn531030(ws.12).aspx))
 
 **Stärken und Schwächen**  
 * Unterstützt den Kernelmodus oder Benutzermodusaktionen  
 * Nur Datenstrom      
-* Kein Blockspeicher (für Sicherungen/Video nicht optimal)   
+* Kein Blockspeicher (für Sicherungen/Video nicht optimal) 
 
 --------------
 
 ## Erste Schritte
-Derzeit sind Hyper-V-Sockets in systemeigenem Code (C/C++) verfügbar.  
 
-Zum Schreiben einer einfachen Anwendung benötigen Sie Folgendes:
-* C-Compiler.  Wenn Sie keinen C-Compiler haben, fragen Sie in der [Visual Studio Community](https://aka.ms/vs) nach.
-* Einen Computer, auf dem Hyper-V und ein virtueller Computer ausgeführt werden.  
-  * Das Betriebssystem von Host- und Gastcomputer (VM) muss Windows 10, Windows Server Technical Preview 3 oder höher sein.
-* [Windows 10 SDK](http://aka.ms/flightingSDK), auf dem Hyper-V-Host installiert
+Anforderungen:
+* C/C++-Compiler.  Wenn Sie keinen besitzen, fragen Sie in der [Visual Studio Community](https://aka.ms/vs) nach.
+* [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) – vorinstalliert in Visual Studio 2015 mit Update 3 oder höher.
+* Ein Computer, auf dem eines der o. g. Host-Betriebssysteme ausgeführt wird, und mindestens ein virtueller Computer (zum Testen der Anwendung).
 
-**Details zu Windows SDK**
-
-Links zum Windows SDK:
-* [Windows 10 SDK Insider Preview](http://aka.ms/flightingSDK)
-* [Windows 10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk)
-
-Die API für Hyper-V-Sockets ist seit Windows 10, Build 14290 verfügbar; das Flighting-Download entspricht dem neuesten Insider Fast Track Flighting-Build.  
-Wenn Sie ein seltsames Verhalten feststellen, teilen Sie uns dies im [TechNet-Forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums") mit.  Machen Sie in Ihrem Beitrag bitte folgende Angaben:
-* Beschreibung des unerwarteten Verhaltens 
-* Betriebssystem und Buildnummern von Host, Gast und SDK  
-  
-  Die SDK-Buildnummer wird in der Titelleiste des SDK-Installationsprogramms angezeigt:  
-  ![](./media/flightingSDK.png)
-
+> **Hinweis:** Die API für Hyper-V-Sockets war etwas später in Windows 10 öffentlich verfügbar.  Anwendungen, die HVSocket verwenden, sind auf jedem Host und Gast unter Windows 10 ausführbar, können jedoch nur einem Windows SDK ab Build 14290 entwickelt werden.  
 
 ## Registrieren einer neuen Anwendung
 Damit Sie Hyper-V-Sockets verwenden können, muss die Anwendung in der Registrierung des Hyper-V-Hosts registriert werden.
@@ -76,22 +60,22 @@ Mithilfe der folgenden PowerShell-Befehle wird eine neue Anwendung mit dem Namen
 ``` PowerShell
 $friendlyName = "HV Socket Demo"
 
-# Create a new random GUID and add it to the services list then add the name as a value
-
+# Create a new random GUID.  Add it to the services list
 $service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ((New-Guid).Guid)
 
+# Set a friendly name 
 $service.SetValue("ElementName", $friendlyName)
 
 # Copy GUID to clipboard for later use
 $service.PSChildName | clip.exe
 ```
 
-** Registrierungsspeicherort und Informationen **  
 
+**Registrierungsschlüssel und Informationen:**  
 ``` 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```  
-An diesem Registrierungsspeicherort sehen Sie mehrere GUIDs.  Unsere integrierte Dienste sind.
+An diesem Registrierungszweig sehen Sie mehrere GUIDs.  Diese gehören zu unseren Standarddiensten.
 
 Die Informationen in der Registrierung nach Dienst:
 * `Service GUID`   
@@ -105,12 +89,12 @@ Der Registrierungseintrag sieht folgendermaßen aus:
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
     999E53D4-3D5C-4C3E-8779-BED06EC056E1\
-        ElementName REG_SZ  VM Session Service
+        ElementName    REG_SZ    VM Session Service
     YourGUID\
-        ElementName REG_SZ  Your Service Friendly Name
+        ElementName    REG_SZ    Your Service Friendly Name
 ```
 
-> ** Tipp:** Führen Sie Folgendes aus, um eine GUID in PowerShell zu generieren und in die Zwischenablage zu kopieren:  
+> **Tipp:** Mit folgender Anweisung können Sie eine GUID in PowerShell generieren und in die Zwischenablage kopieren:  
 ``` PowerShell
 (New-Guid).Guid | clip.exe
 ```
@@ -191,10 +175,10 @@ Es stehen auch verschiedene Platzhalter für VM-IDs zur Verfügung, wenn keine V
 | HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |  
 | HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Platzhalteradresse für untergeordnete Elemente. Listener müssen eine Bindung mit dieser VM-ID herstellen, um Verbindungen von allen untergeordneten Partitionen zu akzeptieren. |
 | HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopbackadresse. Bei Verwenden dieser VM-ID wird eine Verbindung mit derselben Partition wie bei Verwenden des Connectors hergestellt. |
-| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Übergeordnete Adresse. Bei Verwenden dieser VM-ID wird eine Verbindung mit der übergeordneten Partition des Connectors hergestellt.* |
+| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Übergeordnete Adresse. Bei Verwenden dieser VmId wird eine Verbindung mit der übergeordneten Partition des Connectors hergestellt.* |
 
 
-***HV_GUID_PARENT**  
+\* `HV_GUID_PARENT`  
 Das übergeordnete Element eines virtuellen Computers ist sein Host.  Das übergeordnete Element eines Containers ist der Host des Containers.  
 Beim Herstellen einer Verbindung mithilfe eines Containers, in dem ein virtueller Computer ausgeführt wird, erfolgt eine Verbindung mit der VM, die den Container hostet.  
 Beim Überwachen auf diese VM-ID werden Verbindungen von folgenden Quellen akzeptiert:  
@@ -211,10 +195,7 @@ Send()
 Listen()  
 Accept()  
 
+## Nützliche Links
 [Vollständige WinSock-API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)
 
-
-
-<!--HONumber=Jan17_HO2-->
-
-
+[Referenz für Hyper-V-Integrationsdienste](../reference/integration-services.md)

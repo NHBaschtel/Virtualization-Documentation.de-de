@@ -9,8 +9,9 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: b0903a3e00b92bc60e26282dde072b66030ada09
+ms.sourcegitcommit: e714d4dc22c0049d3365d4a4f3c11d072f46a161
+ms.openlocfilehash: 7d16fcf22187ae3ace25fe1bedbc02f3c6b63eb8
+ms.lasthandoff: 02/14/2017
 
 ---
 
@@ -34,7 +35,7 @@ Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 ```
 3. Starten Sie einen virtuellen Computer.
-4. Installieren Sie Hyper-V auf dem virtuellen Computer ebenso wie auf einem physischen Server. Weitere Informationen zum Installieren von Hyper-V finden Sie unter [Installieren von Hyper-V]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install).
+4. Installieren Sie Hyper-V auf dem virtuellen Computer ebenso wie auf einem physischen Server. Weitere Informationen zum Installieren von Hyper-V finden Sie unter [Installieren von Hyper-V](../quick-start/enable-hyper-v.md).
 
 ## Deaktivieren der geschachtelten Virtualisierung
 Sie können die geschachtelte Virtualisierung für einen beendeten virtuellen Computer mit dem folgenden PowerShell-Befehl deaktivieren:
@@ -76,9 +77,4 @@ Netsh interface ip add dnsserver “Ethernet” address=<my DNS server>
 
 ## Virtualisierungs-Apps anderer Anbieter
 Andere Virtualisierungsanwendungen als Hyper-V werden auf virtuellen Hyper-V-Computern nicht unterstützt und funktionieren wahrscheinlich nicht. Dies schließt jegliche Software ein, die Virtualisierungserweiterungen für Hardware benötigt.
-
-
-
-<!--HONumber=Oct16_HO4-->
-
 

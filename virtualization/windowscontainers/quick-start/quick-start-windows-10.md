@@ -9,8 +9,9 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: 8aba9f2ef619b79e7459d7fd55bd27cf107621b3
+ms.sourcegitcommit: 996d3b1a8f7c8325ac66d331e1d62208c0cf6b53
+ms.openlocfilehash: 091a3570291624a3be40e3aabb9f99a482cb6470
+ms.lasthandoff: 02/27/2017
 
 ---
 
@@ -60,13 +61,13 @@ Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht a
 Laden Sie das Docker-Modul und den Docker-Client als ZIP-Archiv herunter.
 
 ```none
-Invoke-WebRequest "https://test.docker.com/builds/Windows/x86_64/docker-1.13.0-rc4.zip" -OutFile "$env:TEMP\docker-1.13.0-rc4.zip" -UseBasicParsing
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-17.03.0-ce.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Erweitern Sie das ZIP-Archiv in „Programme“, die Archivinhalte befinden sich bereits im Docker-Verzeichnis.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc4.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Fügen Sie das Docker-Verzeichnis dem Systempfad hinzu.
@@ -167,9 +168,4 @@ Nachfolgende Windows 10- und Containerschnellstarts behandeln das Erstellen und
 ## Nächste Schritte
 
 [Windows-Container unter Windows Server](./quick-start-windows-server.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
