@@ -1,33 +1,11 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 1
+ Total Files | 0
 
 ## File List
- Source File | Status | Details 
- ----------- | ------ | ------- 
- [virtualization\hyper-v-on-windows\user-guide\setup-nat-network.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ecde0c94e6f59842af97b58c5d925c8b6eac4b5a/virtualization/hyper-v-on-windows/user-guide/setup-nat-network.md) | HandedOffSuccess | [Details](#a9d9f1b8cb0c76e57def1a92d993970ed40dbe7a237)
 
 ## Item Details
-##### <a name='a9d9f1b8cb0c76e57def1a92d993970ed40dbe7a237'></a> Source: [virtualization\hyper-v-on-windows\user-guide\setup-nat-network.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/ecde0c94e6f59842af97b58c5d925c8b6eac4b5a/virtualization/hyper-v-on-windows/user-guide/setup-nat-network.md)
-* Status: HandedOffSuccess
-* Target File: 
-* Handoff File: [setup-nat-network.569fba8d30bc800503603312f9faf0554f426411.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handoff/blob/e7b66fb1e3bd7ee9719a0cd818ab6c8a99208378/ol-handoff/Microsoft/Virtualization-Documentation-Private.de-de/live/setup-nat-network.569fba8d30bc800503603312f9faf0554f426411.de-de.xlf)
-* Handoff Datetime: 2017-06-20 19:50:54
-* Handoff Reason: Include
-* Handoff Name: 
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Handback Name: 
-* Current Target File: [virtualization\hyper-v-on-windows\user-guide\setup-nat-network.md](https://github.com/Microsoft/Virtualization-Documentation-Private.de-de/blob/fe16c87922368353c71be9d25be214164cb2794c/virtualization/hyper-v-on-windows/user-guide/setup-nat-network.md)
-* Current Handback File: [setup-nat-network.569fba8d30bc800503603312f9faf0554f426411.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/3ae958cc8d2906396889618eedeb5cf119f79cb1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/setup-nat-network.569fba8d30bc800503603312f9faf0554f426411.de-de.xlf)
-* Current Handback Datetime: 2017-03-24 13:49:43
-* Bilingual File: [setup-nat-network.569fba8d30bc800503603312f9faf0554f426411.de-de.xlf](https://github.com/Microsoft/Virtualization-Documentation-Private.handback/blob/3ae958cc8d2906396889618eedeb5cf119f79cb1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/setup-nat-network.569fba8d30bc800503603312f9faf0554f426411.de-de.xlf)
-* Bilingual Datetime: 2017-03-24 13:52:18
-* [Back to Top](#report-top)
-
 
 ## Error Details
 
