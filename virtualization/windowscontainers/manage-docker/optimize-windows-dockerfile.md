@@ -8,18 +8,18 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: 2077f7cf0428e08ce915470ac4cc3b0ccc9c6369
-
+ms.openlocfilehash: 8b0cd6046f8b556f9dd5082c5ddf80af83814c1c
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-# Optimieren von Windows-Dockerfile-Dateien
+# <a name="optimize-windows-dockerfiles"></a>Optimieren von Windows-Dockerfile-Dateien
 
 Mehrere Methoden können zur Optimierung des Docker Build-Prozesses sowie der resultierenden Docker-Images verwendet werden. Dieses Dokument beschreibt ausführlich den Ablauf des Docker Build-Prozesses und zeigt verschiedene Taktiken, die für eine optimale Imageerstellung mit Windows-Containern verwendet werden können.
 
-## Docker Build
+## <a name="docker-build"></a>Docker Build
 
-### Imageebenen
+### <a name="image-layers"></a>Imageebenen
 
 Unverzichtbare Voraussetzung zur Untersuchung der Docker Build-Optimierung ist ein grundlegendes Verständnis der Funktionsweise von Docker Build. Während des Docker Build-Prozesses wird eine Dockerfile-Datei genutzt, und die ausführbaren Anweisungen werden nacheinander ausgeführt, jede in einem eigenen temporären Container. Das Ergebnis ist eine neue Imageebene für jede ausführbare Anweisung. 
 
@@ -50,13 +50,13 @@ Jede dieser Ebenen kann einer Anweisung aus der Dockerfile-Datei zugeordnet werd
 
 Dockerfile-Dateien können geschrieben werden, um Imageebenen zu minimieren und sowohl die Buildleistung als auch optische Aspekte wie die Lesbarkeit zu optimieren. Schließlich stehen viele Alternativen zur Durchführung einer bestimmten Buildaufgabe zur Verfügung. Fundiertes Wissen darüber, wie sich das Format einer Dockerfile-Datei auf die erforderliche Zeit für den Build und das resultierende Image auswirkt, verbessert die Automatisierungserfahrung. 
 
-## Optimieren der Imagegröße
+## <a name="optimize-image-size"></a>Optimieren der Imagegröße
 
 Wenn Sie Docker-Containerimages erstellen, kann die Imagegröße ein wichtiger Faktor sein. Containerimages werden zwischen Registrierungen und Host verschoben, exportiert und importiert und verbrauchen so letztendlich Speicherplatz. Verschiedene Taktiken können während des Docker Build-Prozesses verwendet werden, um die Imagegröße zu minimieren. In diesem Abschnitt werden einige dieser Taktiken speziell für Windows-Container ausführlich dargestellt. 
 
 Weitere Informationen zu bewährten Vorgehensweisen mit Dockerfile finden Sie unter [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) (Bewährte Vorgehensweisen für das Schreiben von Dockerfile-Dateien auf Docker.com).
 
-### Gruppieren von verwandten Aktionen
+### <a name="group-related-actions"></a>Gruppieren von verwandten Aktionen
 
 Da jede `RUN`-Anweisung eine neue Ebene in dem Containerimage erstellt, kann die Gruppierung von Aktionen in einer `RUN`-Anweisung die Anzahl der Ebenen reduzieren. Während das Minimieren der Ebenen sich möglicherweise nicht auf die Imagegröße auswirkt, ist dies mit dem Gruppieren von verwandten Aktionen möglich, wie die nachfolgenden Beispiele zeigen.
 
@@ -83,7 +83,7 @@ a395ca26777f        15 seconds ago      cmd /S /C powershell.exe -Command Remove
 957147160e8d        3 minutes ago       cmd /S /C powershell.exe -Command Invoke-WebR   125.7 MB
 ```
 
-Zum Vergleich sehen Sie hier den gleichen Vorgang, wobei jedoch alle Schritte mit der gleichen `RUN`-Anweisung ausgeführt werden. Beachten Sie, dass jeder Schritt in der `RUN`-Anweisung sich in einer neuen Zeile der Dockerfile-Datei befindet, wobei der Zeilenumbruch mit dem Zeichen '\'erfolgt. 
+Zum Vergleich sehen Sie hier den gleichen Vorgang, wobei jedoch alle Schritte mit der gleichen `RUN`-Anweisung ausgeführt werden. Beachten Sie, dass jeder Schritt in der `RUN`-Anweisung sich in einer neuen Zeile der Dockerfile-Datei befindet, wobei der Zeilenumbruch mit dem Zeichen '\' erfolgt. 
 
 ```none
 FROM windowsservercore
@@ -104,9 +104,9 @@ IMAGE               CREATED             CREATED BY                              
 69e44f37c748        54 seconds ago      cmd /S /C powershell.exe -Command   $ErrorAct   216.3 MB                
 ```
 
-### Entfernen überflüssiger Dateien
+### <a name="remove-excess-files"></a>Entfernen überflüssiger Dateien
 
-Wenn eine Datei, z. B. ein Installationsprogramm, nach der Verwendung nicht mehr erforderlich ist, entfernen Sie die Datei, um die Imagegröße zu verringern. Dies muss in dem gleichen Schritt erfolgen, in dem die Datei in die Imageebene kopiert wurde. So wird verhindert, dass die Datei auf einer niedrigeren Imageebene beibehalten wird.
+Wenn eine Datei, z.B. ein Installationsprogramm, nach der Verwendung nicht mehr erforderlich ist, entfernen Sie die Datei, um die Imagegröße zu verringern. Dies muss in dem gleichen Schritt erfolgen, in dem die Datei in die Imageebene kopiert wurde. So wird verhindert, dass die Datei auf einer niedrigeren Imageebene beibehalten wird.
 
 In diesem Beispiel wird das Python-Paket heruntergeladen, ausgeführt und dann die ausführbare Datei entfernt. Dies alles wird in einem einzigen `RUN`-Vorgang ausgeführt und resultiert in einer einzelnen Imageebene.
 
@@ -120,11 +120,11 @@ RUN powershell.exe -Command \
   Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-## Optimieren der Buildgeschwindigkeit
+## <a name="optimize-build-speed"></a>Optimieren der Buildgeschwindigkeit
 
-### Mehrere Zeilen
+### <a name="multiple-lines"></a>Mehrere Zeilen
 
-Bei der Optimierung der Docker Build-Geschwindigkeit kann es vorteilhaft sein, Vorgänge in mehrere einzelne Anweisungen aufzuteilen. Mehrere `RUN`-Vorgänge steigern die Effizienz des Zwischenspeicherns. Für jede `RUN`-Anweisung wird eine individuelle Ebene erstellt, d. h. wenn ein identischer Schritt bereits in einem anderen Docker Build-Vorgang ausgeführt wurde, wird dieser zwischengespeicherte Vorgang (Imageebene) erneut verwendet. Das Ergebnis ist eine verringerte Docker Build-Laufzeit.
+Bei der Optimierung der Docker Build-Geschwindigkeit kann es vorteilhaft sein, Vorgänge in mehrere einzelne Anweisungen aufzuteilen. Mehrere `RUN`-Vorgänge steigern die Effizienz des Zwischenspeicherns. Für jede `RUN`-Anweisung wird eine individuelle Ebene erstellt, d.h. wenn ein identischer Schritt bereits in einem anderen Docker Build-Vorgang ausgeführt wurde, wird dieser zwischengespeicherte Vorgang (Imageebene) erneut verwendet. Das Ergebnis ist eine verringerte Docker Build-Laufzeit.
 
 Im folgenden Beispiel werden sowohl Apache als auch die verteilbaren Pakete von Visual Studio heruntergeladen, installiert und dann die nicht benötigten Dateien bereinigt. Dies alles erfolgt mit einer einzigen `RUN`-Anweisung. Wenn eine dieser Aktionen aktualisiert wird, werden alle Aktionen erneut ausgeführt.
 
@@ -197,7 +197,7 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 6801d964fda5        5 months ago
 ```
 
-### Anordnung von Anweisungen
+### <a name="ordering-instructions"></a>Anordnung von Anweisungen
 
 Eine Dockerfile-Datei wird von oben nach unten verarbeitet und jede Anweisung mit den zwischengespeicherten Ebenen verglichen. Wenn eine Anweisung gefunden wird, der keine zwischengespeicherte Ebene zugeordnet ist, werden diese Anweisung und alle nachfolgenden Anweisungen in neuen Containerimageebenen verarbeitet. Aus diesem Grund ist die Reihenfolge wichtig, in der die Anweisungen platziert werden. Platzieren Sie Anweisungen, die konstant bleiben werden, im oberen Teil der Dockerfile-Datei. Platzieren Sie Anweisungen, die sich ändern könnten, im unteren Teil der Dockerfile-Datei. Dies reduziert die Wahrscheinlichkeit, dass der vorhandene Cache negiert wird.
 
@@ -248,9 +248,9 @@ c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB
 6801d964fda5        5 months ago                                 0 B
 ```
 
-## Optische Optimierung
+## <a name="cosmetic-optimization"></a>Optische Optimierung
 
-### Groß-/Kleinschreibung der Anweisung
+### <a name="instruction-case"></a>Groß-/Kleinschreibung der Anweisung
 
 Bei Dockerfile-Anweisungen wird nicht zwischen Groß- und Kleinschreibung unterschieden, üblicherweise werden jedoch Großbuchstaben verwendet. Dies verbessert die Lesbarkeit durch die Unterscheidung zwischen Anweisungsaufruf und Anweisungsvorgang. Die folgenden beiden Beispiele veranschaulichen dieses Konzept. 
 
@@ -273,7 +273,7 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-### Zeilenumbruch
+### <a name="line-wrapping"></a>Zeilenumbruch
 
 Lange und komplexe Vorgänge können mit dem umgekehrten Schrägstrich (`\`) auf mehrere Zeilen verteilt werden. Die folgende Dockerfile-Datei installiert das verteilbare Paket von Visual Studio, entfernt die Dateien des Installationsprogramms und erstellt dann eine Konfigurationsdatei. Alle diese drei Vorgänge werden in einer Zeile angegeben.
 
@@ -294,14 +294,8 @@ RUN powershell -Command \
     New-Item c:\config.ini
 ```
 
-## Weitere Informationen und Referenzen
+## <a name="further-reading--references"></a>Weitere Informationen und Referenzen
 
 [Dockerfile on Windows] (Dockerfile unter Windows) (manage-windows-dockerfile.md)
 
 [Bewährte Methoden zum Schreiben von Dockerfiles auf Docker.com](https://docs.docker.com/engine/reference/builder/)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-

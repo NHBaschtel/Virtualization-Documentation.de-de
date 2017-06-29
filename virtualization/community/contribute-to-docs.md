@@ -8,17 +8,16 @@ ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
 ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: d4fd2dbaf362ac3ad52667743177a203174b397d
-
+ms.openlocfilehash: b5fe1a2e4c59007fbbb679c9050e28a5e076b08f
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Beiträge zu den Dokumenten leisten
+# <a name="contribute-to-the-docs"></a>Beiträge zu den Dokumenten leisten
 
 > **Hinweis:** Um Beiträge erstellen zu können, benötigen Sie ein Konto auf [GitHub](https://www.github.com).
 
-## Bearbeiten eines vorhandenen Dokuments
+## <a name="edit-an-existing-doc"></a>Bearbeiten eines vorhandenen Dokuments
 
 1. Suchen Sie das Dokument, das Sie bearbeiten möchten.  
 
@@ -59,18 +58,18 @@ ms.openlocfilehash: d4fd2dbaf362ac3ad52667743177a203174b397d
 
 7. Erstellen einer [Pull-Anforderung](contribute-to-docs.md#pull-requests)  
 
-## Pull-Anforderungen
+## <a name="pull-requests"></a>Pull-Anforderungen
 
 Die meisten Änderungen werden per Pull-Anforderung ausgeführt.  Eine Pull-Anforderung ist eine Möglichkeit, ein Changeset gemeinsam mit mehrere Reviewern zu überprüfen, die den aktuellen Inhalt ändern und kommentieren können.
 
 
-## Verzweigen des Repositorys und lokales Bearbeiten
+## <a name="fork-the-repo-and-edit-locally"></a>Verzweigen des Repositorys und lokales Bearbeiten
 
 Wenn Sie länger mit Dokumenten arbeiten müssen, klonen Sie das Repository lokal, und arbeiten Sie auf Ihrem Computer.
 
 Die folgende Anleitung zeigt, wie Sie mein (Sarah Cooleys) Setup emulieren.  Es gibt viele alternative Setups, die ebenso gut funktionieren.
 
-> **Hinweis:** All diese Dokumenttools funktionieren ebenso gut unter Linux/OS X.  Wenn Sie weitere Anleitungen möchten, fragen Sie uns bitte.
+> **Hinweis:** All diese Dokumenttools funktionieren ebenso gut unter Linux/OSX.  Wenn Sie weitere Anleitungen möchten, fragen Sie uns bitte.
 
 Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
 * [Einrichten von Git](contribute-to-docs.md#set-up-git)
@@ -85,7 +84,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   * Exemplarische Vorgehensweise für VSCode für Git – einige nützliche Funktionen
   * Ausführen des ersten Commits
 
-### Einrichten von Git
+### <a name="set-up-git"></a>Einrichten von Git
 
 1. Installieren Sie Git (unter Windows) von [hier](https://git-for-windows.github.io/).
 
@@ -162,7 +161,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   Install-Module -Name posh-git
   ```
 
-  Um Posh-Git so einzurichten, dass es bei jedem Start von PowerShell aktiviert wird, fügen Sie Ihrem PowerShell-Profil (z. B. `%UserProfile%\My Documents\WindowsPowerShell\profile.ps1 `) folgenden Befehl hinzu:
+  Um Posh-Git so einzurichten, dass es bei jedem Start von PowerShell aktiviert wird, fügen Sie Ihrem PowerShell-Profil (z.B. `%UserProfile%\My Documents\WindowsPowerShell\profile.ps1 `) folgenden Befehl hinzu:
 
   ``` PowerShell
   Import-Module posh-git
@@ -179,7 +178,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   }
   ```
 
-### Validieren und Ausführen eines Stashs für Anmeldeinformationen
+### <a name="validate-and-stash-credentials"></a>Validieren und Ausführen eines Stashs für Anmeldeinformationen
 
   Um zu überprüfen, ob das Repository ordnungsgemäß eingerichtet ist, rufen Sie per Pull neue Inhalte ab.
 
@@ -188,17 +187,11 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   ```
 
 
-### Einrichten der Umgebung für die Markdownbearbeitung
+### <a name="set-up-markdown-editing-environment"></a>Einrichten der Umgebung für die Markdownbearbeitung
 
 1. Laden Sie VSCode herunter.
 
 6. Führen Sie einen Testcommit aus.  Wenn ein ordnungsgemäßer Stash für Ihre Anmeldeinformationen ausgeführt wurde, sollte alles reibungslos funktionieren.
 
-
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

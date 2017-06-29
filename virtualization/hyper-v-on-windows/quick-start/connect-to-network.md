@@ -8,25 +8,23 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
-translationtype: Human Translation
-ms.sourcegitcommit: f6ff0ec825091ad30016be958ff7f55ff6a907ed
-ms.openlocfilehash: 67513f6ee7d990f4d9086dfd63fb719374377b1f
-ms.lasthandoff: 03/01/2017
-
+ms.openlocfilehash: 12792da23a9e9f85674e8878f5bf81f8bc7ab4e4
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Erstellen eines virtuellen Netzwerks
+# <a name="create-a-virtual-network"></a>Erstellen eines virtuellen Netzwerks
 
 Ihre virtuellen Computer benötigen ein virtuelles Netzwerk, wenn ein Netzwerk auf Ihrem Computer freigegeben werden soll.  Das Erstellen eines virtuellen Netzwerks ist optional. Wenn Ihr virtueller Computer nicht mit dem Internet oder einem Netzwerk verbunden sein muss, fahren Sie fort mit [Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md).
 
 
-## Verbinden von virtuellen Computern mit dem Internet
+## <a name="connect-virtual-machines-to-the-internet"></a>Verbinden von virtuellen Computern mit dem Internet
 
 Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen eines externen Switches zum Teilen des Netzwerks Ihres Computers mit den darauf ausgeführten virtuellen Computern
 
 In dieser Übung wird das Erstellen eines externen virtuellen Switches behandelt. Nach Abschluss der Übung verfügt Ihr Hyper-V-Host über einen virtuellen Switch, mit dem virtuelle Computer über die Netzwerkverbindung des Computers eine Verbindung mit dem Internet herstellen können. 
 
-### Erstellen eines virtuellen Switches mit dem Hyper-V-Manager
+### <a name="create-a-virtual-switch-with-hyper-v-manager"></a>Erstellen eines virtuellen Switches mit dem Hyper-V-Manager
 
 1. Öffnen Sie den Hyper-V-Manager.  Die schnellste Möglichkeit dafür ist: Wählen Sie die Windows-Taste, und geben Sie dann „Hyper-V-Manager“ ein.  
 Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-Verwaltungstools nicht aktiviert.  Befolgen Sie die Anweisungen in [Aktivieren von Hyper-V](enable-hyper-v.md).
@@ -41,7 +39,7 @@ Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-V
 
 6. Klicken Sie auf die Schaltfläche **Virtuellen Switch erstellen**.
 
-7. Geben Sie unter „Eigenschaften für virtuelle Switches“ dem neuen Switch einen Namen, z. B. **Externer VM-Switch**.
+7. Geben Sie unter „Eigenschaften für virtuelle Switches“ dem neuen Switch einen Namen, z.B. **Externer VM-Switch**.
 
 8. Stellen Sie unter „Verbindungstyp“ sicher, dass **Externes Netzwerk** ausgewählt wurde.
 
@@ -56,7 +54,7 @@ Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-V
 11. Klicken Sie auf **OK**, um das Fenster „Manager für virtuelle Switches“ zu schließen.
 
 
-### Erstellen eines virtuellen Switches mit PowerShell
+### <a name="create-a-virtual-switch-with-powershell"></a>Erstellen eines virtuellen Switches mit PowerShell
 
 Über die folgenden Schritte mit PowerShell können Sie einen virtuellen Switch mit einer externen Verbindung erstellen. 
 
@@ -83,9 +81,9 @@ Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-V
     New-VMSwitch -Name "External VM Switch" -AllowManagementOS $True -NetAdapterName $net.Name
     ```
 
-## Virtuelle Netzwerke auf dem Laptop
+## <a name="virtual-networking-on-a-laptop"></a>Virtuelle Netzwerke auf dem Laptop
 
-### NAT-Networking
+### <a name="nat-networking"></a>NAT-Networking
 Die Netzwerkadressenübersetzung (Network Address Translation, NAT) ermöglicht dem virtuellen Computer durch die Kombination der IP-Adresse des Hostcomputers mit einem Port den Zugriff auf das Netzwerk Ihres Computers über einen internen virtuellen Hyper-V-Switch.
 
 Dies hat einige Vorteile:
@@ -95,10 +93,9 @@ Dies hat einige Vorteile:
 
 Im [Benutzerhandbuch für NAT-Networking](../user-guide/setup-nat-network.md) finden Sie eine Anleitung, um ein NAT-Netzwerk einzurichten und eine Verbindung mit einem virtuellen Computer herzustellen.
 
-### Zwei Switches verwenden
+### <a name="the-two-switch-approach"></a>Zwei Switches verwenden
 Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen einem Drahtlosnetzwerk und einem kabelgebundenen Netzwerk wechseln, empfiehlt es sich, einen virtuellen Switch für die Ethernet-Netzwerkkarte und einen für die WLAN-Netzwerkkarte zu erstellen. Bei dieser Konfiguration können Sie Ihre virtuellen Computer zwischen diesen Switches abhängig davon umschalten, wie der Laptop mit dem Netzwerk verbunden ist. Virtuelle Computer wechseln nicht automatisch zwischen drahtgebundenen und drahtlosen Netzwerken.
 
 
-## Nächster Schritt: Erstellen eines virtuellen Computers
+## <a name="next-step---create-a-virtual-machine"></a>Nächster Schritt: Erstellen eines virtuellen Computers
 [Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md)
-

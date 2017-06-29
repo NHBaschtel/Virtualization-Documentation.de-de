@@ -9,13 +9,12 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 9cafd6cb-dbbe-4b91-b26c-dee1c18fd8c2
 redirect_url: https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/manage-Hyper-V-integration-services
-translationtype: Human Translation
-ms.sourcegitcommit: 687a3b35c1ee41b9620b1ae296255d681c672646
-ms.openlocfilehash: c27a51e9a12de9cec2720eadf6e09b8a582bae77
-
+ms.openlocfilehash: 83bcc4c2f47e2a3921be257f45a3a0e22dcba89a
+ms.sourcegitcommit: fd6c5ec419aae425af7ce6c6a44d59c98f62502a
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Verwalten von Hyper-V-Integrationsdiensten
+# <a name="managing-hyper-v-integration-services"></a>Verwalten von Hyper-V-Integrationsdiensten
 
 Integrationsdienste (oft als „Integrationskomponenten“ bezeichnet) ermöglichen dem virtuellen Computer das Kommunizieren mit dem Hyper-V-Host. Viele dieser Dienste stellen Vorteile dar (z.B. Kopieren von Gastdateien), während andere für das problemlose Funktionieren des virtuellen Computers recht wichtig sein können (z.B. Zeitsynchronisierung).
 
@@ -23,20 +22,17 @@ Dieser Artikel enthält ausführliche Informationen zum Verwalten von Integratio
 
 Weitere Informationen zu den einzelnen Integrationsdiensten finden Sie unter [Integrationsdienste](../reference/integration-services.md).
 
-## Aktivieren und Deaktivieren von Integrationsdiensten mit Hyper-V-Manager
+## <a name="enable-or-disable-integration-services-using-hyper-v-manager"></a>Aktivieren und Deaktivieren von Integrationsdiensten mit Hyper-V-Manager
 
 1. Wählen Sie einen virtuellen Computer aus, und öffnen Sie „Einstellungen“.
-  ![](./media/HyperVManager-OpenVMSettings.png)
   
 2. Wechseln Sie im Fenster „Einstellungen“ des virtuellen Computers unter „Verwaltung“ zur Registerkarte „Integrationsdienste“.
-  
-  ![](./media/HyperVManager-IntegrationServices.png)
   
   Hier sehen Sie alle Integrationsdienste, die auf diesem Hyper-V-Host verfügbar sind.  Wichtig ist der Hinweis, dass das Gastbetriebssystem ggf. nicht alle aufgeführten Integrationsdienste unterstützt. Um die Versionsinformationen eines Gastbetriebssystems zu ermitteln, melden Sie sich am Gastbetriebssystem an und führen an der Eingabeaufforderung den folgenden Befehl aus.
 
 REG QUERY "HKLM\Software\Microsoft\Virtual Machine\Auto" /v IntegrationServicesVersion
 
-## Aktivieren und Deaktivieren von Integrationsdiensten mit PowerShell
+## <a name="enable-or-disable-integration-services-using-powershell"></a>Aktivieren und Deaktivieren von Integrationsdiensten mit PowerShell
 
 Integrationsdienste können auch mit PowerShell durch Ausführen von [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) bzw. [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx) aktiviert und deaktiviert werden.
 
@@ -77,13 +73,13 @@ In diesem Beispiel aktivieren und deaktivieren wir den Integrationsdienst für d
 Integrationsdienste sind so konzipiert, dass sie für ein ordnungsgemäßes Funktionieren sowohl im Host- als auch im Gastsystem aktiviert sein müssen.  In Windows-Gastbetriebssystemen sind Integrationsdienste standardmäßig aktiviert, können aber deaktiviert werden.  Dies wird im nächsten Abschnitt erläutert.
 
 
-## Verwalten von Integrationsdiensten im Gastbetriebssystem (Windows)
+## <a name="manage-integration-services-from-guest-os-windows"></a>Verwalten von Integrationsdiensten im Gastbetriebssystem (Windows)
 
 > **Hinweis:** Durch das Deaktivieren von Integrationsdiensten kann die Fähigkeit des Hosts zum Verwalten Ihres virtuellen Computers gravierend eingeschränkt werden.  Integrationsdienste müssen für einen ordnungsgemäßen Betrieb auf Host und Gast aktiviert sein.
 
 Integrationsdienste werden unter Windows als Dienste angezeigt. Zum Aktivieren oder Deaktivieren eines Integrationsdiensts innerhalb des virtuellen Computers öffnen Sie den Windows-Dienste-Manager.
 
-![](media/HVServices.png) 
+![](../user-guide/media/HVServices.png) 
 
 Suchen Sie die Dienste, die „Hyper-V“ im Namen enthalten. Klicken Sie mit der rechten Maustaste auf den Dienst, den Sie aktivieren oder deaktivieren bzw. starten oder beenden möchten.
 
@@ -110,11 +106,11 @@ Running  vmicvss            Hyper-V Volume Shadow Copy Requestor
 
 Starten oder Beenden von Diensten mit [`Start-Service`](https://technet.microsoft.com/en-us/library/hh849825.aspx) oder [`Stop-Service`](https://technet.microsoft.com/en-us/library/hh849790.aspx).
 
-Um z. B. PowerShell Direct zu deaktivieren, können Sie `Stop-Service -Name vmicvmsession` ausführen.
+Um z.B. PowerShell Direct zu deaktivieren, können Sie `Stop-Service -Name vmicvmsession` ausführen.
 
 Standardmäßig sind alle Integrationsdienste im Gastbetriebssystem aktiviert.
 
-## Verwalten von Integrationsdiensten im Gastbetriebssystem (Linux)
+## <a name="manage-integration-services-from-guest-os-linux"></a>Verwalten von Integrationsdiensten im Gastbetriebssystem (Linux)
 
 Linux-Integrationsdienste werden in der Regel über den Linux-Kernel bereitgestellt.
 
@@ -195,30 +191,30 @@ sudo hv_kvp_daemon
 Wenn Sie `ps -ef | hv` nochmals ausführen, sehen Sie, dass ein `hv_kvp_daemon`-Prozess mit einer neuen Prozess-ID vorhanden ist.
 
 
-## Wartung von Integrationsdiensten
+## <a name="integration-service-maintenance"></a>Wartung von Integrationsdiensten
 
 Die Wartung von Integrationsdiensten in Windows 10 erfolgt standardmäßig, sofern Ihre virtuellen Computer wichtige Updates von Windows Update erhalten können.  
 
 Indem die Integrationsdienste auf dem neuesten Stand gehalten werden, können die bestmögliche Leistung sowie die besten Funktionen für virtuelle Computer bereitgestellt werden.
 
-**Für auf Windows 10-Hosts ausgeführte virtuelle Computer:**
+**Für auf Windows10-Hosts ausgeführte virtuelle Computer:**
 
 > **Hinweis:** Die ISO-Imagedatei „vmguest.iso“ wird nicht mehr zum Aktualisieren von Integrationskomponenten benötigt. Sie ist nicht in Hyper-V unter Windows 10 enthalten.
 
 | Gastbetriebssystem | Updatemechanismus | Anmerkungen |
 |:---------|:---------|:---------|
-| Windows 10 | Windows Update | |
-| Windows 8.1 | Windows Update | |
-| Windows 8 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
-| Windows 7 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
+| Windows 10 | Windows Update | |
+| Windows8.1 | Windows Update | |
+| Windows 8 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
+| Windows 7 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | Windows Vista (SP 2) | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | - | | |
 | Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
+| Windows Server 2012 | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | Windows Server 2008 R2 (SP 1) | Windows Update | Benötigt den Integrationsdienst „Datenaustausch“.* |
 | Windows Server 2008 (SP 2) | Windows Update | Erweiterte Unterstützung nur in Server 2016 ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=12925)). |
-| Windows Home Server 2011 | Windows Update | Nicht in Server 2016 unterstützt ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15820)). |
-| Windows Small Business Server 2011 | Windows Update | Nicht im grundlegenden Support enthalten ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15817)). |
+| Windows Home Server2011 | Windows Update | Nicht in Server 2016 unterstützt ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15820)). |
+| Windows Small Business Server2011 | Windows Update | Nicht im grundlegenden Support enthalten ([Weitere Informationen](https://support.microsoft.com/en-us/lifecycle?p1=15817)). |
 | - | | |
 | Linux-Gastbetriebssysteme | Paket-Manager | Linux-Integrationskomponenten sind in die Distribution integriert. Es können jedoch optionale Updates verfügbar sein. ******** |
 
@@ -226,54 +222,48 @@ Indem die Integrationsdienste auf dem neuesten Stand gehalten werden, können di
   Anweisungen zum Ausführen einer CAB-Datei finden Sie [hier](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
 
 
-**Für auf Windows 8.1-Hosts ausgeführte virtuelle Computer:**
+**Für auf Windows8.1-Hosts ausgeführte virtuelle Computer:**
 
 | Gastbetriebssystem | Updatemechanismus | Anmerkungen |
 |:---------|:---------|:---------|
-| Windows 10 | Windows Update | |
-| Windows 8.1 | Windows Update | |
-| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 10 | Windows Update | |
+| Windows8.1 | Windows Update | |
+| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Vista (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows XP (SP 2, SP 3) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | - | | |
-| Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Server 2008 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Home Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Small Business Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Home Server2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Small Business Server2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Server 2003 R2 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Server 2003 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | - | | |
 | Linux-Gastbetriebssysteme | Paket-Manager | Linux-Integrationskomponenten sind in die Distribution integriert. Es können jedoch optionale Updates verfügbar sein. ** |
 
 
-**Für auf Windows 8-Hosts ausgeführte virtuelle Computer:**
+**Für auf Windows8-Hosts ausgeführte virtuelle Computer:**
 
 | Gastbetriebssystem | Updatemechanismus | Anmerkungen |
 |:---------|:---------|:---------|
-| Windows 8.1 | Windows Update | |
-| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows8.1 | Windows Update | |
+| Windows 8 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows 7 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Vista (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows XP (SP 2, SP 3) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | - | | |
-| Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).|
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Server 2008 R2 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).|
 | Windows Server 2008 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Home Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
-| Windows Small Business Server 2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Home Server2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
+| Windows Small Business Server2011 | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Server 2003 R2 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | Windows Server 2003 (SP 2) | Integrationsdienste-Datenträger | Anweisungen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4). |
 | - | | |
 | Linux-Gastbetriebssysteme | Paket-Manager | Linux-Integrationskomponenten sind in die Distribution integriert. Es können jedoch optionale Updates verfügbar sein. ** |
 
  > ** Weitere Informationen zu Linux-Gastbetriebssystemen finden Sie [hier](https://technet.microsoft.com/en-us/library/dn531030.aspx). 
-
-
-
-<!--HONumber=Jan17_HO2-->
-
-

@@ -8,13 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: 9b630e372b575ef1721c0d0926ec2caec3e5ec34
-
+ms.openlocfilehash: ac6e99800fcabef31464a81799fc9e329438b0ae
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Dokumentation zu Windows-Containern
+# <a name="windows-containers-documentation"></a>Dokumentation zu Windows-Containern
 
 Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene und damit die Ausführung mehrerer isolierter Anwendungen auf einem einzigen System. Das Feature stellt zwei verschiedene Arten von Containerlaufzeiten mit zwei unterschiedlichen Anwendungsisolierungsgraden bereit. Windows Server-Container erreichen die Isolierung durch Namespace- und Prozessisolierung . Hyper-V-Container kapseln jeden Container in einer Lightweight-VM. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
 
@@ -38,7 +37,7 @@ Schnellstartanleitung für Windows 10<br /><br />
 <tr>
 <td ><center>![](media/1.png)</center></td>
 <td>**Bereitstellung**<br /><br />
-Hier erfahren Sie, wie Sie Windows-Container unter Windows Server 2016 und Nano Server bereitstellen.<br /><br />
+Hier erfahren Sie, wie Sie Windows-Container unter Windows Server2016 und Nano Server bereitstellen.<br /><br />
 <ul>
 <li>[Systemanforderungen](deploy-containers/system-requirements.md)<br /><br /></li>
 <li>[Bereitstellen eines Containerhosts – Windows Server](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
@@ -51,7 +50,7 @@ Hier erfahren Sie, wie Sie Windows-Container unter Windows Server 2016 und Nano
 <tr>
 <td ><center>![](media/explore.png)</center></td>
 <td>**Docker unter Windows**<br /><br />
-Hier finden Sie Informationen zum Verwalten von Docker unter Windows.<br /><br />
+Hier finden Sie Informationen Sie zum Verwalten von Docker unter Windows.<br /><br />
 <ul>
 <li>[Docker-Modul unter Windows](manage-docker/configure-docker-daemon.md)<br /><br /></li>
 <li>[Dockerfiles unter Windows](manage-docker/manage-windows-dockerfile.md)<br /><br /></li>
@@ -63,8 +62,8 @@ Hier finden Sie Informationen zum Verwalten von Docker unter Windows.<br /><br /
 
 <tr>
 <td ><center>![](media/video.png)</center></td>
-<td>**Anschauen**<br /><br />
-Sind Sie an Demos und Interviews mit dem Windows-Container-Team interessiert?<br /><br />
+<td>**Überwachen**<br /><br />
+Sie sind an Demos und Interviews mit dem Windows-Container-Team interessiert?<br /><br />
 <ul>
 <li>[Kanal zu Containern](https://channel9.msdn.com/Blogs/containers)</li>
 </ul>
@@ -84,9 +83,3 @@ Hier können Sie mit der Community interagieren, Beispiele testen und weitere Re
 </td>
 </tr>
 </table>
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-

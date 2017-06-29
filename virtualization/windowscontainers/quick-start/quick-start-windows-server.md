@@ -8,14 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
-translationtype: Human Translation
-ms.sourcegitcommit: 76e041aac426604280208f616f7994181112215a
-ms.openlocfilehash: 766a99a74738fa41ef77410c70aefa7e664f014e
-ms.lasthandoff: 03/01/2017
-
+ms.openlocfilehash: be51a89292f339c40b05bb48e0921777fd4a9801
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Windows-Container unter Windows Server
+# <a name="windows-containers-on-windows-server"></a>Windows-Container unter Windows Server
 
 Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features unter Windows Server 2016. In dieser Übung installieren Sie die Containerrolle, und stellen einen einfachen Windows Server-Container bereit. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start (Windows-Container – Schnellstart)](./index.md).
 
@@ -33,13 +31,13 @@ Wenn Sie das Feature in Azure bereitstellen möchten, können Sie diese [Vorlage
 </a>
 
 
-## 1. Installieren von Docker
+## <a name="1-install-docker"></a>1. Installieren von Docker
 
-Verwenden Sie das [PowerShell-Modul von OneGet](https://github.com/oneget/oneget), um Docker zu installieren. Der Anbieter aktiviert das Feature „Container“ auf Ihrem Computer. Außerdem installieren Sie Docker, was einen Neustart erforderlich macht. Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client.
+Zur Installation von Docker verwenden wir das [PowerShell-Modul von OneGet](https://github.com/oneget/oneget), das mit „Providern” zur Ausführung der Installation funktioniert, in diesem Fall dem [MicrosoftDockerProvider](https://github.com/OneGet/MicrosoftDockerProvider). Der Anbieter aktiviert das Feature „Container“ auf Ihrem Computer. Außerdem installieren Sie Docker, was einen Neustart erforderlich macht. Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client.
 
 Öffnen Sie eine PowerShell-Sitzung mit erhöhten Rechten, und führen Sie die folgenden Befehle aus.
 
-Installieren Sie zuerst den Docker-Microsoft-PackageManagement-Anbieter aus der PowerShell-Galerie.
+Installieren Sie zuerst den Docker-Microsoft-PackageManagement-Anbieter aus der [PowerShell-Galerie](https://www.powershellgallery.com/packages/DockerMsftProvider).
 
 ```none
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -56,7 +54,12 @@ Wenn PowerShell fragt, ob die Paketquelle „DockerDefault“ vertrauenswürdig 
 Restart-Computer -Force
 ```
 
-## 2. Installieren von Windows-Updates
+> Tipp: Wenn Sie Docker später aktualisieren möchten:
+>  - Überprüfen Sie die installierte Version mit `Get-Package -Name Docker -ProviderName DockerMsftProvider`
+>  - Suchen Sie die aktuelle Version mit `Find-Package -Name Docker -ProviderName DockerMsftProvider`
+>  - Sobald Sie bereit sind, aktualisieren Sie mithilfe von `Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force`, gefolgt von `Start-Service Docker`
+
+## <a name="2-install-windows-updates"></a>2. Installieren von Windows Updates
 
 Stellen Sie sicher, dass Ihr Windows Server System auf dem neuesten Stand ist, indem Sie folgendes ausführen:
 
@@ -84,7 +87,7 @@ Dadurch wird ein textbasiertes Konfigurationsmenü angezeigt, über das Sie die 
 
 Wählen Sie nach Aufforderung die Option „A“, um alle Updates herunterzuladen.
 
-## 3. Bereitstellen Ihres ersten Containers
+## <a name="3-deploy-your-first-container"></a>3. Bereitstellen Ihres ersten Containers
 
 Für diese Übung laden Sie ein vorab erstelltes .NET-Beispielimage von der Docker Hub-Registrierung herunter und stellen einen einfachen Container bereit, der eine Hello World .NET-Anwendung ausführt.  
 
@@ -144,9 +147,8 @@ OS: Microsoft Windows 10.0.14393
 
 Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu „Docker Run“ auf Docker.com]( https://docs.docker.com/engine/reference/run/).
 
-## Nächste Schritte
+## <a name="next-steps"></a>Nächste Schritte
 
 [Containerimages unter Windows Server](./quick-start-images.md)
 
-[Windows-Container unter Windows 10](./quick-start-windows-10.md)
-
+[Windows-Container unter Windows10](./quick-start-windows-10.md)

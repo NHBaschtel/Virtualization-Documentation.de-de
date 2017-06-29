@@ -1,46 +1,43 @@
 ---
-title: Bereitstellen eines virtuellen Windows-Computers in Hyper-V unter Windows 10
-description: Bereitstellen eines virtuellen Windows-Computers in Hyper-V unter Windows 10
-keywords: Windows 10, Hyper-V
+title: Erstellen eines virtuellen Computers mit Hyper-V
+description: Erstellen eines virtuellen Computers auf Windows 10 mit Hyper-V
+keywords: Windows10, Hyper-V
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: 19889805c3e4d6d650306de1028e117bcb42ec71
-
+ms.openlocfilehash: 200ec68011628262950362620ae5b438f1b6b86c
+ms.sourcegitcommit: c8e6bf83ee873fe19b522ba9e416ecf5d29f4c95
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
+# <a name="create-virtual-machine-with-hyper-v-on-windows-10"></a>Erstellen eines virtuellen Computers auf Windows 10 mit Hyper-V
 
-# Bereitstellen eines virtuellen Windows-Computers in Hyper-V unter Windows 10
+Hier erfahren Sie, wie Sie einen virtuellen Computer erstellen und ein Betriebssystem auf dem neuen virtuellen Computer installieren können.  Sie benötigen eine ISO-Datei für das von Ihnen ausgewählte Betriebssystem. Beziehen Sie bei Bedarf eine Evaluierungsversion von Windows 10 aus dem [TechNet-Evaluierungscenter](http://www.microsoft.com/en-us/evalcenter/).
 
-Sie können einen virtuellen Computer erstellen und ihm auf viele verschiedene Arten ein Betriebssystem bereitstellen, z. B. mithilfe der Windows-Bereitstellungsdienste, durch Anfügen einer vorbereiteten virtuellen Festplatte oder manuell mithilfe des Installationsmediums. In diesem Artikel wird erläutert, wie Sie einen virtuellen Computer erstellen und auf diesem mithilfe des Installationsmediums ein entsprechendes Betriebssystem bereitstellen.
+## <a name="create-a-virtual-machine-with-hyper-v-manager"></a>Erstellen eines virtuellen Computers mit dem Hyper-V-Manager
 
-Bevor Sie mit dieser Übung beginnen, benötigen Sie eine ISO-Datei für das Betriebssystem, das Sie bereitstellen möchten. Beziehen Sie bei Bedarf eine Evaluierungsversion von Windows 8.1 oder Windows 10 aus dem [TechNet-Evaluierungscenter](http://www.microsoft.com/en-us/evalcenter/).
+1. Öffnen Sie Hyper-V-Manager, indem Sie entweder die Windows-Taste drücken und "Hyper-V-Manager" eingeben oder suchen Sie **Hyper-V-Manager** in Ihren Apps.
 
-## Erstellen eines virtuellen Computers mit dem Hyper-V-Manager
-Sie führen die folgenden Schritte aus, um einen virtuellen Computer manuell zu erstellen und ihm ein Betriebssystem bereitzustellen.
-
-1. Klicken Sie im Hyper-V-Manager auf **Aktion** > **Neu** > **Virtueller Computer**, um den Assistenten für neue virtuelle Computer anzuzeigen.
+2. Klicken Sie im Hyper-V-Manager auf **Aktion** > **Neu** > **Virtueller Computer**, um den Assistenten für neue virtuelle Computer anzuzeigen.
 
 2. Lesen Sie den Abschnitt „Vorbemerkungen“, und klicken Sie auf **Weiter**. 
 
 3. Geben Sie dem virtuellen Computer einen Namen.
   > **Hinweis:** Dies ist der Name, den Hyper-V für den virtuellen Computer verwendet, nicht der Computername für das Gastbetriebssystem, das innerhalb des virtuellen Computers bereitgestellt wird.
 
-4. Wählen Sie einen Pfad, in dem die Dateien des virtuellen Computers gespeichert werden, z. B. **c:\VM**. Sie können auch den Standardspeicherort übernehmen. Klicken Sie, sobald Sie fertig sind, auf **Weiter**.
+4. Wählen Sie einen Pfad, in dem die Dateien des virtuellen Computers gespeichert werden, z.B. **c:\VM**. Sie können auch den Standardspeicherort übernehmen. Klicken Sie, sobald Sie fertig sind, auf **Weiter**.
     
   ![](media/new_vm_upd.png)
 
 5. Wählen Sie eine Generation für den virtuellen Computer aus, und klicken Sie auf **Weiter**.  
 
-  Virtuelle Computer der Generation 2 wurden mit Windows Server 2012 R2 eingeführt und bieten ein vereinfachtes virtuelles Hardwaremodell und verschiedene Zusatzfunktionen. Auf virtuellen Computern der Generation 2 kann nur ein 64-Bit-Betriebssystem installiert werden. Weitere Informationen zu virtuellen Computern der 2. Generation finden Sie unter [Virtuelle Computer der Generation 2 (Übersicht)](https://technet.microsoft.com/en-us/library/dn282285.aspx).
+  Virtuelle Computer der Generation 2 wurden mit Windows Server 2012 R2 eingeführt und bieten ein vereinfachtes virtuelles Hardwaremodell und verschiedene Zusatzfunktionen. Auf virtuellen Computern der Generation 2 kann nur ein 64-Bit-Betriebssystem installiert werden. Weitere Informationen zu virtuellen Computern der 2.Generation finden Sie unter [Virtuelle Computer der Generation 2 (Übersicht)](https://technet.microsoft.com/en-us/library/dn282285.aspx).
   
   > Wenn der neue virtuelle Computer als 2. Generation konfiguriert ist und eine Linux-Distribution ausführt, muss der sichere Start deaktiviert werden. Weitere Informationen zum sicheren Start finden Sie unter [Secure Boot](https://technet.microsoft.com/en-us/library/dn486875.aspx).
 
-6. Wählen Sie **2048** MB als Wert für **Arbeitsspeicher beim Start**, und lassen Sie **Dynamischen Arbeitsspeicher aktivieren** ausgewählt. Klicken Sie auf die Schaltfläche **Weiter**.  
+6. Wählen Sie **2048**MB als Wert für **Arbeitsspeicher beim Start**, und lassen Sie **Dynamischen Arbeitsspeicher aktivieren** ausgewählt. Klicken Sie auf die Schaltfläche **Weiter**.  
 
   Arbeitsspeicher wird von einem Hyper-V-Host und dem auf diesem ausgeführten virtuellen Computer gemeinsam genutzt. Die Anzahl der virtuellen Computer, die auf einem Host ausgeführt werden können, hängt zum Teil vom verfügbaren Arbeitsspeicher ab. Ein virtueller Computer kann auch für die Verwendung von dynamischem Arbeitsspeicher konfiguriert werden. Falls aktiviert, gibt die dynamische Arbeitsspeicherfunktion vom ausgeführten virtuellen Computer nicht genutzten Arbeitsspeicher frei. Dadurch können mehr virtuelle Computer auf dem Host ausgeführt werden. Weitere Informationen zu dynamischem Arbeitsspeicher finden Sie unter [Dynamischer Hyper-V-Arbeitsspeicher – Übersicht](https://technet.microsoft.com/en-us/library/hh831766.aspx).
 
@@ -64,7 +61,7 @@ Sie führen die folgenden Schritte aus, um einen virtuellen Computer manuell zu 
   
 10. Überprüfen Sie die Details des virtuellen Computers, und klicken Sie zum Abschließen der Erstellung auf **Fertig stellen**.
 
-## Erstellen eines virtuellen Computers mit PowerShell
+## <a name="create-a-virtual-machine-with-powershell"></a>Erstellen eines virtuellen Computers mit PowerShell
 
 1. Öffnen Sie die PowerShell ISE als Administrator.
 
@@ -90,7 +87,7 @@ Sie führen die folgenden Schritte aus, um einen virtuellen Computer manuell zu 
   Set-VMFirmware -VMName $VMName -FirstBootDevice $DVDDrive
   ```
   
-## Abschließen der Betriebssystembereitstellung
+## <a name="complete-the-operating-system-deployment"></a>Abschließen der Betriebssystembereitstellung
 
 Um die Erstellung des virtuellen Computers abzuschließen, müssen Sie den virtuellen Computer starten und die Installation des Betriebssystems durchlaufen.
 
@@ -104,11 +101,3 @@ Um die Erstellung des virtuellen Computers abzuschließen, müssen Sie den virtu
   ![](media/OSDeploy_upd.png) 
 
 > **Hinweis:** Um Windows auf einem virtuellen Computer ausführen zu können, benötigen Sie eine separate Lizenz, es sei denn, Sie führen eine Volumenlizenzversion von Windows aus. Das Betriebssystem des virtuellen Computers ist unabhängig vom Betriebssystem des Hosts.
-
-## Nächster Schritt: Arbeiten mit PowerShell und Hyper-V
-[Hyper-V und Windows PowerShell](try-hyper-v-powershell.md)
-
-
-<!--HONumber=Jan17_HO2-->
-
-

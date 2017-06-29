@@ -8,249 +8,146 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-translationtype: Human Translation
-ms.sourcegitcommit: 23d4b665da627f35cf5fce49c3c9974d0ef287dd
-ms.openlocfilehash: e56a5b984cc1c42e27628d00a5cd532788aef11c
-ms.lasthandoff: 02/10/2017
-
+ms.openlocfilehash: cfab87efeb04f701f405739d53e6028f841712ce
+ms.sourcegitcommit: ca64c1aceccd97c6315b28ff814ec7ac91fba9da
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 05/09/2017
 ---
+# <a name="windows-container-networking"></a>Windows-Containernetzwerk
+> ***Weitere Informationen für allgemeine Docker-Netzwerkbefehle, ‑Optionen und ‑Syntax finden Sie unter [Docker-Containernetzwerk](https://docs.docker.com/engine/userguide/networking/).*** Mit Ausnahme der in diesem Dokument beschriebenen Fälle werden alle Docker-Netzwerkbefehle unter Windows mit der gleichen Syntax wie unter Linux unterstützt. Beachten Sie jedoch, dass die Netzwerkstapel sich in Windows und Linux unterscheiden und daher einige Linux-Netzwerkbefehle (z.B. ifconfig) unter Windows nicht unterstützt werden.
 
-# Container-Networking
+## <a name="basic-networking-architecture"></a>Grundlegende Netzwerkarchitektur
+Dieses Thema enthält eine Übersicht daüber, wie Docker Netzwerke unter Windows erstellt und verwaltet. Windows-Container funktionieren in Bezug auf Netzwerke ähnlich wie virtuelle Computer. Jeder Container verfügt über einen virtuellen Netzwerkadapter (vNIC). der mit einem virtuellen Hyper-V-Switch (vSwitch) verbunden ist. Windows unterstützt fünf verschiedene Netzwerktreiber oder Modi, die über Docker erstellt werden können: *nat*, *overlay*, *transparent*, *l2bridge* und *l2tunnel*. Sie sollten den Netzwerktreiber auswählen, der Ihren Bedürfnissen im Hinblick auf Ihre physische Netzwerkinfrastruktur und die Netzwerkanforderungen (Netzwerk mit einem oder mehreren Hosts) am besten gerecht wird.
 
-Windows-Container funktionieren in Bezug auf Netzwerke ähnlich wie virtuelle Computer. Jeder Container verfügt über einen virtuellen Netzwerkadapter (vNIC), der mit einem virtuellen Switch (vSwitch) verbunden ist, über den eingehender und ausgehender Datenverkehr weitergeleitet wird. Um eine Trennung der Container zu erzwingen, die sich auf dem gleichen Host befinden, wird für jeden Windows Server- und Hyper-V-Container ein Netzwerkbereich erstellt, in dem der Netzwerkadapter für den Container installiert wird. Windows Server-Container verwenden eine Host-vNIC für die Verbindung mit dem virtuellen Switch. Hyper-V-Container verwenden eine synthetische VM-NIC (nicht für die Utility-VM verfügbar gemacht) für die Verbindung mit dem virtuellen Switch.
+<figure>
+  <img src="media/windowsnetworkstack-simple.png">
+</figure>  
 
-Windows-Container unterstützen vier verschiedene Netzwerktreiber oder -modi: *nat*, *transparent*, *l2bridge* und *l2tunnel*. Sie sollten den Netzwerkmodus auswählen, der Ihren Bedürfnissen im Hinblick auf Ihre physische Netzwerkinfrastruktur und die Netzwerkanforderungen (Netzwerk mit einem oder mehreren Hosts) am besten gerecht wird.
+Wenn die Docker-Engine das erste Mal ausgeführt wird, wird ein standardmäßiges NAT-Netzwerk erstellt ('nat'), das einen internen vSwitch und eine Windows-Komponente mit dem Namen `WinNAT` verwendet. Falls vorhandene externe vSwitches auf dem Host existieren, die über PowerShell oder den Hyper-V-Manager erstellt wurden, stehen diese ebenfalls über den *transparenten* Netzwerktreiber für Docker zur Verfügung und werden dann angezeigt, wenn Sie den Befehl ``docker network ls`` ausführen.  
 
-Beim ersten Ausführen des dockerd-Diensts wird vom Docker-Modul standardmäßig ein NAT-Netzwerk erstellt. Das erstellte interne IP-Standardpräfix ist 172.16.0.0/12. Containerendpunkte werden automatisch an dieses Standardnetzwerk angefügt und einer IP-Adresse aus dessen internen Präfix zugewiesen.
+<figure>
+  <img src="media/docker-network-ls.png">
+</figure>
 
-> Hinweis: Wenn sich Ihre Containerhost-IP im selben Präfix befindet, müssen Sie das NAT-interne IP-Präfix entsprechend der folgenden Beschreibung ändern.
+> - Ein ***interner*** vSwitch ist ein Switch, der nicht direkt mit einem Netzwerkadapter auf dem Containerhost verbunden ist 
 
-Auf demselben Containerhost können zusätzliche Netzwerke, die einen anderen Treiber verwenden (z. B. „transparent“ „l2bridge“), erstellt werden. Die folgende Tabelle zeigt, wie die Netzwerkkonnektivität für interne (Container-zu-Container) und externe Verbindungen für jeden Modus bereitgestellt wird.
+> - Ein ***externer*** vSwitch ist ein Switch, der _direkt_ mit einem Netzwerkadapter auf dem Containerhost verbunden ist  
 
-- **Netzwerkadressübersetzung (Network Address Translation, NAT)** – Jeder Container erhält eine IP-Adresse aus einem internen, privaten IP-Präfix (z. B. 172.16.0.0/12). Portweiterleitung/-zuordnung vom Containerhost zu Containerendpunkten wird unterstützt.
+<figure>
+  <img src="media/get-vmswitch.png">
+</figure>
 
-- **Transparent** – Jeder Containerendpunkt ist direkt mit dem physischen Netzwerk verbunden. IPs aus dem physischen Netzwerk können mithilfe eines externen DHCP-Servers statisch oder dynamisch zugewiesen werden.
+Das NAT-Netzwerk ist das Standardnetzwerk bei Containern, die unter Windows ausgeführt werden. Container, die unter Windows ohne Flags oder Argumente zur Implementierung bestimmter Konfigurationen ausgeführt werden, werden an das standardmäßige NAT-Netzwerk angeschlossen und einer IP-Adresse aus dem NAT-Netzwerk aus dessen internen Präfix-IP-Bereich zugewiesen. Der verwendete interne IP-Standardpräfix für NAT ist 172.16.0.0/16. 
 
-- **[Neu!] Überlagerung** – Wenn das Docker-Modul im [Schwarmmodus](./swarm-mode.md) ausgeführt wird, können Überlagerungsnetzwerke, die auf der VXLAN Technologie basieren, verwendet werden, um Containerendpunkte über mehrere Containerhosts zu verbinden. Jedes Überlagerungsnetzwerk, das für einen Schwarmcluster erstellt wird, wird mit einem eigenen IP-Subnetz erstellt, das durch ein privates IP-Präfix definiert ist.
 
-- **L2-Bridge** – Alle Containerendpunkte befinden sich im gleichen IP-Subnetz wie der Containerhost. Die IP-Adressen müssen statisch aus dem gleichen Präfix wie der Containerhost zugewiesen werden. Alle Containerendpunkte auf dem Host verfügen aufgrund der Layer-2-Adressübersetzung über dieselbe MAC-Adresse.
+## <a name="windows-container-network-drivers"></a>Windows-Container-Netzwerktreiber  
 
-- **L2-Tunnel** - _Dieser Modus sollte nur in einem Microsoft-Cloudstapel verwendet werden._
+Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unter Windows erstellt wurde, können Benutzer benutzerdefinierte Containernetzwerke festlegen. Benutzerdefinierte Netzwerke können über den CLI Docker-Befehl [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/) erstellt werden. Unter Windows stehen folgende Netzwerktreibertypen zur Verfügung:
+
+- **nat** – einem Netzwerk hinzugefügte Container, die mit einem NAT-Treiber erstellt wurden und eine vom Benutzer angegebene (``--subnet``) IP-Präfix-IP-Adresse enthalten. Portweiterleitung/-zuordnung vom Containerhost zu Containerendpunkten wird unterstützt.
+> Hinweis: Mit dem Windows 10 Creators Update werden jetzt mehrere NAT-Netzwerke unterstützt. 
+
+- **transparent** – einem Netzwerk hinzugefügte Container, die mit einem NAT-Treiber erstellt wurden und direkt mit dem physischen Netzwerk verbunden werden. IPs aus dem physischen Netzwerk können mithilfe eines externen DHCP-Servers statisch (erfordert eine benutzerdefinierte ``--subnet``-Option) oder dynamisch zugewiesen werden. 
+
+- **overlay** - __Neu!__  Wenn das Docker-Modul im [Schwarmmodus](./swarm-mode.md) ausgeführt wird, können Container, die mit einem Überlagerungsnetzwerks verbunden sind mit anderen, an dasselbe Netzwerk angeschlossen Containern, über mehrere Containerhosts kommunizieren. Jedes Überlagerungsnetzwerk, das für einen Schwarmcluster erstellt wird, wird mit einem eigenen IP-Subnetz erstellt, das durch ein privates IP-Präfix definiert ist. Der Überlagerungsnetzwerktreiber verwendet VXLAN Kapselung.
+> Erfordert Windows Server2016 mit [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) oder Windows10 Creators Update 
+
+- **l2bridge** - einem Netzwerk hinzugefügte Container, die mit einem 'l2bridge'-Treiber erstellt wurden und sich im gleichen IP-Subnetz wie der Containerhost befinden. Die IP-Adressen müssen statisch aus dem gleichen Präfix wie der Containerhost zugewiesen werden. Alle Containerendpunkte auf dem Host verfügen aufgrund der Layer-2-Adressübersetzung beim Eingang und -Ausgang über dieselbe MAC-Adresse (Umschreiben der MAC-Adresse).
+> Erfordert Windows Server2016 oder Windows10 Creators Update
+
+- **l2tunnel** - _Dieser Treiber sollte nur in einem Microsoft-Cloudstapel verwendet werden._
 
 > Informationen dazu, wie Sie Containerendpunkte mithilfe des Microsoft-SDN-Stapels mit einem virtuellen Overlaynetzwerk verbinden, finden Sie im Thema [Verbinden von Containern mit einem virtuellen Netzwerk](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network).
 
-## Einzelknoten
+> Mit dem Windows 10 Creators Update wurde die Plattformunterstützung eingeführt, um einem aktiven Container einen neuen Containerendpunkt hinzuzufügen (z.B. "hot-add"). Dies hebt eine End-to-End [ausstehende Docker-Pull-Anforderung](https://github.com/docker/libnetwork/pull/1661) hervor.
 
-|  | Container-Container | Container-Extern |
-| :---: | :---------------     |  :---                |
-| nat | Überbrückte Verbindung über Hyper-V Virtual Switch | weitergeleitet durch WinNAT mit aktivierter Adressübersetzung |
-| transparent | Überbrückte Verbindung über Hyper-V Virtual Switch | direkter Zugriff auf das physische Netzwerk |
-| overlay | VXLAN Kapselung erfolgt in der VFP-Weiterleitungserweiterung im Hyper-V Virtual Switch. *Intra-Host-Kommunikation* erfolgt über eine überbrückte Verbindung über Hyper-V Virtual Switch. | weitergeleitet durch WinNAT mit aktivierter Adressübersetzung
-| l2bridge | Überbrückte Verbindung über Hyper-V Virtual Switch|  Zugriff auf das physische Netzwerk mit MAC-Adressübersetzung|  
+## <a name="network-topologies-and-ipam"></a>Netzwerktopologien und IPAM
+Die folgende Tabelle zeigt, wie die Netzwerkkonnektivität für interne (Container-zu-Container) und externe Verbindungen für jeden Netzwerktreiber bereitgestellt wird.
 
+<figure>
+  <img src="media/network-modes-table.png">
+</figure>
 
+### <a name="ipam"></a>IPAM 
+IP-Adressen werden von jedem Netzwerktreiber unterschiedlich belegt und diesem zugewiesen. Windows verwendet den Host-Netzwerkdienst (HNS), um dem NAT-Treiber IPAM bereitzustellen und arbeitet mit dem Docker-Schwarmmodus (interner KVS), um IPAM für die Überlagerung bereitzustellen. Alle anderen Netzwerktreiber verwenden eine externe IPAM.
 
-## Mit mehreren Knoten
+<figure>
+  <img src="media/ipam.png">
+</figure>
 
-|  | Container-Container | Container-Extern |
-| :---: | :----       | :---------- |
-| nat | muss auf IP und Port des externen Containerhosts verweisen; weitergeleitet durch WinNAT mit aktivierter Adressübersetzung | muss auf den externen Host verweisen; weitergeleitet durch WinNAT mit aktivierter Adressübersetzung |
-| transparent | muss den Container-IP-Endpunkt direkt referenzieren | direkter Zugriff auf das physische Netzwerk |
-| overlay | VXLAN Kapselung erfolgt in VFP Markuperweiterung im Hyper-V Virtual Switch. *Inter-Host-Kommunikation* referenziert IP-Endpunkte direkt. | weitergeleitet durch WinNAT mit aktivierter Adressübersetzung| 
-| l2bridge | muss den Container-IP-Endpunkt direkt referenzieren| Zugriff auf das physische Netzwerk mit MAC-Adressübersetzung|
+# <a name="details-on-windows-container-networking"></a>Informationen über das Containernetzwerk
 
+## <a name="isolation-namespace-with-network-compartments"></a>Isolation (Namespace) mit Netzwerkdepots
+Jeder Containerendpunkt befindet sich in seinem eigenen __Netzwerkdepot__, der mit dem Netzwerknamespaces in Linux vergleichbar ist. Der Verwaltungshost vNIC und die Host-Netzwerkstapel befinden sich im Standard-Netzwerkdepot. Um eine Netzwerkisolation der Container zu erzwingen, die sich auf dem gleichen Host befinden, wird für jeden Windows Server- und Hyper-V-Container ein Netzwerkbereich erstellt, in dem der Netzwerkadapter für den Container installiert wird. Windows Server-Container verwenden eine Host-vNIC für die Verbindung mit dem virtuellen Switch. Hyper-V-Container verwenden eine synthetische VM-NIC (nicht für die Utility-VM verfügbar gemacht) für die Verbindung mit dem virtuellen Switch. 
 
-## Erstellen eines Netzwerks
+<figure>
+  <img src="media/network-compartment-visual.png">
+</figure>
 
-### (Standard) NAT-Netzwerk
-
-Das Docker-Modul unter Windows erstellt ein „NAT“-Standardnetzwerk (dessen Docker „nat“ heißt) mit IP-Präfix 172.16.0.0/12. Wenn ein Benutzer ein NAT-Netzwerk mit einem bestimmten IP-Präfix erstellen möchte, kann er dazu eine von zwei Optionen in der Docker-Konfigurationsdatei „daemon.json“ ändern (diese befindet sich unter „C:\ProgramData\Docker\config\daemon.json“. Ist sie noch nicht vorhanden, muss sie erstellt werden).
- 1. Verwenden der Option _„fixed-cidr“: „< IP Prefix > / Mask“_. Dadurch wird das NAT-Standardnetzwerk erstellt, und IP-Präfix und Übereinstimmung werden festgelegt.
- 2. Verwenden der Option _„bridge“: „none“_. Dadurch wird kein Standardnetzwerk erstellt. Ein Benutzer kann unter Verwendung des Befehls *docker network create -d <driver>* ein benutzerdefiniertes Netzwerk mit einem beliebigen Treiber erstellen.
-
-Vor dem Ausführen einer dieser Konfigurationsoptionen muss der Docker-Dienst zuerst beendet werden, und alle bereits vorhandenen NAT-Netzwerke müssen gelöscht werden.
-
-```none
-PS C:\> Stop-Service docker
-PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork
-
-...Edit the daemon.json file...
-
-PS C:\> Start-Service docker
+```powershell 
+Get-NetCompartment
 ```
 
-Wenn die Option „fixed-cidr“ zur Datei „daemon.json“ hinzugefügt wird, wird vom Docker-Modul ein benutzerdefiniertes NAT-Netzwerk mit dem angegebenen benutzerdefinierten IP-Präfix und der angegebenen Maske erstellt. Wenn stattdessen die Option „Bridge:none“ hinzugefügt wird, muss das Netzwerk manuell erstellt werden.
+## <a name="windows-firewall-security"></a>Windows-Firewall-Sicherheit
+
+Die Windows-Firewall wird verwendet, um die Netzwerksicherheit über Port-ACLs zu erzwingen.
+
+> Hinweis: Standardmäßig verfügen alle Container-Endpunkte, die mit einem Überlagerungsnetzwerks verbunden sind, eine erstellte „Alle zulassen”-Regel.   
+
+<figure>
+  <img src="media/windows-firewall-containers.png">
+</figure>
+
+## <a name="container-network-management-with-host-network-service"></a>Verwaltung des Containermetzwerks mit dem Host Network Service (HNS)
+
+Die folgende Abbildungzeigt, wie der Host Network Service (HNS) mit dem Host Compute Service (HCS) zusammenarbeitet, um Container zu erstellen und einem Netzwerk Endpunkte hinzuzufügen. 
+
+<figure>
+  <img src="media/HNS-Management-Stack.png">
+</figure>
+
+# <a name="advanced-network-options-in-windows"></a>Erweiterte Netzwerkoptionen für Windows
+Es werden verschiedene Netzwerktreiberoptionen unterstützt, um die Vorteile der Windows-spezifischen Funktionen und Features zu nutzen. 
+
+## <a name="switch-embedded-teaming-with-docker-networks"></a>Switch Embedded Teaming und Docker-Netzwerke
+
+> Gilt für alle Netzwerktreiber 
+
+Nutzen Sie [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set), wenn Sie Containerhost-Netzwerke für die Verwendung von Docker durch Angabe mehrerer Netzwerkadapter (durch Kommas getrennt) mit der `-o com.docker.network.windowsshim.interface`-Option erstellen. 
 
 ```none
-# Create a user-defined NAT network
-C:\> docker network create -d nat --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyNatNetwork
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
 ```
 
-Standardmäßig werden Containerendpunkte mit dem NAT-Standardnetzwerk verbunden. Wenn das NAT-Netzwerk nicht erstellt wurde (da in der daemon.json-Datei „bridge:none“ angegeben wurde) oder der Zugriff auf ein anderes, benutzerdefinierte Netzwerk erforderlich ist, können Benutzer den Parameter *--network* mit Ausführungsbefehl von Docker angeben.
+## <a name="set-the-vlan-id-for-a-network"></a>Legen Sie die VLAN-ID für ein Netzwerk fest
+
+> Gilt für transparente und l2bridge-Netzwerktreiber 
+
+Wenn Sie eine VLAN-ID für ein Netzwerk festlegen möchten, verwenden Sie die Option `-o com.docker.network.windowsshim.vlanid=<VLAN ID>`für den Befehl `docker network create`. Sie können z.B. folgenden Befehl verwenden, um ein transparentes Netzwerk mit einer ID VLAN 11 zu erstellen:
 
 ```none
-# Connect new container to the MyNatNetwork
-C:\> docker run -it --network=MyNatNetwork <image> <cmd>
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
 ```
+Wenn Sie die VLAN-ID für ein Netzwerk festlegen, wird damit die VLAN-Isolation für alle Containerendpunkte festgelegt, die mit dem Netzwerk verbunden sind.
 
-#### Portzuordnung
+> Stellen Sie sicher, dass sich der Hostnetzwerkadapter (physisch) im Trunk-Modus befindet, damit alle markierten (tagged) Datenpakte vom vSwitch mit dem vNIC-Port (Containerendpunkt) im Zugriffsmodus auf dem richtigen VLAN verarbeitet werden können.
 
-Für den Zugriff auf Anwendungen, die in mit einem NAT-Netzwerk verbundenen Container ausgeführt werden, müssen zwischen dem Containerhost und dem Containerendpunkt Portzuordnungen erstellt werden. Diese Zuordnungen müssen zum Zeitpunkt der Erstellung des Containers, oder während der Container sich im Zustand ANGEHALTEN befindet, festgelegt werden.
+## <a name="specify-the-name-of-a-network-to-the-hns-service"></a>Festlegen des Netzwerknamens für den HNS-Dienst
 
-```none
-# Creates a static mapping between port TCP:80 of the container host and TCP:80 of the container
-C:\> docker run -it -p 80:80 <image> <cmd>
+> Gilt für alle Netzwerktreiber 
 
-# Creates a static mapping between port 8082 of the container host and port 80 of the container.
-C:\> docker run -it -p 8082:80 windowsservercore cmd
-```
-
-Dynamische Portzuordnungen werden ebenfalls unterstützt, und zwar entweder unter Verwendung des Parameters „-p“ oder des Befehls EXPOSE in einer Dockerfile. Wenn nichts angegeben ist, wird auf dem Containerhost per Zufallsprinzip ein kurzlebiger Port ausgewählt, der bei Ausführung von „Docker.ps“ überprüft werden kann.
-
-```none
-C:\> docker run -itd -p 80 windowsservercore cmd
-
-# Network services running on port TCP:80 in this container can be accessed externally on port TCP:14824
-C:\> docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                   NAMES
-bbf72109b1fc        windowsservercore   "cmd"               6 seconds ago       Up 2 seconds        *0.0.0.0:14824->80/tcp*   drunk_stonebraker
-
-# Container image specified EXPOSE 80 in Dockerfile - publish this port mapping
-C:\> docker network
-```
-> Ab WS2016 TP5 und ab Windows Insider Builds nach 14300 wird für alle NAT-Portzuordnungen automatisch eine Firewallregel erstellt. Diese Firewallregel gilt global für den Containerhost und ist nicht auf einen bestimmten Containerendpunkt oder Netzwerkadapter begrenzt.
-
-Die Implementierung von Windows NAT (WinNAT) weist einige Funktionslücken auf, die in diesem Blogbeitrag behandelt werden: [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/)
- 1. Pro Containerhost wird nur ein internes IP-Präfix für NAT unterstützt, „mehrfache“ NAT-Netzwerke müssen also durch Partitionierung des Präfixes definiert werden (Informationen hierzu finden Sie in diesem Dokument im Abschnitt „Mehrfache NAT-Netzwerke“).
- 2. Containerendpunkte sind nur vom Containerhost mithilfe der internen IP-Adressen und Ports des Containers erreichbar (Informationen darüber finden Sie mithilfe von „docker network inspect <CONTAINER ID>“).
-
-Zusätzliche Netzwerke können mit anderen Treibern erstellt werden.
-
-> Docker-Netzwerktreiber bestehen vollständig aus Kleinbuchstaben.
-
-### Transparentes Netzwerk
-
-Um den transparenten Netzwerkmodus zu verwenden, erstellen Sie ein Containernetzwerk mit dem Treiber namens „transparent“.
-
-```none
-C:\> docker network create -d transparent MyTransparentNetwork
-```
-> Hinweis: Sollten Fehler beim Erstellen des transparenten Netzwerks auftreten, ist es möglich, dass ein externer vSwitch in Ihrem System existiert, der nicht automatisch von Docker erkannt wurde, und der verhindert, dass das transparente Netzwerk an den externen Netzwerkadapter Ihres Containerhosts gebunden wird. Weitere Informationen finden Sie im Abschnitt „Vorhandener vSwitch blockiert die Erstellung des transparenten Netzwerks“ unter „Tipps und Einschränkungen“ in diesem Thema.
-
-Wenn der Containerhost virtualisiert ist und Sie DHCP für die IP-Zuweisung verwenden möchten, müssen Sie MACAddressSpoofing im Netzwerkadapter der virtuellen Computer aktivieren. Andernfalls blockiert der Hyper-V-Host Netzwerkdatenverkehr von den Containern auf dem virtuellen Computer mit mehreren MAC-Adressen.
-
-```none
-PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-
-> Wenn Sie mehr als ein transparentes Netzwerk erstellen möchten, müssen Sie angeben, an welchen (virtuellen) Netzwerkadapter der (automatisch erstellte) Hyper-V Virtual Switch gebunden werden soll.
-
-IP-Adressen für Containerendpunkte, die mit einem transparenten Netzwerk verbunden sind, können entweder statisch oder dynamisch von einem externen DHCP-Server zugewiesen werden.
-
-Wenn Sie die statische IP-Zuweisung verwenden, müssen Sie zunächst sicherstellen, dass die Parameter *--subnet* und *--gateway* beim Erstellen des Netzwerks festgelegt sind. Subnetz- und Gateway-IP-Adresse sollten den Netzwerkeinstellungen für den Containerhost (d. h. für das physische Netzwerk) entsprechen.
-
-```none
-# Create a transparent network corresponding to the physical network with IP prefix 10.123.174.0/23
-C:\> docker network create -d transparent --subnet=10.123.174.0/23 --gateway=10.123.174.1 TransparentNet3
-```
-Geben Sie mit der Option *--ip* eine IP-Adresse im `docker run`-Befehl an:
-
-```none
-C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
-```
-
-> Stellen Sie sicher, dass diese IP-Adresse keinem anderen Netzwerkgerät im physischen Netzwerk zugewiesen ist.
-
-Da die Containerendpunkte über direkten Zugriff auf das physische Netzwerk verfügen, besteht keine Notwendigkeit, Portzuordnungen festzulegen.
-
-### Überlagerungsnetzwerk
-
-*Um den Überlagerungsnetzwerkmodus zu verwenden, müssen Sie einen Docker-Host verwenden, der im Schwarmmodus als Verwaltungsknoten ausgeführt wird.* Weitere Informationen über den Schwarmmodus und darüber, wie Sie einen Schwarmverwaltungsknoten initialisieren, finden Sie unter [Erste Schritte mit dem Schwarmmodus](./swarm-mode.md).
-
-Um ein Überlagerungsnetzwerk zu erstellen, führen Sie den folgenden Befehl auf einem **Schwarmverwaltungsknoten** aus:
-
-```none
-# Create an overlay network from a swarm manager node, called "myOverlayNet"
-C:\> docker network create --driver=overlay myOverlayNet
-```
-
-### L2-Brücke
-
-Um ein Netzwerk mit einer L2-Brücke zu verwenden, erstellen Sie ein Containernetzwerk mit dem Treiber „l2bridge“. Subnetz und Gateway müssen angegeben werden, und zwar wieder in Übereinstimmung mit dem physischen Netzwerk.
-
-```none
-C:\> docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyBridgeNetwork
-```
-
-Bei l2bridge-Netzwerken wird nur die statische IP-Adresszuweisung unterstützt.
-
-> Bei Verwendung eines l2bridge-Netzwerks für ein SDN-Fabric wird nur die dynamische IP-Zuweisung unterstützt. Weitere Informationen finden Sie im Thema [Einfügen von Containern in ein virtuelles Netzwerk](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network).
-
-## Weitere Vorgänge und Konfigurationen
-
-> Wir arbeiten ständig an der Verbesserung von Docker für Windows. Um Zugriff auf die neuesten Funktionen zu haben, sollten Sie stets die aktuelle Version des Docker-Moduls verwenden. Mit `docker -v` können Sie Ihre Docker-Version ermitteln. Richtlinien zum Konfigurieren von Docker finden Sie im Abschnitt [Docker-Modul für Windows](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon).
-
-### Auflisten verfügbarer Netzwerke
-
-```none
-# list container networks
-C:\> docker network ls
-
-NETWORK ID          NAME                DRIVER              SCOPE
-0a297065f06a        nat                 nat                 local
-d42516aa0250        none                null                local
-```
-
-### Entfernen eines Netzwerks
-
-Verwenden Sie `docker network rm`, um ein Containernetzwerk zu löschen.
-
-```none
-C:\> docker network rm <network name>
-```
-
-Dieser Befehl bereinigt alle virtuellen Hyper-V-Switches, die vom Containernetzwerk verwendet wurden, sowie alle erstellten Objekte für die Netzwerkadressübersetzung (WinNAT – NetNat-Instanzen).
-
-### Netzwerkprüfung
-
-Um anzuzeigen, welche Container mit einem bestimmten Netzwerk verbunden und welche IPs diesen Containerendpunkten zugeordnet sind, können Sie Folgendes ausführen.
-
-```none
-C:\> docker network inspect <network name>
-```
-
-### Festlegen des Netzwerknamens für den HNS-Dienst
-
-**Wenn Sie mit `docker network create` ein Containernetzwerk erstellen, wird der Name des Netzwerks, den Sie bereitstellen, normalerweise vom Docker-Dienst verwendet, aber nicht vom HNS-Dienst.**
-
-Wenn Sie ein Netzwerk erstellen, können Sie den Namen, den es vom HNS-Dienst erhält, mit der Option `-o com.docker.network.windowsshim.networkname=<network name>` in der Anweisung `docker network create` angeben. Beispielsweise können Sie den folgenden Befehl verwenden, um ein transparentes Netzwerk mit einem Namen zu erstellen, den der HNS-Dienst verwenden soll:
+Wenn Sie mit `docker network create` ein Containernetzwerk erstellen, wird der Name des Netzwerks, den Sie bereitstellen, normalerweise vom Docker-Dienst verwendet, aber nicht vom HNS-Dienst. Wenn Sie ein Netzwerk erstellen, können Sie den Namen, den es vom HNS-Dienst erhält, mit der Option `-o com.docker.network.windowsshim.networkname=<network name>` in der Anweisung `docker network create` angeben. Beispielsweise können Sie den folgenden Befehl verwenden, um ein transparentes Netzwerk mit einem Namen zu erstellen, den der HNS-Dienst verwenden soll:
 
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.networkname=MyTransparentNetwork MyTransparentNetwork
 ```
 
-#### Beispiel: HNS-Standardverhalten für Namen
+## <a name="bind-a-network-to-a-specific-network-interface"></a>Binden eines Netzwerks an eine bestimmte Netzwerkschnittstelle
 
-Um das Verhalten dieser Benennungsoption im Kontext zu verdeutlichen, zeigt der nachstehende Screenshot, wie ein Netzwerk vom HNS-Dienst benannt wird, wenn diese Benennungsoption *nicht* verwendet wird. In diesem Beispiel ist der Netzwerkname „MyTransparentNetwork“ für Docker sichtbar, wie mit der Anweisung `docker network ls` angegeben. Der Name des Netzwerks ist jedoch, gemäß dem Windows PowerShell-Befehl `Get-ContainerNetwork`, nicht für den HNS-Dienst sichtbar. Stattdessen wurde von HNS automatisch ein langer alphanumerischer Netzwerkname generiert.
+> Gilt für alle Netzwerktreiber mit Ausnahme von "NAT"  
 
-><figure>
-  <img src="media/SpecifyName_Capture.PNG">
-  <figcaption>Beispiel: Für den HNS-Dienst ist <i>kein</i> Netzwerkname angegeben. </figcaption>
-</figure>
-
-#### Beispiel: Angabe eines Netzwerknamens für den HNS-Dienst
-
-Wenn aber `-o com.docker.network.windowsshim.networkname=<network name>` *verwendet wird*, übernimmt der HNS-Dienst den angegebenen Namen statt eines generierten Namens. Dieses Verhalten wird im folgenden Screenshot veranschaulicht.
-
-><figure>
-  <img src="media/SpecifyName_Capture_2.PNG">
-  <figcaption>Beispiel: Der Netzwerkname wird mithilfe der Option "-o com.docker.network.windowsshim.networkname=<network name>" für den HNS-Dienst vorgegeben.</figcaption>
-</figure>
-
-
-### Binden eines Netzwerks an eine bestimmte Netzwerkschnittstelle
-
-Verwenden Sie zum Binden eines Netzwerks (angeschlossen über den virtuellen Hyper-V-Switch) an eine bestimmte Netzwerkschnittstelle die Option `-o com.docker.network.windowsshim.interface=<Interface>` für den Befehl `docker network create`. Sie können z. B. die folgende Anweisung verwenden, um ein transparentes Netzwerk zu erstellen, das an die Netzwerkschnittstelle „Ethernet 2“ angeschlossen ist:
+Verwenden Sie zum Binden eines Netzwerks (angeschlossen über den virtuellen Hyper-V-Switch) an eine bestimmte Netzwerkschnittstelle die Option `-o com.docker.network.windowsshim.interface=<Interface>` für den Befehl `docker network create`. Sie können z.B. die folgende Anweisung verwenden, um ein transparentes Netzwerk zu erstellen, das an die Netzwerkschnittstelle „Ethernet 2“ angeschlossen ist:
 
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" TransparentNet2
@@ -261,35 +158,123 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 >```none
 PS C:\> Get-NetAdapter
 ```
+## Specify the DNS Suffix and/or the DNS Servers of a Network
 
-### Set the VLAN ID for a Network
+> Applies to all network drivers 
 
-To set a VLAN ID for a network, use the option, `-o com.docker.network.windowsshim.vlanid=<VLAN ID>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a VLAN ID of 11:
-
-```none
-C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
-```
-Wenn Sie die VLAN-ID für ein Netzwerk festlegen, wird damit die VLAN-Isolation für alle Containerendpunkte festgelegt, die mit dem Netzwerk verbunden sind.
-
-**Hinweis:** Stellen Sie sicher, dass sich der Hostnetzwerkadapter (physisch) im Trunk-Modus befindet, damit alle markierten (tagged) Datenpakte vom vSwitch mit dem vNIC-Port (Containerendpunkt) im Zugriffsmodus auf dem richtigen VLAN verarbeitet werden können.
-
-
-### Angeben von DNS-Suffix und/oder der DNS-Server eines Netzwerks
-
-Verwenden Sie die Option `-o com.docker.network.windowsshim.dnssuffix=<DNS SUFFIX>`, um das DNS-Suffix eines Netzwerks anzugeben, und die Option `-o com.docker.network.windowsshim.dnsservers=<DNS SERVER/S>` zur Angabe der DNS-Server eines Netzwerks. Beispielsweise können Sie den folgenden Befehl verwenden, um das DNS-Suffix eines Netzwerks auf „abc.com“ und die DNS-Server eines Netzwerks auf 4.4.4.4 und 8.8.8.8 festzulegen:
+Use the option, `-o com.docker.network.windowsshim.dnssuffix=<DNS SUFFIX>` to specify the DNS suffix of a network, and the option, `-o com.docker.network.windowsshim.dnsservers=<DNS SERVER/S>` to specify the DNS servers of a network. For example, you might use the following command to set the DNS suffix of a network to "example.com" and the DNS servers of a network to 4.4.4.4 and 8.8.8.8:
 
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnssuffix=abc.com -o com.docker.network.windowsshim.dnsservers=4.4.4.4,8.8.8.8 MyTransparentNetwork
 ```
 
-### Mehrere Containernetzwerke
-Auf einem einzelnen Containerhost können mehrere Containernetzwerke erstellt werden. Dabei gelten folgende Einschränkungen:
+## <a name="vfp"></a>VFP
 
-* Wenn mehrere Netzwerke vorhanden sind, die einen externen vSwitch für die Verbindung verwenden (z. B. transparent, L2-Brücke, L2 transparent), muss für jedes Netzwerk ein eigener Netzwerkadapter verwendet werden.
-* Derzeit ist unsere Lösung zum Erstellen von mehreren NAT-Netzwerken auf einem einzelnen Containerhost die Partitionierung des internen Präfixes des NAT-Netzwerks. Weitere Anleitungen finden Sie im nachfolgenden Abschnitt „Mehrere NAT-Netzwerke“.
+Die VFP-Erweiterung (Virtual Filtering Platform) ist ein virtueller Hyper-V-Switch, eine Weiterleitungserweiterung, die die Netzwerkrichtlinie erzwingt und Pakete bearbeitet. VFP wird z.B. vom "Überlagerungs"-Netzwerktreiber zum Ausführen von VXLAN Kapselungen und vom "l2bridge"-Treiber für das Umschreiben der MAC-Adresse beim Eingang und Ausgang verwendet. Die VFP-Erweiterung ist nur auf Windows Server2016 und auf dem Windows10 Creators Update vorhanden. Um zu überprüfen, ob sie ordnungsgemäß funktioniert, muss der Benutzer zwei Befehle ausführen:
 
-### Mehrere NAT-Netzwerke
-Es ist möglich, mehrere NAT-Netzwerke auf einem einzelnen Containerhost zu definieren, indem Sie das interne NAT-Netzwerkpräfix des Hosts partitionieren.
+```powershell
+Get-Service vfpext
+
+# This should indicate the extension is Running: True 
+Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP Switch Extension"
+```
+
+## <a name="tips--insights"></a>Tipps und Einblicke
+Hier ist eine Liste mit nützlichen Tipps und Einblicken, die von den häufig von uns gehörten Fragen der Community über Windows-Container-Netzwerke inspiriert sind...
+
+#### <a name="hns-requires-that-ipv6-is-enabled-on-container-host-machines"></a>HNS erfordert, dass IPv6 auf den Containerhostgeräten aktiviert ist 
+Als Teil des [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) ist es für HNS erforderlich, dass IPv6 auf den Windows-Containerhosts aktiviert ist. Wenn wie unten beschrieben ein Fehler auftritt, ist IPv6 wahrscheinlich auf dem Hostcomputer deaktiviert.
+```
+docker: Error response from daemon: container e15d99c06e312302f4d23747f2dfda4b11b92d488e8c5b53ab5e4331fd80636d encountered an error during CreateContainer: failure in a Windows system call: Element not found.
+```
+Wir arbeiten an Plattform Änderungen, um dieses Problem automatisch zu erkennen/zu vermeiden. Derzeit kann die folgende Problemumgehung verwendet werden, um sicherzustellen, dass IPv6 auf dem Hostcomputer aktiviert ist:
+
+```
+C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters  /v DisabledComponents  /f
+```
+
+#### <a name="moby-linux-vms-use-dockernat-switch-with-docker-for-windows-a-product-of-docker-cehttpswwwdockercomcommunity-edition-instead-of-hns-internal-vswitch"></a>Moby Linux-VMs verwendet DockerNAT-Switch mit Docker für Windows (ein Produkt der [Docker CE](https://www.docker.com/community-edition)) anstelle des internen HNS vSwitches 
+Docker für Windows (der Windows-Treiber für die Docker CE-Engine) auf Windows10 verwendet einen interne vSwitch mit dem Namen "DockerNAT", um Moby Linux-VMs mit dem Containerhost zu verbinden. Entwickler, die Moby Linux VMs unter Windows verwenden sollten beachten, dass ihre Hosts den DockerNAT-vSwitch anstelle des vSwitches verwenden, der vom HNS-Dienst erstellt wird (dies ist der Standardswitch für Windows-Container). 
+
+#### <a name="to-use-dhcp-for-ip-assignment-on-a-virtual-container-host-enable-macaddressspoofing"></a>Aktivieren Sie MACAddressSpoofing, um DHCP für die IP-Adresszuweisung auf einem virtuellen Containerhost zu verwenden. 
+Wenn der Containerhost virtualisiert ist und Sie DHCP für die IP-Zuweisung verwenden möchten, müssen Sie MACAddressSpoofing im Netzwerkadapter der virtuellen Computer aktivieren. Andernfalls blockiert der Hyper-V-Host Netzwerkdatenverkehr von den Containern auf dem virtuellen Computer mit mehreren MAC-Adressen. Aktivieren Sie MACAddressSpoofing mit folgendem PowerShell-Befehl:
+```none
+PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+#### <a name="creating-multiple-transparent-networks-on-a-single-container-host"></a>Erstellen mehrerer transparenter Netzwerke auf einem einzelnen Containerhost
+Wenn Sie mehr als ein transparentes Netzwerk erstellen möchten, müssen Sie angeben, an welchen (virtuellen) Netzwerkadapter der Hyper-V Virtual Switch gebunden werden soll. Um die Benutzeroberfläche für ein Netzwerk anzugeben, verwenden Sie folgende Syntax:
+```
+# General syntax:
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface=<INTERFACE NAME> <NETWORK NAME> 
+
+# Example:
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" myTransparent2
+```
+
+#### <a name="remember-to-specify---subnet-and---gateway-when-using-static-ip-assignment"></a>Denken Sie daran, bei der Verwendung einer statischen IP-Zuordnung *‑‑Subnetz* und *‑‑Gateway* anzugeben
+Wenn Sie die statische IP-Adresszuweisung verwenden, müssen Sie zunächst sicherstellen, dass die Parameter *--subnet* und *--gateway* beim Erstellen des Netzwerks festgelegt sind. Subnetz- und Gateway-IP-Adresse sollten den Netzwerkeinstellungen für den Containerhost (d. h. für das physische Netzwerk) entsprechen. Hier sehen Sie, wie Sie z.B., wie Sie ein transparentes Netzwerk erstellen und dann einen Endpunkt auf diesem Netzwerk mithilfe der statischen IP-Adresszuweisung ausführen können:
+
+```
+# Example: Create a transparent network using static IP assignment
+# A network create command for a transparent container network corresponding to the physical network with IP prefix 10.123.174.0/23
+C:\> docker network create -d transparent --subnet=10.123.174.0/23 --gateway=10.123.174.1 MyTransparentNet
+# Run a container attached to MyTransparentNet
+C:\> docker run -it --network=MyTransparentNet --ip=10.123.174.105 windowsservercore cmd
+```
+
+#### <a name="dhcp-ip-assignment-not-supported-with-l2bridge-networks"></a>Die DHCP-IP-Adresszuweisung wird nicht von L2Bridge-Netzwerken unterstützt
+Es wird nur eine statische IP-Adresszuweisung mit Container-Netzwerken unterstützt, die mithilfe des l2bridge-Treibers erstellt wurden. Wie bereits erwähn: denken Sie daran, die *‑‑Subnetz* und *‑‑Gateway*-Parameter zu verwenden, um ein Netzwerk zu erstellen, das für statische IP-Adresszuweisungen konfiguriert ist.
+
+#### <a name="networks-that-leverage-external-vswitch-must-each-have-their-own-network-adapter"></a>Netzwerke, die externe vSwitches nutzen müssen jeweils über eigene Netzwerkadapter verfügen.
+Wenn mehrere Netzwerke, die einen externen vSwitch für die Konnektivität verwenden (z.B. Transparent, L2-Brücke, L2 Transparent), auf dem gleichen Containerhost erstellt werden, muss jedes über einen eigenen Netzwerkadapter verfügen. 
+
+#### <a name="ip-assignment-on-stopped-vs-running-containers"></a>IP-Adresszuweisung auf Containern im angehaltenen Zustand im Vergleich zu ausgeführten Containern
+Die statische IP-Zuweisung erfolgt direkt im Netzwerkadapter des Containers und darf nur dann durchgeführt werden, wenn sich der Container im Zustand BEENDET befindet. Das Hinzufügen von Containernetzwerkadaptern im laufenden Betrieb (Hot-Add) sowie Änderungen am Netzwerkstapel werden während der Containerausführung nicht unterstützt (auf Windows Server 2016).
+> Hinweis: Dies wird im Windows 10 Creators Update geändert, da die Plattform jetzt "Live-Hinzufügen" unterstützt Diese Funktion wird E2E hervorheben, nachdem die [ausstehende Docker Pull-Anforderung](https://github.com/docker/libnetwork/pull/1661) zusammengeführt wird
+
+#### <a name="existing-vswitch-not-visible-to-docker-can-block-transparent-network-creation"></a>Ein bereits vorhandener vSwitch (nicht für Docker sichtbar) kann die Erstellung eines transparenten Netzwerks blockieren
+Sollten Fehler beim Erstellen eines transparenten Netzwerks auftreten, ist es möglich, dass ein externer vSwitch in Ihrem System existiert, der nicht automatisch von Docker erkannt wurde, und der verhindert, dass das transparente Netzwerk an den externen Netzwerkadapter Ihres Containerhosts gebunden wird. 
+
+Wenn Sie ein transparentes Netzwerk erstellen, erstellt Docker einen externen vSwitch für dieses Netzwerk und versucht dann, den Switch an einen (externen) Netzwerkadapter zu binden, bei dem es sich um einen VM-Netzwerkadapter oder den physischen Netzwerkadapter handeln kann. Wenn bereits ein vSwitch auf dem Containerhost erstellt wurde, *und von Docker erkannt wird*, wird das Docker-Modul unter Windows diesen Switch verwenden, anstatt einen neuen zu erstellen. Wenn jedoch der vSwitch Out-of-Band erstellt wurde (z.B. auf dem Containerhost mithilfe des Hyper-V-Managers oder PowerShell) und noch nicht von Docker erkannt wird, versucht das Docker-Modul unter Windows einen neuen vSwitch zu erstellen, kann den neuen Switch dann jedoch nicht mit dem externen Netzwerkadapter des Containerhosts verbinden (da der Netzwerkadapter bereits mit dem Switch verbunden ist, der Out-of-Band erstellt wurde).
+
+Das Problem taucht z.B. auf, wenn Sie zuerst einen neuen vSwitch auf Ihrem Host erstellen würden, während der Docker-Dienst ausgeführt wird, und dann versuchen würden, ein transparentes Netzwerk zu erstellen. In diesem Fall würde Docker den von Ihnen erstellen Switch nicht erkennen und würde einen neuen vSwitch für das transparente Netzwerk erstellen.
+
+Es gibt drei Ansätze zum Lösen dieses Problems:
+
+* Sie können natürlich den vSwitch löschen, der Out-of-Band erstellt wurde. Daraufhin kann Docker einen neuen vSwitch erstellen und ihn dann ohne Probleme mit dem Netzwerkadapter des Hosts verbinden. Bevor Sie sich für diesen Ansatz entscheiden, stellen Sie sicher dass Ihr Out-of-Band-vSwitch nicht von anderen Diensten verwendet wird (z.B. Hyper-V).
+* Wenn Sie sich alternativ dafür entscheiden, einen externen Out-of-Band-vSwitch zu verwenden, starten Sie Docker und die HNS-Dienste neu, um *den Switch für Docker erkennbar zu machen.*
+```none
+PS C:\> restart-service hns
+PS C:\> restart-service docker
+```
+* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die „-o“-Option wird weiter oben im Abschnitt [Transparentes Netzwerk](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) beschrieben.
+
+
+## <a name="unsupported-features-and-network-options"></a>Nicht unterstützte Features und Netzwerkoptionen 
+
+Die folgenden Netzwerkoptionen werden in Windows nicht unterstützt und können nicht an ``docker run`` übergeben werden:
+ * Containerverknüpfung (z.B. ``--link``) – _Alternative ist von Dienstermittlung abhängig_
+ * IPv6-Adressen (z.B. ``--ip6``)
+ * DNS-Optionen (z.B. ``--dns-option``)
+ * Mehrere Domains für die DNS-Suche (z.B. ``--dns-search``)
+ 
+Die folgenden Netzwerkoptionen und Funktionen werden in Windows nicht unterstützt und können nicht an ``docker network create`` übergeben werden:
+ * --aux-address
+ * --internal
+ * --ip-range
+ * --ipam-driver
+ * --ipam-opt
+ * --ipv6 
+
+Die folgenden Netzwerkoptionen werden auf Docker-Services nicht unterstützt
+* Verschlüsselung auf der Datenschicht (z.B. ``--opt encrypted``) 
+
+
+## <a name="windows-server-2016-work-arounds"></a>Windows Server2016-Problemumgehungen 
+
+Obwohl wir auch weiterhin neue Funktionen hinzufügen und die Entwicklung vorantreiben, können einige dieser Funktionen nicht auf ältere Plattformen rückportiert werden. Der beste Aktionsplan ist das neueste Updates für Windows10 und Windows Server.  Im folgenden Abschnitt werden einige Problemumgehungen und die Vorsichtsmaßnahmen erklärt, die für ältere Versionen von Windows10 (d.h. vor dem 1704 Creators Update) und Windows Server2016 gelten.
+
+### <a name="multiple-nat-networks-on-ws2016-container-host"></a>Mehrere NAT-Netzwerke auf WS2016-Containerhost
 
 Die Partitionierung für neue NAT-Netzwerke muss unter dem größeren internen NAT-Netzwerkpräfix erfolgen. Das Präfix kann durch die Ausführung des folgenden PowerShell-Befehls gefunden werden und bezieht sich auf das Feld „InternalIPInterfaceAddressPrefix“.
 
@@ -297,11 +282,11 @@ Die Partitionierung für neue NAT-Netzwerke muss unter dem größeren internen N
 PS C:\> Get-NetNAT
 ```
 
-Angenommen, das interne NAT-Netzwerkpräfix des Hosts ist 172.16.0.0/12. In diesem Fall kann Docker verwendet werden, um zusätzliche NAT-Netzwerke zu erstellen *solange sie unter das Präfix 172.16.0.0/12 fallen.* Beispielsweise können zwei NAT-Netzwerke mit den IP-Präfixen 172.16.0.0/16 (Gateway, 172.16.0.1) und 172.17.0.0/16 (Gateway, 172.17.0.1) erstellt werden.
+Angenommen, das interne NAT-Netzwerkpräfix des Hosts ist 172.16.0.0/16. In diesem Fall kann Docker verwendet werden, um zusätzliche NAT-Netzwerke zu erstellen *solange sie eine Teilmenge des Präfix 172.16.0.0/16 sind.* Beispielsweise können zwei NAT-Netzwerke mit den IP-Präfixen 172.16.1.0/24 (Gateway, 172.16.1.1) und 172.16.2.0/24 (Gateway, 172.16.2.1) erstellt werden.
 
 ```none
-C:\> docker network create -d nat --subnet=172.16.0.0/16 --gateway=172.16.0.1 CustomNat1
-C:\> docker network create -d nat --subnet=172.17.0.0/16 --gateway=172.17.0.1 CustomNat2
+C:\> docker network create -d nat --subnet=172.16.1.0/24 --gateway=172.16.1.1 CustomNat1
+C:\> docker network create -d nat --subnet=172.16.2.0/24 --gateway=172.16.1.1 CustomNat2
 ```
 
 Die neu erstellten Netzwerke können mithilfe folgender Optionen aufgelistet werden:
@@ -309,30 +294,7 @@ Die neu erstellten Netzwerke können mithilfe folgender Optionen aufgelistet wer
 C:\> docker network ls
 ```
 
-
-### Netzwerkauswahl
-
-Beim Erstellen eines Windows-Containers kann ein Netzwerk angegeben werden, mit dem der Netzwerkadapter des Containers verbunden wird. Wenn kein Netzwerk angegeben wurde, wird das NAT-Standardnetzwerk verwendet.
-
-Um den Container mit einem nicht standardmäßigen NAT-Netzwerk zu verbinden verwenden Sie die Option „--network“ mit dem Ausführungsbefehl von Docker.
-
-```none
-C:\> docker run -it --network=MyTransparentNet windowsservercore cmd
-```
-
-### Statische IP-Adresse
-
-```none
-C:\> docker run -it --network=MyTransparentNet --ip=10.80.123.32 windowsservercore cmd
-```
-
-Die statische IP-Zuweisung erfolgt direkt im Netzwerkadapter des Containers und darf nur dann durchgeführt werden, wenn sich der Container im Zustand BEENDET befindet. Das Hinzufügen von Containernetzwerkadaptern im laufenden Betrieb (Hot-Add) sowie Änderungen am Netzwerkstapel werden während der Containerausführung nicht unterstützt.
-
-## Docker Compose und Dienstermittlung
-
-> Ein praktisches Beispiel, wie Docker Compose und die Dienstermittlung verwendet werden können, um horizontal skalierte Anwendungen mit mehreren Diensten zu definieren, finden Sie unter [diesem Post (in englischer Sprache)](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) auf unserem [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/).
-
-### Docker Compose
+### <a name="docker-compose"></a>Docker Compose
 
 [Docker Compose](https://docs.docker.com/compose/overview/) kann verwendet werden, um Containernetzwerke neben den Containern/Diensten zu definieren und konfigurieren, die diese Netzwerke verwenden werden. Der Compose „Netzwerke“-Schlüssel wird als Schlüssel der obersten Ebene verwendet, um die Netzwerke zu definieren, mit denen die Container verbunden werden. Die folgende Syntax definiert beispielsweise das bereits vorhandene NAT-Netzwerk, das von Docker als „Standardnetzwerk“ für alle Container/Dienste erstellt wurde, die in einer bestimmten Compose-Datei definiert sind.
 
@@ -354,45 +316,19 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: 172.17.0.0/16
+      - subnet: 172.16.3.0/24
 ```
 
 Weitere Informationen über das Definieren/Konfigurieren von Containernetzwerken mit Docker Compose finden Sie unter [Compose File reference (Referenz zur Compose-Datei)](https://docs.docker.com/compose/compose-file/).
 
-### Dienstermittlung
-In Docker integriert ist die Dienstermittlung, die die Dienstregistrierung und den Namen für die IP-Zuordnung (DNS) für Container und Dienste übernimmt. Durch die Dienstermittlung ist es möglich, dass sich alle Containerendpunkte durch Namen erkennen können (entweder durch den Containernamen oder den Dienstnamen). Dies ist besonders in Szenarios mit horizontaler Skalierung wertvoll, wo mehrere Containerendpunkte verwendet werden, um einen einzelnen Dienst zu definieren. In solchen Fällen ermöglicht es die Dienstermittlung für einen Dienst, als einzelne Entität betrachtet zu werden, unabhängig davon, wie viele Container im Hintergrund ausgeführt werden. Für Dienste mit mehreren Containern wird der eingehende Netzwerkverkehr mittels eines Round-Robin-Ansatzes verwaltet, der DNS-Lastenausgleich verwendet, um Verkehr einheitlich auf alle Containerinstanzen zu verteilen, die einen bestimmten Dienst implementieren.
+### <a name="service-discovery"></a>Dienstermittlung
+Die Dienstermittlung wird nur für bestimmte Windows-Netzwerktreiber unterstützt.
 
-## Überlagerungsnetzwerke und Docker-Schwarmmodus (Container-Networking mit Mehrfachknoten)
-Die Kombination von systemeigenem Überlagerungsnetzwerktreiber und Docker-Schwarmmodus ermöglicht Szenarien mit mehreren Knoten (Clustering) unter Windows. Weitere Informationen über Überlagerungs- und Schwarmmodus finden Sie in unserem [Blogbeitrag](https://blogs.technet.microsoft.com/virtualization/2017/02/09/overlay-network-driver-with-support-for-docker-swarm-mode-now-available-to-windows-insiders-on-windows-10/), der die Freigabe von Schwarm- und Überlagerungsfeatures für Windows-Insider unter Windows 10 begleitet, oder unter dem Thema [Erste Schritte mit dem Schwarmmodus](./swarm-mode.md).
+|  | Lokale Dienstermittlung  | Globale Dienstermittlung |
+| :---: | :---------------     |  :---                |
+| nat | JA | Nicht verfügbar |  
+| overlay | JA | JA |
+| transparent | NEIN | NEIN |
+| l2bridge | NEIN | NEIN |
 
-## Tipps und Einschränkungen
-
-### Vorhandener vSwitch blockiert die Erstellung des transparenten Netzwerks
-
-Wenn Sie ein transparentes Netzwerk erstellen, erstellt Docker einen externen vSwitch für dieses Netzwerk und versucht dann, den Switch an einen (externen) Netzwerkadapter zu binden, bei dem es sich um einen VM-Netzwerkadapter oder den physischen Netzwerkadapter handeln kann. Wenn bereits ein vSwitch auf dem Containerhost erstellt wurde, *und von Docker erkannt wird*, wird das Docker-Modul unter Windows diesen Switch verwenden, anstatt einen neuen zu erstellen. Wenn jedoch der vSwitch Out-of-Band erstellt wurde (z.B. auf dem Containerhost mithilfe des Hyper-V-Managers oder PowerShell) und noch nicht von Docker erkannt wird, versucht das Docker-Modul unter Windows einen neuen vSwitch zu erstellen, kann den neuen Switch dann jedoch nicht mit dem externen Netzwerkadapter des Containerhosts verbinden (da der Netzwerkadapter bereits mit dem Switch verbunden ist, der Out-of-Band erstellt wurde).
-
-Das Problem taucht z.B. auf, wenn Sie zuerst einen neuen vSwitch auf Ihrem Host erstellen würden, während der Docker-Dienst ausgeführt wird, und dann versuchen würden, ein transparentes Netzwerk zu erstellen. In diesem Fall würde Docker den von Ihnen erstellen Switch nicht erkennen und würde einen neuen vSwitch für das transparente Netzwerk erstellen.
-
-Es gibt drei Ansätze zum Lösen dieses Problems:
-
-* Sie können natürlich den vSwitch löschen, der Out-of-Band erstellt wurde. Daraufhin kann Docker einen neuen vSwitch erstellen und ihn dann ohne Probleme mit dem Netzwerkadapter des Hosts verbinden. Bevor Sie sich für diesen Ansatz entscheiden, stellen Sie sicher dass Ihr Out-of-Band-vSwitch nicht von anderen Diensten verwendet wird (z.B. Hyper-V).
-* Wenn Sie sich alternativ dafür entscheiden, einen externen Out-of-Band-vSwitch zu verwenden, starten Sie Docker und die HNS-Dienste neu, um *den Switch für Docker erkennbar zu machen.*
-```none
-PS C:\> restart-service hns
-PS C:\> restart-service docker
-```
-* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die „-o“-Option wird weiter oben im Abschnitt [Transparentes Netzwerk](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) beschrieben.
-
-### Nicht unterstützte Funktionen
-
-Die folgenden Netzwerkfunktionen werden zurzeit nicht von der Docker-CLI unterstützt:
- * Containerverknüpfung (Beispiel: --link)
-
-Derzeit werden die folgenden Netzwerkoptionen von Windows Docker nicht unterstützt:
- * --add-host
- * --dns-opt
- * --dns-search
- * --aux-address
- * --internal
- * --ip-range
 

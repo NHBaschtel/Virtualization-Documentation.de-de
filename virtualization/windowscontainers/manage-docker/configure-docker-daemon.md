@@ -8,25 +8,24 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: ee249bafe3c86ba7a7fb6f0335664e9ce485a74e
-
+ms.openlocfilehash: 9aa9e4a0415a89762438a8e8a85a901ca5360c6f
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Docker-Modul unter Windows
+# <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
 Das Docker-Modul und der Docker-Client sind nicht im Lieferumfang von Windows enthalten und müssen einzeln installiert und konfiguriert werden. Das Docker-Modul kann zudem zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. In diesem Dokument wird beschrieben, wie Sie das Docker-Modul installieren und konfigurieren, und es werden einige Beispiele für gängige Konfigurationen vorgestellt.
 
 
-## Installieren von Docker
+## <a name="install-docker"></a>Installieren von Docker
 Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul (dockerd.exe) und dem Docker-Client (docker.exe). Die einfachste Möglichkeit, alles zu installieren, ist die Verwendung der Schnellstartanleitungen. Sie helfen Ihnen bei der Einrichtung und bei der Ausführung Ihres ersten Containers. 
 
 * [Windows-Container unter Windows Server 2016](../quick-start/quick-start-windows-server.md)
-* [Windows-Container unter Windows 10](../quick-start/quick-start-windows-10.md)
+* [Windows-Container unter Windows10](../quick-start/quick-start-windows-10.md)
 
 
-### Manuelle Installation
+### <a name="manual-installation"></a>Manuelle Installation
 Befolgen Sie die nachstehenden Schritte, wenn Sie stattdessen eine in der Entwicklung befindliche Version des Docker-Moduls und -Clients verwenden möchten. Damit werden das Docker-Modul und der Docker-Client installiert. Wenn Sie als Entwickler neue Features testen oder einen Windows-Insider-Build verwenden, müssen Sie möglicherweise eine in der Entwicklung befindliche Version von Docker verwenden. Führen Sie andernfalls die Schritte im obigen Abschnitt „Installieren von Docker“ aus, um die neuesten Versionen zu erhalten.
 
 > Falls Sie Docker für Windows installiert haben, entfernen Sie es vor der Ausführung der folgenden manuellen Installationsschritte. 
@@ -71,7 +70,7 @@ Start-Service Docker
 
 Bevor Docker verwendet werden kann, müssen Containerimages installiert werden. Weitere Informationen finden Sie unter [Schnellstarthandbuch für die Verwendung von Images](../quick-start/quick-start-images.md).
 
-## Konfigurieren von Docker mit einer Konfigurationsdatei
+## <a name="configure-docker-with-configuration-file"></a>Konfigurieren von Docker mit einer Konfigurationsdatei
 
 Die bevorzugte Methode zum Konfigurieren des Docker-Moduls in Windows ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\docker\config\daemon.json“. Wenn diese Datei nicht bereits vorhanden ist, kann sie erstellt werden.
 
@@ -111,7 +110,7 @@ Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unte
 }
 ```
 
-Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen hinzugefügt werden. In diesem Beispiel wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über Port 2375 akzeptiert werden. Für alle weiteren Konfigurationsoptionen werden die Standardwerte verwendet.
+Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen hinzugefügt werden. In diesem Beispiel wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über Port2375 akzeptiert werden. Für alle weiteren Konfigurationsoptionen werden die Standardwerte verwendet.
 
 ```none
 {
@@ -139,7 +138,7 @@ Entsprechend konfiguriert dieses Beispiel den Docker-Daemon, um Images und Conta
 }
 ```
 
-## Konfigurieren von Docker über den Docker-Dienst
+## <a name="configure-docker-on-the-docker-service"></a>Konfigurieren von Docker über den Docker-Dienst
 
 Das Docker-Modul kann auch konfiguriert werden, indem der Docker-Dienst mit `sc config` geändert wird. Bei Verwendung dieser Methode werden die Flags des Docker-Moduls direkt im Docker-Dienst festgelegt. Führen Sie den folgenden Befehl in einem Eingabeaufforderungsfenster („cmd.exe“, nicht PowerShell) aus:
 
@@ -150,11 +149,11 @@ sc config docker binpath= "\"C:\Program Files\docker\dockerd.exe\" --run-service
 
 Hinweis: Sie müssen diesen Befehl nicht ausführen, wenn Ihre Datei „daemon.json“ den Eintrag `"hosts": ["tcp://0.0.0.0:2375"]` bereits enthält.
 
-## Allgemeine Konfiguration
+## <a name="common-configuration"></a>Allgemeine Konfiguration
 
 Die folgenden Beispiele für Konfigurationsdateien zeigen allgemeine Docker-Konfigurationen. Diese können in einer einzigen Konfigurationsdatei kombiniert werden.
 
-### Erstellen eines Standardnetzwerks 
+### <a name="default-network-creation"></a>Erstellen eines Standardnetzwerks 
 
 Verwenden Sie den folgenden Befehl, um das Docker-Modul so zu konfigurieren, dass kein NAT-Standardnetzwerk erstellt wird. Weitere Informationen finden Sie unter [Verwalten von Docker-Netzwerken](../manage-containers/container-networking.md).
 
@@ -164,7 +163,7 @@ Verwenden Sie den folgenden Befehl, um das Docker-Modul so zu konfigurieren, das
 }
 ```
 
-### Festlegen der Docker-Sicherheitsgruppe
+### <a name="set-docker-security-group"></a>Festlegen der Docker-Sicherheitsgruppe
 
 Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausführen, werden diese Befehle über eine Named Pipe ausgeführt. Standardmäßig können nur Mitglieder der Administratorengruppe über die Named Pipe auf das Docker-Modul zugreifen. Verwenden Sie das Flag `group`, um eine Sicherheitsgruppe mit diesem Zugriff festzulegen.
 
@@ -174,7 +173,7 @@ Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausfüh
 }
 ```
 
-## Proxykonfiguration
+## <a name="proxy-configuration"></a>Proxykonfiguration
 
 Erstellen Sie eine Windows-Umgebungsvariable namens `HTTP_PROXY` oder `HTTPS_PROXY` und den Wert der Proxyinformationen, um Proxyinformationen für `docker search` und `docker pull` festzulegen. Sie können dies in PowerShell tun, indem Sie einen Befehl ähnlich dem folgenden verwenden:
 
@@ -189,10 +188,4 @@ Restart-Service docker
 ```
 
 Weitere Informationen finden Sie unter [Windows Configuration File (Windows-Konfigurationsdatei)](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file) auf Docker.com.
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

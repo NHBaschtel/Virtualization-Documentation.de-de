@@ -8,13 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 426c87cc-fa50-4b8d-934e-0b653d7dea7d
-translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: ea91ea0ffca5479cb0593ef9961625f7b7ab1f42
-
+ms.openlocfilehash: 8df30a00eaa2c98feeb4c80c302937c9dfc6d758
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Testen von Features der Vorabversion für Hyper-V
+# <a name="try-pre-release-features-for-hyper-v"></a>Testen von Features der Vorabversion für Hyper-V
 
 > Dieser Inhalt ist vorläufig und kann geändert werden.  
   Virtuelle Computer mit Vorabversion sind nur für Entwicklungs- oder Testumgebungen gedacht, da sie von Microsoft nicht unterstützt werden.
@@ -29,29 +28,23 @@ Hier einige weitere Gründe dafür, dass diese Computer ausschließlich in nicht
 * Für virtuelle Computer mit Vorabversion ist keine konsistente buildübergreifende Definition vorhanden. Wenn Sie das Hostbetriebssystem aktualisieren, sind vorhandene virtuelle Computer mit Vorabversion möglicherweise nicht mehr mit dem Host kompatibel. Diese virtuellen Computer können möglicherweise nicht mehr gestartet werden, oder sie scheinen zunächst zu funktionieren, später treten aber erhebliche Kompatibilitätsprobleme auf.
 * Wenn Sie einen virtuellen Computer mit Vorabversion auf einen Host mit einem anderen Build importieren, sind die Ergebnisse unvorhersehbar. Sie können einen virtuellen Computer mit Vorabversion auf einen anderen Host verschieben. Dieses Szenario funktioniert aber voraussichtlich nur, wenn auf beiden Hosts der gleiche Build ausgeführt wird.
 
-## Erstellen eines virtuellen Computers mit Vorabversion
+## <a name="create-a-pre-release-virtual-machine"></a>Erstellen eines virtuellen Computers mit Vorabversion
 
 Sie können einen virtuellen Computer mit Vorabversion auf Hyper-V-Hosts erstellen, auf denen Windows Server 2016 Technical Preview ausgeführt wird.
 
 1. Klicken Sie auf dem Windows-Desktop auf die Schaltfläche „Start“, und geben Sie einen beliebigen Teil des Namens **Windows PowerShell** ein.
 2. Klicken Sie mit der rechten Maustaste auf **Windows PowerShell**, und wählen Sie **Als Administrator ausführen** aus.
-3. Verwenden Sie das Cmdlet [New-VM](https://technet.microsoft.com/library/hh848537.aspx) mit dem Flag „-Prerelease“, um den virtuellen Computer mit Vorabversion zu erstellen. Führen Sie z. B. folgenden Befehl aus – „VM Name“ steht für den Namen des virtuellen Computers, den Sie erstellen möchten.
+3. Verwenden Sie das Cmdlet [New-VM](https://technet.microsoft.com/library/hh848537.aspx) mit dem Flag „-Prerelease“, um den virtuellen Computer mit Vorabversion zu erstellen. Führen Sie z.B. folgenden Befehl aus – „VM Name“ steht für den Namen des virtuellen Computers, den Sie erstellen möchten.
 
 ``` PowerShell
 New-VM -Name <VM Name> -Prerelease
 ```
 Hier einige weitere Beispiele, in denen Sie das Flag „-Prerelease“ verwenden können:
  - Informationen zum Erstellen eines virtuellen Computers, der eine vorhandene virtuelle Festplatte oder eine neue Festplatte verwendet, finden Sie in den PowerShell-Beispielen unter [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/mt126140.aspx#BKMK_PowerShell) (Erstellen eines virtuellen Computers in Hyper-V unter Windows Server 2016 Technical Preview).
- - Informationen zum Erstellen einer neuen virtuellen Festplatte, die mit einem Betriebssystemimage gestartet wird, finden Sie im PowerShell-Beispiel unter [Bereitstellen eines virtuellen Windows-Computers in Hyper-V unter Windows 10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm).
+ - Informationen zum Erstellen einer neuen virtuellen Festplatte, die mit einem Betriebssystemimage gestartet wird, finden Sie im PowerShell-Beispiel unter [Bereitstellen eines virtuellen Windows-Computers in Hyper-V unter Windows10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm).
 
- Die Beispiele in diesen Artikeln funktionieren für Hyper-V-Hosts, auf denen Windows 10 oder Windows Server 2016 Technical Preview ausgeführt wird. Zurzeit können Sie das Flag „-Prerelease“ nur verwenden, um einen virtuellen Computer mit Vorabversion auf Hyper-V-Hosts zu erstellen, auf denen Windows Server 2016 Technical Preview ausgeführt wird.
+ Die Beispiele in diesen Artikeln funktionieren für Hyper-V-Hosts, auf denen Windows10 oder Windows Server 2016 Technical Preview ausgeführt wird. Zurzeit können Sie das Flag „-Prerelease“ nur verwenden, um einen virtuellen Computer mit Vorabversion auf Hyper-V-Hosts zu erstellen, auf denen Windows Server 2016 Technical Preview ausgeführt wird.
 
-## Weitere Informationen:
+## <a name="see-also"></a>Weitere Informationen:
 -  [Blog zum Thema Virtualisierung](https://blogs.technet.microsoft.com/virtualization/): Erfahren Sie mehr zu verfügbaren Vorabfeatures und dazu, wie Sie diese ausprobieren können.
 - [Supported virtual machine configuration versions](https://technet.microsoft.com/library/mt695898.aspx#BKMK_SupportedConfigVersions) (Unterstützte Konfigurationsversionen für virtuelle Computer): Erfahren Sie, wie Sie die Konfigurationsversion des virtuellen Computers überprüfen und welche Versionen von Microsoft unterstützt werden.
-
-
-
-<!--HONumber=Oct16_HO4-->
-
-

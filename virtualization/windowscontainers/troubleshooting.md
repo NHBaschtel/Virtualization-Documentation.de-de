@@ -8,13 +8,13 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
-translationtype: Human Translation
-ms.sourcegitcommit: c65353d0b6dff233819dcc8f4f92eb186bf3b8fc
-ms.openlocfilehash: 9f28c35c6eaddd8bcf3883863b63251378f845a7
-
+ms.openlocfilehash: 5230080386081bda8b54656d15f33b4986cfa6e3
+ms.sourcegitcommit: ca64c1aceccd97c6315b28ff814ec7ac91fba9da
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 05/09/2017
 ---
-
-# Problembehandlung
+# <a name="troubleshooting"></a>Problembehandlung
 
 Haben Sie Probleme beim Einrichten Ihres Computers oder beim Ausführen eines Containers? Wir haben ein PowerShell-Skript entwickelt, das nach häufigen Problemen sucht. Bitte probieren Sie es erst aus, um zu sehen, was es findet, und geben Sie Ihre Ergebnisse frei.
 
@@ -26,10 +26,10 @@ Eine Liste aller Tests, die das Skript ausführt sowie allgemeine Lösungen, fin
 Wenn das nicht hilft, suchen Sie die Quelle des Problems, posten Sie die Ausgabe Ihres Skripts im [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). Dies ist der beste Ort, um Hilfe von der Community zu erhalten, zu der auch Windows Insiders und Entwickler gehören.
 
 
-## Suchen von Protokollen
+## <a name="finding-logs"></a>Suchen von Protokollen
 Es gibt mehrere Dienste, die zum Verwalten von Windows-Containern verwendet werden. Im nächsten Abschnitt wird gezeigt, wie Sie Protokolle für jeden Dienst erhalten.
 
-### Docker-Modul
+### <a name="docker-engine"></a>Docker-Modul
 Das Docker-Modul protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
 
 Beispielsweise werden dadurch die Protokolle des Docker-Moduls der letzten fünf Minuten angezeigt, angefangen mit dem ältesten.
@@ -44,7 +44,7 @@ Dies könnte auch einfach in eine CSV-Datei weitergeleitet werden, um dort von e
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.CSV
 ```
 
-#### Aktivieren der Debugprotokollierung
+#### <a name="enabling-debug-logging"></a>Aktivieren der Debugprotokollierung
 Sie können auch die Protokollierung auf Debugebene im Docker-Modul aktivieren. Dies kann für die Problembehandlung hilfreich sein, wenn reguläre Protokolle nicht genügend Informationen enthalten.
 
 Öffnen Sie zunächst eine Eingabeaufforderung mit erhöhten Rechten, führen Sie dann `sc.exe qc docker` aus, um die aktuelle Befehlszeile für den Docker-Dienst zu erhalten.
@@ -84,8 +84,33 @@ sc.exe start docker
 
 Dadurch wird viel mehr im Anwendungsereignisprotokoll protokolliert. Deshalb ist es von Vorteil, die Option `-D` zu entfernen, wenn Sie mit der Problembehandlung fertig sind. Führen Sie die gleichen Schritte wie oben aus, jedoch ohne `-D`, und starten Sie den Dienst neu, um die Debugprotokollierung zu deaktivieren.
 
+Eine andere Möglichkeit ist, den Docker Daemon im Debugmodus mithilfe einer PowerShell-Eingabeaufforderung mit erhöhten Rechten auszuführen, die die Ausgabe direkt in einer Datei aufzeichnen.
+```PowerShell
+sc.exe stop docker
+<path\to\>dockerd.exe -D > daemon.log 2>&1
+```
 
-### Hostcontainerdienst
+#### <a name="obtaining-stack-dump-and-daemon-data"></a>Abrufen von Stapelwert- und Daemon-Daten.
+
+In der Regel sind diese nur dann nützlich, wenn sie vom explizit von Microsoft-Support oder von Docker-Entwicklern angefordert werden. Sie können zur Unterstützung der Diagnose einer Situation verwendet werden, in der Docker scheinbar nicht reagiert. 
+
+Herunterladen von [Docker-Signal.exe](https://github.com/jhowardmsft/docker-signal).
+
+Syntax:
+```PowerShell
+Get-Process dockerd
+# Note the process ID in the `Id` column
+docker-signal -pid=<id>
+```
+
+Die Ausgabedateien befinden sich im Stammdatenverzeichnis, im dem Docker ausgeführt wird. Das Standardverzeichnis ist `C:\ProgramData\Docker`. Das aktuelle Verzeichnis kann durch Ausführen von `docker info -f "{{.DockerRootDir}}"` bestätigt werden.
+
+Die Dateien sind `goroutine-stacks-<timestamp>.log` und `daemon-data-<timestamp>.log`.
+
+Beachten Sie, dass `daemon-data*.log`möglicherweise persönliche Informationen enthält und in der Regel nur an vertrauenswürdige Personen freigegeben werden sollte. `goroutine-stacks*.log` enthält keine persönlichen Informationen.
+
+
+### <a name="host-container-service"></a>Hostcontainerdienst
 Das Docker-Modul ist von einem bestimmten Windows-spezifischen Hostcontainerdienst abhängig. Dieser verfügt über separate Protokolle: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
@@ -98,9 +123,37 @@ Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
 ```
 
+#### <a name="capturing-hcs-analyticdebug-logs"></a>Erfassen von HCS Analyse-/Debug-Protokollen
 
+Um Analyse-/Debug-Protokolle für Hyper-V-Compute zu aktivieren und auf `hcslog.evtx` zu speichern.
 
+```PowerShell
+# Enable the analytic logs
+wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:true /q:true
+     
+# <reproduce your issue>
+     
+# Export to an evtx
+wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
+     
+# Disable
+wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
+```
 
-<!--HONumber=Jan17_HO4-->
+#### <a name="capturing-hcs-verbose-tracing"></a>Aufzeichnen ausführlicher HCS-Protokollierung
 
+In der Regel ist sie nur dann nützlich, wenn sie vom Microsoft Support angefordert wird. 
 
+[HcsTraceProfile.wprp](https://gist.github.com/jhowardmsft/71b37956df0b4248087c3849b97d8a71) herunterladen
+
+```PowerShell
+# Enable tracing
+wpr.exe -start HcsTraceProfile.wprp!HcsArgon -filemode
+
+# <reproduce your issue>
+
+# Capture to HcsTrace.etl
+wpr.exe -stop HcsTrace.etl "some description"
+```
+
+Bereitstellen von `HcsTrace.etl` an die Supportkontaktperson.

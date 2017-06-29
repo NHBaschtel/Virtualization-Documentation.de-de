@@ -8,34 +8,31 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: aee64ad0-752f-4075-a115-2d6b983b4f49
-translationtype: Human Translation
-ms.sourcegitcommit: a193002059a4f1fd0e81689deae02846da01736f
-ms.openlocfilehash: 495bd9228e93a1981a646f13e2e583a741eec217
-ms.lasthandoff: 03/03/2017
-
+ms.openlocfilehash: a2a6727289b5c1ecea6ce863d78d4edbb3426b82
+ms.sourcegitcommit: 04563fde5017e8d9e8b8ab2bbce4bf2bdf29b419
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
+# <a name="hypervisor-specifications"></a>Spezifikationen für Hypervisor
 
-# Spezifikationen für Hypervisor
-
-## Funktionsspezifikation der obersten Ebene für Hypervisor
+## <a name="hypervisor-top-level-functional-specification"></a>Funktionsspezifikation der obersten Ebene für Hypervisor
 
 Mit der Funktionsspezifikation der obersten Ebene (Top-Level Functional Specification, TLFS) für Hyper-V-Hypervisor wird das von außen für andere Betriebssystemkomponenten sichtbare Verhalten von Hypervisor beschrieben. Diese Spezifikation soll für Entwickler von Gastbetriebssystemen nützlich sein.
   
-> Sie wird im Rahmen von Microsoft Open Specification Promise bereitgestellt.  Im Folgenden finden Sie weitere Details zu [Microsoft Open Specification Promise](https://msdn.microsoft.com/en-us/openspecifications).  
+> Sie wird im Rahmen von Microsoft Open Specification Promise bereitgestellt.  Hier finden Sie weitere Details zu [Microsoft Open Specification Promise](https://msdn.microsoft.com/en-us/openspecifications).  
 
-#### Herunterladen
+#### <a name="download"></a>Herunterladen
 Version | Dokument
 --- | ---
-Windows Server 2016 | [Hypervisor Top Level Functional Specification v5.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v5.0.pdf)
+Windows Server 2016 (Revision B) | [Hypervisor Top Level Functional Specification v5.0b.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v5.0b.pdf)
 Windows Server 2012 R2 (Revision B) | [Hypervisor Top Level Functional Specification v4.0b.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v4.0b.pdf)
-Windows Server 2012 R2 | [Hypervisor Top Level Functional Specification v4.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v4.0.pdf)
-Windows Server 2012 | [Hypervisor Top Level Functional Specification v3.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v3.0.pdf)
-Windows Server 2008 R2 | [Hypervisor Top Level Functional Specification v2.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v2.0.pdf)
+WindowsServer 2012 | [Hypervisor Top Level Functional Specification v3.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v3.0.pdf)
+Windows Server 2008 R2 | [Hypervisor Top Level Functional Specification v2.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v2.0.pdf)
 
-## Anforderungen für die Implementierung der Microsoft-Hypervisorschnittstelle
+## <a name="requirements-for-implementing-the-microsoft-hypervisor-interface"></a>Anforderungen für die Implementierung der Microsoft-Hypervisorschnittstelle
 
 Für Windows-Betriebssysteme muss eine bestimmte Auswahl von Hypervisorschnittstellen auf einem virtuellen Gastcomputer ausgeführt werden (auch bekannt als die „HV #1“-Schnittstelle). Darüber hinaus können verschiedene optionale Features von einem Microsoft-kompatiblen Hypervisor implementiert werden. Diese Optionen ändern das Verhalten von Windows auf einem virtuellen Computer. Unter „Anforderungen für die Implementierung der Microsoft-Hypervisorschnittstelle“ werden die erforderlichen und optionalen Features beschrieben, die von einem Microsoft-kompatiblen Hypervisor implementiert werden.
 
-#### Herunterladen
+#### <a name="download"></a>Herunterladen
 
 [Requirements for Implementing the Microsoft Hypervisor Interface.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Requirements%20for%20Implementing%20the%20Microsoft%20Hypervisor%20Interface.pdf)

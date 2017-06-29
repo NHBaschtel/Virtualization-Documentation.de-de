@@ -8,13 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: a070164812b7dca39070d5f78411a017457f8573
-
+ms.openlocfilehash: bfb63ab6ad09832becdadd863506a6639e46a3c8
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Hyper-V in Windows 10 
+# <a name="hyper-v-on-windows-10"></a>Hyper-V in Windows 10 
 
 Viele Versionen von Windows 10 enthalten die Hyper-V-Virtualisierungstechnologie. Hyper-V ermöglicht das Ausführen virtualisierter Computersysteme auf einem physischen Host. Diese virtualisierte Systeme können wie physische Computersysteme genutzt und verwaltet werden, befinden sich aber in einer virtualisierten und isolierten Umgebung. Eine Hypervisor genannte Spezialsoftware dient zum Verwalten des Zugriffs zwischen den virtuellen Systemen und physischen Hardwareressourcen. Die Virtualisierung ermöglicht die schnelle Bereitstellung von Computersystemen, bietet einen schnellen Weg zum Wiederherstellen von Systemen in einem vorherigen fehlerfreien Zustand und erlaubt das Migrieren von Systemen zwischen physischen Hosts.
 
@@ -29,7 +28,7 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
             <ul>
                 <li class="unordered">[Einführung in Hyper-V](./about/index.md)<br /><br /></li>
                 <li class="unordered">[Unterstützte Gastbetriebssysteme](about\supported-guest-os.md)<br /><br /></li>
-            </ul>   
+            </ul>    
         </td>
     </tr>
     <tr valign="top">
@@ -53,13 +52,7 @@ In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail bes
             <ul>
                 <li class="unordered">[Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
                 <li class="unordered">[Communityressourcen für Hyper-V- und Windows-Container](/virtualization/community/index.md)<br /><br /></li>
-            </ul>   
+            </ul>    
         </td>
     </tr>
 </table>
-
-
-
-<!--HONumber=Jan17_HO2-->
-
-

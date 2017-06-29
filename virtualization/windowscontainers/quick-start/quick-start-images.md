@@ -8,13 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
-translationtype: Human Translation
-ms.sourcegitcommit: 5d746be15856aad683bf684d2eef573d732ab457
-ms.openlocfilehash: 6add396bea629d5438cde5892458f6c8405bf644
-
+ms.openlocfilehash: 355daae1b673f0b05f08d0706664967a825de6f7
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Containerimages unter Windows Server
+# <a name="container-images-on-windows-server"></a>Containerimages unter Windows Server
 
 In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. Diese Übung enthält ausführliche Informationen zum manuellen Erstellen von benutzerdefinierten Containerimages, zur automatischen Erstellung von Containerimages mit einer Dockerfile-Datei und zur Speicherung von Containerimages in der öffentlichen Registrierung von Docker Hub.
 
@@ -26,7 +25,7 @@ Dieser Schnellstart-Anleitung richtet sich gezielt an Windows Server-Container u
 - Konfigurieren Sie dieses System mit dem Windows-Container-Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Windows Containers on Windows Server](./quick-start-windows-server.md) (Windows-Container unter Windows Server).
 - Eine Docker-ID – diese wird verwendet, um ein Containerimage mithilfe von Push an Docker Hub zu übertragen. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud](https://cloud.docker.com/) beziehen.
 
-## 1. Containerimage – manuell
+## <a name="1-container-image---manual"></a>1. Containerimage – manuell
 
 Für optimale Ergebnisse absolvieren Sie diese Übung in einer Windows-Befehlsshell (cmd.exe).
 
@@ -60,7 +59,7 @@ echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.ht
 
 Wechseln Sie auf einem anderen System zur IP-Adresse des Containerhosts. Die „Hello World“-Anwendung sollte jetzt angezeigt werden.
 
-**Hinweis:** Wenn Sie in Azure arbeiten, muss eine Netzwerksicherheits-Gruppenregel vorhanden sein, die Datenverkehr über Port 80 zulässt. Weitere Informationen finden Sie unter [Erstellen einer Regel in einer Netzwerksicherheitsgruppe](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
+**Hinweis:** Wenn Sie in Azure arbeiten, muss eine Netzwerksicherheits-Gruppenregel vorhanden sein, die Datenverkehr über Port80 zulässt. Weitere Informationen finden Sie unter [Erstellen einer Regel in einer Netzwerksicherheitsgruppe](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
 
 ![](media/hello.png)
 
@@ -99,7 +98,7 @@ windowsservercore   latest              dbfee88ee9fd        8 weeks ago         
 
 Dieses Image kann jetzt bereitgestellt werden. Der resultierende Container enthält alle erfassten Änderungen.
 
-## 2. Containerimage – Dockerfile
+## <a name="2-container-image---dockerfile"></a>2. Containerimage – Dockerfile
 
 In der letzten Übung wurde ein Container manuell erstellt, geändert und dann in einem neuen Container-Image erfasst. Docker bietet eine Methode für das Automatisieren dieses Prozesses mithilfe einer Dockerfile-Datei. Diese Übung liefert fast die gleichen Ergebnisse wie die letzte, doch diesmal ist der Prozess automatisiert. Für diese Übung ist eine Docker-ID erforderlich. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud]( https://cloud.docker.com/) beziehen.
 
@@ -169,7 +168,7 @@ Entfernen Sie den Container.
 docker rm -f <container name>
 ```
 
-## 3. Docker Push
+## <a name="3-docker-push"></a>3. Docker Push
 
 Docker-Containerimages können in einer Containerregistrierung gespeichert werden. Sobald ein Image in einer Registrierung gespeichert ist, kann es von vielen verschiedenen Containerhosts für die spätere Verwendung abgerufen werden. Docker stellt unter [Docker Hub](https://hub.docker.com/) eine öffentliche Registrierung für das Speichern von Containerimages bereit.
 
@@ -216,12 +215,6 @@ Abschließend können Sie nun „docker pull“ verwenden, um das Image mithilfe
 docker pull <user>/iis-dockerfile
 ```
 
-## Nächste Schritte
+## <a name="next-steps"></a>Nächste Schritte
 
-[Windows-Container unter Windows 10](./quick-start-windows-10.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-
+[Windows-Container unter Windows10](./quick-start-windows-10.md)

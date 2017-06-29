@@ -1,6 +1,6 @@
 ---
-title: "Systemanforderungen von Hyper-V unter Windows 10"
-description: "Systemanforderungen von Hyper-V unter Windows 10"
+title: Systemanforderungen von Hyper-V unter Windows10
+description: Systemanforderungen von Hyper-V unter Windows10
 keywords: Windows 10, Hyper-V
 author: scooley
 ms.date: 05/02/2016
@@ -8,17 +8,18 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
-translationtype: Human Translation
-ms.sourcegitcommit: d1153f99c93df3b7c82cc8713fc51f368a886e5a
-ms.openlocfilehash: 2d8b0d14d4c57a2a224fdbf4ac58c457c8c080e7
-
+ms.openlocfilehash: 36f95049c227b1498540e1ee5c9194a09fbfeb83
+ms.sourcegitcommit: d5f30aa1bdfb34dd9e1909d73b5bd9f4153d6b46
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
+# <a name="windows-10-hyper-v-system-requirements"></a>Systemanforderungen von Hyper-V unter Windows10
 
-# Systemanforderungen von Hyper-V unter Windows 10
+Hyper-V ist in 64-Bit-Version von Windows Professional, Enterprise, und Education von Windows 8 und höher verfügbar.  Hyper-V erfordert eine Adressübersetzung der zweiten Ebene (SLAT) – diese ist in der aktuellen Generation der 64-Bit-Prozessoren von Intel und AMD vorhanden.
 
-Hyper-V unter Windows 10 funktioniert nur mit einer bestimmten Gruppe von Hardware- und Betriebssystemkonfigurationen. Dieses Dokument zeigt die Hyper-V-Anforderungen, und wie Sie Ihr System auf Kompatibilität überprüfen können.
+Auf einem Host mit 4GB RAM können Sie drei bis vier virtuelle Computer ausführen. Für weitere virtuelle Computer benötigen Sie allerdings weitere Ressourcen. Am anderen Ende des Spektrums können Sie auch, abhängig von der physischen Hardware, große virtuelle Computer mit 32Prozessoren und 512GB RAM erstellen.
 
-## Betriebssystemanforderungen
+## <a name="operating-system-requirements"></a>Betriebssystemanforderungen
 
 Die Rolle „Hyper-V“ kann bei diesen Versionen von Windows 10 aktiviert werden:
 
@@ -34,7 +35,7 @@ Die Rolle „Hyper-V“ kann bei diesen Versionen **nicht** installiert werden:
 
 >Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 Professional erfolgen. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
-## Hardwareanforderungen
+## <a name="hardware-requirements"></a>Hardwareanforderungen
 
 Dieses Dokument bietet zwar keine vollständige Liste von mit Hyper-V kompatibler Hardware, doch die folgenden Elemente sind erforderlich:
     
@@ -46,7 +47,7 @@ Die folgenden Elemente müssen im BIOS des Systems aktiviert sein:
 - Virtualisierungstechnologie (wird je nach Hersteller der Hauptplatine anders bezeichnet)
 - Von der Hardware erzwungene Datenausführungsverhinderung (Data Execution Prevention, DEP)
 
-## Überprüfen der Hardwarekompatibilität
+## <a name="verify-hardware-compatibility"></a>Überprüfen der Hardwarekompatibilität
 
 Öffnen Sie zum Überprüfen der Kompatibilität PowerShell oder eine Eingabeaufforderung (cmd.exe), und geben Sie **systeminfo** ein. Wenn alle aufgelisteten Hyper-V-Anforderungen den Wert **Ja** aufweisen, kann die Hyper-V-Rolle auf Ihrem System ausgeführt werden. Wenn für ein Element **Nein** zurückgegeben wird, überprüfen Sie die in diesem Dokument aufgeführten Anforderungen und nehmen, sofern möglich, Anpassungen vor.
 
@@ -57,8 +58,3 @@ Wenn Sie **systeminfo** auf einem vorhandenen Hyper-V-Host ausführen, enthält 
 ```
 Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V are not be displayed.
 ```
-
-
-<!--HONumber=Jan17_HO2-->
-
-

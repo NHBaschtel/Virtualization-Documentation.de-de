@@ -8,25 +8,24 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
-translationtype: Human Translation
-ms.sourcegitcommit: 54eff4bb74ac9f4dc870d6046654bf918eac9bb5
-ms.openlocfilehash: b9a02184a98f392d5ee323dc3e939d137ce7e4e6
-
+ms.openlocfilehash: 247cf1703b429fbd7ef41553d2f46c1e99785477
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Bereitstellung von Containerhosts: Nano Server
+# <a name="container-host-deployment---nano-server"></a>Bereitstellung von Containerhosts: Nano Server
 
 In diesem Dokument wird Schritt für Schritt eine sehr einfache Nano Server-Bereitstellung mit dem Windows-Containerfeature ausgeführt. Hierbei handelt es sich um ein fortgeschrittenes Thema, das ein Grundverständnis von Windows und Windows-Containern voraussetzt. Eine Einführung in Windows-Container finden Sie unter [Schnellstartanleitung: Windows-Container](../quick-start/index.md).
 
-## Vorbereiten von Nano Server
+## <a name="prepare-nano-server"></a>Vorbereiten von Nano Server
 
 Im folgenden Abschnitt wird die Bereitstellung einer einfachen Nano Server-Konfiguration ausführlich beschrieben. Eine gründlichere Erklärung der Bereitstellungs- und Konfigurationsoptionen für Nano Server finden Sie unter [Getting Started with Nano Server] (Erste Schritte mit Nano Server) (https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-### Erstellen einer Nano Server-VM
+### <a name="create-nano-server-vm"></a>Erstellen einer Nano Server-VM
 
 Laden Sie zunächst die Nano Server-Evaluierungs-VHD [hier](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016) herunter. Erstellen Sie einen virtuellen Computer aus dieser VHD, starten Sie den virtuellen Computer, und verbinden Sie ihn mittels der Hyper-V-Verbindungsoption oder einer anderen Option passend zur verwendeten Virtualisierungsplattform.
 
-### Erstellen einer Remote-PowerShell-Sitzung
+### <a name="create-remote-powershell-session"></a>Erstellen einer Remote-PowerShell-Sitzung
 
 Da Nano Server nicht über interaktive Anmeldefunktionen verfügt, werden alle Verwaltungsaktivitäten von einem Remotesystem aus unter Verwendung von PowerShell ausgeführt.
 
@@ -44,7 +43,7 @@ Enter-PSSession -ComputerName 192.168.1.50 -Credential ~\Administrator
 
 Wenn Sie diese Schritte abgeschlossen haben, befinden Sie sich in der PowerShell-Remotesitzung mit dem Nano Server-System. Die restlichen Schritte dieses Dokuments werden, sofern nicht anders angemerkt, von der Remotesitzung aus stattfinden.
 
-### Installieren von Windows-Updates
+### <a name="install-windows-updates"></a>Installieren von Windows-Updates
 
 Wichtige Updates sind erforderlich, damit das Feature „Windows-Container“ funktioniert. Diese Updates können installiert werden, indem die folgenden Befehle ausgeführt werden.
 
@@ -61,7 +60,7 @@ Restart-Computer
 
 Stellen Sie, sobald er wieder verfügbar ist, die PowerShell-Remoteverbindung wieder her.
 
-## Installieren von Docker
+## <a name="install-docker"></a>Installieren von Docker
 
 Für die Arbeit mit Windows-Containern ist Docker erforderlich. Verwenden Sie das [PowerShell-Modul von OneGet](https://github.com/oneget/oneget), um Docker zu installieren. Der Anbieter aktiviert die Containerfunktion auf Ihrem Computer und installiert Docker. Dies macht einen Neustart erforderlich. 
 
@@ -85,7 +84,7 @@ Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 Restart-Computer -Force
 ```
 
-## Installieren von Basiscontainerimages
+## <a name="install-base-container-images"></a>Installieren von Basiscontainerimages
 
 Basisimages des Betriebssystems dienen als Basis aller Windows Server- oder Hyper-V-Container. Basisimages stehen sowohl für Windows Server Core als auch für Nano Server als zugrunde liegendes Betriebssystem bereit und können mithilfe von `docker pull` installiert werden. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Ihrer eigenen Images auf docker.com).
 
@@ -103,13 +102,13 @@ docker pull microsoft/windowsservercore
 
 > Bitte lesen Sie die [Lizenzbedingungen](../images-eula.md) zum Betriebssystemimage für Windows-Container.
 
-## Verwalten von Docker unter Nano Server
+## <a name="manage-docker-on-nano-server"></a>Verwalten von Docker unter Nano Server
 
 Als bewährte Methode und um optimale Ergebnisse zu erzielen, verwalten Sie Docker unter Nano Server über ein Remotesystem. Der Grund hierfür ist, dass PowerShell-Remoting derzeit die TTY-Terminal-Ausgabe einer interaktiven Containershell nicht zur ursprünglichen Eingabeaufforderung des Clients umleiten kann. Getrennte Container können mithilfe von `docker run -dt` gestartet und im Hintergrund ausgeführt werden. Interaktive Container, die `docker run -it` verwenden, funktionieren jedoch nicht wie erwartet. Außerdem bestehen bei der PowerShell ISE aus ähnlichen Gründen Probleme mit der interaktiven Ausgaben.
 
 Um einen Docker-Remoteserver zu verwalten, müssen folgende Aufgaben abgeschlossen werden.
 
-### Vorbereiten des Containerhosts
+### <a name="prepare-container-host"></a>Vorbereiten des Containerhosts
 
 Erstellen Sie auf dem Containerhost eine Firewallregel für die Docker-Verbindung. Bei unsicheren Verbindungen wird Port `2375` verwendet, bei sicheren Verbindungen Port `2376`.
 
@@ -125,7 +124,7 @@ Erstellen Sie zunächst eine `daemon.json`-Datei unter `c:\ProgramData\docker\co
 new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
-Führen Sie als Nächstes den folgenden Befehl aus, um der `daemon.json` -Datei eine Verbindungskonfiguration hinzuzufügen. Damit wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über TCP-Port 2375 akzeptiert werden. Dies ist eine unsichere Verbindung und wird nicht empfohlen, für isolierte Tests kann sie jedoch verwendet werden. Weitere Informationen zum Sichern dieser Verbindung finden Sie unter [Protect the Docker Daemon on Docker.com](https://docs.docker.com/engine/security/https/) (Schützen des Docker-Daemon auf Docker.com).
+Führen Sie als Nächstes den folgenden Befehl aus, um der `daemon.json` -Datei eine Verbindungskonfiguration hinzuzufügen. Damit wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über TCP-Port2375 akzeptiert werden. Dies ist eine unsichere Verbindung und wird nicht empfohlen, für isolierte Tests kann sie jedoch verwendet werden. Weitere Informationen zum Sichern dieser Verbindung finden Sie unter [Protect the Docker Daemon on Docker.com](https://docs.docker.com/engine/security/https/) (Schützen des Docker-Daemon auf Docker.com).
 
 ```none
 Add-Content 'c:\programdata\docker\config\daemon.json' '{ "hosts": ["tcp://0.0.0.0:2375", "npipe://"] }'
@@ -137,7 +136,7 @@ Starten Sie den Docker-Dienst neu.
 Restart-Service docker
 ```
 
-### Vorbereiten des Remoteclients
+### <a name="prepare-remote-client"></a>Vorbereiten des Remoteclients
 
 Laden Sie den Docker-Client in das Remotesystem herunter, in dem Sie arbeiten werden.
 
@@ -179,7 +178,7 @@ Wenn diese Variable festgelegt ist, sieht der Befehl folgendermaßen aus.
 docker run -it microsoft/nanoserver cmd
 ```
 
-## Hyper-V-Containerhost
+## <a name="hyper-v-container-host"></a>Hyper-V-Containerhost
 
 Die Hyper-V-Rolle ist auf dem Containerhost erforderlich, um Hyper-V-Container bereitzustellen. Weitere Informationen zu Hyper-V-Containern finden Sie unter [Hyper-V-Container](../manage-containers/hyperv-container.md).
 
@@ -197,9 +196,3 @@ Der Nano Server-Host muss nach der Installation der Hyper-V-Rolle neu gestartet 
 ```none
 Restart-Computer
 ```
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-

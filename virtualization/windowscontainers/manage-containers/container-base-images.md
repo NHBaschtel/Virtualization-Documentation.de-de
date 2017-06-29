@@ -8,13 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
-translationtype: Human Translation
-ms.sourcegitcommit: fe1e5d1f35e088581d44c43108c843347111eaef
-ms.openlocfilehash: 622c8f638a815e19a54aa75b6b5ea0688d966ae3
-
+ms.openlocfilehash: af819955c06b2db405f230cf3b7fee4c13e7c87c
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Verlauf für Windows-Containerbasisimages
+# <a name="windows-container-base-image-history"></a>Verlauf für Windows-Containerbasisimages
 
 Alle Windows-Container basieren auf einen Basisbetriebssystem, das von Microsoft bereitgestellt wird. Wenn Sie nicht sicher sind, für welche Windows-Version ein Container erstellt wurde, können Sie `docker inspect <tag>` ausführen und die erste Zeile oder die beiden ersten Zeilen mit der folgenden Tabelle vergleichen.
 
@@ -32,7 +31,7 @@ Beispielsweise könnte `docker inspect microsoft/windowsservercore:10.0.14393.44
 ```
 Dies sind die beiden Ebenen in dem von Microsoft bereitgestellten Image.
 
-Die Änderungen in einer Version können Sie ermitteln, indem Sie unter [Updateverlauf für Windows 10 und Windows Server 2016](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) in der Knowledge Base nach dieser Version suchen.
+Die Änderungen in einer Version können Sie ermitteln, indem Sie unter [Updateverlauf für Windows10 und Windows Server2016](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) in der Knowledge Base nach dieser Version suchen.
 
 
 <table>
@@ -75,10 +74,4 @@ Die Änderungen in einer Version können Sie ermitteln, indem Sie unter [Updatev
         sha256:dd33c5d8d8b3c230886132c328a7801547f13de1dac9a629e2739164a285b3ab</td>
     </tr>
 </table>
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

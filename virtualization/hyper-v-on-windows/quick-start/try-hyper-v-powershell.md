@@ -8,20 +8,19 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
-translationtype: Human Translation
-ms.sourcegitcommit: ffdf89b0ae346197b9ae631ee5260e0565261c55
-ms.openlocfilehash: 520ef410eddad61c40d31655e6bf7ede7846d4b2
-
+ms.openlocfilehash: 77893b931afb3cc39d54ca33dab84f33bc971bfc
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Arbeiten mit Hyper-V und Windows PowerShell
+# <a name="working-with-hyper-v-and-windows-powershell"></a>Arbeiten mit Hyper-V und Windows PowerShell
 
 Nachdem Sie sich mit den Grundlagen der Bereitstellung von Hyper-V sowie dem Erstellen und Verwalten virtueller Computer vertraut gemacht haben, wollen wir uns nun ansehen, wie viele dieser Aktivitäten mithilfe von PowerShell automatisiert werden können.
 
-### Zurückgeben einer Liste von Hyper-V-Befehle
+### <a name="return-a-list-of-hyper-v-commands"></a>Zurückgeben einer Liste von Hyper-V-Befehle
 
-1.  Klicken Sie auf die Windows-Schaltfläche „Start“, und geben Sie **PowerShell** ein.
-2.  Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
+1.    Klicken Sie auf die Windows-Schaltfläche „Start“, und geben Sie **PowerShell** ein.
+2.    Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
 
  ```powershell
 Get-Command -Module hyper-v | Out-GridView
@@ -30,7 +29,7 @@ Get-Command -Module hyper-v | Out-GridView
 
   ![](media\command_grid.png)
 
-3. Um weitere Informationen zu einem bestimmten PowerShell-Befehl zu erhalten, verwenden Sie `Get-Help`. Bei Ausführen des folgenden Befehls werden z. B. Informationen zum Hyper-V-Befehl `Get-VM` zurückgegeben.
+3. Um weitere Informationen zu einem bestimmten PowerShell-Befehl zu erhalten, verwenden Sie `Get-Help`. Bei Ausführen des folgenden Befehls werden z.B. Informationen zum Hyper-V-Befehl `Get-VM` zurückgegeben.
 
   ```powershell
 Get-Help Get-VM
@@ -40,7 +39,7 @@ Get-Help Get-VM
  ![](media\get_help.png)
 
 
-### Abrufen einer Liste virtueller Computer
+### <a name="return-a-list-of-virtual-machines"></a>Abrufen einer Liste virtueller Computer
 
 Mit `Get-VM` können Sie eine Liste virtueller Computer zurückgeben.
 
@@ -64,7 +63,7 @@ Get-VM
  Get-VM | where {$_.State -eq 'Off'}
  ```
 
-### Starten und Herunterfahren von virtuellen Maschinen
+### <a name="start-and-shut-down-virtual-machines"></a>Starten und Herunterfahren von virtuellen Maschinen
 
 1. Um einen bestimmten virtuellen Computer zu starten, führen Sie den folgenden Befehl mit dem Namen des virtuellen Computers:
 
@@ -83,14 +82,14 @@ Get-VM
  Get-VM | where {$_.State -eq 'Running'} | Stop-VM
  ```
 
-### Erstellen eines VM-Prüfpunkts
+### <a name="create-a-vm-checkpoint"></a>Erstellen eines VM-Prüfpunkts
 
 Wählen Sie zum Erstellen eines Prüfpunkts mithilfe von PowerShell den virtuellen Computer mit dem Befehl `Get-VM` aus, und übergeben Sie diesen an den Befehl `Checkpoint-VM`. Benennen Sie abschließend den Prüfpunkt mit dem Befehl `-SnapshotName`. Der vollständige Befehl sieht folgendermaßen aus:
 
  ```powershell
  Get-VM -Name <VM Name> | Checkpoint-VM -SnapshotName <name for snapshot>
  ```
-### Erstellen eines neuen virtuellen Computers
+### <a name="create-a-new-virtual-machine"></a>Erstellen eines neuen virtuellen Computers
 
 Im folgenden Beispiel wird das Erstellen ein neues virtuellen Computers in der PowerShell ISE (Integrated Scripting Environment) gezeigt. Dies ist ein einfaches Beispiel, das mit zusätzlichen PowerShell-Features und komplexeren VM-Bereitstellungen erweitert werden kann.
 
@@ -114,13 +113,7 @@ Im folgenden Beispiel wird das Erstellen ein neues virtuellen Computers in der P
  New-VM @VM
   ```
 
-## Wrappen und Verweise
+## <a name="wrap-up-and-references"></a>Wrappen und Verweise
 
 Dieses Dokument hat einige einfache Schritte zum Explorer das Hyper-V-PowerShell-Modul sowie einige Beispielszenarios gezeigt. Weitere Informationen zum PowerShell-Modul für Hyper-V finden Sie in der [Referenz zu Hyper-V-Cmdlets in Windows PowerShell](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).  
  
-
-
-
-<!--HONumber=Oct16_HO4-->
-
-

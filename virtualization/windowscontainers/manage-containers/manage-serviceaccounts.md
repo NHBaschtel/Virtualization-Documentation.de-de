@@ -8,28 +8,26 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-translationtype: Human Translation
-ms.sourcegitcommit: 1a327806514f1e1b5d2d234b0aa4ce300e26456f
-ms.openlocfilehash: 0e692f7521e4a15e3e56d4b98f7ca15fe94ee167
-ms.lasthandoff: 01/26/2017
-
+ms.openlocfilehash: e864242e69a84d7636241ea2a772722add5b8b7c
+ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.translationtype: HT
+ms.contentlocale: de-DE
 ---
-
-# Active Directory-Dienstkonten für Windows-Container
+# <a name="active-directory-service-accounts-for-windows-containers"></a>Active Directory-Dienstkonten für Windows-Container
 
 Benutzer und andere Dienste müssen möglicherweise authentifizierte Verbindungen zu Ihren Anwendungen und Diensten herstellen, damit Sie Ihre Daten sichern und vor nicht berechtigter Verwendung schützen können. Windows Active Directory-Domänen (AD) unterstützen standardmäßig sowohl die Kennwort- als auch die Zertifikatauthentifizierung. Wenn Sie Ihre Anwendung oder Ihren Dienst auf einem in die Domäne eingebunden Windows-Host erstellen und die Anwendung bzw. der Dienst als lokaler Systemdienst oder Netzwerkdienst ausgeführt wird, wird standardmäßig die Identität des Hosts verwendet. Andernfalls können Sie für die Authentifizierung auch ein anderes AD-Konto konfigurieren.
 
 Obwohl Windows-Container nicht in die Domäne eingebunden werden können, können sie dennoch von Active Directory-Domänenidentitäten profitieren – ähnlich wie bei in einen Bereich eingebundenen Geräten. Mit Windows Server 2012 R2-Domänencontrollern haben wir ein neues Domänenkonto eingeführt, das als gruppenverwaltetes Dienstkonto (group Managed Service Account, gMSA) bezeichnet wird und von verschiedenen Diensten verwendet werden kann. Mithilfe von gruppenverwalteten Dienstkonten können die Windows-Container selbst und die Dienste, die sie hosten, so konfiguriert werden, dass ein bestimmtes gMSA als Domänenidentität verwendet wird. Alle als lokaler Systemdienst oder Netzwerkdienst ausgeführten Dienste verwenden dann die Identität des Windows-Containers – genau so, wie diese Dienste heute die in die Domäne eingebundene Identität verwenden. Im Containerimage ist kein Kennwort oder privater Zertifikatschlüssel gespeichert, der versehentlich offengelegt werden könnte. Der Container kann in Entwicklungs-, Tests- und Produktionsumgebungen erneut bereitgestellt werden, ohne dass gespeicherte Kennwörter oder Zertifikate neu erstellt werden müssen. 
 
 
-# Glossar und Referenzen
+# <a name="glossary--references"></a>Glossar und Referenzen
 - [Active Directory](http://social.technet.microsoft.com/wiki/contents/articles/1026.active-directory-services-overview.aspx) ist ein Dienst zur Ermittlung, Suche und Replikation von Informationen zu Benutzern, Computern, und Dienstkonten unter Windows. 
   - [Active Directory Domain Services](https://technet.microsoft.com/en-us/library/dd448614.aspx) bieten eine oder mehrere Windows Active Directory-Domänen zur Authentifizierung von Computern und Benutzern. 
   - Geräte sind _in die Domäne eingebunden_, wenn sie Mitglied einer Active Directory-Domäne sind. Als „in die Domäne eingebunden“ wird ein Gerätezustand bezeichnet, der nicht nur eine Domänencomputeridentität für das Gerät bereitstellt, sondern auch verschiedene in die Domäne eingebundene Dienste anzeigt.
   - Ein [gruppenverwaltetes Dienstkonto](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx), häufig mit gMSA abgekürzt, ist ein bestimmter Active Directory-Kontotyp, der eine einfache Sicherung von Diensten mithilfe von Active Directory ermöglicht, ohne ein Kennwort weitergeben zu müssen. Um Verbindungen zwischen Diensten zu authentifizieren, nutzen mehrere Computer oder Container dasselbe gMSA.
 - Das PowerShell-Modul _CredentialSpec_: Dieses Modul wird verwendet, um gruppenverwaltete Dienstkonten zu konfigurieren, die mit Containern verwendet werden sollen. Das Skriptmodul und die Beispielschritte stehen unter [windows-server-container-tools](https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools) im Ordner „ServiceAccounts“ zur Verfügung.
 
-# Funktionsweise
+# <a name="how-it-works"></a>Funktionsweise
 
 Heute werden gruppenverwaltete Dienstkonten häufig verwendet, um Verbindungen zwischen einem Computer oder Dienst mit einem anderen Computer oder Dienst zu schützen. Folgende allgemeine Schritte sind auszuführen:
 
@@ -53,10 +51,10 @@ Wenn der Container gestartet wurde, werden die als lokaler Systemdienst oder Net
 ![Diagramm – Dienstkonten](media/serviceaccount_diagram.png)
 
 
-# Beispielverwendungen
+# <a name="example-uses"></a>Beispielverwendungen
 
 
-## SQL-Verbindungszeichenfolgen
+## <a name="sql-connection-strings"></a>SQL-Verbindungszeichenfolgen
 Wenn ein Dienst als lokaler Systemdienst oder Netzwerkdienst in einem Container ausgeführt wird, kann die integrierte Windows-Authentifizierung genutzt werden, um eine Verbindung mit einer Microsoft SQL Server-Instanz herzustellen.
 
 Beispiel:
@@ -85,4 +83,3 @@ EXEC sp_addrolemember 'db_datawriter', 'WebApplication1'
 ```
 
 Sehen Sie sich dazu die [aufgezeichnet Demo](https://youtu.be/cZHPz80I-3s?t=2672) der Microsoft Ignite 2016-Sitzung „Walk the Path to Containerization - transforming workloads into containers“ an.
-
