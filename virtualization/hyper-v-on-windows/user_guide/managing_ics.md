@@ -9,12 +9,13 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 9cafd6cb-dbbe-4b91-b26c-dee1c18fd8c2
 redirect_url: https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/manage-Hyper-V-integration-services
-ms.openlocfilehash: 83bcc4c2f47e2a3921be257f45a3a0e22dcba89a
-ms.sourcegitcommit: fd6c5ec419aae425af7ce6c6a44d59c98f62502a
+ms.openlocfilehash: 374ce6f8c4aede7190916675698551eb667458f9
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="managing-hyper-v-integration-services"></a>Verwalten von Hyper-V-Integrationsdiensten
+# Verwalten von Hyper-V-Integrationsdiensten
 
 Integrationsdienste (oft als „Integrationskomponenten“ bezeichnet) ermöglichen dem virtuellen Computer das Kommunizieren mit dem Hyper-V-Host. Viele dieser Dienste stellen Vorteile dar (z.B. Kopieren von Gastdateien), während andere für das problemlose Funktionieren des virtuellen Computers recht wichtig sein können (z.B. Zeitsynchronisierung).
 
@@ -22,7 +23,7 @@ Dieser Artikel enthält ausführliche Informationen zum Verwalten von Integratio
 
 Weitere Informationen zu den einzelnen Integrationsdiensten finden Sie unter [Integrationsdienste](../reference/integration-services.md).
 
-## <a name="enable-or-disable-integration-services-using-hyper-v-manager"></a>Aktivieren und Deaktivieren von Integrationsdiensten mit Hyper-V-Manager
+## Aktivieren und Deaktivieren von Integrationsdiensten mit Hyper-V-Manager
 
 1. Wählen Sie einen virtuellen Computer aus, und öffnen Sie „Einstellungen“.
   
@@ -32,7 +33,7 @@ Weitere Informationen zu den einzelnen Integrationsdiensten finden Sie unter [In
 
 REG QUERY "HKLM\Software\Microsoft\Virtual Machine\Auto" /v IntegrationServicesVersion
 
-## <a name="enable-or-disable-integration-services-using-powershell"></a>Aktivieren und Deaktivieren von Integrationsdiensten mit PowerShell
+## Aktivieren und Deaktivieren von Integrationsdiensten mit PowerShell
 
 Integrationsdienste können auch mit PowerShell durch Ausführen von [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) bzw. [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx) aktiviert und deaktiviert werden.
 
@@ -73,7 +74,7 @@ In diesem Beispiel aktivieren und deaktivieren wir den Integrationsdienst für d
 Integrationsdienste sind so konzipiert, dass sie für ein ordnungsgemäßes Funktionieren sowohl im Host- als auch im Gastsystem aktiviert sein müssen.  In Windows-Gastbetriebssystemen sind Integrationsdienste standardmäßig aktiviert, können aber deaktiviert werden.  Dies wird im nächsten Abschnitt erläutert.
 
 
-## <a name="manage-integration-services-from-guest-os-windows"></a>Verwalten von Integrationsdiensten im Gastbetriebssystem (Windows)
+## Verwalten von Integrationsdiensten im Gastbetriebssystem (Windows)
 
 > **Hinweis:** Durch das Deaktivieren von Integrationsdiensten kann die Fähigkeit des Hosts zum Verwalten Ihres virtuellen Computers gravierend eingeschränkt werden.  Integrationsdienste müssen für einen ordnungsgemäßen Betrieb auf Host und Gast aktiviert sein.
 
@@ -110,7 +111,7 @@ Um z.B. PowerShell Direct zu deaktivieren, können Sie `Stop-Service -Name vmicv
 
 Standardmäßig sind alle Integrationsdienste im Gastbetriebssystem aktiviert.
 
-## <a name="manage-integration-services-from-guest-os-linux"></a>Verwalten von Integrationsdiensten im Gastbetriebssystem (Linux)
+## Verwalten von Integrationsdiensten im Gastbetriebssystem (Linux)
 
 Linux-Integrationsdienste werden in der Regel über den Linux-Kernel bereitgestellt.
 
@@ -191,7 +192,7 @@ sudo hv_kvp_daemon
 Wenn Sie `ps -ef | hv` nochmals ausführen, sehen Sie, dass ein `hv_kvp_daemon`-Prozess mit einer neuen Prozess-ID vorhanden ist.
 
 
-## <a name="integration-service-maintenance"></a>Wartung von Integrationsdiensten
+## Wartung von Integrationsdiensten
 
 Die Wartung von Integrationsdiensten in Windows 10 erfolgt standardmäßig, sofern Ihre virtuellen Computer wichtige Updates von Windows Update erhalten können.  
 

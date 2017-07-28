@@ -8,12 +8,13 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
-ms.openlocfilehash: ac6e99800fcabef31464a81799fc9e329438b0ae
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: 9b630e372b575ef1721c0d0926ec2caec3e5ec34
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="windows-containers-documentation"></a>Dokumentation zu Windows-Containern
+# Dokumentation zu Windows-Containern
 
 Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene und damit die Ausführung mehrerer isolierter Anwendungen auf einem einzigen System. Das Feature stellt zwei verschiedene Arten von Containerlaufzeiten mit zwei unterschiedlichen Anwendungsisolierungsgraden bereit. Windows Server-Container erreichen die Isolierung durch Namespace- und Prozessisolierung . Hyper-V-Container kapseln jeden Container in einer Lightweight-VM. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
 

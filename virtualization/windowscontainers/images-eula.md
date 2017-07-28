@@ -1,13 +1,13 @@
 
-# <a name="microsoft-software-supplemental-license-terms"></a>ERGÄNZENDE LIZENZBESTIMMUNGEN FÜR MICROSOFT-SOFTWARE
+# ERGÄNZENDE LIZENZBESTIMMUNGEN FÜR MICROSOFT-SOFTWARE
 
 Lizenz: Indem Sie dieses Containerbetriebssystem-Image für Windows-Container anfordern und verwenden, bestätigen Sie, dass Sie in die folgenden, ergänzenden Lizenzbestimmungen für Microsoft-Software einwilligen, sie verstehen und anerkennen:
 
-## <a name="container-os-image"></a>CONTAINERBETRIEBSSYSTEM-IMAGE 
+## CONTAINERBETRIEBSSYSTEM-IMAGE 
 
 Microsoft Corporation oder (abhängig von Ihrem Standort) ein Partner (bezeichnet als „uns“, „wir“ oder Microsoft) erteilt Ihnen eine Lizenz für diese Ergänzung („Ergänzung“) des Containerbetriebssystem-Images. Sie sind nur für die Verwendung dieser Ergänzung in Verbindung mit der zu Grunde liegenden Hostbetriebssystem-Software („Hostsoftware“) lizenziert, um die Ausführung der Containerfunktionen in der Hostsoftware zu unterstützen.  Für die Benutzung der Ergänzung gelten die Lizenzbedingungen der Hostsoftware. Ohne Lizenz für die Hostsoftware dürfen Sie diese Ergänzung nicht verwenden. Sie können diese Ergänzung mit jeder ordnungsgemäß lizenzierten Kopie der Hostsoftware verwenden.
 
-## <a name="additional-licensing-requirements-andor-use-rights"></a>ZUSÄTZLICHE LIZENZANFORDERUNGEN UND/ODER NUTZUNGSRECHTE 
+## ZUSÄTZLICHE LIZENZANFORDERUNGEN UND/ODER NUTZUNGSRECHTE 
 
 Die im vorherigen Abschnitt beschriebene Nutzung der Ergänzung kann zur Erstellung oder Modifizierung eines Containerimages („Containerimage“) führen, das bestimmte ergänzende Komponenten enthält. Zur Klarstellung: Ein Containerimage ist klar abgegrenzt von Image für virtuelle Computer oder Geräte und unterscheidet sich von diesen.  Im Rahmen dieser Lizenzbedingungen gewähren wir Ihnen das eingeschränkte Recht, diese Ergänzungskomponenten unter folgenden Bedingungen weitergeben:
 

@@ -9,12 +9,12 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
 ms.openlocfilehash: 5230080386081bda8b54656d15f33b4986cfa6e3
-ms.sourcegitcommit: ca64c1aceccd97c6315b28ff814ec7ac91fba9da
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="troubleshooting"></a>Problembehandlung
+# Problembehandlung
 
 Haben Sie Probleme beim Einrichten Ihres Computers oder beim Ausführen eines Containers? Wir haben ein PowerShell-Skript entwickelt, das nach häufigen Problemen sucht. Bitte probieren Sie es erst aus, um zu sehen, was es findet, und geben Sie Ihre Ergebnisse frei.
 
@@ -26,10 +26,10 @@ Eine Liste aller Tests, die das Skript ausführt sowie allgemeine Lösungen, fin
 Wenn das nicht hilft, suchen Sie die Quelle des Problems, posten Sie die Ausgabe Ihres Skripts im [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). Dies ist der beste Ort, um Hilfe von der Community zu erhalten, zu der auch Windows Insiders und Entwickler gehören.
 
 
-## <a name="finding-logs"></a>Suchen von Protokollen
+## Suchen von Protokollen
 Es gibt mehrere Dienste, die zum Verwalten von Windows-Containern verwendet werden. Im nächsten Abschnitt wird gezeigt, wie Sie Protokolle für jeden Dienst erhalten.
 
-### <a name="docker-engine"></a>Docker-Modul
+### Docker-Modul
 Das Docker-Modul protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
 
 Beispielsweise werden dadurch die Protokolle des Docker-Moduls der letzten fünf Minuten angezeigt, angefangen mit dem ältesten.
@@ -44,7 +44,7 @@ Dies könnte auch einfach in eine CSV-Datei weitergeleitet werden, um dort von e
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.CSV
 ```
 
-#### <a name="enabling-debug-logging"></a>Aktivieren der Debugprotokollierung
+#### Aktivieren der Debugprotokollierung
 Sie können auch die Protokollierung auf Debugebene im Docker-Modul aktivieren. Dies kann für die Problembehandlung hilfreich sein, wenn reguläre Protokolle nicht genügend Informationen enthalten.
 
 Öffnen Sie zunächst eine Eingabeaufforderung mit erhöhten Rechten, führen Sie dann `sc.exe qc docker` aus, um die aktuelle Befehlszeile für den Docker-Dienst zu erhalten.
@@ -90,7 +90,7 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-#### <a name="obtaining-stack-dump-and-daemon-data"></a>Abrufen von Stapelwert- und Daemon-Daten.
+#### Abrufen von Stapelwert- und Daemon-Daten.
 
 In der Regel sind diese nur dann nützlich, wenn sie vom explizit von Microsoft-Support oder von Docker-Entwicklern angefordert werden. Sie können zur Unterstützung der Diagnose einer Situation verwendet werden, in der Docker scheinbar nicht reagiert. 
 
@@ -110,7 +110,7 @@ Die Dateien sind `goroutine-stacks-<timestamp>.log` und `daemon-data-<timestamp>
 Beachten Sie, dass `daemon-data*.log`möglicherweise persönliche Informationen enthält und in der Regel nur an vertrauenswürdige Personen freigegeben werden sollte. `goroutine-stacks*.log` enthält keine persönlichen Informationen.
 
 
-### <a name="host-container-service"></a>Hostcontainerdienst
+### Hostcontainerdienst
 Das Docker-Modul ist von einem bestimmten Windows-spezifischen Hostcontainerdienst abhängig. Dieser verfügt über separate Protokolle: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
@@ -123,7 +123,7 @@ Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
 ```
 
-#### <a name="capturing-hcs-analyticdebug-logs"></a>Erfassen von HCS Analyse-/Debug-Protokollen
+#### Erfassen von HCS Analyse-/Debug-Protokollen
 
 Um Analyse-/Debug-Protokolle für Hyper-V-Compute zu aktivieren und auf `hcslog.evtx` zu speichern.
 
@@ -140,7 +140,7 @@ wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 ```
 
-#### <a name="capturing-hcs-verbose-tracing"></a>Aufzeichnen ausführlicher HCS-Protokollierung
+#### Aufzeichnen ausführlicher HCS-Protokollierung
 
 In der Regel ist sie nur dann nützlich, wenn sie vom Microsoft Support angefordert wird. 
 

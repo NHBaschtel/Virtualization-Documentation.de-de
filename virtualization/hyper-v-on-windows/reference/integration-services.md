@@ -8,12 +8,13 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
-ms.openlocfilehash: 2e2289bbb7801824c13e5ba4cb17d51beb26fbfa
-ms.sourcegitcommit: b55d4d31a5706e2f65f4c4a029c2f55a76711253
+ms.openlocfilehash: c98ab9c32dfcd6e9b3a0258d0282b28d78726f6a
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="hyper-v-integration-services"></a>Hyper-V-Integrationsdienste
+# Hyper-V-Integrationsdienste
 
 Integrationsdienste (oft als „Integrationskomponenten“ bezeichnet) ermöglichen dem virtuellen Computer das Kommunizieren mit dem Hyper-V-Host. Viele dieser Dienste stellen Vorteile dar, während andere sehr wichtig für die problemlose Funktion des virtuellen Computers sein können.
 
@@ -23,7 +24,7 @@ Dieser Artikel stellt eine Referenz für jeden in Windows verfügbaren Integrati
 * [Verwalten von Integrationsdiensten](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/manage-Hyper-V-integration-services)
 
 
-## <a name="quick-reference"></a>Kurzübersicht
+## Kurzübersicht
 
 | Name | Name des Windows-Diensts | Name des Linux-Daemons |  Beschreibung | Auswirkung auf die VM, wenn deaktiviert |
 |:---------|:---------|:---------|:---------|:---------|
@@ -36,7 +37,7 @@ Dieser Artikel stellt eine Referenz für jeden in Windows verfügbaren Integrati
 | [Hyper-V-Dienst PowerShell Direct](#hyper-v-powershell-direct-service) | vmicvmsession | nicht verfügbar | Bietet eine Möglichkeit zum Verwalten der virtuellen Computer mit PowerShell ohne eine Netzwerkverbindung. | Niedrig |  
 
 
-## <a name="hyper-v-heartbeat-service"></a>Hyper-V Taktdienst
+## Hyper-V Taktdienst
 
 **Name des Windows-Diensts:** vmicheartbeat  
 **Name des Linux-Daemons:** hv_utils  
@@ -48,7 +49,7 @@ Der Taktdienst ermöglicht die Beantwortung grundlegender Fragen wie „Wurde de
 
 Wenn Hyper-V berichtet, dass der Status eines virtuellen Computers „wird ausgeführt“ lautet (siehe nachfolgendes Beispiel), bedeutet dies, dass Hyper-V Ressourcen für den virtuellen Computer reserviert hat. Es bedeutet nicht, dass ein Betriebssystem installiert wurde oder funktioniert.  Hier ist der Takt hilfreich.  Der Taktdienst berichtet Hyper-V, dass das Betriebssystem im virtuellen Computer gestartet wurde.  
 
-### <a name="check-heartbeat-with-powershell"></a>Überprüfen des Takts mit PowerShell
+### Überprüfen des Takts mit PowerShell
 
 Führen Sie [Get-VM](https://technet.microsoft.com/en-us/library/hh848479.aspx) als Administrator aus, um den Takt des virtuellen Computers zu sehen:
 ``` PowerShell
@@ -66,7 +67,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 
 
 
-## <a name="hyper-v-guest-shutdown-service"></a>Hyper-V-Dienst zum Herunterfahren des Gasts
+## Hyper-V-Dienst zum Herunterfahren des Gasts
 
 **Name des Windows-Diensts:** vmicshutdown  
 **Name des Linux-Daemons:** hv_utils  
@@ -75,7 +76,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 **Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahrvorgänge sind erzwungene Systemabschaltungen, was zu Datenverlusten oder Datenbeschädigungen führen kann.  
 
 
-## <a name="hyper-v-time-synchronization-service"></a>Hyper-V-Zeitsynchronisierungsdienst
+## Hyper-V-Zeitsynchronisierungsdienst
 
 **Name des Windows-Diensts:** vmictimesync  
 **Name des Linux-Daemons:** hv_utils  
@@ -84,7 +85,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 **Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, weicht die Uhr des virtuellen Computers unkontrolliert ab.  
 
 
-## <a name="hyper-v-data-exchange-service-kvp"></a>Hyper-V-Datenaustauschdienst (KVP)
+## Hyper-V-Datenaustauschdienst (KVP)
 
 **Name des Windows-Diensts:** vmickvpexchange  
 **Name des Linux-Daemons:** hv_kvp_daemon  
@@ -103,7 +104,7 @@ Der Datenaustauschdienst ist ein großartiges Tool, um Informationen zum virtuel
 * [Freigeben von Informationen zwischen dem Host und dem Gast auf Hyper-V mithilfe von Schlüssel-Wert-Paaren](https://technet.microsoft.com/en-us/library/dn798287.aspx).  
 
 
-## <a name="hyper-v-volume-shadow-copy-requestor"></a>Hyper-V-Volumeschattenkopie-Anforderer
+## Hyper-V-Volumeschattenkopie-Anforderer
 
 **Name des Windows-Diensts:** vmicvss  
 **Name des Linux-Daemons:** hv_vss_daemon  
@@ -116,7 +117,7 @@ Der Integrationsdienst für den Volumeschattenkopie-Anforderer wird für den Vol
 Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://msdn.microsoft.com/en-us/library/dd405549.aspx).
 
 
-## <a name="hyper-v-guest-service-interface"></a>Hyper-V-Gastdienstschnittstelle
+## Hyper-V-Gastdienstschnittstelle
 
 **Name des Windows-Diensts:** vmicguestinterface  
 **Name des Linux-Daemons:** hv_fcopy_daemon  
@@ -128,7 +129,7 @@ Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://msdn.m
 Standardmäßig deaktiviert  Weitere Informationen finden Sie unter [PowerShell Direct mithilfe von Copy-Item](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item). 
 
 
-## <a name="hyper-v-powershell-direct-service"></a>Hyper-V-Dienst PowerShell Direct
+## Hyper-V-Dienst PowerShell Direct
 
 **Name des Windows-Diensts:** vmicvmsession  
 **Name des Linux-Daemons:** nicht zutreffend  

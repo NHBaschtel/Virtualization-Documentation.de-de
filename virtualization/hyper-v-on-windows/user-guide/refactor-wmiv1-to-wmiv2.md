@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: b13a3594-d168-448b-b0a1-7d77153759a8
 ms.openlocfilehash: e2d6faabe77346199a5d292fcfd92cdfd63909b8
-ms.sourcegitcommit: a424c11258e47f224e14c4349b852b9e37b7604f
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="move-from-hyper-v-wmi-v1-to-wmi-v2"></a>Wechsel Sie von Hyper-V-WMI-v1 auf WMI-v2
+# Wechsel Sie von Hyper-V-WMI-v1 auf WMI-v2
 
 Die Windows-Verwaltungsinstrumentation (Windows Management Instrumentation, WMI) ist die zugrunde liegende Schnittstelle für die Verwaltung von Hyper-V-Manager und Hyper-V PowerShell-Cmdlets.  Während die meisten Benutzer unsere PowerShell-Cmdlets oder Hyper-V-Manager verwenden, benötigen Entwickler manchmal WMI direkt.  
 
@@ -23,7 +23,7 @@ Es gibt zwei Hyper-V-WMI-Namespaces (oder Hyper-V-WMI-API-Versionen).
 
 Dieses Dokument enthält Verweise auf Ressourcen für Code, der mit unserem vorherigen WMI-Namespace kommunizierte und wie dieser in den neuen konvertiert werden kann.  Der Artikel dient zunächst als Repository für API-Informationen und Beispielcode bzw. Skripts, die verwendet werden können, um alle Programme oder Skripts zu portieren, die Hyper-V-WMI-APIs aus dem Namespace v1 auf den v2-Namespace verwenden.
 
-## <a name="msdn-samples"></a>MSDN-Beispiele
+## MSDN-Beispiele
 
 [Beispiel für die Migration eines virtuellen Hyper-V-Computers](http://code.msdn.microsoft.com/windowsdesktop/Hyper-V-virtual-machine-aef356ee)  
 [Beispiel eines virtuellen Hyper-V-Fiber-Channels](http://code.msdn.microsoft.com/windowsdesktop/Hyper-V-virtual-Fiber-35d27dcd)  
@@ -38,7 +38,7 @@ Dieses Dokument enthält Verweise auf Ressourcen für Code, der mit unserem vorh
 [Beispiel einer Hyper-V-Ressourcenpoolverwaltung](http://code.msdn.microsoft.com/windowsdesktop/Hyper-V-resource-pool-df906d95)  
 [Beispiel eines Hyper-V-Wiederherstellungssnapshot](http://code.msdn.microsoft.com/windowsdesktop/Hyper-V-recovery-snapshot-ea72320c)  
 
-## <a name="samples-from-blogs"></a>Beispiele von Blogs
+## Beispiele von Blogs
 
 [Hinzufügen eines Netzwerkadapters auf einem virtuellen Computer mithilfe von Hyper-V-WMI-V2-Namespace](http://blogs.msdn.com/b/taylorb/archive/2013/07/15/adding-a-network-adapter-to-a-vm-using-the-hyper-v-wmi-v2-namespace.aspx)  
 [Verbinden eines VM-Netzwerkadapters an einen Switch mithilfe von Hyper-V-WMI-V2-Namespace](http://blogs.msdn.com/b/taylorb/archive/2013/07/15/connecting-a-vm-network-adapter-to-a-switch-using-the-hyper-v-wmi-v2-namespace.aspx)  

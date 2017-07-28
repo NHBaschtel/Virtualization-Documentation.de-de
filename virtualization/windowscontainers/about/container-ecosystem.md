@@ -8,16 +8,17 @@ ms.topic: about-article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
-ms.openlocfilehash: a06a92bce8f985e463a4b33a09a71d21e264a036
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: 27808eddb624bdfc61d971d46be609a49c051664
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="building-a-container-ecosystem"></a>Aufbauen eines Containerökosystems
+# Aufbauen eines Containerökosystems
 
 Um zu verstehen, warum ein Ökosystem Container erstellen so wichtig ist, zunächst sprechen wir über Docker.
 
-## <a name="dockers-appeal"></a>Der Charme von Docker
+## Der Charme von Docker
 
 Das Konzept von Containern (Isolation von Namespaces und Ressourcenkontrolle) ist nicht wirklich neu und geht zurück auf BSD Jails, Solaris Zones und den grundlegenden UNIX-Mechanismus „chroot (change root)“.   Was Docker beigetragen hat, ist ein allgemeines Toolset, ein Paketerstellungsmodell und ein Bereitstellungsmechanismus.  Dadurch vereinfacht Docker die Containerisierung und Verteilung von Clientanwendungen erheblich.  Diese Anwendungen können dann überall auf beliebigen Linux-Hosts ausgeführt werden. Diese Funktionalität bieten wir auch unter Windows.
 
@@ -30,7 +31,7 @@ Docker bietet eine überzeugende Grundlage für die Entwicklung.
 Nun wollen wir uns mit diesem Ökosystem und damit beschäftigen, wie Sie auf Docker-Konzepten aufbauen können, um einen Entwicklungs- und Bereitstellungsworkflow entsprechend Ihren Anforderungen einzurichten.
 
 
-## <a name="components-in-a-container-ecosystem"></a>Komponenten eines Containerökosystems
+## Komponenten eines Containerökosystems
 
 Windows-Container sind eine wichtige Komponente eines großen Containerökosystems. Wir arbeiten mit der gesamten Branche zusammen, um Entwicklern Optionen auf allen Ebenen des Lösungsstapels zu bieten.
 

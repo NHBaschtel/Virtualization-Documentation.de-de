@@ -9,10 +9,17 @@
 ## [Schritt 1 – Konzepte](quick_start/quick_start.md)
 ## [Schritt 2 – Erster Container](quick_start/quick_start_windows_10.md)
 
+# Schnellstartanleitung für Windows-Insider
+## [Schritt1: Verwenden der Insider-Images](quick-start/Using-Insider-Container-Images.md)
+## [Schritt2: Erstellen und Ausführen der Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+## [Schritt3: Bekannte Probleme](quick-start/Insider-Known-Issues.md)
+
 # Bereitstellen von Windows-Containern
 ## [Systemanforderungen](deployment/system_requirements.md)
+## [Hyper-V-Isolierung](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container)
 ## [Containerhost – Windows Server](deployment/deployment.md)
 ## [Containerhost – Nano Server](deployment/deployment_nano.md)
+## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Active Directory-Dienstkonten](management/manage_serviceaccounts.md)
 

@@ -8,12 +8,13 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
-ms.openlocfilehash: ca951a356fbf11ed784b78f9742fd43da005e58c
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: a9d9f1b8cb0c76e57def1a92d993970ed40dbe7a
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="set-up-a-nat-network"></a>Einrichten eines NAT-Netzwerks
+# Einrichten eines NAT-Netzwerks
 
 Windows 10 Hyper-V ermöglicht native Netzwerkadressübersetzung (Network Address Translation, NAT) für ein virtuelles Netzwerk.
 
@@ -26,9 +27,9 @@ Anforderungen:
 * Windows 10 Anniversary Update oder höher
 * Hyper-V-Rolle ist aktiviert (Anweisungen [hier](../quick-start/enable-hyper-v.md))
 
-> **Hinweis:** Derzeit erstellen Sie ein NAT-Netzwerk pro Host. Weitere Informationen zur Windows-NAT-Implementierung (WinNAT), zu Funktionen und Einschränkungen finden Sie im Blog [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/) (Stärken und Schwächen von WinNAT).
+> **Hinweis:** Derzeit steht Ihnen nur ein NAT-Netzwerk pro Host zur Verfügung. Weitere Informationen zur Windows-NAT-Implementierung (WinNAT), zu Funktionen und Einschränkungen finden Sie im Blog [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/) (Stärken und Schwächen von WinNAT).
 
-## <a name="nat-overview"></a>NAT-Überblick
+## NAT-Überblick
 NAT ermöglicht einem virtuellen Computer unter Verwendung der IP-Adresse des Hostcomputers und eines Ports über einen internen virtuellen Hyper-V-Switch Zugriff auf Netzwerkressourcen.
 
 Netzwerkadressübersetzung (NAT, Network Address Translation) ist ein Netzwerkmodus zur Konservierung von IP-Adressen durch Zuordnung einer externen IP-Adresse und eines Ports zu einem wesentlich größeren Satz interner IP-Adressen.  Im Wesentlichen nutzt ein NAT eine Flusstabelle zum Weiterleiten von Datenverkehr von einer IP-Adresse und Portnummer zur richtigen internen IP-Adresse, die einem Gerät im Netzwerk (VM, Computer, Container usw.) zugeordnet ist.
@@ -38,7 +39,7 @@ Darüber hinaus erlaubt NAT mehreren VMs das Hosten von Anwendungen, die identis
 Aus allen diesen Gründen ist NAT-Networking in der Containertechnologie sehr gebräuchlich (siehe [Containernetzwerk](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/container_networking)).
 
 
-## <a name="create-a-nat-virtual-network"></a>Erstellen eines virtuellen NAT-Netzwerks
+## Erstellen eines virtuellen NAT-Netzwerks
 Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
 1.  Öffnen Sie eine PowerShell-Konsole als Administrator.  
@@ -119,18 +120,18 @@ Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
 Gratulation!  Sie haben jetzt ein virtuelles NAT-Netzwerk!  Um dem NAT-Netzwerk einen virtuellen Computer hinzuzufügen, befolgen Sie bitte diese [Anweisungen](#connect-a-virtual-machine).
 
-## <a name="connect-a-virtual-machine"></a>Herstellen einer Verbindung mit einem virtuellen Computer
+## Herstellen einer Verbindung mit einem virtuellen Computer
 
 Um einen virtuellen Computer mit Ihrem neuen NAT-Netzwerk zu verbinden, verbinden Sie den internen Switch, den Sie im ersten Schritt des Abschnitts [Erstellen eines virtuellen NAT-Netzwerks](#create-a-nat-virtual-network) erstellt haben, mithilfe des Menüs „VM-Einstellungen“ mit dem virtuellen Computer.
 
 Da WinNAT nicht selbst IP-Adressen reserviert und einem Endpunkt (z. B. einer VM) zuweist, müssen Sie diese Aufgabe in der VM selbst manuell ausführen, d.h. die IP-Adresse im Bereich des NAT-internen Präfixes, die IP-Adresse des Standardgateways und die DNS-Serverinformationen festlegen. Die einzige Einschränkung liegt vor, wenn der Endpunkt an den Container angefügt ist. In diesem Fall wird der Host Compute Service (HCS) vom Host Network Service (HNS) so zugeordnet und verwendet, dass die IP-Adresse, Gateway-IP-Adresse und DNS-Informationen dem Container direkt zugewiesen werden.
 
 
-## <a name="configuration-example-attaching-vms-and-containers-to-a-nat-network"></a>Konfigurationsbeispiel: Anfügen von VMs und Containern an ein NAT-Netzwerk
+## Konfigurationsbeispiel: Anfügen von VMs und Containern an ein NAT-Netzwerk
 
 _Wenn Sie mehrere VMs und Containern an ein einzelnes NAT anfügen müssen, ist sicherzustellen, dass das NAT-interne Subnetzpräfix für die IP-Bereiche groß genug ist, die verschiedenen Anwendungen oder Diensten (z.B. Docker für Windows und Windows-Container, HNS) zugewiesen sind. Dieser Vorgang erfordert entweder eine Zuweisung von IP-Adressen auf Anwendungsebene und Netzwerkkonfiguration oder eine manuelle Konfiguration, die von einem Administrator vorgenommen werden muss und sicherstellt, dass vorhandene IP-Adresszuweisungen nicht auf demselben Host wiederverwendet werden._
 
-### <a name="docker-for-windows-linux-vm-and-windows-containers"></a>Docker für Windows (Linux-VM) und Windows-Container
+### Docker für Windows (Linux-VM) und Windows-Container
 Die nachstehend beschriebene Lösung ermöglicht sowohl Docker für Windows (in Linux-VM ausgeführten Linux-Containern) und Windows-Containern die gemeinsame Nutzung derselben WinNAT-Instanz unter Verwendung getrennter interner vSwitches. Konnektivität zwischen Linux- und Windows-Containern ist gegeben.
 
 Der Benutzer hat VMs über den internen vSwitch „VMNAT“ mit einem NAT-Netzwerk verbunden und möchte nun das Feature „Windows-Container“ mit dem Docker-Modul installieren.
@@ -162,7 +163,7 @@ Docker/HNS weist Windows-Containern IP-Adressen aus dem <container prefix> zu. D
 
 Am Ende verfügen Sie über zwei interne VM-Switches und einem NetNat, das von diesen gemeinsam verwendet wird.
 
-## <a name="multiple-applications-using-the-same-nat"></a>Verwendung der gleichen NAT durch mehrere Anwendungen
+## Verwendung der gleichen NAT durch mehrere Anwendungen
 
 In einigen Szenarien müssen mehrere Anwendungen oder Dienste die gleiche NAT verwenden. In diesem Fall muss der folgende Workflow eingehalten werden, damit mehrere Anwendungen/Dienste ein größeres NAT-internes Subnetzpräfix verwenden können.
 
@@ -193,9 +194,9 @@ In einigen Szenarien müssen mehrere Anwendungen oder Dienste die gleiche NAT ve
 Schließlich sollten Sie über zwei interne vSwitches verfügen – einen namens „DockerNAT“ und einen anderen namens „NAT“. Bei Ausführung von Get-NetNat erhalten Sie nur die Bestätigung eines NAT-Netzwerks (10.0.0.0/17). IP-Adressen für Windows-Container werden durch den Windows Host Network Service (HNS) aus dem Subnetz 10.0.76.0/24 zugewiesen. IP-Adressen für Docker 4 Windows werden basierend auf dem vorhandenen Skript „MobyLinux.ps1“ aus dem Subnetz 10.0.75.0/24 zugewiesen.
 
 
-## <a name="troubleshooting"></a>Problembehandlung
+## Problembehandlung
 
-### <a name="multiple-nat-networks-are-not-supported"></a>Mehrere NAT-Netzwerke werden nicht unterstützt.  
+### Mehrere NAT-Netzwerke werden nicht unterstützt.  
 In dieser Anleitung wird vorausgesetzt, dass keine anderen NATs auf dem Host vorhanden sind. Allerdings setzen Anwendungen und Dienste die Verwendung einer NAT voraus und erstellen diese möglicherweise beim Setup. Da Windows (WinNAT) nur ein internes NAT-Subnetzpräfix unterstützt, setzt der Versuch, mehrere NATs zu erstellen, das System in einen unbekannten Zustand.
 
 Um herauszufinden, ob dies das Problem ist, stellen Sie sicher, dass Sie über nur eine NAT verfügen:
@@ -238,8 +239,8 @@ PS>    }
 PS> }
 PS> remove-netnat -Confirm:$false
 PS> Get-ContainerNetwork | Remove-ContainerNetwork
-PS>    Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
-PS>    Stop-Service docker
+PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+PS> Stop-Service docker
 PS> Set-Service docker -StartupType Disabled
 Reboot Host
 PS> Get-NetNat | Remove-NetNat
@@ -249,5 +250,5 @@ PS> Start-Service docker
 
 In diesem [-Installationshandbuch für mehrere Anwendungen mit gleicher NAT](#multiple-applications-using-the-same-nat) finden Sie Informationen zum Neuerstellen Ihrer NAT-Umgebung, falls erforderlich. 
 
-## <a name="references"></a>Verweise
+## Verweise
 Erfahren Sie mehr über [NAT-Netzwerke](https://en.wikipedia.org/wiki/Network_address_translation).

@@ -8,12 +8,13 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
-ms.openlocfilehash: 6e9a70e370f1c13a69dd617d4564be9d6c2f6017
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: 1eea533459b565ffceca23ca7454e9678abc52e9
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="virtual-machine-automation-and-management-using-powershell"></a>Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
+# Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
  
 Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in einem virtuellen Computer unter Windows 10 oder Windows Server Technical Preview von Ihrem Hyper-V-Host aus auszuführen – unabhängig von der Netzwerkkonfiguration oder den Einstellungen für die Remoteverwaltung.
 
@@ -23,7 +24,7 @@ Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in eine
 * Als permanente Sitzung (Build 14280 und höher) – [Klicken Sie hier](#copy-files-with-new-pssession-and-copy-item), um eine permanente Sitzung mithilfe von New-PSSession zu erstellen.  
 Fahren Sie fort, indem Sie eine Datei mithilfe von Copy-Item vom und auf den virtuellen Computer kopieren. Trennen Sie anschließend die Sitzung mithilfe von Remove-PSSession.
 
-## <a name="requirements"></a>Anforderungen
+## Anforderungen
 **Betriebssystemanforderungen:**
 * Host: Windows10, Windows Server Technical Preview2 oder höher mit Hyper-V.
 * Gast- bzw. virtueller Computer: Windows10, Windows Server Technical Preview2 oder höher.
@@ -38,7 +39,7 @@ Wenn Sie ältere virtuelle Computer verwalten, verwenden Sie die Verbindung mit 
 
 -------------
 
-## <a name="create-and-exit-an-interactive-powershell-session"></a>Erstellen und Beenden einer interaktiven PowerShell-Sitzung
+## Erstellen und Beenden einer interaktiven PowerShell-Sitzung
 
 Die einfachste Möglichkeit, PowerShell auf einem virtuellen Computer auszuführen, ist der Start einer interaktiven Sitzung.
 
@@ -79,7 +80,7 @@ Weitere Informationen zu diesen Cmdlets finden Sie unter [Enter-PSSession](http:
 
 -------------
 
-## <a name="run-a-script-or-command-with-invoke-command"></a>Ausführen eines Skripts oder Befehls mit „Invoke-Command“
+## Ausführen eines Skripts oder Befehls mit „Invoke-Command“
 
 PowerShell Direct mit Invoke-Command eignet sich ideal für Situationen, in denen Sie nur einen Befehl oder ein Skript auf einem virtuellen Computer ausführen, danach aber nicht weiter mit dem virtuellen Computer interagieren möchten.
 
@@ -118,7 +119,7 @@ Weitere Informationen zu diesem Cmdlet finden Sie unter [Invoke-Command](http://
 
 -------------
 
-## <a name="copy-files-with-new-pssession-and-copy-item"></a>Kopieren von Dateien mit New-PSSession und Copy-Item
+## Kopieren von Dateien mit New-PSSession und Copy-Item
 
 > **Hinweis:** PowerShell Direct unterstützt nur permanente Sitzungen in Windows-Build14280 und höher.
 
@@ -166,11 +167,11 @@ Ebenso behalten Sitzungen ihren Zustand bei.  Da permanente Sitzungen – wie de
   
 -------------
 
-## <a name="troubleshooting"></a>Problembehandlung
+## Problembehandlung
 
 PowerShell Direct zeigt eine kleine Menge von Fehlermeldungen an.  Es folgen die häufigsten davon, verschiedene Ursachen und Tools für die Untersuchung von Problemen.
 
-### <a name="-vmname-or--vmid-parameters-dont-exist"></a>Parameter „-VMName“ oder „-VMID“ nicht vorhanden
+### Parameter „-VMName“ oder „-VMID“ nicht vorhanden
 **Problem:**  
 `Enter-PSSession`, `Invoke-Command` oder `New-PSSession` weisen keinen `-VMName`- oder `-VMId`-Parameter auf.
 
@@ -192,7 +193,7 @@ $PSVersionTable.PSVersion
 ```
 
 
-### <a name="error-a-remote-session-might-have-ended"></a>Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
+### Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
 > **Hinweis:**  
 Bei Eingabe von „Enter-PSSession“ auf Hosts mit Builds zwischen 10240 und 12400 werden alle unten stehenden Fehler als „Eine Remotesitzung wurde möglicherweise beendet.“ gemeldet.
 
@@ -226,7 +227,7 @@ Um das Problem mit den Anmeldeinformationen zu umgehen, melden Sie sich mithilfe
 Restart-Service -Name vmicvmsession
 ```
 
-### <a name="error-parameter-set-cannot-be-resolved"></a>Fehler: Parametersatz kann nicht aufgelöst werden.
+### Fehler: Parametersatz kann nicht aufgelöst werden.
 **Fehlermeldung:**  
 ``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
@@ -240,7 +241,7 @@ Enter-PSSession : Parameter set cannot be resolved using the specified named par
 Administratoranmeldeinformationen können dem virtuellen Computer über den Parameter `-Credential` übergeben oder auf Aufforderung manuell eingegeben werden.
 
 
-### <a name="error-the-credential-is-invalid"></a>Fehler: Die Anmeldeinformationen sind ungültig.
+### Fehler: Die Anmeldeinformationen sind ungültig.
 
 **Fehlermeldung:**  
 ```
@@ -253,7 +254,7 @@ Enter-PSSession : The credential is invalid.
   * Es gibt keine Benutzerkonten auf dem Gast (das Betriebssystem wurde noch nicht gestartet)
   * Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh825104.aspx).
   
-### <a name="error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine"></a>Fehler: Der Parameter „VMName“ kann nicht in einen virtuellen Computer aufgelöst werden.
+### Fehler: Der Parameter „VMName“ kann nicht in einen virtuellen Computer aufgelöst werden.
 
 **Fehlermeldung:**  
 ```
@@ -269,7 +270,7 @@ Mit dem Cmdlet [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) kön
 
 -------------
 
-## <a name="samples-and-user-guides"></a>Beispiele und Benutzerleitfäden
+## Beispiele und Benutzerleitfäden
 
 PowerShell Direct unterstützt JEA (Just Enough Administration).  Informationen zum Ausprobieren finden Sie in diesem Benutzerleitfaden.
 

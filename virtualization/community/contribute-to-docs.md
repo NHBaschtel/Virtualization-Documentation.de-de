@@ -8,16 +8,17 @@ ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
 ms.assetid: 731ed95a-ce13-4c6e-a450-49563bdc498c
-ms.openlocfilehash: b5fe1a2e4c59007fbbb679c9050e28a5e076b08f
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: d4fd2dbaf362ac3ad52667743177a203174b397d
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="contribute-to-the-docs"></a>Beiträge zu den Dokumenten leisten
+# Beiträge zu den Dokumenten leisten
 
 > **Hinweis:** Um Beiträge erstellen zu können, benötigen Sie ein Konto auf [GitHub](https://www.github.com).
 
-## <a name="edit-an-existing-doc"></a>Bearbeiten eines vorhandenen Dokuments
+## Bearbeiten eines vorhandenen Dokuments
 
 1. Suchen Sie das Dokument, das Sie bearbeiten möchten.  
 
@@ -58,12 +59,12 @@ ms.contentlocale: de-DE
 
 7. Erstellen einer [Pull-Anforderung](contribute-to-docs.md#pull-requests)  
 
-## <a name="pull-requests"></a>Pull-Anforderungen
+## Pull-Anforderungen
 
 Die meisten Änderungen werden per Pull-Anforderung ausgeführt.  Eine Pull-Anforderung ist eine Möglichkeit, ein Changeset gemeinsam mit mehrere Reviewern zu überprüfen, die den aktuellen Inhalt ändern und kommentieren können.
 
 
-## <a name="fork-the-repo-and-edit-locally"></a>Verzweigen des Repositorys und lokales Bearbeiten
+## Verzweigen des Repositorys und lokales Bearbeiten
 
 Wenn Sie länger mit Dokumenten arbeiten müssen, klonen Sie das Repository lokal, und arbeiten Sie auf Ihrem Computer.
 
@@ -84,7 +85,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   * Exemplarische Vorgehensweise für VSCode für Git – einige nützliche Funktionen
   * Ausführen des ersten Commits
 
-### <a name="set-up-git"></a>Einrichten von Git
+### Einrichten von Git
 
 1. Installieren Sie Git (unter Windows) von [hier](https://git-for-windows.github.io/).
 
@@ -178,7 +179,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   }
   ```
 
-### <a name="validate-and-stash-credentials"></a>Validieren und Ausführen eines Stashs für Anmeldeinformationen
+### Validieren und Ausführen eines Stashs für Anmeldeinformationen
 
   Um zu überprüfen, ob das Repository ordnungsgemäß eingerichtet ist, rufen Sie per Pull neue Inhalte ab.
 
@@ -187,7 +188,7 @@ Die vorliegende Anleitung ist in drei Abschnitte unterteilt:
   ```
 
 
-### <a name="set-up-markdown-editing-environment"></a>Einrichten der Umgebung für die Markdownbearbeitung
+### Einrichten der Umgebung für die Markdownbearbeitung
 
 1. Laden Sie VSCode herunter.
 

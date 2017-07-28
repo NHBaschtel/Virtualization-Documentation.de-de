@@ -7,12 +7,13 @@ ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
-ms.openlocfilehash: d50648efcaac40d6a60430b44c070717adf31b4d
-ms.sourcegitcommit: d5f30aa1bdfb34dd9e1909d73b5bd9f4153d6b46
+ms.openlocfilehash: 971593b762b51bd24f43c40d4697fdd3cef82400
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="make-your-own-integration-services"></a>Erstellen eigener Integrationsdienste
+# Erstellen eigener Integrationsdienste
 
 Ab Windows10 Anniversary Update können Sie selbst Anwendungen erstellen, die zwischen dem Hyper-V-Host und dessen virtuellen Computern kommunizieren, und zwar mithilfe von Hyper-V-Sockets. Das sind Windows-Sockets mit einer neuen Adressfamilie und speziellen Endpunkten für die Auswahl von virtuellen Computern.  Die gesamte Kommunikation über Hyper-V-Sockets erfolgt ohne Networking, und alle Daten verbleiben auf dem gleichen physischen Speicher.   Anwendungen, die Hyper-V-Sockets verwenden, ähneln den Hyper-V-Integrationsdiensten.
 
@@ -34,7 +35,7 @@ Dieses Dokument erläutert die Erstellung eines einfachen Programms für Hyper-V
 
 --------------
 
-## <a name="getting-started"></a>Erste Schritte
+## Erste Schritte
 
 Anforderungen:
 * C/C++-Compiler.  Wenn Sie keinen besitzen, fragen Sie in der [Visual Studio Community](https://aka.ms/vs) nach.
@@ -43,7 +44,7 @@ Anforderungen:
 
 > **Hinweis:** Die API für Hyper-V-Sockets war etwas später in Windows10 öffentlich verfügbar.  Anwendungen, die HVSocket verwenden, sind auf jedem Host und Gast unter Windows 10 ausführbar, können jedoch nur einem Windows SDK ab Build 14290 entwickelt werden.  
 
-## <a name="register-a-new-application"></a>Registrieren einer neuen Anwendung
+## Registrieren einer neuen Anwendung
 Damit Sie Hyper-V-Sockets verwenden können, muss die Anwendung in der Registrierung des Hyper-V-Hosts registriert werden.
 
 Durch die Registrierung des Diensts in der Registrierung wird Folgendes verfügbar:
@@ -84,9 +85,9 @@ Der Registrierungseintrag sieht folgendermaßen aus:
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
     999E53D4-3D5C-4C3E-8779-BED06EC056E1\
-        ElementName    REG_SZ    VM Session Service
+        ElementName REG_SZ  VM Session Service
     YourGUID\
-        ElementName    REG_SZ    Your Service Friendly Name
+        ElementName REG_SZ  Your Service Friendly Name
 ```
 
 > **Tipp:** Mit folgender Anweisung können Sie eine GUID in PowerShell generieren und in die Zwischenablage kopieren:  
@@ -94,7 +95,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 (New-Guid).Guid | clip.exe
 ```
 
-## <a name="create-a-hyper-v-socket"></a>Erstellen eines Hyper-V-Sockets
+## Erstellen eines Hyper-V-Sockets
 
 Im einfachsten Fall erfordert die Definition eines Sockets eine Adressfamilie, einen Verbindungstyp und ein Protokoll.
 
@@ -122,7 +123,7 @@ SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
 
 
-## <a name="bind-to-a-hyper-v-socket"></a>Herstellen einer Bindung an ein Hyper-V-Socket
+## Herstellen einer Bindung an ein Hyper-V-Socket
 
 Über eine Bindung wird ein Socket mit Verbindungsinformationen verknüpft.
 
@@ -161,7 +162,7 @@ Anstelle von IP-Adresse oder Hostname arbeiten AF_HYPERV-Endpunkte hauptsächlic
 
 Es stehen auch verschiedene Platzhalter für VM-IDs zur Verfügung, wenn keine Verbindung mit einem spezifischen virtuellen Computer besteht.
  
-### <a name="vmid-wildcards"></a>Platzhalter für VM-IDs
+### Platzhalter für VM-IDs
 
 | Name | GUID | Beschreibung |
 |:-----|:-----|:-----|
@@ -181,7 +182,7 @@ Beim Überwachen auf diese VM-ID werden Verbindungen von folgenden Quellen akzep
 (Innerhalb der VM: Containerhost/kein Container): VM-Host.  
 (Außerhalb der VM: Containerhost/kein Container): Nicht unterstützt.
 
-## <a name="supported-socket-commands"></a>Unterstützte Socketbefehle
+## Unterstützte Socketbefehle
 
 Socket()  
 Bind()  
@@ -190,7 +191,7 @@ Send()
 Listen()  
 Accept()  
 
-## <a name="useful-links"></a>Nützliche Links
+## Nützliche Links
 [Vollständige WinSock-API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)
 
 [Referenz für Hyper-V-Integrationsdienste](../reference/integration-services.md)

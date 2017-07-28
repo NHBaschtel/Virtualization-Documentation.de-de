@@ -8,16 +8,17 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 1699bec6515608c722c28babd26719b27baa53c6
-ms.sourcegitcommit: b13a29758013a21215ee6e21e7e7ed7f58b62485
+ms.openlocfilehash: a70564f565a69f15ef4d668ccab0aa3b18c758ae
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="windows-containers"></a>Windows-Container
+# Windows-Container
 
 **Dieser Inhalt ist vorläufig und kann geändert werden.** 
 
-## <a name="what-are-containers"></a>Was sind Container?
+## Was sind Container?
 
 Sehen Sie sich eine kurze Übersicht an: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY) (Windows-basierte Container: Moderne App-Entwicklung mit Steuerung auf Unternehmensniveau).
 
@@ -27,16 +28,16 @@ Im Grunde ist ein Container ein isolierter Ort, an dem eine Anwendung ohne Beein
 
 Ein Container verhält sich wie ein neu installierter physischer oder virtueller Computer. Ein Windows-Servercontainer kann mit [Docker](https://www.docker.com/) wie jeder andere Container verwaltet werden.
 
-## <a name="windows-container-types"></a>Windows-Containertypen
+## Windows-Containertypen
 
 Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten (Runtimes).
 
-**Windows Server-Container**: – Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Servercontainer teilt sich einen Kernel mit dem Containerhost und allen Containern, die auf dem Host ausgeführt werden.  Diese Container bieten keine schädlichen Sicherheitsgrenzen und sollten nicht zum Isolieren von nicht vertrauenswürdigen Codes verwendet werden.
+**Windows Server-Container**: – Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Servercontainer teilt sich einen Kernel mit dem Containerhost und allen Containern, die auf dem Host ausgeführt werden.  Diese Container bieten keine schädlichen Sicherheitsgrenzen und sollten nicht zum Isolieren von nicht vertrauenswürdigen Codes verwendet werden.  Diese Container teilen sich den Kernelspeicher mit dem Host und mit den anderen Containern auf demselben Host. Daher müssen die Kernel übereinstimmen, d.h. sie müssen die gleiche Version und Konfiguration haben.
 
-**Hyper-V-Isolierung**: – Erweitert die von Windows Server-Containern bereitgestellte Isolation, indem jeder Container in einem hochgradig optimierten virtuellen Computer ausgeführt wird. Bei dieser Konfiguration wird der Kernel des Containerhosts nicht gemeinsam mit anderen Containern desselben Hosts verwendet.  Diese Container wurden für schädliches mandantenfähiges Hosting mit der gleichen Sicherheitsgarantie wie der eines virtuellen Computers entwickelt.
+**Hyper-V-Isolierung**: – Erweitert die von Windows Server-Containern bereitgestellte Isolation, indem jeder Container in einem hochgradig optimierten virtuellen Computer ausgeführt wird. Bei dieser Konfiguration wird der Kernel des Containerhosts nicht gemeinsam mit anderen Containern desselben Hosts verwendet.  Diese Container wurden für schädliches mandantenfähiges Hosting mit der gleichen Sicherheitsgarantie wie der eines virtuellen Computers entwickelt. Da diese Container den Kernel nicht mit dem Host oder mit anderen Containern auf dem Host teilen, können sie Kernel mit verschiedenen Versionen und Konfigurationen (in unterstützten Versionen) ausführen – z.B. wenn alle Windows-Container unter Windows10 Hyper-V-Isolation verwenden, um die Version und Konfiguration des Windows Server-Kernels zu nutzen.
 
 
-## <a name="container-fundamentals"></a>Grundlegendes zu Containern
+## Grundlegendes zu Containern
 
 Wenn Sie die Arbeit mit Containern aufnehmen, werden Sie viele Ähnlichkeiten zwischen einem Container und einem virtuellen Computer feststellen. Ein Container, in dem ein Betriebssystem ausgeführt wird, verfügt über ein Dateisystem, und auf ihn kann über ein Netzwerk so zugegriffen werden, als handele es sich um ein physisches oder virtuelles Computersystem. Allerdings unterscheiden sich die Technologie und Konzepte hinter Containern ganz wesentlich von denen virtueller Computer.  
 
@@ -56,7 +57,7 @@ Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, 
 
 <center>![](media/containerfund.png)</center>
 
-## <a name="containers-for-developers"></a>Container für Entwickler
+## Container für Entwickler
 
 Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Mittlerweile gibt es ein riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind. In DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung, werden im öffentlichen Repository der Community derzeit über 180.000Anwendungen veröffentlicht.  
 
@@ -68,19 +69,19 @@ Mit Containern können Entwickler eine App in jeder Sprache erstellen. Diese App
 
 Container helfen Entwicklern, Anwendungen höherer Qualität schneller zu entwickeln und auszuliefern.
 
-## <a name="containers-for-it-professionals"></a>Container für IT-Experten ##
+## Container für IT-Experten ##
 
 IT-Experten können Container verwenden, um standardisierte Umgebungen für ihre Entwicklungs-, Qualitätssicherungs- und Produktionsteams bereitzustellen. Sie müssen sich nicht mehr komplexe Installations- und Konfigurationsschritte kümmern. Mithilfe von Containern können Systemadministratoren Unterschiede bei Betriebssysteminstallationen und zugrunde liegender Infrastruktur abstrahieren.
 
 Container können Administratoren eine Infrastruktur zu erstellen, die einfacher zu aktualisieren und zu warten ist.
 
-## <a name="video-overview"></a>Video-Überblick
+## Video-Überblick
 
 <iframe 
 src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
-## <a name="try-windows-server-containers"></a>Wiederholen Sie den Windows Server-Container
+## Wiederholen Sie den Windows Server-Container
 
 [Schnellstarteinführung für Container](../quick_start/quick_start.md)
 

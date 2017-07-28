@@ -7,12 +7,13 @@ ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
-ms.openlocfilehash: 918fe27f7aee74e3c1de3b7381e7ccea76f49c73
-ms.sourcegitcommit: d5f30aa1bdfb34dd9e1909d73b5bd9f4153d6b46
+ms.openlocfilehash: 307cd592a9deda41fd2a892d49eadbc5ae436d84
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="introduction-to-hyper-v-on-windows-10"></a>Einführung in Hyper-V unter Windows 10
+# Einführung in Hyper-V unter Windows 10
 
 > Hyper-V ersetzt Microsoft Virtual PC. 
 
@@ -22,7 +23,7 @@ Als Entwickler von Software, IT-Experte oder Technologiefan müssen Sie häufig 
 
 Hyper-V bietet insbesondere Hardwarevirtualisierung an.  Das bedeutet, dass jeder virtuelle Computer auf virtueller Hardware ausgeführt wird.  Mit Hyper-V können Sie virtuelle Festplatten, virtuelle Switches und zahlreiche andere virtuelle Geräte erstellen, die alle virtuellen Computern hinzugefügt werden können.
 
-## <a name="reasons-to-use-virtualization"></a>Gründe für die Virtualisierung
+## Gründe für die Virtualisierung
 
 Die Virtualisierung ermöglicht folgendes:  
 * Führen Sie Software aus, die eine ältere Version von Windows oder andere Betriebssysteme als Windows erfordert. 
@@ -35,7 +36,7 @@ Die Virtualisierung ermöglicht folgendes:
 
 * Mithilfe eines virtuellen Netzwerks können Sie eine Umgebung mit mehreren Computern zu Test-, Entwicklungs- und Demonstrationszwecken erstellen und gleichzeitig sicherstellen, dass das Produktionsnetzwerk nicht beeinflusst wird.
 
-## <a name="system-requirements"></a>Systemanforderungen
+## Systemanforderungen
 Hyper-V ist in 64-Bit-Versionen von Windows Professional, Enterprise, und Education von Windows 8 und höher verfügbar.  Die Funktion steht für Windows Home Edition nicht zur Verfügung.  
 
 >  Ein Upgrade von Windows10 Home auf Windows10 Professional ist unter **Einstellungen** > **Update und Sicherheit** > **Aktivierung** möglich. Hier können Sie den Store besuchen und ein Upgrade erwerben.
@@ -46,7 +47,7 @@ Müssen Sie Ihrem Computer Adressübersetzung der zweiten Ebene (SLAT) hinzufüg
 
 Weitere Informationen zu den Systemanforderungen von Hyper-V und der Überprüfung, ob Hyper-V auf Ihrem Computer ausgeführt wird, finden Sie unter [Verweis auf Hyper-V‑Anforderungen](..\reference\hyper-v-requirements.md).
 
-## <a name="operating-systems-you-can-run-in-a-virtual-machine"></a>Auf einem virtuellen Computer ausführbare Betriebssysteme
+## Auf einem virtuellen Computer ausführbare Betriebssysteme
 Der Begriff "Gast" bezieht sich auf einer virtuellen Maschine und "Host" bezieht sich auf den Computer, auf dem virtuellen Computer ausgeführt wird. Hyper-V unter Windows unterstützt viele verschiedene Gastbetriebssysteme, einschließlich verschiedener Versionen von Linux, FreeBSD und Windows. 
 
 Zur Erinnerung müssen Sie eine gültige Lizenz für alle Betriebssysteme verfügen, die in den virtuellen Computern verwendet. 
@@ -54,7 +55,7 @@ Zur Erinnerung müssen Sie eine gültige Lizenz für alle Betriebssysteme verfü
 Informationen darüber, welche Betriebssysteme als Gäste in Hyper-V unter Windows unterstützt werden, finden Sie unter [Unterstützte Windows-Gastbetriebssysteme](supported-guest-os.md) und [unterstützte Linux Gastbetriebssysteme](https://technet.microsoft.com/library/dn531030.aspx). 
 
 
-## <a name="differences-between-hyper-v-on-windows-and-hyper-v-on-windows-server"></a>Unterschiede zwischen Hyper-V unter Windows und Hyper-V unter Windows Server
+## Unterschiede zwischen Hyper-V unter Windows und Hyper-V unter Windows Server
 Es gibt einige Features, die in Hyper-V unter Windows und Hyper-V unter Windows Server unterschiedlich funktionieren.. 
 
 Das Speicher-Management-Modell unterscheidet sich für Hyper-V unter Windows. Hyper-V-Speicher erfolgt auf einem Server unter der Annahme, die nur die virtuellen Maschinen auf dem Server ausgeführt werden. In Hyper-V unter Windows wird Arbeitsspeicher in der Erwartung verwaltet, dass die meisten Clientcomputer sowohl Software auf dem Host als auch virtuelle Computer ausführen. Beispielsweise kann ein Entwickler sowohl Visual Studio als auch mehrere virtuelle Computer auf dem gleichen Computer ausführen.
@@ -68,10 +69,10 @@ Einige Features von Hyper-V unter Windows Server sind in Hyper-V unter Windows n
 * SR-IOV-Netzwerke
 * Gemeinsam genutzt. VHDX
 
-## <a name="limitations"></a>Einschränkungen
+## Einschränkungen
 Mithilfe der Virtualisierung begrenzt ist. Features oder Anwendungen, die von bestimmter Hardware abhängig sind, funktionieren ebenfalls nicht auf einem virtuellen Computer. Beispielsweise sind Spiele oder Anwendungen, die eine Verarbeitung mit GPUs erfordern, ggf. nicht gut geeignet. Außerdem können bei Anwendungen, die Hochpräzisions-Ereigniszeitgeber im Bereich von weniger als 10ms benötigen (latenzempfindliche Apps, beispielsweise zum Mischen von Livemusik), Probleme auftreten, wenn sie auf einem virtuellen Computer ausgeführt werden.
 
 Darüber hinaus können bei Hyper-V-fähigen Anwendungen mit hohen Anforderungen an Latenz und Präzision auch Probleme bei der Ausführung auf dem Host auftreten.  Dies liegt daran, dass bei virtualisierungsfähigen Anwendungen das Hostbetriebssystem genau wie die Gastbetriebssysteme oberhalb der Hyper-V-Virtualisierungsschicht ausgeführt wird. Im Gegensatz zu Gastbetriebssystemen kann das Hostbetriebssystem direkt auf sämtliche Hardware zugreifen. Dadurch können auch Anwendungen mit speziellen Hardwareanforderungen problemlos im Hostbetriebssystem ausgeführt werden.
 
-## <a name="next-step"></a>Nächster Schritt
+## Nächster Schritt
 [Installieren von Hyper-V unter Windows10](..\quick-start\enable-hyper-v.md) 

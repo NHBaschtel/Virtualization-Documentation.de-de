@@ -1,4 +1,4 @@
-# <a name="hyper-v-architecture"></a>Hyper-V-Architektur
+# Hyper-V-Architektur
 
 Hyper-V ist eine hypervisorbasierte Virtualisierungstechnologie für bestimmte x64/Versionen von Windows.  Der Hypervisor ist ein wesentlicher Bestandteil der Virtualisierung.  Er ist die prozessorspezifische Virtualisierungsplattform, die es mehreren isolierten Betriebssystemen ermöglicht, sich eine einzige Hardwareplattform zu teilen.  
 
@@ -14,7 +14,7 @@ Das folgende Diagramm bietet einen allgemeinen Überblick über die Architektur 
 
 ![](./media/hv_architecture.png)
 
-## <a name="glossary"></a>Glossar
+## Glossar
 * **APIC** – Erweiterter programmierbarer Interruptcontroller – ein Gerät, das es erlaubt, seinen Unterbrechungs-Ausgängen Prioritätsstufen zuzuweisen.
 * **Untergeordnete Partition** – Eine Partition, die Gastbetriebssysteme hostet - jeglicher Zugriff von einer untergeordneten Partition auf den physischen Speicher und die Geräte wird über den virtuellen Computer-Bus (VMBus) oder der Hypervisor bereitgestellt.
 * **Hypercall** - Eine Schnittstelle für die Kommunikation mit dem Hypervisor - die Hypercall-Schnittstelle ermöglicht den Zugriff auf die Optimierungen, die vom Hypervisor bereitgestellt werden.

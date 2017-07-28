@@ -8,16 +8,19 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
-ms.openlocfilehash: a6ed0cccb984d303990973a1e2009cc2922f9443
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: 66bb1ba56fde13d76392ddb4a1f8e6855201e7a3
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="windows-containers-on-windows-10"></a>Windows-Container unter Windows10
+# Windows-Container unter Windows10
 
 Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Containerfeatures unter Windows 10 Professional oder Enterprise (Anniversary Edition). Nach Abschluss des Vorgangs haben Sie Docker für Windows installiert und einen einfachen Container ausgeführt. Machen Sie sich vor diesem Schnellstart mit grundlegenden Containerkonzepten und der Terminologie vertraut. Diese Informationen finden Sie unter [Windows Containers Quick Start](./index.md) (Windows-Container – Schnellstart).
 
 Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
+
+***Hyper-V-Isolation:*** Windows Server-Container erfordert Hyper-V-Isolation auf Windows10, damit Entwickler die gleiche Kernel-Version und -Konfiguration nutzen können, die in der Produktion verwendet werden. Weitere Informationen hierzu finden Sie auf der Seite [Informationen zu Windows-Containern](../about/index.md).
 
 **Voraussetzungen:**
 
@@ -28,17 +31,17 @@ Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdok
 > Zum Überprüfen Ihrer Betriebssystemversion, führen Sie `winver.exe` aus, und vergleichen Sie die angezeigte Version mit dem [Windows 10-Updateverlauf](https://support.microsoft.com/en-us/help/12387/windows-10-update-history).
 > Stellen Sie sicher, dass Sie über die Version 14393.222 oder höher verfügen, bevor Sie fortfahren.
 
-## <a name="1-install-docker-for-windows"></a>1. Installieren von Docker für Windows
+## 1. Installieren von Docker für Windows
 
 [Laden Sie Docker für Windows herunter](https://download.docker.com/win/stable/InstallDocker.msi) und führen Sie das Installationsprogramm aus. [Ausführliche Informationen zur Installation](https://docs.docker.com/docker-for-windows/install) finden Sie in der Dokumentation zu Docker.
 
-## <a name="2-switch-to-windows-containers"></a>2. Wechseln Sie zu Windows Containern
+## 2. Wechseln Sie zu Windows Containern
 
 Nach der Installation führt Docker für Windows standardmäßig Linux-Container aus. Wechseln Sie zu mithilfe des Docker-Menüs in der Taskleiste oder durch Ausführen des folgenden Befehls in einer PowerShell-Aufforderung zu Windows-Containern `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon`.
 
 ![](./media/docker-for-win-switch.png)
 
-## <a name="3-install-base-container-images"></a>3. Installieren von Basiscontainerimages
+## 3. Installieren von Basiscontainerimages
 
 Windows-Container werden aus Basisimages erstellt. Der folgende Befehl ruft das Nano Server-Basisimage ab.
 
@@ -57,7 +60,7 @@ microsoft/nanoserver   latest              105d76d0f40e        4 days ago       
 
 > Bitte lesen Sie den [Endbenutzer-Lizenzvertrag](../images-eula.md) zum Betriebssystemimage für Windows-Container.
 
-## <a name="4-run-your-first-container"></a>4. Ausführen Ihres ersten Containers
+## 4. Ausführen Ihres ersten Containers
 
 In diesem einfachen Beispiel wird ein „Hello World“-Containerimage erstellt und bereitgestellt. Am besten führen Sie diese Befehle in einer Windows-Eingabeaufforderung mit erhöhten Rechten oder mit Windows PowerShell aus.
 
@@ -108,6 +111,6 @@ docker run --rm helloworld powershell c:\helloworld.ps1
 Das Ergebnis des Befehls `docker run` ist, dass ein Hyper-V-Container auf Basis des „Hello World“-Images erstellt wurde, danach ein „Hello World“-Beispielskript ausgeführt (Ausgabeecho über die Shell) und anschließend der Container beendet und entfernt wurde.
 Nachfolgende Windows10- und Containerschnellstarts behandeln das Erstellen und Bereitstellen von Anwendungen in Containern unter Windows10.
 
-## <a name="next-steps"></a>Nächste Schritte
+## Nächste Schritte
 
 [Windows-Container unter Windows Server](./quick-start-windows-server.md)

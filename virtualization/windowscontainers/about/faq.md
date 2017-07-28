@@ -8,14 +8,15 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: c4afd536fda9d741adc00eaeb5595f05833cef11
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: b084bf179d9360e4a72e8e88b4fec80eafb2906c
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="frequently-asked-questions"></a>Häufig gestellte Fragen
+# Häufig gestellte Fragen
 
-## <a name="about-windows-containers"></a>Informationen zu Windows-Containern
+## Informationen zu Windows-Containern
 
 **Was ist ein Windows Server-Container?**
 
@@ -53,7 +54,7 @@ Drawbridge war eines der vielen Forschungsprojekte, die uns wertvolle Einblicke 
 Windows Server- und Hyper-V-Container erfordern Windows Server 2016. Diese Technologien funktioniert nicht mit früheren Versionen von Windows.
 
 
-## <a name="windows-container-management"></a>Windows-Containerverwaltung
+## Windows-Containerverwaltung
 
 **Werden Hyper-V-Container auch für das Docker-Ökosystem verfügbar sein?**
 
@@ -61,7 +62,7 @@ Ja. Hyper-V-Container bietet dieselben Integrations- und Verwaltungsmöglichkeit
 Die Plattform Docker erheblich vereinfachen und verbessern die Erfahrung der Arbeit über unser Container-Optionen. Eine Anwendung entwickelt wurde, mithilfe von Windows Server-Container kann als Hyper-V-Container ohne Änderung bereitgestellt werden.
 
 
-## <a name="microsofts-open-ecosystem"></a>Das offene Ökosystem von Microsoft
+## Das offene Ökosystem von Microsoft
 
 **Nimmt Microsoft an der Open Container Initiative (OCI) teil?**
 

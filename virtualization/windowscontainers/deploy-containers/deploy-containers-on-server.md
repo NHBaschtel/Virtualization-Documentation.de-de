@@ -8,16 +8,17 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
-ms.openlocfilehash: b01c1112ed119908bdabfa0eeee16f4ba11a47f6
-ms.sourcegitcommit: bb171f4a858fefe33dd0748b500a018fd0382ea6
+ms.openlocfilehash: 12c7c713468618a9fedc82ec5a1c488f57edcfd7
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="container-host-deployment---windows-server"></a>Containerhostbereitstellung: Windows Server
+# Containerhostbereitstellung: Windows Server
 
 Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. In diesem Dokument wird erläutert, wie Sie einen Windows-Containerhost entweder für Windows Server2016 oder für Windows Server Core2016 auf einem physischen oder virtuellen System bereitstellen.
 
-## <a name="install-docker"></a>Installieren von Docker
+## Installieren von Docker
 
 Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. 
 
@@ -43,7 +44,7 @@ Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 Restart-Computer -Force
 ```
 
-## <a name="install-base-container-images"></a>Installieren von Basiscontainerimages
+## Installieren von Basiscontainerimages
 
 Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als Containerbetriebssystem verfügbar. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Sie eigene Images auf docker.com).
 
@@ -61,11 +62,11 @@ docker pull microsoft/nanoserver
 
 > Bitte lesen Sie die [Lizenzbedingungen](../images-eula.md) zum Betriebssystemimage für Windows-Container.
 
-## <a name="hyper-v-container-host"></a>Hyper-V-Containerhost
+## Hyper-V-Containerhost
 
 Um Hyper-V-Container auszuführen, ist die Hyper-V-Rolle erforderlich. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-### <a name="nested-virtualization"></a>Geschachtelte Virtualisierung
+### Geschachtelte Virtualisierung
 
 Das folgende Skript konfiguriert die geschachtelte Virtualisierung für den Containerhost. Dieses Skript wird auf dem übergeordneten Hyper-V-Computer ausgeführt. Stellen Sie sicher, dass der virtuelle Containerhostcomputer ausgeschaltet ist, wenn dieses Skript ausgeführt wird.
 
@@ -83,7 +84,7 @@ Set-VMMemory $vm -DynamicMemoryEnabled $false
 Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-### <a name="enable-the-hyper-v-role"></a>Aktivieren der Hyper-V-Rolle
+### Aktivieren der Hyper-V-Rolle
 
 Um das Hyper-V-Feature mithilfe von PowerShell zu installieren, führen Sie den folgenden Befehl in einem PowerShell-Sitzung mit erhöhten Rechten aus.
 

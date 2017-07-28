@@ -8,18 +8,19 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
-ms.openlocfilehash: 36f95049c227b1498540e1ee5c9194a09fbfeb83
-ms.sourcegitcommit: d5f30aa1bdfb34dd9e1909d73b5bd9f4153d6b46
+ms.openlocfilehash: 8f7e609e1e7c23181bed64e45c9c6160e425d4b6
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="windows-10-hyper-v-system-requirements"></a>Systemanforderungen von Hyper-V unter Windows10
+# Systemanforderungen von Hyper-V unter Windows10
 
 Hyper-V ist in 64-Bit-Version von Windows Professional, Enterprise, und Education von Windows 8 und höher verfügbar.  Hyper-V erfordert eine Adressübersetzung der zweiten Ebene (SLAT) – diese ist in der aktuellen Generation der 64-Bit-Prozessoren von Intel und AMD vorhanden.
 
 Auf einem Host mit 4GB RAM können Sie drei bis vier virtuelle Computer ausführen. Für weitere virtuelle Computer benötigen Sie allerdings weitere Ressourcen. Am anderen Ende des Spektrums können Sie auch, abhängig von der physischen Hardware, große virtuelle Computer mit 32Prozessoren und 512GB RAM erstellen.
 
-## <a name="operating-system-requirements"></a>Betriebssystemanforderungen
+## Betriebssystemanforderungen
 
 Die Rolle „Hyper-V“ kann bei diesen Versionen von Windows 10 aktiviert werden:
 
@@ -35,7 +36,7 @@ Die Rolle „Hyper-V“ kann bei diesen Versionen **nicht** installiert werden:
 
 >Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 Professional erfolgen. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
-## <a name="hardware-requirements"></a>Hardwareanforderungen
+## Hardwareanforderungen
 
 Dieses Dokument bietet zwar keine vollständige Liste von mit Hyper-V kompatibler Hardware, doch die folgenden Elemente sind erforderlich:
     
@@ -47,7 +48,7 @@ Die folgenden Elemente müssen im BIOS des Systems aktiviert sein:
 - Virtualisierungstechnologie (wird je nach Hersteller der Hauptplatine anders bezeichnet)
 - Von der Hardware erzwungene Datenausführungsverhinderung (Data Execution Prevention, DEP)
 
-## <a name="verify-hardware-compatibility"></a>Überprüfen der Hardwarekompatibilität
+## Überprüfen der Hardwarekompatibilität
 
 Öffnen Sie zum Überprüfen der Kompatibilität PowerShell oder eine Eingabeaufforderung (cmd.exe), und geben Sie **systeminfo** ein. Wenn alle aufgelisteten Hyper-V-Anforderungen den Wert **Ja** aufweisen, kann die Hyper-V-Rolle auf Ihrem System ausgeführt werden. Wenn für ein Element **Nein** zurückgegeben wird, überprüfen Sie die in diesem Dokument aufgeführten Anforderungen und nehmen, sofern möglich, Anpassungen vor.
 

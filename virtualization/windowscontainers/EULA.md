@@ -1,4 +1,4 @@
-# <a name="windows-server-eula"></a>EULA für Windows Server
+# EULA für Windows Server
 
 MICROSOFT-LIZENZBESTIMMUNGEN FÜR EIN VIRTUELLES FESTPLATTENABBILD DER FOLGENDEN SOFTWARE:  
 MICROSOFT WINDOWS SERVER 
@@ -54,10 +54,10 @@ Wenn Sie diese Lizenzbedingungen einhalten, verfügen Sie über die im weiteren 
 
   DIESES PRODUKT WIRD UNTER DEN AVC-, VC-1, MPEG-4 PART 2 VISUAL- UND MPEG-2-VIDEO-PATENTPORTFOLIOLIZENZEN FÜR DIE PERSÖNLICHE UND NICHT KOMMERZIELLE NUTZUNG DURCH EINEN VERBRAUCHER LIZENZIERT, UM (i) VIDEO UNTER EINHALTUNG DER OBIGEN STANDARDS („VIDEO-STANDARDS“) ZU CODIEREN UND/ODER (ii) AVC-, VC-1, MPEG-4 PART 2- UND MPEG-2-VIDEO ZU DECODIEREN, DAS VON EINEM VERBRAUCHER, DER EINE PERSÖNLICHE UND NICHT KOMMERZIELLE NUTZUNG BETREIBT, CODIERT UND/ODER VON EINEM VIDEOPROVIDER, DER ÜBER EINE LIZENZ FÜR DIE BEREITSTELLUNG VON DERARTIGEM VIDEO VERFÜGT, ERWORBEN WURDE. ES WIRD KEINE LIZENZ ZU IRGENDEINEM ANDEREN ZWECK GEWÄHRT, AUCH NICHT KONKLUDENT. ZUSÄTZLICHE INFORMATIONEN ERHALTEN SIE VON MPEGLA, L.L.C. UNTER WWW.MPEGLA.COM.
   
-10.    **ADOBE FLASH PLAYER**: Die Software kann eine Version von Adobe Flash Player enthalten. Sie erklären sich damit einverstanden, dass die Nutzung von Adobe Flash Player durch Sie von den Lizenzbestimmungen für Adobe Systems Incorporated unter go.microsoft.com/fwlink/?LinkID=248532 geregelt wird. Adobe und Flash sind Marken oder in den USA und/oder anderen Ländern eingetragene Marken der Adobe Systems Incorporated.
+10. **ADOBE FLASH PLAYER**: Die Software kann eine Version von Adobe Flash Player enthalten. Sie erklären sich damit einverstanden, dass die Nutzung von Adobe Flash Player durch Sie von den Lizenzbestimmungen für Adobe Systems Incorporated unter go.microsoft.com/fwlink/?LinkID=248532 geregelt wird. Adobe und Flash sind Marken oder in den USA und/oder anderen Ländern eingetragene Marken der Adobe Systems Incorporated.
   
-11.    **UMFANG DER LIZENZ.**
-  Die Software wird lizenziert, nicht verkauft. Dieser Vertrag gewährt Ihnen lediglich bestimmte Rechte zur Nutzung der Software. Alle anderen Rechte verbleiben bei Microsoft. Sie dürfen die Software nur wie in diesem Vertrag ausdrücklich gestattet nutzen, es sei denn, anwendbares Recht gibt Ihnen ungeachtet dieser Einschränkung umfassendere Rechte. Dabei müssen Sie alle technischen Einschränkungen der Software befolgen, die lediglich bestimmte Nutzungsarten zulassen. Sie sind nicht berechtigt,
+11. **UMFANG DER LIZENZ.**
+  Die Software wird lizenziert, nicht verkauft. Dieser Vertrag gewährt Ihnen lediglich bestimmte Rechte zur Nutzung der Software. Alle anderen Rechte verbleiben bei Microsoft. Sie dürfen die Software nur wie in diesem Vertrag ausdrücklich gestattet nutzen, es sei denn, anwendbares Recht gibt Ihnen ungeachtet dieser Einschränkung umfassendere Rechte. Dabei sind Sie verpflichtet, technische Beschränkungen zu beachten, die Ihnen die Nutzung der Software nur auf bestimmte Art und Weise ermöglichen. Sie sind nicht berechtigt,
   * Ergebnisse der für eine andere Software als die Software Microsoft .NET Framework (siehe Sonderbestimmung oben) durchgeführten Vergleichstests ohne schriftliche Genehmigung von Microsoft an Dritte weiterzugeben,
   * technische Beschränkungen der Software zu umgehen,
   * die Software zurückzuentwickeln (Reverse Engineering), zu dekompilieren oder zu disassemblieren, außer und nur insoweit es trotz dieser Einschränkung anwendbares Recht ausdrücklich zulässt,
@@ -67,26 +67,26 @@ Wenn Sie diese Lizenzbedingungen einhalten, verfügen Sie über die im weiteren 
   * die Software oder diesen Vertrag an Dritte zu übertragen oder
   * die Software für kommerzielle Software-Hostingdienste zu verwenden.
   
-12.    **EXPORTEINSCHRÄNKUNGEN.**
-  Die Software unterliegt den Exportgesetzen und -regelungen der USA. Sie sind verpflichtet, alle nationalen und internationalen Exportgesetze und Exportbestimmungen einzuhalten, die für die Software gelten. Diese Gesetze enthalten auch Beschränkungen in Bezug auf Bestimmungsorte, Endbenutzer und die Endnutzung. Weitere Informationen finden Sie unter www.microsoft.com/exporting.
+12. **EXPORTEINSCHRÄNKUNGEN.**
+  Die Software unterliegt den Exportgesetzen und Exportbestimmungen der USA sowie des Lands, aus dem sie ausgeführt wird. Sie sind verpflichtet, alle nationalen und internationalen Exportgesetze und Exportbestimmungen einzuhalten, die für die Software gelten. Diese Gesetze enthalten auch Beschränkungen in Bezug auf Bestimmungsorte, Endbenutzer und die Endnutzung. Weitere Informationen finden Sie unter www.microsoft.com/exporting.
   
-13.    **SUPPORTLEISTUNGEN.**
+13. **SUPPORTLEISTUNGEN.**
   Da diese Software „wie besehen“ bereitgestellt wird, stellt Microsoft möglicherweise keine dedizierten Supportservices bereit.
   
-14.    **GESAMTE VEREINBARUNG.**
+14. **GESAMTE VEREINBARUNG.**
   Dieser Vertrag sowie die Bestimmungen für von Ihnen genutzte Ergänzungen, Updates, internetbasierte Dienste und Supportservices stellen den gesamten Vertrag über die Software und die Supportservices dar.
   
-15.    **GELTENDES RECHT.**  
+15. **GELTENDES RECHT.**  
   a.  Vereinigte Staaten. Wenn Sie die Software in den Vereinigten Staaten erworben haben, regelt das Gesetz des Staats Washington die Auslegung dieses Vertrags und gilt für Ansprüche, die aus einer Vertragsverletzung entstehen, ungeachtet der Bestimmungen des internationalen Privatrechts. Alle übrigen Ansprüche werden durch die Gesetze des Staates geregelt, in dem Sie ansässig sind. Hierzu zählen Ansprüche im Rahmen der Verbraucherschutzgesetze des Staates, der Gesetze gegen unlauteren Wettbewerb sowie im Rahmen des Schadenersatzrechts.  
   b.  Außerhalb der Vereinigten Staaten. Wenn Sie die Software in einem anderen Land erworben haben, gelten die Gesetze des betreffenden Lands.
   
-16.    **RECHTSKRÄFTIGKEIT.**
-  Dieser Vertrag beschreibt bestimmte Rechte. Möglicherweise besitzen Sie nach den Gesetzen Ihres Landes weitergehende Rechte. Möglicherweise besitzen Sie auch Rechte im Hinblick auf die Partei, von der Sie die Software erworben haben. Dieser Vertrag ändert nicht Ihre Rechte unter den Gesetzen Ihres Staates oder Landes, sofern die Gesetze Ihres Staates oder Landes dies nicht zulassen.
+16. **RECHTSKRÄFTIGKEIT.**
+  Dieser Vertrag beschreibt bestimmte Rechte. Möglicherweise sehen die Gesetze Ihres Lands andere Rechte vor. Möglicherweise haben Sie auch Rechte gegenüber der Partei, von der Sie die Software erworben haben. Dieser Vertrag ändert nicht Ihre Rechte unter den Gesetzen Ihres Staates oder Landes, sofern die Gesetze Ihres Staates oder Landes dies nicht zulassen.
   
-17.    **GARANTIEAUSSCHLUSS. DIE SOFTWARE WIRD „AS-IS“ LIZENZIERT. SIE TRAGEN DAS MIT DER VERWENDUNG VERBUNDENE RISIKO. MICROSOFT GEWÄHRT KEINE AUSDRÜCKLICHEN GEWÄHRLEISTUNGEN ODER GARANTIEN. MÖGLICHERWEISE GELTEN UNTER DEN ÖRTLICH ANWENDBAREN GESETZEN ZUSÄTZLICHE VERBRAUCHERRECHTE ODER GESETZLICHE GARANTIEN, DIE DURCH DIESEN VERTRAG NICHT ABGEÄNDERT WERDEN KÖNNEN. IN DEM NACH IHREM ÖRTLICH ANWENDBAREN RECHT ZULÄSSIGEN UMFANG SCHLIESST MICROSOFT KONKLUDENTE GARANTIEN DER HANDELSÜBLICHKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG VON RECHTEN DRITTER AUS.
+17. **GARANTIEAUSSCHLUSS. DIE SOFTWARE WIRD „AS-IS“ LIZENZIERT. SIE TRAGEN DAS MIT DER VERWENDUNG VERBUNDENE RISIKO. MICROSOFT GEWÄHRT KEINE AUSDRÜCKLICHEN GEWÄHRLEISTUNGEN ODER GARANTIEN. MÖGLICHERWEISE GELTEN UNTER DEN ÖRTLICH ANWENDBAREN GESETZEN ZUSÄTZLICHE VERBRAUCHERRECHTE ODER GESETZLICHE GARANTIEN, DIE DURCH DIESEN VERTRAG NICHT ABGEÄNDERT WERDEN KÖNNEN. IN DEM NACH IHREM ÖRTLICH ANWENDBAREN RECHT ZULÄSSIGEN UMFANG SCHLIESST MICROSOFT KONKLUDENTE GARANTIEN DER HANDELSÜBLICHKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG VON RECHTEN DRITTER AUS.
 FÜR AUSTRALIEN – UNTER DEM AUSTRALISCHEN VERBRAUCHERRECHT VERFÜGEN SIE ÜBER GESETZLICHE GARANTIEN, UND NICHTS IN DIESEN BEDINGUNGEN KANN DIESE RECHTE EINSCHRÄNKEN.**
 
-18.    **HAFTUNGSAUSSCHLUSS ALLER SCHÄDEN UND BESCHRÄNKUNG DES SCHADENERSATZES. SIE KÖNNEN GEGENÜBER MICROSOFT UND SEINEN ZULIEFERERN NUR DIREKTE SCHÄDEN VON BIS ZU USD 5,00 GELTEND MACHEN. SIE KÖNNEN KEINERLEI ANDERE SCHÄDEN – EINSCHLIESSLICH FOLGESCHÄDEN, ENTGANGENER GEWINNE, SPEZIELLER, INDIREKTER ODER ZUFÄLLIGER SCHÄDEN – GELTEND MACHEN.**  
+18. **HAFTUNGSAUSSCHLUSS ALLER SCHÄDEN UND BESCHRÄNKUNG DES SCHADENERSATZES. SIE KÖNNEN GEGENÜBER MICROSOFT UND SEINEN ZULIEFERERN NUR DIREKTE SCHÄDEN VON BIS ZU USD 5,00 GELTEND MACHEN. SIE KÖNNEN KEINERLEI ANDERE SCHÄDEN – EINSCHLIESSLICH FOLGESCHÄDEN, ENTGANGENER GEWINNE, SPEZIELLER, INDIREKTER ODER ZUFÄLLIGER SCHÄDEN – GELTEND MACHEN.**  
 
   Diese Einschränkung gilt für
   * alles, was auf die Software, die Dienste, die Inhalte (einschließlich des Codes) auf Drittanbieterseiten oder in Drittanbieterprogrammen bezogen ist,

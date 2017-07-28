@@ -7,16 +7,17 @@ ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
-ms.openlocfilehash: 8b764cb06b94465f516f9e5e8f06860ced8b39bb
-ms.sourcegitcommit: d5f30aa1bdfb34dd9e1909d73b5bd9f4153d6b46
+ms.openlocfilehash: 7ef4d5aa084d199abfb39d1c44e4dd1305e07904
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="supported-windows-guests"></a>Unterstützte Windows-Gäste 
+# Unterstützte Windows-Gäste 
 
 In diesem Artikel werden die in Hyper-V unter Windows unterstützten Betriebssystemkombinationen aufgelistet.  Er dient auch als Einführung in Integrationsdienste und andere unterstützte Faktoren.
 
-## <a name="what-does-support-mean"></a>Was bedeutet Unterstützung? 
+## Was bedeutet Unterstützung? 
 Unterstützung bedeutet, dass Microsoft diese Host-/Gast-Kombinationen getestet hat.  Bei Problemen mit diesen Kombinationen greift möglicherweise der Produktsupport ein.
  
 Microsoft bietet auf folgende Weise Unterstützung für Gastbetriebssysteme:
@@ -26,7 +27,7 @@ Microsoft bietet auf folgende Weise Unterstützung für Gastbetriebssysteme:
 
 Um unterstützt zu werden, müssen Hyper-V-Host und -Gast über Windows Update mit allen wichtigen Updates aktualisiert werden.
 
-## <a name="supported-guest-operating-systems"></a>Unterstützte Gastbetriebssysteme
+## Unterstützte Gastbetriebssysteme
 
 Um Unterstützung zu erhalten, müssen Windows-Gastbetriebssysteme und das Hostbetriebssystem über Windows Update mit allen wichtigen Updates auf dem neuesten Stand sein.
 
@@ -34,7 +35,7 @@ Um Unterstützung zu erhalten, müssen Windows-Gastbetriebssysteme und das Hostb
 |:-----|:-----|:-----|
 | Windows10 | 32 | |
 | Windows 8.1 | 32 | |
-| Windows8 | 32 |    |
+| Windows8 | 32 |  |
 | Windows 7 mit Service Pack 1 (SP 1) | 4 | Ultimate, Enterprise und Professional Edition (32-Bit und 64-Bit). |
 | Windows7 | 4 | Ultimate, Enterprise und Professional Edition (32-Bit und 64-Bit). |
 | WindowsVista mit Service Pack 2 (SP2) | 2 | Business, Enterprise und Ultimate einschließlich N- und KN-Editionen. | 
@@ -48,7 +49,7 @@ Um Unterstützung zu erhalten, müssen Windows-Gastbetriebssysteme und das Hostb
   
  > Windows 10 kann als Gastbetriebssystem auf Hyper-V-Hosts mit Windows 8.1 und Windows Server 2012 R2 ausgeführt werden.
 
-## <a name="supported-linux-and-free-bsd"></a>Unterstützung für Linux und FreeBSD
+## Unterstützung für Linux und FreeBSD
 
 | Gastbetriebssystem |  |
 |:-----|:------|

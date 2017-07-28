@@ -7,16 +7,17 @@ ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
-ms.openlocfilehash: 200ec68011628262950362620ae5b438f1b6b86c
-ms.sourcegitcommit: c8e6bf83ee873fe19b522ba9e416ecf5d29f4c95
+ms.openlocfilehash: fc6228253c2ad5fe8a01db283f578abbfbee716c
+ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
 ms.translationtype: HT
 ms.contentlocale: de-DE
+ms.lasthandoff: 07/21/2017
 ---
-# <a name="create-virtual-machine-with-hyper-v-on-windows-10"></a>Erstellen eines virtuellen Computers auf Windows 10 mit Hyper-V
+# Erstellen eines virtuellen Computers auf Windows 10 mit Hyper-V
 
 Hier erfahren Sie, wie Sie einen virtuellen Computer erstellen und ein Betriebssystem auf dem neuen virtuellen Computer installieren können.  Sie benötigen eine ISO-Datei für das von Ihnen ausgewählte Betriebssystem. Beziehen Sie bei Bedarf eine Evaluierungsversion von Windows 10 aus dem [TechNet-Evaluierungscenter](http://www.microsoft.com/en-us/evalcenter/).
 
-## <a name="create-a-virtual-machine-with-hyper-v-manager"></a>Erstellen eines virtuellen Computers mit dem Hyper-V-Manager
+## Erstellen eines virtuellen Computers mit dem Hyper-V-Manager
 
 1. Öffnen Sie Hyper-V-Manager, indem Sie entweder die Windows-Taste drücken und "Hyper-V-Manager" eingeben oder suchen Sie **Hyper-V-Manager** in Ihren Apps.
 
@@ -61,7 +62,7 @@ Hier erfahren Sie, wie Sie einen virtuellen Computer erstellen und ein Betriebss
   
 10. Überprüfen Sie die Details des virtuellen Computers, und klicken Sie zum Abschließen der Erstellung auf **Fertig stellen**.
 
-## <a name="create-a-virtual-machine-with-powershell"></a>Erstellen eines virtuellen Computers mit PowerShell
+## Erstellen eines virtuellen Computers mit PowerShell
 
 1. Öffnen Sie die PowerShell ISE als Administrator.
 
@@ -87,7 +88,7 @@ Hier erfahren Sie, wie Sie einen virtuellen Computer erstellen und ein Betriebss
   Set-VMFirmware -VMName $VMName -FirstBootDevice $DVDDrive
   ```
   
-## <a name="complete-the-operating-system-deployment"></a>Abschließen der Betriebssystembereitstellung
+## Abschließen der Betriebssystembereitstellung
 
 Um die Erstellung des virtuellen Computers abzuschließen, müssen Sie den virtuellen Computer starten und die Installation des Betriebssystems durchlaufen.
 
