@@ -79,7 +79,8 @@
   ],
   "branches_to_filter": [
     "master-oldev",
-    "live-oldev"
+    "live-oldev",
+    "live-sxs"
   ],
   "skip_source_output_uploading": false,
   "dependent_repositories": [
