@@ -1,75 +1,86 @@
 ---
-title: Anforderungen von Windows-Containern
-description: Anforderungen von Windows-Containern.
-keywords: Metadaten, Container
+title: Windows Container Requirements
+description: Windows Container Requirements.
+keywords: metadata, containers
 author: enderb-ms
 ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
-ms.openlocfilehash: d4594bd5efe3e1852f6a47b6474bf9ea56196c14
-ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
+ms.openlocfilehash: 89d66c7c5515532ab9bc7ebfcf0c79e59ebd7d28
+ms.sourcegitcommit: 33ba39d65b08aa61d8a5f5fdf2822dc28d2e3b3a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/21/2017
+ms.lasthandoff: 08/24/2017
 ---
-# Anforderungen von Windows-Containern
+# Windows container requirements
 
-In diesen Handbüchern sind die Anforderungen für einen Windows-Containerhost aufgeführt.
+This guides list the requirements for a Windows container Host.
 
-## Betriebssystemanforderungen
+## OS Requirements
 
-- Das Feature „Windows-Container“ ist nur für Windows Server 2016 (Core und mit Desktopdarstellung), Nano Server und Windows 10 Professional und Enterprise (Anniversary Edition) verfügbar.
-- Die Hyper-V-Rolle muss vor der Ausführung des Hyper-V-Containers installiert werden.
-- Bei Windows Server-Containerhosts muss Windows auf Laufwerk c:\ installiert werden. Diese Einschränkung gilt nicht, wenn nur Hyper-V Container bereitgestellt werden.
+- The Windows container feature is only available on Windows Server 2016 (Core and with Desktop Experience), Nano Server, and Windows 10 Professional and Enterprise (Anniversary Edition).
+- The Hyper-V role must be installed before running Hyper-V Containers
+- Windows Server Container hosts must have Windows installed to c:\. This restriction does not apply if only Hyper-V Containers will be deployed.
 
-## Virtualisierte Containerhosts
+## Virtualized Container Hosts
 
-Wenn ein Windows-Containerhost von einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, muss die geschachtelte Virtualisierung aktiviert werden. Für die geschachtelte Virtualisierung ist Folgendes erforderlich:
+If a Windows container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
 
-- Mindestens 4GB verfügbarer Arbeitsspeicher (RAM) für den virtualisierten Hyper-V-Host
-- Windows Server 2016 oder Windows 10 auf dem Hostsystem und Windows Server (Vollständig, Core) oder Nano Server auf dem virtuellen Computer
-- Ein Prozessor mit Intel VT-x (dieses Feature steht zurzeit nur für Intel-Prozessoren zur Verfügung)
-- Die Containerhost-VM benötigt zudem mindestens 2 virtuelle Prozessoren.
+- At least 4 GB RAM available for the virtualized Hyper-V host.
+- Windows Server 2016, or Windows 10 on the host system, and Windows Server (Full, Core) or Nano Server in the virtual machine.
+- A processor with Intel VT-x (this feature is currently only available for Intel processors).
+- The container host VM will also need at least 2 virtual processors.
 
-## Unterstützte Basisimages
+## Supported Base Images
 
-Für Windows-Container stehen zwei Basisimages zur Verfügung – Windows Server Core und Nano Server. Nicht alle Konfigurationen unterstützen beide Betriebssystemimages. Diese Tabelle enthält Details zu den unterstützten Konfigurationen.
+Windows Containers are offered with two container base images, Windows Server Core and Nano Server. Not all configurations support both OS images. This table details the supported configurations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <thead>
 <tr valign="top">
-<th><center>Hostbetriebssystem</center></th>
-<th><center>Windows Server-Container</center></th>
-<th><center>Hyper-V-Container</center></th>
+<th><center>Host Operating System</center></th>
+<th><center>Windows Server Container</center></th>
+<th><center>Hyper-V Container</center></th>
 </tr>
 </thead>
 <tbody>
 <tr valign="top">
-<td><center>Windows Server 2016 (Standard oder Datacenter)</center></td>
-<td><center>Server Core/Nano Server</center></td>
-<td><center>Server Core/Nano Server</center></td>
+<td><center>Windows Server 2016 (Standard or Datacenter)</center></td>
+<td><center>Server Core / Nano Server</center></td>
+<td><center>Server Core / Nano Server</center></td>
 </tr>
 <tr valign="top">
 <td><center>Nano Server</center></td>
 <td><center> Nano Server</center></td>
-<td><center>Server Core/Nano Server</center></td>
+<td><center>Server Core / Nano Server</center></td>
 </tr>
 <tr valign="top">
-<td><center>Windows 10 Pro/Enterprise</center></td>
-<td><center>Nicht verfügbar</center></td>
+<td><center>Windows 10 Pro / Enterprise</center></td>
+<td><center>Not Available</center></td>
 <td><center>Server Core/Nano Server</center></td>
 </tr>
 </tbody>
 </table>
 
+### Nano Server im Vergleich zu Windows Server Core
+
+Wie entscheide ich mich zwischen Windows Server Core und Nano Server? Zum Erstellen steht es Ihnen frei, was Sie verwenden. Wenn Sie für Ihre Anwendung jedoch vollständige Kompatibilität mit dem .NET Framework benötigen, dann verwenden Sie [Windows Server Core](https://hub.docker.com/r/microsoft/windowsservercore/). Wenn Ihre Anwendung hingegen für die Cloud erstellt wurde und .NET Core verwendet, dann ist [Nano Server](https://hub.docker.com/r/microsoft/nanoserver/) die bessere Wahl. Nano Server wurde für einen geringstmöglichen Speicherbedarf erstellt, weshalb einige nicht erforderliche Bibliotheken entfernt wurden. Bedenken Sie Folgendes, wenn Sie Nano Server als Grundlage zum Erstellen verwenden:
+
+- Der Bereitstellungsstapel wurde entfernt.
+- .NET Core ist nicht enthalten (Sie können jedoch das [.NET Core Nano Server-Image](https://hub.docker.com/r/microsoft/dotnet/) verwenden).
+- PowerShell wurde entfernt.
+- WMI wurde entfernt.
+
+Dies ist lediglich eine Übersicht über die wichtigsten Unterschiede und keine vollständige Liste. Es gibt weitere Komponenten, die hier nicht genannt sind, die ebenfalls nicht vorhanden sind. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.0/sdk/nanoserver/amd64/Dockerfile).
+
 ## Abgleichen der Containerhostversion und der Containerimageversionen
-### Windows Server-Container
-Da sich Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel teilen, muss das Basisimage des Containers mit dem des Hosts übereinstimmen.  Wenn die Versionen nicht übereinstimmen, ist es möglich, dass der Container dennoch startet. Allerdings kann der volle Funktionsumfang nicht gewährleistet werden. Nicht übereinstimmende Versionen werden daher nicht unterstützt.  Das Windows-Betriebssystem hat vier Versionierungsgrade: die Hauptversion, die Nebenversion, den Build und die Revision (z.B. 10.0.14393.0). Die Buildnummer wird nur geändert, wenn neue Versionen des Betriebssystems veröffentlicht werden. Die Revisionsnummer wird aktualisiert, wenn Windows-Updates angewendet werden. Das Starten von Windows Server-Containern wird verhindert, wenn die Build-Nummer nicht übereinstimmt, z.B. 10.0.14300.1030 (Technical Preview 5) und 10.0.14393 (Windows Server 2016 RTM). Wenn die Buildnummer übereinstimmt, sich die Revisionsnummer aber unterscheidet, z.B. 10.0.14393 (Windows Server 2016 RTM) und 10.0.14393.206 (Windows Server 2016 GA), wird der Container trotzdem gestartet. Obwohl sie nicht technisch blockiert werden, ist dies eine Konfiguration, die möglicherweise nicht unter allen Umständen ordnungsgemäß funktioniert und daher nicht für Produktionsumgebungen unterstützt wird. 
+### Windows Server Containers
+Because Windows Server Containers and the underlying host share a single kernel, the container’s base image must match that of the host.  If the versions are different the container may start, but full functionally cannot be guaranteed. Therefore mismatched versions are not supported.  The Windows operating system has 4 levels of versioning, Major, Minor, Build and Revision – for example 10.0.14393.0. The build number only changes when new versions of the OS are published. The revision number is updated as Windows updates are applied. Windows Server Containers are blocked from starting when the build number is different - for example 10.0.14300.1030 (Technical Preview 5) and 10.0.14393 (Windows Server 2016 RTM). If the build number matches but the revision number is different, it is not blocked from starting - for example 10.0.14393 (Windows Server 2016 RTM) and 10.0.14393.206 (Windows Server 2016 GA). Even though they are not technically blocked, this is a configuration that may not function properly under all circumstances and thus cannot be supported for production environments. 
 
-Mithilfe von HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion können Sie abfragen, welche Version auf einem Windows-Host installiert ist.  Prüfen Sie die Tags auf Docker Hub oder die Image-Hash-Tabelle in der Beschreibung des Images, um zu überprüfen, welche Version Ihr Basisimage verwendet.  Auf der Seite [Windows 10-Updateverlauf](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) wird aufgeführt, wann die einzelnen Builds und Revisionen veröffentlicht wurden.
+To check what version a Windows host has installed you can query HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion.  To check what version your base image is using you can review the tags on the Docker hub or the image hash table provided in the image description.  The [Windows 10 Update History](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) page lists when each build and revision was released.
 
-In diesem Beispiel ist 14393 die Hauptbuildnummer und 321 die Revision.
+In this example 14393 is the major build number and 321 is the revision.
 ```none
 Windows PowerShell
 Copyright (C) 2016 Microsoft Corporation. All rights reserved.
@@ -78,12 +89,12 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 14393.321.amd64fre.rs1_release_inmarket.161004-2338
 ```
 
-### Hyper-V-Isolation für Container
-Windows-Container können mit oder ohne Hyper-V-Isolation ausgeführt werden.  Hyper-V-Isolation erstellt mithilfe eines optimierten VMs eine Sicherheitsbegrenzung um den Container herum.  Im Gegensatz zu Windows Standard-Containern, bei denen sich die Container und der Host den Kernel teilen, verwendet jeder isolierte Hyper-V-Container eine eigene Instanz des Windows-Kernels.  Aus diesem Grund können Sie verschiedene Betriebssystemversionen im Container-Host und -Image ausführen (siehe Kompatibilitätsmatrix unten).  
+### Hyper-V Isolation for Containers
+Windows Containers can be run with or without Hyper-V isolation.  Hyper-V isolation creates a secure boundary around the container with an optimized VM.  Unlike standard Windows Containers, which share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel.  Aus diesem Grund können Sie verschiedene Betriebssystemversionen im Container-Host und -Image ausführen (siehe Kompatibilitätsmatrix unten).  
 
-Um einen Container mit Hyper-V auszuführen, fügen Sie einfach das Tag „--isolation=hyper-v” in Ihrem Dockerbefehl aus.
+Um einen Container mit Hyper-V auszuführen, fügen Sie einfach das Tag „--isolation=hyper-v” zu Ihrem Docker-Ausführungsbefehl hinzu.
 
 ### Kompatibilitätsmatrix
-Windows Server-Builds nach 2016 GA (10.0.14393.206) können die Windows Server 2016 GA-Images von Windows Server Core oder Nano Server unabhängig von der Revisionsnummer in einer unterstützten Konfiguration ausführen.    
+Windows Server builds after 2016 GA (10.0.14393.206) can run the Windows Server 2016 GA images of both Windows Server Core or Nano Server in a supported configuration regardless of the revision number.    
 
-Es ist wichtig, sich bewusst zu machen, dass die von den Windows-Updates bereitgestellte vollständige Funktionalität und Zuverlässigkeit sowie die umfassenden Sicherheitsgarantien nur gewährleistet sind, wenn Sie auf allen Systemen die neuesten Versionen installiert haben.  
+It is important to understand that in order to have the full functionality, reliability and security assurances provided with Windows updates you should maintain the latest versions on all systems.  
