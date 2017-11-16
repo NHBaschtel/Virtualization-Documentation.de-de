@@ -1,22 +1,22 @@
 ---
-title: About Windows Containers
-description: Learn about Windows containers.
-keywords: docker, containers
+title: Informationen zu Windows-Containern
+description: "Erfahren Sie mehr über Windows-Container."
+keywords: Docker, Container
 author: taylorb-microsoft
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 2be7a06c7b7b154e392c30981cdf954d2d1b796e
-ms.sourcegitcommit: 8e193d8c274a549aef497f16dcdb00d7855e9fa7
+ms.openlocfilehash: b916b8bb2e09dfc78414785ad0d0252b5abec619
+ms.sourcegitcommit: b578961db242f08261798d1b498b091b8c405924
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/02/2017
+ms.lasthandoff: 10/27/2017
 ---
-# Windows-Container
+# <a name="windows-containers"></a>Windows-Container
 
-## Was sind Container?
+## <a name="what-are-containers"></a>Was sind Container?
 
 Container sind eine Möglichkeit, eine Anwendung isoliert einzupacken. Die Anwendung, die sich in einem Container befindet, weiß nichts von anderen Anwendungen oder Prozessen, die außerhalb des Containers existieren. Alles, was für die erfolgreiche Ausführung der Anwendung erforderlich ist, befindet sich ebenfalls in diesem Container.  Und wenn der Container verschoben wird, hat das keine Auswirkungen auf die Anwendung, da alles enthalten ist, damit sie ausgeführt werden kann.
 
@@ -32,7 +32,7 @@ Mit Containern verhält es sich in gewisser Weise wie mit dieser Küche. Die Rä
 
 Sehen Sie sich eine kurze Übersicht an: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY) (Windows-basierte Container: Moderne App-Entwicklung mit Steuerung auf Unternehmensniveau).
 
-## Grundlegendes zu Containern
+## <a name="container-fundamentals"></a>Grundlegendes zu Containern
 
 Container sind eine isolierte, von Ressourcen gesteuerte und portierbare Laufzeitumgebung, die auf einem Hostcomputer oder virtuellen Computer ausgeführt wird. Anwendungen oder Prozesse, die in Containern ausgeführt werden, sind mit allen erforderlichen Abhängigkeiten und Konfigurationsdateien verpackt, so als ob außerhalb des Containers keine anderen Prozesse ausgeführt werden würden.
 
@@ -40,33 +40,33 @@ Der Host des Containers stellt einen Satz von Ressourcen für den Container bere
 
 Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, Windows-Container zu erstellen und damit zu arbeiten.
 
-**Container Host:** Physical or Virtual computer system configured with the Windows Container feature. Auf dem Containerhost werden ein oder mehrere Windows-Container ausgeführt.
+**Containerhost:** Physisches oder virtuelles Computersystem, das mit dem Windows-Containerfeature konfiguriert wurde. Auf dem Containerhost werden ein oder mehrere Windows-Container ausgeführt.
 
-**Containerimage:** Wenn z.B. durch eine Softwareinstallation das Dateisystem oder die Registrierung eines Containers geändert wird, werden diese Änderungen in einem Sandkasten erfasst. In vielen Fällen ist es wünschenswert, diesen Zustand zu erfassen, damit neue Container erstellt werden können, die diese Änderungen übernehmen. That’s what an image is – once the container has stopped you can either discard that sandbox or you can convert it into a new container image. For example, let’s imagine that you have deployed a container from the Windows Server Core OS image. You then install MySQL into this container. Creating a new image from this container would act as a deployable version of the container. This image would only contain the changes made (MySQL), however would work as a layer on top of the Container OS Image.
+**Containerimage:** Wenn z.B. durch eine Softwareinstallation das Dateisystem oder die Registrierung eines Containers geändert wird, werden diese Änderungen in einem Sandkasten erfasst. In vielen Fällen ist es wünschenswert, diesen Zustand zu erfassen, damit neue Container erstellt werden können, die diese Änderungen übernehmen. Das ist, was ein Image ausmacht. Sobald der Container beendet wurde, können Sie entweder diesen Sandkasten verwerfen oder ihn in ein neues Containerimage umwandeln. Angenommen, Sie haben mithilfe des Windows Server Core-Betriebssystemimages einen Container bereitgestellt. Anschließend installieren Sie MySQL in diesem Container. Das Erstellen eines neuen Images mithilfe dieses Containers resultiert in einer bereitstellbaren Version des Containers. Dieses Image enthält nur die erfolgten Änderungen (MySQL), fungiert jedoch als Ebene über dem Containerbetriebssystem-Image.
 
-**Sandbox:** Once a container has been started, all write actions such as file system modifications, registry modifications or software installations are captured in this ‘sandbox’ layer.
+**Sandkasten:** Nach dem Start eines Containers werden alle Schreibaktionen, z.B. Dateisystemänderungen, Registrierungsänderungen oder Softwareinstallationen, auf dieser Sandkastenebene erfasst.
 
-**Container OS Image:** Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. Das Image stellt die Betriebssystemumgebung bereit. Das Betriebssystemimage eines Containers ist unveränderlich. Das heißt, es bleibt immer gleich.
+**Containerbetriebssystem-Image:** Container werden mithilfe von Images bereitgestellt. Das Containerbetriebssystem-Image ist die erste Ebene von möglicherweise vielen Imageebenen, die einen Container bilden. Das Image stellt die Betriebssystemumgebung bereit. Das Betriebssystemimage eines Containers ist unveränderlich. Das heißt, es bleibt immer gleich.
 
 **Containerrepository:** Bei jeder Erstellung eines Containerimages werden das Containerimage und dessen Abhängigkeiten in einem lokalen Repository gespeichert. Diese Images können auf dem Containerhost mehrfach wiederverwendet werden. Die Containerimages können auch in einer öffentlichen oder privaten Registrierung, wie z. B. DockerHub, gespeichert werden, damit sie in vielen verschiedenen Containerhosts verwendet werden können.
 
 <center>![](media/containerfund.png)</center>
 
-Wenn Sie sich mit virtuellen Computern auskennen, werden Ihnen die Ähnlichkeiten mit Containern auffallen. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. Was Technologie und Konzepte anbelangt, unterscheiden sich Container jedoch sehr von virtuellen Computern.
+Wenn Sie sich mit virtuellen Computern auskennen, werden Ihnen die Ähnlichkeiten mit Containern auffallen. Ein Container, in dem ein Betriebssystem ausgeführt wird, verfügt über ein Dateisystem, und auf ihn kann über ein Netzwerk so zugegriffen werden, als handele es sich um ein physisches oder virtuelles Computersystem. Was Technologie und Konzepte anbelangt, unterscheiden sich Container jedoch sehr von virtuellen Computern.
 
 Mark Russinovich, Experte für Microsoft Azure, erklärt diese Unterschiede in einem [großartigen Blogbeitrag](https://azure.microsoft.com/en-us/blog/containers-docker-windows-and-trends/).
 
-## Windows-Containertypen
+## <a name="windows-container-types"></a>Windows-Containertypen
 
-Windows Containers include two different container types, or runtimes.
+Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten (Runtimes).
 
-**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server Container shares a kernel with the container host and all containers running on the host. Diese Container bieten keine schädlichen Sicherheitsgrenzen und sollten nicht zum Isolieren von nicht vertrauenswürdigen Codes verwendet werden. Aufgrund des gemeinsam genutzten Kernelspeichers benötigen diese Container die gleiche Kernelversion und -konfiguration.
+**Windows Server-Container**: – Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Servercontainer teilt sich einen Kernel mit dem Containerhost und allen Containern, die auf dem Host ausgeführt werden. Diese Container bieten keine schädlichen Sicherheitsgrenzen und sollten nicht zum Isolieren von nicht vertrauenswürdigen Codes verwendet werden. Aufgrund des gemeinsam genutzten Kernelspeichers benötigen diese Container die gleiche Kernelversion und -konfiguration.
 
-**Hyper-V-Isolierung**: Erweitert die von Windows Server-Containern bereitgestellte Isolierung, indem jeder Container in einem hochgradig optimierten virtuellen Computer ausgeführt wird. In this configuration, the kernel of the container host is not shared with other containers on the same host. Diese Container wurden für schädliches mandantenfähiges Hosting mit der gleichen Sicherheitsgarantie wie der eines virtuellen Computers entwickelt. Da diese Container den Kernel nicht mit dem Host oder mit anderen Containern auf dem Host teilen, können sie Kernel mit verschiedenen Versionen und Konfigurationen (in unterstützten Versionen) ausführen – z.B. wenn alle Windows-Container unter Windows10 Hyper-V-Isolierung verwenden, um die Version und Konfiguration des Windows Server-Kernels zu nutzen.
+**Hyper-V-Isolierung**: Erweitert die von Windows Server-Containern bereitgestellte Isolierung, indem jeder Container in einem hochgradig optimierten virtuellen Computer ausgeführt wird. Bei dieser Konfiguration wird der Kernel des Containerhosts nicht gemeinsam mit anderen Containern desselben Hosts verwendet. Diese Container wurden für schädliches mandantenfähiges Hosting mit der gleichen Sicherheitsgarantie wie der eines virtuellen Computers entwickelt. Da diese Container den Kernel nicht mit dem Host oder mit anderen Containern auf dem Host teilen, können sie Kernel mit verschiedenen Versionen und Konfigurationen (in unterstützten Versionen) ausführen – z.B. wenn alle Windows-Container unter Windows10 Hyper-V-Isolierung verwenden, um die Version und Konfiguration des Windows Server-Kernels zu nutzen.
 
 Die Ausführung eines Containers unter Windows mit oder ohne Hyper-V-Isolierung ist eine Entscheidung während der Laufzeit. Sie können den Container auch zunächst mit Hyper-V-Isolierung erstellen und ihn später zur Laufzeit stattdessen als Windows Server-Container ausführen.
 
-## Was ist Docker?
+## <a name="what-is-docker"></a>Was ist Docker?
 
 Informationen zu Containern erwähnen zwangsläufig auch Docker. Docker ist der Behälter, in dem die Containerimages verpackt und ausgeliefert werden. Dieser automatisierte Prozess erstellt Images (im Prinzip Vorlagen), die überall – lokal, in der Cloud oder auf einem persönlichen Computer – als Container ausgeführt werden können.
 
@@ -74,29 +74,29 @@ Informationen zu Containern erwähnen zwangsläufig auch Docker. Docker ist der 
 
 Ein Windows Server-Container kann wie jeder andere Container mit [Docker](https://www.docker.com) verwaltet werden.
 
-## Container für Entwickler ##
+## <a name="containers-for-developers"></a>Container für Entwickler ##
 
-From a developer’s desktop to a testing machine to a set of production machines, a Docker image can be created that will deploy identically across any environment in seconds. This story has created a massive and growing ecosystem of applications packaged in Docker containers, with DockerHub, the public containerized-application registry that Docker maintains, currently publishing more than 180,000 applications in the public community repository.
+Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Mittlerweile gibt es ein riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind. In DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung, werden im öffentlichen Repository der Community derzeit über 180.000Anwendungen veröffentlicht.
 
-When you containerize an app, only the app and the components needed to run the app are combined into an "image". Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster. Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately.
+Wenn Sie eine App containerisieren, werden nur die App und zum Ausführen der App benötigten Komponenten zu einem „Image“ kombiniert. Container werden anschließend nach Bedarf anhand dieses Images erstellt. Sie können ein Image auch als Basis für das Erstellen eines weiteren Images nutzen, wodurch das Erstellen von Images noch schneller erfolgt. Mehrere Container können dasselbe Image nutzen, was heißt, dass Container sehr schnell starten und weniger Ressourcen nutzen. Sie können beispielsweise Container zum Einrichten von schlanken und portierbaren App-Komponenten bzw. „Microservices“ für verteilte Apps einsetzen und jeden Dienst schnell getrennt skalieren.
 
-Because the container has everything it needs to run your application, they are very portable and can run on any machine that is running Windows Server 2016. You can create and test containers locally, then deploy that same container image to your company's private cloud, public cloud or service provider. The natural agility of Containers supports modern app development patterns in large scale, virtualized and cloud environments.
+Da Container über alles verfügen, was zum Ausführen Ihrer Anwendung erforderlich ist, sind sie überaus portierbar und können auf allen Computern mit ausgeführtem Windows Server 2016 betrieben werden. Sie können Container lokal testen und bereitstellen und anschließend dasselbe Containerimage in der privaten Cloud Ihres Unternehmens, einer öffentlichen Cloud oder bei einem Dienstanbieter bereitstellen. Die natürliche Agilität von Containern unterstützt Muster der Entwicklung moderner Apps in riesigen, virtualisierten und Cloudumgebungen.
 
-With containers, developers can build an app in any language. These apps are completely portable and can run anywhere - laptop, desktop, server, private cloud, public cloud or service provider - without any code changes.  
+Mit Containern können Entwickler eine App in jeder Sprache erstellen. Diese Apps sind vollständig portierbar und können überall (Laptop, Desktop, Server, private Cloud, öffentliche Cloud oder Dienstanbieter) ohne Codeänderungen ausgeführt werden.  
 
-Containers helps developers build and ship higher-quality applications, faster.
+Container helfen Entwicklern, Anwendungen höherer Qualität schneller zu entwickeln und auszuliefern.
 
-## Containers for IT Professionals ##
+## <a name="containers-for-it-professionals"></a>Container für IT-Experten ##
 
-IT Professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
+IT-Experten können Container verwenden, um standardisierte Umgebungen für ihre Entwicklungs-, Qualitätssicherungs- und Produktionsteams bereitzustellen. Sie müssen sich nicht mehr komplexe Installations- und Konfigurationsschritte kümmern. Mithilfe von Containern können Systemadministratoren Unterschiede bei Betriebssysteminstallationen und zugrunde liegender Infrastruktur abstrahieren.
 
-Containers help admins create an infrastructure that is simpler to update and maintain.
+Container können Administratoren eine Infrastruktur zu erstellen, die einfacher zu aktualisieren und zu warten ist.
 
-## Video Overview
+## <a name="video-overview"></a>Video-Überblick
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
-## Windows Server-Container testen
+## <a name="try-windows-server-containers"></a>Windows Server-Container testen
 
 Möchten Sie die großartigen Möglichkeiten von Containern nutzen? Im Folgenden finden Sie Informationen zum Bereitstellen Ihres ersten Containers: <br/>
 Benutzer von Windows Server: [Schnellstartanleitung für Windows Server](../quick-start/quick-start-windows-server.md) <br/>

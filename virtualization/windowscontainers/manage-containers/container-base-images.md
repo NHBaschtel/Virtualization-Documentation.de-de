@@ -8,13 +8,13 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
-ms.openlocfilehash: 622c8f638a815e19a54aa75b6b5ea0688d966ae3
-ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
+ms.openlocfilehash: 1c506016175a8be2608e10063a788d55aa792ce4
+ms.sourcegitcommit: 8ce23ca36f3dbae96a09f73d8c2f235943f8cd47
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/21/2017
+ms.lasthandoff: 10/17/2017
 ---
-# Verlauf für Windows-Containerbasisimages
+# <a name="windows-container-base-image-history"></a>Verlauf für Windows-Containerbasisimages
 
 Alle Windows-Container basieren auf einen Basisbetriebssystem, das von Microsoft bereitgestellt wird. Wenn Sie nicht sicher sind, für welche Windows-Version ein Container erstellt wurde, können Sie `docker inspect <tag>` ausführen und die erste Zeile oder die beiden ersten Zeilen mit der folgenden Tabelle vergleichen.
 
@@ -30,10 +30,18 @@ Beispielsweise könnte `docker inspect microsoft/windowsservercore:10.0.14393.44
     ]
 }
 ```
-Dies sind die beiden Ebenen in dem von Microsoft bereitgestellten Image.
+
+Dies sind die beiden Ebenen in dem von Microsoft bereitgestellten Image. Die obere ist konstant und stellt die ursprüngliche Version von Windows Server dar; die zweite ändert sich basierend auf dem neuesten kumulativen Update.
 
 Die Änderungen in einer Version können Sie ermitteln, indem Sie unter [Updateverlauf für Windows10 und Windows Server2016](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) in der Knowledge Base nach dieser Version suchen.
 
+
+## <a name="tools-to-simplify-this-process"></a>Tools, die diesen Prozess vereinfachen
+
+Stefan Scherer hat ein Tool entwickelt, welches das Imagemanifest lesen und die Version bestimmen kann, ohne dass der vollständige Container heruntergeladen werden muss. Weitere Informationen erhalten Sie in seinem [Blog](https://stefanscherer.github.io/winspector/) und im [GitHub](https://github.com/StefanScherer/winspector)-Repository.
+
+
+## <a name="image-versions"></a>Imageversionen
 
 <table>
     <tr>

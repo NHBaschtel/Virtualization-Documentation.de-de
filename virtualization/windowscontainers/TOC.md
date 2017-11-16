@@ -9,39 +9,41 @@
 ## [Automatisieren von Containerbuilds](quick-start/quick-start-images.md)
 
 # Schnellstartanleitung für Windows-Insider
-## [Step 1 - Using the Insider images](quick-start/Using-Insider-Container-Images.md)
-## [Step 2 - Build and Run an Application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
-## [Step 3 - Known Issues](quick-start/Insider-Known-Issues.md)
+## [Schritt1: Verwenden der Insider-Images](quick-start/Using-Insider-Container-Images.md)
+## [Schritt2: Erstellen und Ausführen der Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+## [Schritt3: Bekannte Probleme](quick-start/Insider-Known-Issues.md)
+## [Vorschau für Linux-Container](deploy-containers/linux-containers.md)
 
-# Deploy Windows Container
+# Bereitstellen von Windows-Containern
 ## [Systemanforderungen](deploy-containers/system-requirements.md)
+## [Versionskompatibilität](deploy-containers/version-compatibility.md)
 ## [Bereitstellen](deploy-containers/deploy-containers-on-server.md)
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Active Directory-Dienstkonten](manage-containers/manage-serviceaccounts.md)
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Verwalten von Docker unter Windows
-## [Docker Engine on Windows](docker/configure_docker_daemon.md)
-## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
-## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
-## [Container Networking](management/container_networking.md)
-## [Getting Started with Swarm Mode](manage-containers/swarm-mode.md)
-## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
-## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
+## [Docker-Modul unter Windows](docker/configure_docker_daemon.md)
+## [Dockerfiles unter Windows](manage-docker/manage-windows-dockerfile.md)
+## [Optimieren von Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
+## [Container-Networking](manage-containers/container-networking.md)
+## [Erste Schritte mit dem Schwarmmodus](manage-containers/swarm-mode.md)
+## [Verwalten von Docker mit PowerShell](https://github.com/Microsoft/Docker-PowerShell)
+## [Remoteverwaltung eines Windows-Docker-Hosts](management/manage_remotehost.md)
 
-# Container Samples
-## [Application Frameworks](samples.md#Application-Frameworks)
-## [Programing Languages](samples.md#Programing-Languages)
-## [Databases](samples.md#Databases)
-## [Infrastructure and CI Tools](samples.md#Infrastructure-and-CI-Tools)
+# Containerbeispiele
+## [Anwendungsframeworks](samples.md#Application-Frameworks)
+## [Programmiersprachen](samples.md#Programing-Languages)
+## [Datenbanken](samples.md#Databases)
+## [Infrastruktur und CI-Tools](samples.md#Infrastructure-and-CI-Tools)
 ## [Just for Fun](samples.md#Just-for-Fun)
-## [Other](samples.md#Other)
+## [Andere](samples.md#Other)
 
 
-# Community and Support
-## [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
-## [Community Videos and Blogs](communitylinks.md)
-## [Troubleshooting](troubleshooting.md)
+# Community und Support
+## [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+## [Videos und Blogs der Community](communitylinks.md)
+## [Problembehandlung](troubleshooting.md)
 
 
-# [Container OS Image EULA](Images_EULA.md)
+# [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)

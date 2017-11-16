@@ -7,13 +7,13 @@ ms.date: 07/25/2017
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 2ba3e6409fc60022a55d21c187bfcaefd962908b
-ms.sourcegitcommit: 4f5b9f70804bf6282af8bef603cc343c524c3102
+ms.openlocfilehash: b9f20e6b3f071b9c71a387fce9640b244e9a95b5
+ms.sourcegitcommit: fa9ec91b14c612df03c5b7bb094eb1fabf421715
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/04/2017
+ms.lasthandoff: 10/11/2017
 ---
-# Erstellen einer Beispiel-App
+# <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
 In dieser Übung wird gezeigt, wie Sie eine ASP.NET-Beispiel-App für die Ausführung in einem Container konvertieren. Informationen zum Einstieg mit Containern in Windows 10 erhalten Sie in der [Schnellstartanleitung für Windows 10](./quick-start-windows-10.md).
 
@@ -21,7 +21,7 @@ Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdok
 
 Wenn die Git-Quellcodeverwaltung auf Ihrem Computer nicht installiert ist, finden Sie sie hier: [Git](https://git-scm.com/download).
 
-## Erste Schritte
+## <a name="getting-started"></a>Erste Schritte
 
 Dieses Beispielprojekt wurde mit [VSCode](https://code.visualstudio.com/) eingerichtet. Wir verwenden auch PowerShell. Den Democode finden wir auf GitHub. Sie können das Repository mit Git klonen oder das Projekt direkt herunterladen: [SampleASPContainerApp](https://github.com/cwilhit/SampleASPContainerApp).
 
@@ -36,7 +36,7 @@ Nun navigieren wir zum Projektverzeichnis und erstellen die Dockerfile-Datei. Ei
 New-Item C:/Your/Proj/Location/Dockerfile -type file
 ```
 
-## Erstellen der Dockerfile-Datei
+## <a name="writing-our-dockerfile"></a>Erstellen der Dockerfile-Datei
 
 Nun öffnen wir (mit einem beliebigen Text-Editor) die Dockerfile-Datei, die wir im Projektstammordner erstellt haben, und fügen Logik hinzu. Dann gehen wir sie Zeile für Zeile durch, damit Sie sehen, was passiert.
 
@@ -94,7 +94,7 @@ ENTRYPOINT ["dotnet", "MvcMovie.dll"]
 
 Wir haben jetzt erfolgreich einen sogenannten _mehrstufigen Build_ ausgeführt. Zum Erstellen des Images haben wir den temporären Container verwendet und anschließend die veröffentlichte DLL in einen anderen Container verschoben. Dadurch wurde der letztendliche Speicherbedarf verringert. Wir möchten für die Ausführung dieses Containers nur die absolut erforderlichen Mindestabhängigkeiten festlegen. Wenn wir das erste Image verwenden würden, wären im Paket noch andere Ebenen (zum Erstellen von ASP.NET-Apps) enthalten, die nicht erforderlich sind und somit das Image nur unnötig vergrößern.
 
-## Ausführen der App
+## <a name="running-the-app"></a>Ausführen der App
 
 Nachdem die Dockerfile-Datei erstellt wurde, müssen wir Docker nur noch anweisen, die App zu erstellen und den Container auszuführen. Wir geben nun den Port zum Veröffentlichen an und vergeben das Tag „myapp“ für unseren Container. Führen Sie in PowerShell diese Befehle aus:
 
@@ -106,7 +106,7 @@ docker run -d -p 5000:80 --name myapp myasp
 Damit wir sehen, wie unsere App ausgeführt wird, müssen wir die entsprechende Adresse aufrufen. Mithilfe dieses Befehls können wir die IP-Adresse abrufen.
 
 ```Powershell
- docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myapp
+ docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myasp
 ```
 
 Wenn Sie diesen Befehl ausführen, erhalten Sie die IP-Adresse Ihres ausgeführten Containers. Hier ist ein Beispiel dafür, wie die Ausgabe aussehen könnte:
@@ -121,7 +121,7 @@ Geben Sie diese IP-Adresse in einen beliebigen Webbrowser ein, und Sie sehen, wi
 
 Klicken Sie in der Navigationsleiste auf „MvcMovie“. Dadurch gelangen Sie zu einer Webseite, auf der Sie Filmeinträge eingeben, bearbeiten und löschen können.
 
-## Nächste Schritte
+## <a name="next-steps"></a>Nächste Schritte
 
 Wir haben mithilfe von Docker erfolgreich eine ASP.NET-Web-App konfiguriert und erstellt und diese erfolgreich in einem ausgeführten Container bereitgestellt. Aber Sie können noch weitere Schritte ausführen. Sie können die Web-App beispielsweise in weitere Komponenten aufteilen: einen Container, der die Web-API ausführt, einen Container, der das Front-End ausführt, und einen Container, der den SQL Server ausführt.
 
