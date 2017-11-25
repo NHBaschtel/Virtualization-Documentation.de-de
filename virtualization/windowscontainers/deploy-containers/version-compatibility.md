@@ -3,11 +3,11 @@ title: "Versionskompatibilität von Windows-Containern"
 description: "Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann."
 keywords: Metadaten, Container, Version
 author: patricklang
-ms.openlocfilehash: dce6004b66ac085354d906bc09f57f037c5dd138
-ms.sourcegitcommit: eb111c328266fe72a780cfd53c5e0e55de1ec084
+ms.openlocfilehash: ed9d88e1e861651426e560a4531fd4added2134a
+ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/17/2017
+ms.lasthandoff: 11/08/2017
 ---
 # <a name="windows-container-version-compatibility"></a>Versionskompatibilität von Windows-Containern
 
@@ -44,7 +44,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 
 Wenn Sie versuchen, eine nicht unterstützte Kombination auszuführen, erhalten Sie einen Fehler:
 
-```none
+```
 docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc49324eafa798438f7979b87b210906f839 encountered an error during CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101) extra info: {"SystemType":"Container","Name":"b81ed896222eb87906ccab1c3dd2fc49324eafa798438f7979b87b210906f839","Owner":"docker","IsDummy":false,"VolumePath":"\\\\?\\Volume{2443d38a-1379-4bcf-a4b7-fc6ad4cd7b65}","IgnoreFlushesDuringBoot":true,"LayerFolderPath":"C:\\ProgramData\\docker\\windowsfilter\\b81ed896222eb87906ccab1c3dd2fc49324eafa798438f7979b87b210906f839","Layers":[{"ID":"1532b584-8431-5b5a-8735-5e1b4fe9c2a9","Path":"C:\\ProgramData\\docker\\windowsfilter\\b2b88bc2a47abcc682e422507abbba9c9b6d826d34e67b9e4e3144cc125a1f80"},{"ID":"a64b8da5-cd6e-5540-bc73-d81acae6da54","Path":"C:\\ProgramData\\docker\\windowsfilter\\5caaedbced1f546bccd01c9d31ea6eea4d30701ebba7b95ee8faa8c098a6845a"}],"HostName":"b81ed896222e","MappedDirectories":[],"HvPartition":false,"EndpointList":["002a0d9e-13b7-42c0-89b2-c1e80d9af243"],"Servicing":false,"AllowUnqualifiedDNSQuery":true}.
 ```
 
@@ -97,14 +97,14 @@ Wenn ein Dienst nicht startet, sehen Sie, dass `MODE` = `replicated` ist, `REPLI
 
  `docker service ls` – Suchen des Dienstnamens
 
-```none
+```
 ID                  NAME                MODE                REPLICAS            IMAGE                                             PORTS
 xh6mwbdq2uil        angry_liskov        replicated          0/1                 microsoft/iis:windowsservercore-10.0.14393.1715
 ```
 
 `docker service ps <name>` – Abrufen des Status und der letzten Versuche
 
-```none
+```
 C:\Program Files\Docker>docker service ps angry_liskov
 ID                  NAME                 IMAGE                                             NODE                DESIRED STATE       CURRENT STATE               ERROR                              PORTS
 klkbhn742lv0        angry_liskov.1       microsoft/iis:windowsservercore-10.0.14393.1715   WIN-BSTMQDRQC2E     Ready               Ready 3 seconds ago
@@ -118,7 +118,7 @@ xeqkxbsao57w         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14
 Wenn "starting container failed: ..." angezeigt wird, sehen Sie den vollständigen Fehler mit `docker service ps --no-trunc <container name>`
 
 
-```none
+```
 C:\Program Files\Docker>docker service ps --no-trunc angry_liskov
 ID                          NAME                 IMAGE                                                                                                                     NODE                DESIRED STATE       CURRENT STATE                     ERROR                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          PORTS
 dwsd6sjlwsgic5vrglhtxu178   angry_liskov.1       microsoft/iis:windowsservercore-10.0.14393.1715@sha256:868bca7e89e1743792e15f78edb5a73070ef44eae6807dc3f05f9b94c23943d5   WIN-BSTMQDRQC2E     Running             Starting less than a second ago                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -196,7 +196,7 @@ docker node update --label-add OsVersion="$((Get-ComputerInfo).OsVersion)" $ENV:
 
 Anschließend können Sie sie mit `docker node inspect` überprüfen, wodurch die neu hinzugefügten Label angezeigt werden.
 
-```none
+```
         "Spec": {
             "Labels": {
                 "OS": "windows",
@@ -211,7 +211,7 @@ Anschließend können Sie sie mit `docker node inspect` überprüfen, wodurch di
 
 Nachdem die einzelnen Knoten gekennzeichnet wurden, können Sie die Einschränkungen aktualisieren, die die Platzierung der Dienste bestimmen. Ersetzen Sie im folgenden Beispiel "contoso_service" durch den Namen des tatsächlichen Diensts:
 
-```none
+```
 docker service update \
     --constraint-add "node.labels.OS == windows" \
     --constraint-add "node.labels.OsVersion == $((Get-ComputerInfo).OsVersion)" \
@@ -236,7 +236,7 @@ Das gleiche Problem kann auftreten, wenn Pods in Kubernetes geplant werden. Dies
 
 Hier enthielt eine Bereitstellung einen Pod, der auf einem Knoten mit einer nicht übereinstimmenden Betriebssystemversion und ohne aktivierter Hyper-V-Isolierung geplant wurde. Der gleiche Fehler wird in den Ereignissen angezeigt, die mit `kubectl describe pod <podname>` abgerufen werden. Nach mehreren Versuchen lautet der Pod-Status vermutlich `CrashLoopBackOff`
 
-```none
+```
 $ kubectl -n plang describe po fabrikamfiber.web-789699744-rqv6p
 
 Name:           fabrikamfiber.web-789699744-rqv6p
@@ -303,7 +303,7 @@ Events:
 
 In diesem Fall gibt es zwei Windows-Knoten, die unterschiedliche Versionen ausführen:
 
-```none
+```
 $ kubectl get node
 
 NAME                        STATUS    AGE       VERSION
@@ -381,7 +381,7 @@ Name         | Version
 
 Aus obigem Beispiel ergibt sich:
 
-```none
+```
 $ kubectl label node 38519acs9010 beta.kubernetes.io/osbuild=14393.1715
 
 
@@ -394,7 +394,7 @@ node "38519acs9011" labeled
 
 3. Überprüfen Sie das Vorhandensein der Labels mit `kubectl get nodes --show-labels`
 
-```none
+```
 $ kubectl get nodes --show-labels
 
 NAME                        STATUS                     AGE       VERSION                    LABELS
@@ -445,7 +445,7 @@ status: {}
 
 Der Pod kann nun mit der aktualisierten Bereitstellung starten. Die Knotenselektoren werden ebenfalls in `kubectl describe pod <podname>` angezeigt, sodass Sie prüfen können, ob sie hinzugefügt wurden.
 
-```none
+```
 $ kubectl -n plang describe po fa
 
 Name:           fabrikamfiber.web-1780117715-5c8vw
