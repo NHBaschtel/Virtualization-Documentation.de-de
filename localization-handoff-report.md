@@ -6,14 +6,14 @@
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\windowscontainers\manage-docker\configure-docker-daemon.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/79123e93f7ba558bb2aee0468a734893e29f3087/virtualization/windowscontainers/manage-docker/configure-docker-daemon.md) | HandedOffSuccess | [Details](#16ab26b6f4c66b56051759dea65080dd411b15ab338)
+ [virtualization\windowscontainers\samples.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/c2def00b88a411d25d2d4e97ff020db8dc228581/virtualization/windowscontainers/samples.md) | HandedOffSuccess | [Details](#45ee10cb8353c1b293b75628f1d023008b2bf150413)
 
 ## Item Details
-##### <a name='16ab26b6f4c66b56051759dea65080dd411b15ab338'></a> Source: [virtualization\windowscontainers\manage-docker\configure-docker-daemon.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/79123e93f7ba558bb2aee0468a734893e29f3087/virtualization/windowscontainers/manage-docker/configure-docker-daemon.md)
+##### <a name='45ee10cb8353c1b293b75628f1d023008b2bf150413'></a> Source: [virtualization\windowscontainers\samples.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/c2def00b88a411d25d2d4e97ff020db8dc228581/virtualization/windowscontainers/samples.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [configure-docker-daemon.55065b4526dd1a03f5fa5c56a6fd8c7868f6dbaa.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/d4adae2e59938817ce0dcf69c757fd81622b4cff/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/configure-docker-daemon.55065b4526dd1a03f5fa5c56a6fd8c7868f6dbaa.de-de.xlf)
-* Handoff Datetime: 2017-12-01 02:08:44
+* Handoff File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/ba7cdb696642cb771291879d5265e6d654aaacf1/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
+* Handoff Datetime: 2017-12-03 22:07:06
 * Handoff Reason: Include
 * Handoff Name: 
 * Archive File: 
@@ -21,10 +21,10 @@
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
 * Handback Name: 
-* Current Target File: [virtualization\windowscontainers\manage-docker\configure-docker-daemon.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/6c6f96dbd687188f2624f99812e45211aca6ad09/virtualization/windowscontainers/manage-docker/configure-docker-daemon.md)
-* Current Handback File: [configure-docker-daemon.55065b4526dd1a03f5fa5c56a6fd8c7868f6dbaa.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/configure-docker-daemon.55065b4526dd1a03f5fa5c56a6fd8c7868f6dbaa.de-de.xlf)
+* Current Target File: [virtualization\windowscontainers\samples.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/6c6f96dbd687188f2624f99812e45211aca6ad09/virtualization/windowscontainers/samples.md)
+* Current Handback File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
 * Current Handback Datetime: 2017-01-24 13:18:46
-* Bilingual File: [configure-docker-daemon.55065b4526dd1a03f5fa5c56a6fd8c7868f6dbaa.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/configure-docker-daemon.55065b4526dd1a03f5fa5c56a6fd8c7868f6dbaa.de-de.xlf)
+* Bilingual File: [samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/samples.31014494d9f148c358b40bd77949cf0f75f2ea75.de-de.xlf)
 * Bilingual Datetime: 2017-01-24 13:21:33
 * [Back to Top](#report-top)
 
