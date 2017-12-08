@@ -7,11 +7,11 @@ ms.date: 07/25/2017
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: b9f20e6b3f071b9c71a387fce9640b244e9a95b5
-ms.sourcegitcommit: fa9ec91b14c612df03c5b7bb094eb1fabf421715
+ms.openlocfilehash: b1d0c4bcf35cd40e9ca058d4e2a51fa028cade2c
+ms.sourcegitcommit: 04c78918c77d2ad6053e6a95dc57bc488efbbf8b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/31/2017
 ---
 # <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
@@ -96,7 +96,9 @@ Wir haben jetzt erfolgreich einen sogenannten _mehrstufigen Build_ ausgeführt. 
 
 ## <a name="running-the-app"></a>Ausführen der App
 
-Nachdem die Dockerfile-Datei erstellt wurde, müssen wir Docker nur noch anweisen, die App zu erstellen und den Container auszuführen. Wir geben nun den Port zum Veröffentlichen an und vergeben das Tag „myapp“ für unseren Container. Führen Sie in PowerShell diese Befehle aus:
+Nachdem die Dockerfile-Datei erstellt wurde, müssen wir Docker nur noch anweisen, die App zu erstellen und den Container auszuführen. Wir geben nun den Port zum Veröffentlichen an und vergeben das Tag „myapp“ für unseren Container. Führen Sie in PowerShell die folgenden Befehle aus.
+
+_Hinweis:_: Das aktuelle Arbeitsverzeichnis der PowerShell-Konsole muss das Verzeichnis sein, in dem sich die oben erstellte Docker-Datei befindet.
 
 ```Powershell
 docker build -t myasp .
@@ -106,7 +108,7 @@ docker run -d -p 5000:80 --name myapp myasp
 Damit wir sehen, wie unsere App ausgeführt wird, müssen wir die entsprechende Adresse aufrufen. Mithilfe dieses Befehls können wir die IP-Adresse abrufen.
 
 ```Powershell
- docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myasp
+ docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myapp
 ```
 
 Wenn Sie diesen Befehl ausführen, erhalten Sie die IP-Adresse Ihres ausgeführten Containers. Hier ist ein Beispiel dafür, wie die Ausgabe aussehen könnte:

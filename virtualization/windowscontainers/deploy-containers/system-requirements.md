@@ -7,11 +7,11 @@ ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
-ms.openlocfilehash: f4ee9346db77e29f9d3366634b8b6ad07d0fec08
-ms.sourcegitcommit: 380dd8e78780995b96def2e2ec6e22e3387e82e0
+ms.openlocfilehash: 6ae690ff6592198bc16cbaf60489d3ed5aceeeb0
+ms.sourcegitcommit: 64f5f8d838f72ea8e0e66a72eeb4ab78d982b715
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2017
+ms.lasthandoff: 11/22/2017
 ---
 # <a name="windows-container-requirements"></a>Anforderungen von Windows-Containern
 
@@ -51,7 +51,7 @@ Für Windows-Container stehen zwei Basisimages zur Verfügung – Windows Server
 <td><center>Server Core/Nano Server</center></td>
 </tr>
 <tr valign="top">
-<td><center>Nano Server</center></td>
+<td><center>Nano Server*</center></td>
 <td><center> Nano Server</center></td>
 <td><center>Server Core/Nano Server</center></td>
 </tr>
@@ -62,8 +62,25 @@ Für Windows-Container stehen zwei Basisimages zur Verfügung – Windows Server
 </tr>
 </tbody>
 </table>
+* Ab Version 1709 von Windows Server ist Nano Server nicht mehr als Containerhost verfügbar.
 
-### <a name="nano-server-vs-windows-server-core"></a>Nano Server im Vergleich zu Windows Server Core
+### <a name="memory-requirments"></a>Arbeitsspeicheranforderungen
+Einschränkungen des für Container verfügbaren Speichers können über [Ressourcenkontrollen](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/resource-controls) oder durch Überladen eines Containerhosts konfiguriert werden.  Wieviel Arbeitsspeicher zum Starten eines Containers und zum Ausführen grundlegender Befehle (ipconfig, dir, usw.) mindestens vorhanden sein muss, ist unten aufgeführt.  Bitte beachten Sie, dass diese Werte weder eine gemeinsame Nutzung von Ressourcen durch Container noch die Anforderungen der Anwendung berücksichtigen, die im Container ausgeführt wird.
+
+#### <a name="windows-server-2016"></a>Windows Server 2016
+| Base Image  | Windows Server-Container | Hyper-V-Isolierung    |
+| ----------- | ------------------------ | -------------------- |
+| Nano Server | 40 MB                     | 130 MB + 1 GB Auslagerungsdatei |
+| Server Core | 50 MB                     | 325 MB + 1 GB Auslagerungsdatei |
+
+#### <a name="windows-server-version-1709"></a>Windows Server, Version 1709
+| Base Image  | Windows Server-Container | Hyper-V-Isolierung    |
+| ----------- | ------------------------ | -------------------- |
+| Nano Server | 30 MB                     | 110 MB + 1 GB Auslagerungsdatei |
+| Server Core | 45 MB                     | 360 MB + 1 GB Auslagerungsdatei |
+
+
+### <a name="nano-server-vs-windows-server-core"></a>Nano Server oder Windows Server Core?
 
 Wie entscheide ich mich zwischen Windows Server Core und Nano Server? Zum Erstellen steht es Ihnen frei, was Sie verwenden. Wenn Sie für Ihre Anwendung jedoch vollständige Kompatibilität mit dem .NET Framework benötigen, dann verwenden Sie [Windows Server Core](https://hub.docker.com/r/microsoft/windowsservercore/). Wenn Ihre Anwendung hingegen für die Cloud erstellt wurde und .NET Core verwendet, dann ist [Nano Server](https://hub.docker.com/r/microsoft/nanoserver/) die bessere Wahl. Nano Server wurde für einen geringstmöglichen Speicherbedarf erstellt, weshalb einige nicht erforderliche Bibliotheken entfernt wurden. Bedenken Sie Folgendes, wenn Sie Nano Server als Grundlage zum Erstellen verwenden:
 
@@ -81,7 +98,7 @@ Da sich Windows Server-Container und der zugrunde liegende Host einen einzelnen 
 Mithilfe von HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion können Sie abfragen, welche Version auf einem Windows-Host installiert ist.  Prüfen Sie die Tags auf Docker Hub oder die Image-Hash-Tabelle in der Beschreibung des Images, um zu überprüfen, welche Version Ihr Basisimage verwendet.  Auf der Seite [Windows 10-Updateverlauf](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) wird aufgeführt, wann die einzelnen Builds und Revisionen veröffentlicht wurden.
 
 In diesem Beispiel ist 14393 die Hauptbuildnummer und 321 die Revision.
-```none
+```
 Windows PowerShell
 Copyright (C) 2016 Microsoft Corporation. All rights reserved.
 
