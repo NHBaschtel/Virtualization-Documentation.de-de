@@ -1,20 +1,19 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 2
+ Total Files | 1
 
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\hyper-v-on-windows\about\supported-guest-os.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/04d07f83b963eba0902e047210dea8a3d9165c86/virtualization/hyper-v-on-windows/about/supported-guest-os.md) | HandedOffSuccess | [Details](#0370af1bd17c61f5f968cb931e95e3ba705f0c9e113)
- [virtualization\windowscontainers\images-eula.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/04d07f83b963eba0902e047210dea8a3d9165c86/virtualization/windowscontainers/images-eula.md) | HandedOffSuccess | [Details](#7cadc6e8ee2db9afecf6c1de81a535933a21358f340)
+ [virtualization\windowscontainers\manage-containers\resource-controls.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/a072513214b0dabb9dba20ce43ea52aaf7806c5f/virtualization/windowscontainers/manage-containers/resource-controls.md) | HandedOffSuccess | [Details](#d3eb7e2b751468953a152e8c723551fb3e1d12dd371)
 
 ## Item Details
-##### <a name='0370af1bd17c61f5f968cb931e95e3ba705f0c9e113'></a> Source: [virtualization\hyper-v-on-windows\about\supported-guest-os.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/04d07f83b963eba0902e047210dea8a3d9165c86/virtualization/hyper-v-on-windows/about/supported-guest-os.md)
+##### <a name='d3eb7e2b751468953a152e8c723551fb3e1d12dd371'></a> Source: [virtualization\windowscontainers\manage-containers\resource-controls.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/a072513214b0dabb9dba20ce43ea52aaf7806c5f/virtualization/windowscontainers/manage-containers/resource-controls.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [supported-guest-os.bb959c20ec9b6ee9dc1f4b9e0d1abaad551c0a11.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/d18781f0551c35294f8a90d110708ce8d251dc97/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/supported-guest-os.bb959c20ec9b6ee9dc1f4b9e0d1abaad551c0a11.de-de.xlf)
-* Handoff Datetime: 2017-12-31 23:28:48
+* Handoff File: [resource-controls.ebd6b460c2758fdccb19707a1a6b398c39920ef6.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/955c1f2e23a1d79cfbd89fb38a05d36b2614bab5/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/resource-controls.ebd6b460c2758fdccb19707a1a6b398c39920ef6.de-de.xlf)
+* Handoff Datetime: 2018-01-01 21:30:14
 * Handoff Reason: Include
 * Handoff Name: 
 * Archive File: 
@@ -22,30 +21,6 @@
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
 * Handback Name: 
-* Current Target File: [virtualization\hyperv_on_windows\about\supported_guest_os.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/f9b3f1ecebdccf972db488aa266535cf64b75156/virtualization/hyperv_on_windows/about/supported_guest_os.md)
-* Current Handback File: [supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf)
-* Current Handback Datetime: 2016-11-04 21:49:56
-* Bilingual File: [supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/e00e86c505b65aaabe1d35fb76a1f9b6bbcb6f08/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/supported_guest_os.d1ae8a9dd710f94e6f72759af7a880d39bf8c9bf.de-de.xlf)
-* Bilingual Datetime: 2016-11-04 21:51:11
-* [Back to Top](#report-top)
-
-##### <a name='7cadc6e8ee2db9afecf6c1de81a535933a21358f340'></a> Source: [virtualization\windowscontainers\images-eula.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/04d07f83b963eba0902e047210dea8a3d9165c86/virtualization/windowscontainers/images-eula.md)
-* Status: HandedOffSuccess
-* Target File: 
-* Handoff File: [images-eula.fff511a62eeca8d3e2fcf559a34f9c106073c65a.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/d18781f0551c35294f8a90d110708ce8d251dc97/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/images-eula.fff511a62eeca8d3e2fcf559a34f9c106073c65a.de-de.xlf)
-* Handoff Datetime: 2017-12-31 23:28:48
-* Handoff Reason: Include
-* Handoff Name: 
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Handback Name: 
-* Current Target File: [virtualization\windowscontainers\images-eula.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/fe16c87922368353c71be9d25be214164cb2794c/virtualization/windowscontainers/images-eula.md)
-* Current Handback File: [images-eula.fff511a62eeca8d3e2fcf559a34f9c106073c65a.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/3ae958cc8d2906396889618eedeb5cf119f79cb1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/images-eula.fff511a62eeca8d3e2fcf559a34f9c106073c65a.de-de.xlf)
-* Current Handback Datetime: 2017-03-24 13:49:43
-* Bilingual File: [images-eula.fff511a62eeca8d3e2fcf559a34f9c106073c65a.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/3ae958cc8d2906396889618eedeb5cf119f79cb1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/images-eula.fff511a62eeca8d3e2fcf559a34f9c106073c65a.de-de.xlf)
-* Bilingual Datetime: 2017-03-24 13:52:18
 * [Back to Top](#report-top)
 
 
