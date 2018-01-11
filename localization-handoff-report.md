@@ -1,21 +1,20 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 3
+ Total Files | 2
 
 ## File List
  Source File | Status | Details 
  ----------- | ------ | ------- 
- [virtualization\hyper-v-on-windows\CVE-2017-5715-and-hyper-v-vms.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d13a0040f236879176393d80d668678c1151e4c4/virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-vms.md) | HandedOffSuccess | [Details](#ac3b6bb3ba0ad560609406985ce9b64cb39cfa86118)
- [virtualization\hyper-v-on-windows\reference\hyper-v-architecture.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d13a0040f236879176393d80d668678c1151e4c4/virtualization/hyper-v-on-windows/reference/hyper-v-architecture.md) | HandedOffSuccess | [Details](#62788ce4f67d881a3fc494ad099877902a8a45b6198)
- [virtualization\hyper-v-on-windows\TOC.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d13a0040f236879176393d80d668678c1151e4c4/virtualization/hyper-v-on-windows/TOC.md) | HandedOffSuccess | [Details](#573cc5b1327c49f2abc6bf877cf1c53191c5569f205)
+ [virtualization\hyper-v-on-windows\CVE-2017-5715-and-hyper-v-hosts.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1070545d5f8a891a3c102513df27406c1033fe57/virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-hosts.md) | HandedOffSuccess | [Details](#0c718128473a2f83ef0764faff6c8264ef6eeff4117)
+ [virtualization\windowscontainers\deploy-containers\system-requirements.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1070545d5f8a891a3c102513df27406c1033fe57/virtualization/windowscontainers/deploy-containers/system-requirements.md) | HandedOffSuccess | [Details](#72829adcd147d684155af4991efe0573a804938e331)
 
 ## Item Details
-##### <a name='ac3b6bb3ba0ad560609406985ce9b64cb39cfa86118'></a> Source: [virtualization\hyper-v-on-windows\CVE-2017-5715-and-hyper-v-vms.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d13a0040f236879176393d80d668678c1151e4c4/virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-vms.md)
+##### <a name='0c718128473a2f83ef0764faff6c8264ef6eeff4117'></a> Source: [virtualization\hyper-v-on-windows\CVE-2017-5715-and-hyper-v-hosts.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1070545d5f8a891a3c102513df27406c1033fe57/virtualization/hyper-v-on-windows/CVE-2017-5715-and-hyper-v-hosts.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [CVE-2017-5715-and-hyper-v-vms.26f9ffce97eab599de9ec9ad1a7b1ac4e7a273bf.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/e5f9931f05d7642dca645a71163dc858f7043070/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/CVE-2017-5715-and-hyper-v-vms.26f9ffce97eab599de9ec9ad1a7b1ac4e7a273bf.de-de.xlf)
-* Handoff Datetime: 2018-01-11 00:06:59
+* Handoff File: [CVE-2017-5715-and-hyper-v-hosts.56cdb082848b663e4ae5cf5e3b91519bbb5b61f2.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/524c2782446b6b6ae066ad684cffbdbbce3816cf/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/CVE-2017-5715-and-hyper-v-hosts.56cdb082848b663e4ae5cf5e3b91519bbb5b61f2.de-de.xlf)
+* Handoff Datetime: 2018-01-11 02:06:42
 * Handoff Reason: Include
 * Handoff Name: 
 * Archive File: 
@@ -25,11 +24,11 @@
 * Handback Name: 
 * [Back to Top](#report-top)
 
-##### <a name='62788ce4f67d881a3fc494ad099877902a8a45b6198'></a> Source: [virtualization\hyper-v-on-windows\reference\hyper-v-architecture.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d13a0040f236879176393d80d668678c1151e4c4/virtualization/hyper-v-on-windows/reference/hyper-v-architecture.md)
+##### <a name='72829adcd147d684155af4991efe0573a804938e331'></a> Source: [virtualization\windowscontainers\deploy-containers\system-requirements.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/1070545d5f8a891a3c102513df27406c1033fe57/virtualization/windowscontainers/deploy-containers/system-requirements.md)
 * Status: HandedOffSuccess
 * Target File: 
-* Handoff File: [hyper-v-architecture.c803b56d1e6abb9bb3965d40510d97387a57067e.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/e5f9931f05d7642dca645a71163dc858f7043070/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/hyper-v-architecture.c803b56d1e6abb9bb3965d40510d97387a57067e.de-de.xlf)
-* Handoff Datetime: 2018-01-11 00:06:59
+* Handoff File: [system-requirements.7dbcfcd7846f5274542c2b3889e0b8cfd203b0b7.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/524c2782446b6b6ae066ad684cffbdbbce3816cf/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/system-requirements.7dbcfcd7846f5274542c2b3889e0b8cfd203b0b7.de-de.xlf)
+* Handoff Datetime: 2018-01-11 02:06:42
 * Handoff Reason: Include
 * Handoff Name: 
 * Archive File: 
@@ -37,25 +36,11 @@
 * Handback File: 
 * Handback Datetime: 0001-01-01 00:00:00
 * Handback Name: 
-* [Back to Top](#report-top)
-
-##### <a name='573cc5b1327c49f2abc6bf877cf1c53191c5569f205'></a> Source: [virtualization\hyper-v-on-windows\TOC.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/d13a0040f236879176393d80d668678c1151e4c4/virtualization/hyper-v-on-windows/TOC.md)
-* Status: HandedOffSuccess
-* Target File: 
-* Handoff File: [TOC.31a2913ccfd49bd5aec82fa8274f4b81c18f1fd7.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/e5f9931f05d7642dca645a71163dc858f7043070/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/TOC.31a2913ccfd49bd5aec82fa8274f4b81c18f1fd7.de-de.xlf)
-* Handoff Datetime: 2018-01-11 00:06:59
-* Handoff Reason: Include
-* Handoff Name: 
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Handback Name: 
-* Current Target File: [virtualization\hyper-v-on-windows\TOC.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/6c6f96dbd687188f2624f99812e45211aca6ad09/virtualization/hyper-v-on-windows/TOC.md)
-* Current Handback File: [TOC.31a2913ccfd49bd5aec82fa8274f4b81c18f1fd7.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.31a2913ccfd49bd5aec82fa8274f4b81c18f1fd7.de-de.xlf)
-* Current Handback Datetime: 2017-01-24 13:18:46
-* Bilingual File: [TOC.31a2913ccfd49bd5aec82fa8274f4b81c18f1fd7.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/TOC.31a2913ccfd49bd5aec82fa8274f4b81c18f1fd7.de-de.xlf)
-* Bilingual Datetime: 2017-01-24 13:21:33
+* Current Target File: [virtualization\windowscontainers\deployment\system_requirements.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/dcceb8fd49170e953de63ab67b146c758822b276/virtualization/windowscontainers/deployment/system_requirements.md)
+* Current Handback File: [system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/8e6e2a8fa6267dfcbca35032875f8052853a4695/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf)
+* Current Handback Datetime: 2016-11-05 05:53:24
+* Bilingual File: [system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/8e6e2a8fa6267dfcbca35032875f8052853a4695/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/system_requirements.579a5475e3bd1d3d3fd9d5b53488ab4ae55a4423.de-de.xlf)
+* Bilingual Datetime: 2016-11-05 05:54:10
 * [Back to Top](#report-top)
 
 
