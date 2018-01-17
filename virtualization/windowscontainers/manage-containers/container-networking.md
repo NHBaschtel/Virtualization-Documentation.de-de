@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 98feee128860885b4f62420cc6eb86d23579551b
-ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
+ms.openlocfilehash: 394aa58c3421e512d005f59d5bd30667f1c26f16
+ms.sourcegitcommit: 6eefb890f090a6464119630bfbdc2794e6c3a3df
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 12/18/2017
 ---
 # <a name="windows-container-networking"></a>Windows-Containernetzwerk
 > ***Weitere Informationen für allgemeine Docker-Netzwerkbefehle, ‑Optionen und ‑Syntax finden Sie unter [Docker-Containernetzwerk](https://docs.docker.com/engine/userguide/networking/).*** Mit Ausnahme der in diesem Dokument beschriebenen Fälle werden alle Docker-Netzwerkbefehle unter Windows mit der gleichen Syntax wie unter Linux unterstützt. Beachten Sie jedoch, dass die Netzwerkstapel sich in Windows und Linux unterscheiden und daher einige Linux-Netzwerkbefehle (z.B. ifconfig) unter Windows nicht unterstützt werden.
@@ -201,6 +201,7 @@ Wenn der Containerhost virtualisiert ist und Sie DHCP für die IP-Zuweisung verw
 ```
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
+Wenn VMware als Hypervisor ausgeführt wird, müssen Sie hierfür den promisken Modus aktivieren. Details finden Sie [hier.](https://kb.vmware.com/s/article/1004099)
 #### <a name="creating-multiple-transparent-networks-on-a-single-container-host"></a>Erstellen mehrerer transparenter Netzwerke auf einem einzelnen Containerhost
 Wenn Sie mehr als ein transparentes Netzwerk erstellen möchten, müssen Sie angeben, an welchen (virtuellen) Netzwerkadapter der Hyper-V Virtual Switch gebunden werden soll. Um die Benutzeroberfläche für ein Netzwerk anzugeben, verwenden Sie folgende Syntax:
 ```

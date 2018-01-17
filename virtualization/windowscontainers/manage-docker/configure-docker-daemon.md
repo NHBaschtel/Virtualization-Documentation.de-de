@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
-ms.openlocfilehash: ccc45d47fc9f17c10b149bc647463824e1ecbc9e
-ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
+ms.openlocfilehash: 5b187853be0ebb28bcede43bfca7e4042a23dfce
+ms.sourcegitcommit: a3479a4d8372a637fb641cd7d5003f1d8a37b741
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 12/19/2017
 ---
 # <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
@@ -25,7 +25,6 @@ Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht a
 * [Windows-Container unter Windows Server 2016](../quick-start/quick-start-windows-server.md)
 * [Windows-Container unter Windows10](../quick-start/quick-start-windows-10.md)
 
-
 ### <a name="manual-installation"></a>Manuelle Installation
 Befolgen Sie die nachstehenden Schritte, wenn Sie stattdessen eine in der Entwicklung befindliche Version des Docker-Moduls und -Clients verwenden möchten. Damit werden das Docker-Modul und der Docker-Client installiert. Wenn Sie als Entwickler neue Features testen oder einen Windows-Insider-Build verwenden, müssen Sie möglicherweise eine in der Entwicklung befindliche Version von Docker verwenden. Führen Sie andernfalls die Schritte im obigen Abschnitt „Installieren von Docker“ aus, um die neuesten Versionen zu erhalten.
 
@@ -36,8 +35,7 @@ Herunterladen des Docker-Moduls
 Sie erhalten die neueste Version immer unter https://master.dockerproject.org. In diesem Beispiel wird die aktuelle Version aus dem Master Branch verwendet. 
 
 ```powershell
-$version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
-Invoke-WebRequest "https://master.dockerproject.org/windows/x86_64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+Invoke-WebRequest "https://master.dockerproject.org/windows/x86_64/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Extrahieren Sie das ZIP-Archiv in „Programme“.
@@ -90,7 +88,7 @@ Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unte
     "log-driver": "", 
     "mtu": 0,
     "pidfile": "",
-    "graph": "",
+    "data-root": "",
     "cluster-store": "",
     "cluster-advertise": "",
     "debug": true,
@@ -123,7 +121,7 @@ Entsprechend konfiguriert dieses Beispiel den Docker-Daemon, um Images und Conta
 
 ```
 {    
-    "graph": "d:\\docker"
+    "data-root": "d:\\docker"
 }
 ```
 
@@ -190,3 +188,72 @@ Restart-Service docker
 
 Weitere Informationen finden Sie unter [Windows Configuration File (Windows-Konfigurationsdatei)](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file) auf Docker.com.
 
+## <a name="uninstall-docker"></a>Deinstallieren von Docker
+*Verwenden Sie die Schritte in diesem Abschnitt, um Docker zu deinstallieren und eine vollständige Bereinigung der Docker-Systemkomponenten aus dem Windows10- oder Windows Server2016-System durchzuführen.*
+
+> Hinweis: Alle Befehle in den folgenden Schritten müssen aus einer PowerShell-Sitzung **mit erhöhten Rechten** ausgeführt werden.
+
+### <a name="step-1-prepare-your-system-for-dockers-removal"></a>SCHRITT1: Vorbereiten des Systems für das Entfernen von Docker 
+Es empfiehlt sich, sicherzustellen, dass keine Container auf Ihrem System ausgeführt werden, bevor Docker entfernt wird, sofern nicht bereits geschehen. Hier sind einige hilfreiche Befehle für den Vorgang:
+```
+# Leave swarm mode (this will automatically stop and remove services and overlay networks)
+docker swarm leave --force
+
+# Stop all running containers
+docker ps --quiet | ForEach-Object {docker stop $_}
+```
+Es empfiehlt sich ebenfalls, alle Container, Containerimages, Netzwerke und Volumes aus dem System zu entfernen, bevor Docker entfernt wird:
+```
+docker system prune --volumes --all
+```
+
+### <a name="step-2-uninstall-docker"></a>SCHRITT 2: Deinstallieren von Docker 
+
+#### ***<a name="steps-to-uninstall-docker-on-windows-10"></a>Schritte zum Deinstallieren von Docker unter Windows10:10:***
+- Wechseln Sie zu **"Einstellungen" > "Apps"** auf Ihrem Windows10-Computer
+- Suchen Sie unter **"Apps & Features"**nach **"Docker für Windows"**
+- Klicken Sie auf **"Docker für Windows" > "Deinstallieren"**
+
+#### ***<a name="steps-to-uninstall-docker-on-windows-server-2016"></a>Schritte zum Deinstallieren von Docker unter WindowsServer 2016:16:***
+Verwenden Sie in einer PowerShell-Sitzung mit erhöhten Rechten die Cmdlets `Uninstall-Package` und `Uninstall-Module`, um das Docker-Modul den dazu gehörigen Anbieter für die Paketverwaltung von Ihrem System zu entfernen. 
+> Tipp: So finden Sie den Anbieter des Pakets, den Sie zum Installieren von Docker verwendet haben `PS C:\> Get-PackageProvider -Name *Docker*`
+
+*Beispiel*:
+```
+Uninstall-Package -Name docker -ProviderName DockerMsftProvider
+Uninstall-Module -Name DockerMsftProvider
+```
+
+### <a name="step-3-cleanup-docker-data-and-system-components"></a>SCHRITT3: Bereinigen von Dockerdaten und Systemkomponenten
+Entfernen Sie die *Standard-Netzwerke* von Docker, damit deren Konfiguration nicht auf Ihrem System verbleibt, nachdem Docker entfernt wurde:
+```
+Get-HNSNetwork | Remove-HNSNetwork
+```
+Entfernen Sie die *Programmdaten* von Docker aus dem System:
+```
+Remove-Item "C:\ProgramData\Docker" -Recurse
+```
+Sie können ebenfalls die *optionalen Features von Windows* entfernen, die Docker/Containern unter Windows zugeordnet sind. 
+
+Dies beinhaltet mindestens das Feature "Container", das automatisch auf allen Windows10 oder Windows Server2016 aktiviert wird, wenn Docker installiert ist. Es kann ebenfalls das Feature "Hyper-V" beinhalten, das unter Windows10 automatisch aktiviert wird, wenn Docker installiert ist. Dies muss jedoch explizit auf Windows Server2016 aktiviert werden.
+
+> **WICHTIGER HINWEIS ZUM DEAKTIVIEREN VON HYPER-V:** [Das Hyper-V-Feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) ist eine allgemeine Virtualisierungsfeature, das mehr als nur Container aktiviert! Stellen Sie vor dem Deaktivieren des Hyper-V-Features sicher, dass keine anderen virtualisierten Komponenten auf dem System vorhanden sind, die dies erfordern.
+
+#### ***<a name="steps-to-remove-windows-features-on-windows-10"></a>Schritte zum Entfernen von Windows-Features unter Windows10:10:***
+- Wechseln sie auf Ihrem Windows 10-Computer zu **"Systemsteuerung" > "Programme" > "Programme und Features" > "Windows-Features aktivieren oder deaktivieren"**
+- Suchen Sie den Namen der Funktion/en, die Sie deaktivieren möchten – in diesem Fall **"Container"** und (optional) **"Hyper-V"**
+- **Deaktivieren Sie** das Kontrollkästchen neben dem Namen des Features, das Sie deaktivieren möchten
+- Klicken Sie auf **"OK"**.
+
+#### ***<a name="steps-to-remove-windows-features-on-windows-server-2016"></a>Schritte zum Entfernen von Windows-Features unter Windows Server2016:16:***
+Verwenden Sie die folgenden Befehle aus einer PowerShell-Sitzung mit erhöhten Rechten zum Deaktivieren der **"Container"** und (optional) der **"Hyper-V"**-Features im System:
+```
+Remove-WindowsFeature Containers
+Remove-WindowsFeature Hyper-V 
+```
+
+### <a name="step-4-reboot-your-system"></a>SCHRITT4: Starten Sie das System neu
+Führen Sie zum Abschluss der Schritte für die Deinstallation/Bereinigung aus einer PowerShell-Sitzung mit erhöhten Rechten Folgendes aus:
+```
+Restart-Computer -Force
+```

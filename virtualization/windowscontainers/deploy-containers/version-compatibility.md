@@ -3,11 +3,11 @@ title: "Versionskompatibilität von Windows-Containern"
 description: "Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann."
 keywords: Metadaten, Container, Version
 author: patricklang
-ms.openlocfilehash: ed9d88e1e861651426e560a4531fd4added2134a
-ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
+ms.openlocfilehash: e3e9d0ba52f7dddfa2f40a9d243467ab474b459e
+ms.sourcegitcommit: 7b58ed1779d8475abe5b9e8e69f764972882063d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 12/14/2017
 ---
 # <a name="windows-container-version-compatibility"></a>Versionskompatibilität von Windows-Containern
 
@@ -19,23 +19,29 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 
 <table>
     <tr>
-    <th>Betriebssystemversion des Containers</th>
-    <th span='2'>Betriebssystemversion des Hosts</th>
+    <th style="background-color:#BBDEFB">Betriebssystemversion des Containers</th>
+    <th span='4' style="background-color:#DCEDC8">Betriebssystemversion des Hosts</th>
     </tr>
     <tr>
         <td/>
-        <td><b>Windows Server 2016/Windows 10 1609, 1703</b><br/>Builds: 14393.*</td>
-        <td><b>Windows Server Version 1709/Windows 10 Fall Creators Update</b><br/>Builds: 16299.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10 1609, 1703</b><br/>Builds: 14393.*, 15063.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows Server, Version 1709</b><br/>Builds: 16299.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10 Fall Creators Update</b><br/>Builds: 16299.*</td>
     </tr>
     <tr>
-        <td><b>Windows Server 2016/Windows 10 1609, 1703</b><br/>Builds: 14393.*</td>
-        <td>Unterstützt. `process` oder `hyperv`-Isolierung</td>
-        <td>Unterstützt. `hyperv` Isolierung</td>
+        <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
+        <td>Unterstützt<br/> `process` oder `hyperv`-Isolation</td>
+        <td>Unterstützt<br/> Nur `hyperv`-Isolation</td>
+        <td>Unterstützt<br/> Nur `hyperv`-Isolation</td>
+        <td>Unterstützt<br/> Nur `hyperv`-Isolation</td>
     </tr>
     <tr>
-        <td><b>Windows Server Version 1709/Windows 10 Fall Creators Update</b><br/>Builds: 16299.*</td>
+        <td style="background-color:#E3F2FD"><b>Windows Server, Version 1709</b><br/>Builds: 16299.*</td>
         <td>Nicht unterstützt.</td>
-        <td>Unterstützt. `process` oder `hyperv`-Isolierung</td>
+        <td>Nicht unterstützt.</td>
+        <td>Unterstützt<br/> `process` oder `hyperv`-Isolation</td>
+        <td>Unterstützt<br/> Nur `hyperv`-Isolation</td>
     </tr>
 </table>               
 

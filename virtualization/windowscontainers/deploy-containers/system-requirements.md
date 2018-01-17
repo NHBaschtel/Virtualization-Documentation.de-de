@@ -7,11 +7,11 @@ ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
-ms.openlocfilehash: 6ae690ff6592198bc16cbaf60489d3ed5aceeeb0
-ms.sourcegitcommit: 64f5f8d838f72ea8e0e66a72eeb4ab78d982b715
+ms.openlocfilehash: ecc11468bbd5aad2638da3c4f733e4d5068f0056
+ms.sourcegitcommit: 77a6195318732fa16e7d5be727bdb88f52f6db46
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/22/2017
+ms.lasthandoff: 12/20/2017
 ---
 # <a name="windows-container-requirements"></a>Anforderungen von Windows-Containern
 
@@ -93,11 +93,30 @@ Dies ist lediglich eine Übersicht über die wichtigsten Unterschiede und keine 
 
 ## <a name="matching-container-host-version-with-container-image-versions"></a>Abgleichen der Containerhostversion und der Containerimageversionen
 ### <a name="windows-server-containers"></a>Windows Server-Container
-Da sich Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel teilen, muss das Basisimage des Containers mit dem des Hosts übereinstimmen.  Wenn die Versionen nicht übereinstimmen, ist es möglich, dass der Container dennoch startet. Allerdings kann der volle Funktionsumfang nicht gewährleistet werden. Nicht übereinstimmende Versionen werden daher nicht unterstützt.  Das Windows-Betriebssystem hat vier Versionierungsgrade: die Hauptversion, die Nebenversion, den Build und die Revision (z.B. 10.0.14393.0). Die Buildnummer wird nur geändert, wenn neue Versionen des Betriebssystems veröffentlicht werden. Die Revisionsnummer wird aktualisiert, wenn Windows-Updates angewendet werden. Das Starten von Windows Server-Containern wird verhindert, wenn die Build-Nummer nicht übereinstimmt, z.B. 10.0.14300.1030 (Technical Preview 5) und 10.0.14393 (Windows Server 2016 RTM). Wenn die Buildnummer übereinstimmt, sich die Revisionsnummer aber unterscheidet, z.B. 10.0.14393 (Windows Server 2016 RTM) und 10.0.14393.206 (Windows Server 2016 GA), wird der Container trotzdem gestartet. Obwohl sie nicht technisch blockiert werden, ist dies eine Konfiguration, die möglicherweise nicht unter allen Umständen ordnungsgemäß funktioniert und daher nicht für Produktionsumgebungen unterstützt wird. 
+Da sich Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel teilen, muss das Basisimage des Containers mit dem des Hosts übereinstimmen.  Wenn die Versionen nicht übereinstimmen, ist es möglich, dass der Container dennoch startet. Allerdings kann der volle Funktionsumfang nicht gewährleistet werden. Das Windows-Betriebssystem hat vier Versionierungsgrade: die Hauptversion, die Nebenversion, den Build und die Revision (z.B. 10.0.14393.103). Der Buildnummer (d.h. 14393) ändert sich nur, wenn neue Versionen des Betriebssystems, z.B. Version 1709, 1803 veröffentlicht werden, Fall Creators Update usw.... Die Revisionsnummer (d.h. 103) wird aktualisiert, wenn Windows-Updates angewendet werden.
+#### <a name="build-number-new-release-of-windows"></a>Buildnummer (neue Version von Windows)
+Der Start eines Windows Server-Containers wird verhindert, wenn die Buildnummer zwischen dem Containerhost und dem Containerimage unterschiedlich ist – zum Beispiel 10.0.14393.* (Windows Server2016) und 10.0.16299.* (Windows Server Version 1709).  
+#### <a name="revision-number-patching"></a>Revisionsnummer (Patches)
+Der Start eines Windows Server-Containers wird _nicht_ verhindert, wenn die Revisionsnummer zwischen dem Containerhost und dem Containerimage unterschiedlich ist – zum Beispiel 10.0.14393.1914 (Windows Server2016 mit KB4051033) und 10.0.14393.1944 (Windows Server 2016 mit KB4053579).  
+Für auf Windows Server2016 basierte Hosts-Images muss die Revisionsnummer des Containerimages dem Host entsprechen, um einer unterstützten Konfiguration zu entsprechen.  Ab Windows Server Version 1709 ist dies ist nicht mehr gültig, und die Revisionsnummern von Host und Containerimage müssen nicht mehr identisch sein.  Es empfiehlt sich immer, Ihre Systeme mit den neuesten Patches und Updates auf dem neusten Stand zu halten.
+#### <a name="practical-application"></a>Praktische Anwendung
+Beispiel 1: Der Container-Host führt Windows Server2016 mit KB4041691 aus.  Alle Windows Server-Container, die auf diesem Host bereitgestellt werden, müssen auf dem Basisimages für Container 10.0.14393.1770 basieren.  Wenn KB4053579 auf dem Host angewendet wird, müssen die Containerimages zur gleichen Zeit aktualisiert werden, um Support zu erhalten.
+Beispiel 2: Der Container-Host führt Windows Server Version1709 mit KB4043961 aus.  Alle auf diesem Host bereitgestellten Windows Server-Container müssen auf einem Containerbasis-Image von Windows Server-Version 1709 (10.0.16299) basieren, müssen allerdings nicht mit dem Host KB übereinstimmen.  Wenn KB4054517 auf dem Host angewendet wird, müssen die Containerimages nicht aktualisiert werden. Sie sollten jedoch auf dem neusten Stand sein, damit alle Sicherheitsprobleme vollständig behoben werden.
+#### <a name="querying-version"></a>Abfrageversion
+Methode 1: Die in Version eingeführte 1709 Cmd-Eingabeaufforderung und der „ver”-Befehl geben jetzt die Revisionsdetails zurück.
+```
+Microsoft Windows [Version 10.0.16299.125]
+(c) 2017 Microsoft Corporation. All rights reserved.
 
-Mithilfe von HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion können Sie abfragen, welche Version auf einem Windows-Host installiert ist.  Prüfen Sie die Tags auf Docker Hub oder die Image-Hash-Tabelle in der Beschreibung des Images, um zu überprüfen, welche Version Ihr Basisimage verwendet.  Auf der Seite [Windows 10-Updateverlauf](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) wird aufgeführt, wann die einzelnen Builds und Revisionen veröffentlicht wurden.
+C:\>ver
 
-In diesem Beispiel ist 14393 die Hauptbuildnummer und 321 die Revision.
+Microsoft Windows [Version 10.0.16299.125] 
+```
+Methode 2: Erstellen Sie eine Abfrage für den folgenden Registrierungsschlüssel: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\AktuelleVersion Zum Beispiel:
+```
+C:\>reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion" /v BuildLabEx
+```
+Oder
 ```
 Windows PowerShell
 Copyright (C) 2016 Microsoft Corporation. All rights reserved.
@@ -106,12 +125,15 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 14393.321.amd64fre.rs1_release_inmarket.161004-2338
 ```
 
+Prüfen Sie die Tags auf Docker Hub oder die Image-Hash-Tabelle in der Beschreibung des Images, um zu überprüfen, welche Version Ihr Basisimage verwendet.  Auf der Seite [Windows 10-Updateverlauf](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) wird aufgeführt, wann die einzelnen Builds und Revisionen veröffentlicht wurden.
+
 ### <a name="hyper-v-isolation-for-containers"></a>Hyper-V-Isolation für Container
 Windows-Container können mit oder ohne Hyper-V-Isolation ausgeführt werden.  Hyper-V-Isolation erstellt mithilfe eines optimierten VMs eine Sicherheitsbegrenzung um den Container herum.  Im Gegensatz zu Windows Standard-Containern, bei denen sich die Container und der Host den Kernel teilen, verwendet jeder isolierte Hyper-V-Container eine eigene Instanz des Windows-Kernels.  Aus diesem Grund können Sie verschiedene Betriebssystemversionen im Container-Host und -Image ausführen (siehe Kompatibilitätsmatrix unten).  
 
 Um einen Container mit Hyper-V auszuführen, fügen Sie einfach das Tag „--isolation=hyper-v” zu Ihrem Docker-Ausführungsbefehl hinzu.
 
 ### <a name="compatibility-matrix"></a>Kompatibilitätsmatrix
-Windows Server-Builds nach 2016 GA (10.0.14393.206) können die Windows Server 2016 GA-Images von Windows Server Core oder Nano Server unabhängig von der Revisionsnummer in einer unterstützten Konfiguration ausführen.    
+Windows Server-Builds nach 2016 GA (10.0.14393.206) können die Windows Server 2016 GA-Images von Windows Server Core oder Nano Server unabhängig von der Revisionsnummer in einer unterstützten Konfiguration ausführen.
+Ein Host auf Windows-Server, Version 1709 kann ebenfalls auf Windows Server2016 basierte Container ausführen, das Gegenteil wird jedoch nicht unterstützt.
 
 Es ist wichtig, sich bewusst zu machen, dass die von den Windows-Updates bereitgestellte vollständige Funktionalität und Zuverlässigkeit sowie die umfassenden Sicherheitsgarantien nur gewährleistet sind, wenn Sie auf allen Systemen die neuesten Versionen installiert haben.  

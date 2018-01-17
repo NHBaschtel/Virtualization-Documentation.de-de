@@ -8,15 +8,15 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
-ms.openlocfilehash: 58bd491ccae7cd9d91088d9f180367623320345e
-ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
+ms.openlocfilehash: 4858aee631f99d5b431806fc8fc774df847979c5
+ms.sourcegitcommit: 31d19664d9d8785dba69e368a2d2cc1fc9ddc7cc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 12/12/2017
 ---
 # <a name="automating-builds-and-saving-images"></a>Automatisieren von Builds und Speichern von Images
 
-In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. Diese Übung enthält ausführliche Informationen zum manuellen Erstellen von benutzerdefinierten Containerimages, zur automatischen Erstellung von Containerimages mit einer Dockerfile-Datei und zur Speicherung von Containerimages in der öffentlichen Registrierung von Docker Hub.
+In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. Diese Übung enthält ausführliche Informationen zur automatischen Erstellung von Containerimages mit einer Dockerfile-Datei und zur Speicherung von Containerimages in der öffentlichen Registrierung von Docker Hub.
 
 Dieser Schnellstart-Anleitung richtet sich gezielt an Windows Server-Container unter Windows Server 2016 und verwendet das Windows Server Core-Containerbasisimage. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
@@ -26,82 +26,9 @@ Dieser Schnellstart-Anleitung richtet sich gezielt an Windows Server-Container u
 - Konfigurieren Sie dieses System mit dem Windows-Container-Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Windows Containers on Windows Server](./quick-start-windows-server.md) (Windows-Container unter Windows Server).
 - Eine Docker-ID – diese wird verwendet, um ein Containerimage mithilfe von Push an Docker Hub zu übertragen. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud](https://cloud.docker.com/) beziehen.
 
-## <a name="1-container-image---manual"></a>1. Containerimage – manuell
+## <a name="1-container-image---dockerfile"></a>1. Containerimage – Dockerfile
 
-Für optimale Ergebnisse absolvieren Sie diese Übung in einer Windows-Befehlsshell (cmd.exe).
-
-Der erste Schritt beim manuellen Erstellen eines Containerimages ist die Bereitstellung eines Containers. In diesem Beispiel stellen Sie einen IIS-Container auf der Basis des zuvor erstellten IIS-Images bereit. Nachdem der Container bereitgestellt wurde, arbeiten Sie in einer Shellsitzung innerhalb des Containers. Die interaktive Sitzung wird mit dem `-it`-Flag eingeleitet. Detaillierte Informationen zu „Docker Run“-Befehlen finden Sie unter [„Docker run reference“ auf Docker.com](https://docs.docker.com/engine/reference/run/) („Docker Run“-Referenz). 
-
-> Aufgrund der Größe des Windows Server Core-Basisimages kann dieser Vorgang eine Weile dauern.
-
-```
-docker run -d --name myIIS -p 80:80 microsoft/iis
-```
-
-Nun wird der Container im Hintergrund ausgeführt. Der Standardbefehl im Container ist `ServiceMonitor.exe`, womit der IIS-Status überwacht und der Container automatisch beendet wird, sobald IIS stoppt. Weitere Informationen darüber, wie dieses Image erstellt wurde, finden Sie unter [Microsoft/docker-iis](https://github.com/Microsoft/iis-docker) auf GitHub.
-
-Starten Sie nun eine interaktive Befehlszeile im Container. Damit können Sie Befehle in einem aktiven Container ausführen, ohne IIS oder ServiceMonitor zu beenden.
-
-```
-docker exec -i myIIS cmd 
-```
-
-Als Nächstes nehmen Sie eine Änderung an dem ausgeführten Container vor. Führen Sie zum Entfernen des IIS-Begrüßungsbildschirms den folgenden Befehl aus.
-
-```
-del C:\inetpub\wwwroot\iisstart.htm
-```
-
-Und führen Sie den folgenden Befehl aus, um die IIS-Standardwebsite durch eine neue statische Website zu ersetzen.
-
-```
-echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
-```
-
-Wechseln Sie auf einem anderen System zur IP-Adresse des Containerhosts. Die „Hello World“-Anwendung sollte jetzt angezeigt werden.
-
-**Hinweis:** Wenn Sie in Azure arbeiten, muss eine Netzwerksicherheits-Gruppenregel vorhanden sein, die Datenverkehr über Port80 zulässt. Weitere Informationen finden Sie unter [Erstellen einer Regel in einer Netzwerksicherheitsgruppe](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
-
-![](media/hello.png)
-
-Wenn Sie zurück im Container sind, beenden Sie die interaktive Containersitzung.
-
-```
-exit
-```
-
-Der geänderte Container kann jetzt in einem neuen Containerimage erfasst werden. Dazu benötigen Sie den Containernamen. Dieses können Sie mit dem Befehl `docker ps -a` suchen.
-
-```
-docker ps -a
-
-CONTAINER ID     IMAGE                             COMMAND   CREATED             STATUS   PORTS   NAMES
-489b0b447949     microsoft/iis   "cmd"     About an hour ago   Exited           pedantic_lichterman
-```
-
-Um ein neues Containerimage zu erstellen, verwenden Sie den Befehl `docker commit`. „Docker Commit“ hat die Form „docker commit Containername Neuer_Imagename“. Hinweis – Ersetzen Sie den Namen des Containers in diesem Beispiel durch den tatsächlichen Containernamen.
-
-```
-docker commit pedantic_lichterman modified-iis
-```
-
-Um zu überprüfen, ob das neue Image erstellt wurde, verwenden Sie den `docker images`-Befehl.  
-
-```
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
-modified-iis        latest              3e4fdb6ed3bc        About a minute ago   10.17 GB
-microsoft/iis       windowsservercore   c26f4ceb81db        2 weeks ago          9.48 GB
-windowsservercore   10.0.14300.1000     dbfee88ee9fd        8 weeks ago          9.344 GB
-windowsservercore   latest              dbfee88ee9fd        8 weeks ago          9.344 GB
-```
-
-Dieses Image kann jetzt bereitgestellt werden. Der resultierende Container enthält alle erfassten Änderungen.
-
-## <a name="2-container-image---dockerfile"></a>2. Containerimage – Dockerfile
-
-In der letzten Übung wurde ein Container manuell erstellt, geändert und dann in einem neuen Container-Image erfasst. Docker bietet eine Methode für das Automatisieren dieses Prozesses mithilfe einer Dockerfile-Datei. Diese Übung liefert fast die gleichen Ergebnisse wie die letzte, doch diesmal ist der Prozess automatisiert. Für diese Übung ist eine Docker-ID erforderlich. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud]( https://cloud.docker.com/) beziehen.
+Obwohl ein Container manuell erstellt, geändert und dann in einem neuen Containerimage erfasst werden kann, enthält Docker eine Methode zum Automatisieren dieses Prozesses mithilfe einer Dockerfile. Für diese Übung ist eine Docker-ID erforderlich. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud]( https://cloud.docker.com/) beziehen.
 
 Erstellen Sie auf dem Containerhost das Verzeichnis `c:\build` und in diesem Verzeichnis eine Datei namens `Dockerfile`. Hinweis – Die Datei sollte keine Dateierweiterung haben.
 
@@ -169,7 +96,7 @@ Entfernen Sie den Container.
 docker rm -f <container name>
 ```
 
-## <a name="3-docker-push"></a>3. Docker Push
+## <a name="2-docker-push"></a>2. Docker Push
 
 Docker-Containerimages können in einer Containerregistrierung gespeichert werden. Sobald ein Image in einer Registrierung gespeichert ist, kann es von vielen verschiedenen Containerhosts für die spätere Verwendung abgerufen werden. Docker stellt unter [Docker Hub](https://hub.docker.com/) eine öffentliche Registrierung für das Speichern von Containerimages bereit.
 
