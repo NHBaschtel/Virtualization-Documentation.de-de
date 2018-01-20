@@ -14,18 +14,6 @@ Das folgende Diagramm bietet einen allgemeinen Überblick über die Architektur 
 
 ![](./media/hv_architecture.png)
 
-## <a name="support-for-third-party-virtualization-stacks"></a>Unterstützung für Drittanbieter-Virtualisierungsstapel
-
-Hyper-V bietet außerdem eine erweiterte Benutzermodus-API für Drittanbieter-Virtualisierungsstapel und Anwendungen, um Partitionen auf der Ebene des Hypervisors zu erstellen und zu verwalten, Speicherzuordnungen für die Partition zu konfigurieren und das Ausführung der virtuellen Prozessoren zu erstellen und zu steuern.
-
-> Beispiel: Ein Client wie QEMU kann auf dem Hypervisor ausgeführt werden und gleichzeitig seine Verwaltung, Konfiguration und Gast-Host-Protokolle sowie und unterstützte Gasttreiber beibehalten. Dieser kann neben einer mit Hyper-V verwalteten Partition ohne Überlappung ausgeführt werden.
-
-Das folgende Diagramm bietet einen allgemeinen Überblick über die Drittanbieter-Architektur.
-
-![](./media/hv_platform_architecture_simplified.png)
-> Weitere Informationen finden Sie unter: [Windows Hypervisor-Plattform-API](./hypervisor-platform.md)
-**Hinweis: Diese APIs sind noch nicht öffentlich verfügbar und werden in zukünftigen Windows-Versionen verwendet.**
-
 ## <a name="glossary"></a>Glossar
 * **APIC** – Erweiterter programmierbarer Interruptcontroller – ein Gerät, das es erlaubt, seinen Unterbrechungs-Ausgängen Prioritätsstufen zuzuweisen.
 * **Untergeordnete Partition** – Eine Partition, die Gastbetriebssysteme hostet - jeglicher Zugriff von einer untergeordneten Partition auf den physischen Speicher und die Geräte wird über den virtuellen Computer-Bus (VMBus) oder der Hypervisor bereitgestellt.

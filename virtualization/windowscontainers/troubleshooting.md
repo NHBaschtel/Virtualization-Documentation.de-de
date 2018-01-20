@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
-ms.openlocfilehash: 44693b413dd8043fbec68835eafe6754615fa449
-ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
+ms.openlocfilehash: 4d4b8a533aa5517c5850967f0b92c97da5190296
+ms.sourcegitcommit: 4042339cfd8a4440a5aba2b6f28968a52ab066fa
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="troubleshooting"></a>Problembehandlung
 
@@ -29,7 +29,7 @@ Wenn das nicht hilft, suchen Sie die Quelle des Problems, posten Sie die Ausgabe
 ## <a name="finding-logs"></a>Suchen von Protokollen
 Es gibt mehrere Dienste, die zum Verwalten von Windows-Containern verwendet werden. Im nächsten Abschnitt wird gezeigt, wie Sie Protokolle für jeden Dienst erhalten.
 
-### <a name="docker-engine"></a>Docker-Modul
+# <a name="docker-engine"></a>Docker-Modul
 Das Docker-Modul protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
 
 Beispielsweise werden dadurch die Protokolle des Docker-Moduls der letzten fünf Minuten angezeigt, angefangen mit dem ältesten.
@@ -44,7 +44,7 @@ Dies könnte auch einfach in eine CSV-Datei weitergeleitet werden, um dort von e
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.CSV
 ```
 
-#### <a name="enabling-debug-logging"></a>Aktivieren der Debugprotokollierung
+## <a name="enabling-debug-logging"></a>Aktivieren der Debugprotokollierung
 Sie können auch die Protokollierung auf Debugebene im Docker-Modul aktivieren. Dies kann für die Problembehandlung hilfreich sein, wenn reguläre Protokolle nicht genügend Informationen enthalten.
 
 Öffnen Sie zunächst eine Eingabeaufforderung mit erhöhten Rechten, führen Sie dann `sc.exe qc docker` aus, um die aktuelle Befehlszeile für den Docker-Dienst zu erhalten.
@@ -90,7 +90,7 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-#### <a name="obtaining-stack-dump-and-daemon-data"></a>Abrufen von Stapelwert- und Daemon-Daten.
+## <a name="obtaining-stack-dump-and-daemon-data"></a>Abrufen von Stapelwert- und Daemon-Daten.
 
 In der Regel sind diese nur dann nützlich, wenn sie vom explizit von Microsoft-Support oder von Docker-Entwicklern angefordert werden. Sie können zur Unterstützung der Diagnose einer Situation verwendet werden, in der Docker scheinbar nicht reagiert. 
 
@@ -110,7 +110,7 @@ Die Dateien sind `goroutine-stacks-<timestamp>.log` und `daemon-data-<timestamp>
 Beachten Sie, dass `daemon-data*.log`möglicherweise persönliche Informationen enthält und in der Regel nur an vertrauenswürdige Personen freigegeben werden sollte. `goroutine-stacks*.log` enthält keine persönlichen Informationen.
 
 
-### <a name="host-compute-service"></a>Hostcomputedienst
+# <a name="host-compute-service"></a>Hostcomputedienst
 Das Docker-Modul ist von einem Windows-spezifischen Hostcomputedienst abhängig. Dieser verfügt über separate Protokolle: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
@@ -123,7 +123,7 @@ Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
 ```
 
-#### <a name="capturing-hcs-analyticdebug-logs"></a>Erfassen von HCS Analyse-/Debug-Protokollen
+## <a name="capturing-hcs-analyticdebug-logs"></a>Erfassen von HCS Analyse-/Debug-Protokollen
 
 Um Analyse-/Debug-Protokolle für Hyper-V-Compute zu aktivieren und auf `hcslog.evtx` zu speichern.
 
@@ -140,7 +140,7 @@ wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 ```
 
-#### <a name="capturing-hcs-verbose-tracing"></a>Aufzeichnen ausführlicher HCS-Protokollierung
+## <a name="capturing-hcs-verbose-tracing"></a>Aufzeichnen ausführlicher HCS-Protokollierung
 
 In der Regel ist sie nur dann nützlich, wenn sie vom Microsoft Support angefordert wird. 
 

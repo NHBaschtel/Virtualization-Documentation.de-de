@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
-ms.openlocfilehash: d5b8e888b62495c98c0691dc0d62deecf7c1eb6e
-ms.sourcegitcommit: 6eefb890f090a6464119630bfbdc2794e6c3a3df
+ms.openlocfilehash: 82c8ba6b09b6d1bfde7217eeaf16cfb7967d4f62
+ms.sourcegitcommit: 59541f11d481d8df341597bd73ce7fac14f442ee
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="run-hyper-v-in-a-virtual-machine-with-nested-virtualization"></a>Ausführen von Hyper-V auf einem virtuellen Computer mit geschachtelter Virtualisierung
 
@@ -98,6 +98,8 @@ Das folgende Diagramm zeigt Hyper-V ohne Schachtelung.  Der Hyper-V-Hypervisor h
 ![](./media/HVNoNesting.png)
 
 Im Gegensatz dazu zeigt das folgende Diagramm Hyper-V mit aktivierter geschachtelter Virtualisierung. In diesem Fall stellt Hyper-V die Hardwarevirtualisierungserweiterungen seinen virtuellen Computern zur Verfügung. Bei aktivierter Schachtelung können Gast-VMs ihren eigenen Hypervisor installieren und eigene Gast-VMs ausführen.
+
+![](./media/HVNesting.png)
 
 ## <a name="3rd-party-virtualization-apps"></a>Virtualisierungs-Apps anderer Anbieter
 
