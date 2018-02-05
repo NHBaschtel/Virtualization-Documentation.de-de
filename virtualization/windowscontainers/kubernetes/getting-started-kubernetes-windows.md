@@ -8,11 +8,11 @@ ms.prod: containers
 description: "Hinzufügen eines Windows-Knotens zu einem Kubernetes-Cluster mit der Betaversion v1.9."
 keywords: Kubernetes, 1.9, Windows, Erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: d88ab46dc0046256ebed9c6696a99104a7197fad
-ms.sourcegitcommit: ad5f6344230c7c4977adf3769fb7b01a5eca7bb9
+ms.openlocfilehash: f1b832f8a21c034582e157342acf7826fb7b6ea3
+ms.sourcegitcommit: b0e21468f880a902df63ea6bc589dfcff1530d6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 01/17/2018
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows #
 Mit der neuesten Version von Kubernetes 1.9 und Windows Server [Version 1709](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1709#networking)können Benutzer die neuesten Features des Windows-Netzwerks nutzen:
@@ -57,7 +57,7 @@ Unabhängig davon, ob Sie [unsere Anweisungen](./creating-a-linux-master.md) bef
 
 ## <a name="preparing-a-windows-node"></a>Vorbereiten eines Windows-Knotens ##
 > [!Note]  
-> Alle Codeausschnitte in den Windows-Abschnitten müssen in PowerShell mit erhöhten Rechten ausgeführt werden.
+> Alle Codeausschnitte in den Windows-Abschnitten müssen in PowerShell mit _erhöhten Rechten_ ausgeführt werden.
 
 Kubernetes verwendet [Docker](https://www.docker.com/) als Container-Orchestrator, daher müssen wir es installieren. Folgen Sie den [offiziellen MSDN Anweisungen](virtualization/windowscontainers/manage-docker/configure-docker-daemon.md#install-docker), den [Docker-Anweisungen](https://store.docker.com/editions/enterprise/docker-ee-server-windows) oder gehen Sie folgendermaßen vor:
 
@@ -80,18 +80,18 @@ rm -recurse -force master,master.zip
 Kopieren Sie die [vorher identifizierte](#preparing-the-linux-master) Zertifikatdatei in das neue `C:\k`-Verzeichnis.
 
 
-### <a name="creating-the-pause-image"></a>Erstellen Sie das Bild "Anhalten" ###
-Nachdem Sie nun `docker` installiert haben, müssen wir das Bild "Anhalten" vorbereiten, das von Kubernetes zum Vorbereiten der Infrastruktur-Pods verwendet wird.
+### <a name="creating-the-pause-image"></a>„Pause”-Image erstellen ###
+Nachdem Sie nun `docker` installiert haben, müssen Sie ein Image „pause” vorbereiten, das von Kubernetes zum Vorbereiten der Infrastruktur-Pods verwendet wird.
 
 ```powershell
 docker pull microsoft/windowsservercore:1709
-docker tag $(docker images -q) microsoft/windowsservercore:latest
+docker tag microsoft/windowsservercore:1709 microsoft/windowsservercore:latest
 cd C:/k/
 docker build -t kubeletwin/pause .
 ```
 
 > [!Note]  
-> Wir markieren dies als `:latest`, da dies vom Beispieldienst erwartet wird, den wir später bereitstellen.
+> Wir bezeichnen es als `:latest`, weil der Beispieldienst, den wir später bereitstellen werden, davon abhängt, obwohl dies möglicherweise _nicht_ das neueste verfügbare Windows Server Core-Image ist. Bei widersprüchlichen Container-Images können Probleme entstehen, denn wenn sie nicht das erwartete Tag besitzen, kann dies den `docker pull` eines inkompatiblen Container-Images verursachen, was zu [Bereitstellungsproblemen](./common-problems.md#when-deploying-docker-containers-keep-restarting) führt. 
 
 
 ### <a name="downloading-binaries"></a>Herunterladen von Binärdateien ###
@@ -101,13 +101,10 @@ Während `pull` durchgeführt wird, laden Sie die folgenden Binärdateien für d
   - `kubelet.exe`
   - `kube-proxy.exe`
 
-Sie können diese über die Links in der `CHANGELOG.md`-Datei der neuesten Version 1.9 herunterladen. Hier ist dies [1.9.0-beta.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.0-beta.1). Die Windows-Binärdateien befinden sich [hier](https://dl.k8s.io/v1.9.0-beta.1/kubernetes-node-windows-amd64.tar.gz). Verwenden Sie ein Tool wie [7-Zip](http://www.7-zip.org/) zum Extrahieren des Archivs, und speichern Sie die Binärdateien unter `C:\k\`.
-
-> [!Warning]  
-> Zum Zeitpunkt dieses Artikels erfordert `kube-proxy.exe` eine ausstehende Kubernetes [Pull-Anforderung](https://github.com/kubernetes/kubernetes/pull/56529), damit alles ordnungsgemäß funktioniert. Sie müssen möglicherweise die [die Binärdateien manuell erstellen](./compiling-kubernetes-binaries.md), um das Problem zu umgehen.
+Sie können diese über die Links in der `CHANGELOG.md`-Datei der neuesten Version 1.9 herunterladen. Diese ist momentan [1.9.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.1), und die Windows-Binärdateien befinden sich [hier](https://storage.googleapis.com/kubernetes-release/release/v1.9.1/kubernetes-node-windows-amd64.tar.gz). Verwenden Sie ein Tool wie [7-Zip](http://www.7-zip.org/) zum Extrahieren des Archivs, und speichern Sie die Binärdateien unter `C:\k\`.
 
 
-### <a name="joining-the-cluster"></a>Hinzufügen des Clusters ###
+### <a name="joining-the-cluster"></a>Dem Cluster beitreten ###
 Der Knoten ist jetzt bereit, dem Cluster beizutreten. Führen Sie in zwei separaten PowerShell-Fenstern *mit erhöhten Rechten* diese Skripts (in dieser Reihenfolge) aus. Der `-ClusterCidr`-Parameter im ersten Skript ist das konfigurierte [Clustersubnetz](#cluster-subnet-def). Hier ist es `192.168.0.0/16`.
 
 ```powershell
@@ -153,4 +150,4 @@ Wenn alles erfolgreich verläuft, können Sie folgende Möglichkeiten überprüf
   - `curl` der *Dienstname* mit dem Kubernetes [Standard-DNS-Suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), der die DNS-Funktionen veranschaulicht.
 
 > [!Warning]  
-> Windows-Knoten können nicht auf die Dienst-IP zugreifen. Dies ist eine [bekannte Einschränkung](./common-problems.md#common-windows-errors).
+> Windows-Knoten können nicht auf die Dienst-IP zugreifen. Dies ist eine [bekannte Einschränkung](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip).

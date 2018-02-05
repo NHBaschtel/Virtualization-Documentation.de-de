@@ -7,11 +7,11 @@ ms.topic: get-started-article
 ms.prod: containers
 description: "Kompilieren und übergreifendes Kompilieren von Kubernetes-Binärdateien aus der Quelle."
 keywords: Kubernetes, 1.9, Linux, Kompilieren
-ms.openlocfilehash: 53d55eed155254f809bc3f45b8e3891dab54f209
-ms.sourcegitcommit: ad5f6344230c7c4977adf3769fb7b01a5eca7bb9
+ms.openlocfilehash: c9b0146202d7e9e5d857ca88faa43282bd504dfa
+ms.sourcegitcommit: b0e21468f880a902df63ea6bc589dfcff1530d6e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/05/2017
+ms.lasthandoff: 01/17/2018
 ---
 # <a name="compiling-kubernetes-binaries"></a>Kompilieren von Kubernetes-Binärdateien #
 Das Kompilieren von Kubernetes erfordert eine funktionierende Go-Umgebung. Diese Seite erläutert mehrere Möglichkeiten zum Kompilieren von Linux-Binärdateien und zum übergreifenden Kompilieren von Windows-Binärdateien.
@@ -57,10 +57,10 @@ go get -d $KUBEREPO
 cd $GOPATH/src/$KUBEREPO
 ```
 
-Wählen Sie die Verzweigung, aus der es erstellt werden soll und erstellen Sie die Linux `kubelet`-Binärdatei. Dies ist erforderlich, um die oben aufgeführten Windows-Buildfehler zu vermeiden. Hier wird `v1.9.0-beta.1` verwendet. Danach ist `checkout` der Ort, an dem ausstehende PRs, Patches oder andere Änderungen für die benutzerdefinierten Binärdateien angewendet werden.
+Wählen Sie die Verzweigung, aus der es erstellt werden soll und erstellen Sie die Linux `kubelet`-Binärdatei. Dies ist erforderlich, um die oben aufgeführten Windows-Buildfehler zu vermeiden. Hier wird `v1.9.1` verwendet. Nach dem `git checkout` können Sie ausstehende PRs, Patches oder andere Änderungen für die benutzerdefinierten Binärdateien vornehmen.
 
 ```bash
-git checkout tags/v1.9.0-beta.1
+git checkout tags/v1.9.1
 make clean && make WHAT=cmd/kubelet
 ```
 
@@ -88,7 +88,7 @@ mkdir -p "${SRC_DIR}"
 git clone https://github.com/kubernetes/kubernetes.git ${SRC_DIR}
 
 cd ${SRC_DIR}
-git checkout tags/v1.9.0-beta.1
+git checkout tags/v1.9.1
 KUBE_BUILD_PLATFORMS=linux/amd64   build/run.sh make WHAT=cmd/kubelet
 KUBE_BUILD_PLATFORMS=windows/amd64 build/run.sh make WHAT=cmd/kubelet 
 KUBE_BUILD_PLATFORMS=windows/amd64 build/run.sh make WHAT=cmd/kube-proxy 

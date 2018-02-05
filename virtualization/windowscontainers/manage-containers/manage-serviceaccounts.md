@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: 86d0b2f3ae86f99680e03e2bb8ad2712c6c70c16
-ms.sourcegitcommit: 456485f36ed2d412cd708aed671d5a917b934bbe
+ms.openlocfilehash: df9ca8a4bcd6bf959e221593ea69d5ed624cdae1
+ms.sourcegitcommit: 6beac5753c9f65bb6352df8c829c2e62e24bd2e2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 01/17/2018
 ---
 # <a name="active-directory-service-accounts-for-windows-containers"></a>Active Directory-Dienstkonten für Windows-Container
 
@@ -46,6 +46,9 @@ Gehen Sie für Windows-Container in ähnlicher Weise vor:
 3. Lassen Sie den Zugriff anderer Dienste wie z.B. einer Datenbank oder Dateifreigaben auf ein gMSA zu.
 4. Verwenden Sie das CredentialSpec PowerShell-Modul von [windows-server-container-tools](https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools), um die Einstellungen zu speichern, die für die Verwendung eines gMSA erforderlich sind.
 5. Starten Sie den Container mit einer zusätzlichen Option. `--security-opt "credentialspec=..."`
+
+[!NOTE]
+Möglicherweise müssen Sie die anonyme SID/Namensübersetzung auf dem Containerhost wie [hier](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) beschrieben ermöglichen, da sonst Fehler auftreten können, durch die Konten nicht in SIDs übersetzt werden können.
 
 Wenn der Container gestartet wurde, werden die als lokaler Systemdienst oder Netzwerkdienst ausgeführten installierten Dienste so angezeigt, als würden sie als gMSA ausgeführt. Dies ähnelt der Funktionsweise von Konten auf in die Domäne eingebundenen Hosts, außer dass kein Computerkonto, sondern ein gMSA verwendet wird. 
 

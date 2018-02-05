@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
-ms.openlocfilehash: bc36f1f59ed339b2cc3dd3372a5cd5119f470c7c
-ms.sourcegitcommit: 64f5f8d838f72ea8e0e66a72eeb4ab78d982b715
+ms.openlocfilehash: d3eb7e2b751468953a152e8c723551fb3e1d12dd
+ms.sourcegitcommit: a072513214b0dabb9dba20ce43ea52aaf7806c5f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/22/2017
+ms.lasthandoff: 01/01/2018
 ---
 # <a name="implementing-resource-controls-for-windows-containers"></a>Implementieren von Ressourcensteuerungen für Windows-Container
 Pro Container und pro Ressource können diverse Steuerungen implementiert werden.  Standardmäßig unterliegen ausgeführte Container einer typischen Windows-Ressourcenverwaltung, die im Allgemeinen auf einer gleichberechtigten Verteilung basiert. Ein Entwickler oder Administrator kann die Ressourcennutzung jedoch durch die Konfiguration der einzelnen Steuerungselemente begrenzen oder beeinflussen.  Gesteuert werden können die Ressourcen CPU/Prozessor, Arbeitsspeicher/RAM, Datenträger/Speicher und Networking/Durchsatz.
@@ -50,14 +50,14 @@ Dieser Abschnitt enthält für jede Ressource eine Zuordnung zwischen der Docker
 | *Speicher (Image)* ||
 | Docker-Schnittstelle | [--io-maxbandwidth/--io-maxiops]( https://docs.docker.com/edge/engine/reference/commandline/run/#usage) |
 | HCS-Schnittstelle | [StorageIOPSMaximum und StorageBandwidthMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Gemeinsamer Kernel | [JobObjectIoRateControlInformation](https://msdn.microsoft.com/en-us/library/windows/desktop/hh448384(v=vs.85).aspx) |
-| Hyper-V-Isolierung | [JobObjectIoRateControlInformation](https://msdn.microsoft.com/en-us/library/windows/desktop/hh448384(v=vs.85).aspx) |
+| Gemeinsamer Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://msdn.microsoft.com/en-us/library/windows/desktop/mt280122(v=vs.85).aspx) |
+| Hyper-V-Isolierung | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://msdn.microsoft.com/en-us/library/windows/desktop/mt280122(v=vs.85).aspx) |
 | ||
 | *Speicher (Volumes)* ||
 | Docker-Schnittstelle | [--storage-opt size=]( https://docs.docker.com/edge/engine/reference/commandline/run/#set-storage-driver-options-per-container) |
 | HCS-Schnittstelle | [StorageSandboxSize](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
-| Gemeinsamer Kernel | [JobObjectIoRateControlInformation](https://msdn.microsoft.com/en-us/library/windows/desktop/hh448384(v=vs.85).aspx) |
-| Hyper-V-Isolierung | [JobObjectIoRateControlInformation](https://msdn.microsoft.com/en-us/library/windows/desktop/hh448384(v=vs.85).aspx) |
+| Gemeinsamer Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://msdn.microsoft.com/en-us/library/windows/desktop/mt280122(v=vs.85).aspx) |
+| Hyper-V-Isolierung | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://msdn.microsoft.com/en-us/library/windows/desktop/mt280122(v=vs.85).aspx) |
 
 ## <a name="additional-notes-or-details"></a>Zusätzliche Hinweise oder Details
 ### <a name="memory"></a>Arbeitsspeicher
