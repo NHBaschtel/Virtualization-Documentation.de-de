@@ -1,33 +1,11 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 1
+ Total Files | 0
 
 ## File List
- Source File | Status | Details 
- ----------- | ------ | ------- 
- [virtualization\windowscontainers\manage-containers\manage-serviceaccounts.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/552531eee65b706a14e576141be5787d9a4c4aa1/virtualization/windowscontainers/manage-containers/manage-serviceaccounts.md) | HandedOffSuccess | [Details](#1ad04198c74f4566bd37b4ba884034aa5cd7c7ef346)
 
 ## Item Details
-##### <a name='1ad04198c74f4566bd37b4ba884034aa5cd7c7ef346'></a> Source: [virtualization\windowscontainers\manage-containers\manage-serviceaccounts.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/552531eee65b706a14e576141be5787d9a4c4aa1/virtualization/windowscontainers/manage-containers/manage-serviceaccounts.md)
-* Status: HandedOffSuccess
-* Target File: 
-* Handoff File: [manage-serviceaccounts.5fcb2b4d167ce751e9a350a047d30c781c75d75a.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/5f53f55e0b5637b4752455d31038a0c7d3a227ba/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/manage-serviceaccounts.5fcb2b4d167ce751e9a350a047d30c781c75d75a.de-de.xlf)
-* Handoff Datetime: 2018-02-07 20:16:14
-* Handoff Reason: Include
-* Handoff Name: 
-* Archive File: 
-* Archive Datetime: 0001-01-01 00:00:00
-* Handback File: 
-* Handback Datetime: 0001-01-01 00:00:00
-* Handback Name: 
-* Current Target File: [virtualization\windowscontainers\manage-containers\manage-serviceaccounts.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/fe16c87922368353c71be9d25be214164cb2794c/virtualization/windowscontainers/manage-containers/manage-serviceaccounts.md)
-* Current Handback File: [manage-serviceaccounts.5fcb2b4d167ce751e9a350a047d30c781c75d75a.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/3ae958cc8d2906396889618eedeb5cf119f79cb1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage-serviceaccounts.5fcb2b4d167ce751e9a350a047d30c781c75d75a.de-de.xlf)
-* Current Handback Datetime: 2017-03-24 13:49:43
-* Bilingual File: [manage-serviceaccounts.5fcb2b4d167ce751e9a350a047d30c781c75d75a.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/3ae958cc8d2906396889618eedeb5cf119f79cb1/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/manage-serviceaccounts.5fcb2b4d167ce751e9a350a047d30c781c75d75a.de-de.xlf)
-* Bilingual Datetime: 2017-03-24 13:52:18
-* [Back to Top](#report-top)
-
 
 ## Error Details
 
