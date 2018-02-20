@@ -1,11 +1,33 @@
 # <a name='report-top'></a> Localization Handoff Report
 
 ## Summary
- Total Files | 0
+ Total Files | 1
 
 ## File List
+ Source File | Status | Details 
+ ----------- | ------ | ------- 
+ [virtualization\hyper-v-on-windows\user-guide\powershell-direct.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/e7fa38bcb7744a34e7a58978b55af1fbf6353247/virtualization/hyper-v-on-windows/user-guide/powershell-direct.md) | HandedOffSuccess | [Details](#779dcf51d4903c9467cc52dbadb865beb9929bd2320)
 
 ## Item Details
+##### <a name='779dcf51d4903c9467cc52dbadb865beb9929bd2320'></a> Source: [virtualization\hyper-v-on-windows\user-guide\powershell-direct.md](https://github.com/Microsoft/Virtualization-Documentation-Private/blob/e7fa38bcb7744a34e7a58978b55af1fbf6353247/virtualization/hyper-v-on-windows/user-guide/powershell-direct.md)
+* Status: HandedOffSuccess
+* Target File: 
+* Handoff File: [powershell-direct.65088e959c8d342b7da8aad91c39fa6bb521ad51.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handoff/blob/75afeb463d154bb37d86c7c65c92918ca2901c84/ol-handoff/MicrosoftDocs/Virtualization-Documentation-Private.de-de/live/powershell-direct.65088e959c8d342b7da8aad91c39fa6bb521ad51.de-de.xlf)
+* Handoff Datetime: 2018-02-20 05:25:56
+* Handoff Reason: Include
+* Handoff Name: 
+* Archive File: 
+* Archive Datetime: 0001-01-01 00:00:00
+* Handback File: 
+* Handback Datetime: 0001-01-01 00:00:00
+* Handback Name: 
+* Current Target File: [virtualization\hyper-v-on-windows\user-guide\powershell-direct.md](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.de-de/blob/6c6f96dbd687188f2624f99812e45211aca6ad09/virtualization/hyper-v-on-windows/user-guide/powershell-direct.md)
+* Current Handback File: [powershell-direct.65088e959c8d342b7da8aad91c39fa6bb521ad51.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/powershell-direct.65088e959c8d342b7da8aad91c39fa6bb521ad51.de-de.xlf)
+* Current Handback Datetime: 2017-01-24 13:18:46
+* Bilingual File: [powershell-direct.65088e959c8d342b7da8aad91c39fa6bb521ad51.de-de.xlf](https://github.com/MicrosoftDocs/Virtualization-Documentation-Private.handback/blob/ebc577621967322344de88b0bc4c6b35bcb3dbd2/ol-handback/Microsoft/Virtualization-Documentation-Private.de-de/live/powershell-direct.65088e959c8d342b7da8aad91c39fa6bb521ad51.de-de.xlf)
+* Bilingual Datetime: 2017-01-24 13:21:33
+* [Back to Top](#report-top)
+
 
 ## Error Details
 
