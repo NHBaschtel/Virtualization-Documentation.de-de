@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
-ms.openlocfilehash: 608a08c2e7e1afbb4e2eb2583384f042baa78b1f
-ms.sourcegitcommit: c625804f3df8dc7b7aae9a4077f4b3222177ed85
+ms.openlocfilehash: ba45ee94a5d5e8a15bbbeab7b9c25f15be8be731
+ms.sourcegitcommit: f542e8c95b5bb31b05b7c88f598f00f76779b519
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/16/2017
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="optimize-windows-dockerfiles"></a>Optimieren von Windows-Dockerfile-Dateien
 
@@ -49,7 +49,7 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 
 Jede dieser Ebenen kann einer Anweisung aus der Dockerfile-Datei zugeordnet werden. Die unterste Ebene (`6801d964fda5` in diesem Beispiel) stellt das Basis-Betriebssystemimage dar. Eine Ebene darüber ist die IIS-Installation sichtbar. Die nächste Ebene enthält die neue Website usw.
 
-Dockerfile-Dateien können geschrieben werden, um Imageebenen zu minimieren und sowohl die Buildleistung als auch optische Aspekte wie die Lesbarkeit zu optimieren. Schließlich stehen viele Alternativen zur Durchführung einer bestimmten Buildaufgabe zur Verfügung. Fundiertes Wissen darüber, wie sich das Format einer Dockerfile-Datei auf die erforderliche Zeit für den Build und das resultierende Image auswirkt, verbessert die Automatisierungserfahrung. 
+Dockerfile-Dateien können geschrieben werden, um Imageebenen zu minimieren und sowohl die Buildleistung als auch optische Aspekte wie die Lesbarkeit zu optimieren. Schließlich stehen viele Alternativen zur Durchführung einer bestimmten Buildaufgabe zur Verfügung. Das Wissen darüber, wie sich das Format einer Dockerfile auf die Build-Dauer und das resultierende Image auswirkt, verbessert die Automatisierungserfahrung. 
 
 ## <a name="optimize-image-size"></a>Optimieren der Imagegröße
 
@@ -59,7 +59,7 @@ Weitere Informationen zu bewährten Vorgehensweisen mit Dockerfile finden Sie un
 
 ### <a name="group-related-actions"></a>Gruppieren von verwandten Aktionen
 
-Da jede `RUN`-Anweisung eine neue Ebene in dem Containerimage erstellt, kann die Gruppierung von Aktionen in einer `RUN`-Anweisung die Anzahl der Ebenen reduzieren. Während das Minimieren der Ebenen sich möglicherweise nicht auf die Imagegröße auswirkt, ist dies mit dem Gruppieren von verwandten Aktionen möglich, wie die nachfolgenden Beispiele zeigen.
+Da jede `RUN`-Anweisung eine neue Ebene in dem Containerimage erstellt, kann die Gruppierung von Aktionen in einer `RUN`-Anweisung die Anzahl der Ebenen reduzieren. Das Minimieren der Ebenen wirkt sich möglicherweise nicht auf die Imagegröße aus, aber das Gruppieren verwandter Aktionen kann eine Einfluss haben, wie die nachfolgenden Beispiele zeigen.
 
 Die folgenden beiden Beispiele veranschaulichen den gleichen Vorgang, was zu Containerimages identischer Funktionalität führt, die beiden Dockerfile-Dateien erstellten sie jedoch unterschiedlich. Die resultierenden Images werden auch verglichen.  
 

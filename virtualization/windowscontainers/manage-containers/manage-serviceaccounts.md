@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: df9ca8a4bcd6bf959e221593ea69d5ed624cdae1
-ms.sourcegitcommit: 6beac5753c9f65bb6352df8c829c2e62e24bd2e2
+ms.openlocfilehash: 1ad04198c74f4566bd37b4ba884034aa5cd7c7ef
+ms.sourcegitcommit: ea6edc5bac5705a19d48ffdf1ba676c940c2eb67
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2018
+ms.lasthandoff: 02/09/2018
 ---
 # <a name="active-directory-service-accounts-for-windows-containers"></a>Active Directory-Dienstkonten für Windows-Container
 
@@ -49,6 +49,15 @@ Gehen Sie für Windows-Container in ähnlicher Weise vor:
 
 [!NOTE]
 Möglicherweise müssen Sie die anonyme SID/Namensübersetzung auf dem Containerhost wie [hier](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) beschrieben ermöglichen, da sonst Fehler auftreten können, durch die Konten nicht in SIDs übersetzt werden können.
+
+Bevor Sie jedoch die Notwendigkeit einer anonymen SID/Name-Übersetzung erkunden, stellen Sie sicher, dass Folgendes ausgeführt wird:
+
+1. Der Name des gMSA-Kontos muss mit dem Namen des Dienstes übereinstimmen (z.B. „myapp”).
+2. Fügen Sie das Argument -h ein, um den Hostnamen angeben, den der Container beim Start verwenden soll. 
+```
+docker run --security-opt "credentialspec=file://myapp.json" -d -p 80:80 -h myapp.mydomain.local <imagename>
+```
+3. Der Dienstprinzipalname (Service Principal Name, SPN), der beim Erstellen des gMSA-Kontos verwendet wird, muss mit dem Argument -h übereinstimmen, das beim Ausführen des Containers verwendet wird. Wenn Sie dem gMSA-Konto während der Erstellung keine SPNs hinzugefügt haben, können diese anschließend den Eigenschaften des Kontos hinzugefügt werden.
 
 Wenn der Container gestartet wurde, werden die als lokaler Systemdienst oder Netzwerkdienst ausgeführten installierten Dienste so angezeigt, als würden sie als gMSA ausgeführt. Dies ähnelt der Funktionsweise von Konten auf in die Domäne eingebundenen Hosts, außer dass kein Computerkonto, sondern ein gMSA verwendet wird. 
 

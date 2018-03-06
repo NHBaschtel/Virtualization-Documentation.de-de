@@ -25,11 +25,11 @@ Fortschritte beim Moby-Projekt können verfolgt werden auf [GitHub](https://gith
 
 Diese Anwendungen erfordern die Volumezuordnung, die einigen Einschränkungen unterliegt (siehe [Binden von Bereitstellungen](#Bind-mounts)). Sie werden nicht gestartet oder ordnungsgemäß ausgeführt.
 
-- Mysql
-- Postgress
+- MySQL
+- PostgreSQL
 - WordPress
 - Jenkins
-- Mariadb
+- MariaDB
 - RabbitMQ
 
 

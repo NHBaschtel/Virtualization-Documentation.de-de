@@ -8,15 +8,15 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: b084bf179d9360e4a72e8e88b4fec80eafb2906c
-ms.sourcegitcommit: 65de5708bec89f01ef7b7d2df2a87656b53c3145
+ms.openlocfilehash: 37c8cadc4e2725e8220834d41907240c1a273e09
+ms.sourcegitcommit: f542e8c95b5bb31b05b7c88f598f00f76779b519
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/21/2017
+ms.lasthandoff: 02/01/2018
 ---
-# Häufig gestellte Fragen
+# <a name="frequently-asked-questions"></a>Häufig gestellte Fragen
 
-## Informationen zu Windows-Containern
+## <a name="about-windows-containers"></a>Informationen zu Windows-Containern
 
 **Was ist ein Windows Server-Container?**
 
@@ -54,7 +54,7 @@ Drawbridge war eines der vielen Forschungsprojekte, die uns wertvolle Einblicke 
 Windows Server- und Hyper-V-Container erfordern Windows Server 2016. Diese Technologien funktioniert nicht mit früheren Versionen von Windows.
 
 
-## Windows-Containerverwaltung
+## <a name="windows-container-management"></a>Windows-Containerverwaltung
 
 **Werden Hyper-V-Container auch für das Docker-Ökosystem verfügbar sein?**
 
@@ -62,16 +62,15 @@ Ja. Hyper-V-Container bietet dieselben Integrations- und Verwaltungsmöglichkeit
 Die Plattform Docker erheblich vereinfachen und verbessern die Erfahrung der Arbeit über unser Container-Optionen. Eine Anwendung entwickelt wurde, mithilfe von Windows Server-Container kann als Hyper-V-Container ohne Änderung bereitgestellt werden.
 
 
-## Das offene Ökosystem von Microsoft
+## <a name="microsofts-open-ecosystem"></a>Das offene Ökosystem von Microsoft
 
 **Nimmt Microsoft an der Open Container Initiative (OCI) teil?**
 
 Um zu gewährleisten, dass das Paketerstellungsformat universell bleibt, hat Docker vor Kurzem die Open Container Initiative (OCI) ins Leben gerufen, um sicherzustellen, dass die Paketerstellung für Container ein offenes von den Gründern geleitetes Format bleibt, wobei Microsoft eines der Gründungsmitglieder ist.
 
-**Sind Microsoft und Docker wirklich eine Partnerschaft eingegangen?**
+**Welche Vorteile hat diese Partnerschaft mit Docker?**
 
-Ja.  
-Unsere Partnerschaft mit Docker ermöglicht Entwicklern das Erstellen, verwalten und Bereitstellen von Windows Server- und Linux-Container mit denselben Docker Tool. Entwickler für Windows Server müssen nicht mehr zwischen mithilfe der großen Bereich von Windows Server-Technologien und Erstellen von Sammelartikeleinheit auszuwählen.  
+Unsere Partnerschaft mit Docker ermöglicht Entwicklern das Erstellen, Verwalten und Bereitstellen von Windows Server- und Linux-Containern mit demselben Docker-Toolset. Entwickler für Windows Server müssen nicht mehr zwischen mithilfe der großen Bereich von Windows Server-Technologien und Erstellen von Sammelartikeleinheit auszuwählen.  
 
 Docker ist zwei Dinge, die open-Source-Gruppe von Projekten und Docker des Unternehmens. Wir betrachten diese Partnerschaft zu beiden enthalten. Docker ist teilweise erfolgreich ist, aufgrund der dynamisches Ökosystem, das rund um die Docker Container-Technologie aufgebaut wurde. Microsoft ist zum Aktivieren der Unterstützung für Windows Server-Containern und Hyper-V Docker Projekt beitragen.  
 

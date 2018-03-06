@@ -7,11 +7,11 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: "Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten."
 keywords: Kubernetes, 1.9, Linux, Kompilieren
-ms.openlocfilehash: 4fb7ac312b08c63564beb0f40889ff6a050c7166
-ms.sourcegitcommit: b0e21468f880a902df63ea6bc589dfcff1530d6e
+ms.openlocfilehash: b6be43f1afabdf8ef9c2ddc6f46ed5ac43a9e7a5
+ms.sourcegitcommit: 2e8f1fd06d46562e56c9e6d70e50745b8b234372
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2018
+ms.lasthandoff: 02/14/2018
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -50,7 +50,8 @@ Wenn Sie [unseren Anweisungen](./creating-a-linux-master) folgen, befindet sich 
 ## <a name="common-networking-errors"></a>Allgemeine Netzwerkfehler ##
 Möglicherweise gibt es weitere vorhandene Einschränkungen auf Ihrem Netzwerk oder auf Hosts, die bestimmte Kommunikationsarten zwischen Knoten verhindern. Stellen Sie Folgendes sicher:
 
-  - Datenverkehr, der so aussieht, as ob er von Pods stammt, ist zulässig
+  - Sie haben die Netzwerktopologie ordnungsgemäß konfiguriert.
+  - Datenverkehr, der offensichtlich von Pods stammt, ist zulässig.
   - HTTP-Datenverkehr ist zulässig, wenn Sie Webdienste bereitstellen
   - ICMP-Pakete werden nicht verworfen
 
@@ -83,7 +84,7 @@ Dies ist eine bekannte Einschränkung für den aktuellen Netzwerkstapel unter Wi
 Der Windows-Netzwerkstack benötigt einen virtuellen Adapter, damit das Kubernetes-Netzwerk funktioniert. Wenn die folgenden Befehle keine Ergebnisse (in einer Admin-Shell) zurückgeben, ist die Erstellung eines virtuellen Netzwerks &mdash; eine notwendige Voraussetzung, damit Kubelet funktioniert &mdash; fehlgeschlagen.
 
 ```powershell
-Get-HnsNetwork | ? Name -Like "l2bridge"
+Get-HnsNetwork | ? Name -ieq "l2bridge"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 

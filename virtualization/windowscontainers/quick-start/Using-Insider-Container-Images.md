@@ -1,3 +1,4 @@
+
 # <a name="using-insider-container-images"></a>Verwenden von Insider-Containerimages
 
 Diese Übung führt Sie durch die Bereitstellung und Verwendung der Windows-Containerfunktionen der neuesten Insider-Build von Windows Server aus dem Windows Insider Preview-Programm. In dieser Übung installieren Sie die Containerrolle und stellen eine Preview-Edition der Basisbetriebssystemimage bereit. Wenn Sie sich mit Containern vertraut machen möchten, finden Sie unter [Windows-Container](../about/index.md) entsprechende Informationen.
@@ -11,22 +12,25 @@ Dieser Schnellstart ist spezifisch für Windows Server-Container im Windows Serv
 
 >Sie müssen einen Build von Windows Server aus dem Windows Server Insider Preview-Programm oder einen Build von Windows10 aus dem Windows Insider Preview-Programm verwenden, um das unten beschriebene Basisimage verwenden zu können. Wenn Sie keine dieser Builds verwenden, kann der Container nicht mit diesen Basisimages gestartet werden.
 
-## <a name="install-docker"></a>Installieren von Docker
-Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client. Sie müssen ebenfalls eine Version von Docker verwenden, die mehrstufige Builds unterstützt und für ein optimales Ergebnis das vom Container optimierte Nano Server-Image verwenden.
+## <a name="install-docker-enterprise-edition-ee"></a>Installieren der Docker Enterprise Edition (EE)
+Für die Arbeit mit Windows-Containern ist Docker EE erforderlich. Docker EE besteht aus dem Docker-Modul und dem Docker-Client. 
 
-Verwenden Sie das PowerShell-Modul von OneGet, um Docker zu installieren. Der Anbieter aktiviert die Containerfunktion auf Ihrem Computer und installiert Docker. Dies macht einen Neustart erforderlich. Beachten Sie, dass es mehrere Kanäle mit den verschiedenen Version von Docker gibt, die in unterschiedlichen Fällen verwendet werden können. Für diese Übung verwenden wir die neueste Community Edition-Version von Docker vom Stable-Kanal. Es gibt ebenfalls einen Edge-Kanal, wenn Sie die neuesten Entwicklungen von Docker testen möchten.
+Verwenden Sie das PowerShell-Modul von OneGet, um Docker EE zu installieren. Der Anbieter aktiviert die Containerfunktion auf Ihrem Computer und installiert Docker EE. Dazu ist ein Neustart erforderlich. Öffnen Sie eine PowerShell-Sitzung mit erhöhten Rechten, und führen Sie die folgenden Befehle aus.
 
-Öffnen Sie eine PowerShell-Sitzung mit erhöhten Rechten, und führen Sie die folgenden Befehle aus.
-
->Hinweis: Das Installieren von Docker in Insider-Builds erfordert einen anderen Anbieter als der regulär von Ihnen im Moment verwendeten. Bitte beachten Sie folgenden Unterschied.
-
-Installieren Sie das PowerShell-Modul „OneGet“.
-```powershell
-Install-Module -Name DockerMsftProviderInsider -Repository PSGallery -Force
+>Hinweis: Zum Installieren von Docker EE mit Windows Server-Insider-Builds ist ein anderer OneGet-Anbieter erforderlich als der für Nicht-Insider-Builds vorgesehene. Wenn Docker EE und der OneGet-Anbieter DockerMsftProvider bereits installiert sind, entfernen Sie diese Komponenten, bevor Sie fortfahren.
+```powershell 
+Stop-Service docker
+Uninstall-Package docker
+Uninstall-Module DockerMsftProvider
 ```
-Verwenden Sie OneGet, um die neueste Version von Docker zu installieren.
+
+Installieren Sie das PowerShell-Modul OneGet für die Verwendung mit Windows-Insider-Builds.
 ```powershell
-Install-Package -Name docker -ProviderName DockerMsftProviderInsider
+Install-Module -Name DockerProvider -Repository PSGallery -Force
+```
+Verwenden Sie OneGet, um die neueste Vorschauversion von Docker EE zu installieren.
+```powershell
+Install-Package -Name docker -ProviderName DockerProvider -RequiredVersion Preview
 ```
 Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 ```

@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
-ms.openlocfilehash: d3eb7e2b751468953a152e8c723551fb3e1d12dd
-ms.sourcegitcommit: a072513214b0dabb9dba20ce43ea52aaf7806c5f
+ms.openlocfilehash: 413e28aabccdf894ebc249d8eae59e75e4b42345
+ms.sourcegitcommit: 1bd3d86bfbad8351cb19bdc84129dd5aec976c0c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/01/2018
+ms.lasthandoff: 01/25/2018
 ---
 # <a name="implementing-resource-controls-for-windows-containers"></a>Implementieren von Ressourcensteuerungen für Windows-Container
 Pro Container und pro Ressource können diverse Steuerungen implementiert werden.  Standardmäßig unterliegen ausgeführte Container einer typischen Windows-Ressourcenverwaltung, die im Allgemeinen auf einer gleichberechtigten Verteilung basiert. Ein Entwickler oder Administrator kann die Ressourcennutzung jedoch durch die Konfiguration der einzelnen Steuerungselemente begrenzen oder beeinflussen.  Gesteuert werden können die Ressourcen CPU/Prozessor, Arbeitsspeicher/RAM, Datenträger/Speicher und Networking/Durchsatz.
@@ -28,6 +28,7 @@ Dieser Abschnitt enthält für jede Ressource eine Zuordnung zwischen der Docker
 | HCS-Schnittstelle | [MemoryMaximumInMB]( https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](https://msdn.microsoft.com/en-us/library/windows/desktop/ms684147(v=vs.85).aspx) |
 | Hyper-V-Isolierung | Arbeitsspeicher des virtuellen Computers |
+| _Hinweis zur Hyper-V-Isolation in Windows Server2016: Wenn Sie eine Memory-Cap verwenden, werden Sie bemerken, dass der Container den durch die Cap festgelegten Speicher zunächst zuweist und dann beginnt, ihn an den Container-Host zurückzugeben.  In späteren Versionen (ab 1709) wurde dieses Verhalten optimiert._ |
 | ||
 | *CPU (Anzahl)* ||
 | Docker-Schnittstelle | [--cpus](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
