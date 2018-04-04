@@ -1,6 +1,6 @@
 ---
 title: Informationen zu Windows-Containern
-description: "Erfahren Sie mehr über Windows-Container."
+description: Erfahren Sie mehr über Windows-Container.
 keywords: Docker, Container
 author: taylorb-microsoft
 ms.date: 05/02/2016
@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 37782c4d2491b9b1963a326204e30a6f484b5ec9
-ms.sourcegitcommit: 6eefb890f090a6464119630bfbdc2794e6c3a3df
+ms.openlocfilehash: 6dbc14ae192f40872a2d62253d1a0cf5658f4c04
+ms.sourcegitcommit: 7fdb0c5069605471bee351c4445a82e31c2930bd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/18/2017
+ms.lasthandoff: 03/15/2018
 ---
 # <a name="windows-containers"></a>Windows-Container
 
@@ -90,9 +90,29 @@ Container helfen Entwicklern, Anwendungen höherer Qualität schneller zu entwic
 
 IT-Experten können Container verwenden, um standardisierte Umgebungen für ihre Entwicklungs-, Qualitätssicherungs- und Produktionsteams bereitzustellen. Sie müssen sich nicht mehr komplexe Installations- und Konfigurationsschritte kümmern. Mithilfe von Containern können Systemadministratoren Unterschiede bei Betriebssysteminstallationen und zugrunde liegender Infrastruktur abstrahieren.
 
-Container können Administratoren eine Infrastruktur zu erstellen, die einfacher zu aktualisieren und zu warten ist.
+Container helfen Administratoren beim Erstellen einer Infrastruktur, die einfacher zu aktualisieren und zu verwalten ist.
 
-## <a name="video-overview"></a>Video-Überblick
+## <a name="container-orchestrators"></a>Container-Orchestratoren
+Aufgrund ihrer geringen Größe und der Ausrichtung der Anwendung sind Container für flexible Übermittlungsumgebungen und Architekturen geeignet, die auf Microservices basieren. Bei der Verwendung von Containern und Microservices können sich jedoch Hunderte oder Tausende von Komponenten in Ihrer Umgebung befinden.  Sie können eventuell einige Dutzend virtuelle Computer oder physische Server manuell verwalten, es ist allerdings unmöglich, eine Containerumgebung der Großserienproduktion zu verwalten, ohne diese zu automatisieren.  Die Automatisierung und Verwaltung einer großen Anzahl von Containern und wie sie interagieren, wird als Orchestrierung bezeichnet. 
+
+Zu einer standardmäßigen Definition der Orchestrierung gehören folgende Aufgaben:
+
+- Planung: Wenn ein Containerimage und eine Ressourcenanforderung eingeht, suchen Sie einen geeigneten Computer, auf dem Sie den Container ausführen möchten.
+Affinität/Antiaffinität: Stellen Sie sicher, dass ein Satz Container nah beieinander (aufgrund der Leistung) oder in ausreichendem Abstand (aufgrund der Verfügbarkeit) ausgeführt wird.
+- Statusüberwachung: Achten Sie auf Containerfehler und planen Sie diese automatisch erneut.
+- Failover: Behalten Sie den Überblick über die auf jedem Computer ausgeführten Aufgaben und planen Sie die Container von fehlerhaften Computern erneut auf fehlerfreien Knoten.
+- Skalierung: Fügen Sie Containerinstanzen bei Bedarf hinzu oder entfernen Sie diese entweder manuell oder automatisch, um sie dem Bedarf anzupassen.
+- Networking: Stellen Sie ein Überlagerungsnetzwerk für die Koordination der Container bereit, damit diese auf mehreren Hostcomputern miteinander kommunizieren.
+- Dienstermittlung: Ermöglichen Sie den Containern, sich auch dann gegenseitig automatisch zu suchen, wenn diese zwischen Hostcomputern wechseln und sich die IP-Adressen ändern.
+- Koordinierte Anwendungsupgrades: Verwalten Sie Containerupgrades, um die Ausfallzeiten der Anwendung zu vermeiden und ermöglichen Sie ein Rollback, wenn ein Fehler auftritt.
+
+Azure bietet zwei Container-Orchestratoren an: Azure Container Service (AKS) und Service Fabric.
+
+Mithilfe von [Azure Container Service (AKS)](/azure/aks/) kann ein Cluster aus virtuellen Computern erstellt, konfiguriert und verwaltet werden, die zum Ausführen von Anwendungen in Containern vorkonfiguriert wurden. Dadurch können Sie Ihre bereits vorhandenen Kenntnisse nutzen oder vom großen und wachsenden Fachwissen der Community profitieren, um auf Containern basierende Anwendungen in Microsoft Azure bereitzustellen und zu verwalten. Mit AKS können Sie für Unternehmen geeignete Funktionen von Azure nutzen und gleichzeitig die Anwendungsportabilität über Kubernetes und das Docker-Image-Format beibehalten.
+
+[Azure Service Fabric](/azure/service-fabric/) ist eine Plattform für verteilte Systeme, mit der das Verpacken, Bereitstellen und Verwalten von skalierbaren und zuverlässigen Microservices und Containern vereinfacht wird. Service Fabric behandelt die großen Herausforderungen bei der Entwicklung und Verwaltung von systemeigenen Cloudanwendungen. Entwickler und Administratoren können komplexe Infrastrukturprobleme vermeiden und sich auf die Implementierung kritischer, anspruchsvoller Workloads konzentrieren, die skalierbar, zuverlässig und überschaubar sind. Service Fabric ist die Plattform der nächsten Generation für das Erstellen und Verwalten von Anwendungen der Ebene1, der Unternehmensklasse und der Cloudebene, die im Container ausgeführt werden.
+
+## <a name="video-overview"></a>Video mit Übersicht
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 

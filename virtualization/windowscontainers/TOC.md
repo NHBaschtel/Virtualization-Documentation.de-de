@@ -23,7 +23,7 @@
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Verwalten von Docker unter Windows
-## [Docker-Modul unter Windows](docker/configure_docker_daemon.md)
+## [Docker-Modul unter Windows](manage-docker/configure-docker-daemon.md)
 ## [Dockerfiles unter Windows](manage-docker/manage-windows-dockerfile.md)
 ## [Optimieren von Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
 ## [Container-Networking](manage-containers/container-networking.md)
@@ -39,6 +39,10 @@
 ## [Konfigurieren der Netzwerktopologie](kubernetes/configuring-host-gateway-mode.md)
 ## [Kompilieren von Kubernetes-Binärdateien](kubernetes/compiling-kubernetes-binaries.md)
 ## [Problembehandlung](kubernetes/common-problems.md)
+
+# Service Fabric – Schnellstart
+## [Bereitstellen Ihres ersten Containers](/azure/service-fabric/service-fabric-quickstart-containers)
+## [Bereitstellen einer .NET-Anwendung in einem Windows-Container](/azure/service-fabric/service-fabric-host-app-in-a-container) 
 
 # Containerbeispiele
 ## [Anwendungsframeworks](samples.md#Application-Frameworks)

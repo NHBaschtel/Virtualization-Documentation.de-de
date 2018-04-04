@@ -5,16 +5,17 @@ ms.author: gekudray
 ms.date: 11/16/2017
 ms.topic: get-started-article
 ms.prod: containers
-description: "Hinzufügen eines Windows-Knotens zu einem Kubernetes-Cluster mit der Betaversion v1.9."
+description: Hinzufügen eines Windows-Knotens zu einem Kubernetes-Cluster mit der Betaversion v1.9.
 keywords: Kubernetes, 1.9, Windows, Erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: 0ccd7dae8da0841c98bec5cdf7345100d1b51107
-ms.sourcegitcommit: 2e8f1fd06d46562e56c9e6d70e50745b8b234372
+ms.openlocfilehash: 124895e93cbaee50c66b6b5a7cc2c71c144dad67
+ms.sourcegitcommit: 6e3c3b2ff125f949c03a342c3709a6e57c5f736c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows #
+
 Mit der neuesten Version von Kubernetes 1.9 und Windows Server [Version 1709](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1709#networking)können Benutzer die neuesten Features des Windows-Netzwerks nutzen:
 
   - **freigegebene Pod-Depots**: Infrastruktur- und Worker-Pods teilen sich jetzt einen Netzwerkdepot (vergleichbar mit einem Linux-Namespace)
@@ -24,16 +25,15 @@ Mit der neuesten Version von Kubernetes 1.9 und Windows Server [Version 1709](ht
 
 Diese Seite dient als Leitfaden für die ersten Schritte, wenn ein völlig neuer Windows-Knoten einem vorhandenen Linux-basierten Cluster hinzugefügt wird. Informationen, um von Grund auf neu zu beginnen, finden Sie [auf dieser Seite](./creating-a-linux-master.md) &mdash;. Hier finden Sie viele Ressourcen zur Bereitstellung eines Kubernetes-Clusters &mdash; und um einen Master von Grund auf neu einzurichten, wie von uns durchgeführt.
 
-
 <a name="definitions"></a> Hier sind Definitionen für Begriffe, die in diesem Handbuch verwendet werden:
 
   - Das **externe Netzwerk** ist das Netzwerk, über das Ihre Knoten kommunizieren.
   - <a name="cluster-subnet-def"></a>Das **Cluster-Subnetz** ist ein routingfähiges virtuelles Netzwerk. Von hier werden Knoten kleinere Subnetze zugewiesen, die deren Pods verwenden können.
   - Das **Dienst-Subnetz** ist ein nicht routingfähiges, rein virtuelles Subnetz auf 11.0/16, das von Pods verwendet wird, um einheitlich auf Dienste zuzugreifen, ohne Rücksicht auf die Netzwerktopologie. Es wird von `kube-proxy` von/auf routingfähige Adressbereiche übersetzt, die auf diesen Knoten ausgeführt werden.
 
+## <a name="what-you-will-accomplish"></a>Was Sie erreichen ##
 
-## <a name="what-we-will-accomplish"></a>Was wir erreichen ##
-Am Ende dieser Anleitung haben wir:
+Am Ende dieser Anleitung haben Sie:
 
 > [!div class="checklist"]  
 > * Einen [Linux Master](#preparing-the-linux-master)-Knoten konfiguriert.  
@@ -42,16 +42,16 @@ Am Ende dieser Anleitung haben wir:
 > * Ein [Beispiel für einen Windows-Dienst](#running-a-sample-service) bereitgestellt.  
 > * [Allgemeine Probleme und Fehler ](./common-problems.md) angesprochen.  
 
-
 ## <a name="preparing-the-linux-master"></a>Linux-Master vorbereiten ##
-Unabhängig davon, ob Sie [unsere Anweisungen](./creating-a-linux-master.md) befolgt haben oder bereits über einen vorhandenen Cluster verfügen, es ist nur ein Element vom Linux-Master erforderlich: die Kubernetes-Zertifikatkonfiguration. Dies ist möglicherweise im `/etc/kubernetes/admin.conf`, `~/.kube/config` oder an anderer Stelle vorhanden, je nach Setup.
 
+Unabhängig davon, ob Sie [die Anweisungen](./creating-a-linux-master.md) befolgt haben oder bereits über einen vorhandenen Cluster verfügen, es ist nur ein Element vom Linux-Master erforderlich: die Kubernetes-Zertifikatkonfiguration. Dies ist möglicherweise im `/etc/kubernetes/admin.conf`, `~/.kube/config` oder an anderer Stelle vorhanden, je nach Setup.
 
 ## <a name="preparing-a-windows-node"></a>Vorbereiten eines Windows-Knotens ##
-> [!Note]  
+
+> [!NOTE]  
 > Alle Codeausschnitte in den Windows-Abschnitten müssen in PowerShell mit _erhöhten Rechten_ ausgeführt werden.
 
-Kubernetes verwendet [Docker](https://www.docker.com/) als Container-Orchestrator, daher müssen wir es installieren. Folgen Sie den [offiziellen MSDN Anweisungen](../manage-docker/configure-docker-daemon.md#install-docker), den [Docker-Anweisungen](https://store.docker.com/editions/enterprise/docker-ee-server-windows) oder gehen Sie folgendermaßen vor:
+Kubernetes verwendet [Docker](https://www.docker.com/) als Container-Orchestrator, daher müssen wir es installieren. Folgen Sie den [offiziellen Dokumentanweisungen](../manage-docker/configure-docker-daemon.md#install-docker), den [Docker-Anweisungen](https://store.docker.com/editions/enterprise/docker-ee-server-windows) oder gehen Sie folgendermaßen vor:
 
 ```powershell
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -65,7 +65,7 @@ Wenn Sie einen Proxyserver verwenden, müssen die folgenden PowerShell-Umgebungs
 [Environment]::SetEnvironmentVariable("HTTPS_PROXY", "http://proxy.example.com:443/", [EnvironmentVariableTarget]::Machine)
 ```
 
-Eine Sammlung der Skripts befindet sich in [diesem Microsoft-Repository](https://github.com/Microsoft/SDN), das dabei hilft, diesen Knoten zum Cluster hinzuzufügen. Sie können die ZIP-Datei direkt [hier](https://github.com/Microsoft/SDN/archive/master.zip) herunterladen. Wir brauchen lediglich den `Kubernetes/windows`-Ordner, dessen Inhalt auf `C:\k\` verschoben werden sollte:
+Eine Sammlung der Skripts befindet sich in [diesem Microsoft-Repository](https://github.com/Microsoft/SDN). Diese hilft dabei, den Knoten zum Cluster hinzuzufügen. Sie können die ZIP-Datei direkt [hier](https://github.com/Microsoft/SDN/archive/master.zip) herunterladen. Sie brauchen lediglich den `Kubernetes/windows`-Ordner, dessen Inhalt auf `C:\k\` verschoben werden soll:
 
 ```powershell
 wget https://github.com/Microsoft/SDN/archive/master.zip -o master.zip
@@ -77,17 +77,17 @@ rm -recurse -force master,master.zip
 
 Kopieren Sie die [vorher identifizierte](#preparing-the-linux-master) Zertifikatdatei in das neue `C:\k`-Verzeichnis.
 
-
 ## <a name="network-topology"></a>Netzwerktopologie ##
+
 Es gibt mehrere Möglichkeiten, virtuelle [Clustersubnetze](#cluster-subnet-def) routingfähig zu machen. Sie haben folgende Möglichkeiten:
 
   - Konfigurieren Sie den [Hostgateway-Modus](./configuring-host-gateway-mode.md), indem Sie die Routen des nächsten Abschnitts zwischen Knoten festlegen und so eine Pod-zu‑Pod-Kommunikation ermöglichen.
   - Konfigurieren Sie einen TOR-Switch, um das Subnetz weiterzuleiten.
   - Verwenden Sie Drittanbieter-Plug-Ins wie beispielsweise [Flannel](https://coreos.com/flannel/docs/latest/kubernetes.html) (der Windows-Support für Flannel ist in der Betaversion).
 
+### <a name="creating-the-pause-image"></a>Erstellen eines „pause”-Images ###
 
-### <a name="creating-the-pause-image"></a>„Pause”-Image erstellen ###
-Nachdem Sie nun `docker` installiert haben, müssen Sie ein Image „pause” vorbereiten, das von Kubernetes zum Vorbereiten der Infrastruktur-Pods verwendet wird.
+Nachdem Sie nun `docker` installiert haben, müssen Sie ein „pause”-Image vorbereiten, das von Kubernetes zum Vorbereiten der Infrastruktur-Pods verwendet wird.
 
 ```powershell
 docker pull microsoft/windowsservercore:1709
@@ -96,8 +96,8 @@ cd C:/k/
 docker build -t kubeletwin/pause .
 ```
 
-> [!Note]  
-> Wir bezeichnen es als `:latest`, weil der Beispieldienst, den wir später bereitstellen werden, davon abhängt, obwohl dies möglicherweise _nicht_ das neueste verfügbare Windows Server Core-Image ist. Bei widersprüchlichen Container-Images können Probleme entstehen, denn wenn sie nicht das erwartete Tag besitzen, kann dies den `docker pull` eines inkompatiblen Container-Images verursachen, was zu [Bereitstellungsproblemen](./common-problems.md#when-deploying-docker-containers-keep-restarting) führt. 
+> [!NOTE]
+> Wir bezeichnen es als `:latest`, weil der Beispieldienst, den Sie später bereitstellen werden, davon abhängt, obwohl dies möglicherweise _nicht_ das neueste verfügbare Windows Server Core-Image ist. Bei widersprüchlichen Container-Images können Probleme entstehen, denn wenn sie nicht das erwartete Tag besitzen, kann dies den `docker pull` eines inkompatiblen Container-Images verursachen, was zu [Bereitstellungsproblemen](./common-problems.md#when-deploying-docker-containers-keep-restarting) führt. 
 
 
 ### <a name="downloading-binaries"></a>Herunterladen von Binärdateien ###
@@ -163,6 +163,7 @@ Der Windows-Knoten ist im Master-Linux unter `kubectl get nodes` innerhalb einer
 
 
 ### <a name="validating-your-network-topology"></a>Überprüfen der Topologie des Netzwerks ###
+
 Es gibt einige grundlegende Tests, mit denen eine ordnungsgemäße Konfiguration überprüft werden kann:
 
   - **Knoten-zu-Knoten-Konnektivität**: Pings zwischen Master- und Windows-Worker-Knoten sollten in beiden Richtungen erfolgreich ausgeführt werden.
@@ -173,8 +174,8 @@ Sollte einer der folgenden grundlegenden Tests nicht funktionieren, versuchen Si
 
 
 ## <a name="running-a-sample-service"></a>Ausführen eines Beispieldiensts ##
-Wir werden einen sehr einfachen [PowerShell-basierten Webdienst](https://github.com/Microsoft/SDN/blob/master/Kubernetes/WebServer.yaml) bereitstellen, um sicherzustellen, dass der Cluster erfolgreich hinzugefügt und unser Netzwerk ordnungsgemäß konfiguriert sind.
 
+Sie werden einen sehr einfachen [PowerShell-basierten Webdienst](https://github.com/Microsoft/SDN/blob/master/Kubernetes/WebServer.yaml) bereitstellen, um sicherzustellen, dass der Cluster erfolgreich hinzugefügt und unser Netzwerk ordnungsgemäß konfiguriert wurde.
 
 Laden Sie auf dem Linux-Master den folgenden Dienst herunter und führen Sie ihn aus:
 
@@ -184,17 +185,16 @@ kubectl apply -f win-webserver.yaml
 watch kubectl get pods -o wide
 ```
 
-Dadurch wird eine Bereitstellung und ein Dienst erstellt, der die Pods auf unbestimmte Zeit überwacht, um ihren Status zu verfolgen. Drücken Sie einfach `Ctrl+C` zum Beenden des Befehls `watch`, wenn Sie mit der Beobachtung fertig sind.
-
+Dadurch entsteht eine Bereitstellung und ein Dienst, der die Pods auf unbestimmte Zeit überwacht, um ihren Status zu verfolgen. Drücken Sie einfach `Ctrl+C` zum Beenden des Befehls `watch`, wenn Sie mit der Beobachtung fertig sind.
 
 Wenn alles erfolgreich verlaufen ist:
 
-  - werden 4 Container im Befehl `docker ps` auf der Windows-Seite angezeigt,
+  - werden vier Container im Befehl `docker ps` auf der Windows-Seite angezeigt.
   - `curl` für die *Pod*-IDs auf Port 80 des Linux-Masters eine Antwort vom Web-Server erhalten. Dies bestätigt die ordnungsgemäße Kommunikation zwischen Pod und Knoten im Netzwerk.
   - `curl` die IP des *Knotens* auf Port 4444 erhält eine Antwort vom Web-Server. Dies veranschaulicht die ordnungsgemäße Host-zu-Container-Port-Zuordnung.
   - der Ping *zwischen Pods* (einschließlich zwischen Hosts, wenn Sie mehrere Windows-Knoten haben) über `docker exec`. Dies veranschaulicht die ordnungsgemäße Pod-zu-Pod-Kommunikation
   - `curl` die virtuelle *Dienst-IP* (unter `kubectl get services`) vom Linux-Master und den einzelnen Pods.
   - `curl` der *Dienstname* mit dem Kubernetes [Standard-DNS-Suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), der die DNS-Funktionen veranschaulicht.
 
-> [!Warning]  
+> [!WARNING]  
 > Windows-Knoten können nicht auf die Dienst-IP zugreifen. Dies ist eine [bekannte Plattformeinschränkung](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip), die bearbeitet wird.
