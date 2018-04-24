@@ -8,11 +8,11 @@ ms.prod: containers
 description: Hinzufügen eines Windows-Knotens zu einem Kubernetes-Cluster mit der Betaversion v1.9.
 keywords: Kubernetes, 1.9, Windows, Erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: 124895e93cbaee50c66b6b5a7cc2c71c144dad67
-ms.sourcegitcommit: 6e3c3b2ff125f949c03a342c3709a6e57c5f736c
+ms.openlocfilehash: 6309ca8c0fd50e1b8e926776bef6dfe82bb815f0
+ms.sourcegitcommit: ee86ee093b884c79039a8ff417822c6e3517b92d
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows #
 
@@ -24,6 +24,9 @@ Mit der neuesten Version von Kubernetes 1.9 und Windows Server [Version 1709](ht
 
 
 Diese Seite dient als Leitfaden für die ersten Schritte, wenn ein völlig neuer Windows-Knoten einem vorhandenen Linux-basierten Cluster hinzugefügt wird. Informationen, um von Grund auf neu zu beginnen, finden Sie [auf dieser Seite](./creating-a-linux-master.md) &mdash;. Hier finden Sie viele Ressourcen zur Bereitstellung eines Kubernetes-Clusters &mdash; und um einen Master von Grund auf neu einzurichten, wie von uns durchgeführt.
+
+> [!TIP] 
+> Um auf einfache Weise einen Cluster in Azure bereitzustellen, können Sie das Open-Source-Tool ACS-Engine verwenden. Ein schrittweise [Anleitung](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes/windows.md) ist verfügbar.
 
 <a name="definitions"></a> Hier sind Definitionen für Begriffe, die in diesem Handbuch verwendet werden:
 
@@ -189,12 +192,24 @@ Dadurch entsteht eine Bereitstellung und ein Dienst, der die Pods auf unbestimmt
 
 Wenn alles erfolgreich verlaufen ist:
 
-  - werden vier Container im Befehl `docker ps` auf der Windows-Seite angezeigt.
+  - werden 4 Container unter einem Befehl `docker ps` auf dem Windows-Knoten angezeigt
+  - werden 2 Pods unter einem `kubectl get pods`-Befehl vom Linus-Master angezeigt
   - `curl` für die *Pod*-IDs auf Port 80 des Linux-Masters eine Antwort vom Web-Server erhalten. Dies bestätigt die ordnungsgemäße Kommunikation zwischen Pod und Knoten im Netzwerk.
-  - `curl` die IP des *Knotens* auf Port 4444 erhält eine Antwort vom Web-Server. Dies veranschaulicht die ordnungsgemäße Host-zu-Container-Port-Zuordnung.
   - der Ping *zwischen Pods* (einschließlich zwischen Hosts, wenn Sie mehrere Windows-Knoten haben) über `docker exec`. Dies veranschaulicht die ordnungsgemäße Pod-zu-Pod-Kommunikation
   - `curl` die virtuelle *Dienst-IP* (unter `kubectl get services`) vom Linux-Master und den einzelnen Pods.
   - `curl` der *Dienstname* mit dem Kubernetes [Standard-DNS-Suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), der die DNS-Funktionen veranschaulicht.
 
-> [!WARNING]  
-> Windows-Knoten können nicht auf die Dienst-IP zugreifen. Dies ist eine [bekannte Plattformeinschränkung](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip), die bearbeitet wird.
+> [!Warning]  
+> Windows-Knoten können nicht auf die Dienst-IP zugreifen. Dies ist ein [bekannte Einschränkung der Plattform](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) und wird im nächsten Update für Windows Server behoben.
+
+
+### <a name="port-mapping"></a>Portzuordnung ### 
+Es ist auch möglich, auf Dienste zuzugreifen, die in Pods über ihre jeweiligen Knoten gehostet werden, indem ein Port auf dem Knoten zugeordnet wird. Es ist ein [weiteres YAML-Beispiel verfügbar](https://github.com/Microsoft/SDN/blob/master/Kubernetes/PortMapping.yaml), das dieses Feature zeigt, mit einer Zuordnung von Port 4444 auf dem Knoten zu Port 80 auf dem Pod. Um es bereitzustellen, führen Sie die gleichen Schrittewie zuvor aus:
+
+```bash
+wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/PortMapping.yaml -O win-webserver-port-mapped.yaml
+kubectl apply -f win-webserver-port-mapped.yaml
+watch kubectl get pods -o wide
+```
+
+Es sollte jetzt möglich sein, `curl`auf die *Knoten*-IP auf Port 4444 anzuwenden und eine Antwort des Webservers zu erhalten. Beachten Sie, dass dadurch die Skalierung auf einen einzelnen Pod pro Knoten beschränkt wird, da eine Eins-zu-Eins-Zuordnung erzwungen werden muss.

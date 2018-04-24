@@ -34,10 +34,10 @@ Muss eine ähnliche Route *für* jeden Knoten im Cluster *auf* jedem Knoten im C
 
 
 ## <a name="configuring-static-routes--windows"></a>Konfigurieren statischer Routen | Windows ##
-Dazu verwenden wir `New-NetRoute`. Es steht Ihnen ein automatisiertes Skripts zur Verfügung, `AddRoutes.ps1`, in [diesem Repository](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/AddRoutes.ps1). Sie müssen die IP-Adresse des *Linux-Master* kennen sowie das Standardgateway des Knotens des *externen* Adapters in Windows (nicht den Pod-Gateway). Anschließend:
+Dazu verwenden wir `New-NetRoute`. Es steht Ihnen ein automatisiertes Skripts zur Verfügung, `AddRoutes.ps1`, in [diesem Repository](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/AddRoutes.ps1). Sie müssen die IP-Adresse für den *Linux-Master* kennen:
 
 ```powershell
 $url = "https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/windows/AddRoutes.ps1"
-wget $url -o AddRoutes.ps1
-./AddRoutes.ps1 -MasterIp 10.1.2.3 -Gateway 10.1.3.1
+Invoke-WebRequest $url -o AddRoutes.ps1
+./AddRoutes.ps1 -MasterIp 10.1.2.3
 ```
