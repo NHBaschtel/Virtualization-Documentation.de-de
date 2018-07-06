@@ -3,12 +3,12 @@ title: Windows Server Containerspeicher
 description: So können Windows Server-Container Host- und andere Speichertypen verwenden
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: patricklang
-ms.openlocfilehash: ba30c436ddd61ec71b2c98d1a8cb24f97863d872
-ms.sourcegitcommit: 6c8c70c8231943dda3c5af38e5530ea3dd91fc82
+ms.openlocfilehash: 9dde3b2d7be10a8d3d393f8426976dfc5bdacfab
+ms.sourcegitcommit: 9653a3f7451011426f8af934431bb14dbcb30a62
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/05/2018
-ms.locfileid: "1934534"
+ms.lasthandoff: 06/21/2018
+ms.locfileid: "2082901"
 ---
 # <a name="overview"></a>Übersicht
 
@@ -22,7 +22,7 @@ Hierbei handelt es sich um die Dateien, die im Container integriert sind. Bei je
 
 ### <a name="where-layers-are-stored-and-how-to-change-it"></a>Wo Schichten gespeichert werden und wie Sie diese ändern
 
-Bei einer Standardinstallation werden die Schichten unter `C:\ProgramData\docker` gespeichert und auf die Verzeichnisse "Image" und "Windowsfilter" verteilt. Sie können den Speicherort der Schichten mithilfe der `docker-root`-Konfiguration ändern, wie in der Dokumentation [Docker-Modul unter Windows](../manage-docker/configure_docker_daemon.md) erläutert.
+Bei einer Standardinstallation werden die Schichten unter `C:\ProgramData\docker` gespeichert und auf die Verzeichnisse "Image" und "Windowsfilter" verteilt. Sie können den Speicherort der Schichten mithilfe der `docker-root`-Konfiguration ändern, wie in der Dokumentation [Docker-Modul unter Windows](../manage-docker/configure-docker-daemon.md) erläutert.
 
 > [!NOTE]
 > Für die Schichtspeicher wird nur NTFS unterstützt. ReFS wird nicht unterstützt.
