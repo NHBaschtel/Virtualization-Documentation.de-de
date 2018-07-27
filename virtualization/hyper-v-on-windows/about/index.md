@@ -3,16 +3,16 @@ title: Einführung in Hyper-V unter Windows 10
 description: Einführung in Hyper-V, Virtualisierung und verwandte Technologien.
 keywords: Windows10, Hyper-V
 author: scooley
-ms.date: 04/07/2018
+ms.date: 06/25/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
-ms.openlocfilehash: 78991d0b6d8b27ea20365fed74f35cee64eb089f
-ms.sourcegitcommit: 64c8d5d6f068d385b94db4637259bb3852666efe
+ms.openlocfilehash: 95b7b25ffe47f22f2f00e5911195ebbea660a1c0
+ms.sourcegitcommit: d625ea23c3eea484d54fa7bec10ac545b0386379
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "1797676"
+ms.lasthandoff: 06/26/2018
+ms.locfileid: "2093677"
 ---
 # <a name="introduction-to-hyper-v-on-windows-10"></a>Einführung in Hyper-V unter Windows 10
 
@@ -58,8 +58,7 @@ Es gibt einige Features, die in Hyper-V unter Windows und Hyper-V unter Windows 
 
 Nur in Windows Server verfügbare Hyper-V-Features:
 
-* Virtualisieren von GPUs mit RemoteFX
-* Live-Migration virtueller Maschinen von einem Host zum anderen
+* Live-Migration virtueller Computer von einem Host zum anderen
 * Hyper-V-Replikat
 * Virtueller Fibre Channel
 * SR-IOV-Netzwerke

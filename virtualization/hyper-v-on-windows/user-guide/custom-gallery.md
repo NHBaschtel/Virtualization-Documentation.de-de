@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
-ms.openlocfilehash: 3a8af73c1cf7b2eb640be0dcaf77601ed5e96ce5
-ms.sourcegitcommit: 7c3af076eb8bad98e1c3de0af63dacd842efcfa3
+ms.openlocfilehash: 2235201a56a238cbd5a75b0a6cae64cdb26108a2
+ms.sourcegitcommit: edc153ffef01094c2324a0da2f9a301b31015a58
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "1844297"
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "1928377"
 ---
 # <a name="create-a-custom-virtual-machine-gallery"></a>Erstellen einer benutzerdefinierten virtuellen Computergalerie
 
@@ -21,9 +21,9 @@ ms.locfileid: "1844297"
 
 Im Fall Creators Update wurde die Schnellerfassung erweitert, um virtuelle Computergalerie zu enthalten.
 
-![Schnellerfassung VM-Galerie mit benutzerdefinierten Bildern](media/vmgallery.png)
+![Quick Create-VM-Galerie mit benutzerdefinierten Bildern](media/vmgallery.png)
 
-Während es eine Reihe von Bildern gibt, die von Microsoft und Partnern von Microsoft bereitgestellten werden, kann die Galerie auch eigene Bilder auflisten.
+Neben den von Microsoft- und Microsoft-Partnern bereitgestellten Bildern kann die Galerie auch Ihre eigene Bilder anzeigen.
 
 In diesem Artikel finden Sie weitere Details zu:
 
@@ -71,11 +71,11 @@ So überprüfen Sie, dass das Bild eines virtuellen Computers gestartet und ausg
 
 ## <a name="build-a-new-gallery-source"></a>Erstellen einer neuen Galeriequelle
 
-Im nächsten Schritt wird eine neue Galeriequelle erstellt.  Dies ist die JSON-Datei, die die virtuellen Maschinen auflistet und alle zusätzlichen Informationen hinzufügt, die Sie in der Galerie sehen.
+Im nächsten Schritt wird eine neue Galeriequelle erstellt.  Mit dieser JSON-Datei werden die virtuellen Computer aufgelistet und alle zusätzlichen Informationen hinzufügt, die Sie in der Galerie sehen.
 
 Textinformationen:
 
-![Position des Texts der Galeriebezeichnung](media/gallery-text.png)
+![Beschriftete Galerietextorte](media/gallery-text.png)
 
 * **Name** – erforderlich – dies ist der Name, der in der linken Spalte sowie am oberen Rand der VM-Ansicht angezeigt wird.
 * **Herausgeber** - erforderlich
@@ -103,11 +103,11 @@ Bilder:
 
 Und natürlich Ihr virtueller Computer (.iso oder .vhdx).
 
-Die folgende JSON-Vorlage enthält Startelemente und das Galerieschema.  Wenn Sie es mit VSCode bearbeiten, wird Intellisense automatisch bereitgestellt.
+Die folgende JSON-Vorlage enthält Startelemente und das Galerieschema.  Wenn Sie sie in VSCode bearbeiten, wird automatisch IntelliSense bereitgestellt.
 
 [!code-json[main](../../../hyperv-tools/vmgallery/vm-gallery-template.json)]
 
-## <a name="connect-your-gallery-to-the-vm-gallery-ui"></a>Verbinden Sie Ihre Galerie mit der VM-Galerie-Benutzeroberfläche
+## <a name="connect-your-gallery-to-the-vm-gallery-ui"></a>Verbinden der Galerie mit der VM-Galeriebenutzeroberfläche
 
 Die einfachste Möglichkeit, Ihre VM-Galeriequelle der benutzerdefinierten Galerie hinzuzufügen ist, sie dem Registrierungs-Editor hinzuzufügen.
 
@@ -135,6 +135,6 @@ Die VM-Galerie bietet die Fehlerberichterstattung in der Windows-Ereignisanzeige
 
 ## <a name="resources"></a>Ressourcen
 
-Es gibt ein paar Galerieskripts und Hilfsprogramme in Github [Link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
+In GitHub stehen einige Galerieskripts und Hilfsprogramme zur Verfügung [Link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
 
-Informationen finden Sie im Beispieleintrag der Galerie [hier](https://go.microsoft.com/fwlink/?linkid=851584).  Dies ist die JSON-Datei, die die Inbox-Galerie definiert.
+Einen Beispieleintrag für die Galerie finden Sie [hier](https://go.microsoft.com/fwlink/?linkid=851584).  Dies ist die JSON-Datei, die die Inbox-Galerie definiert.

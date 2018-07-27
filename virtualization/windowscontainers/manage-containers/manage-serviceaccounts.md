@@ -1,0 +1,99 @@
+---
+title: Active Directory-Dienstkonten für Windows-Container
+description: Active Directory-Dienstkonten für Windows-Container
+keywords: Docker, Container, Active Directory
+author: PatrickLang
+ms.date: 11/04/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
+ms.openlocfilehash: 27317dbf5ba5386a3bd555c53c781aac2fc110a7
+ms.sourcegitcommit: edc153ffef01094c2324a0da2f9a301b31015a58
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "1912667"
+---
+# <a name="active-directory-service-accounts-for-windows-containers"></a>Active Directory-Dienstkonten für Windows-Container
+
+Benutzer und andere Dienste müssen möglicherweise authentifizierte Verbindungen zu Ihren Anwendungen und Diensten herstellen, damit Sie Ihre Daten sichern und vor nicht berechtigter Verwendung schützen können. Windows Active Directory-Domänen (AD) unterstützen standardmäßig sowohl die Kennwort- als auch die Zertifikatauthentifizierung. Wenn Sie Ihre Anwendung oder Ihren Dienst auf einem in die Domäne eingebunden Windows-Host erstellen und die Anwendung bzw. der Dienst als lokaler Systemdienst oder Netzwerkdienst ausgeführt wird, wird standardmäßig die Identität des Hosts verwendet. Andernfalls können Sie für die Authentifizierung auch ein anderes AD-Konto konfigurieren.
+
+Obwohl es nicht möglich ist, dass Windows-Container einer Domäne angehören, können sie auch die Active Directory-Domänenidentitäten nutzen, ähnlich wie in Bereiche eingebundene Geräte. Mit Windows Server 2012-Domänencontrollern haben wir ein neues Konto namens „Group Managed Service Account” (gMSA) eingeführt, das für die gemeinsame Nutzung durch Dienste konzipiert wurde. Durch die Verwendung von Group Managed Service Accounts (gMSA) können Windows-Container und die von ihnen gehosteten Dienste so konfiguriert werden, dass sie eine bestimmte gMSA als Domänenidentität verwenden. Alle als lokaler Systemdienst oder Netzwerkdienst ausgeführten Dienste verwenden dann die Identität des Windows-Containers – genau so, wie diese Dienste heute die in die Domäne eingebundene Identität verwenden. Im Containerimage ist kein Kennwort oder privater Zertifikatschlüssel gespeichert, der versehentlich offengelegt werden könnte. Der Container kann in Entwicklungs-, Tests- und Produktionsumgebungen erneut bereitgestellt werden, ohne dass gespeicherte Kennwörter oder Zertifikate neu erstellt werden müssen. 
+
+
+# <a name="glossary--references"></a>Glossar und Referenzen
+- [Active Directory](http://social.technet.microsoft.com/wiki/contents/articles/1026.active-directory-services-overview.aspx) ist ein Dienst zur Ermittlung, Suche und Replikation von Informationen zu Benutzern, Computern, und Dienstkonten unter Windows. 
+  - [Active Directory Domain Services](https://technet.microsoft.com/en-us/library/dd448614.aspx) bieten eine oder mehrere Windows Active Directory-Domänen zur Authentifizierung von Computern und Benutzern. 
+  - Geräte sind _in die Domäne eingebunden_, wenn sie Mitglied einer Active Directory-Domäne sind. Als „in die Domäne eingebunden“ wird ein Gerätezustand bezeichnet, der nicht nur eine Domänencomputeridentität für das Gerät bereitstellt, sondern auch verschiedene in die Domäne eingebundene Dienste anzeigt.
+  - Ein [gruppenverwaltetes Dienstkonto](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx), häufig mit gMSA abgekürzt, ist ein bestimmter Active Directory-Kontotyp, der eine einfache Sicherung von Diensten mithilfe von Active Directory ermöglicht, ohne ein Kennwort weitergeben zu müssen. Um Verbindungen zwischen Diensten zu authentifizieren, nutzen mehrere Computer oder Container dasselbe gMSA.
+- Das PowerShell-Modul _CredentialSpec_: Dieses Modul wird verwendet, um gruppenverwaltete Dienstkonten zu konfigurieren, die mit Containern verwendet werden sollen. Das Skriptmodul und die Beispielschritte stehen unter [windows-server-container-tools](https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools) im Ordner „ServiceAccounts“ zur Verfügung.
+
+# <a name="how-it-works"></a>Funktionsweise
+
+Heute werden gruppenverwaltete Dienstkonten häufig verwendet, um Verbindungen zwischen einem Computer oder Dienst mit einem anderen Computer oder Dienst zu schützen. Folgende allgemeine Schritte sind auszuführen:
+
+1. Erstellen Sie ein gMSA.
+2. Konfigurieren Sie den Dienst, der als gMSA ausgeführt werden soll.
+3. Richten Sie für den in die Domäne eingebundenen Host, auf dem der Dienst ausgeführt wird, Zugriff auf die gMSA-Geheimnisse in Active Directory ein.
+4. Lassen Sie den Zugriff anderer Dienste wie z.B. einer Datenbank oder Dateifreigaben auf ein gMSA zu.
+
+Beim Starten des Diensts erhält der in die Domäne eingebundene Host von Active Directory automatisch die gMSA-Geheimnisse und führt den Dienst mithilfe dieses Kontos aus. Da dieser Dienst als gMSA ausgeführt wird, kann er auf jede Ressource zugreifen, für die dem gMSA Zugriff gewährt wurde.
+
+Gehen Sie für Windows-Container in ähnlicher Weise vor:
+
+1. Erstellen Sie ein gMSA. Standardmäßig ist dies von einem Domänenadministrator oder Kontenoperator durchzuführen. Andernfalls können sie die Berechtigungen zum Erstellen und Verwalten von gMSAs an Administratoren delegieren, welche die verwendeten Dienste verwalten. Sie benötigen mindestens einen Windows Server 2012-Domänencontroller (oder höher) in Ihrer Domäne. Es ist jedoch nicht erforderlich, eine bestimmte Domänenfunktionsebene zu verwenden. Siehe dazu [Erste Schritte mit gMSAs](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx).
+2. Richten Sie für den Host des in die Domäne eingebunden Containers Zugriff auf das gMSA ein.
+3. Lassen Sie den Zugriff anderer Dienste wie z.B. einer Datenbank oder Dateifreigaben auf ein gMSA zu.
+4. Verwenden Sie das CredentialSpec PowerShell-Modul von [windows-server-container-tools](https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools), um die Einstellungen zu speichern, die für die Verwendung eines gMSA erforderlich sind.
+5. Starten Sie den Container mit einer zusätzlichen Option. `--security-opt "credentialspec=..."`
+
+[!NOTE]
+Möglicherweise müssen Sie die anonyme SID/Namensübersetzung auf dem Containerhost wie [hier](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) beschrieben ermöglichen, da sonst Fehler auftreten können, durch die Konten nicht in SIDs übersetzt werden können.
+
+Bevor Sie jedoch die Notwendigkeit einer anonymen SID/Name-Übersetzung erkunden, stellen Sie sicher, dass Folgendes ausgeführt wird:
+
+1. Der Name des gMSA-Kontos muss mit dem Namen des Dienstes übereinstimmen (z.B. „myapp”).
+2. Fügen Sie das Argument -h ein, um den Hostnamen angeben, den der Container beim Start verwenden soll. 
+```
+docker run --security-opt "credentialspec=file://myapp.json" -d -p 80:80 -h myapp.mydomain.local <imagename>
+```
+3. Der Dienstprinzipalname (Service Principal Name, SPN), der beim Erstellen des gMSA-Kontos verwendet wird, muss mit dem Argument -h übereinstimmen, das beim Ausführen des Containers verwendet wird. Wenn Sie dem gMSA-Konto während der Erstellung keine SPNs hinzugefügt haben, können diese anschließend den Eigenschaften des Kontos hinzugefügt werden.
+
+Wenn der Container gestartet wurde, werden die als lokaler Systemdienst oder Netzwerkdienst ausgeführten installierten Dienste so angezeigt, als würden sie als gMSA ausgeführt. Dies ähnelt der Funktionsweise von Konten auf in die Domäne eingebundenen Hosts, außer dass kein Computerkonto, sondern ein gMSA verwendet wird. 
+
+![Diagramm – Dienstkonten](media/serviceaccount_diagram.png)
+
+
+# <a name="example-uses"></a>Beispielverwendungen
+
+
+## <a name="sql-connection-strings"></a>SQL-Verbindungszeichenfolgen
+Wenn ein Dienst als lokaler Systemdienst oder Netzwerkdienst in einem Container ausgeführt wird, kann die integrierte Windows-Authentifizierung genutzt werden, um eine Verbindung mit einer Microsoft SQL Server-Instanz herzustellen.
+
+Beispiel:
+
+```
+Server=sql.contoso.com;Database=MusicStore;Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30
+```
+
+Erstellen Sie auf der Microsoft SQL Server-Instanz einen Anmeldenamen, und verwenden Sie dazu den Namen der Domäne und des gMSA gefolgt von einem $-Symbol. Sobald der Anmeldename erstellt wurden, kann er einem Benutzer in einer Datenbank hinzugefügt werden und die erforderlichen Zugriffsrechte erhalten.
+
+Beispiel: 
+
+```sql
+CREATE LOGIN "DEMO\WebApplication1$"
+    FROM WINDOWS
+    WITH DEFAULT_DATABASE = "MusicStore"
+GO
+
+USE MusicStore
+GO
+CREATE USER WebApplication1 FOR LOGIN "DEMO\WebApplication1$"
+GO
+
+EXEC sp_addrolemember 'db_datareader', 'WebApplication1'
+EXEC sp_addrolemember 'db_datawriter', 'WebApplication1'
+```
+
+Sehen Sie sich dazu die [aufgezeichnet Demo](https://youtu.be/cZHPz80I-3s?t=2672) der Microsoft Ignite 2016-Sitzung „Walk the Path to Containerization - transforming workloads into containers“ an.
