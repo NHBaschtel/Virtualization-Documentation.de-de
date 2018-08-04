@@ -7,12 +7,12 @@ ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
-ms.openlocfilehash: 4706ea24da1d5ca61b94dfd141883aa2d04ad906
-ms.sourcegitcommit: 7c3af076eb8bad98e1c3de0af63dacd842efcfa3
+ms.openlocfilehash: 71719fcbb6021bd26a464339a8caa9c4cb5698b9
+ms.sourcegitcommit: 2b5d806fc978e60fb71ce33ef491d4cfd6fc4456
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "1844049"
+ms.lasthandoff: 08/03/2018
+ms.locfileid: "2596048"
 ---
 # <a name="windows-container-requirements"></a>Anforderungen von Windows-Containern
 
@@ -94,5 +94,5 @@ Wie entscheide ich mich zwischen Windows Server Core und Nano Server? Zum Erstel
 - WMI wurde entfernt.
 - Ab Windows Server der Version 1709 werden Anwendungen unter einem Benutzerkontext ausgeführt, sodass Befehle, die Administratorrechte erfordern, fehlschlagen. Sie können das Container-Administratorkonto über das --user-Flag angeben (Beispiel: docker run --user ContainerAdministrator). In Zukunft werden wir jedoch Administratorkonten vollständig aus NanoServer entfernen.
 
-Dies ist lediglich eine Übersicht über die wichtigsten Unterschiede und keine vollständige Liste. Es gibt weitere Komponenten, die hier nicht genannt sind, die ebenfalls nicht vorhanden sind. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.0/sdk/nanoserver/amd64/Dockerfile).
+Dies ist lediglich eine Übersicht über die wichtigsten Unterschiede und keine vollständige Liste. Es gibt weitere Komponenten, die hier nicht genannt sind, die ebenfalls nicht vorhanden sind. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).
 
