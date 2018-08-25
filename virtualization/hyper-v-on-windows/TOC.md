@@ -24,6 +24,7 @@
 ## [Hyper-V-Integrationsdienste](reference/integration-services.md)
 ## [Hyper-V-Architektur](reference/hyper-v-architecture.md)
 ## [Spezifikationen für Hypervisor](reference/tlfs.md)
+## [Hyper-V-Backup-Konzepte](reference/HyperVBackupApproaches.md)
 
 # Community und Support
 ## [Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
