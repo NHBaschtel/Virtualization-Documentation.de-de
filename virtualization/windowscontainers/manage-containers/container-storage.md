@@ -3,12 +3,12 @@ title: Windows Server Containerspeicher
 description: So können Windows Server-Container Host- und andere Speichertypen verwenden
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: patricklang
-ms.openlocfilehash: 9dde3b2d7be10a8d3d393f8426976dfc5bdacfab
-ms.sourcegitcommit: 9653a3f7451011426f8af934431bb14dbcb30a62
-ms.translationtype: HT
+ms.openlocfilehash: 7d22a149da21a3367b82f2920c189ae9a4b1c173
+ms.sourcegitcommit: 2c22506a7fdbbbe5ab4138281fc9256a98b51efd
+ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/21/2018
-ms.locfileid: "2082901"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "3386045"
 ---
 # <a name="overview"></a>Übersicht
 
@@ -101,13 +101,18 @@ Unter Windows Server Version 1709 ermöglicht ein neues Feature namens "globale 
 
 ##### <a name="configuration-steps"></a>Konfigurationsschritte
 
-1. Ordnen Sie auf dem Containerhost global die SMB-Remotefreigabe folgendermaßen zu: $creds = Get-Credential New-SmbGlobalMapping -RemotePath \\contosofileserver\share1 -Credential $creds -LocalPath G: Dieser Befehl verwendet die Anmeldeinformationen, um sich mit dem Remote-SMB-Server zu authentifizieren. Ordnen Sie anschließend den Pfad für die Remotefreigabe auf G: Laufwerkbuchstabe zu (dies kann jeder verfügbare Laufwerkbuchstabe sein). Die auf diesem Containerhost erstellten Container können jetzt ihre Datenvolumes auf einen Pfad auf dem Laufwerk G: zuordnen.
+1. Ordnen Sie auf dem containerhost global die SMB-Remotefreigabe:
+    ```
+    $creds = Get-Credential
+    New-SmbGlobalMapping -RemotePath \\contosofileserver\share1 -Credential $creds -LocalPath G:
+    ```
+    Dieser Befehl wird die Anmeldeinformationen verwenden, um mit dem remote-SMB-Server zu authentifizieren. Ordnen Sie anschließend den Pfad für die Remotefreigabe auf G: Laufwerkbuchstabe zu (dies kann jeder verfügbare Laufwerkbuchstabe sein). Die auf diesem Containerhost erstellten Container können jetzt ihre Datenvolumes auf einen Pfad auf dem Laufwerk G: zuordnen.
 
-> Hinweis: Wenn die globale Zuordnung in SMB für Container verwendet wird, können alle Benutzer auf dem Containerhost auf die Remotefreigabe zugreifen. Jede auf dem Containerhost ausgeführte Anwendung hat außerdem Zugriff auf die zugeordnete Remotefreigabe.
+    > Hinweis: Wenn die globale Zuordnung in SMB für Container verwendet wird, können alle Benutzer auf dem Containerhost auf die Remotefreigabe zugreifen. Jede auf dem Containerhost ausgeführte Anwendung hat außerdem Zugriff auf die zugeordnete Remotefreigabe.
 
 2. Erstellen Sie Container mit Datenvolumes, die global bereitgestellten SMB-Freigaben zugeordnet sind. Führen Sie den Docker aus. Nennen Sie die Demo -v g:\ContainerData:G:\AppData1 microsoft/windowsservercore:1709 cmd.exe
 
-Innerhalb des Containers wird G:\AppData1 dem Verzeichnis der Remotefreigabe "ContainerData" zugeordnet. Alle Daten, die auf global zugeordneter Remotefreigabe gespeichert sind, sind für Anwendungen innerhalb des Containers verfügbar. Mehrere Container können mit dem gleichen Befehl Lese-/Schreibzugriff auf diese gemeinsam genutzten Daten erhalten.
+    Innerhalb des Containers wird G:\AppData1 dem Verzeichnis der Remotefreigabe "ContainerData" zugeordnet. Alle Daten, die auf global zugeordneter Remotefreigabe gespeichert sind, sind für Anwendungen innerhalb des Containers verfügbar. Mehrere Container können mit dem gleichen Befehl Lese-/Schreibzugriff auf diese gemeinsam genutzten Daten erhalten.
 
 Diese Unterstützung für die globale Zuordnung von SMB ist eine Feature für SMB-Clients, mit auf allen kompatiblen SMB-Servern funktioniert, einschließlich:
 

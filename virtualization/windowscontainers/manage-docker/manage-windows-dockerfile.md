@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
-ms.openlocfilehash: 4f42ee1c368638b521c33278c97f9ef1e7fdb8d0
-ms.sourcegitcommit: 2b5d806fc978e60fb71ce33ef491d4cfd6fc4456
+ms.openlocfilehash: a32d66251d8d9dddcd8abb1b64600459c903e317
+ms.sourcegitcommit: 2c22506a7fdbbbe5ab4138281fc9256a98b51efd
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/03/2018
-ms.locfileid: "2596058"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "3386055"
 ---
 # <a name="dockerfile-on-windows"></a>Dockerfile unter Windows
 
@@ -49,7 +49,7 @@ In ihrer grundlegendsten Form kann eine Dockerfile-Datei sehr einfach sein. Das 
 FROM microsoft/windowsservercore
 
 # Metadata indicating an image maintainer.
-MAINTAINER jshelton@contoso.com
+LABEL maintainer="jshelton@contoso.com"
 
 # Uses dism.exe to install the IIS role.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
@@ -61,11 +61,11 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-Weitere Beispiele von Dockerfiles für Windows finden Sie unter [Dockerfile für Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
+Weitere Beispiele von dockerfile-Dateien für Windows finden Sie im [Repository für Dockerfile Windows] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
 
 ## <a name="instructions"></a>Anweisungen
 
-Dockerfile-Anweisungen informieren das Docker-Modul über die erforderlichen Schritte zum Erstellen eines Containerimages. Diese Anweisungen werden der Reihe nach einzeln ausgeführt. Hier sehen Sie die Details zu einigen grundlegenden Dockerfile-Anweisungen. Eine vollständige Liste der Dockerfile Anweisungen, finden Sie unter [Dockerfile Verweis auf Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile-Anweisungen informieren das Docker-Modul über die erforderlichen Schritte zum Erstellen eines Containerimages. Diese Anweisungen werden der Reihe nach einzeln ausgeführt. Hier sehen Sie die Details zu einigen grundlegenden Dockerfile-Anweisungen. Eine vollständige Liste der Dockerfile-Anweisungen, finden Sie unter [Dockerfile-Referenz auf Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### <a name="from"></a>FROM
 
