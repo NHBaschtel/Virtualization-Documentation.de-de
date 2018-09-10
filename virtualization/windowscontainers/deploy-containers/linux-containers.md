@@ -2,7 +2,7 @@
 
 Dieses Feature verwendet [Hyper-V-Isolierung](../manage-containers/hyperv-container.md), um für die Containerunterstützung einen Linux-Kernel mit ausreichendem Betriebssystem auszuführen. Die Änderungen an Windows und Hyper-V dafür begannen mit _Windows10 Fall Creators Update_ und _Windows Server, Version 1709_. Dies zusammenzuführen erforderte aber auch eine Zusammenarbeit mit dem Open Source-Projekt [Moby](https://www.github.com/moby/moby), auf dem die Docker-Technologie aufsetzt, ebenso wie der Linux-Kernel. 
 
-[!VIDEO https://sec.ch9.ms/ch9/1e5a/08ff93f2-987e-4f8d-8036-2570dcac1e5a/LinuxContainer.mp4]
+[Linux-Container-Video](https://sec.ch9.ms/ch9/1e5a/08ff93f2-987e-4f8d-8036-2570dcac1e5a/LinuxContainer.mp4)
 
 Um dies auszuprobieren, benötigen Sie Folgendes:
 
