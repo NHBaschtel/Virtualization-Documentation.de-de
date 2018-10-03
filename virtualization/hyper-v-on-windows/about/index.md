@@ -7,12 +7,12 @@ ms.date: 06/25/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
-ms.openlocfilehash: 95b7b25ffe47f22f2f00e5911195ebbea660a1c0
-ms.sourcegitcommit: d625ea23c3eea484d54fa7bec10ac545b0386379
-ms.translationtype: HT
+ms.openlocfilehash: d71c5d2ae3c8ff78e36cc54686b10b1dc745e0c3
+ms.sourcegitcommit: 5e5644bff6dba70e384db6c80787b3bbe7adb93c
+ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 06/26/2018
-ms.locfileid: "2093677"
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "4303906"
 ---
 # <a name="introduction-to-hyper-v-on-windows-10"></a>Einführung in Hyper-V unter Windows 10
 
@@ -36,9 +36,9 @@ Die Virtualisierung ermöglicht folgendes:
 
 ## <a name="system-requirements"></a>Systemanforderungen
 
-Hyper-V ist in 64-Bit-Versionen von Windows Professional, Enterprise, und Education von Windows 8 und höher verfügbar.  Die Funktion steht für Windows Home Edition nicht zur Verfügung.
+Hyper-V ist in 64-Bit-Versionen von Windows 10 Pro, Enterprise und Education verfügbar. Es ist nicht in der Home-Edition verfügbar.
 
-> Ein Upgrade von Windows10 Home auf Windows10 Professional ist unter **Einstellungen** > **Update und Sicherheit** > **Aktivierung** möglich. Hier können Sie den Store besuchen und ein Upgrade erwerben.
+> Ein Upgrade von Windows 10 Home Edition auf Windows 10 Pro durch Öffnen der **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
 Die meisten Computer führen Hyper-V aus, jedoch ist jeder virtuelle Computer ein völlig getrenntes Betriebssystem.  Sie können auf einem Computer mit 4GB RAM in der Regel einen oder mehrere virtuelle Computer ausführen, obwohl Sie für zusätzliche virtuelle Computer oder zum Installieren und Ausführen von ressourcenintensiver Software wie Spielen, Videos oder -Engineering-Designsoftware weitere Ressourcen benötigen.
 
