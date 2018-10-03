@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
-ms.openlocfilehash: b80dd0d231d0f9435b7cc1c5e2b35bbf5a59d793
-ms.sourcegitcommit: a287211a0ed9cac7ebfe1718e3a46f0f26fc8843
+ms.openlocfilehash: 701112cac9c3f6d647fe5fb70309350fd0d07161
+ms.sourcegitcommit: d69ed13d505e96f514f456cdae0f93dab4fd3746
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/14/2018
-ms.locfileid: "2748886"
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "4340848"
 ---
 # <a name="container-host-deployment---windows-server"></a>Containerhostbereitstellung: Windows Server
 
@@ -45,28 +45,28 @@ Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 Restart-Computer -Force
 ```
 
-## <a name="install-a-specific-version-of-docker"></a>Installieren einer bestimmten Version von Docker
+## <a name="install-a-specific-version-of-docker"></a>Installieren Sie eine bestimmte Version von Docker
 
-Derzeit gibt es zwei Kanäle für Docker EE für Windows Server zur Verfügung:
+Derzeit gibt es zwei Kanäle für Docker EE für Windows Server verfügbar:
 
-* `17.06` -Verwenden Sie diese Version, wenn Sie Docker Enterprise Edition (Docker Engine, UCP, DTR) verwenden. `17.06` ist die Standardeinstellung.
-* `18.03` -Verwenden Sie diese Version, wenn Sie Docker EE Engine allein ausführen.
+* `17.06` -Verwenden Sie diese Version aus, wenn Sie Docker Enterprise Edition (Docker-Modul, UCP, DTR) verwenden. `17.06` ist die Standardeinstellung.
+* `18.03` -Verwenden Sie diese Version aus, wenn Sie Docker EE-Modul allein ausführen.
 
-Um eine bestimmte Version installieren möchten, verwenden Sie die `RequiredVersion` Flag:
+Um eine bestimmte Version zu installieren, verwenden die `RequiredVersion` Flag:
 
 ```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion 18.03
 ```
 
-Installieren von bestimmten Docker EE Versionen erfordern möglicherweise eine Aktualisierung zuvor installierten DockerMsftProvider Module. So aktualisieren Sie:
+Installieren von Docker EE Versionen erfordern ein Update für zuvor installierten DockerMsftProvider Module. So aktualisieren Sie:
 
 ```PowerShell
 Update-Module DockerMsftProvider
 ```
 
-## <a name="update-docker"></a>Docker aktualisieren
+## <a name="update-docker"></a>Aktualisieren von Docker
 
-Wenn Sie Docker EE Engine aus einer früheren Kanal zu einem späteren Kanal aktualisieren müssen, verwenden Sie sowohl die `-Update` und `-RequiredVersion` Flags:
+Wenn Sie Docker EE-Modul von einer früheren Kanal zu einem späteren Kanal aktualisieren müssen, verwenden Sie sowohl die `-Update` und `-RequiredVersion` Flags:
 
 ```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -RequiredVersion 18.03
@@ -75,6 +75,24 @@ Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -Re
 ## <a name="install-base-container-images"></a>Installieren von Basiscontainerimages
 
 Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als Containerbetriebssystem verfügbar. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Sie eigene Images auf docker.com).
+
+Mit der Veröffentlichung von Windows Server 2019 sind Microsoft bezogen containerimages mit einer neuen Registrierung aufgerufen, der Microsoft-Container-Registrierung verschoben. Container-Images, die von Microsoft veröffentlichten sollten weiterhin über Docker Hub erkannt werden. Für neue Container-Images mit Windows Server 2019 und darüber hinaus Sie veröffentlicht sieht sie von den MCR abrufen. Für ältere containerimages vor Windows Server 2019 veröffentlicht sollten Sie weiterhin pull von Docker Registrierung.
+
+### <a name="windows-server-2019-and-newer"></a>WindowsServer 2019 und höher
+
+So installieren Sie das "Windows Server Core"-Basisimage, führen Sie Folgendes aus:
+
+```PowerShell
+docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+```
+
+So installieren Sie das Basisimage "Nano Server", führen Sie Folgendes aus:
+
+```PowerShell
+docker pull mcr.microsoft.com/windows/nanoserver:1809
+```
+
+### <a name="windows-server-2016-versions-1607-1803"></a>Windows Server 2016 (Versionen 1607 1803)
 
 Zum Installieren des Basisimages für Windows Server Core führen Sie folgenden Befehl aus:
 

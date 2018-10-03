@@ -7,12 +7,12 @@ ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
-ms.openlocfilehash: 71719fcbb6021bd26a464339a8caa9c4cb5698b9
-ms.sourcegitcommit: 2b5d806fc978e60fb71ce33ef491d4cfd6fc4456
-ms.translationtype: HT
+ms.openlocfilehash: 8ff9373bd943c360079679a7e41256c24aa21aa8
+ms.sourcegitcommit: d69ed13d505e96f514f456cdae0f93dab4fd3746
+ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/03/2018
-ms.locfileid: "2596048"
+ms.lasthandoff: 10/03/2018
+ms.locfileid: "4340868"
 ---
 # <a name="windows-container-requirements"></a>Anforderungen von Windows-Containern
 
@@ -20,7 +20,7 @@ In diesen Handbüchern sind die Anforderungen für einen Windows-Containerhost a
 
 ## <a name="os-requirements"></a>Betriebssystemanforderungen
 
-- Das Feature "Windows-Container" ist nur für Windows Server Build 1709, Windows Server 2016 (Core und mit Desktopdarstellung) und Windows 10 Professional und Enterprise (Anniversary Edition) verfügbar.
+- Das Feature "Windows-Container" ist nur verfügbar auf Windows Server 2016 (Core und mit Desktop Experience), Windows 10 Professional und Enterprise (Anniversary Edition) und höher.
 - Die Hyper-V-Rolle muss vor der Ausführung des Hyper-V-Containers installiert werden.
 - Bei Windows Server-Containerhosts muss Windows auf Laufwerk c:\ installiert werden. Diese Einschränkung gilt nicht, wenn nur Hyper-V Container bereitgestellt werden.
 
@@ -29,7 +29,7 @@ In diesen Handbüchern sind die Anforderungen für einen Windows-Containerhost a
 Wenn ein Windows-Containerhost von einem virtuellen Hyper-V-Computer ausgeführt wird und auch Hyper-V-Container hostet, muss die geschachtelte Virtualisierung aktiviert werden. Für die geschachtelte Virtualisierung ist Folgendes erforderlich:
 
 - Mindestens 4GB verfügbarer Arbeitsspeicher (RAM) für den virtualisierten Hyper-V-Host
-- Windows Server Build 1709, Windows Server 2016 oder Windows 10 auf dem Hostsystem und Windows Server (Vollständig, Core) auf dem virtuellen Computer
+- Windows Server 2019, Windows Server Version 1803, Windows Server, Version 1709, Windows Server 2016 oder Windows 10 auf dem Hostsystem und Windows Server (vollständig, Core) auf dem virtuellen Computer.
 - Ein Prozessor mit Intel VT-x (dieses Feature steht zurzeit nur für Intel-Prozessoren zur Verfügung)
 - Die Containerhost-VM benötigt zudem mindestens 2 virtuelle Prozessoren.
 
@@ -47,7 +47,7 @@ Für Windows-Container stehen zwei Basisimages zur Verfügung – Windows Server
 </thead>
 <tbody>
 <tr valign="top">
-<td><center>Windows Server 2016 (Standard oder Datacenter)</center></td>
+<td><center>WindowsServer 2016 / 2019 (Standard oder Datacenter)</center></td>
 <td><center>Server Core/Nano Server</center></td>
 <td><center>Server Core/Nano Server</center></td>
 </tr>
