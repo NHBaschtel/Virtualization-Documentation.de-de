@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: bb3681a83991b3d4e24348b686146616d4a88c4f
-ms.sourcegitcommit: db508decd9bf6c0dce9952e1a86bf80f00d025eb
+ms.openlocfilehash: 4f21efba8dd1079302b56e98d954b3ba574779e9
+ms.sourcegitcommit: 2779f01978b37ec4f8d895febe7037272fb2c703
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/20/2018
-ms.locfileid: "2315663"
+ms.lasthandoff: 10/10/2018
+ms.locfileid: "4492806"
 ---
 # <a name="windows-container-network-drivers"></a>Windows-Container-Netzwerktreiber  
 
@@ -23,19 +23,19 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
   > Mit dem Windows 10 Creators Update werden jetzt mehrere NAT-Netzwerke unterstützt.
 
 - **transparent** – einem Netzwerk hinzugefügte Container, die mit einem NAT-Treiber erstellt wurden und direkt mit dem physischen Netzwerk über einen *externen* Hyper-V-Switch verbunden werden. IPs aus dem physischen Netzwerk können mithilfe eines externen DHCP-Servers statisch (erfordert eine benutzerdefinierte ``--subnet``-Option) oder dynamisch zugewiesen werden. 
-  > Hinweis: aufgrund von der unter Anforderung, die Container Hosts über eine transparente Netzwerk verbinden wird nicht unterstützt auf virtuellen Azure-Computern.
+  > Hinweis: aufgrund von der folgenden Anforderung containerhosts über ein transparentes Netzwerk verbinden wird nicht unterstützt auf Azure-VMs.
   
-  > Erfordert: Wenn dieser Modus verwendet wird in einem Szenario Virtualisierung (Container-Host ist ein virtueller Computer) _spoofing von MAC-Adresse ist erforderlich_.
+  > Erfordert Folgendes: Wenn dieser Modus verwendet wird in einem Szenario mit Virtualisierung (Container-Host ist eine virtuelle Maschine) _Spoofing von MAC-Adressen erforderlich ist_.
 
 - **Überlagerung** - Wenn das Docker-Modul im [Schwarmmodus](../manage-containers/swarm-mode.md) ausgeführt wird, können Container, die mit einem Überlagerungsnetzwerks verbunden sind mit anderen, an dasselbe Netzwerk angeschlossen Containern, über mehrere Containerhosts kommunizieren. Jedes Überlagerungsnetzwerk, das für einen Schwarmcluster erstellt wird, wird mit einem eigenen IP-Subnetz erstellt, das durch ein privates IP-Präfix definiert ist. Der Überlagerungsnetzwerktreiber verwendet VXLAN Kapselung. **Kann mit Kubernetes verwendet werden, wenn Sie die geeignete Steuerelement Netzwerkebenen (Flannel oder OVN) verwenden.**
-  > Erfordert: Stellen Sie sicher, dass Ihre Umgebung diese *erforderlichen* [erforderliche Komponenten](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) für die Erstellung der Überlagerung Netzwerke erfüllt.
+  > Erfordert: Stellen Sie sicher, dass Ihre Umgebung diese *erforderlichen* [Komponenten](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) zum Erstellen von überlagerungsnetzwerke erfüllt.
 
-  > Erfordert: Erfordert Windows Server 2016 mit [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217), Windows 10 Ersteller Update oder eine spätere Version.
+  > Erfordert: Erfordert Windows Server 2016 mit [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217), Windows 10 Creators Update oder einer neueren Version.
 
 - **l2bridge** -verbundener Container, der mit einem Netzwerk mit dem Treiber "l2bridge" erstellt wurde und in demselben IP-Subnetz wie der Containerhost ist und mit dem physischen Netzwerk über einen *externen* Hyper-V-Switch verbunden ist. Die IP-Adressen müssen statisch aus dem gleichen Präfix wie der Containerhost zugewiesen werden. Alle Containerendpunkte auf dem Host verfügen aufgrund der Layer-2-Adressübersetzung beim Eingang und -Ausgang über dieselbe MAC-Adresse als Host (Umschreiben der MAC-Adresse).
-  > Erfordert: Wenn dieser Modus verwendet wird in einem Szenario Virtualisierung (Container-Host ist ein virtueller Computer) _spoofing von MAC-Adresse ist erforderlich_.
+  > Erfordert Folgendes: Wenn dieser Modus verwendet wird in einem Szenario mit Virtualisierung (Container-Host ist eine virtuelle Maschine) _Spoofing von MAC-Adressen erforderlich ist_.
   
-  > Erfordert: Erfordert Windows Server 2016, Windows 10 Ersteller Update- oder eine spätere Version.
+  > Erfordert: Erfordert Windows Server 2016, Windows 10 Creators Update oder einer neueren Version.
 
 - **l2tunnel** – Ähnlich wie l2bridge _sollte dieser Treiber nur in einem Microsoft-Cloudstapel verwendet werden_. Pakete, die aus einem Container kommen, werden an den Virtualisierungshost gesendet, wenn SDN-Richtlinien angewendet werden.
 
