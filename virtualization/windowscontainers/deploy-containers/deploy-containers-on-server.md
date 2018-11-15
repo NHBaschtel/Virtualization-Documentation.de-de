@@ -2,18 +2,18 @@
 title: Bereitstellen von Windows-Containern unter Windows Server
 description: Bereitstellen von Windows-Containern unter Windows Server
 keywords: Docker, Container
-author: enderb-ms
+author: taylorb-microsoft
 ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
-ms.openlocfilehash: 701112cac9c3f6d647fe5fb70309350fd0d07161
-ms.sourcegitcommit: d69ed13d505e96f514f456cdae0f93dab4fd3746
+ms.openlocfilehash: 0d982996a1aabd434df04551f30725a21b31d500
+ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "4340848"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "6948009"
 ---
 # <a name="container-host-deployment---windows-server"></a>Containerhostbereitstellung: Windows Server
 
@@ -49,8 +49,8 @@ Restart-Computer -Force
 
 Derzeit gibt es zwei Kanäle für Docker EE für Windows Server verfügbar:
 
-* `17.06` -Verwenden Sie diese Version aus, wenn Sie Docker Enterprise Edition (Docker-Modul, UCP, DTR) verwenden. `17.06` ist die Standardeinstellung.
-* `18.03` -Verwenden Sie diese Version aus, wenn Sie Docker EE-Modul allein ausführen.
+* `17.06` – Verwenden Sie diese Version aus, wenn Sie Docker Enterprise Edition (Docker-Modul, UCP, DTR) verwenden. `17.06` ist die Standardeinstellung.
+* `18.03` – Verwenden Sie diese Version aus, wenn Sie Docker EE-Modul allein ausführen.
 
 Um eine bestimmte Version zu installieren, verwenden die `RequiredVersion` Flag:
 
@@ -58,7 +58,7 @@ Um eine bestimmte Version zu installieren, verwenden die `RequiredVersion` Flag:
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion 18.03
 ```
 
-Installieren von Docker EE Versionen erfordern ein Update für zuvor installierten DockerMsftProvider Module. So aktualisieren Sie:
+Installieren von Docker EE Versionen erfordern ein Update zu zuvor installierten DockerMsftProvider-Modulen. So aktualisieren Sie:
 
 ```PowerShell
 Update-Module DockerMsftProvider
@@ -66,7 +66,7 @@ Update-Module DockerMsftProvider
 
 ## <a name="update-docker"></a>Aktualisieren von Docker
 
-Wenn Sie Docker EE-Modul von einer früheren Kanal zu einem späteren Kanal aktualisieren müssen, verwenden Sie sowohl die `-Update` und `-RequiredVersion` Flags:
+Wenn Sie Docker EE-Modul aus einer früheren Kanal zu einem späteren Kanal aktualisieren müssen, verwenden Sie sowohl die `-Update` und `-RequiredVersion` Flags:
 
 ```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -RequiredVersion 18.03
@@ -76,17 +76,17 @@ Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -Re
 
 Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als Containerbetriebssystem verfügbar. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Sie eigene Images auf docker.com).
 
-Mit der Veröffentlichung von Windows Server 2019 sind Microsoft bezogen containerimages mit einer neuen Registrierung aufgerufen, der Microsoft-Container-Registrierung verschoben. Container-Images, die von Microsoft veröffentlichten sollten weiterhin über Docker Hub erkannt werden. Für neue Container-Images mit Windows Server 2019 und darüber hinaus Sie veröffentlicht sieht sie von den MCR abrufen. Für ältere containerimages vor Windows Server 2019 veröffentlicht sollten Sie weiterhin pull von Docker Registrierung.
+Mit der Veröffentlichung von Windows Server 2019 sind Microsoft bezogen containerimages mit einer neuen Registrierung aufgerufen, der Microsoft-Container-Registrierung verschoben. Container-Images, die von Microsoft veröffentlichten sollten weiterhin über Docker Hub erkannt werden. Für neue Container-Images mit Windows Server 2019 und darüber hinaus, Sie veröffentlicht sollte sie aus der MCR innen aussehen. Für ältere containerimages vor Windows Server 2019 veröffentlicht sollten Sie weiterhin pull von Docker Registrierung.
 
 ### <a name="windows-server-2019-and-newer"></a>WindowsServer 2019 und höher
 
-So installieren Sie das "Windows Server Core"-Basisimage, führen Sie Folgendes aus:
+So installieren Sie das Basisimage "Windows Server Core", führen Sie Folgendes aus:
 
 ```PowerShell
 docker pull mcr.microsoft.com/windows/servercore:ltsc2019
 ```
 
-So installieren Sie das Basisimage "Nano Server", führen Sie Folgendes aus:
+So installieren Sie das Basisimage 'Nano Server', führen Sie Folgendes aus:
 
 ```PowerShell
 docker pull mcr.microsoft.com/windows/nanoserver:1809

@@ -12,15 +12,6 @@
 ## [Schritt1: Verwenden der Insider-Images](quick-start/Using-Insider-Container-Images.md)
 ## [Schritt2: Erstellen und Ausführen der Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ## [Schritt3: Bekannte Probleme](quick-start/Insider-Known-Issues.md)
-## [Vorschau für Linux-Container](deploy-containers/linux-containers.md)
-
-# Bereitstellen von Windows-Containern
-## [Systemanforderungen](deploy-containers/system-requirements.md)
-## [Versionskompatibilität](deploy-containers/version-compatibility.md)
-## [Bereitstellen](deploy-containers/deploy-containers-on-server.md)
-## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
-## [Active Directory-Dienstkonten](manage-containers/manage-serviceaccounts.md)
-## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Verwalten von Docker unter Windows
 ## [Docker-Modul unter Windows](manage-docker/configure-docker-daemon.md)
@@ -28,7 +19,6 @@
 ## [Optimieren von Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
 ## [Containerspeicher](manage-containers/container-storage.md)
 ## [Erste Schritte mit dem Schwarmmodus](manage-containers/swarm-mode.md)
-## [Verwalten von Docker mit PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 ## [Remoteverwaltung eines Windows-Docker-Hosts](management/manage_remotehost.md)
 ## [Ressourcensteuerung](manage-containers/resource-controls.md)
 
@@ -39,11 +29,14 @@
 ## [Erweiterte Netzwerkoptionen](container-networking/advanced.md)
 
 # Kubernetes unter Windows 
-## [Erste Schritte](kubernetes/getting-started-kubernetes-windows.md)
-## [Erstellen eines Linux Master-Knotens](kubernetes/creating-a-linux-master.md)
-## [Konfigurieren der Netzwerktopologie](kubernetes/configuring-host-gateway-mode.md)
+## [1 – Übersicht](kubernetes/getting-started-kubernetes-windows.md)
+## [2 – Erstellen eines Kubernetes-Masters](kubernetes/creating-a-linux-master.md)
+## [3 – auswählen eine Lösung](kubernetes/network-topologies.md)
+## [4 - Beitritt zu Windows-Worker](kubernetes/joining-windows-workers.md)
+## [5 - Beitritt Linux-Worker](kubernetes/joining-linux-workers.md)
+## [6 – Bereitstellen von Kubernetes-Ressourcen](kubernetes/deploying-resources.md)
+## [Fehlerbehebung](kubernetes/common-problems.md)
 ## [Kompilieren von Kubernetes-Binärdateien](kubernetes/compiling-kubernetes-binaries.md)
-## [Problembehandlung](kubernetes/common-problems.md)
 
 # Service Fabric – Schnellstart
 ## [Bereitstellen Ihres ersten Containers](/azure/service-fabric/service-fabric-quickstart-containers)
@@ -63,5 +56,12 @@
 ## [Videos und Blogs der Community](communitylinks.md)
 ## [Problembehandlung](troubleshooting.md)
 
+# Referenz
+## [Systemanforderungen](deploy-containers/system-requirements.md)
+## [Versionskompatibilität](deploy-containers/version-compatibility.md)
+## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
+## [Linux-Container unter Windows](deploy-containers/linux-containers.md)
+## [Active Directory-Dienstkonten](manage-containers/manage-serviceaccounts.md)
+## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)

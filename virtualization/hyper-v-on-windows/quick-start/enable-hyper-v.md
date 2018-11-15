@@ -7,12 +7,12 @@ ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
-ms.openlocfilehash: dd4021c653d98a3bd7a338d9f502a572830f344d
-ms.sourcegitcommit: 5e5644bff6dba70e384db6c80787b3bbe7adb93c
+ms.openlocfilehash: cd576f72c9947cd6f79cc362709c1a4ceab9b47e
+ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "4303926"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "6947959"
 ---
 # <a name="install-hyper-v-on-windows-10"></a>Installieren von Hyper-V unter Windows10
 
@@ -30,7 +30,7 @@ Hyper-V kann auf unterschiedliche Weise aktiviert werden – in der Windows 10-S
 
 Die Hyper-V-Rolle kann unter Windows 10 Home **nicht** installiert werden.
 
-Ein Upgrade von Windows 10 Home Edition auf Windows 10 Pro durch **Einstellungen**öffnen > **Update und Sicherheit** > **Aktivierung**.
+Ein Upgrade von Windows 10 Home auf Windows 10 Pro durch **Einstellungen**öffnen > **Update und Sicherheit** > **Aktivierung**.
 
 Weitere Informationen und Hinweise zur Problembehandlung finden Sie unter [Systemanforderungen für Hyper-V unter Windows10](../reference/hyper-v-requirements.md).
 
@@ -70,9 +70,11 @@ Weitere Informationen zu DISM finden Sie in der [technischen Referenz zu DISM](h
 
 1. Klicken Sie mit der rechten Maustaste auf die Windows-Taste, und wählen Sie "Apps und Features" aus.
 
-2. Wählen Sie **Windows-Features aktivieren oder deaktivieren** aus.
+2. Wählen Sie die **Programme und Funktionen** auf der rechten Seite unter Verwandte Einstellungen. 
 
-3. Wählen Sie **Hyper-V** aus, und klicken Sie auf **OK**.
+3. Wählen Sie **Windows-Features aktivieren oder deaktivieren** aus.
+
+4. Wählen Sie **Hyper-V** aus, und klicken Sie auf **OK**.
 
 ![Windows-Programme und Features-Dialogfeld](media/enable_role_upd.png)
 

@@ -2,13 +2,13 @@
 title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
-author: patricklang
-ms.openlocfilehash: 8657c03ad71685b0f01532894781c44d76e1b0bc
-ms.sourcegitcommit: d69ed13d505e96f514f456cdae0f93dab4fd3746
+author: taylorb-microsoft
+ms.openlocfilehash: c744da429ed8116363437d3117ae1432d7a94f8d
+ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "4340878"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "6948079"
 ---
 # <a name="windows-container-version-compatibility"></a>Versionskompatibilität von Windows-Containern
 
@@ -29,10 +29,10 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
         <td style="background-color:#F1F8E9"><b>Windows 10 1609, 1703</b><br/>Builds: 14393.*, 15063.*</td>
         <td style="background-color:#F1F8E9"><b>Windows Server, Version 1709</b><br/>Builds: 16299.*</td>
         <td style="background-color:#F1F8E9"><b>Windows 10 Fall Creators Update</b><br/>Builds: 16299.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows Server, Version 1803</b><br/>Builds 17134.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows 10, Version 1803</b><br/>Builds 17134.*</td>
-        <td style="background-color:#F1F8E9"><b>WindowsServer 2019</b><br/>Builds 17763.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows 10, Version 1809</b><br/>Builds 17763.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows Server, Version 1803</b><br/>17134.*-Builds</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10, Version 1803</b><br/>17134.*-Builds</td>
+        <td style="background-color:#F1F8E9"><b>WindowsServer 2019</b><br/>17763.*-Builds</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10, Version 1809</b><br/>17763.*-Builds</td>
     </tr>
     <tr>
         <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
@@ -57,7 +57,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
         <td>Unterstützt<br/> Nur `hyperv`-Isolation</td>
     </tr>
     <tr>
-        <td style="background-color:#E3F2FD"><b>Windows Server, Version 1803</b><br/>Builds 17134.*</td>
+        <td style="background-color:#E3F2FD"><b>Windows Server, Version 1803</b><br/>17134.*-Builds</td>
         <td>Nicht unterstützt.</td>
         <td>Nicht unterstützt.</td>
         <td>Nicht unterstützt.</td>
@@ -68,7 +68,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
         <td>Unterstützt<br/> Nur `hyperv`-Isolation</td>
     </tr>
     <tr>
-        <td style="background-color:#E3F2FD"><b>WindowsServer 2019</b><br/>Builds 17763.*</td>
+        <td style="background-color:#E3F2FD"><b>WindowsServer 2019</b><br/>17763.*-Builds</td>
         <td>Nicht unterstützt.</td>
         <td>Nicht unterstützt.</td>
         <td>Nicht unterstützt.</td>

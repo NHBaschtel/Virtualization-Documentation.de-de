@@ -2,28 +2,28 @@
 title: Windows-Container unter Windows Server
 description: Containerbereitstellung – Schnellstart
 keywords: Docker, Container
-author: enderb-ms
+author: cwilhit
 ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
-ms.openlocfilehash: 7d526aa64d478516a3f66acaf62b62b45282e5af
-ms.sourcegitcommit: 3d72f15651da378908f134916cd5c9d2064f8f95
-ms.translationtype: HT
+ms.openlocfilehash: ed60470f18f644fcc4fe741d02e6f6e39af48368
+ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
+ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "2256933"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "6947989"
 ---
 # <a name="windows-containers-on-windows-server"></a>Windows-Container unter Windows Server
 
-Die Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features unter Windows Server 2016. In dieser Übung installieren Sie die Containerrolle, und stellen einen einfachen Windows Server-Container bereit. Wenn Sie sich mit Containern vertraut machen möchten, finden Sie unter [Windows-Container](../about/index.md) entsprechende Informationen.
+In dieser Übung führt durch die einfache Bereitstellung und Verwendung des Windows-containerfeatures unter Windows Server 2019. In dieser Übung installieren Sie die Containerrolle, und stellen einen einfachen Windows Server-Container bereit. Wenn Sie sich mit Containern vertraut machen möchten, finden Sie unter [Windows-Container](../about/index.md) entsprechende Informationen.
 
-Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2016. Weitere Schnellstartdokumentation, darunter Container unter Windows 10, finden Sie links auf dieser Seite im Inhaltsverzeichnis.
+Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2019. Weitere Schnellstartdokumentation, darunter Container unter Windows 10, finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
 **Voraussetzungen:**
 
-Ein Computersystem (physisch oder virtuell), auf dem Windows Server 2016 ausgeführt wird Wenn Sie Windows Server 2016 TP5 verwenden, updaten Sie auf [Windows Server 2016 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016 ).
+Ein Computersystem (physisch oder virtuell) dem Windows Server 2019 ausgeführt. Wenn Sie Windows Server 2019 Insider Preview verwenden, aktualisieren Sie auf [Windows Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
 
 > Wichtige Updates sind erforderlich, damit das Feature „Windows-Container“ funktioniert. Installieren Sie alle Updates, bevor Sie dieses Tutorial durcharbeiten.
 
@@ -96,13 +96,13 @@ Für diese Übung laden Sie ein vorab erstelltes .NET-Beispielimage von der Dock
 Stellen Sie den .Net-Container mit `docker run` bereit. Dabei wird auch das Containerimage heruntergeladen, was mehrere Minuten dauern kann.
 
 ```console
-docker run microsoft/dotnet-samples:dotnetapp-nanoserver
+docker run microsoft/dotnet-samples:dotnetapp-nanoserver-1809
 ```
 
 Der Container startet, gibt die „Hello World“-Nachricht aus und wird beendet.
 
 ```console
-         Dotnet-bot: Welcome to using .NET Core!
+         Hello from .NET Core!
     __________________
                       \
                        \
@@ -143,8 +143,8 @@ Der Container startet, gibt die „Hello World“-Nachricht aus und wird beendet
 
 
 **Environment**
-Platform: .NET Core 2.0
-OS: Microsoft Windows 10.0.14393
+Platform: .NET Core
+OS: Microsoft Windows 10.0.17763
 ```
 
 Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu „Docker Run“ auf Docker.com]( https://docs.docker.com/engine/reference/run/).
