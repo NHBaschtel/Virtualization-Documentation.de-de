@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
-ms.openlocfilehash: 477c6079d6e90a206386d1810bdb1449e087a4be
-ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
+ms.openlocfilehash: 7db0135e5d5079d3b8cce815d051ecd6a7cb896b
+ms.sourcegitcommit: 614e3ca3e6f4373b999a501a2829adbaa61de4c4
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "6948089"
+ms.lasthandoff: 11/19/2018
+ms.locfileid: "7277534"
 ---
 # <a name="linux-containers-on-windows"></a>Linux-Container unter Windows
 
@@ -49,7 +49,7 @@ Um festzustellen, ob Sie mit Moby VM ausführen, überprüfen Sie Hyper-V-Manage
 
 Um LCOW zu testen, führen Sie die Linux-Container-Anweisungen in [diesem Handbuch Get started](../quick-start/quick-start-windows-10.md)
 
-Linux-Container mit Hyper-V-Isolierung Ausführen jeder Linux-Container (LCOW) in einer optimierten Linux VM mit ausreichendem Betriebssystem-Container ausgeführt.  Im Gegensatz zu der Moby VM-Ansatz jede LCOW verfügt über einen eigenen Kernel, und eigene VM-Sandbox ist.  Sie können auch direkt von Docker unter Windows verwaltet.
+Linux-Container mit Hyper-V-Isolierung Ausführen jeder Linux-Container (LCOW) in einer optimierten Linux VM mit ausreichendem Betriebssystem-Container ausgeführt.  Im Gegensatz zu der Moby VM-Ansatz hat jede LCOW einen eigenen Kernel und eigene VM-Sandbox.  Sie können auch direkt von Docker unter Windows verwaltet.
 
 ![Linux-Container mit Hyper-V-Isolierung (LCOW)](media/lcow-approach.png)
 
@@ -123,6 +123,6 @@ Rechts empfehlen wir nun LCOW an eine Person, die:
 
 ## <a name="other-options-we-considered"></a>Andere Optionen, die wir als betrachtet.
 
-Wenn wir Verfahren zum Ausführen von Linux-Container unter Windows angezeigt wurden, als wir WSL betrachtet.  Schließlich haben wir uns, dass ein Ansatz virtualisierungsbasierte damit Linux-Container unter Windows mit Linux-Container unter Linux konsistent sind.  Mit Hyper-V wird LCOW auch sicherer.  Wir möglicherweise erneut in der Zukunft auswerten, aber für den Moment LCOW weiterhin Hyper-V verwenden.
+Wenn wir Verfahren zum Ausführen von Linux-Container unter Windows angezeigt wurden, als wir WSL betrachtet. Schließlich haben wir uns einen Ansatz virtualisierungsbasierte, sodass Linux-Container unter Windows mit Linux-Container unter Linux konsistent sind. Mit Hyper-V wird LCOW auch sicherer. Wir möglicherweise erneut in der Zukunft auswerten, aber für den Moment LCOW weiterhin Hyper-V verwenden.
 
-Wenn Sie Gedanken haben, senden Sie Feedback über Github oder UserVoice.  Vielen Dank für besonders auf Feedback über die spezifischen Erfahrung, die Sie anzeigen möchten.
+Wenn Sie Gedanken haben, senden Sie Feedback über GitHub oder UserVoice.  Vielen Dank für besonders auf Feedback über die spezifischen Erfahrung, die Sie anzeigen möchten.
