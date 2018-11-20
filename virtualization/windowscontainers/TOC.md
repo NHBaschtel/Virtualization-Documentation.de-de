@@ -35,7 +35,7 @@
 ## [4 - Beitritt zu Windows-Worker](kubernetes/joining-windows-workers.md)
 ## [5 - Beitritt Linux-Worker](kubernetes/joining-linux-workers.md)
 ## [6 – Bereitstellen von Kubernetes-Ressourcen](kubernetes/deploying-resources.md)
-## [Fehlerbehebung](kubernetes/common-problems.md)
+## [Problembehandlung](kubernetes/common-problems.md)
 ## [Kompilieren von Kubernetes-Binärdateien](kubernetes/compiling-kubernetes-binaries.md)
 
 # Service Fabric – Schnellstart
@@ -61,6 +61,7 @@
 ## [Versionskompatibilität](deploy-containers/version-compatibility.md)
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Linux-Container unter Windows](deploy-containers/linux-containers.md)
+## [RunHCS und Containerd](deploy-containers/containerd.md)
 ## [Active Directory-Dienstkonten](manage-containers/manage-serviceaccounts.md)
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
