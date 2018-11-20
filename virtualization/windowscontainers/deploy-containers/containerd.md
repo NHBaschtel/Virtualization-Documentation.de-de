@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
-ms.openlocfilehash: 8a68bf9e5e78add65aedb51fff8521ee258e353e
-ms.sourcegitcommit: 9a61fc06c25d17ddb61124a21a3ca821828b833d
+ms.openlocfilehash: 970de62c9a0011fa09d6741b2665479efd394313
+ms.sourcegitcommit: 166aa2430ea47d7774392e65a9875501f86dd5ed
 ms.translationtype: MT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/20/2018
-ms.locfileid: "7460495"
+ms.locfileid: "7460576"
 ---
 # <a name="container-platform-tools-on-windows"></a>Container-Plattform-Tools unter Windows
 
@@ -46,12 +46,15 @@ Zu diesem Zeitpunkt ruft Docker weiterhin direkt in die HCS. Zukunft, jedoch Con
 
 ## <a name="runhcs"></a>runhcs
 
-RunHCS ist eine Verzweigung von Runc.  Wie Runc Runhcs ist ein Befehlszeilen-Client für die Ausführung von Anwendungen gemäß der Open Container Initiative (OCI)-Format und eine kompatible Implementierung der Open Container Initiative-Spezifikation.  
+`runhcs` ist eine Verzweigung von `runc`.  Wie `runc`, `runhcs` ein Befehlszeilen-Client für die Ausführung von Anwendungen gemäß der Open Container Initiative (OCI)-Format und eine kompatible Implementierung der Open Container Initiative-Spezifikation.
 
 Funktionale Unterschiede zwischen Runc und Runhcs umfassen:
 
-* Runhcs unter Windows ausgeführt wird
-* Runhcs kann sowohl Windows und Linux- [Hyper-V-Container](../manage-containers/hyperv-container.md) zusätzlich zu Windows-Prozess-Container ausgeführt werden.
+* `runhcs` unter Windows ausführen.  Er kommuniziert mit dem [HCS](containerd.md#hcs) zum Erstellen und Verwalten von Containern.
+* `runhcs` eine Vielzahl von verschiedene Containertypen kann ausgeführt werden.
+
+  * Windows und Linux- [Hyper-V-Container](../manage-containers/hyperv-container.md)
+  * Windows verarbeitet Container (Container-Image muss den Container-Host entsprechen)
 
 **Syntax:**
 
@@ -89,6 +92,18 @@ Container-Befehle in Runhcs verfügbar sind:
 
 Der einzige Befehl, der mit mehreren Containern angesehen werden konnten ist **Liste**.  Es enthält ausgeführt wird (oder angehalten) Container durch Runhcs mit dem angegebenen Stamm gestartet.
 
+### <a name="hcs"></a>HCS
+
+Wir haben zwei Wrapper verfügbar auf GitHub, mit der HCS-Schnittstelle. Da die HCS eine C-API ist, erleichtern Wrapper aufrufen, die HCS aus höherer Ebene Sprachen.  
+
+* [Hcsshim](https://github.com/microsoft/hcsshim) - HCSShim ist in Go geschrieben, und es ist die Grundlage für Runhcs.
+Beziehen Sie die aktuelle Version aus AppVeyor, oder erstellen Sie es selbst.
+* [Dotnet-Computevirtualization](https://github.com/microsoft/dotnet-computevirtualization) -Dotnet-Computevirtualization ist ein c#-Wrapper für die HCS.
+
+Wenn Sie die HCS (entweder direkt oder über einen Wrapper) verwenden möchten, oder Sie einen Rost/Haskell/InsertYourLanguage Wrapper um die HCS machen möchten, Schreiben Sie einen Kommentar.
+
+Eine genauere Betrachtung der HCS Überwachen [John Starks DockerCon Präsentation](https://www.youtube.com/watch?v=85nCF5S8Qok).
+
 ## <a name="containerdcri"></a>Containerd-cri
 
 > ! Hinweis: CRI-Unterstützung ist nur in Server 2019/Windows 10 1809 und höher verfügbar.
@@ -103,26 +118,3 @@ Links zu den CRI-Spezifikation:
 ![Containerd-basierte Container Umgebungen](media/containerd-platform.png)
 
 Obwohl RunHCS und Containerd Systeme, auf denen Windows Server 2016 oder höher verwaltet werden können, erforderlich Pods (Gruppen von Containern) unterstützen, grundlegend geändert Container-Tools in Windows.  CRI-Unterstützung ist in Windows Server 2019/Windows 10 1809 verfügbar und höher.
-
-## <a name="hcs"></a>HCS
-
-Wir haben zwei Wrapper verfügbar auf GitHub, mit der HCS-Schnittstelle. Da die HCS eine C-API ist, erleichtern Wrapper aufrufen, die HCS aus höherer Ebene Sprachen.  
-
-### <a name="hcsshim"></a>HCSShim
-
-HCSShim in Go geschrieben wird, und es ist die Grundlage für Runhcs.
-Beziehen Sie die aktuelle Version aus AppVeyor, oder erstellen Sie es selbst.
-
-Entdecken Sie es in [GitHub](https://github.com/microsoft/hcsshim).
-
-### <a name="dotnet-computevirtualization"></a>Dotnet-computevirtualization
-
-> ! Beachten Sie dies ist eine referenzimplementierung – eignet sich für Test-/nur.
-
-Dotnet-Computevirtualization ist ein c#-Wrapper für die HCS.
-
-Entdecken Sie es auf [GitHub](https://github.com/microsoft/dotnet-computevirtualization).
-
-Wenn Sie die HCS (entweder direkt oder über einen Wrapper) verwenden möchten, oder Sie einen Rost/Haskell/InsertYourLanguage Wrapper um die HCS machen möchten, Schreiben Sie einen Kommentar.
-
-Eine genauere Betrachtung der HCS Überwachen [John Starks DockerCon Präsentation](https://www.youtube.com/watch?v=85nCF5S8Qok).
