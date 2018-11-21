@@ -1,5 +1,5 @@
 ---
-title: Erstellen des Container-Stapels
+title: Windows-Container-Plattform
 description: Weitere Informationen zu neuen Container verfügbaren Bausteine in Windows.
 keywords: LCOW, Linux-Container, Docker, Container, Containerd, Cri, Runhcs, runc
 author: scooley
@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
-ms.openlocfilehash: 970de62c9a0011fa09d6741b2665479efd394313
-ms.sourcegitcommit: 166aa2430ea47d7774392e65a9875501f86dd5ed
+ms.openlocfilehash: 5811ea0761567c3a7db036358b24d1a3e7c51baf
+ms.sourcegitcommit: fdaf666973fca37d8c428e0247454dd47c01f1c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
 ms.lasthandoff: 11/20/2018
-ms.locfileid: "7460576"
+ms.locfileid: "7460599"
 ---
 # <a name="container-platform-tools-on-windows"></a>Container-Plattform-Tools unter Windows
 
@@ -106,7 +106,9 @@ Eine genauere Betrachtung der HCS Überwachen [John Starks DockerCon Präsentati
 
 ## <a name="containerdcri"></a>Containerd-cri
 
-> ! Hinweis: CRI-Unterstützung ist nur in Server 2019/Windows 10 1809 und höher verfügbar.
+> [!IMPORTANT]
+> CRI-Unterstützung ist nur in Server 2019/Windows 10 1809 und höher verfügbar.  Wir entwickeln für Windows auch weiterhin aktiv Containerd.
+> Test-/nur.
 
 Während OCI Spezifikationen definiert einen einzelnen Container, beschreibt [CRI](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto) (Container-Runtime-Schnittstelle) Container als Workload(s) in einem freigegebenen Sandkasten Umgebung einen Pod aufgerufen.  Pods können einen oder mehrere containerarbeitslasten enthalten.  Pods können Container-orchestratoren an, wie Kubernetes und Service Fabric Gitter gruppierten Workloads behandeln, die auf dem gleichen Host mit einigen freigegebenen Ressourcen wie Speicher und vNETs werden sollen.
 
