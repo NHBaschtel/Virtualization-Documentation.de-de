@@ -2,20 +2,20 @@
 title: Konfigurieren von geschachtelten virtuellen Computern direkt mit Ressourcen in einer Azure virtuelles Netzwerk kommunizieren
 description: Geschachtelte Virtualisierung
 keywords: Windows 10, hyper-V, Azure
-author: johncslack
+author: mrajess
 ms.date: 12/10/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1ecb85a6-d938-4c30-a29b-d18bd007ba08
-ms.openlocfilehash: f316f4c576eae6dd7c14de367e42012a3c724eac
-ms.sourcegitcommit: a9ab01b718b065124829b05868955f40e9020071
+ms.openlocfilehash: abe6f0da68ff90af0b2b5e675f70f106d42ca81c
+ms.sourcegitcommit: 8db42caaace760b7eeb1367b631b38e7904a9f26
 ms.translationtype: MT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/11/2018
-ms.locfileid: "8917732"
+ms.locfileid: "8962308"
 ---
-# <a name="configuring-nested-vms-to-communicate-directly-with-resources-in-an-azure-virtual-network"></a>Konfigurieren von geschachtelten virtuellen Computern direkt mit Ressourcen in einer Azure virtuelles Netzwerk kommunizieren
+# <a name="configure-nested-vms-to-communicate-with-resources-in-an-azure-virtual-network"></a>Konfigurieren von geschachtelten virtuellen Computern mit Ressourcen in einer Azure virtuelles Netzwerk kommunizieren
 
 Die ursprüngliche Anleitung zum Bereitstellen und Konfigurieren von geschachtelten virtuellen Computern in Azure ist erforderlich, dass Sie diese virtuellen Computer über ein NAT-Switch zugreifen. Dies stellt mehrere Einschränkungen:
 
@@ -45,7 +45,7 @@ Dieses Handbuch Annahmen folgende über die Ziel-Umgebung:
 
 * Hintergrund: Erhalten DHCP geschachtelten virtuellen Computer wird nicht von der vnet angefügt wird, die mit ihrem Host verbunden ist, auch wenn Sie einem internen oder externen Switch konfigurieren. 
   * Dies bedeutet, dass der Hyper-V-Host DHCP angeben muss.
-* Wir werden einen Block von IP-Adressen für die Verwendung von Hyper-V-Host nur zuordnen.  Hyper-V-Host ist nicht im Hinblick auf die derzeit zugewiesene Leases auf die vnet angefügt wird, damit um Situationen zu vermeiden, in dem der Host eine IP-Adresse bereits vorhanden ist, weist, einen Block von IP-Adressen für die Verwendung von Hyper-V-Host nur zugeordnet werden muss. Dadurch können wir eine doppelte IP-Szenario zu vermeiden. 
+* Wir werden einen Block von IP-Adressen für die Verwendung von Hyper-V-Host nur zuordnen.  Hyper-V-Host ist nicht im Hinblick auf die derzeit zugewiesene Leases auf die vnet angefügt wird, damit um Situationen zu vermeiden, in dem der Host eine IP-Adresse bereits vorhanden ist, weist, einen Block von IP-Adressen für die Verwendung von Hyper-V-Host nur zugeordnet werden muss. Dadurch können wir eine doppelte IP-Szenario zu vermeiden.
   * Subnetz innerhalb der vnet angefügt wird, die auf dem Hyper-V-Host befindet, wird der Block der IP-Adressen, die wir wählen entsprechen.
   * Der Grund, dass dies zu einem vorhandenen Subnetz entsprechen soll ist, BGP-Ankündigungen über die ExpressRoute zu behandeln. Wenn wir gerade bestehend aus eines IP-Bereichs für den Hyper-V-Host verwenden wir müsste erstellen Sie eine Reihe von statischen Routen, damit Clients können in einer lokalen Umgebung für die Kommunikation mit der geschachtelten virtuellen Computer. Dies bedeutet, dass dies eine große Herausforderung ist nicht, da Sie eine IP-Bereich für die geschachtelten virtuellen Computer bilden und Sie dann die Routen, die benötigt erstellen, um Clients, auf dem Hyper-V-Host für diesen Bereich zu verweisen.
 * Erstellen wir einen internen Switch in Hyper-V und wir werden weisen Sie der neu erstellten Schnittstelle einer IP-Adresse in einem Bereich, die, den wir für DHCP reserviert. Diese IP-Adresse wird der Standard-Gateway für unsere geschachtelten virtuellen Computer werden und werden verwendet, um die Route zwischen den internen Switch und die NIC des Hosts, die an unseren vnet angefügt wird verbunden ist.
