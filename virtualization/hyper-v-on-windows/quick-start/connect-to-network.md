@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
-ms.openlocfilehash: fd2215930487fa292001519dcd18c3ab2138c3e0
-ms.sourcegitcommit: 594cc1728347646609ae1952ecc6c97fc659d0a9
-ms.translationtype: HT
+ms.openlocfilehash: 2079898ee4a3bd7d15e3cbbaea40486d1682a44a
+ms.sourcegitcommit: 4090d158dd3573ea90799de5b014c131a206b000
+ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/07/2018
-ms.locfileid: "2226195"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "6121560"
 ---
 # <a name="create-a-virtual-network"></a>Erstellen eines virtuellen Netzwerks
 
@@ -96,9 +96,11 @@ Dies hat einige Vorteile:
 Im [Benutzerhandbuch für NAT-Networking](../user-guide/setup-nat-network.md) finden Sie eine Anleitung, um ein NAT-Netzwerk einzurichten und eine Verbindung mit einem virtuellen Computer herzustellen.
 
 ### <a name="the-two-switch-approach"></a>Zwei Switches verwenden
-Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen einem Drahtlosnetzwerk und einem kabelgebundenen Netzwerk wechseln, empfiehlt es sich, einen virtuellen Switch für die Ethernet-Netzwerkkarte und einen für die WLAN-Netzwerkkarte zu erstellen. Bei dieser Konfiguration können Sie Ihre virtuellen Computer zwischen diesen Switches abhängig davon umschalten, wie der Laptop mit dem Netzwerk verbunden ist. Virtuelle Computer wechseln nicht automatisch zwischen drahtgebundenen und drahtlosen Netzwerken.
->Hinweis: Das Konfigurieren eines externen virtuellen Switches auf einer Funknetzwerkkarte wird nicht unterstützt und sollte nur zu Testzwecken verwendet werden.  
 
+Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen einem Drahtlosnetzwerk und einem kabelgebundenen Netzwerk wechseln, empfiehlt es sich um einen virtuellen Switch für Ethernet und WLAN-Netzwerkkarte zu erstellen.  Je nachdem, wie der Laptop mit dem Netzwerk verbunden ist können Sie Ihre virtuellen Computer zwischen diese Optionen ändern. Virtuelle Computer nicht wechseln zwischen drahtgebundenen und drahtlosen automatisch. 
+
+>[!IMPORTANT]
+>Zwei Switches verwenden externen vSwitch über wireless-Karte nicht unterstützt und sollte nur zu Testzwecken verwendet werden.
 
 ## <a name="next-step---create-a-virtual-machine"></a>Nächster Schritt: Erstellen eines virtuellen Computers
 [Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md)
