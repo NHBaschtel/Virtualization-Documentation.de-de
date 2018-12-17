@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 5dcc2af869ba0433b1d755f6d70f5dae6e18cdc5
-ms.sourcegitcommit: 4090d158dd3573ea90799de5b014c131a206b000
+ms.openlocfilehash: ade690dbfed2fd154ee94955f3104c47dae40045
+ms.sourcegitcommit: 8ab1fccfc680911493c769157a6cfe7cbcf17bde
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "6121610"
+ms.lasthandoff: 12/17/2018
+ms.locfileid: "8972064"
 ---
 # <a name="windows-containers"></a>Windows-Container
 
@@ -25,7 +25,7 @@ Stellen Sie sich eine Küche vor. Wir verpacken alle Geräte, Möbelstücke, sä
 
 <center style="margin: 25px">![](media/box1.png)</center>
 
-Diesen Container können wir in jede beliebige Wohnung stellen, die Küche ist immer die gleiche. Wir brauchen lediglich einen Strom- und Wasseranschluss und können sofort etwas kochen (da alle Geräte, die wir brauchen, vorhanden sind).
+Diesen Container können wir in jede beliebige Wohnung stellen, die Küche ist immer die gleiche. Wir lediglich wird Strom und Wasser eine Verbindung damit hergestellt, und wir dann Kochen (da wir alle Geräte, die wir benötigen!).
 
 <center style="margin: 25px">![](media/apartment.png)</center>
 
@@ -37,7 +37,7 @@ Sehen Sie sich eine kurze Übersicht an: [Windows-based containers: Modern app d
 
 Container sind eine isolierte, von Ressourcen gesteuerte und portierbare Laufzeitumgebung, die auf einem Hostcomputer oder virtuellen Computer ausgeführt wird. Anwendungen oder Prozesse, die in Containern ausgeführt werden, sind mit allen erforderlichen Abhängigkeiten und Konfigurationsdateien verpackt, so als ob außerhalb des Containers keine anderen Prozesse ausgeführt werden würden.
 
-Der Host des Containers stellt einen Satz von Ressourcen für den Container bereit, und der Container verwendet nur diese Ressourcen. Im Hinblick auf der Container bekannt ist, kann nicht existieren, dass keine anderen Ressourcen, was angegeben wurden hat und daher der Container Ressourcen, die für einen anderen Container bereitgestellt wurden.
+Der Host des Containers stellt einen Satz von Ressourcen für den Container bereit, und der Container verwendet nur diese Ressourcen. Als Container bekannt ist, kann nicht existieren, dass keine anderen Ressourcen, was angegeben wurde hat und daher der Container Ressourcen, die für einen anderen Container bereitgestellt wurden.
 
 Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, Windows-Container zu erstellen und damit zu arbeiten.
 
