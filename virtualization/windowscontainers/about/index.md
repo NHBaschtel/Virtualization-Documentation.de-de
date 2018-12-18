@@ -8,14 +8,14 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: ade690dbfed2fd154ee94955f3104c47dae40045
-ms.sourcegitcommit: 8ab1fccfc680911493c769157a6cfe7cbcf17bde
+ms.openlocfilehash: 16cf281193ced00ea1b0e2d96291de7f44822284
+ms.sourcegitcommit: 95cec99aa8e817d3e3cb2163bd62a32d9e8f7181
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/17/2018
-ms.locfileid: "8972064"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "8973610"
 ---
-# <a name="windows-containers"></a>Windows-Container
+# <a name="containers-on-windows"></a>-Container unter Windows
 
 ## <a name="what-are-containers"></a>Was sind Container?
 
@@ -31,7 +31,9 @@ Diesen Container können wir in jede beliebige Wohnung stellen, die Küche ist i
 
 Mit Containern verhält es sich in gewisser Weise wie mit dieser Küche. Die Räume können unterschiedlich oder auch gleich sein. Wichtig ist, dass der Container alles umfasst, was benötigt wird.
 
-Sehen Sie sich eine kurze Übersicht an: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY) (Windows-basierte Container: Moderne App-Entwicklung mit Steuerung auf Unternehmensniveau).
+Sehen Sie sich eine kurze Übersicht unten:
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ## <a name="container-fundamentals"></a>Grundlegendes zu Containern
 

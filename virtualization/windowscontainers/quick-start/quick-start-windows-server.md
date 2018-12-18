@@ -8,70 +8,82 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
-ms.openlocfilehash: ed60470f18f644fcc4fe741d02e6f6e39af48368
-ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
+ms.openlocfilehash: e27148873299543a89eaf92801b40732dd27b402
+ms.sourcegitcommit: 95cec99aa8e817d3e3cb2163bd62a32d9e8f7181
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "6947989"
+ms.lasthandoff: 12/18/2018
+ms.locfileid: "8973670"
 ---
 # <a name="windows-containers-on-windows-server"></a>Windows-Container unter Windows Server
 
-In dieser Übung führt durch die einfache Bereitstellung und Verwendung des Windows-containerfeatures unter Windows Server 2019. In dieser Übung installieren Sie die Containerrolle, und stellen einen einfachen Windows Server-Container bereit. Wenn Sie sich mit Containern vertraut machen möchten, finden Sie unter [Windows-Container](../about/index.md) entsprechende Informationen.
+In dieser Übung führt durch die einfache Bereitstellung und Verwendung des Windows-Container-Features in Windows Server 2019.
+
+In diesem Schnellstart werden Sie Folgendes ausführen:
+
+1. Aktivieren das Container-Feature in Windows Server
+2. Installieren von Docker
+3. Ausführen eines einfachen Windows Containers
+
+Wenn Sie sich mit Containern vertraut machen möchten, finden Sie unter [Windows-Container](../about/index.md) entsprechende Informationen.
 
 Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2019. Weitere Schnellstartdokumentation, darunter Container unter Windows 10, finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
-**Voraussetzungen:**
+## <a name="prerequisites"></a>Voraussetzungen
 
-Ein Computersystem (physisch oder virtuell) dem Windows Server 2019 ausgeführt. Wenn Sie Windows Server 2019 Insider Preview verwenden, aktualisieren Sie auf [Windows Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
+Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:
+- Ein Computersystem (physisch oder virtuell) ausgeführt, Windows Server 2019. Wenn Sie Windows Server 2019 Insider Preview verwenden, aktualisieren Sie auf [Windows Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
 
 > Wichtige Updates sind erforderlich, damit das Feature „Windows-Container“ funktioniert. Installieren Sie alle Updates, bevor Sie dieses Tutorial durcharbeiten.
 
-Wenn Sie das Feature in Azure bereitstellen möchten, können Sie diese [Vorlage](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools/containers-azure-template) zu Hilfe nehmen.<br/>
+Wenn Sie das Feature in Azure bereitstellen möchten, können Sie diese [Vorlage](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools/containers-azure-template) zu Hilfe nehmen.
+
+<br/>
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVirtualization-Documentation%2Flive%2Fwindows-server-container-tools%2Fcontainers-azure-template%2Fazuredeploy.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
 
-## <a name="1-install-docker"></a>1. Installieren von Docker
+## <a name="install-docker"></a>Installieren von Docker
 
-Zur Installation von Docker verwenden wir das [PowerShell-Modul von OneGet](https://github.com/oneget/oneget), das mit „Providern” zur Ausführung der Installation funktioniert, in diesem Fall dem [MicrosoftDockerProvider](https://github.com/OneGet/MicrosoftDockerProvider). Der Anbieter aktiviert das Feature „Container“ auf Ihrem Computer. Außerdem installieren Sie Docker, was einen Neustart erforderlich macht. Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client.
+Zum Installieren von Docker verwenden wir das [PowerShell-Modul von OneGet](https://github.com/oneget/oneget) die mit der Anbieter für die Installation – in diesem Fall die [MicrosoftDockerProvider](https://github.com/OneGet/MicrosoftDockerProvider)verwendet. Der Anbieter aktiviert das Feature „Container“ auf Ihrem Computer. Außerdem installieren Sie Docker, was einen Neustart erforderlich macht. Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul und dem Docker-Client.
 
 Öffnen Sie eine PowerShell-Sitzung mit erhöhten Rechten, und führen Sie die folgenden Befehle aus.
 
 Installieren Sie zuerst den Docker-Microsoft-PackageManagement-Anbieter aus der [PowerShell-Galerie](https://www.powershellgallery.com/packages/DockerMsftProvider).
 
-```
+```powershell
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
 Als Nächstes verwenden Sie das PackageManagement-PowerShell-Modul, um die neueste Docker-Version zu installieren.
-```
+
+```powershell
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
 Wenn PowerShell fragt, ob die Paketquelle „DockerDefault“ vertrauenswürdig ist, geben Sie `A` ein, um die Installation fortzusetzen. Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 
-```
+```powershell
 Restart-Computer -Force
 ```
 
-> Tipp: Wenn Sie Docker später aktualisieren möchten:
+> ! [TIPP] Wenn Sie Docker später aktualisieren möchten:
 >  - Überprüfen Sie die installierte Version mit `Get-Package -Name Docker -ProviderName DockerMsftProvider`
 >  - Suchen Sie die aktuelle Version mit `Find-Package -Name Docker -ProviderName DockerMsftProvider`
 >  - Sobald Sie bereit sind, aktualisieren Sie mithilfe von `Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force`, gefolgt von `Start-Service Docker`
 
-## <a name="2-install-windows-updates"></a>2. Installieren von Windows Updates
+## <a name="install-windows-updates"></a>Installieren von Windows-Updates
 
 Stellen Sie sicher, dass Ihr Windows Server System auf dem neuesten Stand ist, indem Sie folgendes ausführen:
 
-```
+```console
 sconfig
 ```
 
 Dadurch wird ein textbasiertes Konfigurationsmenü angezeigt, über das Sie die Option 6 „Updates herunterladen und installieren“ auswählen können:
 
-```
+```console
 ===============================================================================
                          Server Configuration
 ===============================================================================
@@ -89,7 +101,7 @@ Dadurch wird ein textbasiertes Konfigurationsmenü angezeigt, über das Sie die 
 
 Wählen Sie nach Aufforderung die Option „A“, um alle Updates herunterzuladen.
 
-## <a name="3-deploy-your-first-container"></a>3. Bereitstellen Ihres ersten Containers
+## <a name="deploy-your-first-container"></a>Bereitstellen Sie Ihres ersten Containers
 
 Für diese Übung laden Sie ein vorab erstelltes .NET-Beispielimage von der Docker Hub-Registrierung herunter und stellen einen einfachen Container bereit, der eine Hello World .NET-Anwendung ausführt.  
 
@@ -151,4 +163,5 @@ Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-[Automatisieren von Builds und Speichern von Images](./quick-start-images.md)
+> [!div class="nextstepaction"]
+> [Informationen Sie zum Automatisieren der Container-Builds und speichern Sie Bilder](./quick-start-images.md)
