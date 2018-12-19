@@ -8,22 +8,22 @@ ms.topic: about-article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
-ms.openlocfilehash: e88f2951abef72bdd938c23a068cc912e31628cb
-ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
+ms.openlocfilehash: fec8b08d5bd86102d21ce93b726dc0b931413441
+ms.sourcegitcommit: 69228f28723f366c6b2933c7701077c8df74b32b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "6948069"
+ms.lasthandoff: 12/19/2018
+ms.locfileid: "8976746"
 ---
 # <a name="building-a-container-ecosystem"></a>Aufbauen eines Containerökosystems
 
 Um zu verstehen, warum ein Ökosystem Container erstellen so wichtig ist, zunächst sprechen wir über Docker.
 
-## <a name="dockers-appeal"></a>Der Charme von Docker
+## <a name="docker"></a>Docker
 
-Das Konzept von Containern (Isolation von Namespaces und Ressourcenkontrolle) ist nicht wirklich neu und geht zurück auf BSD Jails, Solaris Zones und den grundlegenden UNIX-Mechanismus „chroot (change root)“.   Was Docker beigetragen hat, ist ein allgemeines Toolset, ein Paketerstellungsmodell und ein Bereitstellungsmechanismus.  Dadurch vereinfacht Docker die Containerisierung und Verteilung von Clientanwendungen erheblich.  Diese Anwendungen können dann überall auf beliebigen Linux-Hosts ausgeführt werden. Diese Funktionalität bieten wir auch unter Windows.
+Das Konzept von Containern (Isolation von Namespaces und Ressourcenkontrolle) ist nicht wirklich neu und geht zurück auf BSD Jails, Solaris Zones und den grundlegenden UNIX-Mechanismus „chroot (change root)“.   Was Docker beigetragen hat, ist ein allgemeines Toolset, ein Paketerstellungsmodell und ein Bereitstellungsmechanismus.  Dadurch vereinfacht Docker die containerisierung und Verteilung von Clientanwendungen.  Diese Anwendungen können dann überall auf beliebigen Linux-Hosts ausgeführt werden. Diese Funktionalität bieten wir auch unter Windows.
 
-Diese weit verbreitete Technologie vereinfacht nicht nur die Verwaltung durch das Anbieten derselben Verwaltungsbefehle auf beliebigen Hosts, sondern ebnet auch den Weg für reibungslose DevOps.
+Weit verbreitete Packaging-Modell und Bereitstellung-Technologie vereinfacht die Verwaltung durch das anbieten derselben Verwaltungsbefehle auf beliebigen Hosts und erstellt eine einzigartige Gelegenheit für reibungslose DevOps.
 
 Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Mittlerweile gibt es eine riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind, und zwar in DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung.
 
