@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: 42e1a0bf58ada40a8f135861646d5c9429e0d5db
-ms.sourcegitcommit: a5f8f99bf8f512a9058b72f1f617f77ecf488c71
+ms.openlocfilehash: 36ef6df0b9736d88fec627e4cb56df023f1a7708
+ms.sourcegitcommit: 4336d7617c30d26a987ad3450b048e17404c365d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "8974012"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "9001009"
 ---
 # <a name="frequently-asked-questions"></a>Häufig gestellte Fragen
 
@@ -68,4 +68,5 @@ Dies kann ein Problem darstellen, wenn Sie einen Computer mit Air ausgeführt, d
 
 Um zu gewährleisten, dass das Paketerstellungsformat universell bleibt, hat Docker vor Kurzem die Open Container Initiative (OCI) ins Leben gerufen, um sicherzustellen, dass die Paketerstellung für Container ein offenes von den Gründern geleitetes Format bleibt, wobei Microsoft eines der Gründungsmitglieder ist.
 
-> ! [TIPP] Haben Sie eine Empfehlung für zusätzlich zu den häufig gestellten Fragen? Wir empfehlen Ihnen, um ein neues Feedback Problem unten oder öffnen Sie eine Veröffentlichungsanforderung gegen diese Dokumente mit Ihrem!
+> [!TIP]
+> Haben Sie eine Empfehlung für zusätzlich zu den häufig gestellten Fragen? Wir empfehlen Ihnen, um ein neues Feedback Problem unten oder öffnen Sie eine Veröffentlichungsanforderung gegen diese Dokumente mit Ihrem!

@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
-ms.openlocfilehash: e1a5b80773128af0ba0095d5201e4fa123a1741c
-ms.sourcegitcommit: 99da24a8c075e0096eabd09a29007a65e3ea35b7
+ms.openlocfilehash: caaf4186f43c69dfbc35d04dd8909876ed082906
+ms.sourcegitcommit: 4336d7617c30d26a987ad3450b048e17404c365d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/04/2018
-ms.locfileid: "6022178"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "9000999"
 ---
 # <a name="hyper-v-containers"></a>Hyper-V-Container
 
@@ -23,16 +23,16 @@ Die Windows-containertechnologie umfasst zwei verschiedene Arten von Containern:
 
 **Windows Server-Container**: Mehrere Containerinstanzen können auf einem Host gleichzeitig isoliert ausgeführt werden, was mithilfe von Technologien zur Isolation von Namespaces, Ressourcensteuerung und Prozessen ermöglicht wird.  Windows Server-Container teilen sich untereinander und mit dem Host den gleichen Kernel.  Dies ist der gleiche etwa, wie unter Linux-Container ausgeführt.
 
-**Hyper-V-Container** – mehrere containerinstanzen können auf einem Host gleichzeitig ausgeführt, jedoch jeder Container auf einem speziellen virtuellen Computer ausgeführt wird. Dadurch wird eine Isolation auf Kernelebene zwischen jedem Hyper-V-Container und dem Containerhost erreicht.
+**Hyper-V-Container** – mehrere containerinstanzen können auf einem Host gleichzeitig ausgeführt, jedoch jeder Container in einem speziellen virtuellen Computer ausgeführt wird. Dadurch wird eine Isolation auf Kernelebene zwischen jedem Hyper-V-Container und dem Containerhost erreicht.
 
 ## <a name="hyper-v-container-examples"></a>Hyper-V-Container-Beispiele
 
 ### <a name="create-container"></a>Erstellen eines Containers
 
-Verwalten von Hyper-V-Containern mit Docker ist nahezu identisch mit der Verwaltung von Windows Server-Container. Verwenden Sie zum Erstellen eines Hyper-V-Containers mit Docker der `--isolation` Parameter festlegen `--isolation=hyperv`.
+Verwalten von Hyper-V-Containern mit Docker ist nahezu identisch mit der Verwaltung von Windows Server-Container. Verwenden Sie zum Erstellen eines Hyper-V-Containers mit Docker der `--isolation` Parameter fest `--isolation=hyperv`.
 
 ``` cmd
-docker run -it --isolation=hyperv microsoft/nanoserver cmd
+docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
 ```
 
 ### <a name="isolation-explanation"></a>Erläuterung zur Isolation
@@ -42,7 +42,7 @@ Dieses Beispiel veranschaulicht die Unterschiede im netzwerkisolationsfunktionen
 Hier wird ein Windows Server-Container bereitgestellt und hostet einen Pingprozess mit langer Ausführungsdauer.
 
 ``` cmd
-docker run -d microsoft/windowsservercore ping localhost -t
+docker run -d mcr.microsoft.com/windows/servercore:1809 ping localhost -t
 ```
 
 Mithilfe des `docker top`-Befehls wird der Pingprozess zurückgegeben, wie im Container zu sehen. Der Prozess in diesem Beispiel weist die ID 3964 auf.
@@ -66,7 +66,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Dieses Beispiel startet ebenfalls einen Hyper-V-Container mit einem Pingprozess. 
 
 ```
-docker run -d --isolation=hyperv microsoft/nanoserver ping -t localhost
+docker run -d --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 ping -t localhost
 ```
 
 Ebenso kann `docker top` verwendet werden, um die ausgeführten Prozesse vom Container zurückzugeben.

@@ -37,7 +37,7 @@
 ### [Verknüpfen von Windows-Worker](kubernetes/joining-windows-workers.md)
 ### [Verknüpfen von Linux-Worker](kubernetes/joining-linux-workers.md)
 ### [Bereitstellen von Kubernetes-Ressourcen](kubernetes/deploying-resources.md)
-### [Problembehandlung](kubernetes/common-problems.md)
+### [Fehlerbehebung](kubernetes/common-problems.md)
 ### [Kompilieren von Kubernetes-Binärdateien](kubernetes/compiling-kubernetes-binaries.md)
 ## Service Fabric unter Windows
 ### [Bereitstellen Ihres ersten Containers](/azure/service-fabric/service-fabric-quickstart-containers)
@@ -54,6 +54,7 @@
 ## [Systemanforderungen](deploy-containers/system-requirements.md)
 ## [Versionskompatibilität](deploy-containers/version-compatibility.md)
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
+## [Hardwaregeräte in Containern](deploy-containers/hardware-devices-in-containers.md)
 ## [Container-Plattform-tools](deploy-containers/containerd.md)
 ## [Active Directory-Dienstkonten](manage-containers/manage-serviceaccounts.md)
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
