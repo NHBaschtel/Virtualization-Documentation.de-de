@@ -3,12 +3,12 @@ title: Geräte-Container unter Windows
 description: Welche Unterstützung von Geräten für Windows-Container vorhanden ist.
 keywords: Docker, Container, Geräte, hardware
 author: cwilhit
-ms.openlocfilehash: b300c9a4262c30da3f6fdf2c4aeedab76b167417
-ms.sourcegitcommit: 4336d7617c30d26a987ad3450b048e17404c365d
+ms.openlocfilehash: f70388bf3724af7cb92f20e2053aa4ddb1f953a3
+ms.sourcegitcommit: 5cbaef0806db21d7bbcc99964837f10f4207a51f
 ms.translationtype: MT
 ms.contentlocale: de-DE
 ms.lasthandoff: 01/11/2019
-ms.locfileid: "9001042"
+ms.locfileid: "9001752"
 ---
 # <a name="devices-in-containers-on-windows"></a>Geräte-Container unter Windows
 
@@ -43,7 +43,7 @@ Dies bedeutet, dass Sie das Gerät von Host **nicht** zuweisen. Stattdessen wird
 
 ## <a name="what-devices-are-supported"></a>Was sind Geräte unterstützt.
 
-Die folgenden Geräte (und ihre Device Interface-Assistenten GUIDs) werden derzeit unterstützt:
+Die folgenden Geräte (und ihr Gerät Klasse GUIDs Schnittstelle) werden derzeit unterstützt:
   
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <thead>
