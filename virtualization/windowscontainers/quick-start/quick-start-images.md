@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
-ms.openlocfilehash: 5da18c7c1e2fc6882d5879070e91d36d0c0a475a
-ms.sourcegitcommit: 95cec99aa8e817d3e3cb2163bd62a32d9e8f7181
+ms.openlocfilehash: 0350e62deef06402991f505dd263db7fd506cba1
+ms.sourcegitcommit: 1aef193cf56dd0870139b5b8f901a8d9808ebdcd
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "8973661"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "9001586"
 ---
 # <a name="automating-builds-and-saving-images"></a>Automatisieren von Builds und Speichern von Images
 
@@ -129,6 +129,8 @@ Sobald Sie angemeldet sind, kann das Containerimage mithilfe von Push an Docker 
 ```console
 docker push <user>/iis-dockerfile
 ```
+
+Wie Docker jede Ebene bis zu Docker Hub verschiebt, überspringt Docker Ebenen, die in Docker Hub oder in anderen Registrierungen (fremden Ebenen) bereits vorhanden sind.  Beispielsweise würden aktuelle Versionen von Windows Server Core, die in der Microsoft-Container-Registrierung oder Ebenen einer privaten Unternehmens Registrierung gehostet werden übersprungen und nicht auf Docker Hub abgelegt werden.
 
 Das Containerimage kann jetzt mithilfe von `docker pull` von Docker Hub auf jeden beliebigen Windows-Containerhost heruntergeladen werden. In diesem Tutorial löschen wir das bestehende Image und übertragen es mithilfe von Pull von Docker Hub. 
 
