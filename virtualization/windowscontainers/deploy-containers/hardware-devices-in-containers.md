@@ -3,12 +3,12 @@ title: Geräte-Container unter Windows
 description: Welche Unterstützung von Geräten für Windows-Container vorhanden ist.
 keywords: Docker, Container, Geräte, hardware
 author: cwilhit
-ms.openlocfilehash: f70388bf3724af7cb92f20e2053aa4ddb1f953a3
-ms.sourcegitcommit: 5cbaef0806db21d7bbcc99964837f10f4207a51f
+ms.openlocfilehash: 6397a5050ee0c7cb4b62dc935af4975d9ab6b3db
+ms.sourcegitcommit: 1b6a244c3604e48c42c851e580e3b59e2384c91a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "9001752"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "9014517"
 ---
 # <a name="devices-in-containers-on-windows"></a>Geräte-Container unter Windows
 
@@ -17,9 +17,9 @@ Standardmäßig sind Windows-Container minimalen Zugriff auf Hostgeräte – gen
 ## <a name="requirements"></a>Anforderungen
 
 - Sie müssen ausführen, Windows Server 2019 oder höher oder Windows 10 Pro/Enterprise mit den Oktober 2018 aktualisieren
-- Sie müssen Docker Version 18.09 oder höher ausgeführt werden.
 - Die Container-Image-Version muss 1809 oder höher sein.
 - Die Container müssen Windows-Container, die im Prozess isoliert ausgeführt werden.
+- Während die Windows-Geräte-Funktionalität in der Docker-Daemon vorhanden ist, es ist noch nicht vorhanden in der Docker-Client (siehe [Pull-Anforderung](https://github.com/docker/cli/pull/1606) zum Nachverfolgen). In der Interrim müssen Sie [Ihre eigenen Docker ausführbare Dateien erstellen](https://github.com/moby/moby/blob/master/docs/contributing/software-req-win.md) , aus der Quelle Moby als umgehen. Wenn Sie nicht vertraut sind, empfehlen wir, dass Sie warten, bis die oben verknüpfte PR zusammengeführt wird diese Funktion zu testen.
 
 ## <a name="run-a-container-with-a-device"></a>Führen Sie einen Container mit einem Gerät
 
