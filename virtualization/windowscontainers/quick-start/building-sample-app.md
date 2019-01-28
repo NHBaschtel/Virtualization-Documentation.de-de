@@ -7,12 +7,12 @@ ms.date: 07/25/2017
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 20328cb47d106dad153738628fc282d63371a3ab
-ms.sourcegitcommit: 95cec99aa8e817d3e3cb2163bd62a32d9e8f7181
+ms.openlocfilehash: 970f039e97ce0628c7a7f78c417017fc95570f82
+ms.sourcegitcommit: 51da93c4548c5df7a9f01e54d46d81b338c874cf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "8973600"
+ms.lasthandoff: 01/28/2019
+ms.locfileid: "9031164"
 ---
 # <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
@@ -66,7 +66,7 @@ FROM microsoft/aspnetcore-build:1.1 AS build-env
 WORKDIR /app
 ```
 
-Als Nächstes kopieren wir die CSPROJ-Dateien in das Verzeichnis "/app" unseres temporären Containers. Das tun wir, da CSPROJ-Dateien eine Liste von Paketverweisen erhalten, die unser Projekt benötigt.
+Als Nächstes kopieren wir die CSPROJ-Dateien in das Verzeichnis "/app" unseres temporären Containers. Wir tun dies, da CSPROJ-Dateien eine Liste von paketverweisen enthalten, die unser Projekt benötigt.
 
 Nach dem Kopieren der Datei wird diese von Dotnet gelesen. Anschließend werden alle Abhängigkeiten und Tools abgerufen, die unser Projekt benötigt.
 
@@ -128,7 +128,7 @@ Klicken Sie in der Navigationsleiste auf „MvcMovie“. Dadurch gelangen Sie zu
 
 Wir haben mithilfe von Docker erfolgreich eine ASP.NET-Web-App konfiguriert und erstellt und diese erfolgreich in einem ausgeführten Container bereitgestellt. Aber Sie können noch weitere Schritte ausführen. Sie können die Web-App beispielsweise in weitere Komponenten aufteilen: einen Container, der die Web-API ausführt, einen Container, der das Front-End ausführt, und einen Container, der den SQL Server ausführt.
 
-Nun, da Sie den Stillstand von Containern haben, wechseln Sie dort und erstellen Sie tolle in Containern Softwareprogramme damit!
+Nun, da Sie den Stillstand von Containern haben, wechseln Sie große Menge und erstellen Sie tolle in Containern Softwareprogramme damit!
 
 > [!div class="nextstepaction"]
 > [Sehen Sie sich weitere Beispiele für container](../samples.md)
