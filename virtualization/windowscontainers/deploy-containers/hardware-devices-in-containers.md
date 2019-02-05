@@ -1,35 +1,37 @@
 ---
-title: Geräte-Container unter Windows
-description: Welche Unterstützung von Geräten für Windows-Container vorhanden ist.
+title: Geräte im Container unter Windows
+description: Welche Device-Unterstützung für Container unter Windows vorhanden ist
 keywords: Docker, Container, Geräte, hardware
 author: cwilhit
-ms.openlocfilehash: 6397a5050ee0c7cb4b62dc935af4975d9ab6b3db
-ms.sourcegitcommit: 1b6a244c3604e48c42c851e580e3b59e2384c91a
+ms.openlocfilehash: da9785b051826efa4bb2c64542a7c75a12ddd2b4
+ms.sourcegitcommit: 4490d384ade48699e7f56dc265185dac75bf9d77
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "9014517"
+ms.lasthandoff: 02/05/2019
+ms.locfileid: "9058990"
 ---
-# <a name="devices-in-containers-on-windows"></a>Geräte-Container unter Windows
+**Dies ist derzeit Vorschau Material. Sehen Sie 4. Artikel im Abschnitt "Anforderungen" unten für Weitere Informationen.**
 
-Standardmäßig sind Windows-Container minimalen Zugriff auf Hostgeräte – genau wie Linux-Container gewährt. Es gibt bestimmte Workloads, in denen es ist von Vorteil – oder sogar imperativer – zugreifen und mit Host-Hardware-Geräten kommunizieren. Dieses Handbuch behandelt, welche Geräte in Containern unterstützt werden und die ersten Schritte.
+# <a name="devices-in-containers-on-windows"></a>Geräte im Container unter Windows
+
+Standardmäßig sind Windows-Container minimalen Zugriff auf Hostgeräte – genau wie Linux-Container gewährt. Es gibt bestimmte Workloads, in denen es nützlich – oder sogar imperativer – zugreifen und mit Host Hardwaregeräten kommunizieren. Dieses Handbuch behandelt, welche Geräte in Containern unterstützt werden und die ersten Schritte.
 
 ## <a name="requirements"></a>Anforderungen
 
-- Sie müssen ausführen, Windows Server 2019 oder höher oder Windows 10 Pro/Enterprise mit den Oktober 2018 aktualisieren
+- Sie müssen ausführen, Windows Server 2019 oder höher oder Windows 10 Pro/Enterprise mit der October 2018 Update
 - Die Container-Image-Version muss 1809 oder höher sein.
-- Die Container müssen Windows-Container, die im Prozess isoliert ausgeführt werden.
-- Während die Windows-Geräte-Funktionalität in der Docker-Daemon vorhanden ist, es ist noch nicht vorhanden in der Docker-Client (siehe [Pull-Anforderung](https://github.com/docker/cli/pull/1606) zum Nachverfolgen). In der Interrim müssen Sie [Ihre eigenen Docker ausführbare Dateien erstellen](https://github.com/moby/moby/blob/master/docs/contributing/software-req-win.md) , aus der Quelle Moby als umgehen. Wenn Sie nicht vertraut sind, empfehlen wir, dass Sie warten, bis die oben verknüpfte PR zusammengeführt wird diese Funktion zu testen.
+- Die Container müssen Windows-Container, die im Prozess-isolierten Modus ausgeführt werden.
+- Während die Windows-Geräte-Funktionalität in der Docker-Daemon vorhanden ist, es ist noch nicht vorhanden in der Docker-Client (siehe [Pull-Anforderung](https://github.com/docker/cli/pull/1606) zum Nachverfolgen). Sie müssen warten, für eine zukünftige Version von Docker für Windows / Docker EE mit diesem Code, um dieses Feature zu nutzen. Dieses Dokument wird aktualisiert werden, wenn der Status wechselt.
 
 ## <a name="run-a-container-with-a-device"></a>Führen Sie einen Container mit einem Gerät
 
-Um einen Container mit einem Gerät zu starten, verwenden Sie den folgenden Befehl aus:
+Um einen Container mit einem Gerät zu starten, verwenden Sie den folgenden Befehl ein:
 
 ```shell
 docker run --isolation=process --device="class/{interface class GUID}" mcr.microsoft.com/windows/servercore:1809
 ```
 
-Ersetzen Sie die `{interface class guid}` mit einer entsprechenden [Gerät Schnittstellenklassen-GUID](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-device-interface-classes), die im folgenden Abschnitt gefunden werden können.
+Ersetzen Sie die `{interface class guid}` mit einer entsprechenden [Gerät Schnittstellenklassen-GUID](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-device-interface-classes), die finden Sie unten im Abschnitt.
 
 Um einen Container mit mehreren Geräten zu starten, verwenden Sie den folgenden Befehl ein, und verbinden mehrere `--device` Argumente:
 
@@ -37,11 +39,11 @@ Um einen Container mit mehreren Geräten zu starten, verwenden Sie den folgenden
 docker run --isolation=process --device="class/{interface class GUID}" --device="class/{interface class GUID}" mcr.microsoft.com/windows/servercore:1809
 ```
 
-In Windows deklarieren Sie allen Geräten eine Liste der Schnittstellenklassen, die sie implementieren. Übergeben diesen Befehl für Docker, wird sie sicherstellen, dass alle Geräte das implementiert die angeforderte Klasse identifiziert, die in den Container konfiguriert werden werden.
+In Windows deklarieren Sie allen Geräten eine Liste der Schnittstellenklassen, die sie implementieren. Indem Sie diesen Befehl an Docker übergeben, wird es sichergestellt, dass alle Geräte, die als die angeforderte Klasse implementieren identifizieren, die in den Container konfiguriert werden werden.
 
-Dies bedeutet, dass Sie das Gerät von Host **nicht** zuweisen. Stattdessen wird sie der Host mit dem Container teilen. Ebenso werden _Alle_ Geräte, die diese GUID zu implementieren, da Sie eine Klasse GUID angeben, mit dem Container freigegeben.
+Dies bedeutet, dass Sie das Gerät von Host **nicht** zuweisen. Stattdessen wird es der Host mit dem Container teilen. Ebenso werden _Alle_ Geräte, die diese GUID zu implementieren, da Sie eine Klasse GUID angeben, mit dem Container freigegeben.
 
-## <a name="what-devices-are-supported"></a>Was sind Geräte unterstützt.
+## <a name="what-devices-are-supported"></a>Welche Geräte werden unterstützt.
 
 Die folgenden Geräte (und ihr Gerät Klasse GUIDs Schnittstelle) werden derzeit unterstützt:
   
@@ -73,12 +75,12 @@ Die folgenden Geräte (und ihr Gerät Klasse GUIDs Schnittstelle) werden derzeit
 </table>
 
 > [!TIP]
-> Der oben aufgeführten Geräte sind die Geräte _nur_ heute in Windows-Container unterstützt. Bei dem Versuch, eine andere Klasse GUIDs übergeben führt in der Container gestartet.
+> Der oben aufgeführten Geräte sind die Geräte _nur_ in Windows-Container heute unterstützt. Wenn Sie versuchen, eine andere Klasse GUIDs übergeben führt zu der Container gestartet.
 
 ## <a name="hyper-v-container-device-support"></a>Unterstützung für Hyper-V-Container-Geräte
 
-Gerätezuweisung Geräte- und werden nicht im Hyper-V isolierte Container heute unterstützt.
+Gerätezuweisung Geräte- und werden nicht in Hyper-V isolierte Container heute unterstützt.
 
-## <a name="linux-containers-on-windows-lcow-device-support"></a>Linux-Container unter Windows (LCOW) Unterstützung von Geräten
+## <a name="linux-containers-on-windows-lcow-device-support"></a>Linux-Container unter Windows (LCOW)-Support für Geräte
 
 Gerätezuweisung Geräte- und werden nicht in LCOW heute unterstützt.
