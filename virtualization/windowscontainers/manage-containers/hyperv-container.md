@@ -1,6 +1,6 @@
 ---
-title: Hyper-V-Container
-description: Erklärung der Unterschiede zwischen Hyper-V-Container und Prozess-Container.
+title: Hyper-V-Isolierung
+description: Erklärung der Unterschiede zwischen Hyper-V-Isolierung von Prozess isolierten Container.
 keywords: Docker, Container
 author: scooley
 ms.date: 09/13/2018
@@ -8,28 +8,26 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
-ms.openlocfilehash: caaf4186f43c69dfbc35d04dd8909876ed082906
-ms.sourcegitcommit: 4336d7617c30d26a987ad3450b048e17404c365d
+ms.openlocfilehash: db0f8c45c1cdb6617e4c347251284509e2a7d3bc
+ms.sourcegitcommit: 914e0dd1168daf1d2b0f22bd011035016cc08baf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "9000999"
+ms.lasthandoff: 02/23/2019
+ms.locfileid: "9099338"
 ---
-# <a name="hyper-v-containers"></a>Hyper-V-Container
+# <a name="hyper-v-isolation"></a>Hyper-V-Isolierung
 
-**Dieser Inhalt ist vorläufig und kann geändert werden.** 
+Die Windows-containertechnologie umfasst zwei unterschiedliche Ebenen des Isolation für Container, Prozess und Hyper-V-Isolierung. Beide Arten werden erstellt und verwaltet und funktionieren identisch. Sie erzeugen und nutzen auch die gleichen Containerimages. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
 
-Die Windows-containertechnologie umfasst zwei verschiedene Arten von Containern: Windows Server-Container (Prozess-Container) und Hyper-V-Container. Beide Arten von Containern werden auf gleiche Weise erstellt und verwaltet und funktionieren identisch. Sie erzeugen und nutzen auch die gleichen Containerimages. Der Unterschied besteht im Isolationsgrad, der zwischen dem Container, dem Hostbetriebssystem und allen anderen Containern besteht, die auf diesem Host ausgeführt werden.
+**Prozessisolation** – mehrere Instanzen gleichzeitig auf einem Host ermöglicht, mit der Isolation ausführen können Container bereitgestellt, Namespaces, ressourcensteuerung und Prozessisolation Technologien.  Container teilen sich den gleichen Kernel mit dem Host als auch miteinander.  Dies entspricht etwa wie unter Linux-Container ausgeführt.
 
-**Windows Server-Container**: Mehrere Containerinstanzen können auf einem Host gleichzeitig isoliert ausgeführt werden, was mithilfe von Technologien zur Isolation von Namespaces, Ressourcensteuerung und Prozessen ermöglicht wird.  Windows Server-Container teilen sich untereinander und mit dem Host den gleichen Kernel.  Dies ist der gleiche etwa, wie unter Linux-Container ausgeführt.
+**Hyper-V-Isolierung** – mehrere containerinstanzen können auf einem Host gleichzeitig ausgeführt, jedoch jeder Container auf einem speziellen virtuellen Computer ausgeführt wird. Dies bietet Isolation auf Kernelebene zwischen jedem Container als auch die Container-Host.
 
-**Hyper-V-Container** – mehrere containerinstanzen können auf einem Host gleichzeitig ausgeführt, jedoch jeder Container in einem speziellen virtuellen Computer ausgeführt wird. Dadurch wird eine Isolation auf Kernelebene zwischen jedem Hyper-V-Container und dem Containerhost erreicht.
-
-## <a name="hyper-v-container-examples"></a>Hyper-V-Container-Beispiele
+## <a name="hyper-v-isolation-examples"></a>Beispiele für Hyper-V-Isolierung
 
 ### <a name="create-container"></a>Erstellen eines Containers
 
-Verwalten von Hyper-V-Containern mit Docker ist nahezu identisch mit der Verwaltung von Windows Server-Container. Verwenden Sie zum Erstellen eines Hyper-V-Containers mit Docker der `--isolation` Parameter fest `--isolation=hyperv`.
+Verwalten von isolierte Hyper-V-Containern mit Docker ist nahezu identisch mit der Verwaltung von Windows Server-Container. Um einen Container mit Hyper-V-Isolierung erstellen gründliche Docker, verwenden die `--isolation` Parameter fest `--isolation=hyperv`.
 
 ``` cmd
 docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
@@ -39,7 +37,7 @@ docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
 
 Dieses Beispiel veranschaulicht die Unterschiede im netzwerkisolationsfunktionen zwischen Windows Server und Hyper-V-Container. 
 
-Hier wird ein Windows Server-Container bereitgestellt und hostet einen Pingprozess mit langer Ausführungsdauer.
+Hier ein Prozess isolierten Container bereitgestellt wird, und hostet einen pingprozess mit langer Ausführungsdauer.
 
 ``` cmd
 docker run -d mcr.microsoft.com/windows/servercore:1809 ping localhost -t
@@ -63,7 +61,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
      67       5      820       3836 ...71     0.03   3964   3 PING
 ```
 
-Dieses Beispiel startet ebenfalls einen Hyper-V-Container mit einem Pingprozess. 
+Im Gegensatz dazu wird in diesem Beispiel wird einen isolierten Hyper-V-Container mit einem pingprozess sowie gestartet. 
 
 ```
 docker run -d --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 ping -t localhost
