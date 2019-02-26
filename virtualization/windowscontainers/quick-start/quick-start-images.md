@@ -8,24 +8,24 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
-ms.openlocfilehash: 0350e62deef06402991f505dd263db7fd506cba1
-ms.sourcegitcommit: 1aef193cf56dd0870139b5b8f901a8d9808ebdcd
+ms.openlocfilehash: a28b9ced2c9669b65bfa02bd02c1061226dcea7e
+ms.sourcegitcommit: f172d14ef1ebfb5a9df1b3529e0722d9103e0eba
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "9001586"
+ms.lasthandoff: 02/26/2019
+ms.locfileid: "9112917"
 ---
 # <a name="automating-builds-and-saving-images"></a>Automatisieren von Builds und Speichern von Images
 
-In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. Diese Übung enthält ausführliche Informationen zur automatischen Erstellung von Containerimages mit einer Dockerfile-Datei und zur Speicherung von Containerimages in der öffentlichen Registrierung von Docker Hub.
+In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. In dieser Übung zeigt, wie Sie Ihr eigenes containerimage aus einer dockerfile-Datei erstellen und Speichern von containerimages in der öffentlichen Registrierung von Docker Hub.
 
-Dieser Schnellstart-Anleitung richtet sich gezielt an Windows Server-Container unter Windows Server 2016 und verwendet das Windows Server Core-Containerbasisimage. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
+Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2019 oder Windows Server 2016 und das Windows Server Core-containerbasisimage verwendet wird. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
 Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:
 
-- Ein Computersystem (physisch oder virtuell), auf dem Windows Server 2016 ausgeführt wird
+- Ein Computersystem (physisch oder virtuell) ausgeführten Windows Server 2019 oder Windows Server 2016.
 - Konfigurieren Sie dieses System mit dem Windows-Container-Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Windows Containers on Windows Server](./quick-start-windows-server.md) (Windows-Container unter Windows Server).
 - Eine Docker-ID – diese wird verwendet, um ein Containerimage mithilfe von Push an Docker Hub zu übertragen. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud](https://cloud.docker.com/) beziehen.
 
@@ -130,7 +130,7 @@ Sobald Sie angemeldet sind, kann das Containerimage mithilfe von Push an Docker 
 docker push <user>/iis-dockerfile
 ```
 
-Wie Docker jede Ebene bis zu Docker Hub verschiebt, überspringt Docker Ebenen, die in Docker Hub oder in anderen Registrierungen (fremden Ebenen) bereits vorhanden sind.  Beispielsweise würden aktuelle Versionen von Windows Server Core, die in der Microsoft-Container-Registrierung oder Ebenen einer privaten Unternehmens Registrierung gehostet werden übersprungen und nicht auf Docker Hub abgelegt werden.
+Wie Docker jede Ebene bis zu Docker Hub legt, überspringt Docker Ebenen, die bereits im Docker Hub oder in anderen Registrierungen (fremden Ebenen) vorhanden sind.  Beispielsweise würden aktuelle Versionen von Windows Server Core, die in der Microsoft-Container-Registrierung oder Ebenen einer privaten Unternehmens Registrierung gehostet werden übersprungen und nicht auf Docker Hub abgelegt werden.
 
 Das Containerimage kann jetzt mithilfe von `docker pull` von Docker Hub auf jeden beliebigen Windows-Containerhost heruntergeladen werden. In diesem Tutorial löschen wir das bestehende Image und übertragen es mithilfe von Pull von Docker Hub. 
 
