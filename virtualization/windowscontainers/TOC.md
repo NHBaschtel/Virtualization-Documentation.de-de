@@ -4,8 +4,8 @@
 
 # Schnelle gestartet wird
 ## Schnellstartanleitung für Windows 10
-### [Ausführen Ihres ersten WCOW Containers](quick-start/quick-start-windows-10.md)
-### [Ausführen Ihres ersten LCOW Containers](quick-start/quick-start-windows-10-linux.md)
+### [Ausführen Ihres ersten Containers WCOW](quick-start/quick-start-windows-10.md)
+### [Ausführen Ihres ersten Containers LCOW](quick-start/quick-start-windows-10-linux.md)
 ### [Erstellen einer Beispiel-App](quick-start/building-sample-app.md)
 ## Schnellstartanleitung für Windows Server
 ### [Ausführen Ihres ersten Containers](quick-start/quick-start-windows-server.md)
@@ -37,7 +37,8 @@
 ### [Verknüpfen von Windows-Worker](kubernetes/joining-windows-workers.md)
 ### [Verknüpfen von Linux-Worker](kubernetes/joining-linux-workers.md)
 ### [Bereitstellen von Kubernetes-Ressourcen](kubernetes/deploying-resources.md)
-### [Fehlerbehebung](kubernetes/common-problems.md)
+### [Problembehandlung](kubernetes/common-problems.md)
+### [Windows-Bereitstellungsdienste auf Kubernetes](kubernetes/kube-windows-services.md)
 ### [Kompilieren von Kubernetes-Binärdateien](kubernetes/compiling-kubernetes-binaries.md)
 ## Service Fabric unter Windows
 ### [Bereitstellen Ihres ersten Containers](/azure/service-fabric/service-fabric-quickstart-containers)
