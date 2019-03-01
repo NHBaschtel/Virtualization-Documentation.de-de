@@ -8,22 +8,22 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
-ms.openlocfilehash: 3b592620f4667450c2454f8760b7f3c844c7e2ab
-ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
+ms.openlocfilehash: bbc405fc2a490cfe5082be112fde724707e24785
+ms.sourcegitcommit: 21d93e5febd9b1b47ae1aa59d08086e6ec1691e0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "6948049"
+ms.lasthandoff: 02/28/2019
+ms.locfileid: "9121052"
 ---
 # <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
-Docker-Moduls und -Client sind nicht in Windows enthalten, und müssen installiert und einzeln konfiguriert werden. Das Docker-Modul kann zudem zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. Dieses Dokument enthält Informationen zum Installieren und konfigurieren das Docker-Modul und bietet auch einige Beispiele für häufig verwendete Konfigurationen.
+Das Docker-Modul und der Client sind nicht in Windows enthalten, und müssen werden einzeln installiert und konfiguriert. Das Docker-Modul kann zudem zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. Dieses Dokument enthält Informationen zum Installieren und konfigurieren das Docker-Modul und bietet auch einige Beispiele für häufig verwendete Konfigurationen.
 
 
 ## <a name="install-docker"></a>Installieren von Docker
 Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul (dockerd.exe) und dem Docker-Client (docker.exe). Die einfachste Möglichkeit, alles zu installieren, ist die Verwendung der Schnellstartanleitungen. Sie Hilfe erhalten Sie alles eingerichtet und Ausführung Ihres ersten Containers. 
 
-* [Windows-Container unter Windows Server 2016](../quick-start/quick-start-windows-server.md)
+* [Windows-Container unter WindowsServer 2019](../quick-start/quick-start-windows-server.md)
 * [Windows-Container unter Windows10](../quick-start/quick-start-windows-10.md)
 
 Informationen über die skriptbasierte Installationen finden Sie unter [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
