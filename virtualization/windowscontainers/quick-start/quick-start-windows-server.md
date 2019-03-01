@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
-ms.openlocfilehash: 44e415af08881d18ebb2d82f5f79098f7fb034f8
-ms.sourcegitcommit: f172d14ef1ebfb5a9df1b3529e0722d9103e0eba
+ms.openlocfilehash: b58bdd79da1c644281ebd9e79c16587d9fc156f4
+ms.sourcegitcommit: 21d93e5febd9b1b47ae1aa59d08086e6ec1691e0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/26/2019
-ms.locfileid: "9112927"
+ms.lasthandoff: 02/28/2019
+ms.locfileid: "9121042"
 ---
 # <a name="windows-containers-on-windows-server"></a>Windows-Container unter Windows Server
 
@@ -68,7 +68,8 @@ Wenn PowerShell fragt, ob die Paketquelle „DockerDefault“ vertrauenswürdig 
 Restart-Computer -Force
 ```
 
-> ! [TIPP] Wenn Sie Docker später aktualisieren möchten:
+> [!TIP]
+> Wenn Sie Docker später aktualisieren möchten:
 >  - Überprüfen Sie die installierte Version mit `Get-Package -Name Docker -ProviderName DockerMsftProvider`
 >  - Suchen Sie die aktuelle Version mit `Find-Package -Name Docker -ProviderName DockerMsftProvider`
 >  - Sobald Sie bereit sind, aktualisieren Sie mithilfe von `Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force`, gefolgt von `Start-Service Docker`
