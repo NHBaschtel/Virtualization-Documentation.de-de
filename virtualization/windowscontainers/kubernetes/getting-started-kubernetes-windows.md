@@ -8,12 +8,12 @@ ms.prod: containers
 description: Wenn einen Windows-Knoten zu einem Kubernetes-Cluster mit v1.13.
 keywords: Kubernetes, 1,13, Windows, erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: f9348debf427c47f9326368ff02914603de06a1b
-ms.sourcegitcommit: 41318edba7459a9f9eeb182bf8519aac0996a7f1
+ms.openlocfilehash: 2edc940d4132870a6f7d6714bb50faef201136ba
+ms.sourcegitcommit: 817a629f762a4a5d4bcff58302f2bc2408bf8be1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/28/2019
-ms.locfileid: "9120458"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "9149910"
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows #
 Diese Seite dient als einen Überblick über die erste Schritte mit Kubernetes unter Windows durch Hinzufügen von Windows-Knoten zu einem Linux-basierten Cluster. Mit der Veröffentlichung von Kubernetes 1.13 auf Windows Server- [Version 1809](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes)können Benutzer über die [neuesten Features](https://kubernetes.io/docs/getting-started-guides/windows/#supported-features) in Kubernetes unter Windows Beta nutzen:
@@ -45,17 +45,6 @@ Diese Seite dient als einen Überblick über die erste Schritte mit Kubernetes u
 > Es gibt ein anderes Docker Netzwerk (NAT), das standardmäßig erstellt wird, wenn Sie Docker zu installieren. Es ist nicht erforderlich, Kubernetes unter Windows ausgeführt werden, wie IP-Adressen aus dem Clustersubnetz stattdessen Wir weisen.
 
 
-### <a name="disable-anti-spoofing-protection-required-for-l2bridge"></a>Deaktivieren Sie Anti-spoofing-Schutz (für l2bridge erforderlich) ###
-Sollten Sie l2bridge verwenden möchten für das Netzwerk (auch bekannt als [Flannel Host-Gateway](./network-topologies.md#flannel-in-host-gateway-mode)), sollten Sie sicherstellen, Spoofing von MAC-Adressen für die Windows-Container-Host VMs (Gäste) aktiviert ist. Um dies zu erreichen, sollten Sie die folgenden auf dem Computer hosten der virtuellen Computer (Beispiel für Hyper-V) als Administrator ausführen:
-
-```powershell
-Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-> [!TIP]
-> Wenn Sie ein Produkt VMware-basierte an Ihre Anforderungen Virtualisierung verwenden, suchen Sie in den [promisken Modus](https://kb.vmware.com/s/article/1004099) für die MAC-spoofing-Anforderung aktivieren.
-
->[!TIP]
-> Wenn Sie Kubernetes auf Azure oder IaaS-VMs von anderen Anbietern Cloud selbst bereitstellen, empfehlen wir [overlay-Netzwerk](./network-topologies.md#flannel-in-vxlan-mode) stattdessen.
 
 ## <a name="what-you-will-accomplish"></a>Was Sie erreichen ##
 

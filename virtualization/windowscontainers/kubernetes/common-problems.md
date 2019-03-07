@@ -7,12 +7,12 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: Kubernetes, 1.12, Linux, kompilieren
-ms.openlocfilehash: dfc7ab5aab9a04ef39916fb9e9b9886cad2f46a6
-ms.sourcegitcommit: 41318edba7459a9f9eeb182bf8519aac0996a7f1
+ms.openlocfilehash: 30bb0c064c96ff4bd0b6e1c078221b2d9170d4e7
+ms.sourcegitcommit: 817a629f762a4a5d4bcff58302f2bc2408bf8be1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/28/2019
-ms.locfileid: "9120438"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "9149920"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -62,6 +62,9 @@ Eines der Kubernetes-networking-Anforderungen ist (siehe [Kubernetes Model](http
                     "10.127.130.0/24" # Management (host) subnet
                 ]
 ```
+
+### <a name="my-windows-node-cannot-access-a-nodeport-service"></a>Mein Windows-Knoten kann nicht auf einen NodePort-Dienst zugreifen. ###
+Lokaler NodePort Zugriff von den Knoten selbst schlägt fehl. Dies ist eine bekannte Einschränkung. NodePort Zugriff funktioniert von anderen Knoten oder externe Clients.
 
 ### <a name="after-some-time-vnics-and-hns-endpoints-of-containers-are-being-deleted"></a>Nach einiger Zeit werden vNICs und HNS-Endpunkte von Containern gelöscht ###
 Dieses Problem kann verursacht werden, wenn die `hostname-override` Parameter nicht an [Kube-Proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)übergeben wird. Um dies zu beheben, müssen die Benutzer den Hostnamen an Kube-Proxy wie folgt übergeben:
