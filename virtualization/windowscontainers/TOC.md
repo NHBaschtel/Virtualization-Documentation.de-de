@@ -2,7 +2,7 @@
 ## [Info](about/index.md)
 ## [Häufig gestellte Fragen](about/faq.md)
 
-# Schnelle gestartet wird
+# Schnelle startet
 ## Schnellstartanleitung für Windows 10
 ### [Ausführen Ihres ersten Containers WCOW](quick-start/quick-start-windows-10.md)
 ### [Ausführen Ihres ersten Containers LCOW](quick-start/quick-start-windows-10-linux.md)
@@ -12,7 +12,7 @@
 ### [Automatisieren von Containerbuilds](quick-start/quick-start-images.md)
 ## Schnellstartanleitung für Windows-Insider
 ### [Verwenden der Insider-images](quick-start/Using-Insider-Container-Images.md)
-### [Erstellen und Ausführen einer Anwendungs](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+### [Erstellen und Ausführen einer Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ### [Bekannte Probleme](quick-start/Insider-Known-Issues.md)
 
 # Docker unter Windows
@@ -34,8 +34,8 @@
 ### [Übersicht](kubernetes/getting-started-kubernetes-windows.md)
 ### [Erstellen eines Kubernetes-Masters](kubernetes/creating-a-linux-master.md)
 ### [Auswählen einer Lösung](kubernetes/network-topologies.md)
-### [Verknüpfen von Windows-Worker](kubernetes/joining-windows-workers.md)
-### [Verknüpfen von Linux-Worker](kubernetes/joining-linux-workers.md)
+### [Windows-Worker beitreten](kubernetes/joining-windows-workers.md)
+### [Linux-Worker beitreten](kubernetes/joining-linux-workers.md)
 ### [Bereitstellen von Kubernetes-Ressourcen](kubernetes/deploying-resources.md)
 ### [Problembehandlung](kubernetes/common-problems.md)
 ### [Windows-Bereitstellungsdienste auf Kubernetes](kubernetes/kube-windows-services.md)
@@ -57,7 +57,7 @@
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Hardwaregeräte in Containern](deploy-containers/hardware-devices-in-containers.md)
 ## [Container-Plattform-tools](deploy-containers/containerd.md)
-## [Active Directory-Dienstkonten](manage-containers/manage-serviceaccounts.md)
+## [Gruppenverwaltete Dienstkonten](manage-containers/manage-serviceaccounts.md)
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Linux-Container unter Windows](deploy-containers/linux-containers.md)
 
