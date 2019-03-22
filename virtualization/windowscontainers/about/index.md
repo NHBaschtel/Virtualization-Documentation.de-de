@@ -1,21 +1,16 @@
 ---
 title: Informationen zu Windows-Containern
 description: Erfahren Sie mehr über Windows-Container.
-keywords: Docker, Container
+keywords: 'Docker, Container'
 author: taylorb-microsoft
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 16cf281193ced00ea1b0e2d96291de7f44822284
-ms.sourcegitcommit: 95cec99aa8e817d3e3cb2163bd62a32d9e8f7181
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 12/18/2018
-ms.locfileid: "8973610"
 ---
-# <a name="containers-on-windows"></a>-Container unter Windows
+
+# <a name="containers-on-windows"></a>Container unter Windows
 
 ## <a name="what-are-containers"></a>Was sind Container?
 
@@ -23,11 +18,11 @@ Container sind eine Möglichkeit, eine Anwendung isoliert einzupacken. Die Anwen
 
 Stellen Sie sich eine Küche vor. Wir verpacken alle Geräte, Möbelstücke, sämtliches Geschirr, das Spülmittel und die Geschirrtücher. Das ist unser Container.
 
-<center style="margin: 25px">![](media/box1.png)</center>
+![Küche Analogie](media/box1.png)
 
-Diesen Container können wir in jede beliebige Wohnung stellen, die Küche ist immer die gleiche. Wir lediglich wird Strom und Wasser eine Verbindung damit hergestellt, und wir dann Kochen (da wir alle Geräte, die wir benötigen!).
+Diesen Container können wir in jede beliebige Wohnung stellen, die Küche ist immer die gleiche. Alles, was wir tun muss Strom- und Wasser eine Verbindung damit hergestellt wird, und klicken Sie dann Kochen (da wir alle Geräte, die wir benötigen!) werden wir.
 
-<center style="margin: 25px">![](media/apartment.png)</center>
+![Apartment Analogie](media/apartment.png)
 
 Mit Containern verhält es sich in gewisser Weise wie mit dieser Küche. Die Räume können unterschiedlich oder auch gleich sein. Wichtig ist, dass der Container alles umfasst, was benötigt wird.
 
@@ -37,9 +32,9 @@ Sehen Sie sich eine kurze Übersicht unten:
 
 ## <a name="container-fundamentals"></a>Grundlegendes zu Containern
 
-Container sind eine isolierte, von Ressourcen gesteuerte und portierbare Laufzeitumgebung, die auf einem Hostcomputer oder virtuellen Computer ausgeführt wird. Anwendungen oder Prozesse, die in Containern ausgeführt werden, sind mit allen erforderlichen Abhängigkeiten und Konfigurationsdateien verpackt, so als ob außerhalb des Containers keine anderen Prozesse ausgeführt werden würden.
+Container sind eine isolierte, von Ressourcen gesteuerte und portierbare Laufzeitumgebung, die auf einem Hostcomputer oder virtuellen Computer ausgeführt wird. Eine Anwendung oder Prozesse, die in einem Container ausgeführt wird mit allen erforderlichen Abhängigkeiten und Konfigurationsdateien verpackt; Es verfügt über die Illusion erhält, dass keine anderen Prozesse, die außerhalb des Containers ausgeführt werden.
 
-Der Host des Containers stellt einen Satz von Ressourcen für den Container bereit, und der Container verwendet nur diese Ressourcen. Als Container bekannt ist, kann nicht existieren, dass keine anderen Ressourcen, was angegeben wurde hat und daher der Container Ressourcen, die für einen anderen Container bereitgestellt wurden.
+Der Host des Containers stellt einen Satz von Ressourcen für den Container bereit, und der Container verwendet nur diese Ressourcen. So weit des Containers bekannt ist, existieren, dass keine anderen Ressourcen, was angegeben wurde hat und daher der Container kann nicht Ressourcen in Berührung, die für einen anderen Container bereitgestellt wurden.
 
 Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, Windows-Container zu erstellen und damit zu arbeiten.
 
@@ -53,7 +48,7 @@ Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, 
 
 **Containerrepository:** Bei jeder Erstellung eines Containerimages werden das Containerimage und dessen Abhängigkeiten in einem lokalen Repository gespeichert. Diese Images können auf dem Containerhost mehrfach wiederverwendet werden. Die Containerimages können auch in einer öffentlichen oder privaten Registrierung, wie z. B. DockerHub, gespeichert werden, damit sie in vielen verschiedenen Containerhosts verwendet werden können.
 
-<center>![](media/containerfund.png)</center>
+![Grundlegendes zu Containern](media/containerfund.png)
 
 Wenn Sie sich mit virtuellen Computern auskennen, werden Ihnen die Ähnlichkeiten mit Containern auffallen. Ein Container, in dem ein Betriebssystem ausgeführt wird, verfügt über ein Dateisystem, und auf ihn kann über ein Netzwerk so zugegriffen werden, als handele es sich um ein physisches oder virtuelles Computersystem. Was Technologie und Konzepte anbelangt, unterscheiden sich Container jedoch sehr von virtuellen Computern.
 
@@ -73,7 +68,7 @@ Die Ausführung eines Containers unter Windows mit oder ohne Hyper-V-Isolierung 
 
 Informationen zu Containern erwähnen zwangsläufig auch Docker. Docker ist der Behälter, in dem die Containerimages verpackt und ausgeliefert werden. Dieser automatisierte Prozess erstellt Images (im Prinzip Vorlagen), die überall – lokal, in der Cloud oder auf einem persönlichen Computer – als Container ausgeführt werden können.
 
-<center>![](media/docker.png)</center>
+![Container mit Docker](media/docker.png)
 
 Ein Windows Server-Container kann wie jeder andere Container mit [Docker](https://www.docker.com) verwaltet werden.
 
@@ -101,7 +96,7 @@ Aufgrund ihrer geringen Größe und der Ausrichtung der Anwendung sind Container
 Zu einer standardmäßigen Definition der Orchestrierung gehören folgende Aufgaben:
 
 - Planung: Wenn ein Containerimage und eine Ressourcenanforderung eingeht, suchen Sie einen geeigneten Computer, auf dem Sie den Container ausführen möchten.
-Affinität/Antiaffinität: Stellen Sie sicher, dass ein Satz Container nah beieinander (aufgrund der Leistung) oder in ausreichendem Abstand (aufgrund der Verfügbarkeit) ausgeführt wird.
+- Affinität/Antiaffinität: Stellen Sie sicher, dass ein Satz Container nah beieinander (aufgrund der Leistung) oder in ausreichendem Abstand (aufgrund der Verfügbarkeit) ausgeführt wird.
 - Statusüberwachung: Achten Sie auf Containerfehler und planen Sie diese automatisch erneut.
 - Failover: Behalten Sie den Überblick über die auf jedem Computer ausgeführten Aufgaben und planen Sie die Container von fehlerhaften Computern erneut auf fehlerfreien Knoten.
 - Skalierung: Fügen Sie Containerinstanzen bei Bedarf hinzu oder entfernen Sie diese entweder manuell oder automatisch, um sie dem Bedarf anzupassen.
