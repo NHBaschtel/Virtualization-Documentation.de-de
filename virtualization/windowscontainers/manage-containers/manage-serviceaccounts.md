@@ -3,17 +3,17 @@ title: Gruppenverwaltete Dienstkonten für Windows-Container
 description: Gruppenverwaltete Dienstkonten für Windows-Container
 keywords: Docker, Container, active Directory, gmsa
 author: rpsqrd
-ms.date: 03/22/2019
+ms.date: 03/25/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: 17c4089c98a74ea5937bac5d0eb4d4f1749aecf7
-ms.sourcegitcommit: b8afbfb63c33a491d7bad44d8d5962e6a60cb566
+ms.openlocfilehash: 20daa81a571fde23b91e24e9713e37d225870ec0
+ms.sourcegitcommit: 1dec99a5b295e8a08022ae3dec128c7c7818ad15
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/22/2019
-ms.locfileid: "9257446"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "9262353"
 ---
 # <a name="group-managed-service-accounts-for-windows-containers"></a>Gruppenverwaltete Dienstkonten für Windows-Container
 
@@ -342,8 +342,8 @@ Siehe [Beispiel Docker-Schwarm](https://docs.docker.com/engine/reference/command
 
 ### <a name="using-gmsa-with-kubernetes"></a>Verwenden von gMSA mit Kubernetes
 
-Unterstützung für die Planung von Windows-Container mit gmsas auch übertragen in Kubernetes ist in der alpha-Unterstützung ab Kubernetes 1.14.
-Überprüfen Sie die [Windows Gruppenverwaltete Dienstkonten für Container Identität Behaltn](https://github.com/kubernetes/enhancements/blob/master/keps/sig-windows/20181221-windows-group-managed-service-accounts-for-container-identity.md) für die neuesten Informationen zu diesem Feature und Informationen zum Testen in Ihre Kubernetes-Verteilung.
+Unterstützung für die Planung von Windows-Container mit gmsas auch übertragen in Kubernetes ist als alpha-Feature in Kubernetes 1.14 verfügbar.
+Informationen zum Testen in Ihre Kubernetes-Verteilung und die neuesten Informationen zu diesem Feature finden Sie unter [Konfigurieren gMSA für Windows-Pods und Container](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa) .
 
 ## <a name="example-uses"></a>Beispielverwendungen
 
