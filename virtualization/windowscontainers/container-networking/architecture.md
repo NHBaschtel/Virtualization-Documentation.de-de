@@ -1,5 +1,5 @@
 ---
-title: Windows-Container Networking
+title: Windows-Containernetzwerk
 description: Einfache Einführung in die Architektur der Windows-Container-Netzwerke.
 keywords: Docker, Container
 author: jmesser81
@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 0d43176a07b0ba23f6a893c1b3dcfa1ffddc423d
-ms.sourcegitcommit: db508decd9bf6c0dce9952e1a86bf80f00d025eb
+ms.openlocfilehash: 6cf35208cfcec313cfdd17e6ecef9c72050b85ad
+ms.sourcegitcommit: 1715411ac2768159cd9c9f14484a1cad5e7f2a5f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/20/2018
-ms.locfileid: "2315653"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "9263477"
 ---
 # <a name="windows-container-networking"></a>Windows-Container Networking
 > ***AUSSCHLUSS: Weitere Informationen für allgemeine Docker-Netzwerkbefehle, ‑Optionen und ‑Syntax finden Sie unter [Docker-Containernetzwerk](https://docs.docker.com/engine/userguide/networking/).*** Mit Ausnahme der in diesem Dokument beschriebenen Fälle werden alle Docker-Netzwerkbefehle [unter](#unsupported-features-and-network-options) Windows mit der gleichen Syntax wie unter Linux unterstützt. Beachten Sie jedoch, dass die Netzwerkstapel sich in Windows und Linux unterscheiden und daher einige Linux-Netzwerkbefehle (z.B. ifconfig) unter Windows nicht unterstützt werden.
@@ -68,11 +68,12 @@ Der Host Network Service (HNS) mit der Host Compute Service (HCS) arbeiten zusam
 
 
  ## <a name="unsupported-features-and-network-options"></a>Nicht unterstützte Features und Netzwerkoptionen
- Die folgenden Netzwerken Optionen sind derzeit **nicht** auf Windows unterstützt:
-   * Container-Kommunikation über IPsec verschlüsselt.
-   * HTTP-Proxy-Unterstützung für Container.  Eine vorläufige PR für diese nachverfolgt werden kann [hier](https://github.com/Microsoft/hcsshim/pull/163).
-   * Anfügen von Endpunkten für die Ausführung von Hyper-V-Container (hot-add-).
-   * Netzwerke auf virtualisierten Azure Infrastruktur über den Treiber transparent Network.
+ Die folgenden Netzwerkoptionen werden derzeit **nicht** unter Windows unterstützt:
+   * Windows-Container angefügt l2bridge, NAT und überlagerungsnetzwerke unterstützt Kommunikation über IPv6-Stapel nicht.
+   * Verschlüsselte Container Kommunikation über IPsec.
+   * HTTP-Proxy-Unterstützung für Container.
+   * Anfügen von Endpunkten Hyper-V-Container (hot-add).
+   * Netzwerke auf virtualisierten Azure Infrastruktur über den Treiber transparentes Netzwerk.
 
  | Befehl        | Nicht unterstützte Optionen   |
  | ---------------|:--------------------:|

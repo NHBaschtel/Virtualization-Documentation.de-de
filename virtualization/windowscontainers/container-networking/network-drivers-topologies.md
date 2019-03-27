@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 4f21efba8dd1079302b56e98d954b3ba574779e9
-ms.sourcegitcommit: 2779f01978b37ec4f8d895febe7037272fb2c703
+ms.openlocfilehash: ed554acc0aaacf967cbd29d49ef67fa7e916b497
+ms.sourcegitcommit: 1715411ac2768159cd9c9f14484a1cad5e7f2a5f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/10/2018
-ms.locfileid: "4492806"
+ms.lasthandoff: 03/26/2019
+ms.locfileid: "9263497"
 ---
 # <a name="windows-container-network-drivers"></a>Windows-Container-Netzwerktreiber  
 
@@ -23,7 +23,7 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
   > Mit dem Windows 10 Creators Update werden jetzt mehrere NAT-Netzwerke unterstützt.
 
 - **transparent** – einem Netzwerk hinzugefügte Container, die mit einem NAT-Treiber erstellt wurden und direkt mit dem physischen Netzwerk über einen *externen* Hyper-V-Switch verbunden werden. IPs aus dem physischen Netzwerk können mithilfe eines externen DHCP-Servers statisch (erfordert eine benutzerdefinierte ``--subnet``-Option) oder dynamisch zugewiesen werden. 
-  > Hinweis: aufgrund von der folgenden Anforderung containerhosts über ein transparentes Netzwerk verbinden wird nicht unterstützt auf Azure-VMs.
+  > Hinweis: aufgrund von der folgenden Anforderung, Herstellen einer Verbindung containerhosts über ein transparentes Netzwerk wird nicht unterstützt auf Azure-VMs.
   
   > Erfordert Folgendes: Wenn dieser Modus verwendet wird in einem Szenario mit Virtualisierung (Container-Host ist eine virtuelle Maschine) _Spoofing von MAC-Adressen erforderlich ist_.
 
@@ -32,14 +32,14 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
 
   > Erfordert: Erfordert Windows Server 2016 mit [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217), Windows 10 Creators Update oder einer neueren Version.
 
+  > Hinweis: Auf Windows Server 2019 Docker EE 18.03 ausgeführt wird und .NET-Apps, erstellt, indem der Docker-Schwarm überlagerungsnetzwerke nutzen Sie VFP NAT-Regeln für ausgehende Konnektivität. Dies bedeutet, dass Container erhält und 1 IP-Adresse empfängt. Es bedeutet auch, dass tools wie ICMP-basierte `ping` oder `Test-NetConnection` sollte ihre TCP/UDP-Optionen in Situationen Debuggen Verwendung konfiguriert werden.
+
 - **l2bridge** -verbundener Container, der mit einem Netzwerk mit dem Treiber "l2bridge" erstellt wurde und in demselben IP-Subnetz wie der Containerhost ist und mit dem physischen Netzwerk über einen *externen* Hyper-V-Switch verbunden ist. Die IP-Adressen müssen statisch aus dem gleichen Präfix wie der Containerhost zugewiesen werden. Alle Containerendpunkte auf dem Host verfügen aufgrund der Layer-2-Adressübersetzung beim Eingang und -Ausgang über dieselbe MAC-Adresse als Host (Umschreiben der MAC-Adresse).
   > Erfordert Folgendes: Wenn dieser Modus verwendet wird in einem Szenario mit Virtualisierung (Container-Host ist eine virtuelle Maschine) _Spoofing von MAC-Adressen erforderlich ist_.
   
   > Erfordert: Erfordert Windows Server 2016, Windows 10 Creators Update oder einer neueren Version.
 
-- **l2tunnel** – Ähnlich wie l2bridge _sollte dieser Treiber nur in einem Microsoft-Cloudstapel verwendet werden_. Pakete, die aus einem Container kommen, werden an den Virtualisierungshost gesendet, wenn SDN-Richtlinien angewendet werden.
-
-> Informationen dazu, wie Sie Containerendpunkte mithilfe des Microsoft-SDN-Stapels mit einem virtuellen Netzwerk des Mandanten verbinden, finden Sie im Thema [Verbinden von Containern mit einem virtuellen Netzwerk](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network).
+- **l2tunnel** – ähnlich wie l2bridge, jedoch _dieser Treiber sollte nur in einem Microsoft-Cloud-Stapel, z. B. Azure verwendet werden_. Pakete, die aus einem Container kommen, werden an den Virtualisierungshost gesendet, wenn SDN-Richtlinien angewendet werden.
 
 
 ## <a name="network-topologies-and-ipam"></a>Netzwerktopologien und IPAM
@@ -49,10 +49,10 @@ Die folgende Tabelle zeigt, wie die Netzwerkkonnektivität für interne (Contain
 
   | Docker-Netzwerktreiber für Windows | Typische Anwendungsfälle | Container-zu-Container (Single-Node) | Container-zu-extern (Einzelknoten + mehrere Knoten) | Container-zu-Container (mehrere Knoten) |
   |-------------------------------|:------------:|:------------------------------------:|:------------------------------------------------:|:-----------------------------------:|
-  | **NAT (Standard)** | Für Entwickler geeignet | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li> Plattformübergreifendes Subnetz: Wird nicht in WS2016 unterstützt (nur ein NAT-interner Präfix)</li></ul> | Weitergeleitet durch Management-vNIC (WinNAT-gebunden) | Nicht direkt unterstützt: Verfügbarmachen von Ports über Host ist erforderlich |
+  | **NAT (Standard)** | Für Entwickler geeignet | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li> Plattformübergreifendes Subnetz: nicht unterstützt (nur ein NAT-internen-Präfix)</li></ul> | Weitergeleitet durch Management-vNIC (WinNAT-gebunden) | Nicht direkt unterstützt: Verfügbarmachen von Ports über Host ist erforderlich |
   | **Transparent** | Gut für Entwickler oder kleine Bereitstellungen | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li>Subnetzübergreifend: Weitergeleitet vom Container-Host</li></ul> | Vom Container-Host mit direktem Zugriff (physischer) Netzwerkadapter weitergeleitet | Vom Container-Host mit direktem Zugriff (physischer) Netzwerkadapter weitergeleitet |
-  | **Überlagerung** | Erforderlich für Docker-Schwarms, mit mehreren Knoten | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li>Subnetzübergreifend: Netzwerkverkehr wird gekapselt und weitergeleitet über Mgmt-vNIC</li></ul> | Nicht direkt unterstützt – erfordert einen zweiten Containerendpunkt mit NAT-Netzwerk-Verbindung | Gleich/Subnetzübergreifend: Netzwerkverkehr wird mit VXLAN gekapselt und weitergeleitet über Mgmt-vNIC |
-  | **L2Bridge** | Verwendet für Kubernetes und Microsoft-SDN | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li> Subnetzübergreifend: Container-MAC-Adresse werden über Internetzugangs-/-ausgangspunkte neu geschrieben und geroutet</li></ul> | Container-MAC-Adresse werden über Internetzugangs-/-ausgangspunkte neu geschrieben | <ul><li>Gleiches Subnetz: Überbrückte Verbindung</li><li>Subnetzübergreifend: Nicht in WS2016 unterstützt.</li></ul> |
+  | **Überlagerung** | Gut für mit mehreren Knoten; erforderlich für Docker-Schwarms, in Kubernetes verfügbar | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li>Subnetzübergreifend: Netzwerkverkehr wird gekapselt und weitergeleitet über Mgmt-vNIC</li></ul> | Nicht direkt unterstützt – erfordert einen zweiten Containerendpunkt mit NAT-Netzwerk-Verbindung | Gleich/Subnetzübergreifend: Netzwerkverkehr wird mit VXLAN gekapselt und weitergeleitet über Mgmt-vNIC |
+  | **L2Bridge** | Verwendet für Kubernetes und Microsoft-SDN | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li> Subnetzübergreifend: Container-MAC-Adresse werden über Internetzugangs-/-ausgangspunkte neu geschrieben und geroutet</li></ul> | Container-MAC-Adresse werden über Internetzugangs-/-ausgangspunkte neu geschrieben | <ul><li>Gleiches Subnetz: Überbrückte Verbindung</li><li>Subnetzübergreifend: weitergeleitet über Mgmt-vNIC bei WSv1709 und höher</li></ul> |
   | **L2Tunnel**| Nur Azure | Gleich/Subnetzübergreifend: auf dem virtuellen Hyper-V-Switch des physischen Host angeheftet, auf den Richtlinie angewendet wird | Datenverkehr muss virtuellen Azure-Netzwerk-Gateway durchlaufen. | Gleich/Subnetzübergreifend: auf dem virtuellen Hyper-V-Switch des physischen Host angeheftet, auf den Richtlinie angewendet wird |
 
 ### <a name="ipam"></a>IPAM 
@@ -63,7 +63,7 @@ IP-Adressen werden von jedem Netzwerktreiber unterschiedlich belegt und diesem z
 | NAT | Dynamische IP-Zuweisung und Zuweisung vom Host Networking Service (HNS) aus internem NAT-Subnetzpräfix |
 | Transparent | Statisch oder dynamisch (mit externem DHCP-Server) IP-Verteilung und Zuweisung von IP-Adressen innerhalb des Container-Host-Netzwerkpräfix |
 | Überlagerung | Dynamische IP-Zuweisung vom Docker-Modul-Schwarmmodus, verwaltet Präfixe und Zuweisung über HNS |
-| L2Bridge | Statisch oder dynamisch IP-Verteilung und Zuweisung von IP-Adressen innerhalb des Container-Host-Netzwerkpräfix (kann auch mit externem HNS-Server zugewiesen werden) |
+| L2Bridge | Statische IP-Verteilung und Zuweisung von IP-Adressen innerhalb des Container-Host-Netzwerkpräfix (kann auch über HNS zugewiesen werden) |
 | L2Tunnel | Nur Azure – dynamische IP-Verteilung und Zuweisung von Plug-In |
 
 ### <a name="service-discovery"></a>Dienstermittlung
@@ -71,7 +71,7 @@ Die Dienstermittlung wird nur für bestimmte Windows-Netzwerktreiber unterstütz
 
 |  | Lokale Dienstermittlung  | Globale Dienstermittlung |
 | :---: | :---------------     |  :---                |
-| nat | JA | Nicht verfügbar |  
-| overlay | JA | JA mit Docker EE |
-| transparent | NEIN | NEIN |
-| l2bridge | NEIN | JA mit Kube-DNS |
+| nat | JA | JA mit Docker EE |  
+| overlay | JA | Ja mit Docker EE oder Kube-dns |
+| transparent | NO | NEIN |
+| l2bridge | NEIN | Ja mit Kube-dns |
