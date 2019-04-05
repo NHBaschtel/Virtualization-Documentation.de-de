@@ -56,6 +56,7 @@
 ## [Versionskompatibilität](deploy-containers/version-compatibility.md)
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Druckerdienste](deploy-containers/print-spooler.md)
+## [GPU-Beschleunigung](deploy-containers/gpu-acceleration.md)
 ## [Hardwaregeräte in Containern](deploy-containers/hardware-devices-in-containers.md)
 ## [Container-Plattform-tools](deploy-containers/containerd.md)
 ## [Gruppenverwaltete Dienstkonten](manage-containers/manage-serviceaccounts.md)

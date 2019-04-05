@@ -3,19 +3,19 @@ title: Druckspooler in Windows-Containern
 description: Erläutert die aktuelle arbeiten Verhalten für den Druckspooler-Dienst in Windows-Container
 keywords: Docker, Container, Drucker, spoolerprozess
 author: cwilhit
-ms.openlocfilehash: 45176e651ee2ef9b6daea9919004601734084083
-ms.sourcegitcommit: 04c372c87c832f73a1aa120b0ff6c2c2b9c8c1b1
+ms.openlocfilehash: 48130bc6a826a45dfa49d0a3b4600d227f34704e
+ms.sourcegitcommit: 3c81b0efd1ac2c4c93d58f16edae1044c9a5ad55
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "9257981"
+ms.lasthandoff: 04/05/2019
+ms.locfileid: "9284574"
 ---
 # <a name="print-spooler-in-windows-containers"></a>Druckspooler in Windows-Containern
 
-Anwendungen mit einer Abhängigkeit Druck-Dienste können erfolgreich mit Windows-Containern in Containern werden. Anwendungen, die eine Abhängigkeit von Installieren von Druckertreibern in der Host haben können nicht containerisierten werden; Treiberinstallation aus innerhalb eines Containers ist nicht unterstützt, da diese Container Zustand auf dem Host Speicherverluste würde. Gibt es spezielle Anforderungen, die erfüllt sein müssen, um erfolgreich aktivieren Drucker-Service-Funktion. Dieses Handbuch erklärt, wie Sie Ihre Bereitstellung ordnungsgemäß konfigurieren.
+Anwendungen mit einer Abhängigkeit Druck-Dienste können erfolgreich mit Windows-Containern in Containern werden. Gibt es spezielle Anforderungen, die erfüllt sein müssen, um erfolgreich aktivieren Drucker-Service-Funktion. Dieses Handbuch erklärt, wie Sie Ihre Bereitstellung ordnungsgemäß konfigurieren.
 
 > [!IMPORTANT]
-> Während der ersten Zugriff auf das Drucken erfolgreich in Containern funktioniert services, ist die Funktionalität in Form eingeschränkt. Einige Aktionen druckbezogener funktioniert möglicherweise nicht. Öffnen Sie eine unten Feedback, wenn dies der Fall ist.
+> Während der ersten Zugriff auf das Drucken erfolgreich in Containern funktioniert services, ist die Funktionalität in Form eingeschränkt. Einige Aktionen druckbezogener funktioniert möglicherweise nicht. Z. B. apps, die eine Abhängigkeit von Installieren von Druckertreibern in der Host haben können nicht werden in Containern da **Treiberinstallation aus innerhalb eines Containers wird nicht unterstützt**. Öffnen Sie unten Feedback, wenn Sie eine nicht unterstützte Druckfunktion finden, die in Containern unterstützt werden sollen.
 
 ## <a name="setup"></a>Setup
 
