@@ -8,16 +8,16 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
-ms.openlocfilehash: aad0c1f2fa7aea564b7348d662df46256a82abc4
-ms.sourcegitcommit: f376676c7864ae19fcb1649006ce6b60c6218634
+ms.openlocfilehash: 5d9e95d2263c9603712054376bfa9e7190feb1b0
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/27/2018
-ms.locfileid: "8989449"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9380404"
 ---
 # <a name="optimize-windows-dockerfiles"></a>Optimieren von Windows-Dockerfile-Dateien
 
-Mehrere Methoden können zur Optimierung des Docker Build-Prozesses sowie der resultierenden Docker-Images verwendet werden. Dieses Dokument beschreibt ausführlich den Ablauf des Docker Build-Prozesses und zeigt verschiedene Taktiken, die für eine optimale Imageerstellung mit Windows-Containern verwendet werden können.
+Mehrere Methoden können zur Optimierung des Docker Build-Prozesses sowie der resultierenden Docker-Images verwendet werden. Erstellen Sie diesem Dokument wird erläutert, wie der Docker Build-Prozesses und zeigt verschiedene Taktiken, die für eine optimale verwendet werden können, mit Windows-Container.
 
 ## <a name="docker-build"></a>Docker Build
 
@@ -54,9 +54,9 @@ Dockerfile-Dateien können geschrieben werden, um Imageebenen zu minimieren und 
 
 ## <a name="optimize-image-size"></a>Optimieren der Imagegröße
 
-Wenn Sie Docker-Containerimages erstellen, kann die Imagegröße ein wichtiger Faktor sein. Containerimages werden zwischen Registrierungen und Host verschoben, exportiert und importiert und verbrauchen so letztendlich Speicherplatz. Verschiedene Taktiken können während des Docker Build-Prozesses verwendet werden, um die Imagegröße zu minimieren. In diesem Abschnitt werden einige dieser Taktiken speziell für Windows-Container ausführlich dargestellt. 
+Wenn Sie Docker-Containerimages erstellen, kann die Imagegröße ein wichtiger Faktor sein. Containerimages werden zwischen Registrierungen und Host verschoben, exportiert und importiert und verbrauchen so letztendlich Speicherplatz. Verschiedene Taktiken können während des Docker Build-Prozesses verwendet werden, um die Imagegröße zu minimieren. In diesem Abschnitt werden einige dieser Taktiken speziell für Windows-Container.
 
-Weitere Informationen zu bewährten Vorgehensweisen mit Dockerfile finden Sie unter [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) (Bewährte Vorgehensweisen für das Schreiben von Dockerfile-Dateien auf Docker.com).
+Weitere Informationen zu bewährten Vorgehensweisen mit Dockerfile finden Sie unter [Best practices for writing Dockerfiles on Docker.com](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) (Bewährte Vorgehensweisen für das Schreiben von Dockerfile-Dateien auf Docker.com).
 
 ### <a name="group-related-actions"></a>Gruppieren von verwandten Aktionen
 

@@ -8,14 +8,14 @@ ms.topic: about-article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
-ms.openlocfilehash: fec8b08d5bd86102d21ce93b726dc0b931413441
-ms.sourcegitcommit: 69228f28723f366c6b2933c7701077c8df74b32b
+ms.openlocfilehash: 19340f2ca3ca11e9b75a223bf2b58e943328a0c5
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/19/2018
-ms.locfileid: "8976746"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9380154"
 ---
-# <a name="building-a-container-ecosystem"></a>Aufbauen eines Containerökosystems
+# <a name="building-a-container-ecosystem"></a>Aufbauen eines containerökosystems
 
 Um zu verstehen, warum ein Ökosystem Container erstellen so wichtig ist, zunächst sprechen wir über Docker.
 
@@ -23,7 +23,7 @@ Um zu verstehen, warum ein Ökosystem Container erstellen so wichtig ist, zunäc
 
 Das Konzept von Containern (Isolation von Namespaces und Ressourcenkontrolle) ist nicht wirklich neu und geht zurück auf BSD Jails, Solaris Zones und den grundlegenden UNIX-Mechanismus „chroot (change root)“.   Was Docker beigetragen hat, ist ein allgemeines Toolset, ein Paketerstellungsmodell und ein Bereitstellungsmechanismus.  Dadurch vereinfacht Docker die containerisierung und Verteilung von Clientanwendungen.  Diese Anwendungen können dann überall auf beliebigen Linux-Hosts ausgeführt werden. Diese Funktionalität bieten wir auch unter Windows.
 
-Weit verbreitete Packaging-Modell und Bereitstellung-Technologie vereinfacht die Verwaltung durch das anbieten derselben Verwaltungsbefehle auf beliebigen Hosts und erstellt eine einzigartige Gelegenheit für reibungslose DevOps.
+Weit verbreitete Packaging-Modell und Bereitstellung Technologie vereinfacht die Verwaltung durch das anbieten derselben Verwaltungsbefehle auf beliebigen Hosts und ebnet Weg für reibungslose DevOps.
 
 Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Mittlerweile gibt es eine riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind, und zwar in DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung.
 
@@ -33,7 +33,7 @@ Nun wollen wir uns mit diesem Ökosystem und damit beschäftigen, wie Sie auf Do
 
 ## <a name="components-in-a-container-ecosystem"></a>Komponenten eines Containerökosystems
 
-Windows-Container sind eine wichtige Komponente eines großen Containerökosystems. Wir arbeiten mit der gesamten Branche zusammen, um Entwicklern Optionen auf allen Ebenen des Lösungsstapels zu bieten.
+Windows-Container sind eine wichtige Komponente eines großen containerökosystems. Wir arbeiten mit der gesamten Branche zusammen, um Entwicklern Optionen auf allen Ebenen des Lösungsstapels zu bieten.
 
 Das Containerökosystem bietet Methoden zum Verwalten von Containern, Freigeben von Containern und Entwickeln von in Containern ausgeführten Apps.
 

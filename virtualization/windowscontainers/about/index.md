@@ -1,18 +1,23 @@
 ---
 title: Informationen zu Windows-Containern
 description: Erfahren Sie mehr über Windows-Container.
-keywords: 'Docker, Container'
+keywords: Docker, Container
 author: taylorb-microsoft
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
+ms.openlocfilehash: 6473c323c675fc59360dd982a14895a93743098a
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9380044"
 ---
-
 # <a name="containers-on-windows"></a>Container unter Windows
 
-## <a name="what-are-containers"></a>Was sind Container?
+## <a name="what-are-containers"></a>Was sind Container
 
 Container sind eine Möglichkeit, eine Anwendung isoliert einzupacken. Die Anwendung, die sich in einem Container befindet, weiß nichts von anderen Anwendungen oder Prozessen, die außerhalb des Containers existieren. Alles, was für die erfolgreiche Ausführung der Anwendung erforderlich ist, befindet sich ebenfalls in diesem Container.  Und wenn der Container verschoben wird, hat das keine Auswirkungen auf die Anwendung, da alles enthalten ist, damit sie ausgeführt werden kann.
 
@@ -29,16 +34,15 @@ Mit Containern verhält es sich in gewisser Weise wie mit dieser Küche. Die Rä
 Sehen Sie sich eine kurze Übersicht unten:
 <iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
 ## <a name="container-fundamentals"></a>Grundlegendes zu Containern
 
 Container sind eine isolierte, von Ressourcen gesteuerte und portierbare Laufzeitumgebung, die auf einem Hostcomputer oder virtuellen Computer ausgeführt wird. Eine Anwendung oder Prozesse, die in einem Container ausgeführt wird mit allen erforderlichen Abhängigkeiten und Konfigurationsdateien verpackt; Es verfügt über die Illusion erhält, dass keine anderen Prozesse, die außerhalb des Containers ausgeführt werden.
 
 Der Host des Containers stellt einen Satz von Ressourcen für den Container bereit, und der Container verwendet nur diese Ressourcen. So weit des Containers bekannt ist, existieren, dass keine anderen Ressourcen, was angegeben wurde hat und daher der Container kann nicht Ressourcen in Berührung, die für einen anderen Container bereitgestellt wurden.
 
-Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, Windows-Container zu erstellen und damit zu arbeiten.
+Die folgenden grundlegenden Konzepte können nützlich sein, wie Sie erstellen beginnen und mit Windows-Containern arbeiten.
 
-**Containerhost:** Physisches oder virtuelles Computersystem, das mit dem Windows-Containerfeature konfiguriert wurde. Auf dem Containerhost werden ein oder mehrere Windows-Container ausgeführt.
+**Container-Host:** Physische oder virtuelle Computersystem mit dem Windows-containerfeature konfiguriert. Der Container-Host wird ein oder mehrere Windows-Container ausgeführt.
 
 **Containerimage:** Wenn z.B. durch eine Softwareinstallation das Dateisystem oder die Registrierung eines Containers geändert wird, werden diese Änderungen in einem Sandkasten erfasst. In vielen Fällen ist es wünschenswert, diesen Zustand zu erfassen, damit neue Container erstellt werden können, die diese Änderungen übernehmen. Das ist, was ein Image ausmacht. Sobald der Container beendet wurde, können Sie entweder diesen Sandkasten verwerfen oder ihn in ein neues Containerimage umwandeln. Angenommen, Sie haben mithilfe des Windows Server Core-Betriebssystemimages einen Container bereitgestellt. Anschließend installieren Sie MySQL in diesem Container. Das Erstellen eines neuen Images mithilfe dieses Containers resultiert in einer bereitstellbaren Version des Containers. Dieses Image enthält nur die erfolgten Änderungen (MySQL), fungiert jedoch als Ebene über dem Containerbetriebssystem-Image.
 
@@ -56,7 +60,7 @@ Mark Russinovich, Experte für Microsoft Azure, erklärt diese Unterschiede in e
 
 ## <a name="windows-container-types"></a>Windows-Containertypen
 
-Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten (Runtimes).
+Windows-Container enthalten zwei verschiedene Containertypen bzw. Laufzeiten.
 
 **Windows Server-Container**: – Bieten Anwendungsisolation mithilfe einer Technologie zum Isolieren von Prozessen und Namespaces. Ein Windows Servercontainer teilt sich einen Kernel mit dem Containerhost und allen Containern, die auf dem Host ausgeführt werden. Diese Container bieten keine schädlichen Sicherheitsgrenzen und sollten nicht zum Isolieren von nicht vertrauenswürdigen Codes verwendet werden. Aufgrund des gemeinsam genutzten Kernelspeichers benötigen diese Container die gleiche Kernelversion und -konfiguration.
 
@@ -70,9 +74,9 @@ Informationen zu Containern erwähnen zwangsläufig auch Docker. Docker ist der 
 
 ![Container mit Docker](media/docker.png)
 
-Ein Windows Server-Container kann wie jeder andere Container mit [Docker](https://www.docker.com) verwaltet werden.
+Genau wie jeder andere Container kann Windows Server-Container mit [Docker](https://www.docker.com)verwaltet werden.
 
-## <a name="containers-for-developers"></a>Container für Entwickler ##
+## <a name="containers-for-developers"></a>Container für Entwickler
 
 Ein Entwickler den Desktop an einen Computer testen, auf einen Satz von Produktionscomputer, ein Docker Bild erstellt werden kann, die in Sekunden genauso wie in jeder Umgebung bereitgestellt wird. Mittlerweile gibt es ein riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind. In DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung, werden im öffentlichen Repository der Community derzeit über 180.000Anwendungen veröffentlicht.
 
@@ -84,13 +88,14 @@ Mit Containern können Entwickler eine App in jeder Sprache erstellen. Diese App
 
 Container helfen Entwicklern, Anwendungen höherer Qualität schneller zu entwickeln und auszuliefern.
 
-## <a name="containers-for-it-professionals"></a>Container für IT-Experten ##
+## <a name="containers-for-it-professionals"></a>Container für IT-Experten
 
 IT-Experten können Container verwenden, um standardisierte Umgebungen für ihre Entwicklungs-, Qualitätssicherungs- und Produktionsteams bereitzustellen. Sie müssen sich nicht mehr komplexe Installations- und Konfigurationsschritte kümmern. Mithilfe von Containern können Systemadministratoren Unterschiede bei Betriebssysteminstallationen und zugrunde liegender Infrastruktur abstrahieren.
 
 Container helfen Administratoren beim Erstellen einer Infrastruktur, die einfacher zu aktualisieren und zu verwalten ist.
 
 ## <a name="container-orchestrators"></a>Container-Orchestratoren
+
 Aufgrund ihrer geringen Größe und der Ausrichtung der Anwendung sind Container für flexible Übermittlungsumgebungen und Architekturen geeignet, die auf Microservices basieren. Bei der Verwendung von Containern und Microservices können sich jedoch Hunderte oder Tausende von Komponenten in Ihrer Umgebung befinden.  Sie können eventuell einige Dutzend virtuelle Computer oder physische Server manuell verwalten, es ist allerdings unmöglich, eine Containerumgebung der Großserienproduktion zu verwalten, ohne diese zu automatisieren.  Die Automatisierung und Verwaltung einer großen Anzahl von Containern und wie sie interagieren, wird als Orchestrierung bezeichnet. 
 
 Zu einer standardmäßigen Definition der Orchestrierung gehören folgende Aufgaben:
@@ -110,11 +115,11 @@ Mithilfe von [Azure Container Service (AKS)](/azure/aks/) kann ein Cluster aus v
 
 [Azure Service Fabric](/azure/service-fabric/) ist eine Plattform für verteilte Systeme, mit der das Verpacken, Bereitstellen und Verwalten von skalierbaren und zuverlässigen Microservices und Containern vereinfacht wird. Service Fabric behandelt die großen Herausforderungen bei der Entwicklung und Verwaltung von systemeigenen Cloudanwendungen. Entwickler und Administratoren können komplexe Infrastrukturprobleme vermeiden und sich auf die Implementierung kritischer, anspruchsvoller Workloads konzentrieren, die skalierbar, zuverlässig und überschaubar sind. Service Fabric ist die Plattform der nächsten Generation für das Erstellen und Verwalten von Anwendungen der Ebene1, der Unternehmensklasse und der Cloudebene, die im Container ausgeführt werden.
 
-## <a name="video-overview"></a>Video mit Übersicht
+## <a name="video-overview"></a>Video-Überblick
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
-## <a name="try-windows-server-containers"></a>Windows Server-Container testen
+## <a name="try-windows-server-containers"></a>Testen Sie Windows Server-Container
 
 Möchten Sie die großartigen Möglichkeiten von Containern nutzen? Im Folgenden finden Sie Informationen zum Bereitstellen Ihres ersten Containers: <br/>
 Benutzer von Windows Server: [Schnellstartanleitung für Windows Server](../quick-start/quick-start-windows-server.md) <br/>

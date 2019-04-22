@@ -1,18 +1,23 @@
 ---
 title: Container unter Windows-Dokumentation
 description: Dokumentation für die Ausführung von Containern unter Windows
-keywords: 'Docker, Container'
+keywords: Docker, Container
 author: cwilhit
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
+ms.openlocfilehash: cc869cfaf1c433fbfdc351e9120a0e43c02967ee
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9379974"
 ---
-
 # <a name="containers-on-windows-documentation"></a>Container unter Windows-Dokumentation
 
-Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene und damit die Ausführung mehrerer isolierter Anwendungen auf einem einzigen System. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
+Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene, die mehrerer isolierter Anwendungen auf einem einzigen System ausgeführt werden. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
 
 ## <a name="getting-started"></a>Erste Schritte
 Erfahren Sie mehr über Container, und legen Sie direkt mit ihrer Verwendung los.
@@ -35,7 +40,7 @@ Hier finden Sie Informationen Sie zum Verwalten von Docker unter Windows.
 * [Containernetzwerk](container-networking/architecture.md)
 
 ## <a name="watch"></a>Überwachen
-Sie sind an Demos und Interviews mit dem Windows-Container-Team interessiert?
+Demos und Interviews mit dem Windows-Container-Team interessiert?
 * [Kanal zu Containern](https://channel9.msdn.com/Blogs/containers)
 
 ## <a name="community"></a>Community

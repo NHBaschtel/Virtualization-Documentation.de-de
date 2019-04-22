@@ -20,7 +20,7 @@ Für die Arbeit mit Windows-Containern ist Docker EE erforderlich. Docker EE bes
 Verwenden Sie das PowerShell-Modul von OneGet, um Docker EE zu installieren. Der Anbieter aktiviert die Containerfunktion auf Ihrem Computer und installiert Docker EE. Dazu ist ein Neustart erforderlich. Öffnen Sie eine PowerShell-Sitzung mit erhöhten Rechten, und führen Sie die folgenden Befehle aus.
 
 > [!NOTE]
-> Installieren von Docker EE mit Windows Server-Insider-Builds erfordert einen anderen OneGet-Anbieter als der für nicht-Insider-Builds vorgesehene. Wenn Docker EE und der OneGet-Anbieter DockerMsftProvider bereits installiert sind, entfernen Sie diese Komponenten, bevor Sie fortfahren.
+> Installieren von Docker EE mit Windows Server-Insider-Builds erfordert einen anderen OneGet-Anbieter als die für nicht-Insider-Builds vorgesehene. Wenn Docker EE und der OneGet-Anbieter DockerMsftProvider bereits installiert sind, entfernen Sie diese Komponenten, bevor Sie fortfahren.
 
 ```powershell
 Stop-Service docker
@@ -70,9 +70,9 @@ docker pull mcr.microsoft.com/windows/servercore/insider
 ```
 
 > [!IMPORTANT]
-> Bitte lesen Sie die Windows-Container-Betriebssystemimage [EULA](../EULA.md ) und das Windows-Insider-Programm [Nutzungsbedingungen](https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver).
+> Bitte lesen Sie die Windows-Container OS Image [EULA](../EULA.md ) und das Windows-Insider-Programm [Nutzungsbedingungen](https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver).
 
 ## <a name="next-steps"></a>Nächste Schritte
 
 > [!div class="nextstepaction"]
-> [Eine beispielanwendung erstellen und ausführen](./Nano-RS3-.NET-Core-and-PS.md)
+> [Erstellen und Ausführen einer beispielanwendung](./Nano-RS3-.NET-Core-and-PS.md)

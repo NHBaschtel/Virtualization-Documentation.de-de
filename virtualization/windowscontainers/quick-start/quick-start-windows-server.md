@@ -8,20 +8,20 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
-ms.openlocfilehash: b58bdd79da1c644281ebd9e79c16587d9fc156f4
-ms.sourcegitcommit: 21d93e5febd9b1b47ae1aa59d08086e6ec1691e0
+ms.openlocfilehash: fd2de24a4c8c03817978a53b340e2a77285c69ad
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/28/2019
-ms.locfileid: "9121042"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9380414"
 ---
 # <a name="windows-containers-on-windows-server"></a>Windows-Container unter Windows Server
 
-In dieser Übung führt durch die einfache Bereitstellung und Verwendung des Windows-containerfeatures unter Windows Server 2019 und Windows Server 2016.
+Diese Übung führt durch die einfache Bereitstellung und Verwendung des Windows-containerfeatures unter Windows Server 2019 und Windows Server 2016.
 
-In diesem Schnellstart werden Sie Folgendes ausführen:
+In diesem Schnellstart führen Sie Aktionen aus:
 
-1. Aktivieren das Container-Feature in Windows Server
+1. Aktivieren das Feature "Container" in Windows Server
 2. Installieren von Docker
 3. Ausführen eines einfachen Windows Containers
 
@@ -32,9 +32,9 @@ Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows S
 ## <a name="prerequisites"></a>Voraussetzungen
 
 Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:
-- Ein Computersystem (physisch oder virtuell) dem Windows Server 2019 ausgeführt. Wenn Sie Windows Server 2019 Insider Preview verwenden, aktualisieren Sie auf [Windows Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
+- Ein Computersystem (physisch oder virtuell) ausgeführt, Windows Server 2019. Wenn Sie Windows Server 2019 Insider Preview verwenden, aktualisieren Sie auf [Windows Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
 
-> Wichtige Updates sind erforderlich, damit das Feature „Windows-Container“ funktioniert. Installieren Sie alle Updates, bevor Sie dieses Tutorial durcharbeiten.
+> Wichtige Updates sind in der Reihenfolge für das Feature "Windows-Container" funktioniert erforderlich. Installieren Sie alle Updates, bevor Sie dieses Tutorial durcharbeiten.
 
 Wenn Sie das Feature in Azure bereitstellen möchten, können Sie diese [Vorlage](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools/containers-azure-template) zu Hilfe nehmen.
 
@@ -106,7 +106,7 @@ Wählen Sie nach Aufforderung die Option „A“, um alle Updates herunterzulade
 
 Für diese Übung laden Sie ein vorab erstelltes .NET-Beispielimage von der Docker Hub-Registrierung herunter und stellen einen einfachen Container bereit, der eine Hello World .NET-Anwendung ausführt.  
 
-Stellen Sie den .Net-Container mit `docker run` bereit. Dabei wird auch das Containerimage heruntergeladen, was mehrere Minuten dauern kann. Abhängig von der Host-Version von Windows Server, führen Sie den folgenden Befehl unten.
+Stellen Sie den .Net-Container mit `docker run` bereit. Dabei wird auch das Containerimage heruntergeladen, was mehrere Minuten dauern kann. Je nach Ihrer Host-Version von Windows Server, führen Sie den folgenden Befehl unten.
 
 #### <a name="windows-server-2019"></a>Windows Server 2019
 
@@ -173,4 +173,4 @@ Weitere Informationen zum Befehl „Docker Run“ finden Sie in der [Referenz zu
 ## <a name="next-steps"></a>Nächste Schritte
 
 > [!div class="nextstepaction"]
-> [Weitere Informationen zum Automatisieren von Builds Container und speichern Sie Bilder](./quick-start-images.md)
+> [Informationen Sie zum Automatisieren der Container-Builds und speichern Sie Bilder](./quick-start-images.md)

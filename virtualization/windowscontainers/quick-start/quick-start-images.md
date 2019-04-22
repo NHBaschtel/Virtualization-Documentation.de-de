@@ -8,25 +8,25 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
-ms.openlocfilehash: a28b9ced2c9669b65bfa02bd02c1061226dcea7e
-ms.sourcegitcommit: f172d14ef1ebfb5a9df1b3529e0722d9103e0eba
+ms.openlocfilehash: 41fa89dcaba38d43d39681240a1a108c9250ba78
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/26/2019
-ms.locfileid: "9112917"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9380434"
 ---
 # <a name="automating-builds-and-saving-images"></a>Automatisieren von Builds und Speichern von Images
 
-In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. In dieser Übung zeigt, wie Sie Ihr eigenes containerimage aus einer dockerfile-Datei erstellen und Speichern von containerimages in der öffentlichen Registrierung von Docker Hub.
+In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. Diese Übung zeigt, wie Sie Ihr eigenes containerimage aus einer dockerfile-Datei erstellen und Speichern von containerimages in der öffentlichen Registrierung von Docker Hub.
 
-Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2019 oder Windows Server 2016 und das Windows Server Core-containerbasisimage verwendet wird. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
+Dieser Schnellstart ist spezifisch für Windows Server-Container unter Windows Server 2019 oder Windows Server 2016 und Windows Server Core-Container-Basis-Image verwendet wird. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis.
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
 Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:
 
 - Ein Computersystem (physisch oder virtuell) ausgeführten Windows Server 2019 oder Windows Server 2016.
-- Konfigurieren Sie dieses System mit dem Windows-Container-Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Windows Containers on Windows Server](./quick-start-windows-server.md) (Windows-Container unter Windows Server).
+- Konfigurieren Sie dieses System mit dem Windows-Container-Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Windows-Container unter Windows Server](./quick-start-windows-server.md).
 - Eine Docker-ID – diese wird verwendet, um ein Containerimage mithilfe von Push an Docker Hub zu übertragen. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud](https://cloud.docker.com/) beziehen.
 
 ## <a name="container-image---dockerfile"></a>Containerimage – Dockerfile
@@ -130,7 +130,7 @@ Sobald Sie angemeldet sind, kann das Containerimage mithilfe von Push an Docker 
 docker push <user>/iis-dockerfile
 ```
 
-Wie Docker jede Ebene bis zu Docker Hub legt, überspringt Docker Ebenen, die bereits im Docker Hub oder in anderen Registrierungen (fremden Ebenen) vorhanden sind.  Beispielsweise würden aktuelle Versionen von Windows Server Core, die in der Microsoft-Container-Registrierung oder Ebenen einer privaten Unternehmens Registrierung gehostet werden übersprungen und nicht auf Docker Hub abgelegt werden.
+Wie Docker jede Ebene bis zu Docker Hub verschiebt, überspringt Docker Ebenen, die in Docker Hub oder in anderen Registrierungen (fremden Ebenen) bereits vorhanden sind.  Beispielsweise würden aktuelle Versionen von Windows Server Core, die in der Microsoft-Container-Registrierung oder Ebenen aus einem privaten unternehmenseigenen Registrierung gehostet werden übersprungen und nicht auf Docker Hub abgelegt werden.
 
 Das Containerimage kann jetzt mithilfe von `docker pull` von Docker Hub auf jeden beliebigen Windows-Containerhost heruntergeladen werden. In diesem Tutorial löschen wir das bestehende Image und übertragen es mithilfe von Pull von Docker Hub. 
 

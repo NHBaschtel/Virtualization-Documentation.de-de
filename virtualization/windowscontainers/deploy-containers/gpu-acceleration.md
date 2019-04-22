@@ -3,12 +3,12 @@ title: GPU-Beschleunigung in Windows-Containern
 description: Welche Ebene der GPU-Beschleunigung in Windows-Container vorhanden ist
 keywords: Docker, Container, Geräte, hardware
 author: cwilhit
-ms.openlocfilehash: fbee74e1d40838922ae938afd8fda5715a6abaf7
-ms.sourcegitcommit: af1d0d6c0642ee44bd34db7a9a58fe6c65f73a33
+ms.openlocfilehash: 281241e07e4bc184e73c4e74a117b44253a775be
+ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/08/2019
-ms.locfileid: "9285944"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "9380054"
 ---
 # <a name="gpu-acceleration-in-windows-containers"></a>GPU-Beschleunigung in Windows-Containern
 
@@ -22,6 +22,7 @@ GPUs sind bereits ein allgemeines Tool für gängige Workloads, von herkömmlich
 ## <a name="requirements"></a>Anforderungen
 
 Für dieses Feature funktioniert muss Ihre Umgebung die folgenden Anforderungen erfüllen:
+
 - Der Container-Host muss Windows Server 2019 oder Windows 10, Version 1809 oder höher ausgeführt werden.
 - Der Container-Basis-Image darf [mcr.microsoft.com/windows:1809](https://hub.docker.com/_/microsoft-windowsfamily-windows) oder höher. Windows Server Core und Nano Server-Container-Images werden derzeit nicht unterstützt.
 - Der Container-Host muss Docker-Modul 19.03 oder höher ausgeführt werden.
