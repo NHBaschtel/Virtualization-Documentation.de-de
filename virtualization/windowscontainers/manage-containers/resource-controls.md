@@ -9,11 +9,11 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ms.openlocfilehash: e004bd4ca97960499826eeefdfb8e58b08e494b2
-ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "9380494"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9574771"
 ---
 # <a name="implementing-resource-controls-for-windows-containers"></a>Implementieren von Ressourcensteuerungen für Windows-Container
 Pro Container und pro Ressource können diverse Steuerungen implementiert werden.  Standardmäßig unterliegen ausgeführte Container einer typischen Windows-Ressourcenverwaltung, die im Allgemeinen auf einer gleichberechtigten Verteilung basiert. Ein Entwickler oder Administrator kann die Ressourcennutzung jedoch durch die Konfiguration der einzelnen Steuerungselemente begrenzen oder beeinflussen.  Gesteuert werden können die Ressourcen CPU/Prozessor, Arbeitsspeicher/RAM, Datenträger/Speicher und Networking/Durchsatz.

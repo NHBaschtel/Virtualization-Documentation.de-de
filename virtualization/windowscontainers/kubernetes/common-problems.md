@@ -8,11 +8,11 @@ ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: Kubernetes, 1.12, Linux, kompilieren
 ms.openlocfilehash: 1c5a5ec90b828a4f2430508f02cb9b9afb1c4d53
-ms.sourcegitcommit: 1715411ac2768159cd9c9f14484a1cad5e7f2a5f
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/26/2019
-ms.locfileid: "9263507"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9577081"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.

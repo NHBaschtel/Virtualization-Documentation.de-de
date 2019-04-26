@@ -9,11 +9,11 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 ms.openlocfilehash: 7ed9c5e3c3067bd8ddfa8005f4d9307c76dce4cd
-ms.sourcegitcommit: 4412583b77f3bb4b2ff834c7d3f1bdabac7aafee
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "6948029"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9575401"
 ---
 # <a name="using-checkpoints-to-revert-virtual-machines-to-a-previous-state"></a>Zurücksetzen virtueller Computer in einen vorherigen Zustand mithilfe von Prüfpunkten
 
@@ -21,7 +21,7 @@ Einer der großen Vorteile der Virtualisierung ist die Möglichkeit, den Zustand
 
 Hyper-V unter Windows 10 kennt zwei Typen von Prüfpunkten:
 
-* **Standardprüfpunkte**: erstellt eine Momentaufnahme der des virtuellen Computers und der Zustand des virtuellen Computers Arbeitsspeicher zum Zeitpunkt der prüfpunktinitiierung. Eine Momentaufnahme ist keine vollständige Sicherung und kann Probleme mit der Datenkonsistenz bei Systemen verursachen, die Daten zwischen verschiedenen Knoten replizieren, wie z.B. Active Directory.  Vor Windows10 waren mit Hyper-V nur Standardprüfpunkte (früher als Snapshots bezeichnet) verfügbar.
+* **Standardprüfpunkte**: erstellt einen Snapshot des des virtuellen Computers und der Zustand des virtuellen Computers Arbeitsspeicher zum Zeitpunkt der prüfpunktinitiierung. Eine Momentaufnahme ist keine vollständige Sicherung und kann Probleme mit der Datenkonsistenz bei Systemen verursachen, die Daten zwischen verschiedenen Knoten replizieren, wie z.B. Active Directory.  Vor Windows10 waren mit Hyper-V nur Standardprüfpunkte (früher als Snapshots bezeichnet) verfügbar.
 
 * **Produktionsprüfpunkte**: Volumeschattenkopie-Dienst oder das Einfrieren des Dateisystems auf einem virtuellen Linux-Computer verwendet, um eine datenkonsistente Sicherung des virtuellen Computers zu erstellen. Es wird keine Momentaufnahme des Arbeitsspeicherzustands des virtuellen Computers erstellt.
 
@@ -42,7 +42,7 @@ Produktionsprüfpunkte sind standardmäßig aktiviert, was aber im Hyper-V-Manag
 <br />
 ![](media/checkpoint_upd.png)
 
-**Mithilfe der PowerShell**
+**Mithilfe von PowerShell**
 
 Die folgenden Befehle können ausgeführt werden, um den Prüfpunkt mit PowerShell zu ändern. 
 
@@ -72,7 +72,7 @@ So erstellen Sie einen Prüfpunkt:
 2. Klicken Sie mit der rechten Maustaste auf den Namen des virtuellen Computers, und klicken Sie dann auf **Prüfpunkt**.
 3. Wenn der Prozess abgeschlossen ist, wird der Prüfpunkt im **Hyper-V-Manager** unter **Prüfpunkte** angezeigt.
 
-**Mithilfe der PowerShell**
+**Mithilfe von PowerShell**
 
 Erstellen Sie mit dem Befehl **CheckPoint-VM** einen Prüfpunkt.  
 
@@ -101,7 +101,7 @@ Wenn Sie einen virtuellen Computer auf einen früheren Zeitpunkt zurücksetzen m
   
   Wählen Sie eine der Optionen zum Übernehmen, um den Prüfpunkt anzuwenden.
 
-**Mithilfe der PowerShell**
+**Mithilfe von PowerShell**
 
 5. Zum Anzeigen einer Liste der Prüfpunkte für einen virtuellen Computer verwenden Sie den Befehl **Get-VMCheckpoint**.
 
@@ -133,7 +133,7 @@ Namen dürfen maximal 100Zeichen umfassen, und der Name darf nicht leer bleiben.
 3.  Geben Sie den neuen Namen für den Prüfpunkt. Es muss weniger als 100 Zeichen sein, und das Feld darf nicht leer sein.
 4.  Drücken Sie anschließend die **EINGABETASTE**.
 
-**Mithilfe der PowerShell**
+**Mithilfe von PowerShell**
 
 ``` powershell
 Rename-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -NewName <new checkpoint name>
@@ -155,7 +155,7 @@ So löschen Sie einen Prüfpunkt ordnungsgemäß
 2.  Klicken Sie im Abschnitt **Prüfpunkte** mit der rechten Maustaste des Prüfpunkts an, den Sie löschen möchten und klicken Sie auf Löschen. Sie können auch einen Prüfpunkt und alle nachfolgenden Prüfpunkte löschen. Klicken Sie hierzu mit der rechten Maustaste auf den frühesten Prüfpunkt, den Sie löschen möchten, und klicken Sie dann auf ****Prüfpunktunterstruktur**löschen**.
 3.  Sie werden gefragt, ob Sie den Prüfpunkt wirklich löschen möchten. Vergewissern Sie sich, dass der richtige Prüfpunkt ausgewählt wurde, und klicken Sie dann auf **Löschen**. 
  
-**Mithilfe der PowerShell**
+**Mithilfe von PowerShell**
 ```powershell
 Remove-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name>
 ```
@@ -212,7 +212,7 @@ Diese Übung führt Sie durch das Erstellen und Anwenden eines Standardprüfpunk
 
 Nun da ein Prüfpunkt vorhanden ist, nehmen Sie eine Änderung am virtuellen Computer vor, und wenden Sie anschließend den Prüfpunkt an, um den virtuellen Computer in den gespeicherter Zustand zurückzusetzen. 
 
-1. Schließen Sie die Textdatei, falls noch geöffnet, und löschen Sie sie vom Desktop des virtuellen Computers.
+1. Schließen Sie die Textdatei, falls noch geöffnet, und es vom Desktop des virtuellen Computers zu löschen.
 2. Öffnen Sie den Hyper-V-Manager, klicken Sie mit der rechten Maustaste auf den Standardprüfpunkt, und wählen Sie „Anwenden“ aus.
 3. Wählen Sie im Benachrichtigungsfenster „Prüfpunkt anwenden“ den Befehl „Anwenden“ aus.
 
@@ -239,7 +239,7 @@ Nun wollen wir uns mit Produktionsprüfpunkten beschäftigen. Dieser Prozess ent
 
 Nun da ein Prüfpunkt vorhanden ist, nehmen Sie eine Änderung am System vor, und wenden Sie anschließend den Prüfpunkt an, um den virtuellen Computer in den gespeicherter Zustand zurückzusetzen. 
 
-1. Schließen Sie die Textdatei, falls noch geöffnet, und löschen Sie sie vom Desktop des virtuellen Computers.
+1. Schließen Sie die Textdatei, falls noch geöffnet, und es vom Desktop des virtuellen Computers zu löschen.
 2. Öffnen Sie Hyper-V-Manager, klicken Sie mit der rechten Maustaste auf den produktionsprüfpunkt, und wählen Sie **anwenden**.
 3. Wählen Sie im Benachrichtigungsfenster „Prüfpunkt anwenden“ den Befehl **Anwenden** aus.
 

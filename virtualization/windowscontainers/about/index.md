@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 6473c323c675fc59360dd982a14895a93743098a
-ms.sourcegitcommit: a5ff22c205149dac4fc05325ef3232089826f1ef
+ms.openlocfilehash: e3d260bd65b6f81bc4ea9c305937f2784192d28a
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "9380044"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9576411"
 ---
 # <a name="containers-on-windows"></a>Container unter Windows
 
@@ -50,7 +50,7 @@ Die folgenden grundlegenden Konzepte können nützlich sein, wie Sie erstellen b
 
 **Containerbetriebssystem-Image:** Container werden mithilfe von Images bereitgestellt. Das Containerbetriebssystem-Image ist die erste Ebene von möglicherweise vielen Imageebenen, die einen Container bilden. Das Image stellt die Betriebssystemumgebung bereit. Das Betriebssystemimage eines Containers ist unveränderlich. Das heißt, es bleibt immer gleich.
 
-**Containerrepository:** Bei jeder Erstellung eines Containerimages werden das Containerimage und dessen Abhängigkeiten in einem lokalen Repository gespeichert. Diese Images können auf dem Containerhost mehrfach wiederverwendet werden. Die Containerimages können auch in einer öffentlichen oder privaten Registrierung, wie z. B. DockerHub, gespeichert werden, damit sie in vielen verschiedenen Containerhosts verwendet werden können.
+**Containerrepository:** Bei jeder Erstellung eines Containerimages werden das Containerimage und dessen Abhängigkeiten in einem lokalen Repository gespeichert. Diese Images können auf dem Containerhost mehrfach wiederverwendet werden. Die containerimages können auch in einer öffentlichen oder privaten Registrierung, z. B. Docker Hub, gespeichert werden, damit sie in vielen verschiedenen containerhosts verwendet werden können.
 
 ![Grundlegendes zu Containern](media/containerfund.png)
 
@@ -109,9 +109,9 @@ Zu einer standardmäßigen Definition der Orchestrierung gehören folgende Aufga
 - Dienstermittlung: Ermöglichen Sie den Containern, sich auch dann gegenseitig automatisch zu suchen, wenn diese zwischen Hostcomputern wechseln und sich die IP-Adressen ändern.
 - Koordinierte Anwendungsupgrades: Verwalten Sie Containerupgrades, um die Ausfallzeiten der Anwendung zu vermeiden und ermöglichen Sie ein Rollback, wenn ein Fehler auftritt.
 
-Azure bietet zwei Container-Orchestratoren an: Azure Container Service (AKS) und Service Fabric.
+Azure bietet zwei Container-orchestratoren an: Azure Kubernetes Service (AKS) und Service Fabric.
 
-Mithilfe von [Azure Container Service (AKS)](/azure/aks/) kann ein Cluster aus virtuellen Computern erstellt, konfiguriert und verwaltet werden, die zum Ausführen von Anwendungen in Containern vorkonfiguriert wurden. Dadurch können Sie Ihre bereits vorhandenen Kenntnisse nutzen oder vom großen und wachsenden Fachwissen der Community profitieren, um auf Containern basierende Anwendungen in Microsoft Azure bereitzustellen und zu verwalten. Mit AKS können Sie für Unternehmen geeignete Funktionen von Azure nutzen und gleichzeitig die Anwendungsportabilität über Kubernetes und das Docker-Image-Format beibehalten.
+[Azure Kubernetes Service (AKS)](/azure/aks/) können sie ganz einfach erstellen, konfigurieren und Verwalten von einem Cluster aus virtuellen Computern, die zum Ausführen von Anwendungen in Containern vorkonfiguriert wurden. Dadurch können Sie Ihre bereits vorhandenen Kenntnisse nutzen oder vom großen und wachsenden Fachwissen der Community profitieren, um auf Containern basierende Anwendungen in Microsoft Azure bereitzustellen und zu verwalten. Mit AKS können Sie für Unternehmen geeignete Funktionen von Azure nutzen und gleichzeitig die Anwendungsportabilität über Kubernetes und das Docker-Image-Format beibehalten.
 
 [Azure Service Fabric](/azure/service-fabric/) ist eine Plattform für verteilte Systeme, mit der das Verpacken, Bereitstellen und Verwalten von skalierbaren und zuverlässigen Microservices und Containern vereinfacht wird. Service Fabric behandelt die großen Herausforderungen bei der Entwicklung und Verwaltung von systemeigenen Cloudanwendungen. Entwickler und Administratoren können komplexe Infrastrukturprobleme vermeiden und sich auf die Implementierung kritischer, anspruchsvoller Workloads konzentrieren, die skalierbar, zuverlässig und überschaubar sind. Service Fabric ist die Plattform der nächsten Generation für das Erstellen und Verwalten von Anwendungen der Ebene1, der Unternehmensklasse und der Cloudebene, die im Container ausgeführt werden.
 

@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
 ms.openlocfilehash: 53152d0237a7f81858a5cb2f0fd8aabd439c4613
-ms.sourcegitcommit: 914e0dd1168daf1d2b0f22bd011035016cc08baf
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/23/2019
-ms.locfileid: "9099358"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9578271"
 ---
 # <a name="install-hyper-v-on-windows-10"></a>Installieren von Hyper-V unter Windows10
 
@@ -30,7 +30,7 @@ Hyper-V kann auf unterschiedliche Weise aktiviert werden – in der Windows 10-S
 
 Die Hyper-V-Rolle kann unter Windows 10 Home **nicht** installiert werden.
 
-Ein Upgrade von Windows 10 Home auf Windows 10 Pro durch **Einstellungen**öffnen > **Update und Sicherheit** > **Aktivierung**.
+Ein Upgrade von Windows 10 Home Edition auf Windows 10 Pro durch **Einstellungen**öffnen > **Update und Sicherheit** > **Aktivierung**.
 
 Weitere Informationen und Hinweise zur Problembehandlung finden Sie unter [Systemanforderungen für Hyper-V unter Windows10](../reference/hyper-v-requirements.md).
 

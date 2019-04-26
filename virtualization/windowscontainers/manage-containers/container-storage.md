@@ -4,11 +4,11 @@ description: So können Windows Server-Container Host- und andere Speichertypen 
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: patricklang
 ms.openlocfilehash: 7d22a149da21a3367b82f2920c189ae9a4b1c173
-ms.sourcegitcommit: 2c22506a7fdbbbe5ab4138281fc9256a98b51efd
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "3386045"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9574871"
 ---
 # <a name="overview"></a>Übersicht
 
@@ -106,7 +106,7 @@ Unter Windows Server Version 1709 ermöglicht ein neues Feature namens "globale 
     $creds = Get-Credential
     New-SmbGlobalMapping -RemotePath \\contosofileserver\share1 -Credential $creds -LocalPath G:
     ```
-    Dieser Befehl wird die Anmeldeinformationen verwenden, um mit dem remote-SMB-Server zu authentifizieren. Ordnen Sie anschließend den Pfad für die Remotefreigabe auf G: Laufwerkbuchstabe zu (dies kann jeder verfügbare Laufwerkbuchstabe sein). Die auf diesem Containerhost erstellten Container können jetzt ihre Datenvolumes auf einen Pfad auf dem Laufwerk G: zuordnen.
+    Mit diesem Befehl wird die Anmeldeinformationen verwenden, um mit dem remote-SMB-Server zu authentifizieren. Ordnen Sie anschließend den Pfad für die Remotefreigabe auf G: Laufwerkbuchstabe zu (dies kann jeder verfügbare Laufwerkbuchstabe sein). Die auf diesem Containerhost erstellten Container können jetzt ihre Datenvolumes auf einen Pfad auf dem Laufwerk G: zuordnen.
 
     > Hinweis: Wenn die globale Zuordnung in SMB für Container verwendet wird, können alle Benutzer auf dem Containerhost auf die Remotefreigabe zugreifen. Jede auf dem Containerhost ausgeführte Anwendung hat außerdem Zugriff auf die zugeordnete Remotefreigabe.
 

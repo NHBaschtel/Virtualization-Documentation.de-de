@@ -8,16 +8,16 @@ ms.prod: containers
 description: Kompilieren und übergreifendes Kompilieren von Kubernetes-Binärdateien aus der Quelle.
 keywords: Kubernetes, 1.12, Linux, kompilieren
 ms.openlocfilehash: 40bf7e65a8910cdab095abb269aa0a92508189cd
-ms.sourcegitcommit: 8e9252856869135196fd054e3cb417562f851b51
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "6178873"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9574821"
 ---
 # <a name="compiling-kubernetes-binaries"></a>Kompilieren von Kubernetes-Binärdateien #
 Das Kompilieren von Kubernetes erfordert eine funktionierende Go-Umgebung. Diese Seite erläutert mehrere Möglichkeiten zum Kompilieren von Linux-Binärdateien und zum übergreifenden Kompilieren von Windows-Binärdateien.
 > [!NOTE] 
-> Diese Seite ist vollständig freiwilligen und nur für interessierte Kubernetes-Entwickler, die die neueste und beste Quellcode experimentieren möchten enthalten.
+> Diese Seite ist vollständig freiwilligen und nur für interessierte Kubernetes-Entwickler, die mit den neuesten & größte Quellcode experimentieren möchten enthalten.
 
 > [!tip]
 > Erhalt von Benachrichtigungen über die neuesten Entwicklungen können Sie abonnieren [@kubernetes-announce](https://groups.google.com/forum/#!forum/kubernetes-announce).

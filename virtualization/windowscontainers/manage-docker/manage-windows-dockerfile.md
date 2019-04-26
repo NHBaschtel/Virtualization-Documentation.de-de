@@ -9,11 +9,11 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ms.openlocfilehash: a32d66251d8d9dddcd8abb1b64600459c903e317
-ms.sourcegitcommit: 2c22506a7fdbbbe5ab4138281fc9256a98b51efd
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "3386055"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9574801"
 ---
 # <a name="dockerfile-on-windows"></a>Dockerfile unter Windows
 
@@ -61,7 +61,7 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-Weitere Beispiele von dockerfile-Dateien für Windows finden Sie im [Repository für Dockerfile Windows] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
+Weitere Beispiele von dockerfile-Dateien für Windows, finden Sie im [Repository für Dockerfile Windows] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
 
 ## <a name="instructions"></a>Anweisungen
 

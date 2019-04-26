@@ -6,18 +6,18 @@ ms.date: 02/12/2019
 ms.topic: get-started-article
 ms.prod: containers
 description: Informationen zum Ausführen von Kubernetes-Komponenten als Windows-Dienste.
-keywords: Kubernetes, 1,13, Windows, erste Schritte
+keywords: Kubernetes, 1.13, Windows, erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5c18
 ms.openlocfilehash: 6c68edda6e2017640b0a490c3c30f063c81698b3
-ms.sourcegitcommit: 41318edba7459a9f9eeb182bf8519aac0996a7f1
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/28/2019
-ms.locfileid: "9120591"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9578641"
 ---
 # <a name="kubernetes-components-as-windows-services"></a>Kubernetes-Komponenten als Windows-Dienste 
 
-Einige Benutzer können so konfigurieren Sie Prozesse wie flanneld.exe kubelet.exe, Kube-proxy.exe oder als Windows-Dienste ausgeführt. Dies sorgt dafür, dass zusätzliche Fehlertoleranz-Vorteile wie z. B. die Prozesse, die bei einem unerwarteten Prozess oder Knoten Absturz automatisch neu gestartet.
+Einige Benutzer möglicherweise so konfigurieren Sie Prozesse wie flanneld.exe kubelet.exe, Kube-proxy.exe oder als Windows-Dienste ausführen möchten. Dies sorgt dafür, dass zusätzliche Fehlertoleranz Vorteile wie z. B. die Prozesse, die automatisch nach einer unerwarteten Absturz Prozess oder Knoten neu gestartet wird.
 
 
 ## <a name="prerequisites"></a>Voraussetzungen
@@ -41,7 +41,7 @@ Die IP-Adresse zugewiesen, mit dem Windows-Knoten. Sie können `ipconfig` , dies
 
 
 # [<a name="networkmode"></a>NetworkMode](#tab/NetworkMode)
-Den Netzwerkmodus `l2bridge` (Flannel Host-gw) oder `overlay` (Flannel Vxlan) als [Lösung](./network-topologies.md)ausgewählt.
+Den Netzwerkmodus `l2bridge` (Flannel Host-gw) oder `overlay` (Flannel Vxlan) als eine [Netzwerk-Lösung](./network-topologies.md)ausgewählt.
 
 > [!Important] 
 > `overlay` Netzwerkmodus (Flannel Vxlan) erfordert Kubernetes v1.14-Binärdateien oder höher.
@@ -82,13 +82,13 @@ Das Verzeichnis, in denen Kubelet und Kube-Proxy-Protokolle in ihren jeweiligen 
 
 
 > [!TIP] 
-> Etwas schief sollten, finden Sie in den [Abschnitt Problembehandlung](./common-problems.md#i-have-problems-running-kubernetes-processes-as-windows-services)
+> Etwas schief gehen, sollten, finden Sie in den [Abschnitt Problembehandlung](./common-problems.md#i-have-problems-running-kubernetes-processes-as-windows-services)
 
 ## <a name="manual-approach"></a>Die manuelle
 Die [oben referenzierten Skript](#registering-windows-services) nicht Arbeit für Sie in diesem Abschnitt sollte enthält einige *Beispiele für Befehle* kann verwendet werden, um diese Dienste manuell schrittweise registrieren.
 
 > [!TIP] 
-> Finden Sie weitere Informationen zum Konfigurieren von [Kubelet und Kube-Proxy können jetzt als Windows-Dienste ausgeführt](https://kubernetes.io/docs/getting-started-guides/windows/#kubelet-and-kube-proxy-can-now-run-as-windows-services) `kubelet` und `kube-proxy` Ausführen als systemeigene Windows-Dienste über `sc`.
+> Finden Sie weitere Informationen zum Konfigurieren von [Kubelet und Kube-Proxy können jetzt als Windows-Dienste ausführen](https://kubernetes.io/docs/getting-started-guides/windows/#kubelet-and-kube-proxy-can-now-run-as-windows-services) `kubelet` und `kube-proxy` als native Windows-Dienste über ausführen `sc`.
 
 ### <a name="register-flanneldexe"></a>Registrieren Sie flanneld.exe
 ```

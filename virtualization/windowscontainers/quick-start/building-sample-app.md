@@ -8,11 +8,11 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.openlocfilehash: 970f039e97ce0628c7a7f78c417017fc95570f82
-ms.sourcegitcommit: 51da93c4548c5df7a9f01e54d46d81b338c874cf
+ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/28/2019
-ms.locfileid: "9031164"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "9576881"
 ---
 # <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
@@ -128,7 +128,7 @@ Klicken Sie in der Navigationsleiste auf „MvcMovie“. Dadurch gelangen Sie zu
 
 Wir haben mithilfe von Docker erfolgreich eine ASP.NET-Web-App konfiguriert und erstellt und diese erfolgreich in einem ausgeführten Container bereitgestellt. Aber Sie können noch weitere Schritte ausführen. Sie können die Web-App beispielsweise in weitere Komponenten aufteilen: einen Container, der die Web-API ausführt, einen Container, der das Front-End ausführt, und einen Container, der den SQL Server ausführt.
 
-Nun, da Sie den Stillstand von Containern haben, wechseln Sie große Menge und erstellen Sie tolle in Containern Softwareprogramme damit!
+Nun, da Sie den Stillstand von Containern haben, wechseln Sie draußen und erstellen Sie tolle in Containern Softwareprogramme damit!
 
 > [!div class="nextstepaction"]
 > [Sehen Sie sich weitere Beispiele für container](../samples.md)
