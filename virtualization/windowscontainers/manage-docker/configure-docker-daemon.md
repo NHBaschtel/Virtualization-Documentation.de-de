@@ -3,40 +3,41 @@ title: Konfigurieren von Docker unter Windows
 description: Konfigurieren von Docker unter Windows
 keywords: Docker, Container
 author: PatrickLang
-ms.date: 08/23/2016
+ms.date: 05/03/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
-ms.openlocfilehash: 24de3d332ae4634f7dca945c1df9182cc1310089
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 354469199f3c7e886760e8a391edccde067986af
+ms.sourcegitcommit: c48dcfe43f73b96e0ebd661164b6dd164c775bfa
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9574741"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "9610290"
 ---
 # <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
-Das Docker-Modul und der Client sind nicht in Windows enthalten, und müssen werden einzeln installiert und konfiguriert. Das Docker-Modul kann zudem zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. Dieses Dokument enthält Informationen zum Installieren und konfigurieren das Docker-Modul und bietet auch einige Beispiele für häufig verwendete Konfigurationen.
-
+Das Docker-Modul und der Client nicht in Windows enthalten sind, und müssen werden einzeln installiert und konfiguriert. Das Docker-Modul kann zudem zahlreiche verschiedene Konfigurationen akzeptieren. Beispielsweise kann konfiguriert werden, wie der Daemon eingehende Anforderungen akzeptiert, und Sie können standardmäßige Netzwerkoptionen sowie Einstellungen für Debugging und Protokolle konfigurieren. Unter Windows können diese Konfigurationen in einer Konfigurationsdatei oder mit dem Windows-Dienststeuerungs-Manager angegeben werden. Dieses Dokument enthält Informationen zum Installieren und konfigurieren das Docker-Modul und bietet auch einige Beispiele für häufig verwendete Konfigurationen.
 
 ## <a name="install-docker"></a>Installieren von Docker
-Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus dem Docker-Modul (dockerd.exe) und dem Docker-Client (docker.exe). Die einfachste Möglichkeit, alles zu installieren, ist die Verwendung der Schnellstartanleitungen. Sie Hilfe erhalten Sie alles eingerichtet und Ausführen Ihres ersten Containers. 
 
-* [Windows-Container unter Windows Server 2019](../quick-start/quick-start-windows-server.md)
-* [Windows-Container unter Windows 10](../quick-start/quick-start-windows-10.md)
+Sie benötigen Docker für die Arbeit mit Windows-Containern. Docker besteht aus dem Docker-Modul (dockerd.exe) und dem Docker-Client (docker.exe). Die einfachste Möglichkeit, alles zu installieren, ist im Schnellstart Anleitungen, mit die Hilfe Sie alles eingerichtet und Ausführen Ihres ersten Containers.
 
-Informationen über die skriptbasierte Installationen finden Sie unter [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
+- [Windows-Container unter Windows Server 2019](../quick-start/quick-start-windows-server.md)
+- [Windows-Container unter Windows 10](../quick-start/quick-start-windows-10.md)
 
-Bevor Docker verwendet werden kann müssen containerimages installiert werden. Weitere Informationen finden Sie unter [Schnellstarthandbuch für die Verwendung von Images](../quick-start/quick-start-images.md).
+Über die Skriptbasierte Installationen finden Sie unter [Verwendung eines Skripts Docker EE zu installieren](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
 
-## <a name="configure-docker-with-configuration-file"></a>Konfigurieren von Docker mit einer Konfigurationsdatei
+Bevor Sie Docker verwenden können, müssen Sie die Container-Images installieren. Weitere Informationen finden Sie unter [der Schnellstart-Anleitung für die Verwendung von Images](../quick-start/quick-start-images.md).
 
-Die bevorzugte Methode zum Konfigurieren des Docker-Moduls in Windows ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\Docker\config\daemon.json”. Wenn diese Datei nicht bereits vorhanden ist, kann sie erstellt werden.
+## <a name="configure-docker-with-a-configuration-file"></a>Konfigurieren von Docker mit einer Konfigurationsdatei
 
-Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unter Windows anwendbar. Die nachfolgenden Beispiele zeigen für Windows gültige Optionen. Eine vollständige Dokumentation für die Konfiguration des Docker-Moduls finden Sie auf der Docker-Seite unter [Daemon Configuration File (Daemon-Konfigurationsdatei)](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
+Die bevorzugte Methode zum Konfigurieren des Docker-Moduls in Windows ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\Docker\config\daemon.json”. Sie können diese Datei erstellen, wenn es nicht bereits vorhanden ist.
 
-```
+>[!NOTE]
+>Nicht jede verfügbare Docker-Konfigurationsoption gilt für Docker unter Windows. Das folgende Beispiel zeigt die Konfigurationsoptionen, die angewendet werden. Weitere Informationen zur Konfiguration des Docker-Modul finden Sie in der [Docker-Daemon-Konfigurationsdatei](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
+
+```json
 {
     "authorization-plugins": [],
     "dns": [],
@@ -70,25 +71,25 @@ Hinweis: Nicht jede verfügbare Docker-Konfigurationsoption ist für Docker unte
 }
 ```
 
-Der Konfigurationsdatei müssen nur die gewünschten Konfigurationsänderungen hinzugefügt werden. In diesem Beispiel wird das Docker-Modul so konfiguriert, dass eingehende Verbindungen über Port2375 akzeptiert werden. Für alle weiteren Konfigurationsoptionen werden die Standardwerte verwendet.
+Sie müssen nur die gewünschten konfigurationsänderungen der Konfigurationsdatei hinzu. Im folgende Beispiel wird z. B. das Docker-Modul, um eingehende Verbindungen über Port 2375 akzeptiert konfiguriert. Für alle weiteren Konfigurationsoptionen werden die Standardwerte verwendet.
 
-```
+```json
 {
     "hosts": ["tcp://0.0.0.0:2375"]
 }
 ```
 
-Entsprechend konfiguriert dieses Beispiel den Docker-Daemon, um Images und Container in einem alternativen Pfad zu speichern. Wenn nicht angegeben, ist die Standardeinstellung c:\programdata\docker.
+Ebenso konfiguriert das folgende Beispiel den Docker-Daemon, um Images und Container in einem alternativen Pfad zu halten. Wenn nicht angegeben, wird standardmäßig `c:\programdata\docker`.
 
-```
+```json
 {    
     "data-root": "d:\\docker"
 }
 ```
 
-Ähnlich wird in diesem Beispiel der Docker-Daemon so konfiguriert, dass nur sichere Verbindungen über Port 2376 akzeptiert werden.
+Das folgende Beispiel konfiguriert den Docker-Daemon, um nur sichere Verbindungen über Port 2376 akzeptiert.
 
-```
+```json
 {
     "hosts": ["tcp://0.0.0.0:2376", "npipe://"],
     "tlsverify": true,
@@ -100,34 +101,36 @@ Entsprechend konfiguriert dieses Beispiel den Docker-Daemon, um Images und Conta
 
 ## <a name="configure-docker-on-the-docker-service"></a>Konfigurieren von Docker über den Docker-Dienst
 
-Das Docker-Modul kann auch konfiguriert werden, indem der Docker-Dienst mit `sc config` geändert wird. Bei Verwendung dieser Methode werden die Flags des Docker-Moduls direkt im Docker-Dienst festgelegt. Führen Sie den folgenden Befehl in einem Eingabeaufforderungsfenster („cmd.exe“, nicht PowerShell) aus:
+Das Docker-Modul kann auch konfiguriert werden, durch Ändern des Docker-Diensts mit `sc config`. Bei Verwendung dieser Methode werden die Flags des Docker-Moduls direkt im Docker-Dienst festgelegt. Führen Sie den folgenden Befehl in einem Eingabeaufforderungsfenster („cmd.exe“, nicht PowerShell) aus:
 
-
-```
+```cmd
 sc config docker binpath= "\"C:\Program Files\docker\dockerd.exe\" --run-service -H tcp://0.0.0.0:2375"
 ```
 
-Hinweis: Sie müssen diesen Befehl nicht ausführen, wenn Ihre Datei „daemon.json“ den Eintrag `"hosts": ["tcp://0.0.0.0:2375"]` bereits enthält.
+>[!NOTE]
+>Sie müssen diesen Befehl ausführen, wenn die Datei "Daemon.JSON" bereits enthält die `"hosts": ["tcp://0.0.0.0:2375"]` Eintrag.
 
 ## <a name="common-configuration"></a>Allgemeine Konfiguration
 
 Die folgenden Beispiele für Konfigurationsdateien zeigen allgemeine Docker-Konfigurationen. Diese können in einer einzigen Konfigurationsdatei kombiniert werden.
 
-### <a name="default-network-creation"></a>Erstellen eines Standardnetzwerks 
+### <a name="default-network-creation"></a>Standardnetzwerks
 
-Verwenden Sie den folgenden Befehl, um das Docker-Modul so zu konfigurieren, dass kein NAT-Standardnetzwerk erstellt wird. Weitere Informationen finden Sie unter [Verwalten von Docker-Netzwerken](../container-networking/network-drivers-topologies.md).
+Um das Docker-Modul so konfigurieren, dass es kein NAT-Standardnetzwerk erstellt, verwenden Sie die folgende Konfiguration.
 
-```
+```json
 {
     "bridge" : "none"
 }
 ```
 
+Weitere Informationen finden Sie unter [Verwalten von Docker-Netzwerken](../container-networking/network-drivers-topologies.md).
+
 ### <a name="set-docker-security-group"></a>Festlegen der Docker-Sicherheitsgruppe
 
-Wenn Sie sich beim Docker-Host angemeldet haben und Docker-Befehle lokal ausführen, werden diese Befehle über eine Named Pipe ausgeführt. Standardmäßig können nur Mitglieder der Administratorengruppe über die Named Pipe auf das Docker-Modul zugreifen. Verwenden Sie das Flag `group`, um eine Sicherheitsgruppe mit diesem Zugriff festzulegen.
+Wenn Sie den Docker-Host angemeldet haben und Docker-Befehle lokal ausführen, werden diese Befehle über eine named Pipe ausgeführt. Standardmäßig können nur Mitglieder der Administratorengruppe über die Named Pipe auf das Docker-Modul zugreifen. Verwenden Sie das Flag `group`, um eine Sicherheitsgruppe mit diesem Zugriff festzulegen.
 
-```
+```json
 {
     "group" : "docker"
 }
@@ -147,74 +150,98 @@ Starten Sie den Docker-Dienst neu, sobald die Variable festgelegt wurde.
 Restart-Service docker
 ```
 
-Weitere Informationen finden Sie unter [Windows Configuration File (Windows-Konfigurationsdatei)](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file) auf Docker.com.
+Weitere Informationen finden Sie in der [Windows-Konfigurationsdatei auf Docker.com](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
-## <a name="uninstall-docker"></a>Deinstallieren von Docker
-*Verwenden Sie die Schritte in diesem Abschnitt, um Docker zu deinstallieren und eine vollständige Bereinigung der Docker-Systemkomponenten aus dem Windows10- oder Windows Server2016-System durchzuführen.*
+## <a name="how-to-uninstall-docker"></a>So deinstallieren von Docker
 
-> Hinweis: Alle Befehle in den folgenden Schritten müssen aus einer PowerShell-Sitzung **mit erhöhten Rechten** ausgeführt werden.
+In diesem Abschnitt erfahren Sie, wie zum Deinstallieren von Docker und eine vollständige Bereinigung der Docker-Systemkomponenten aus dem Windows 10 oder Windows Server 2016-System durchzuführen.
 
-### <a name="step-1-prepare-your-system-for-dockers-removal"></a>SCHRITT1: Vorbereiten des Systems für das Entfernen von Docker 
-Es empfiehlt sich, sicherzustellen, dass keine Container auf Ihrem System ausgeführt werden, bevor Docker entfernt wird, sofern nicht bereits geschehen. Hier sind einige hilfreiche Befehle für den Vorgang:
-```
+>[!NOTE]
+>Sie müssen alle Befehle in diese Anweisungen aus einer PowerShell-Sitzung mit erhöhten Rechten ausführen.
+
+### <a name="prepare-your-system-for-dockers-removal"></a>Vorbereiten des Systems für das Entfernen von Docker
+
+Bevor Sie Docker deinstallieren, stellen Sie sicher, dass keine Container auf Ihrem System ausgeführt werden.
+
+Führen Sie die folgenden Cmdlets für die Ausführung von Containern überprüfen:
+
+```powershell
 # Leave swarm mode (this will automatically stop and remove services and overlay networks)
 docker swarm leave --force
 
 # Stop all running containers
 docker ps --quiet | ForEach-Object {docker stop $_}
 ```
-Es empfiehlt sich ebenfalls, alle Container, Containerimages, Netzwerke und Volumes aus dem System zu entfernen, bevor Docker entfernt wird:
-```
+
+Es ist auch sollten Sie alle Container, containerimages, Netzwerke und Volumes aus dem System zu entfernen, bevor Docker entfernt. Sie können dies tun, indem das folgende Cmdlet ausführen:
+
+```powershell
 docker system prune --volumes --all
 ```
 
-### <a name="step-2-uninstall-docker"></a>SCHRITT 2: Deinstallieren von Docker 
+### <a name="uninstall-docker"></a>Deinstallieren von Docker
 
-#### ***<a name="steps-to-uninstall-docker-on-windows-10"></a>Schritte zum Deinstallieren von Docker unter Windows10:10:***
-- Wechseln Sie zu **"Einstellungen" > "Apps"** auf Ihrem Windows10-Computer
-- Suchen Sie unter **"Apps & Features"** nach **"Docker für Windows"**
-- Klicken Sie auf **"Docker für Windows" > "Deinstallieren"**
+Als Nächstes müssen Sie tatsächlich Deinstallieren von Docker.
 
-#### ***<a name="steps-to-uninstall-docker-on-windows-server-2016"></a>Schritte zum Deinstallieren von Docker unter WindowsServer 2016:16:***
-Verwenden Sie in einer PowerShell-Sitzung mit erhöhten Rechten die Cmdlets `Uninstall-Package` und `Uninstall-Module`, um das Docker-Modul den dazu gehörigen Anbieter für die Paketverwaltung von Ihrem System zu entfernen. 
-> Tipp: So finden Sie den Anbieter des Pakets, den Sie zum Installieren von Docker verwendet haben `PS C:\> Get-PackageProvider -Name *Docker*`
+Zum Deinstallieren von Docker unter Windows 10
 
-*Beispiel*:
-```
+- Wechseln Sie zu **Einstellungen** > **Apps** auf Ihrem Windows 10-Computer
+- Finden Sie unter **Apps & Features**die **Docker für Windows**
+- Wechseln Sie zu **Docker für Windows** > **Deinstallieren**
+
+Zum Deinstallieren von Docker unter Windows Server 2016:
+
+Verwenden Sie aus einer PowerShell-Sitzung mit erhöhten Rechten die **Deinstallations-Paket** und **Deinstallation-Modul** -Cmdlets um das Docker-Modul und den entsprechenden Paketverwaltung aus dem System zu entfernen, wie im folgenden Beispiel dargestellt:
+
+```powershell
 Uninstall-Package -Name docker -ProviderName DockerMsftProvider
 Uninstall-Module -Name DockerMsftProvider
 ```
 
-### <a name="step-3-cleanup-docker-data-and-system-components"></a>SCHRITT3: Bereinigen von Dockerdaten und Systemkomponenten
-Entfernen Sie die *Standard-Netzwerke* von Docker, damit deren Konfiguration nicht auf Ihrem System verbleibt, nachdem Docker entfernt wurde:
-```
+>[!TIP]
+>Sie können den Anbieter des Pakets suchen, die Sie zum Installieren von Docker verwendet `PS C:\> Get-PackageProvider -Name *Docker*`
+
+### <a name="clean-up-docker-data-and-system-components"></a>Bereinigen von dockerdaten und Systemkomponenten
+
+Nachdem Sie Docker deinstallieren, müssen Sie Docker Netzwerken zu entfernen, damit deren Konfiguration auf Ihrem System bleiben wird nicht, nachdem Docker entfernt wurde. Sie können dies tun, indem das folgende Cmdlet ausführen:
+
+```powershell
 Get-HNSNetwork | Remove-HNSNetwork
 ```
-Entfernen Sie die *Programmdaten* von Docker aus dem System:
-```
+
+Führen Sie das folgende Cmdlet, um Docker Programmdaten aus dem System zu entfernen:
+
+```powershell
 Remove-Item "C:\ProgramData\Docker" -Recurse
 ```
-Sie können ebenfalls die *optionalen Features von Windows* entfernen, die Docker/Containern unter Windows zugeordnet sind. 
 
-Dies beinhaltet mindestens das Feature "Container", das automatisch auf allen Windows10 oder Windows Server2016 aktiviert wird, wenn Docker installiert ist. Es kann ebenfalls das Feature "Hyper-V" beinhalten, das unter Windows10 automatisch aktiviert wird, wenn Docker installiert ist. Dies muss jedoch explizit auf Windows Server2016 aktiviert werden.
+Sie können ebenfalls die optionalen Features von Windows entfernen, die Docker/Containern unter Windows zugeordnet sind.
 
-> **WICHTIGER HINWEIS ZUM DEAKTIVIEREN VON HYPER-V:** [Das Hyper-V-Feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) ist eine allgemeine Virtualisierungsfeature, das mehr als nur Container aktiviert! Stellen Sie vor dem Deaktivieren des Hyper-V-Features sicher, dass keine anderen virtualisierten Komponenten auf dem System vorhanden sind, die dies erfordern.
+Dazu gehören das Feature "Container", das automatisch auf allen Windows 10 oder Windows Server 2016 aktiviert wird, wenn Docker installiert ist. Es kann ebenfalls das Feature "Hyper-V" beinhalten, das unter Windows10 automatisch aktiviert wird, wenn Docker installiert ist. Dies muss jedoch explizit auf Windows Server2016 aktiviert werden.
 
-#### ***<a name="steps-to-remove-windows-features-on-windows-10"></a>Schritte zum Entfernen von Windows-Features unter Windows10:10:***
-- Wechseln sie auf Ihrem Windows 10-Computer zu **"Systemsteuerung" > "Programme" > "Programme und Features" > "Windows-Features aktivieren oder deaktivieren"**
-- Suchen Sie den Namen der Funktion/en, die Sie deaktivieren möchten – in diesem Fall **"Container"** und (optional) **"Hyper-V"**
-- **Deaktivieren Sie** das Kontrollkästchen neben dem Namen des Features, das Sie deaktivieren möchten
-- Klicken Sie auf **"OK"**.
+>[!IMPORTANT]
+>[Das Hyper-V-Feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) ist eine allgemeine Virtualisierungsfunktion, die sehr viel mehr als nur Container aktiviert. Stellen Sie bevor Sie deaktivieren die Hyper-V-Feature sicher, dass keine anderen virtualisierten Komponenten auf Ihrem System, die Hyper-V erfordern.
 
-#### ***<a name="steps-to-remove-windows-features-on-windows-server-2016"></a>Schritte zum Entfernen von Windows-Features unter Windows Server2016:16:***
-Verwenden Sie die folgenden Befehle aus einer PowerShell-Sitzung mit erhöhten Rechten zum Deaktivieren der **"Container"** und (optional) der **"Hyper-V"**-Features im System:
-```
+So entfernen Sie Windows-Features unter Windows 10:
+
+- Wechseln Sie zu **Systemsteuerung** > **Programme** > **Programme und Features** > **Windows-Funktionen ein- oder ausschalten**.
+- Suchen Sie den Namen des Features oder Funktionen, die Sie deaktivieren möchten – in diesem Fall **Container** und (optional) **Hyper-V**.
+- Deaktivieren Sie das Kontrollkästchen neben dem Namen des Features, die Sie deaktivieren möchten.
+- Klicken Sie auf **"OK"**
+
+So entfernen Sie Windows-Features unter Windows Server 2016:
+
+Führen Sie eine PowerShell-Sitzung mit erhöhten Rechten die folgenden Cmdlets, um die **Container** und (optional) **Hyper-V** -Features aus dem System zu deaktivieren:
+
+```powershell
 Remove-WindowsFeature Containers
-Remove-WindowsFeature Hyper-V 
+Remove-WindowsFeature Hyper-V
 ```
 
-### <a name="step-4-reboot-your-system"></a>SCHRITT4: Starten Sie das System neu
-Führen Sie zum Abschluss der Schritte für die Deinstallation/Bereinigung aus einer PowerShell-Sitzung mit erhöhten Rechten Folgendes aus:
-```
+### <a name="reboot-your-system"></a>Neustart des Systems
+
+Um die Deinstallation und Bereinigung abgeschlossen haben, führen Sie das folgende Cmdlet aus einer PowerShell-Sitzung mit erhöhten Ihr System neu gestartet:
+
+```powershell
 Restart-Computer -Force
 ```

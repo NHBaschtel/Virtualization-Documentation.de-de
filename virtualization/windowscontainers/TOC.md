@@ -2,15 +2,15 @@
 ## [Info](about/index.md)
 ## [Häufig gestellte Fragen](about/faq.md)
 
-# Schnelle startet
-## Schnellstartanleitung für Windows 10
+# Schnellstarts
+## Windows 10-Schnellstart
 ### [Ausführen Ihres ersten Containers WCOW](quick-start/quick-start-windows-10.md)
 ### [Ausführen Ihres ersten Containers LCOW](quick-start/quick-start-windows-10-linux.md)
 ### [Erstellen einer Beispiel-App](quick-start/building-sample-app.md)
-## Schnellstartanleitung für Windows Server
+## Windows Server-Schnellstart
 ### [Ausführen Ihres ersten Containers](quick-start/quick-start-windows-server.md)
 ### [Automatisieren von Containerbuilds](quick-start/quick-start-images.md)
-## Schnellstartanleitung für Windows-Insider
+## Windows-Insider-Schnellstart
 ### [Verwenden der Insider-images](quick-start/Using-Insider-Container-Images.md)
 ### [Erstellen und Ausführen einer Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ### [Bekannte Probleme](quick-start/Insider-Known-Issues.md)
@@ -21,7 +21,7 @@
 ## [Optimieren von Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
 ## [Containerspeicher](manage-containers/container-storage.md)
 ## [Remoteverwaltung eines Windows-Docker-Hosts](management/manage_remotehost.md)
-## [Ressourcensteuerung](manage-containers/resource-controls.md)
+## [Steuerung von Ressourcen](manage-containers/resource-controls.md)
 
 # Containernetzwerk auf Windows
 ## [Übersicht über Container-Networking](container-networking/architecture.md)
@@ -44,11 +44,11 @@
 ### [Bereitstellen Ihres ersten Containers](/azure/service-fabric/service-fabric-quickstart-containers)
 ### [Bereitstellen einer .NET-Anwendung in einem Windows-Container](/azure/service-fabric/service-fabric-host-app-in-a-container) 
 ## Docker-Schwarm
-### [Erste Schritte mit dem Schwarmmodus](manage-containers/swarm-mode.md)
+### [Erste Schritte mit dem schwarmmodus](manage-containers/swarm-mode.md)
 
 # Community und Support
 ## [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
-## [Videos und Blogs der Community](communitylinks.md)
+## [Community-Videos und blogs](communitylinks.md)
 ## [Problembehandlung](troubleshooting.md)
 
 # Referenz
@@ -63,6 +63,6 @@
 ## [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Linux-Container unter Windows](deploy-containers/linux-containers.md)
 
-# [Containerbeispiele](samples.md)
+# [Beispiele für Container](samples.md)
 
-# [Lizenzbedingungen für Containerbetriebssystem-Image](Images_EULA.md)
+# [Containerbetriebssystem-image EULA](Images_EULA.md)

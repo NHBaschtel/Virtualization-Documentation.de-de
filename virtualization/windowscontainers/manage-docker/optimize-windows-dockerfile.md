@@ -3,31 +3,29 @@ title: Optimieren von Windows-Dockerfile-Dateien
 description: Optimieren Sie Dockerfile-Dateien für Windows-Container.
 keywords: Docker, Container
 author: cwilhit
-ms.date: 05/26/2016
+ms.date: 05/03/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
-ms.openlocfilehash: 5d9e95d2263c9603712054376bfa9e7190feb1b0
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: d897560061fae23fda6f88ebdad6dd804da9a8f1
+ms.sourcegitcommit: c48dcfe43f73b96e0ebd661164b6dd164c775bfa
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9576864"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "9610340"
 ---
 # <a name="optimize-windows-dockerfiles"></a>Optimieren von Windows-Dockerfile-Dateien
 
-Mehrere Methoden können zur Optimierung des Docker Build-Prozesses sowie der resultierenden Docker-Images verwendet werden. Erstellen Sie diesem Dokument wird erläutert, wie der Docker Build-Prozesses und zeigt verschiedene Taktiken, die für eine optimale verwendet werden können, mit Windows-Container.
+Es gibt viele Möglichkeiten zur Optimierung des Docker Build-Prozesses sowie der resultierenden Docker-Images. In diesem Artikel wird erläutert, die Funktionsweise des Docker Build-Prozesses und optimal Images für Windows-Container erstellen.
 
-## <a name="docker-build"></a>Docker Build
+## <a name="image-layers-in-docker-build"></a>Imageebenen in Docker build
 
-### <a name="image-layers"></a>Imageebenen
+Bevor Sie Ihre Docker Build optimieren können, müssen Sie wissen, wie Docker build funktioniert. Während des Docker Build-Prozesses wird eine Dockerfile-Datei genutzt, und die ausführbaren Anweisungen werden nacheinander ausgeführt, jede in einem eigenen temporären Container. Das Ergebnis ist eine neue Imageebene für jede ausführbare Anweisung.
 
-Unverzichtbare Voraussetzung zur Untersuchung der Docker Build-Optimierung ist ein grundlegendes Verständnis der Funktionsweise von Docker Build. Während des Docker Build-Prozesses wird eine Dockerfile-Datei genutzt, und die ausführbaren Anweisungen werden nacheinander ausgeführt, jede in einem eigenen temporären Container. Das Ergebnis ist eine neue Imageebene für jede ausführbare Anweisung. 
+Im folgenden Beispiel z. B. dockerfile-Datei verwendet die `windowsservercore` Basisimage des Betriebssystems, IIS installiert und dann eine einfache Website erstellt.
 
-Betrachten Sie die folgende Dockerfile-Datei. In diesem Beispiel wird das `windowsservercore`-Basis-Betriebssystemimage verwendet, IIS installiert und eine einfache Website erstellt.
-
-```
+```dockerfile
 # Sample Dockerfile
 
 FROM windowsservercore
@@ -36,9 +34,11 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-Sie erwarten vielleicht von dieser Dockerfile-Datei ausgehend, dass das resultierende Image aus zwei Ebenen besteht, eine für das Container-Betriebssystemimage und eine zweite, die IIS und die Website enthält, jedoch ist dies nicht der Fall. Das neue Image besteht aus vielen Ebenen, wobei jede jeweils von der vorhergehenden abhängt. Um dies zu visualisieren, kann der `docker history`-Befehl auf das neue Image angewandt werden. Dies zeigt, dass das Image aus vier Ebenen besteht, der Basis und drei zusätzlichen Ebenen, eine für jede Anweisung in der Dockerfile-Datei.
+Sie erwarten, dass dieser dockerfile-Datei ein Bild mit zwei Ebenen, einer für das Container-Betriebssystemimage und eine zweite, die IIS und die Website enthält erzeugen. Allerdings das tatsächliche Image besteht aus vielen Ebenen, und jede Ebene hängt von vorherigen.
 
-```
+Um dies deutlicher zu machen, führen wir die `docker history` Befehl gegen das Bild unserem Beispiel Dockerfile vorgenommen.
+
+```dockerfile
 docker history iis
 
 IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
@@ -48,25 +48,25 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 6801d964fda5        4 months ago                                                         0 B
 ```
 
-Jede dieser Ebenen kann einer Anweisung aus der Dockerfile-Datei zugeordnet werden. Die unterste Ebene (`6801d964fda5` in diesem Beispiel) stellt das Basis-Betriebssystemimage dar. Eine Ebene darüber ist die IIS-Installation sichtbar. Die nächste Ebene enthält die neue Website usw.
+Die Ausgabe zeigt uns, dass dieses Image besteht aus vier Ebenen: der Grundebene und drei zusätzlichen Ebenen, die jede Anweisung in der dockerfile-Datei zugeordnet sind. Die unterste Ebene (`6801d964fda5` in diesem Beispiel) stellt das Basis-Betriebssystemimage dar. Eine Ebene nach oben ist die IIS-Installation. Die nächste Ebene enthält die neue Website usw.
 
-Dockerfile-Dateien können geschrieben werden, um Imageebenen zu minimieren und sowohl die Buildleistung als auch optische Aspekte wie die Lesbarkeit zu optimieren. Schließlich stehen viele Alternativen zur Durchführung einer bestimmten Buildaufgabe zur Verfügung. Das Wissen darüber, wie sich das Format einer Dockerfile auf die Build-Dauer und das resultierende Image auswirkt, verbessert die Automatisierungserfahrung. 
+Dockerfile-Dateien können geschrieben werden, um imageebenen zu minimieren, Buildleistung und Eingabehilfen über besseren Lesbarkeit zu optimieren. Schließlich stehen viele Alternativen zur Durchführung einer bestimmten Buildaufgabe zur Verfügung. Grundlegendes zu wie die Dockerfile-Format wirkt sich auf die Build-Dauer und das Bild erstellt wird, verbessert die automatisierungserfahrung.
 
 ## <a name="optimize-image-size"></a>Optimieren der Imagegröße
 
-Wenn Sie Docker-Containerimages erstellen, kann die Imagegröße ein wichtiger Faktor sein. Containerimages werden zwischen Registrierungen und Host verschoben, exportiert und importiert und verbrauchen so letztendlich Speicherplatz. Verschiedene Taktiken können während des Docker Build-Prozesses verwendet werden, um die Imagegröße zu minimieren. In diesem Abschnitt werden einige dieser Taktiken speziell für Windows-Container.
+Je nach Ihren Anforderungen Speicherplatz kann Imagegröße ein wichtiger Faktor sein, wenn Sie Docker-containerimages erstellen. Containerimages werden zwischen Registrierungen und Host verschoben, exportiert und importiert und verbrauchen so letztendlich Speicherplatz. In diesem Abschnitt erfahren Sie, wie Sie während des Buildprozesses Docker für Windows-Container Imagegröße zu minimieren.
 
-Weitere Informationen zu bewährten Vorgehensweisen mit Dockerfile finden Sie unter [Best practices for writing Dockerfiles on Docker.com](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) (Bewährte Vorgehensweisen für das Schreiben von Dockerfile-Dateien auf Docker.com).
+Weitere Informationen zu bewährten Vorgehensweisen mit Dockerfile finden Sie [bewährte Methoden zum Schreiben von Dockerfiles auf Docker.com](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### <a name="group-related-actions"></a>Gruppieren von verwandten Aktionen
 
-Da jede `RUN`-Anweisung eine neue Ebene in dem Containerimage erstellt, kann die Gruppierung von Aktionen in einer `RUN`-Anweisung die Anzahl der Ebenen reduzieren. Das Minimieren der Ebenen wirkt sich möglicherweise nicht auf die Imagegröße aus, aber das Gruppieren verwandter Aktionen kann eine Einfluss haben, wie die nachfolgenden Beispiele zeigen.
+Da jedes `RUN` -Anweisung erstellt eine neue Ebene in der Container-Image, die Gruppierung von Aktionen in einer `RUN` -Anweisung die Anzahl der Ebenen in einer dockerfile-Datei reduzieren kann. Das Minimieren der Ebenen wirkt sich möglicherweise nicht auf die Imagegröße aus, aber das Gruppieren verwandter Aktionen kann eine Einfluss haben, wie die nachfolgenden Beispiele zeigen.
 
-Die folgenden beiden Beispiele veranschaulichen den gleichen Vorgang, was zu Containerimages identischer Funktionalität führt, die beiden Dockerfile-Dateien erstellten sie jedoch unterschiedlich. Die resultierenden Images werden auch verglichen.  
+In diesem Abschnitt Vergleichen wir zwei Beispiel dockerfile-Dateien, die das gleiche tun. Eine dockerfile-Datei verfügt jedoch über eine Anweisung pro Aktion aus, während die andere die zugehörigen Aktivitäten gruppiert hatten.
 
-Im nachfolgenden ersten Beispiel wird Python für Windows heruntergeladen, installiert und aufgeräumt (durch das Löschen der heruntergeladenen Setupdatei). Für jede dieser Aktionen wird eine eigene `RUN`-Anweisung ausgeführt.
+Die dockerfile-Datei im folgenden aufgehoben wird Python für Windows, Installation und entfernt die heruntergeladenen Setupdatei, sobald die Installation abgeschlossen ist. In dieser dockerfile-Datei, jede Aktion erhält eine eigene `RUN` Anweisung.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN powershell.exe -Command Invoke-WebRequest "https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe" -OutFile c:\python-3.5.1.exe
@@ -76,7 +76,7 @@ RUN powershell.exe -Command Remove-Item c:\python-3.5.1.exe -Force
 
 Das resultierende Image besteht aus drei zusätzliche Ebenen, einer für jede `RUN`-Anweisung.
 
-```
+```dockerfile
 docker history doc-example-1
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -85,9 +85,9 @@ a395ca26777f        15 seconds ago      cmd /S /C powershell.exe -Command Remove
 957147160e8d        3 minutes ago       cmd /S /C powershell.exe -Command Invoke-WebR   125.7 MB
 ```
 
-Zum Vergleich sehen Sie hier den gleichen Vorgang, wobei jedoch alle Schritte mit der gleichen `RUN`-Anweisung ausgeführt werden. Beachten Sie, dass jeder Schritt in der `RUN`-Anweisung sich in einer neuen Zeile der Dockerfile-Datei befindet, wobei der Zeilenumbruch mit dem Zeichen '\\' erfolgt. 
+Im zweite Beispiel wird eine dockerfile-Datei, die die exakt gleiche durchgeführt. Jedoch alle zugehörigen Aktionen mit einer einzelnen gruppiert wurde haben `RUN` Anweisung. Jeder Schritt in die `RUN` -Anweisung wird in einer neuen Zeile der dockerfile-Datei, während die ' \\' Zeichen Zeilenumbruch verwendet wird.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN powershell.exe -Command \
@@ -97,22 +97,22 @@ RUN powershell.exe -Command \
   Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-Das resultierende Image besteht hier aus einer zusätzlichen Ebene für die `RUN`-Anweisung.
+Das resultierende Image besteht nur einer zusätzliche Ebene für die `RUN` Anweisung.
 
-```
+```dockerfile
 docker history doc-example-2
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-69e44f37c748        54 seconds ago      cmd /S /C powershell.exe -Command   $ErrorAct   216.3 MB                
+69e44f37c748        54 seconds ago      cmd /S /C powershell.exe -Command   $ErrorAct   216.3 MB
 ```
 
 ### <a name="remove-excess-files"></a>Entfernen überflüssiger Dateien
 
-Wenn eine Datei, z.B. ein Installationsprogramm, nach der Verwendung nicht mehr erforderlich ist, entfernen Sie die Datei, um die Imagegröße zu verringern. Dies muss in dem gleichen Schritt erfolgen, in dem die Datei in die Imageebene kopiert wurde. So wird verhindert, dass die Datei auf einer niedrigeren Imageebene beibehalten wird.
+Wenn vorhanden ist, wird eine Datei in die dockerfile-Datei, z. B. ein Installationsprogramm, die Sie danach müssen nicht verwendet wurde, entfernen Sie darauf, um die Imagegröße zu verringern. Dies muss in dem gleichen Schritt erfolgen, in dem die Datei in die Imageebene kopiert wurde. Dadurch wird verhindert, dass die Datei auf einer niedrigeren Ebene imageebene beibehalten.
 
-In diesem Beispiel wird das Python-Paket heruntergeladen, ausgeführt und dann die ausführbare Datei entfernt. Dies alles wird in einem einzigen `RUN`-Vorgang ausgeführt und resultiert in einer einzelnen Imageebene.
+Im folgenden Beispiel dockerfile-Datei die Python-Paket ist heruntergeladen, ausgeführt und dann entfernt. Dies alles wird in einem einzigen `RUN`-Vorgang ausgeführt und resultiert in einer einzelnen Imageebene.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN powershell.exe -Command \
@@ -126,11 +126,11 @@ RUN powershell.exe -Command \
 
 ### <a name="multiple-lines"></a>Mehrere Zeilen
 
-Bei der Optimierung der Docker Build-Geschwindigkeit kann es vorteilhaft sein, Vorgänge in mehrere einzelne Anweisungen aufzuteilen. Mehrere `RUN`-Vorgänge steigern die Effizienz des Zwischenspeicherns. Für jede `RUN`-Anweisung wird eine individuelle Ebene erstellt, d.h. wenn ein identischer Schritt bereits in einem anderen Docker Build-Vorgang ausgeführt wurde, wird dieser zwischengespeicherte Vorgang (Imageebene) erneut verwendet. Das Ergebnis ist eine verringerte Docker Build-Laufzeit.
+Sie können Vorgänge in mehrere einzelne Anweisungen zur Optimierung des Docker Build-Geschwindigkeit teilen. Mehrere `RUN` -Vorgänge steigern die Effizienz des Zwischenspeicherns, da für jede einzelne Ebenen erstellt werden `RUN` Anweisung. Wenn eine identische Anweisung bereits in einem anderen Docker Build-Vorgang ausgeführt wurde, wird dieser zwischengespeicherte Vorgang (imageebene) wiederverwendet, was verringerte Docker Build-Laufzeit.
 
-Im folgenden Beispiel werden sowohl Apache als auch die verteilbaren Pakete von Visual Studio heruntergeladen, installiert und dann die nicht benötigten Dateien bereinigt. Dies alles erfolgt mit einer einzigen `RUN`-Anweisung. Wenn eine dieser Aktionen aktualisiert wird, werden alle Aktionen erneut ausgeführt.
+Im folgenden Beispiel wird werden sowohl Apache als auch die Visual Studio verteilbaren Pakete heruntergeladen, installiert und dann durch das Entfernen von Dateien, die nicht mehr benötigt werden bereinigt. Dies alles erfolgt mit einem einzigen `RUN` Anweisung. Wenn eine dieser Aktionen aktualisiert wird, werden alle Aktionen erneut ausführen.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -154,9 +154,9 @@ RUN powershell -Command \
   Remove-Item c:\php.zip
 ```
 
-Das resultierende Image besteht aus zwei Ebenen, einer für das grundlegende Betriebssystemimage und der zweiten, die alle Vorgänge aus der einzelnen `RUN`-Anweisung enthält.
+Das resultierende Image besteht, zwei Ebenen, eine für das Basisbetriebssystem-Image und enthält alle Vorgänge aus der einzelnen `RUN` Anweisung.
 
-```
+```dockerfile
 docker history doc-sample-1
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -164,9 +164,9 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-Zum Vergleich sehen Sie hier die gleichen Aktionen auf drei `RUN`-Anweisungen verteilt. In diesem Fall wird jede `RUN`-Anweisung in einer Containerimageebene zwischengespeichert, und nur solche, die geändert wurden, müssen in nachfolgenden Dockerfile-Builds neu ausgeführt werden.
+Hier sind im Vergleich dieselbe Aktionen Aufteilung in drei `RUN` Anweisungen. In diesem Fall wird jede `RUN` -Anweisung in einer containerimageebene zwischengespeichert, und nur solche, die geänderte müssen erneut ausgeführt werden, auf die nachfolgenden Dockerfile-builds.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -188,9 +188,9 @@ RUN powershell -Command \
     Remove-Item c:\php.zip -Force
 ```
 
-Das resultierende Image besteht aus vier Ebenen, einer für das Basisbetriebssystem-Image und dann einer für jede `RUN`-Anweisung. Da jede `RUN`-Anweisung in einer eigenen Ebene ausgeführt wurde, verwenden alle nachfolgenden Ausführungen dieser Dockerfile-Datei oder eines identischen Satzes von Anweisungen in einer anderen Dockerfile-Datei die zwischengespeicherte Imageebene, wodurch die Buildzeit reduziert wird. Die Anweisungsreihenfolge ist wichtig beim Arbeiten mit Imagecache. Weitere Details finden Sie im nächsten Abschnitt dieses Dokuments.
+Das resultierende Image besteht aus vier Ebenen. eine Ebene für das Basisbetriebssystem-Image und die drei `RUN` Anweisungen. Da jedes `RUN` -Anweisung in einer eigenen Ebene ausgeführt wurde, verwenden alle nachfolgenden Ausführungen dieser dockerfile-Datei oder eines identischen Satzes von Anweisungen in einer anderen Dockerfile zwischengespeicherte imageebenen, die Buildzeit reduziert.
 
-```
+```dockerfile
 docker history doc-sample-2
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -200,13 +200,15 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 6801d964fda5        5 months ago
 ```
 
+Wie Sie die Anweisungen bestellen ist wichtig, bei der Arbeit mit Bild Caches, wie Sie im nächsten Abschnitt sehen werden.
+
 ### <a name="ordering-instructions"></a>Anordnung von Anweisungen
 
 Eine Dockerfile-Datei wird von oben nach unten verarbeitet und jede Anweisung mit den zwischengespeicherten Ebenen verglichen. Wenn eine Anweisung gefunden wird, der keine zwischengespeicherte Ebene zugeordnet ist, werden diese Anweisung und alle nachfolgenden Anweisungen in neuen Containerimageebenen verarbeitet. Aus diesem Grund ist die Reihenfolge wichtig, in der die Anweisungen platziert werden. Platzieren Sie Anweisungen, die konstant bleiben werden, im oberen Teil der Dockerfile-Datei. Platzieren Sie Anweisungen, die sich ändern könnten, im unteren Teil der Dockerfile-Datei. Dies reduziert die Wahrscheinlichkeit, dass der vorhandene Cache negiert wird.
 
-Dieses Beispiel zeigt, wie die Reihenfolge von Dockerfile-Anweisungen die Wirksamkeit des Zwischenspeichers beeinflussen kann. In dieser einfachen Dockerfile-Datei werden vier nummerierte Ordner erstellt.  
+Die folgenden Beispiele zeigen, wie die Reihenfolge von Dockerfile-Anweisung Zwischenspeichers beeinflussen kann. In diesem einfache Beispiel dockerfile-Datei verfügt über vier nummerierte Ordner.  
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN mkdir test-1
@@ -214,9 +216,10 @@ RUN mkdir test-2
 RUN mkdir test-3
 RUN mkdir test-4
 ```
-Das resultierende Image besteht aus fünf Ebenen, einer für das Basisbetriebssystem-Image und einer für jede `RUN`-Anweisung.
 
-```
+Das resultierende Image besteht aus fünf Ebenen, eine für das Basisbetriebssystem-Image und jedes der `RUN` Anweisungen.
+
+```dockerfile
 docker history doc-sample-1
 
 IMAGE               CREATED              CREATED BY               SIZE                COMMENT
@@ -224,12 +227,12 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 86f1fe772d5c        49 seconds ago       cmd /S /C mkdir test-3   42.35 MB
 68fda53ce682        About a minute ago   cmd /S /C mkdir test-2   6.745 MB
 5e5aa8ba1bc2        About a minute ago   cmd /S /C mkdir test-1   7.12 MB
-6801d964fda5        5 months ago                                  0 B    
+6801d964fda5        5 months ago                                  0 B
 ```
 
-Die Dockerfile-Datei wurde jetzt etwas geändert. Beachten Sie, dass die dritte `RUN`-Anweisung geändert wurde. Wenn Docker Build mit dieser Dockerfile-Datei ausgeführt wird, verwenden die ersten drei Anweisungen, die mit denen im letzten Beispiel identisch sind, zwischengespeicherte Imageebenen. Aber da die geänderte `RUN`-Anweisung nicht zwischengespeichert wurde, wird eine neue Ebene für sich selbst und alle nachfolgenden Anweisungen erstellt.
+Dieser nächsten dockerfile-Datei wurde jetzt etwas geändert, mit der dritten `RUN` -Anweisung geändert wird, um eine neue Datei. Wenn Docker Build mit dieser Dockerfile-Datei ausgeführt wird, verwenden die ersten drei Anweisungen, die mit denen im letzten Beispiel identisch sind, zwischengespeicherte Imageebenen. Aber da die geänderte `RUN` -Anweisung nicht zwischengespeichert, wird eine neue Ebene für für die geänderte Anweisung und alle nachfolgenden Anweisungen erstellt.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN mkdir test-1
@@ -238,9 +241,9 @@ RUN mkdir test-5
 RUN mkdir test-4
 ```
 
-Der Vergleich der Image-IDs des neuen Images mit denen im letzten Beispiel zeigt, dass die ersten drei Ebenen (von unten nach oben) gemeinsam verwendet werden, aber die vierte und fünfte individuell sind.
+Wenn Sie die Image-IDs des neuen Bilds zu, die im ersten Beispiel in diesem Abschnitt vergleichen, werden Sie feststellen, dass die ersten drei Ebenen von unten nach oben werden gemeinsam verwendet, aber die vierte und fünfte eindeutig sind.
 
-```
+```dockerfile
 docker history doc-sample-2
 
 IMAGE               CREATED             CREATED BY               SIZE                COMMENT
@@ -253,12 +256,13 @@ c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB
 
 ## <a name="cosmetic-optimization"></a>Optische Optimierung
 
-### <a name="instruction-case"></a>Groß-/Kleinschreibung der Anweisung
+### <a name="instruction-case"></a>/ Kleinschreibung der Anweisung
 
-Bei Dockerfile-Anweisungen wird nicht zwischen Groß- und Kleinschreibung unterschieden, üblicherweise werden jedoch Großbuchstaben verwendet. Dies verbessert die Lesbarkeit durch die Unterscheidung zwischen Anweisungsaufruf und Anweisungsvorgang. Die folgenden beiden Beispiele veranschaulichen dieses Konzept. 
+Dockerfile-Anweisungen wird nicht zwischen Groß-/Kleinschreibung berücksichtigt, aber die Konvention ist die Verwendung von Großbuchstaben. Dies verbessert die Lesbarkeit durch die Unterscheidung zwischen Anweisungsaufruf und anweisungsvorgang. Die folgenden beiden Beispiele vergleichen eine uncapitalized und Großbuchstaben Dockerfile.
 
-Kleinschreibung:
-```
+Der folgende Code ist ein uncapitalized dockerfile-Datei:
+
+```dockerfile
 # Sample Dockerfile
 
 from windowsservercore
@@ -266,8 +270,10 @@ run dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 run echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 cmd [ "cmd" ]
 ```
-Großschreibung: 
-```
+
+Im folgenden finden die gleichen dockerfile-Datei mit groß-:
+
+```dockerfile
 # Sample Dockerfile
 
 FROM windowsservercore
@@ -278,16 +284,17 @@ CMD [ "cmd" ]
 
 ### <a name="line-wrapping"></a>Zeilenumbruch
 
-Lange und komplexe Vorgänge können mit dem umgekehrten Schrägstrich (`\`) auf mehrere Zeilen verteilt werden. Die folgende Dockerfile-Datei installiert das verteilbare Paket von Visual Studio, entfernt die Dateien des Installationsprogramms und erstellt dann eine Konfigurationsdatei. Alle diese drei Vorgänge werden in einer Zeile angegeben.
+Lange und komplexe Vorgänge in mehrere Zeilen getrennt werden können, indem der umgekehrte Schrägstrich `\` Zeichen. Die folgende Dockerfile-Datei installiert das verteilbare Paket von Visual Studio, entfernt die Dateien des Installationsprogramms und erstellt dann eine Konfigurationsdatei. Alle diese drei Vorgänge werden in einer Zeile angegeben.
 
-```
+```dockerfile
 FROM windowsservercore
 
 RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
 ```
-Der Befehl kann derart neu geschrieben werden, dass jeder Vorgang der einen `RUN`-Anweisung in einer eigenen Zeile angegeben ist. 
 
-```
+Der Befehl kann aufzuteilen umgekehrte Schrägstriche also, die jeden Vorgang der einen `RUN` -Anweisung in einer eigenen Zeile angegeben ist.
+
+```dockerfile
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -297,8 +304,8 @@ RUN powershell -Command \
     New-Item c:\config.ini
 ```
 
-## <a name="further-reading--references"></a>Weitere Informationen und Referenzen
+## <a name="further-reading-and-references"></a>Weitere Informationen und Referenzen
 
-[Dockerfile on Windows] (Dockerfile unter Windows) (manage-windows-dockerfile.md)
+[Dockerfile unter Windows](manage-windows-dockerfile.md)
 
 [Bewährte Methoden zum Schreiben von Dockerfiles auf Docker.com](https://docs.docker.com/engine/reference/builder/)
