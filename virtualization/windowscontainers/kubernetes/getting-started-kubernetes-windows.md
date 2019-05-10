@@ -5,27 +5,27 @@ ms.author: gekudray
 ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
-description: Wenn einen Windows-Knoten zu einem Kubernetes-Cluster mit v1.13.
-keywords: Kubernetes, 1.13, Windows, erste Schritte
+description: Wenn einen Windows-Knoten zu einem Kubernetes-Cluster mit v1.14.
+keywords: Kubernetes, 1.14, Windows, erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: 7c3a0111b3d19ae1b513a84665f870bba24ae33d
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: c380f5dc10430a94959718a5ce92f311603db733
+ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9576985"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "9622925"
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows
 
-Diese Seite dient als eine Übersicht für erste Schritte mit Kubernetes unter Windows durch das Verknüpfen von Windows-Knoten mit einem Linux-basierten Cluster. Mit der Veröffentlichung von Kubernetes 1.14 auf Windows Server, [Version 1809](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes)können Benutzer die folgenden Features in Kubernetes unter Windows nutzen:
+Diese Seite dient als eine Übersicht für erste Schritte mit Kubernetes unter Windows durch das Verknüpfen von Windows-Knoten mit einem Linux-basierten Cluster. Mit der Veröffentlichung von Kubernetes 1.14 auf Windows Server, [Version 1809](https://docs.microsoft.com/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes)können Benutzer die folgenden Features in Kubernetes unter Windows nutzen:
 
 - **überlagern Sie Netzwerke**: Flannel im Vxlan Modus verwenden Sie zum Konfigurieren eines virtuellen Überlagerung-Netzwerks
-    - erfordert entweder Windows Server 2019 mit [KB4489899](https://support.microsoft.com/en-us/help/4489899) installiert oder [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) -Build 18317 +
+    - erfordert entweder Windows Server 2019 mit [KB4489899](https://support.microsoft.com/help/4489899) installiert oder [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) -Build 18317 +
     - Kubernetes v1.14 erfordert (oder höher) mit `WinOverlay` Feature Tor aktiviert
     - erfordert Flannel v0.11.0 (oder höher)
 - **vereinfachte netzwerkverwaltung**: Flannel in hostgateway-Modus für die automatische Route Verwaltung zwischen Knoten verwenden.
-- **Skalierbarkeitsverbesserungen**: genießen Sie schneller und zuverlässiger Container verursachte Uhrzeiten Dank [deviceless vNICs für Windows Server-Container](https://blogs.technet.microsoft.com/networking/2018/04/27/network-start-up-and-performance-improvements-in-windows-10-spring-creators-update-and-windows-server-version-1803/).
-- **Hyper-V-Isolierung (Alpha)**: zu koordinieren [Hyper-V-Isolierung](https://kubernetes.io/docs/getting-started-guides/windows/#hyper-v-containers) mit Kernelmodus-Isolation für erhöhte Sicherheit. Weitere Informationen, [Windows-Containertypen](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#windows-container-types).
+- **Skalierbarkeitsverbesserungen**: genießen Sie schneller und zuverlässiger Container verursachte Uhrzeiten Dank [deviceless vNICs für Windows Server-Container](https://techcommunity.microsoft.com/t5/Networking-Blog/Network-start-up-and-performance-improvements-in-Windows-10/ba-p/339716).
+- **Hyper-V-Isolierung (Alpha)**: zu koordinieren [Hyper-V-Isolierung](https://kubernetes.io/docs/getting-started-guides/windows/#hyper-v-containers) mit Kernelmodus-Isolation für erhöhte Sicherheit. Weitere Informationen, [Windows-Containertypen](https://docs.microsoft.com/virtualization/windowscontainers/about/#windows-container-types).
     - Kubernetes v1.10 erfordert (oder höher) mit `HyperVContainer` Feature Tor aktiviert.
 - **Speicher-Plug-Ins**: Verwenden von [FlexVolume Speicher-Plug-in](https://github.com/Microsoft/K8s-Storage-Plugins) mit SMB und iSCSI-Unterstützung für Windows-Container.
 

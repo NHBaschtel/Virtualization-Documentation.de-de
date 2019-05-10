@@ -70,7 +70,7 @@ docker pull mcr.microsoft.com/windows/servercore/insider
 ```
 
 > [!IMPORTANT]
-> Bitte lesen Sie die Windows-Container OS Image [EULA](../EULA.md ) und das Windows-Insider-Programm [Nutzungsbedingungen](https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewserver).
+> Bitte lesen Sie die Windows-Container OS Image [EULA](../EULA.md ) und das Windows-Insider-Programm [Nutzungsbedingungen](https://www.microsoft.com/software-download/windowsinsiderpreviewserver).
 
 ## <a name="next-steps"></a>Nächste Schritte
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
-ms.openlocfilehash: 84974f093cc80f8a216518bab051e13397e89b6e
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 762b82f3714651ffb488f682581680c9526404a8
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9577431"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9621208"
 ---
 # <a name="hyper-v-integration-services"></a>Hyper-V-Integrationsdienste
 
@@ -22,7 +22,7 @@ Integrationsdienste (oft als „Integrationskomponenten“ bezeichnet) ermöglic
 Dieser Artikel stellt eine Referenz für jeden in Windows verfügbaren Integrationsdienst dar.  Er fungiert auch als Ausgangspunkt für alle Informationen im Zusammenhang mit bestimmten Integrationsdiensten oder ihren Verläufen.
 
 **Benutzerhandbücher:**  
-* [Verwalten von Integrationsdiensten](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/manage-Hyper-V-integration-services)
+* [Verwalten von Integrationsdiensten](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services)
 
 
 ## <a name="quick-reference"></a>Kurzübersicht
@@ -52,7 +52,7 @@ Wenn Hyper-V berichtet, dass der Status eines virtuellen Computers „wird ausge
 
 ### <a name="check-heartbeat-with-powershell"></a>Überprüfen des Takts mit PowerShell
 
-Führen Sie [Get-VM](https://technet.microsoft.com/en-us/library/hh848479.aspx) als Administrator aus, um den Takt des virtuellen Computers zu sehen:
+Führen Sie [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) als Administrator aus, um den Takt des virtuellen Computers zu sehen:
 ``` PowerShell
 Get-VM -VMName $VMName | select Name, State, Status
 ```
@@ -102,7 +102,7 @@ Der Datenaustauschdienst ist ein großartiges Tool, um Informationen zum virtuel
 
 
 **Benutzerhandbücher:**  
-* [Freigeben von Informationen zwischen dem Host und dem Gast auf Hyper-V mithilfe von Schlüssel-Wert-Paaren](https://technet.microsoft.com/en-us/library/dn798287.aspx).  
+* [Freigeben von Informationen zwischen dem Host und dem Gast auf Hyper-V mithilfe von Schlüssel-Wert-Paaren](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn798287(v=ws.11)).  
 
 
 ## <a name="hyper-v-volume-shadow-copy-requestor"></a>Hyper-V-Volumeschattenkopie-Anforderer
@@ -113,9 +113,9 @@ Der Datenaustauschdienst ist ein großartiges Tool, um Informationen zum virtuel
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
 **Auswirkung:** Wenn der Dienst deaktiviert ist, ist es nicht möglich den virtuellen Computer zu sichern, während er ausgeführt wird (mithilfe von VSS).  
 
-Der Integrationsdienst für den Volumeschattenkopie-Anforderer wird für den Volumeschattenkopie-Dienst (Volume Shadow Copy Service; ([VSS](https://msdn.microsoft.com/en-us/library/aa384589.aspx)) benötigt).  Der Volumeschattenkopie-Dienst (Volume Shadow Copy Service; VSS) erfasst und kopiert Images für die Sicherung der laufenden Systeme, insbesondere der Server, ohne dass die Leistung und Stabilität der von ihnen gebotenen Dienste übermäßig beeinträchtigt werden.  Dieser Integrationsdienst ermöglicht dies durch die Koordination der Arbeitsauslastungen des virtuellen Computers mit dem Sicherungsprozess des Hosts.
+Der Integrationsdienst für den Volumeschattenkopie-Anforderer wird für den Volumeschattenkopie-Dienst (Volume Shadow Copy Service; ([VSS](https://docs.microsoft.com/windows/desktop/VSS/overview-of-processing-a-backup-under-vss)) benötigt).  Der Volumeschattenkopie-Dienst (Volume Shadow Copy Service; VSS) erfasst und kopiert Images für die Sicherung der laufenden Systeme, insbesondere der Server, ohne dass die Leistung und Stabilität der von ihnen gebotenen Dienste übermäßig beeinträchtigt werden.  Dieser Integrationsdienst ermöglicht dies durch die Koordination der Arbeitsauslastungen des virtuellen Computers mit dem Sicherungsprozess des Hosts.
 
-Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://msdn.microsoft.com/en-us/library/dd405549.aspx).
+Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://docs.microsoft.com/previous-versions/windows/desktop/virtual/backing-up-and-restoring-virtual-machines).
 
 
 ## <a name="hyper-v-guest-service-interface"></a>Hyper-V-Gastdienstschnittstelle
@@ -124,7 +124,7 @@ Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://msdn.m
 **Name des Linux-Daemons:** hv_fcopy_daemon  
 **Beschreibung:** stellt eine Schnittstelle für den Hyper-V-Host zum Kopieren von Dateien zu oder vom virtuellen Computer in beide Richtungen bereit.  
 **Hinzugefügt in:** Windows Server 2012 R2, Windows 8.1  
-**Auswirkung:** Wenn der Dienst deaktiviert ist, kann der Host keine Dateien zum oder vom Gast mithilfe von `Copy-VMFile` kopieren.  Erfahren Sie mehr über das [Cmdlet Copy-VMFile](https://technet.microsoft.com/library/dn464282.aspx).  
+**Auswirkung:** Wenn der Dienst deaktiviert ist, kann der Host keine Dateien zum oder vom Gast mithilfe von `Copy-VMFile` kopieren.  Erfahren Sie mehr über das [Cmdlet Copy-VMFile](https://docs.microsoft.com/powershell/module/hyper-v/copy-vmfile?view=win10-ps).  
 
 **Hinweise:**  
 Standardmäßig deaktiviert  Weitere Informationen finden Sie unter [PowerShell Direct mithilfe von Copy-Item](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item). 

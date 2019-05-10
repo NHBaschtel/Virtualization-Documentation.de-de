@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
-ms.openlocfilehash: cc869cfaf1c433fbfdc351e9120a0e43c02967ee
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 9ee2a0adad762aa3cee53f3b44210976259b693f
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9574841"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620698"
 ---
 # <a name="containers-on-windows-documentation"></a>Container unter Windows-Dokumentation
 
@@ -30,7 +30,7 @@ Weitere Informationen zum Bereitstellen von Windows-Container unter Windows Serv
 
 * [Systemanforderungen](deploy-containers/system-requirements.md)
 * [Bereitstellen von Containerhosts](deploy-containers/deploy-containers-on-server.md)
-* [Antivirusoptimierung](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
+* [Antivirusoptimierung](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 ## <a name="docker-on-windows"></a>Docker unter Windows
 Hier finden Sie Informationen Sie zum Verwalten von Docker unter Windows.
@@ -45,7 +45,7 @@ Demos und Interviews mit dem Windows-Container-Team interessiert?
 
 ## <a name="community"></a>Community
 Hier können Sie mit der Community interagieren, Beispiele testen und weitere Ressourcen finden.
-* [Containerforum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+* [Containerforum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
 * [Videos und Blogs der Community](communitylinks.md)
-* [Containerbeispiele](https://docs.microsoft.com/en-us/virtualization/windowscontainers/samples)
+* [Containerbeispiele](https://docs.microsoft.com/virtualization/windowscontainers/samples)
 * [UserVoice](https://windowsserver.uservoice.com/forums/304624-containers)

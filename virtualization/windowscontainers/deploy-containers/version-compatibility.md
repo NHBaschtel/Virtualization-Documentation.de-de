@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 76549bbfbaf374acb79f1be4280949aecf4e87f0
-ms.sourcegitcommit: c48dcfe43f73b96e0ebd661164b6dd164c775bfa
+ms.openlocfilehash: 9e20a28f62ec4bb9456307acb7768e1123a57188
+ms.sourcegitcommit: 03e9203e9769997d8be3f66dc7935a3e5c0a83e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "9610280"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9621628"
 ---
 # <a name="windows-container-version-compatibility"></a>Versionskompatibilität von Windows-container
 
@@ -98,7 +98,7 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 14393.321.amd64fre.rs1_release_inmarket.161004-2338
 ```
 
-Überprüfen Sie die Tags auf Docker Hub oder die Image-Hash-Tabelle in der Beschreibung des Images bereitgestellt, um zu überprüfen, welche Version Ihr Basisimage verwendet. Die [Windows 10-Updateverlauf](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) Seite zeigt jeden Build und die Revision veröffentlicht wurde.
+Überprüfen Sie die Tags auf Docker Hub oder die Image-Hash-Tabelle in der Beschreibung des Images bereitgestellt, um zu überprüfen, welche Version Ihr Basisimage verwendet. Die [Windows 10-Updateverlauf](https://support.microsoft.com/help/12387/windows-10-update-history) Seite zeigt jeden Build und die Revision veröffentlicht wurde.
 
 ### <a name="hyper-v-isolation-for-containers"></a>Hyper-V-Isolation für Container
 
@@ -123,33 +123,33 @@ Es gibt drei Möglichkeiten, die Sie diesen Fehler beheben können:
 ## <a name="choose-which-container-os-version-to-use"></a>Auswählen der Container-BS-Version verwenden
 
 >[!NOTE]
->Die Tags "latest" wird zusammen mit Windows Server 2016, die aktuelle [Long-term Servicing Channel-Produkt](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview)aktualisiert werden. Die folgenden Anweisungen gelten für Container-Images, die mit die Windows Server Version 1709 übereinstimmen.
+>Ab 16 April 2019 ist das Tag "latest" nicht mehr veröffentlicht oder für das [Betriebssystem Container Windows Basisimages](https://hub.docker.com/_/microsoft-windows-base-os-images)beibehalten. Deklarieren Sie bitte ein bestimmtes Tag beim Ziehen oder verweisen auf Bilder aus dieser Repositorys.
 
-Sie müssen wissen, welche Version Sie für den Container verwenden müssen. Beispielsweise, wenn Sie Windows Server Version 1709 verwenden und den neuesten Patches nutzen möchten, verwenden Sie das Tag `1709` Wenn angeben, welche Version der Basisbetriebssystem-containerimages Sie möchten, wie folgt:
+Sie müssen wissen, welche Version Sie für den Container verwenden müssen. Beispielsweise, wenn Sie Windows Server, Version 1809 als Ihrer Betriebssystemversion des Containers verwenden möchten und die neuesten Patches nutzen möchten, verwenden Sie das Tag `1809` Wenn angeben, welche Version der Basisbetriebssystem-containerimages Sie möchten, wie folgt:
 
 ``` dockerfile
-FROM microsoft/windowsservercore:1709
+FROM mcr.microsoft.com/windows/nanoserver:1809
 ...
 ```
 
-Wenn Sie ein bestimmtes Patch von Windows Server Version 1709 möchten, können Sie die KB-Nummer im Tag angeben. Beispielsweise um eine Nano Server Container-basisbetriebssystemimage von Windows Server Version 1709 mit der angewandtem kb4043961 zu erhalten, Sie würden angeben es wie folgt angeben:
+Wenn Sie ein bestimmtes Patch von Windows Server, Version 1809 möchten, können Sie die KB-Nummer im Tag angeben. Beispielsweise um eine Nano Server von Windows Server, Version 1809, mit der KB4493509 angewendet Basisbetriebssystem-containerimage erhalten, Sie würden angeben es wie folgt angeben:
 
 ``` dockerfile
-FROM microsoft/nanoserver:1709_KB4043961
-...
-```
-
-Wenn Sie die Nano Server Container-basisbetriebssystemimage von Windows Server 2016 benötigen, können Sie weiterhin die neueste Version dieser Basisbetriebssystem-containerimages unter Verwendung des Tags "latest" abrufen:
-
-``` dockerfile
-FROM microsoft/nanoserver
+FROM mcr.microsoft.com/windows/nanoserver:1809-KB4493509
 ...
 ```
 
 Sie können die genaue Patches, die Sie benötigen auch mit dem Schema angeben, die wir zuvor durch Angabe der Betriebssystemversion im Tag verwendet haben:
 
 ``` dockerfile
-FROM microsoft/nanoserver:10.0.14393.1770
+FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
+...
+```
+
+Die Server Core-Basisimages basierend auf Windows Server 2019 und Windows Server 2016 sind [Long-term Servicing Channel (LTSC)](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) veröffentlicht. Wenn Sie beispielsweise Windows Server 2019 als Ihre Server Core-Image Betriebssystemversion des Containers verwenden möchten, und die neuesten Patches nutzen möchten, können Sie angeben, dass LTSC Versionen wie folgt:
+
+``` dockerfile
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 ...
 ```
 

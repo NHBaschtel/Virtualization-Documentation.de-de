@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
-ms.openlocfilehash: f9b54dbc9fc7c79bdb9b9aa106d5811401c365f3
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 357fc101b2b0e4d6ccdf53a948ab8d91d19a1522
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9578631"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9621568"
 ---
 # <a name="linux-containers-on-windows-10"></a>Linux-Container unter Windows 10
 
@@ -34,7 +34,7 @@ Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdok
 
 Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:
 - Ein physisches Computersystem mit Windows 10 Professional oder Enterprise mit Fall Creators Update (Version 1709) oder höher
-- Stellen Sie sicher, dass [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) aktiviert ist.
+- Stellen Sie sicher, dass [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) aktiviert ist.
 
 ***Hyper-V-Isolation:*** Linux-Container unter Windows erfordert Hyper-V-Isolation auf Windows 10 damit Entwickler mit der entsprechenden Linux-Kernel Sie den Container ausführen. Informationen zu Hyper-V kann mehr Isolation auf der Seite " [Informationen zu Windows-Container](../about/index.md) " gefunden werden.
 

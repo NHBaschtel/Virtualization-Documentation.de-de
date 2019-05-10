@@ -6,13 +6,13 @@ ms.date: 11/02/2018
 ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
-keywords: Kubernetes, 1.12, Linux, kompilieren
-ms.openlocfilehash: 1c5a5ec90b828a4f2430508f02cb9b9afb1c4d53
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+keywords: Kubernetes, 1.14, Linux, kompilieren
+ms.openlocfilehash: fbb5b8474323a7d418de972bffbb9e005c94cb85
+ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9577081"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "9622995"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -124,13 +124,18 @@ Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing
 > Wenn Sie Kubernetes auf Azure oder IaaS-VMs von anderen Anbietern Cloud selbst bereitstellen, können Sie auch [überlagern Networking](./network-topologies.md#flannel-in-vxlan-mode) stattdessen verwenden.
 
 ### <a name="my-windows-pods-cannot-launch-because-of-missing-runflannelsubnetenv"></a>Meine Windows-Pods können nicht gestartet werden aufgrund fehlender /run/flannel/subnet.env ###
-Dies gibt an, dass Flannel nicht ordnungsgemäß gestartet wurde. Sie können entweder versuchen, flanneld.exe neu zu starten, oder Sie können die Dateien kopieren über manuell aus `/run/flannel/subnet.env` auf dem Kubernetes-Master zu `C:\run\flannel\subnet.env` auf dem Windows-Worker-Knoten und ändern Sie die `FLANNEL_SUBNET` Zeile an eine andere Nummer. Wenn z. B. Knoten Subnetz 10.244.4.1/24 gewünscht wird:
+Dies gibt an, dass Flannel nicht ordnungsgemäß gestartet wurde. Sie können entweder versuchen, flanneld.exe neu zu starten, oder Sie können die Dateien kopieren über manuell aus `/run/flannel/subnet.env` auf dem Kubernetes-Master zu `C:\run\flannel\subnet.env` auf dem Windows-Worker-Knoten und ändern Sie die `FLANNEL_SUBNET` Zeile mit dem Subnetz, die zugewiesen wurde. Wenn z. B. Knoten Subnetz 10.244.4.1/24 zugewiesen wurde:
 ```
 FLANNEL_NETWORK=10.244.0.0/16
 FLANNEL_SUBNET=10.244.4.1/24
 FLANNEL_MTU=1500
 FLANNEL_IPMASQ=true
 ```
+Es ist sicherer, flanneld.exe diese Datei zu generieren lassen.
+
+### <a name="pod-to-pod-connectivity-between-hosts-is-broken-on-my-kubernetes-cluster-running-on-vsphere"></a>Pod-zu-Pod-Konnektivität zwischen Hosts wird auf Meine Kubernetes-Cluster mit vSphere unterteilt. 
+Da vSphere und Flannel Mindestreserven Port 4789 (Standardport VXLAN) für das Overlay-Netzwerk das, können Pakete landen abgefangen wird. Wenn vSphere für das Overlay-Netzwerk verwendet wird, sollte es konfiguriert werden, um einen anderen Port verwenden, um 4789 freizugeben.  
+
 
 ### <a name="my-endpointsips-are-leaking"></a>Meine Endpunkte/IP-Adressen werden offengelegt werden. ###
 Es vorhanden 2 derzeit bekannte Problemen, die Endpunkte Speicherverluste verursachen können. 

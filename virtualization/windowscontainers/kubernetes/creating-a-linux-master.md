@@ -6,17 +6,17 @@ ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
 description: Erstellen einen neuen Kubernetes Cluster-Master.
-keywords: Kubernetes, 1,13, master, linux
-ms.openlocfilehash: 8a3fb073616d115ab84e6cc36f0fb6cedbcf1f7d
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+keywords: Kubernetes, 1,14, master, linux
+ms.openlocfilehash: b1ec23b039ce6f5c42859452ecf3a8a5b35e006c
+ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9578251"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "9622955"
 ---
 # <a name="creating-a-kubernetes-master"></a>Erstellen eines Kubernetes-Masters #
 > [!NOTE]
-> Dieses Handbuch wurde auf Kubernetes v1.13 überprüft. Aufgrund der Version auftretenden Unbeständigkeit von Kubernetes Version kann in diesem Abschnitt Annahmen machen, die nicht für alle zukünftigen Versionen "true" enthalten. Offiziellen Dokumentation für die Initialisierung von Kubernetes-Master mit Kubeadm finden Sie [hier](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Aktivieren Sie einfach [scheduling vermischten OS-Abschnitt](#enable-mixed-os-scheduling) oben in diesem an.
+> Dieses Handbuch wurde auf Kubernetes v1.14 überprüft. Aufgrund der Version auftretenden Unbeständigkeit von Kubernetes Version kann in diesem Abschnitt Annahmen machen, die nicht für alle zukünftigen Versionen "true" enthalten. Offiziellen Dokumentation für die Initialisierung von Kubernetes-Master mit Kubeadm finden Sie [hier](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Aktivieren Sie einfach [scheduling vermischten OS-Abschnitt](#enable-mixed-os-scheduling) oben in diesem an.
 
 > [!NOTE]  
 > Ein vor kurzem aktualisierter Linux-Computer ist erforderlich, um nachvollziehen; Kubernetes master-Ressourcen wie [Kube-Dns](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), [Kube-Scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)und [Kube-Apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) nicht zu Windows noch portiert wurden. 

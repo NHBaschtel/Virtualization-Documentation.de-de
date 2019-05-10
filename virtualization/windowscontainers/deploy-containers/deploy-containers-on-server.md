@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
-ms.openlocfilehash: 35f35b490ce5aa80068578d78a6427ace7352b73
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: f4c6b37c6e33593be0237bd4059435a99c2bdd86
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9574981"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620828"
 ---
 # <a name="container-host-deployment-windows-server"></a>Containerhostbereitstellung: WindowsServer
 
@@ -110,7 +110,7 @@ docker pull microsoft/nanoserver
 
 ## <a name="hyper-v-isolation-host"></a>Hyper-V-Isolierung host
 
-Sie müssen die Hyper-V-Rolle zum Ausführen von Hyper-V-Isolierung verfügen. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+Sie müssen die Hyper-V-Rolle zum Ausführen von Hyper-V-Isolierung verfügen. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization).
 
 ### <a name="nested-virtualization"></a>Geschachtelte Virtualisierung
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1ecb85a6-d938-4c30-a29b-d18bd007ba08
-ms.openlocfilehash: 18ab4d1d87c22f70fe09aae5222a7d125ac9c974
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 2771989b7745605fb3ce4f95e162ae8b03180b0f
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9578671"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9621578"
 ---
 # <a name="configure-nested-vms-to-communicate-with-resources-in-an-azure-virtual-network"></a>Konfigurieren von geschachtelten virtuellen Computern für die Kommunikation mit Ressourcen in einem virtuellen Azure-Netzwerk
 
@@ -26,7 +26,7 @@ In diesem Dokument wird eine Bereitstellung durchlaufen dem wir von RRAS, Benutz
 
 Bevor Sie beginnen finden dieses Handbuch:
 
-1. Lesen Sie die [Anleitung hier bereitgestellten](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/nested-virtualization) geschachtelte Virtualisierung.
+1. Lesen Sie die [Anleitung hier bereitgestellten](https://docs.microsoft.com/azure/virtual-machines/windows/nested-virtualization) geschachtelte Virtualisierung.
 2. Lesen Sie diesen Artikel vor der Implementierung.
 
 ## <a name="high-level-overview-of-what-were-doing-and-why"></a>Hohe Überblick Ausblick und warum
@@ -108,7 +108,7 @@ Ich wird über alle Konfigurationswerten ignorieren, die bis zu überlassen, z. 
 1. Installieren Sie die DHCP-Rolle: `Install-WindowsFeature DHCP -IncludeManagementTools`
 2. Erstellen Sie die DHCP-Bereich: `Add-DhcpServerV4Scope -Name "Nested VMs" -StartRange 10.0.2.2 -EndRange 10.0.2.254 -SubnetMask 255.255.255.0`
 3. Konfigurieren Sie die DNS und Standard-Gateway-Optionen für den Bereich: `Set-DhcpServerV4OptionValue -DnsServer 168.63.129.16 -Router 10.0.2.1`
-    * Achten Sie darauf, dass Sie einen gültigen DNS-Server Eingabe, wenn Sie die Auflösung von Namen arbeiten möchten. In diesem Fall verwende ich [den Azure-rekursiven DNS](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
+    * Achten Sie darauf, dass Sie einen gültigen DNS-Server Eingabe, wenn Sie die Auflösung von Namen arbeiten möchten. In diesem Fall verwende ich [den Azure-rekursiven DNS](https://docs.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
 
 ## <a name="installing-remote-access"></a>RAS-Installation
 
@@ -145,7 +145,7 @@ Ich wird über alle Konfigurationswerten ignorieren, die bis zu überlassen, z. 
 
 ## <a name="creating-a-route-table-within-azure"></a>Erstellen eine Route-Tabelle in Azure
 
-Finden Sie [in diesem Artikel](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal) eine gründlichere im Detail auf erstellen und Verwalten von Routen in Azure lesen.
+Finden Sie [in diesem Artikel](https://docs.microsoft.com/azure/virtual-network/tutorial-create-route-table-portal) eine gründlichere im Detail auf erstellen und Verwalten von Routen in Azure lesen.
 
 1. Navigieren Sie zu https://portal.azure.com.
 2. Wählen Sie in der oberen linken Ecke "Erstellen einer Ressource".

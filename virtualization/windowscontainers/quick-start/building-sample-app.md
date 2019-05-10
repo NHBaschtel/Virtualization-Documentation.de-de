@@ -7,18 +7,18 @@ ms.date: 07/25/2017
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 970f039e97ce0628c7a7f78c417017fc95570f82
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 9cfb5cb062259e906ce499423619ec7a5b814ac9
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9576881"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620838"
 ---
 # <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
 In dieser Übung wird gezeigt, wie Sie eine ASP.NET-Beispiel-App für die Ausführung in einem Container konvertieren. Informationen zum Einstieg mit Containern in Windows 10 erhalten Sie in der [Schnellstartanleitung für Windows 10](./quick-start-windows-10.md).
 
-Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis. Da sich dieses Lernprogramm auf Container konzentriert, werden wir das Schreiben von Code hier auslassen und uns nur mit Containern befassen. Das gesamte Lernprogramm finden Sie in der [ASP.Net Core-Dokumentation](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app-xplat/).
+Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis. Da sich dieses Lernprogramm auf Container konzentriert, werden wir das Schreiben von Code hier auslassen und uns nur mit Containern befassen. Das gesamte Lernprogramm finden Sie in der [ASP.Net Core-Dokumentation](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/).
 
 Wenn die Git-Quellcodeverwaltung auf Ihrem Computer nicht installiert ist, finden Sie sie hier: [Git](https://git-scm.com/download).
 

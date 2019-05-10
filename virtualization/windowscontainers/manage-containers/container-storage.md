@@ -3,12 +3,12 @@ title: Windows Server Containerspeicher
 description: So können Windows Server-Container Host- und andere Speichertypen verwenden
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: patricklang
-ms.openlocfilehash: 7d22a149da21a3367b82f2920c189ae9a4b1c173
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 87b9c364bfdec2b445bb06caf0e9fd4d849119d4
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9574871"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620868"
 ---
 # <a name="overview"></a>Übersicht
 
@@ -53,7 +53,7 @@ Docker-Konfigurationsdatei
   ]
 ```
 > Beachten Sie, dass diese Methode für Docker Build funktioniert.
-Weitere Informationen zum Ändern der Docker-Konfigurationsdatei finden Sie im Dokument [Konfigurieren von Docker](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file).
+Weitere Informationen zum Ändern der Docker-Konfigurationsdatei finden Sie im Dokument [Konfigurieren von Docker](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file).
 
 
 ## <a name="persistent-volumes"></a>Persistente Volumes

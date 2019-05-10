@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
-ms.openlocfilehash: 9f38775d56a95d96bef42b3a33c2571cc5fb2ca0
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: f8bfd60af18731537c2ce02ca7abdb081f3c7369
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9578381"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620758"
 ---
 # <a name="container-platform-tools-on-windows"></a>Container-Plattform-Tools unter Windows
 
@@ -37,7 +37,7 @@ In Umgebungen, Linux, basieren die Container-Management-Tools wie Docker auf ein
 
 `containerd` ist ein Daemon, die Container-Lebenszyklus herunterzuladen und zu entpacken containerimages, Container Ausführung und Überwachung verwaltet.
 
-Unter Windows haben wir einen anderen Ansatz.  Wenn wir arbeiten mit Docker für Windows-Container unterstützen gestartet, integriert wir direkt auf die HCS (Host Compute Service).  [In diesem Blogbeitrag](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introducing-the-host-compute-service-hcs/) enthält viele Informationen warum wir die HCS integriert und warum wir diesen Ansatz mit Containern anfänglich haben.
+Unter Windows haben wir einen anderen Ansatz.  Wenn wir arbeiten mit Docker für Windows-Container unterstützen gestartet, integriert wir direkt auf die HCS (Host Compute Service).  [In diesem Blogbeitrag](https://techcommunity.microsoft.com/t5/Containers/Introducing-the-Host-Compute-Service-HCS/ba-p/382332) enthält viele Informationen warum wir die HCS integriert und warum wir diesen Ansatz mit Containern anfänglich haben.
 
 ![Anfängliche Docker-Modul-Architektur unter Windows](media/hcs.png)
 
@@ -110,6 +110,16 @@ Eine genauere Betrachtung der HCS Überwachen [John Starks DockerCon Präsentati
 > Test-/nur.
 
 Während OCI Spezifikationen definiert einen einzelnen Container, beschreibt [CRI](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto) (Container-Runtime-Schnittstelle) Container als Workload(s) in einem freigegebenen Sandkasten Umgebung einen Pod aufgerufen.  Pods können einen oder mehrere containerarbeitslasten enthalten.  Pods können Container-orchestratoren an, wie Kubernetes und Service Fabric Gitter gruppierte Workloads behandeln, die auf dem gleichen Host mit einigen freigegebenen Ressourcen wie Speicher und vNETs werden sollen.
+
+Containerd-Cri ermöglicht die folgenden Kompatibilitätsmatrix Pods:
+
+| Host-Betriebssystem | Betriebssystemversion des Containers | Isolation | Pod-Unterstützung? |
+|:-------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| <ul><li>Windows Server 2019/1809</ul></li><ul><li>Windows 10 1809</ul></li> | Linux | `hyperv` | Ja – unterstützt "true", mit mehreren Containern Pods. |
+|  | Windows Server 2019/1809 | `process`* oder `hyperv` | Ja – unterstützt "true" mit mehreren Containern Pods aus, wenn jeder Container Workload Betriebssystem das Hilfsprogramm VM-Betriebssystem übereinstimmt. |
+|  | Windows Server 2016</br>Windows Server 1709</br>WindowsServer 1803 | `hyperv` | Partielle – unterstützt pod-Sandboxes ausgeführt, die einen einzelnen Prozess-isolierten Container pro Dienstprogramm VM unterstützen können, wenn das Betriebssystem Container Dienstprogramms VM-Betriebssystem übereinstimmt. |
+
+\*Windows 10 Hosts unterstützen nur Hyper-V-Isolierung
 
 Links zu den CRI-Spezifikation:
 

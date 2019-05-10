@@ -7,12 +7,12 @@ ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
-ms.openlocfilehash: 966ca3ff267e03e8c380391281c8dde723e4b1dd
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: f33f6deb977ff96da0b70a7e14bf4896af0307eb
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9575325"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620648"
 ---
 # <a name="make-your-own-integration-services"></a>Erstellen eigener Integrationsdienste
 
@@ -27,7 +27,7 @@ Dieses Dokument erläutert die Erstellung eines einfachen Programms für Hyper-V
 **Unterstützte Gastbetriebssysteme**
 * Windows 10 und höher
 * Windows Server 2016 und höher
-* Linux-Gastcomputer mit Linux Integration Services (siehe [Unterstützte virtuelle Linux- und FreeBSD-Computer für Hyper-V auf Windows](https://technet.microsoft.com/library/dn531030.aspx))
+* Linux-Gastcomputer mit Linux Integration Services (siehe [Unterstützte virtuelle Linux- und FreeBSD-Computer für Hyper-V auf Windows](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows))
 > **Hinweis:** Ein unterstütztes Linux-Gastbetriebssystem benötigt Kernel-Unterstützung für:
 > ```bash
 > CONFIG_VSOCKET=y
@@ -117,9 +117,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 Im einfachsten Fall erfordert die Definition eines Sockets eine Adressfamilie, einen Verbindungstyp und ein Protokoll.
 
-Hier sehen Sie eine einfache [Socketdefinition](
-https://msdn.microsoft.com/en-us/library/windows/desktop/ms740506(v=vs.85).aspx
-).
+Hier sehen Sie eine einfache [Socketdefinition](https://docs.microsoft.com/windows/desktop/api/winsock2/nf-winsock2-socket).
 
 ``` C
 // Windows
@@ -152,7 +150,7 @@ int sock = socket(AF_VSOCK, SOCK_STREAM, 0);
 
 Über eine Bindung wird ein Socket mit Verbindungsinformationen verknüpft.
 
-Nachstehend finden Sie die Funktionsdefinition. Weitere Informationen zu Bindungen erhalten Sie [hier](https://msdn.microsoft.com/en-us/library/windows/desktop/ms737550.aspx).
+Nachstehend finden Sie die Funktionsdefinition. Weitere Informationen zu Bindungen erhalten Sie [hier](https://docs.microsoft.com/windows/desktop/api/winsock/nf-winsock-bind).
 
 ``` C
 // Windows
@@ -202,7 +200,7 @@ Anstelle von IP-Adresse oder Hostname arbeiten AF_HYPERV-Endpunkte hauptsächlic
   ```PowerShell
   (Get-VM -Name $VMName).Id
   ```
-* Dienst-ID: [Zuvor beschriebene](#RegisterANewApplication) GUID, mit der die Anwendung in der Registrierung des Hyper-V-Hosts registriert wird.
+* Dienst-ID: [Zuvor beschriebene](#register-a-new-application) GUID, mit der die Anwendung in der Registrierung des Hyper-V-Hosts registriert wird.
 
 Es stehen auch verschiedene Platzhalter für VM-IDs zur Verfügung, wenn keine Verbindung mit einem spezifischen virtuellen Computer besteht.
 
@@ -229,6 +227,6 @@ Beim Überwachen auf diese VM-ID werden Verbindungen von folgenden Quellen akzep
 Socket() Bind() Connect() Send() Listen() Accept()
 
 ## <a name="useful-links"></a>Nützliche Links
-[Vollständige WinSock-API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)
+[Vollständige WinSock-API](https://docs.microsoft.com/windows/desktop/WinSock/winsock-functions)
 
 [Referenz für Hyper-V-Integrationsdienste](../reference/integration-services.md)

@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
-ms.openlocfilehash: 354469199f3c7e886760e8a391edccde067986af
-ms.sourcegitcommit: c48dcfe43f73b96e0ebd661164b6dd164c775bfa
+ms.openlocfilehash: a04d356415e7bed84980747edc927cc1eaa1e7c1
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "9610290"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9621088"
 ---
 # <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
@@ -220,7 +220,7 @@ Sie können ebenfalls die optionalen Features von Windows entfernen, die Docker/
 Dazu gehören das Feature "Container", das automatisch auf allen Windows 10 oder Windows Server 2016 aktiviert wird, wenn Docker installiert ist. Es kann ebenfalls das Feature "Hyper-V" beinhalten, das unter Windows10 automatisch aktiviert wird, wenn Docker installiert ist. Dies muss jedoch explizit auf Windows Server2016 aktiviert werden.
 
 >[!IMPORTANT]
->[Das Hyper-V-Feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) ist eine allgemeine Virtualisierungsfunktion, die sehr viel mehr als nur Container aktiviert. Stellen Sie bevor Sie deaktivieren die Hyper-V-Feature sicher, dass keine anderen virtualisierten Komponenten auf Ihrem System, die Hyper-V erfordern.
+>[Das Hyper-V-Feature](https://docs.microsoft.com/virtualization/hyper-v-on-windows/about/) ist eine allgemeine Virtualisierungsfunktion, die sehr viel mehr als nur Container aktiviert. Stellen Sie bevor Sie deaktivieren die Hyper-V-Feature sicher, dass keine anderen virtualisierten Komponenten auf Ihrem System, die Hyper-V erfordern.
 
 So entfernen Sie Windows-Features unter Windows 10:
 

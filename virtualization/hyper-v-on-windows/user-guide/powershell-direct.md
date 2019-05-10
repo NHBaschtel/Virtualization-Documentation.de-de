@@ -8,29 +8,29 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
-ms.openlocfilehash: 779dcf51d4903c9467cc52dbadb865beb9929bd2
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: ea6b71200d3115ba3d156b2c133e1be2fa495261
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9577321"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620918"
 ---
 # <a name="virtual-machine-automation-and-management-using-powershell"></a>Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
- 
+
 Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in einem virtuellen Computer unter Windows 10 oder Windows Server 2016 von Ihrem Hyper-V-Host aus auszuführen – unabhängig von der Netzwerkkonfiguration oder den Einstellungen für die Remoteverwaltung.
 
-**Es gibt zwei Möglichkeiten, PowerShell Direct auszuführen:**  
-* Als interaktive Sitzung – [klicken Sie hier](#create-and-exit-an-interactive-powershell-session), um eine interaktive PowerShell-Sitzung mithilfe von Enter-PSSession zu erstellen und zu beenden.
-* Als einmalige Sitzung zur Ausführung eines einzelnen Befehls oder Skripts – [klicken Sie hier](#run-a-script-or-command-with-invoke-command), um ein Skript oder einen Befehl mithilfe von Invoke-Command auszuführen.
-* Als permanente Sitzung (Build 14280 und höher) – [Klicken Sie hier](#copy-files-with-new-pssession-and-copy-item), um eine permanente Sitzung mithilfe von New-PSSession zu erstellen.  
-Fahren Sie fort, indem Sie eine Datei mithilfe von Copy-Item vom und auf den virtuellen Computer kopieren. Trennen Sie anschließend die Sitzung mithilfe von Remove-PSSession.
+Hier sind einige Möglichkeiten, PowerShell Direct ausgeführt werden kann:
+
+* [Als interaktive Sitzung mit dem Cmdlet Enter-PSSession](#create-and-exit-an-interactive-powershell-session)
+* [Verwenden als einmaligen Verwendung Abschnitt, der einen einzelnen Befehl oder ein Skript ausführen das Invoke-Command-cmdlet](#run-a-script-or-command-with-invoke-command)
+* [Als permanente Sitzung (Build 14280 und höher) mithilfe von New-PSSession, Copy-Item und Remove-PSSession-Cmdlets](#copy-files-with-new-pssession-and-copy-item)
 
 ## <a name="requirements"></a>Anforderungen
 **Betriebssystemanforderungen:**
 * Host: Windows10, Windows Server2016 oder höher mit Hyper-V.
 * Gast- bzw. virtueller Computer: Windows10, Windows Server2016 oder höher.
 
-Wenn Sie ältere virtuelle Computer verwalten, verwenden Sie die Verbindung mit virtuellen Computern (VMConnect) oder [Konfigurieren Sie ein virtuelles Netzwerk für den virtuellen Computer](http://technet.microsoft.com/library/cc816585.aspx). 
+Wenn Sie ältere virtuelle Computer verwalten, verwenden Sie die Verbindung mit virtuellen Computern (VMConnect) oder [Konfigurieren Sie ein virtuelles Netzwerk für den virtuellen Computer](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc816585(v=ws.10)). 
 
 **Konfigurationsanforderungen:**    
 * Der virtuelle Computer muss lokal auf dem Host ausgeführt werden.
@@ -77,7 +77,7 @@ Wenn die Sitzung gestartet wird, werden die eingegebenen Befehle auf dem virtuel
 
 > Hinweis: Wenn keine Verbindung für die Sitzung hergestellt werden kann, lesen Sie den Abschnitt [Problembehandlung](#troubleshooting), um mögliche Ursachen herauszufinden. 
 
-Weitere Informationen zu diesen Cmdlets finden Sie unter [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) und [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
+Weitere Informationen zu diesen Cmdlets finden Sie unter [Enter-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Enter-PSSession?view=powershell-5.1) und [Exit-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Exit-PSSession?view=powershell-5.1). 
 
 -------------
 
@@ -116,7 +116,7 @@ PowerShell Direct mit Invoke-Command eignet sich ideal für Situationen, in dene
    
    Das Skript wird auf dem virtuellen Computer ausgeführt.  Die Verbindung wird automatisch geschlossen, nachdem der Befehl ausgeführt wurde.
 
-Weitere Informationen zu diesem Cmdlet finden Sie unter [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx). 
+Weitere Informationen zu diesem Cmdlet finden Sie unter [Invoke-Command](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Invoke-Command?view=powershell-5.1). 
 
 -------------
 
@@ -126,7 +126,7 @@ Weitere Informationen zu diesem Cmdlet finden Sie unter [Invoke-Command](http://
 
 Permanente PowerShell-Sitzungen sind unglaublich nützlich, wenn Sie Skripts schreiben, die Aktionen über einen oder mehrere Remotecomputer hinweg koordinieren.  Nach dem Erstellen sind permanente Sitzungen im Hintergrund vorhanden, bis Sie sich dafür entscheiden, sie zu löschen.  Das bedeutet, dass Sie mit `Invoke-Command` und `Enter-PSSession` immer wieder auf die gleiche Sitzung verweisen können, ohne Anmeldeinformationen übergeben zu müssen.
 
-Ebenso behalten Sitzungen ihren Zustand bei.  Da permanente Sitzungen – wie der Name schon sagt – dauerhaft sind, werden jegliche Variablen, die in einer Sitzung erstellt oder an eine Sitzung übergeben wurden, über mehrere Aufrufe hinweg beibehalten. Für die Arbeit mit permanenten Sitzungen sind verschiedene Tools verfügbar.  In diesem Beispiel werden [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) und [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) verwendet, um Daten vom Host auf einen virtuellen Computer und von einem virtuellen Computer auf den Host zu verschieben.
+Ebenso behalten Sitzungen ihren Zustand bei.  Da permanente Sitzungen – wie der Name schon sagt – dauerhaft sind, werden jegliche Variablen, die in einer Sitzung erstellt oder an eine Sitzung übergeben wurden, über mehrere Aufrufe hinweg beibehalten. Für die Arbeit mit permanenten Sitzungen sind verschiedene Tools verfügbar.  In diesem Beispiel werden [New-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/New-PSSession?view=powershell-5.1) und [Copy-Item](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Management/Copy-Item?view=powershell-5.1) verwendet, um Daten vom Host auf einen virtuellen Computer und von einem virtuellen Computer auf den Host zu verschieben.
 
 **So erstellen Sie eine Sitzung und kopieren anschließend Dateien:**  
 
@@ -205,13 +205,13 @@ Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. 
 
 **Mögliche Ursachen:**
 * Der virtuelle Computer ist vorhanden, wird aber nicht ausgeführt.
-* Das Gastbetriebssystem unterstützt PowerShell Direct nicht (Informationen finden Sie in den [Anforderungen](#Requirements)).
+* Das Gastbetriebssystem unterstützt PowerShell Direct nicht (Informationen finden Sie in den [Anforderungen](#requirements)).
 * PowerShell ist noch nicht auf dem Gast verfügbar.
   * Der Startvorgang des Betriebssystems ist noch nicht abgeschlossen.
   * Das Betriebssystem kann nicht ordnungsgemäß starten.
   * Bei einigen Ereignissen zur Startzeit sind Benutzereingaben erforderlich.
 
-Sie können das Cmdlet [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) verwenden, um zu überprüfen, welche virtuellen Computer auf dem Host ausgeführt werden.
+Sie können das Cmdlet [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) verwenden, um zu überprüfen, welche virtuellen Computer auf dem Host ausgeführt werden.
 
 **Fehlermeldung:**  
 ```
@@ -253,7 +253,7 @@ Enter-PSSession : The credential is invalid.
 * Die Gastanmeldeinformationen konnten nicht überprüft werden.
   * Die angegebenen Anmeldeinformationen sind falsch.
   * Es gibt keine Benutzerkonten auf dem Gast (das Betriebssystem wurde noch nicht gestartet)
-  * Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](https://technet.microsoft.com/en-us/library/hh825104.aspx).
+  * Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)>).
   
 ### <a name="error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine"></a>Fehler: Der Parameter „VMName“ kann nicht in einen virtuellen Computer aufgelöst werden.
 
@@ -266,7 +266,7 @@ Enter-PSSession : The input VMName parameter does not resolve to any virtual mac
 * Sie sind kein Hyper-V-Administrator.  
 * Der virtuelle Computer ist nicht vorhanden.
 
-Mit dem Cmdlet [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) können Sie überprüfen, ob die von Ihnen verwendeten Anmeldeinformationen die Rolle „Hyper-V-Administrator“ enthalten und welche VMs lokal auf dem Host ausgeführt werden und gestartet wurden.
+Mit dem Cmdlet [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) können Sie überprüfen, ob die von Ihnen verwendeten Anmeldeinformationen die Rolle „Hyper-V-Administrator“ enthalten und welche VMs lokal auf dem Host ausgeführt werden und gestartet wurden.
 
 
 -------------

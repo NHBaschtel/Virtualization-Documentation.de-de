@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 001f1abaeefaf34e12b0f7e3323bf32140080d05
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 492e3b0ba3b1abe1109de3f6091f5b60831036df
+ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9575081"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "9622975"
 ---
 # <a name="advanced-network-options-in-windows"></a>Erweiterte Netzwerkoptionen für Windows
 
@@ -23,7 +23,7 @@ Es werden verschiedene Netzwerktreiberoptionen unterstützt, um die Vorteile der
 
 > Gilt für alle Netzwerktreiber
 
-Nutzen Sie [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set), wenn Sie Containerhost-Netzwerke für die Verwendung von Docker durch Angabe mehrerer Netzwerkadapter (durch Kommas getrennt) mit der `-o com.docker.network.windowsshim.interface`-Option erstellen.
+Nutzen Sie [Switch Embedded Teaming](https://docs.microsoft.com/windows-server/virtualization/hyper-v-virtual-switch/RDMA-and-Switch-Embedded-Teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set), wenn Sie Containerhost-Netzwerke für die Verwendung von Docker durch Angabe mehrerer Netzwerkadapter (durch Kommas getrennt) mit der `-o com.docker.network.windowsshim.interface`-Option erstellen.
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
@@ -41,6 +41,22 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlan
 Wenn Sie die VLAN-ID für ein Netzwerk festlegen, wird damit die VLAN-Isolation für alle Containerendpunkte festgelegt, die mit dem Netzwerk verbunden sind.
 
 > Stellen Sie sicher, dass sich der Hostnetzwerkadapter (physisch) im Trunk-Modus befindet, damit alle markierten (tagged) Datenpakte vom vSwitch mit dem vNIC-Port (Containerendpunkt) im Zugriffsmodus auf dem richtigen VLAN verarbeitet werden können.
+
+## <a name="specify-outboundnat-policy-for-a-network"></a>Geben Sie OutboundNAT-Richtlinie für ein Netzwerk
+
+> Gilt für l2bridge-Netzwerken
+
+Normalerweise beim Erstellen einer `l2bridge` Container-Netzwerk mit `docker network create`, Container-Endpunkte haben keine HNS OutboundNAT Richtlinie angewendet, sich ergebenden in Containern, die nicht außen erreicht wird. Wenn Sie ein Netzwerk erstellen, können Sie mithilfe der `-o com.docker.network.windowsshim.enable_outboundnat=<true|false>` Option zum Anwenden der Richtlinie OutboundNAT HNS um Container Zugriff nach außen zu ermöglichen:
+
+```
+C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true MyL2BridgeNetwork
+```
+
+Wenn eine Reihe von Reisezielen (z. B. Container zu Container Konnektivität ist erforderlich), in denen wir NAT'ing erfolgen soll nicht vorhanden ist, müssen wir auch ein ExceptionList angeben:
+
+```
+C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true -o com.docker.network.windowsshim.outboundnat_exceptions=10.244.10.0/24
+```
 
 ## <a name="specify-the-name-of-a-network-to-the-hns-service"></a>Festlegen des Netzwerknamens für den HNS-Dienst
 
@@ -80,13 +96,13 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnss
 
 ## <a name="vfp"></a>VFP
 
-Weitere Informationen finden Sie in [diesem Artikel](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/).
+Weitere Informationen finden Sie in [diesem Artikel](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/).
 
 ## <a name="tips--insights"></a>Tipps und Einblicke
 Hier ist eine Liste mit nützlichen Tipps und Einblicken, die von den häufig von uns gehörten Fragen der Community über Windows-Container-Netzwerke inspiriert sind...
 
 #### <a name="hns-requires-that-ipv6-is-enabled-on-container-host-machines"></a>HNS erfordert, dass IPv6 auf den Containerhostgeräten aktiviert ist 
-Als Teil des [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) ist es für HNS erforderlich, dass IPv6 auf den Windows-Containerhosts aktiviert ist. Wenn wie unten beschrieben ein Fehler auftritt, ist IPv6 wahrscheinlich auf dem Hostcomputer deaktiviert.
+Als Teil des [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217) ist es für HNS erforderlich, dass IPv6 auf den Windows-Containerhosts aktiviert ist. Wenn wie unten beschrieben ein Fehler auftritt, ist IPv6 wahrscheinlich auf dem Hostcomputer deaktiviert.
 ```
 docker: Error response from daemon: container e15d99c06e312302f4d23747f2dfda4b11b92d488e8c5b53ab5e4331fd80636d encountered an error during CreateContainer: failure in a Windows system call: Element not found.
 ```
@@ -99,7 +115,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### <a name="linux-containers-on-windows"></a>Linux-Container unter Windows
 
-**NEU:** Wir arbeiten daran, Linux- und Windows-Container paralell ausführen zu können _ohne die Moby Linux VM_. Detaillierte Informationen finden Sie in diesem [Blogbeitrag über Informationen zu Linux-Containern für Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/). Nachfolgend finden Sie Informationen zum [Einstieg](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
+**NEU:** Wir arbeiten daran, Linux- und Windows-Container paralell ausführen zu können _ohne die Moby Linux VM_. Detaillierte Informationen finden Sie in diesem [Blogbeitrag über Informationen zu Linux-Containern für Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/). Nachfolgend finden Sie Informationen zum [Einstieg](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
 > Hinweis: Die LCOW ist eine veralteter Moby Linux-VM, es wird der standardmäßige HNS "Nat"-interne vSwitch genutzt.
 
 #### <a name="moby-linux-vms-use-dockernat-switch-with-docker-for-windows-a-product-of-docker-cehttpswwwdockercomcommunity-edition"></a>Moby Linux-VMs verwendet DockerNAT-Switch mit Docker für Windows (ein Produkt der [Docker CE](https://www.docker.com/community-edition))
@@ -163,7 +179,7 @@ Es gibt drei Ansätze zum Lösen dieses Problems:
 PS C:\> restart-service hns
 PS C:\> restart-service docker
 ```
-* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die „-o“-Option wird weiter oben im Abschnitt [Transparentes Netzwerk](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) beschrieben.
+* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die '--o-Option Option ist beschrieben im Abschnitt [Erstellen mehrerer transparenter Netzwerke auf einem einzelnen containerhost](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) dieses Dokuments.
 
 
 ## <a name="windows-server-2016-work-arounds"></a>Windows Server2016-Problemumgehungen 

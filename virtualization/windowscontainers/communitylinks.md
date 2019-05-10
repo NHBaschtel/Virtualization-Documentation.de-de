@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
-ms.openlocfilehash: 24d90b83a1a20e8243297baa6466428b5fb30303
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 55b428894b22ded48ce9db8f24928924964ce96d
+ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9575001"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "9620888"
 ---
 # <a name="community-videos-and-blogs"></a>Videos und Blogs der Community
 
@@ -45,7 +45,7 @@ Diese Seite enthält Links zu Videos und Blogs, die von Mitgliedern der Containe
 
 [Containerize Windows workloads with Image2Docker](https://blog.docker.com/2016/10/containerize-windows-workloads-image2docker/) (Windows-Workloads mit Image2Docker in Container verpacken) – Mano Marks
 
-[Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) (Verwenden von Docker Compose und Service Discovery unter Windows, um ein Multi-Service-Containeranwendung zu skalieren) – Kallie Bracken und Jason Messer
+[Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://techcommunity.microsoft.com/t5/Containers/Use-Docker-Compose-and-Service-Discovery-on-Windows-to-scale-out/ba-p/382312) (Verwenden von Docker Compose und Service Discovery unter Windows, um ein Multi-Service-Containeranwendung zu skalieren) – Kallie Bracken und Jason Messer
 
 [PowerShell Desired State Configuration in Windows-Containern mithilfe von Docker](https://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/) - Nicholas Dille
 

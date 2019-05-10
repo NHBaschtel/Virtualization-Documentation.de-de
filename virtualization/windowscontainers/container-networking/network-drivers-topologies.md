@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: e2b3c05a35896d51b1fbd1bf3f276791e4e08493
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 358b58da0fc51c03766198e4b25b8b043b2a5029
+ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9577121"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "9622905"
 ---
 # <a name="windows-container-network-drivers"></a>Windows-Container-Netzwerktreiber  
 
@@ -34,17 +34,18 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
 - **Überlagerung** - Wenn das Docker-Modul im [Schwarmmodus](../manage-containers/swarm-mode.md) ausgeführt wird, können Container, die mit einem Überlagerungsnetzwerks verbunden sind mit anderen, an dasselbe Netzwerk angeschlossen Containern, über mehrere Containerhosts kommunizieren. Jedes Überlagerungsnetzwerk, das für einen Schwarmcluster erstellt wird, wird mit einem eigenen IP-Subnetz erstellt, das durch ein privates IP-Präfix definiert ist. Der Überlagerungsnetzwerktreiber verwendet VXLAN Kapselung. **Kann mit Kubernetes verwendet werden, wenn Sie die geeignete Steuerelement Netzwerkebenen (Flannel oder OVN) verwenden.**
   > Erfordert: Stellen Sie sicher, dass Ihre Umgebung diese erforderlichen [Komponenten](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) zum Erstellen von überlagerungsnetzwerke erfüllt.
 
-  > Erfordert: Erfordert Windows Server 2016 mit [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217), Windows 10 Creators Update oder einer neueren Version.
+  > Erfordert: Erfordert Windows Server 2016 mit [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217), Windows 10 Creators Update oder einer neueren Version.
 
   >[!NOTE]
   >Nutzen Sie auf Windows Server 2019 Docker EE 18.03 ausgeführt wird und .NET-Apps, erstellt, indem der Docker-Schwarm überlagerungsnetzwerke VFP NAT-Regeln für ausgehende Konnektivität. Dies bedeutet, dass Container erhält und 1 IP-Adresse empfängt. Es bedeutet auch, dass tools wie ICMP-basierte `ping` oder `Test-NetConnection` sollte ihre TCP/UDP-Optionen in Situationen Debuggen Verwendung konfiguriert werden.
 
 - **l2bridge** -verbundener Container, der mit einem Netzwerk mit dem Treiber "l2bridge" erstellt wurde und in demselben IP-Subnetz wie der Containerhost ist und mit dem physischen Netzwerk über einen *externen* Hyper-V-Switch verbunden ist. Die IP-Adressen müssen statisch aus dem gleichen Präfix wie der Containerhost zugewiesen werden. Alle Containerendpunkte auf dem Host verfügen aufgrund der Layer-2-Adressübersetzung beim Eingang und -Ausgang über dieselbe MAC-Adresse als Host (Umschreiben der MAC-Adresse).
-  > Erfordert Folgendes: Wenn dieser Modus verwendet wird in einem Szenario mit Virtualisierung (Container-Host ist eine virtuelle Maschine) _Spoofing von MAC-Adressen erforderlich ist_.
-  
   > Erfordert: Erfordert Windows Server 2016, Windows 10 Creators Update oder einer neueren Version.
 
-- **l2tunnel** – ähnlich wie l2bridge, jedoch _dieser Treiber sollte nur in einem Microsoft-Cloud-Stapel, z. B. Azure verwendet werden_. Pakete, die aus einem Container kommen, werden an den Virtualisierungshost gesendet, wenn SDN-Richtlinien angewendet werden.
+  > Erfordert: [OutboundNAT Richtlinie](./advanced.md#specify-outboundnat-policy-for-a-network) für externe Konnektivität.
+
+- **l2tunnel** – Ähnlich wie l2bridge _sollte dieser Treiber nur in einem Microsoft-Cloudstapel verwendet werden_. Pakete, die aus einem Container kommen, werden an den Virtualisierungshost gesendet, wenn SDN-Richtlinien angewendet werden.
+
 
 ## <a name="network-topologies-and-ipam"></a>Netzwerktopologien und IPAM
 
