@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
-ms.openlocfilehash: f8bfd60af18731537c2ce02ca7abdb081f3c7369
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 74e22702aa4be30055b3f4f48c7fac926d793095
+ms.sourcegitcommit: 03e9203e9769997d8be3f66dc7935a3e5c0a83e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
 ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620758"
+ms.locfileid: "9621608"
 ---
 # <a name="container-platform-tools-on-windows"></a>Container-Plattform-Tools unter Windows
 
@@ -117,7 +117,7 @@ Containerd-Cri ermöglicht die folgenden Kompatibilitätsmatrix Pods:
 |:-------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | <ul><li>Windows Server 2019/1809</ul></li><ul><li>Windows 10 1809</ul></li> | Linux | `hyperv` | Ja – unterstützt "true", mit mehreren Containern Pods. |
 |  | Windows Server 2019/1809 | `process`* oder `hyperv` | Ja – unterstützt "true" mit mehreren Containern Pods aus, wenn jeder Container Workload Betriebssystem das Hilfsprogramm VM-Betriebssystem übereinstimmt. |
-|  | Windows Server 2016</br>Windows Server 1709</br>WindowsServer 1803 | `hyperv` | Partielle – unterstützt pod-Sandboxes ausgeführt, die einen einzelnen Prozess-isolierten Container pro Dienstprogramm VM unterstützen können, wenn das Betriebssystem Container Dienstprogramms VM-Betriebssystem übereinstimmt. |
+|  | WindowsServer 2016</br>WindowsServer 1709</br>WindowsServer 1803 | `hyperv` | Partielle – unterstützt pod-Sandboxes ausgeführt, die einen einzelnen Prozess-isolierten Container pro Dienstprogramm VM unterstützen können, wenn das Betriebssystem Container Dienstprogramms VM-Betriebssystem übereinstimmt. |
 
 \*Windows 10 Hosts unterstützen nur Hyper-V-Isolierung
 

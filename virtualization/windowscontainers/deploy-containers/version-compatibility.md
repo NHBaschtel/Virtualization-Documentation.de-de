@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 9e20a28f62ec4bb9456307acb7768e1123a57188
-ms.sourcegitcommit: 03e9203e9769997d8be3f66dc7935a3e5c0a83e1
+ms.openlocfilehash: 64b6b400e12060b86594b90474fdedd73dfef45e
+ms.sourcegitcommit: 561eaf94c0c0698d43228ebfcd316a7fcd835a59
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9621628"
+ms.lasthandoff: 05/09/2019
+ms.locfileid: "9622785"
 ---
 # <a name="windows-container-version-compatibility"></a>Versionskompatibilität von Windows-container
 
@@ -116,7 +116,7 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 
 Es gibt drei Möglichkeiten, die Sie diesen Fehler beheben können:
 
-- Erstellen Sie den Container basierend auf die richtige Version von neu `microsoft/nanoserver` oder `microsoft/windowsservercore`
+- Erstellen Sie den Container basierend auf die richtige Version von neu `mcr.microsoft.com/windows/nanoserver` oder `mcr.microsoft.com/windows/servercore`
 - Wenn der Host neuer ist, führen Sie **Docker ausführen--Isolation = Hyper-v...**
 - Führen Sie den Container auf einem anderen Host mit der gleichen Windows-version
 

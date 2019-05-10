@@ -5,15 +5,15 @@ ms.author: daschott
 ms.date: 11/02/2018
 ms.topic: get-started-article
 ms.prod: containers
-description: Wenn einen Windows-Knoten zu einem Kubernetes-Cluster mit v1.13.
-keywords: Kubernetes, 1.13, Windows, erste Schritte
+description: Wenn einen Windows-Knoten zu einem Kubernetes-Cluster mit v1.14.
+keywords: Kubernetes, 1.14, Windows, erste Schritte
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: fec18baa58ae6aa7d637be575548a1823a551207
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: c1781a6ce48ebaa8433f5649a34ac79b852beae6
+ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620988"
+ms.lasthandoff: 05/10/2019
+ms.locfileid: "9622965"
 ---
 # <a name="joining-windows-server-nodes-to-a-cluster"></a>Hinzufügen von Windows Server-Knoten zu einem Cluster #
 Wenn Sie die [Einrichtung eines Kubernetes-master-Knotens](./creating-a-linux-master.md) und [Ihrer Projektmappe gewünschte Netzwerk ausgewählt](./network-topologies.md)haben, sind Sie bereit, Windows Server-Knoten zu einem Cluster beizutreten. Dies erfordert einige [Vorbereitung auf den Windows-Knoten](#preparing-a-windows-node) , bevor Sie einbinden.
@@ -101,8 +101,8 @@ Kopieren Sie die Zertifikatdatei Kubernetes (`$HOME/.kube/config`) [Master](./cr
 
 #### <a name="download-kubernetes-binaries"></a>Herunterladen von Kubernetes-Binärdateien ####
 Um Kubernetes ausgeführt werden können, müssen Sie zuerst herunterladen der `kubectl`, `kubelet`, und `kube-proxy` Binärdateien. Sie können diese über die Links im Herunterladen der `CHANGELOG.md` Datei die [neuesten Versionen](https://github.com/kubernetes/kubernetes/releases/).
- - Hier sind z. B. die [v1.13 Knoten-Binärdateien](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#node-binaries).
- - Verwenden Sie ein Tool wie [Erweitern-Archiv](https://docs.microsoft.com/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) zum Extrahieren des Archivs aus und platzieren die Binärdateien in `C:\k\`.
+ - Hier sind z. B. die [v1.14 Knoten-Binärdateien](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#node-binaries).
+ - Verwenden Sie ein Tool wie [Erweitern-Archiv](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) zum Extrahieren des Archivs aus und platzieren die Binärdateien in `C:\k\`.
 
 #### <a name="optional-setup-kubectl-on-windows"></a>(Optional) Setup-Kubectl unter Windows ####
 Sollten Sie möchten Cluster von Windows zu steuern, Sie können dazu die `kubectl` Befehl. Erste, um sicherzustellen, `kubectl` außerhalb des verfügbaren der `C:\k\` Verzeichnis und Ändern der `PATH` Umgebungsvariable:
@@ -186,7 +186,7 @@ Die IP-Adresse zugewiesen, mit dem Windows-Knoten. Sie können `ipconfig` , dies
 Den Netzwerkmodus `l2bridge` (Flannel Host-gw) oder `overlay` (Flannel Vxlan) als eine [Netzwerk-Lösung](./network-topologies.md)ausgewählt.
 
 > [!Important] 
-> `overlay` Netzwerkmodus (Flannel Vxlan) erfordert Kubernetes v1.14-Binärdateien oder höher.
+> `overlay` Netzwerkmodus (Flannel Vxlan) erfordert Kubernetes v1.14 Binärdateien (oder höher) und [KB4489899](https://support.microsoft.com/help/4489899).
 
 |  |  | 
 |---------|---------|
