@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 358b58da0fc51c03766198e4b25b8b043b2a5029
-ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
+ms.openlocfilehash: 40e877c8999574f21ecb9586c3f2bc012607177f
+ms.sourcegitcommit: 40b929dbc72aa308d8e46765ac61616a35b31791
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/10/2019
-ms.locfileid: "9622905"
+ms.lasthandoff: 05/14/2019
+ms.locfileid: "9634389"
 ---
 # <a name="windows-container-network-drivers"></a>Windows-Container-Netzwerktreiber  
 
@@ -22,8 +22,10 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
 - **nat** – einem Netzwerk hinzugefügte Container, die mit einem NAT-Treiber erstellt wurden werden mit einem *internen* Hyper-V-Switch verbunden und enthalten eine vom Benutzer angegebene (``--subnet``) IP-Präfix-IP-Adresse. Portweiterleitung/-zuordnung vom Containerhost zu Containerendpunkten wird unterstützt.
   
   >[!NOTE]
-  >Wenn Sie Windows 10 Creators Update installiert haben, werden mehrere NAT-Netzwerke unterstützt.
+  > NAT-Netzwerke, die auf Windows Server 2019 (oder höher) erstellt werden nach dem Neustart nicht mehr beibehalten.
 
+  > Mehrere NAT-Netzwerke werden unterstützt, wenn Sie Windows 10 Creators Update installiert haben (oder höher).
+  
 - **transparent** – einem Netzwerk hinzugefügte Container, die mit einem NAT-Treiber erstellt wurden und direkt mit dem physischen Netzwerk über einen *externen* Hyper-V-Switch verbunden werden. IPs aus dem physischen Netzwerk können mithilfe eines externen DHCP-Servers statisch (erfordert eine benutzerdefinierte ``--subnet``-Option) oder dynamisch zugewiesen werden.
   
   >[!NOTE]
