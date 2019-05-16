@@ -3,12 +3,12 @@ title: GPU-Beschleunigung in Windows-Containern
 description: Welche Ebene der GPU-Beschleunigung in Windows-Container vorhanden ist
 keywords: Docker, Container, Geräte, hardware
 author: cwilhit
-ms.openlocfilehash: 281241e07e4bc184e73c4e74a117b44253a775be
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 066f97b859b133a03e24df5db95cafe405ea3110
+ms.sourcegitcommit: 2b456022ee666863ef53082580ac1d432de86939
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9578666"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "9657368"
 ---
 # <a name="gpu-acceleration-in-windows-containers"></a>GPU-Beschleunigung in Windows-Containern
 
@@ -17,7 +17,7 @@ Für viele in Containern Workloads bieten CPU-Compute-Ressourcen über ausreiche
 GPUs sind bereits ein allgemeines Tool für gängige Workloads, von herkömmlichen Rendering- und Simulation Machine Learning-Schulung und Rückschluss. Windows-Container unterstützen die GPU-Beschleunigung für DirectX und alle Frameworks, die es imagebasierter.
 
 > [!IMPORTANT]
-> Dieses Feature erfordert eine Version von Docker, die unterstützt die `--device` Befehlszeilenoption für Windows-Container. Offizieller Docker-Support ist eingeplant, für die der bevorstehenden Version von Docker EE-Modul 19.03. Bis dahin enthält [upstream Quelle](https://master.dockerproject.org/) für Docker die erforderlichen Bits.
+> Dieses Feature erfordert eine Version von Docker, die unterstützt die `--device` Befehlszeilenoption für Windows-Container. Diese Unterstützung steht derzeit nur in der `Docker Desktop for Windows Edge` freizugeben. Sie können die Edge-Version von Docker herunterladen [hier](https://docs.docker.com/docker-for-windows/edge-release-notes/).
 
 ## <a name="requirements"></a>Anforderungen
 

@@ -3,12 +3,12 @@ title: Geräte in Containern unter Windows
 description: Welche geräteunterstützung für Container unter Windows vorhanden ist
 keywords: Docker, Container, Geräte, hardware
 author: cwilhit
-ms.openlocfilehash: f32ba3de347bcf968088d2f3f20f22f82166d652
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: feff730ed21c439312cda65c7b5ccc1a6cf5ae86
+ms.sourcegitcommit: 2b456022ee666863ef53082580ac1d432de86939
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9621558"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "9657358"
 ---
 # <a name="devices-in-containers-on-windows"></a>Geräte in Containern unter Windows
 
@@ -75,7 +75,7 @@ Die folgenden Geräte (und ihr Gerät Klasse GUIDs Schnittstelle) werden derzeit
 </tr>
 <tr valign="top">
 <td><center>DirectX-GPU-Beschleunigung</center></td>
-<td><center>Lesen Sie dedizierte Dokumentation</center></td>
+<td><center>Lesen Sie <a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU-Beschleunigung</a> -Dokumentation</center></td>
 </tr>
 </tbody>
 </table>
