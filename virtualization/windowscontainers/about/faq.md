@@ -1,73 +1,66 @@
 ---
 title: Windows-Container – häufig gestellte Fragen
-description: Windows Server-Container – häufig gestellte Fragen
+description: Häufig gestellte Fragen zu Windows Server-Containern
 keywords: Docker, Container
 author: PatrickLang
-ms.date: 05/02/2016
+ms.date: 05/22/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: 69783f0fc3dcc80eb9614031dc6c9b2c35eeefd1
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 90894278885fde54feab222bb2bf44ca3eba331b
+ms.sourcegitcommit: daf1d2b5879c382404fc4d59f1c35c88650e20f7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9577141"
+ms.lasthandoff: 05/23/2019
+ms.locfileid: "9674735"
 ---
-# <a name="frequently-asked-questions"></a>Häufig gestellte Fragen
+# <a name="frequently-asked-questions-about-containers"></a>Häufig gestellte Fragen zu Containern
 
-## <a name="general"></a>Allgemein
+## <a name="what-are-wcow-and-lcow"></a>Was sind WCOW und LCOW?
 
-### <a name="what-is-wcow-what-is-lcow"></a>Was ist WCOW? Was ist LCOW?
+WCOW ist für "Windows-Container unter Windows" kurz. LCOW ist für "Linux-Container unter Windows" kurz.
 
-WCOW ist eine Abkürzung für Windows-Container unter Windows und LCOW eine Abkürzung für Linux-Container unter Windows.
+## <a name="whats-the-difference-between-linux-and-windows-server-containers"></a>Worin besteht der Unterschied zwischen Linux-und Windows Server-Containern?
 
-### <a name="what-is-the-difference-between-linux-and-windows-server-containers"></a>Was ist der Unterschied zwischen Linux- und Windows Server-Containern?
+Sowohl Linux als auch Windows Server implementieren ähnliche Technologien in Ihren Kernel-und Core-Betriebssystemen. Der Unterschied ergibt sich aus der Plattform und Arbeitslasten, die innerhalb des Containers ausgeführt.  
 
-Linux und Windows Server-Container ähneln sich, dass beide ähnliche Technologien in ihrem Kernel und Kernbetriebssystem Betriebssystem implementieren. Der Unterschied ergibt sich aus der Plattform und Arbeitslasten, die innerhalb des Containers ausgeführt.  
+Wenn ein Kunde Windows Server-Container verwendet, kann er in vorhandene Windows-Technologien wie .net, ASP.net und PowerShell integriert werden.
 
-Wenn ein Kunde Windows Server-Container verwendet, können mit vorhandenen Windows Technologien wie .NET, ASP.NET, PowerShell und vieles mehr integriert werden.
+## <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Muss ich als Entwickler die APP für die einzelnen Containertypen neu schreiben?
 
-### <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Als Entwickler habe ich meine app für jeden Containertyp umschreiben?
+Nein. Windows-Container Bilder sind sowohl in Windows Server-Containern als auch in der Hyper-V-Isolierung üblich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Entwicklersicht sind Windows Server-Container und Hyper-V-Isolierung zwei Varianten der gleichen Aufgabe. Sie bieten die gleiche Entwicklungs-, Programmier-und Verwaltungserfahrung und sind offen und erweiterbar und umfassen das gleiche Maß an Integration und Unterstützung für docker.
 
-Nein. Windows-containerimages sind für Windows Server-Container und Hyper-V-Isolierung. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht der Entwickler Windows Server-Container und Hyper-V-Isolierung sind auf zwei Arten von dasselbe. Sie bieten die gleiche Erfahrung der Entwicklung, Programmierung und Verwaltung, sind öffnen und erweiterbare und das gleiche Maß an Integration und Support mit Docker.
+Ein Entwickler kann ein Container Bild mithilfe eines Windows Server-Containers erstellen und es in der Hyper-V-Isolierung oder umgekehrt bereitstellen, ohne andere Änderungen als die Angabe des entsprechenden Lauf Zeit Kennzeichens vorzunehmen.
 
-Ein Entwickler kann ein Container-Abbild, das mit einem Windows Server-Container erstellen und in Hyper-V-Isolierung oder umgekehrt unverändert als das Festlegen der entsprechenden Common Language Runtime-Flag bereitstellen.
+Windows Server-Container bieten eine größere Dichte und Leistung für den Fall, dass die Geschwindigkeit entscheidend ist, beispielsweise geringere Aufgliederungs Zeiten und schnellere Laufzeitleistung im Vergleich zu geschachtelten Konfigurationen. Die Hyper-V-Isolierung, getreu dem Namen, bietet eine größere Isolierung, um sicherzustellen, dass Code, der in einem Container ausgeführt wird, keine Kompromisse oder Auswirkungen auf das Hostbetriebssystem oder andere Container hat, die auf demselben Host ausgeführt werden. Dies ist nützlich für Multitenant-Szenarien mit Anforderungen für das Hosten von nicht vertrauenswürdigem Code, einschließlich SaaS-Anwendungen und Compute-Hosting.
 
-Windows Server-Containern bietet höhere Dichte und Leistung, wenn Geschwindigkeit Schlüssel, z. B. niedrigere dreht sich Zeit und schnellere Common Language Runtime-Leistung im Vergleich zu geschachtelten Konfigurationen ist. Hyper-V-Isolierung, True, um den Namen bietet mehr Isolation sicherzustellen, dass in einem Container ausgeführte Code kann nicht gefährden oder Auswirkungen auf das Hostbetriebssystem oder andere Container, die auf dem gleichen Host ausgeführt werden. Dies ist hilfreich für mehrinstanzenfähige Szenarien mit Anforderungen für das Hosten von nicht vertrauenswürdigen Codes, einschließlich SaaS-Anwendungen und computehosting.
+## <a name="what-are-the-prerequisites-for-running-containers-on-windows"></a>Was sind die Voraussetzungen für die Ausführung von Containern unter Windows?
 
-### <a name="what-are-the-prerequisites-for-running-containers-on-windows"></a>Was sind die Voraussetzungen für die Ausführung von Containern unter Windows?
+Container wurden mit Windows Server 2016 auf der Plattform eingeführt. Um Container verwenden zu können, benötigen Sie entweder Windows Server 2016 oder das Windows 10 Anniversary-Update (Version 1607) oder neuer.
 
-Container wurden für die gesamte Plattform mit Windows Server 2016 eingeführt. Um Container zu verwenden, müssen Sie Folgendes, Windows Server 2016 oder Windows 10 Anniversary Update (Version 1607) oder höher.
+## <a name="can-i-run-windows-containers-in-process-isolated-mode-on-windows-10-enterprise-or-professional"></a>Kann ich Windows-Container im Prozess isolierten Modus unter Windows 10 Enterprise oder Professional ausführen?
 
-### <a name="can-i-run-windows-containers-in-process-isolated-mode-on-windows-10-enterprise-or-professional"></a>Kann ich Windows-Container im Prozess-isolierten Modus auf Windows 10 Enterprise oder Professional ausführen?
+Beginnend mit dem 2018-Update für Windows 10 Oktober können Sie einen Windows-Container mit Prozessisolierung ausführen, doch müssen Sie zuerst die Prozessisolierung direkt anfordern `--isolation=process` , indem Sie das Flag verwenden `docker run`, wenn Sie Ihre Container ausführen.
 
-Ab Windows 10 October 2018 Update, wir nicht mehr verbieten ein Benutzers von einem Windows-Container mit Prozessisolation ausgeführt. Allerdings müssen Sie direkt beim Anfordern Prozessisolation mithilfe der `--isolation=process` beim Ausführen von der Containers über flag `docker run`.
-
-Wenn dies etwas, die Sie interessiert sind ist, müssen Sie stellen Sie sicher, dass Ihre Hosts Windows 10, Build 17763 + ausgeführt wird, und Sie haben eine Docker-Version mit Modul 18.09 oder höher.
+Wenn Sie Ihre Windows-Container auf diese Weise ausführen möchten, müssen Sie sicherstellen, dass auf Ihrem Host Windows 10 Build 17763 + ausgeführt wird und Sie über eine Andock Version mit Engine 18,09 oder höher verfügen.
 
 > [!WARNING]
-> Dieses Feature ist nur für die Entwicklung oder Tests vorgesehen. Sie sollten weiterhin Windows Server als Host für die Produktion Bereitstellungen verwenden.
->
-> Mithilfe dieses Feature zu verwenden, müssen Sie zudem sicherstellen, dass Ihre Host und Container Versionstags übereinstimmen, andernfalls des Containers möglicherweise nicht gestartet oder kann ein nicht definiertes Verhalten aufweisen.
+> Dieses Feature ist nur für die Entwicklung/Testung vorgesehen. Sie sollten Windows Server weiterhin als Host für Produktionsbereitstellungen verwenden. Wenn Sie dieses Feature verwenden, müssen Sie auch sicherstellen, dass Ihre Host-und Container Versions Tags übereinstimmen, da der Container andernfalls möglicherweise nicht gestartet wird oder nicht definiertes Verhalten aufweist.
 
-## <a name="windows-container-management"></a>Windows-Containerverwaltung
+## <a name="how-do-i-make-my-container-images-available-on-air-gapped-machines"></a>Wie kann ich meine Container Bilder auf Air-gapped-Computern zur Verfügung stellen?
 
-### <a name="how-do-i-make-my-container-images-available-on-air-gapped-machines"></a>Wie werden kann ich meine containerimages verfügbar auf Computern Air ausgeführt?
+Windows-Container-Basisbilder enthalten Artefakte, deren Verteilung durch die Lizenz eingeschränkt ist. Wenn Sie diese Bilder erstellen und Sie an eine private oder öffentliche Registrierung weiterleiten, werden Sie feststellen, dass die Basisschicht nie verschoben wird. Stattdessen verwenden wir das Konzept einer fremd Schicht, die auf die reale Basisschicht verweist, die sich im Azure Cloud-Speicher befindet.
 
-Die Windows-Container-Basisimages enthalten Artefakte, deren Verteilung von Lizenz eingeschränkt sind. Wenn Sie auf diese Bilder erstellen und mit einer privaten oder öffentlichen Registrierung zu übertragen, werden Sie feststellen, ob die Grundebene nie gedrückt ist. In diesem Fall verwenden wir das Konzept einer fremden Ebene der auf echte Grundebene im Azure-Cloud-Speicher remoten verweist.
-
-Dies kann ein Problem darstellen, bei einem Computer Air ausgeführt, der nur Bilder aus der Adresse Ihrer privaten Container-Registrierung ziehen können. Versuche, befolgen die fremde Ebene, um das Basisimage abrufen würde in diesem Fall fehl. Um das fremden Layer-Verhalten zu überschreiben, können Sie die `--allow-nondistributable-artifacts` Flag in der Docker-Daemon.
+Dies kann die Dinge komplizieren, wenn Sie einen Air-gapped-Computer haben, der nur Bilder von der Adresse Ihrer privaten Container Registrierung abrufen kann. In diesem Fall funktionieren Versuche, die fremd Schicht zu befolgen, um das Basis Bild zu erhalten, nicht. Wenn Sie das Verhalten der fremd Schicht außer Kraft setzen möchten `--allow-nondistributable-artifacts` , können Sie das Flag im docker-Daemon verwenden.
 
 > [!IMPORTANT]
-> Verwendung von dieses Flag entgegen nicht Ihre Verpflichtung zur Einhaltung der Begriffe der Windows-Container Basisimage Lizenz; Sie müssen keine Windows-Inhalt für die öffentliche oder Drittanbieter-Verteilung bereitstellen. Nutzung in Ihrer eigenen Umgebung ist zulässig.
+> Die Verwendung dieser Kennzeichnung steht ihrer Verpflichtung zur Einhaltung der Bestimmungen der Windows-Container-Basis Bildlizenz nicht entgegen; Sie dürfen keine Windows-Inhalte für die öffentliche oder fremde Weiterverteilung bereitstellen. Die Verwendung in ihrer eigenen Umgebung ist zulässig.
 
-## <a name="microsofts-open-ecosystem"></a>Das offene Ökosystem von Microsoft
+## <a name="is-microsoft-participating-in-the-open-container-initiative-oci"></a>Nimmt Microsoft an der Open Container Initiative (OCI) teil?
 
-### <a name="is-microsoft-participating-in-the-open-container-initiative-oci"></a>Nimmt Microsoft an der Open Container Initiative (OCI) teil?
+Um sicherzustellen, dass das Verpackungsformat weiterhin universell ist, hat docker vor kurzem die Open Container Initiative (OCI) organisiert, die darauf abzielt, die Container Verpackung weiterhin als Open-und Foundation-LED-Format zu sichern, wobei Microsoft als eines der Gründungsmitglieder dient.
 
-Um zu gewährleisten, dass das Paketerstellungsformat universell bleibt, hat Docker vor Kurzem die Open Container Initiative (OCI) ins Leben gerufen, um sicherzustellen, dass die Paketerstellung für Container ein offenes von den Gründern geleitetes Format bleibt, wobei Microsoft eines der Gründungsmitglieder ist.
+## <a name="additional-feedback"></a>Weiteres Feedback
 
-> [!TIP]
-> Sie haben eine Empfehlung für eine Ergänzung zu den häufig gestellten Fragen? Öffnen Sie ein neues Problem Feedback in den Kommentarabschnitt oder verwenden Sie GitHub, um eine Pull-Anforderung gegen diese Dokumente zu öffnen!
+Möchten Sie etwas zu den häufig gestellten Fragen hinzufügen? Öffnen Sie ein neues Feedback Problem im Abschnitt Kommentare, oder richten Sie eine Pull-Anforderung für diese Seite mit GitHub ein.

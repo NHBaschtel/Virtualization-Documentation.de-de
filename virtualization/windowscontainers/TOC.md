@@ -1,17 +1,20 @@
 # Übersicht
-## [Info](about/index.md)
+## [Informationen zu Windows-Containern](about/index.md)
+## [Informationen zum andocker](about/docker-overview.md)
+## [Informationen zu Windows-Container-Orchestrators](about/overview-container-orchestrators.md)
+## [Informationen zum Erstellen von Container-Ökosystemen](about/container-ecosystem.md)
 ## [Häufig gestellte Fragen](about/faq.md)
 
 # Schnellstarts
 ## Windows 10-Schnellstart
-### [Ausführen Ihres ersten Containers WCOW](quick-start/quick-start-windows-10.md)
-### [Ausführen Ihres ersten Containers LCOW](quick-start/quick-start-windows-10-linux.md)
+### [Ausführen des ersten WCOW-Containers](quick-start/quick-start-windows-10.md)
+### [Ausführen des ersten LCOW-Containers](quick-start/quick-start-windows-10-linux.md)
 ### [Erstellen einer Beispiel-App](quick-start/building-sample-app.md)
 ## Windows Server-Schnellstart
 ### [Ausführen Ihres ersten Containers](quick-start/quick-start-windows-server.md)
 ### [Automatisieren von Containerbuilds](quick-start/quick-start-images.md)
-## Windows-Insider-Schnellstart
-### [Verwenden der Insider-images](quick-start/Using-Insider-Container-Images.md)
+## Windows Insider-Schnellstart
+### [Verwenden der Insider-Bilder](quick-start/Using-Insider-Container-Images.md)
 ### [Erstellen und Ausführen einer Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ### [Bekannte Probleme](quick-start/Insider-Known-Issues.md)
 
@@ -19,36 +22,36 @@
 ## [Docker-Modul unter Windows](manage-docker/configure-docker-daemon.md)
 ## [Dockerfiles unter Windows](manage-docker/manage-windows-dockerfile.md)
 ## [Optimieren von Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
-## [Containerspeicher](manage-containers/container-storage.md)
-## [Remoteverwaltung eines Windows-Docker-Hosts](management/manage_remotehost.md)
-## [Steuerung von Ressourcen](manage-containers/resource-controls.md)
+## [Container Speicher](manage-containers/container-storage.md)
+## [Remote Verwaltung eines Windows-andockbaren Hosts](management/manage_remotehost.md)
+## [Ressourcen Steuerelemente](manage-containers/resource-controls.md)
 
 # Containernetzwerk auf Windows
 ## [Übersicht über Container-Networking](container-networking/architecture.md)
-## [Netzwerktopologien und Treiber](container-networking/network-drivers-topologies.md)
-## [Netzwerkisolation und Sicherheit](container-networking/network-isolation-security.md)
+## [Netzwerktopologien und-Treiber](container-networking/network-drivers-topologies.md)
+## [Netzwerkisolierung und-Sicherheit](container-networking/network-isolation-security.md)
 ## [Erweiterte Netzwerkoptionen](container-networking/advanced.md)
 
 # Orchestrierung
 ## Kubernetes unter Windows 
 ### [Übersicht](kubernetes/getting-started-kubernetes-windows.md)
 ### [Erstellen eines Kubernetes-Masters](kubernetes/creating-a-linux-master.md)
-### [Auswählen einer Lösung](kubernetes/network-topologies.md)
-### [Windows-Worker beitreten](kubernetes/joining-windows-workers.md)
-### [Linux-Worker beitreten](kubernetes/joining-linux-workers.md)
+### [Auswählen einer Netzwerklösung](kubernetes/network-topologies.md)
+### [Beitreten zu Windows-Mitarbeitern](kubernetes/joining-windows-workers.md)
+### [Teilnahme an Linux-Mitarbeitern](kubernetes/joining-linux-workers.md)
 ### [Bereitstellen von Kubernetes-Ressourcen](kubernetes/deploying-resources.md)
 ### [Problembehandlung](kubernetes/common-problems.md)
-### [Windows-Bereitstellungsdienste auf Kubernetes](kubernetes/kube-windows-services.md)
+### [Windows-Dienste auf Kubernetes](kubernetes/kube-windows-services.md)
 ### [Kompilieren von Kubernetes-Binärdateien](kubernetes/compiling-kubernetes-binaries.md)
-## Service Fabric unter Windows
+## Dienststruktur unter Windows
 ### [Bereitstellen Ihres ersten Containers](/azure/service-fabric/service-fabric-quickstart-containers)
 ### [Bereitstellen einer .NET-Anwendung in einem Windows-Container](/azure/service-fabric/service-fabric-host-app-in-a-container) 
-## Docker-Schwarm
-### [Erste Schritte mit dem schwarmmodus](manage-containers/swarm-mode.md)
+## Andocker-Schwarm
+### [Erste Schritte mit dem Swarm-Modus](manage-containers/swarm-mode.md)
 
 # Community und Support
-## [Containerforum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
-## [Community-Videos und blogs](communitylinks.md)
+## [Container Forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
+## [Community-Videos und-Blogs](communitylinks.md)
 ## [Problembehandlung](troubleshooting.md)
 
 # Referenz
@@ -57,12 +60,12 @@
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Druckerdienste](deploy-containers/print-spooler.md)
 ## [GPU-Beschleunigung](deploy-containers/gpu-acceleration.md)
-## [Hardwaregeräte in Containern](deploy-containers/hardware-devices-in-containers.md)
-## [Container-Plattform-tools](deploy-containers/containerd.md)
+## [Hardware Geräte in Containern](deploy-containers/hardware-devices-in-containers.md)
+## [Tools für die Container Plattform](deploy-containers/containerd.md)
 ## [Gruppenverwaltete Dienstkonten](manage-containers/manage-serviceaccounts.md)
-## [Antivirusoptimierung](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
+## [Virenschutz Optimierung](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Linux-Container unter Windows](deploy-containers/linux-containers.md)
 
-# [Beispiele für Container](samples.md)
+# [Container Beispiele](samples.md)
 
-# [Containerbetriebssystem-image EULA](Images_EULA.md)
+# [EULA für Container-Betriebssystem Bilder](Images_EULA.md)
