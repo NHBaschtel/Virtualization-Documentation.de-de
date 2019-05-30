@@ -7,12 +7,12 @@ ms.date: 06/25/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
-ms.openlocfilehash: 14e0f57ca0c952239847e493740048e14889e6d7
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: aab6a285e9c1ed9918b39cb1de88e3e2243fb3a9
+ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620718"
+ms.lasthandoff: 05/28/2019
+ms.locfileid: "9680960"
 ---
 # <a name="introduction-to-hyper-v-on-windows-10"></a>Einführung in Hyper-V unter Windows 10
 
@@ -36,11 +36,11 @@ Die Virtualisierung ermöglicht folgendes:
 
 ## <a name="system-requirements"></a>Systemanforderungen
 
-Hyper-V ist in 64-Bit-Versionen von Windows 10 Pro, Enterprise und Education verfügbar. Es ist nicht in der Home-Edition verfügbar.
+Hyper-V steht in 64-Bit-Versionen von Windows 10 pro, Enterprise und Education zur Verfügung. Sie steht in der Home-Edition nicht zur Verfügung.
 
-> Ein Upgrade von Windows 10 Home Edition auf Windows 10 Pro durch Öffnen der **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
+> Führen Sie ein Upgrade von Windows 10 Home Edition auf Windows 10 pro durch, indem Sie die **Einstellungen** > **aktualisieren und die Sicherheits** > **Aktivierung**öffnen. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
-Die meisten Computer führen Hyper-V aus, jedoch ist jeder virtuelle Computer ein völlig getrenntes Betriebssystem.  Sie können auf einem Computer mit 4GB RAM in der Regel einen oder mehrere virtuelle Computer ausführen, obwohl Sie für zusätzliche virtuelle Computer oder zum Installieren und Ausführen von ressourcenintensiver Software wie Spielen, Videos oder -Engineering-Designsoftware weitere Ressourcen benötigen.
+Die meisten Computer führen Hyper-V aus, allerdings wird auf jedem virtuellen Computer ein vollständig separates Betriebssystem ausgeführt.  Sie können auf einem Computer mit 4GB RAM in der Regel einen oder mehrere virtuelle Computer ausführen, obwohl Sie für zusätzliche virtuelle Computer oder zum Installieren und Ausführen von ressourcenintensiver Software wie Spielen, Videos oder -Engineering-Designsoftware weitere Ressourcen benötigen.
 
 Weitere Informationen zu den Systemanforderungen von Hyper-V und der Überprüfung, ob Hyper-V auf Ihrem Computer ausgeführt wird, finden Sie unter [Verweis auf Hyper-V‑Anforderungen](../reference/hyper-v-requirements.md).
 

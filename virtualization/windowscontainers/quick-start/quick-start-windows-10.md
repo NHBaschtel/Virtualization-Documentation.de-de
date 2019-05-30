@@ -1,19 +1,19 @@
 ---
-title: Windows und Linux-Container unter Windows 10
+title: Windows-und Linux-Container unter Windows 10
 description: Containerbereitstellung – Schnellstart
-keywords: Docker, Container, LCOW
+keywords: docker, Container, LCOW
 author: taylorb-microsoft
 ms.date: 11/8/2018
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
-ms.openlocfilehash: be6be81e995dce8ebd757c73793f474f4b0909bf
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: ae311ecccdfbfc30b1079330a8eb02c1ce3ac94b
+ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620738"
+ms.lasthandoff: 05/28/2019
+ms.locfileid: "9680970"
 ---
 # <a name="windows-containers-on-windows-10"></a>Windows-Container unter Windows10
 
@@ -21,32 +21,32 @@ ms.locfileid: "9620738"
 > - [Linux-Container unter Windows](quick-start-windows-10-linux.md)
 > - [Windows-Container unter Windows](quick-start-windows-10.md)
 
-Die Übung führt durch Erstellen und Ausführen von Windows-Container unter Windows 10.
+Die Übung führt Sie durch das Erstellen und Ausführen von Windows-Containern unter Windows 10.
 
-In diesem Schnellstart führen Sie Aktionen aus:
+In diesem Schnellstart können Sie Folgendes ausführen:
 
-1. Installieren von Docker für Windows
-2. Ausführen eines einfachen Windows Containers
+1. Installieren des docker-Desktops
+2. Ausführen eines einfachen Windows-Containers
 
-Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdokumentation finden Sie in der Tabelle der Inhalt auf der linken Seite der Seite.
+Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstart Dokumentation finden Sie im Inhaltsverzeichnis auf der linken Seite dieser Seite.
 
 ## <a name="prerequisites"></a>Voraussetzungen
-Stellen Sie sicher, dass Sie die folgenden Anforderungen erfüllen:
-- Ein physisches Computersystem mit Windows 10 Professional oder Enterprise mit Anniversary Update (Version 1607) oder höher. 
+Stellen Sie bitte sicher, dass Sie die folgenden Voraussetzungen erfüllen:
+- Ein physisches Computersystem, auf dem Windows 10 Professional oder Enterprise mit Anniversary Update (Version 1607) oder höher ausgeführt wird. 
 - Stellen Sie sicher, dass [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) aktiviert ist.
 
-***Hyper-V-Isolation:*** Windows Server-Container erfordert Hyper-V-Isolation auf Windows 10 damit Entwickler die gleiche Kernel-Version und Konfiguration, die in der Produktion verwendet werden soll, mehr Informationen zu Hyper-V-Isolation finden Sie auf der Seite " [Informationen zu Windows-Container](../about/index.md) ".
+***Hyper-V-Isolierung:*** Windows Server-Container erfordern Hyper-v-Isolierung unter Windows 10, um Entwicklern die gleiche Kernel Version und-Konfiguration zur Verfügung zu stellen, die in der Produktion verwendet wird, weitere Informationen zur Hyper-v-Isolierung finden Sie auf der [Container Seite zu Windows](../about/index.md) .
 
 > [!NOTE]
-> In der Version von Windows Oktober Update 2018 verbieten wir nicht mehr Benutzer aus einen Windows-Container in Windows 10 Enterprise oder Professional Testzwecken Dev/im Prozess-Isolation ausgeführt. Finden Sie die [häufig gestellte Fragen](../about/faq.md) , um mehr zu erfahren.
+> In der Veröffentlichung von Windows October Update 2018 verbieten wir Benutzern nicht mehr die Ausführung eines Windows-Containers im Prozess Isolationsmodus unter Windows 10 Enterprise oder Professional für dev/Test-Zwecke. Weitere Informationen finden Sie in den [FAQ](../about/faq.md) .
 
-## <a name="install-docker-for-windows"></a>Installieren von Docker für Windows
+## <a name="install-docker-desktop"></a>Installieren des docker-Desktops
 
-Herunterladen von [Docker für Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) und führen Sie das Installationsprogramm (Sie müssen sich anmelden. Erstellen Sie ein Konto, wenn Sie nicht bereits eine haben). [Ausführliche Informationen zur Installation](https://docs.docker.com/docker-for-windows/install) finden Sie in der Dokumentation zu Docker.
+Laden Sie den docker- [Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) herunter, und führen Sie das Installationsprogramm aus (Sie müssen sich anmelden. Erstellen Sie ein Konto, wenn Sie noch keines haben. [Ausführliche Informationen zur Installation](https://docs.docker.com/docker-for-windows/install) finden Sie in der Dokumentation zu Docker.
 
-## <a name="switch-to-windows-containers"></a>Wechseln Sie zu Windows Containern
+## <a name="switch-to-windows-containers"></a>Wechseln zu Windows-Containern
 
-Nach der Installation führt Docker für Windows standardmäßig Linux-Container aus. Wechseln Sie zu Windows-Container, die mithilfe des Docker-Menüs oder mithilfe des folgenden Befehls in einer PowerShell-Aufforderung:
+Nach der Installation wird der Docker-Desktop standardmäßig mit Linux-Containern ausgeführt. Wechseln Sie zu Windows-Containern entweder über das Docking-Tray-Menü oder durch Ausführen des folgenden Befehls in einer PowerShell-Eingabeaufforderung:
 
 ```console
 & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
@@ -72,11 +72,11 @@ microsoft/nanoserver   latest              105d76d0f40e        4 days ago       
 ```
 
 > [!IMPORTANT]
-> Bitte lesen Sie die Windows-Container OS Image [EULA](../images-eula.md).
+> Bitte lesen Sie den Windows Containers OS-Bild- [Lizenzvertrag](../images-eula.md).
 
-## <a name="run-your-first-windows-container"></a>Führen Sie Ihre ersten Windows-Container
+## <a name="run-your-first-windows-container"></a>Ausführen des ersten Windows-Containers
 
-In diesem einfachen Beispiel wird ein "Hello World"-containerimage erstellt und bereitgestellt werden. Am besten führen Sie diese Befehle in einer Windows-Eingabeaufforderung mit erhöhten Rechten oder mit Windows PowerShell aus.
+In diesem einfachen Beispiel wird ein Container Bild "Hello World" erstellt und bereitgestellt. Am besten führen Sie diese Befehle in einer Windows-Eingabeaufforderung mit erhöhten Rechten oder mit Windows PowerShell aus.
 
 > Windows PowerShell ISE funktioniert nicht für interaktive Sitzungen mit Containern. Auch wenn der Container ausgeführt wird, scheint die Ausführung angehalten zu sein.
 
@@ -86,7 +86,7 @@ Starten Sie zuerst einen Container mit einer interaktiven Sitzung aus dem `nanos
 docker run -it mcr.microsoft.com/windows/nanoserver:1809 cmd.exe
 ```
 
-Innerhalb des Containers erstellen wir eine einfache Textdatei von "Hello World".
+Im Container wird eine einfache Textdatei "Hello World" erstellt.
 
 ```cmd
 echo "Hello World!" > Hello.txt
@@ -122,9 +122,9 @@ Verwenden Sie abschließend den Befehl `docker run`, um den Container auszuführ
 docker run --rm helloworld cmd.exe /s /c type Hello.txt
 ```
 
-Das Ergebnis des der `docker run` Befehl ist, dass ein Container unter Hyper-V-Isolierung Ausführen von "-Image erstellt wurde, eine Instanz der Cmd im Container gestartet wurde, und einen Wert liefern unserer Datei (ausgabeecho der Shell) und dann den Container ausgeführt beendet und entfernt wurde.
+Das Ergebnis des `docker run` Befehls besteht darin, dass ein Container, der unter Hyper-V-Isolierung ausgeführt wird, aus dem "HelloWorld"-Bild erstellt wurde, eine Instanz von cmd im Container gestartet und eine Lesung unserer Datei ausgeführt wurde (die Ausgabe wurde in die Shell wiedergegeben) und dann der Container gestoppt und entfernt.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
 > [!div class="nextstepaction"]
-> [Hier erfahren Sie, wie Sie eine Beispiel-app erstellen](./building-sample-app.md)
+> [Informationen zum Erstellen einer Beispiel-App](./building-sample-app.md)

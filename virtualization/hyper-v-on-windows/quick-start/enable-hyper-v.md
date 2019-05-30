@@ -7,30 +7,30 @@ ms.date: 02/15/2019
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
-ms.openlocfilehash: a710f8d60f9d82be7fe02b950a9782b94f3ae6e4
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: e1b6b55b2e17ac4f0883078748d75f6d4b9fcafa
+ms.sourcegitcommit: 3c06d6b5cebeacc4c0185dca5c20680ad67655bd
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620728"
+ms.lasthandoff: 05/28/2019
+ms.locfileid: "9681901"
 ---
 # <a name="install-hyper-v-on-windows-10"></a>Installieren von Hyper-V unter Windows10
 
 Aktivieren von Hyper-V, um virtuelle Computer unter Windows10 zu erstellen  
-Hyper-V kann auf unterschiedliche Weise aktiviert werden – in der Windows 10-Systemsteuerung, mit der PowerShell (meine bevorzugte Methode) oder mit dem DISM-Tool (Deployment Image Servicing and Management, Abbildverwaltung für die Bereitstellung). In diesem Dokument wird jede Option vorgestellt.
+Hyper-V kann auf unterschiedliche Weise aktiviert werden, einschließlich der Verwendung der Windows 10-Systemsteuerung, PowerShell oder der Verwendung des Bereitstellungs-Imaging-Service-und-Verwaltungstools (DISM). In diesem Dokument wird jede Option vorgestellt.
 
 > **Hinweis:** Hyper-V ist in Windows als optionales Feature integriert und kann nicht zusätzlich heruntergeladen werden.
 
 ## <a name="check-requirements"></a>Voraussetzungen:
 
-* Windows 10 Enterprise, Pro oder Education
+* Windows 10 Enterprise, pro oder Education
 * 64-Bit-Prozessor mit Second Level Address Translation (SLAT).
-* CPU-Unterstützung für VM Monitor Mode Extension (VT-c bei Intel-CPUs).
+* CPU-Unterstützung für die VM-Monitor Modus-Erweiterung (VT-c auf Intel-CPUs).
 * Mindestens 4 GB Speicher.
 
 Die Hyper-V-Rolle kann unter Windows 10 Home **nicht** installiert werden.
 
-Ein Upgrade von Windows 10 Home Edition auf Windows 10 Pro durch **Einstellungen**öffnen > **Update und Sicherheit** > **Aktivierung**.
+Führen Sie ein Upgrade von Windows 10 Home Edition auf Windows 10 pro durch, indem Sie die **Einstellungen** > **aktualisieren und die Sicherheits** > **Aktivierung**öffnen.
 
 Weitere Informationen und Hinweise zur Problembehandlung finden Sie unter [Systemanforderungen für Hyper-V unter Windows10](../reference/hyper-v-requirements.md).
 
@@ -70,7 +70,7 @@ Weitere Informationen zu DISM finden Sie in der [technischen Referenz zu DISM](<
 
 1. Klicken Sie mit der rechten Maustaste auf die Windows-Taste, und wählen Sie "Apps und Features" aus.
 
-2. Wählen Sie die **Programme und Funktionen** auf der rechten Seite unter Verwandte Einstellungen. 
+2. Klicken Sie unter Verwandte Einstellungen auf der rechten Seite auf **Programme und Funktionen** . 
 
 3. Wählen Sie **Windows-Features aktivieren oder deaktivieren** aus.
 
