@@ -3,12 +3,12 @@ title: Windows Server Containerspeicher
 description: So können Windows Server-Container Host- und andere Speichertypen verwenden
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: patricklang
-ms.openlocfilehash: 87b9c364bfdec2b445bb06caf0e9fd4d849119d4
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 20179f09260b6ae5de802c2372958356f8de3aee
+ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620868"
+ms.lasthandoff: 05/28/2019
+ms.locfileid: "9680940"
 ---
 # <a name="overview"></a>Übersicht
 
@@ -101,12 +101,12 @@ Unter Windows Server Version 1709 ermöglicht ein neues Feature namens "globale 
 
 ##### <a name="configuration-steps"></a>Konfigurationsschritte
 
-1. Ordnen Sie auf dem containerhost global die SMB-Remotefreigabe:
+1. Ordnen Sie auf dem Container Host die Remote-SMB-Freigabe Global zu:
     ```
     $creds = Get-Credential
     New-SmbGlobalMapping -RemotePath \\contosofileserver\share1 -Credential $creds -LocalPath G:
     ```
-    Mit diesem Befehl wird die Anmeldeinformationen verwenden, um mit dem remote-SMB-Server zu authentifizieren. Ordnen Sie anschließend den Pfad für die Remotefreigabe auf G: Laufwerkbuchstabe zu (dies kann jeder verfügbare Laufwerkbuchstabe sein). Die auf diesem Containerhost erstellten Container können jetzt ihre Datenvolumes auf einen Pfad auf dem Laufwerk G: zuordnen.
+    Dieser Befehl verwendet die Anmeldeinformationen, um sich beim SMB-Remoteserver zu authentifizieren. Ordnen Sie anschließend den Pfad für die Remotefreigabe auf G: Laufwerkbuchstabe zu (dies kann jeder verfügbare Laufwerkbuchstabe sein). Die auf diesem Containerhost erstellten Container können jetzt ihre Datenvolumes auf einen Pfad auf dem Laufwerk G: zuordnen.
 
     > Hinweis: Wenn die globale Zuordnung in SMB für Container verwendet wird, können alle Benutzer auf dem Containerhost auf die Remotefreigabe zugreifen. Jede auf dem Containerhost ausgeführte Anwendung hat außerdem Zugriff auf die zugeordnete Remotefreigabe.
 
@@ -135,3 +135,6 @@ Beispielschritte:
 3. Schreiben Sie einige Dateien auf c:\data im Container, und beenden Sie anschließend den Container
 4. `docker run -v unwound:c:\data microsoft/windowsservercore` ‑ Starten Sie einen neuen Container
 5. Führen Sie `dir c:\data` im neuen Container aus – die Dateien sind auch weiterhin vorhanden
+
+> [!NOTE]
+> Windows Server wandelt Ziel pfadnamee (den Pfad innerhalb des Containers) in Kleinbuchstaben um. i. e. `-v unwound:c:\MyData`oder `-v unwound:/app/MyData` in Linux-Containern führt dazu, dass ein Verzeichnis innerhalb des Containers `c:\mydata`von `/app/mydata` oder in Linux-Containern zugeordnet (und erstellt wird, wenn nicht vorhanden).
