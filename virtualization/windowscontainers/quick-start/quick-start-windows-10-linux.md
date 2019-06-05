@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
-ms.openlocfilehash: 91031f9394cb3fcb1af6c4813f8805ad6f79bf8c
-ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
+ms.openlocfilehash: 926e5cd64053b5ea795bb2c75a231700aed443ca
+ms.sourcegitcommit: f6457ee0635864e8e8bb07da43a6f76388ee3cd1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/28/2019
-ms.locfileid: "9681100"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "9734654"
 ---
 # <a name="linux-containers-on-windows-10"></a>Linux-Container unter Windows 10
 
@@ -32,15 +32,11 @@ Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstart Do
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
-Stellen Sie bitte sicher, dass Sie die folgenden Voraussetzungen erfüllen: <<<<<<< Head
-- Ein physisches Computersystem, auf dem Windows 10 Professional oder Enterprise mit Fall Creators Update (Version 1709) oder höher ausgeführt wird
-- Stellen Sie sicher, dass [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) aktiviert ist.
-=======
+Stellen Sie bitte sicher, dass Sie die folgenden Voraussetzungen erfüllen:
 - Ein physisches Computersystem mit Windows 10 Professional, Windows 10 Enterprise oder Windows Server 2019, Version 1809 oder höher
-- Stellen Sie sicher, dass [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) aktiviert ist.
->>>>>>> Herkunft/Master
+- Stellen Sie sicher, dass [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) aktiviert ist.
 
-***Hyper-V-Isolierung:*** Linux-Container unter Windows erfordern eine Hyper-V-Isolierung unter Windows 10, um Entwicklern den passenden Linux-Kernel zur Verfügung zu stellen, um den Container auszuführen. Weitere Informationen zur Hyper-V-Isolierung finden Sie auf der Seite " [Informationen zu Windows-Container](../about/index.md) ".
+***Hyper-V-Isolierung:*** Linux-Container unter Windows erfordern eine Hyper-V-Isolierung unter Windows 10, um Entwicklern den entsprechenden Linux-Kernel zur Verfügung zu stellen, um den Container auszuführen. Weitere Informationen zur Hyper-V-Isolierung finden Sie auf der Seite " [Informationen zu Windows-Container](../about/index.md) ".
 
 ## <a name="install-docker-desktop"></a>Installieren des docker-Desktops
 
@@ -48,7 +44,7 @@ Laden Sie den docker- [Desktop](https://store.docker.com/editions/community/dock
 
 > Wenn Sie docker bereits installiert haben, stellen Sie sicher, dass Sie über Version 18,02 oder höher verfügen, um LCOW zu unterstützen. Überprüfen Sie `docker -v` , ob Sie docker ausführen oder *über*prüfen.
 
-> Die Option "experimentelle Funktionen" in *Andock Einstellungen >-Daemon* muss aktiviert sein, damit LCOW-Container ausgeführt werden können.
+> Die Option "experimentelle Funktionen" in den docker- *Einstellungen #a0 Daemon* muss aktiviert sein, damit LCOW-Container ausgeführt werden können.
 
 ## <a name="run-your-first-lcow-container"></a>Ausführen des ersten LCOW-Containers
 
