@@ -3,17 +3,17 @@ title: Gruppen verwaltete Dienstkonten für Windows-Container
 description: Gruppen verwaltete Dienstkonten für Windows-Container
 keywords: docker, Container, Active Directory, GMSA
 author: rpsqrd
-ms.date: 05/23/2019
+ms.date: 06/12/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: 8f184e58743bd41ab208b530976772c5fcffd189
-ms.sourcegitcommit: 8e7fba17c761bf8f80017ba7f9447f986a20a2a7
+ms.openlocfilehash: 77eadf9c1f842ab679b23813cbdd305c2f2de7e9
+ms.sourcegitcommit: a5ee3e35eb272c77dd61f5e5384aab26a26fab76
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "9677319"
+ms.lasthandoff: 06/12/2019
+ms.locfileid: "9770235"
 ---
 # <a name="group-managed-service-accounts-for-windows-containers"></a>Gruppen verwaltete Dienstkonten für Windows-Container
 
@@ -187,7 +187,7 @@ In der typischen Konfiguration erhält ein Container nur ein gMSA-Konto, das ver
 Wenn Sie eine IIS-Website in Ihrem Container hosten, müssen Sie lediglich die gMSA-Identität Ihres App-Pools auf **Netzwerkdienst**einstellen. Sie können dies in Ihrem Dockerfile tun, indem Sie den folgenden Befehl hinzufügen:
 
 ```dockerfile
-RUN (Get-IISAppPool DefaultAppPool).ProcessModel.IdentityType = "NetworkService"
+RUN %windir%\system32\inetsrv\appcmd.exe set AppPool DefaultAppPool -processModel.identityType:NetworkService
 ```
 
 Wenn Sie zuvor statische Benutzeranmeldeinformationen für Ihren IIS-App-Pool verwendet haben, sollten Sie die gMSA als Ersatz für diese Anmeldeinformationen verwenden. Sie können die gMSA zwischen dev-, Test-und Produktionsumgebungen ändern, und IIS übernimmt automatisch die aktuelle Identität, ohne das Container Bild ändern zu müssen.
