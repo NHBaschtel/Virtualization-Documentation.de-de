@@ -57,6 +57,7 @@
 # Referenz
 ## [Systemanforderungen](deploy-containers/system-requirements.md)
 ## [Versionskompatibilität](deploy-containers/version-compatibility.md)
+## [Basis-Lebenszyklus von Bildservice](deploy-containers/base-image-lifecycle.md)
 ## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 ## [Druckerdienste](deploy-containers/print-spooler.md)
 ## [GPU-Beschleunigung](deploy-containers/gpu-acceleration.md)
