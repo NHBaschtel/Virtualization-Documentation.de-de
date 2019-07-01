@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
-ms.openlocfilehash: 18a2d6e58127aba456b279d217794ab5469b06d7
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: daecf2701972a00f4587b409c2271a23a70684ab
+ms.sourcegitcommit: 66f6cba600432f8fac1c214f357b27eb783cb1ff
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620688"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "9794587"
 ---
 # <a name="hyper-v-on-windows-10"></a>Hyper-V in Windows 10 
 
@@ -21,40 +21,22 @@ Viele Versionen von Windows 10 enthalten die Hyper-V-Virtualisierungstechnologie
 
 In den folgenden Dokumenten wird das Hyper-V-Feature in Windows 10 im Detail beschrieben. Außerdem finden Sie eine Schnellstartanleitung und Links zu weiteren Ressourcen und Communityforen. 
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
-    <tr valign="top">
-        <td><center>![](./media/MeetsRequirements_65.png)</center></td>
-        <td valign="top">
-            <p><strong>Informationen zu Hyper-V unter Windows</strong></p>
-            <p>Die folgenden Artikel enthalten eine Einführung und Informationen zu Hyper-V unter Windows.</p>
-            <ul>
-                <li class="unordered">[Einführung in Hyper-V](./about/index.md)<br /><br /></li>
-                <li class="unordered">[Unterstützte Gastbetriebssysteme](about\supported-guest-os.md)<br /><br /></li>
-            </ul>   
-        </td>
-    </tr>
-    <tr valign="top">
-        <td><center>![](./media/All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
-        <td valign="top">
-            <p><strong>Erste Schritte mit Hyper-V</strong></p>
-            <p>Die folgenden Dokumente enthalten eine Kurzeinführung in Hyper-V unter Windows 10.</p>
-            <ul>
-                <li class="unordered">[Installieren von Hyper-V](quick-start\enable-hyper-v.md)<br /><br /></li>
-                <li class="unordered">[Erstellen eines virtuellen Computers](quick-start\create-virtual-machine.md)<br /><br /></li>
-                <li class="unordered">[Erstellen eines virtuellen Switches](quick-start\connect-to-network.md)<br /><br /></li>
-                <li class="unordered">[Hyper-V und PowerShell](quick-start\try-hyper-v-powershell.md)<br /><br /></li>
-            </ul>
-        </td>
-    </tr>
-    <tr valign="top">
-        <td><center>![](./media/Chat_65.png)</center></td>
-        <td valign="top">
-            <p><strong>Verbinden mit Community und Support</strong></p>
-            <p>Zusätzliche technische Support- und Communityressourcen.</p>
-            <ul>
-                <li class="unordered">[Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)<br /><br /></li>
-                <li class="unordered">[Communityressourcen für Hyper-V- und Windows-Container](/virtualization/community/index.md)<br /><br /></li>
-            </ul>   
-        </td>
-    </tr>
-</table>
+## <a name="about-hyper-v-on-windows"></a>Informationen zu Hyper-V unter Windows
+Die folgenden Artikel enthalten eine Einführung und Informationen zu Hyper-V unter Windows.
+
+* [Einführung in Hyper-V](./about/index.md)
+* [Unterstützte Gastbetriebssysteme](about\supported-guest-os.md)
+
+## <a name="get-started-with-hyper-v"></a>Erste Schritte mit Hyper-V
+Die folgenden Dokumente enthalten eine Kurzeinführung in Hyper-V unter Windows 10.
+
+* [Installieren von Hyper-V](quick-start\enable-hyper-v.md)
+* [Erstellen eines virtuellen Computers](quick-start\create-virtual-machine.md)
+* [Erstellen eines virtuellen Switches](quick-start\connect-to-network.md)
+* [Hyper-V und PowerShell](quick-start\try-hyper-v-powershell.md)
+
+## <a name="connect-with-community-and-support"></a>Verbinden mit Community und Support
+Zusätzliche technische Support- und Communityressourcen.
+
+* [Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)
+* [Communityressourcen für Hyper-V- und Windows-Container](/virtualization/community/index.md)
