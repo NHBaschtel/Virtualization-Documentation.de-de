@@ -7,12 +7,12 @@ ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
-ms.openlocfilehash: 7882e89368bb88390c2efa93c3f2a8f04bb7a37a
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 94ac197f5bc660e52d215fa132eae78f521e1c30
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620778"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9882893"
 ---
 # <a name="create-virtual-machine-with-hyper-v-on-windows-10"></a>Erstellen eines virtuellen Computers auf Windows 10 mit Hyper-V
 
@@ -30,7 +30,7 @@ Hier erfahren Sie, wie Sie einen virtuellen Computer erstellen und ein Betriebss
   > **Hinweis:** Dies ist der Name, den Hyper-V für den virtuellen Computer verwendet, nicht der Computername für das Gastbetriebssystem, das innerhalb des virtuellen Computers bereitgestellt wird.
 
 1. Wählen Sie einen Pfad, in dem die Dateien des virtuellen Computers gespeichert werden, z.B. **c:\VM**. Sie können auch den Standardspeicherort übernehmen. Klicken Sie, sobald Sie fertig sind, auf **Weiter**.
-    
+
   ![](media/new_vm_upd.png)
 
 1. Wählen Sie eine Generation für den virtuellen Computer aus, und klicken Sie auf **Weiter**.  

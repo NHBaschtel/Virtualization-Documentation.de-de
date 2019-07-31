@@ -7,12 +7,12 @@ ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
-ms.openlocfilehash: b0bbca7bcb4c8c05c50ca68965637a6162a0ab85
-ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
+ms.openlocfilehash: 89a36ee87bce1da18852f0ebff248e239165eb7d
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/28/2019
-ms.locfileid: "9681000"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9883013"
 ---
 # <a name="make-your-own-integration-services"></a>Erstellen eigener Integrationsdienste
 
@@ -91,9 +91,9 @@ Der Registrierungseintrag sieht folgendermaßen aus:
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
     999E53D4-3D5C-4C3E-8779-BED06EC056E1\
-        ElementName REG_SZ  VM Session Service
+        ElementName    REG_SZ    VM Session Service
     YourGUID\
-        ElementName REG_SZ  Your Service Friendly Name
+        ElementName    REG_SZ    Your Service Friendly Name
 ```
 
 > **Hinweis:** Die Dienst-GUID für ein Linux-Gastbetriebssystem verwendet das VSOCK-Protokoll, in über ein `svm_cid` und `svm_port` anstatt eines GUIDs handelt. Um diese Inkonsistenz mit Windows zu überbrücken, wird die bekannte GUID als Dienstvorlage auf dem Host verwendet, der an einen Port auf dem Gast übersetzt wird. Um die die Dienst-GUID anzupassen, ändern Sie einfach die erste "00000000" auf der gewünschten Portnummer. Beispiel: "00000ac9" ist Port 2761.

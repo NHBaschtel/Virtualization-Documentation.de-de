@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
-ms.openlocfilehash: 2079898ee4a3bd7d15e3cbbaea40486d1682a44a
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: 749251e67b4e2eaffba8e43638fe4f596b31bba5
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9578291"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9882903"
 ---
 # <a name="create-a-virtual-network"></a>Erstellen eines virtuellen Netzwerks
 
@@ -73,13 +73,13 @@ Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-V
 
 2. Wählen Sie den Netzwerkadapter aus, der mit dem Hyper-V-Switch verwendet werden soll, und legen Sie eine Instanz in einer Variablen namens **$net** ab.
 
-    ```
+    ```powershell
     $net = Get-NetAdapter -Name 'Ethernet'
     ```
 
 3. Führen Sie den folgenden Befehl zum Erstellen des neuen virtuellen Hyper-V-Switches aus.
 
-    ```
+    ```powershell
     New-VMSwitch -Name "External VM Switch" -AllowManagementOS $True -NetAdapterName $net.Name
     ```
 
@@ -97,10 +97,10 @@ Im [Benutzerhandbuch für NAT-Networking](../user-guide/setup-nat-network.md) fi
 
 ### <a name="the-two-switch-approach"></a>Zwei Switches verwenden
 
-Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen einem Drahtlosnetzwerk und einem kabelgebundenen Netzwerk wechseln, empfiehlt es sich um einen virtuellen Switch für Ethernet und WLAN-Netzwerkkarte zu erstellen.  Je nachdem, wie der Laptop mit dem Netzwerk verbunden ist können Sie Ihre virtuellen Computer zwischen diese Optionen ändern. Virtuelle Computer nicht wechseln zwischen drahtgebundenen und drahtlosen automatisch. 
+Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen Drahtlosnetzwerken und einem kabelgebundenen Netzwerk wechseln, möchten Sie möglicherweise einen virtuellen Switch für Ethernet-und WLAN-Netzwerkkarten erstellen.  Je nachdem, wie der Laptop eine Verbindung mit dem Netzwerk herstellt, können Sie Ihre virtuellen Computer zwischen diesen Schaltern ändern. Virtuelle Maschinen wechseln nicht automatisch zwischen Wired und Wireless. 
 
 >[!IMPORTANT]
->Zwei Switches verwenden externen vSwitch über wireless-Karte nicht unterstützt und sollte nur zu Testzwecken verwendet werden.
+>Der zwei-Switch-Ansatz unterstützt keine externen Vswitch über WLAN-Karte und sollte nur zu Testzwecken verwendet werden.
 
 ## <a name="next-step---create-a-virtual-machine"></a>Nächster Schritt: Erstellen eines virtuellen Computers
 [Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md)

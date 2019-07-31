@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
-ms.openlocfilehash: f2df1496b798646b590c9cd3eaf101aef24b507d
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: d53bdce3438c6dafe3a1e0350c7a5df30ff8210b
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620658"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9883123"
 ---
 # <a name="working-with-hyper-v-and-windows-powershell"></a>Arbeiten mit Hyper-V und Windows PowerShell
 
@@ -21,8 +21,8 @@ Nachdem Sie sich mit den Grundlagen der Bereitstellung von Hyper-V sowie dem Ers
 
 ### <a name="return-a-list-of-hyper-v-commands"></a>Zurückgeben einer Liste von Hyper-V-Befehle
 
-1.  Klicken Sie auf die Windows-Schaltfläche „Start“, und geben Sie **PowerShell** ein.
-2.  Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
+1. Klicken Sie auf die Windows-Schaltfläche „Start“, und geben Sie **PowerShell** ein.
+2. Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
 
  ```powershell
 Get-Command -Module hyper-v | Out-GridView

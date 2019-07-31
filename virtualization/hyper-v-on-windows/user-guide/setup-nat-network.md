@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
-ms.openlocfilehash: ea6fb4471cf337ff17bb1f936caea192bccaf404
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: e69775c15359645f3659c9bee3562733415228d5
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9621158"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9882883"
 ---
 # <a name="set-up-a-nat-network"></a>Einrichten eines NAT-Netzwerks
 
@@ -148,7 +148,7 @@ PS C:\> Get-NetNat | Remove-NetNAT (again, this will remove the NAT but keep the
 PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>
 PS C:\> Start-Service docker
 ```
-Docker/HNS weist IP-Adressen für Windows-Container und Administrator weist IP-Adressen für VMs aus dem differenzsatz der beiden.
+Docker-HNS ordnet Windows-Containern IPS zu, und der Administrator ordnet dem VMS IPS aus dem Differenz Satz der beiden zu.
 
 Der Benutzer hat das Feature „Windows-Container“ mit ausgeführtem Docker-Modul installiert und möchte nun VMs mit dem NAT-Netzwerk verbinden.
 ```
@@ -162,7 +162,7 @@ PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared pre
 PS C:\> New-VirtualSwitch -Type internal (attach VMs to this new vSwitch)
 PS C:\> Start-Service docker
 ```
-Docker/HNS weist IP-Adressen für Windows-Container und Administrator weist IP-Adressen für VMs aus dem differenzsatz der beiden.
+Docker-HNS ordnet Windows-Containern IPS zu, und der Administrator ordnet dem VMS IPS aus dem Differenz Satz der beiden zu.
 
 Am Ende verfügen Sie über zwei interne VM-Switches und einem NetNat, das von diesen gemeinsam verwendet wird.
 

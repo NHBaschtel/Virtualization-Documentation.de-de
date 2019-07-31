@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
-ms.openlocfilehash: dfa558f3b17362b6f9af429842282309430e1da3
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 652b1a8e0ab12ac67dd2754051e36c523e3de509
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620938"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9882943"
 ---
 # <a name="troubleshooting"></a>Problembehandlung
 
@@ -71,7 +71,7 @@ Modifizieren Sie den aktuellen `BINARY_PATH_NAME`:
 - Fügen Sie für " das Escapezeichen \ hinzu
 - Schließen Sie den gesamten Befehl in Anführungszeichen (") ein
 
-Führen Sie anschließend `sc.exe config docker binpath= `, gefolgt von der neuen Zeichenfolge, aus. Beispiel: 
+Führen Sie anschließend `sc.exe config docker binpath=`, gefolgt von der neuen Zeichenfolge, aus. Beispiel: 
 ```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
@@ -91,9 +91,9 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-## <a name="obtaining-stack-dump"></a>Abrufen von Stapel-Ausgabe
+## <a name="obtaining-stack-dump"></a>Abrufen des Stapel Dumps
 
-Dies ist in der Regel nur dann nützlich, wenn Sie explizit von Microsoft-Support oder von Docker-Entwicklern angefordert. Es kann verwendet werden, zur Unterstützung der Diagnose einer Situation, in der Docker scheinbar nicht reagiert. 
+Im Allgemeinen ist dies nur nützlich, wenn Sie von Microsoft-Support oder andocker-Entwicklern ausdrücklich angefordert werden. Es kann verwendet werden, um die Diagnose einer Situation zu unterstützen, in der Andockfenster anscheinend aufgehängt wurde. 
 
 Herunterladen von [Docker-Signal.exe](https://github.com/jhowardmsft/docker-signal).
 
@@ -104,11 +104,11 @@ Get-Process dockerd
 docker-signal -pid=<id>
 ```
 
-Die Ausgabedatei befinden wird im Daten-Stammverzeichnis Directory Docker ausgeführt wird. Das Standardverzeichnis ist `C:\ProgramData\Docker`. Das aktuelle Verzeichnis kann durch Ausführen von `docker info -f "{{.DockerRootDir}}"` bestätigt werden.
+Die Ausgabedatei befindet sich im Daten-Root-Verzeichnis, in dem docker ausgeführt wird. Das Standardverzeichnis ist `C:\ProgramData\Docker`. Das aktuelle Verzeichnis kann durch Ausführen von `docker info -f "{{.DockerRootDir}}"` bestätigt werden.
 
-Die Datei `goroutine-stacks-<timestamp>.log`.
+Die Datei ist `goroutine-stacks-<timestamp>.log`.
 
-Beachten Sie, dass `goroutine-stacks*.log` enthält keine persönlichen Informationen.
+Beachten Sie `goroutine-stacks*.log` , dass keine persönlichen Informationen enthalten sind.
 
 
 # <a name="host-compute-service"></a>Hostcomputedienst
@@ -131,12 +131,12 @@ Um Analyse-/Debug-Protokolle für Hyper-V-Compute zu aktivieren und auf `hcslog.
 ```PowerShell
 # Enable the analytic logs
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:true /q:true
-     
+
 # <reproduce your issue>
-     
+
 # Export to an evtx
 wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
-     
+
 # Disable
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 ```

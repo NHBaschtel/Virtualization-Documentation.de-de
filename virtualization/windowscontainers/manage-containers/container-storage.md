@@ -3,12 +3,12 @@ title: Windows Server Containerspeicher
 description: So können Windows Server-Container Host- und andere Speichertypen verwenden
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: patricklang
-ms.openlocfilehash: 20179f09260b6ae5de802c2372958356f8de3aee
-ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
+ms.openlocfilehash: bddfb3a3510a6af674be73349a7e422434c1e0f4
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/28/2019
-ms.locfileid: "9680940"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9882973"
 ---
 # <a name="overview"></a>Übersicht
 
@@ -40,7 +40,7 @@ Sie sollten keine Dateien der Schichtverzeichnisse ändern – diese werden sorg
 Beim Ausführen von Containern können die meisten NTFS-Vorgänge, mit Ausnahme der Transaktionen, verwendet werden. Dies beinhaltet das Festlegen von ACLs, wobei alle ACLs innerhalb des Containers geprüft werden. Wenn Prozesse mit mehreren Benutzern in einem Container ausgeführt werden sollen, können Sie Benutzer in Ihrer `Dockerfile`mit `RUN net user /create ...` erstellen, Dateizugriffssteuerungslisten festlegen und dann Vorgänge für diesen Benutzer mithilfe der [Dockerfile-USER-Direktive](https://docs.docker.com/engine/reference/builder/#user) konfigurieren.
 
 
-##  <a name="image-size"></a>Bildgröße
+## <a name="image-size"></a>Bildgröße
 Ein gängiges Muster für Windows-Anwendungen ist das Abfragen des Speicherplatzes vor der Installation oder vor dem Erstellen neuer Dateien oder als Auslöser für das Bereinigen temporärer Dateien.  Zur Maximierung der Anwendungskompatibilität stellt das Laufwerk "C:" in einem Windows-Container eine virtuelle Größe von 20GB bereit.  Einige Benutzer möchten diese Standardeinstellung eventuell überschreiben und den Wert des freien Speicherplatzes verkleinern oder vergrößern. Dazu dient die Option "Größe" in der Konfiguration "Speicher-opt".
 
 ### <a name="examples"></a>Beispiele

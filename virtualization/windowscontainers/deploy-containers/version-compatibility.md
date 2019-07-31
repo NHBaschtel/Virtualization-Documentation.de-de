@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 4d01fb1d11ee9e8a5fa4271699a5a7c59c27409d
-ms.sourcegitcommit: 71e46750813a996cecc445181974a79b95affc8c
+ms.openlocfilehash: 019dafe855e0fba696db4618a862ec086d435005
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/31/2019
-ms.locfileid: "9685345"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9882993"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
@@ -16,53 +16,85 @@ Windows Server 2016 und Windows 10 Anniversary Update (beide Version 14393) ware
 
 Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Änderungen vornehmen, die sich auf die Kompatibilität auswirken können. Ältere Container werden auf neueren Hosts mit [Hyper-V-Isolierung](../manage-containers/hyperv-container.md)identisch ausgeführt und verwenden dieselbe (ältere) Kernel Version. Wenn Sie jedoch einen Container auf der Grundlage eines neueren Windows-Builds ausführen möchten, kann er nur auf dem neueren Host-Build ausgeführt werden.
 
-|Betriebssystemversion des Containers|Betriebssystemversion des Hosts|Kompatibilität|
-|---|---|---|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows Server, Version 1903<br>Builds 18362. * |Unter `process` Stützung `hyperv` oder Isolierung|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows 10, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows10, Version1809<br>Builds 17763. * |Nicht unterstützt|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows Server 2019<br>Builds 17763. * |Nicht unterstützt|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows10, Version1803<br>Builds 17134. * |Nicht unterstützt|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows Server, Version 1803<br>Builds 17134. * |Nicht unterstützt|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows 10 Fall Creators Update<br>Builds: 16299.* |Nicht unterstützt.|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows Server, Version 1709<br>Builds: 16299.* |Nicht unterstützt.|
-|Windows Server 2019, Version 1903<br>Builds 18362. * |Windows Server 2016<br>Builds: 14393.* |Nicht unterstützt|
-|Windows Server 2019<br>Builds 17763. * |Windows Server, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2019<br>Builds 17763. * |Windows 10, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2019<br>Builds 17763. * |Windows10, Version1809<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2019<br>Builds 17763. * |Windows Server 2019<br>Builds 17763. * |Unter `process` Stützung `hyperv` oder Isolierung|
-|Windows Server 2019<br>Builds 17763. * |Windows10, Version1803<br>Builds 17134. * |Nicht unterstützt|
-|Windows Server 2019<br>Builds 17763. * |Windows Server, Version 1803<br>Builds 17134. * |Nicht unterstützt|
-|Windows Server 2019<br>Builds 17763. * |Windows 10 Fall Creators Update<br>Builds: 16299.* |Nicht unterstützt.|
-|Windows Server 2019<br>Builds 17763. * |Windows Server, Version 1709<br>Builds: 16299.* |Nicht unterstützt.|
-|Windows Server 2019<br>Builds 17763. * |Windows Server 2016<br>Builds: 14393.* |Nicht unterstützt|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows Server, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows 10, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows10, Version1809<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows Server 2019<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows10, Version1803<br>Builds 17134. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows Server, Version 1803<br>Builds 17134. * |Unter `process` Stützung `hyperv` oder Isolierung|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows 10 Fall Creators Update<br>Builds: 16299.* |Nicht unterstützt.|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows Server, Version 1709<br>Builds: 16299.* |Nicht unterstützt.|
-|Windows Server, Version 1803<br>Builds 17134. * |Windows Server 2016<br>Builds: 14393.* |Nicht unterstützt|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows Server, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows 10, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows10, Version1809<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows Server 2019<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows10, Version1803<br>Builds 17134. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows Server, Version 1803<br>Builds 17134. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows 10 Fall Creators Update<br>Builds: 16299.* |Unterstützt `hyperv` nur Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows Server, Version 1709<br>Builds: 16299.* |Unter `process` Stützung `hyperv` oder Isolierung|
-|Windows Server, Version 1709<br>Builds: 16299.* |Windows Server 2016<br>Builds: 14393.* |Nicht unterstützt|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10, Version 1903<br>Builds 18362. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows10, Version1809<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server 2019<br>Builds 17763. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10 Fall Creators Update<br>Builds: 16299.* |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server, Version 1803<br>Builds 17134. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows10, Version1803<br>Builds 17134. * |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server, Version 1709<br>Builds: 16299.* |Unterstützt `hyperv` nur Isolierung|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server 2016<br>Builds: 14393.* |Unter `process` Stützung `hyperv` oder Isolierung|
+## <a name="windows-server-version-1903-host-os-compatibility"></a>Windows Server, Version 1903, Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Ja|Ja|
+|Windows Server 2019|Ja|Nein.|
+|Windows Server, Version 1803|Ja|Nein.|
+|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-server-2019-host-os-compatibility"></a>Windows Server 2019-Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Nein|Nein|
+|Windows Server 2019|Ja|Ja|
+|Windows Server, Version 1803|Ja|Nein.|
+|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-server-version-1803-host-os-compatibility"></a>Windows Server, Version 1803, Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Nein|Nein|
+|Windows Server 2019|Nein|Nein|
+|Windows Server, Version 1803|Ja|Ja|
+|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-server-version-1709-host-os-compatibility"></a>Windows Server, Version 1709, Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Nein|Nein|
+|Windows Server 2019|Nein|Nein|
+|Windows Server, Version 1803|Nein|Nein|
+|Windows Server, Version 1709|Ja|Ja|
+|Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-10-version-1903-host-os-compatibility"></a>Windows 10, Version 1903, Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Nein|Nein|
+|Windows Server 2019|Nein|Nein|
+|Windows Server, Version 1803|Nein|Nein|
+|Windows Server, Version 1709|Nein|Nein|
+|Windows Server 2016|Ja|Ja|
+
+## <a name="windows-10-version-1809-host-os-compatibility"></a>Windows 10, Version 1809, Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Nein|Nein|
+|Windows Server 2019|Ja|Nein.|
+|Windows Server, Version 1803|Ja|Nein.|
+|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-10-version-1803-host-os-compatibility"></a>Windows 10, Version 1803, Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Serve, Version 1903|Nein|Nein|
+|Windows Server 2019|Nein|Nein|
+|Windows Server, Version 1803|Ja|Nein.||
+|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-10-fall-creators-update-host-os-compatibility"></a>Windows 10 Fall Creators Update-Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server, Version 1903|Nein|Nein|
+|Windows Server 2019|Nein|Nein|
+|Windows Server, Version 1803|Nein|Nein|
+|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
 
 ## <a name="matching-container-host-version-with-container-image-versions"></a>Übereinstimmende Container-Host Version mit Container-Bildversionen
 
@@ -163,7 +195,7 @@ FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
 ...
 ```
 
-Die Server Core-Basisbilder, die auf Windows Server 2019 und Windows Server 2016 basieren, sind [LTSC-Versionen (Long Term Servicing Channel)](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) . Wenn Sie beispielsweise Windows Server 2019 als Container Betriebssystem Ihres Server Core-Images benötigen und die neuesten Patches dafür haben möchten, können Sie LTSC-Versionen wie folgt angeben:
+Die Server Core-Basisbilder, die auf Windows Server 2019 und Windows Server 2016 basieren, sind [LTSC-Versionen (Long Term Servicing Channel)](https://docs.microsoft.com/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) . Wenn Sie beispielsweise Windows Server 2019 als Container Betriebssystem Ihres Server Core-Images benötigen und die neuesten Patches dafür haben möchten, können Sie LTSC-Versionen wie folgt angeben:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019

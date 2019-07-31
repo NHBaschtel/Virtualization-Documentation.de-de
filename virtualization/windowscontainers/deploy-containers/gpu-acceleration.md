@@ -1,52 +1,49 @@
 ---
 title: GPU-Beschleunigung in Windows-Containern
-description: Welche Ebene der GPU-Beschleunigung in Windows-Container vorhanden ist
-keywords: Docker, Container, Geräte, hardware
+description: Welche Ebene der GPU-Beschleunigung in Windows-Containern vorhanden ist
+keywords: docker, Container, Geräte, Hardware
 author: cwilhit
-ms.openlocfilehash: 066f97b859b133a03e24df5db95cafe405ea3110
-ms.sourcegitcommit: 2b456022ee666863ef53082580ac1d432de86939
+ms.openlocfilehash: 6e5010efee10f9b488cbeb57b14bc86f30c1e766
+ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "9657368"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "9883273"
 ---
 # <a name="gpu-acceleration-in-windows-containers"></a>GPU-Beschleunigung in Windows-Containern
 
-Für viele in Containern Workloads bieten CPU-Compute-Ressourcen über ausreichende Leistung. Allerdings kann für eine bestimmte Klasse Workload, die parallele Compute-Leistungsfähigkeit von GPUs (Graphics processing Unit) angebotenen Vorgänge um Größenordnungen, Deaktivierung des Kosten und Verbesserung der Durchsatz äußerst beschleunigen.
+Für viele Container-Workloads bieten CPU-Rechenressourcen eine ausreichende Leistung. Bei einer bestimmten Arbeitsauslastung können jedoch die von GPUs (Grafik Verarbeitungseinheiten) bereitgestellten massiv parallelen Rechenleistung den Betrieb nach Größenordnungen beschleunigen, die Kosten senken und den Durchsatz enorm verbessern.
 
-GPUs sind bereits ein allgemeines Tool für gängige Workloads, von herkömmlichen Rendering- und Simulation Machine Learning-Schulung und Rückschluss. Windows-Container unterstützen die GPU-Beschleunigung für DirectX und alle Frameworks, die es imagebasierter.
-
-> [!IMPORTANT]
-> Dieses Feature erfordert eine Version von Docker, die unterstützt die `--device` Befehlszeilenoption für Windows-Container. Diese Unterstützung steht derzeit nur in der `Docker Desktop for Windows Edge` freizugeben. Sie können die Edge-Version von Docker herunterladen [hier](https://docs.docker.com/docker-for-windows/edge-release-notes/).
+GPUs sind bereits ein gängiges Tool für viele gängige Arbeitsauslastungen, von herkömmlicher Darstellung und Simulation bis hin zu maschineller Schulung und Rückschluss. Windows-Container unterstützen die GPU-Beschleunigung für DirectX und alle oben darauf integrierten Frameworks.
 
 ## <a name="requirements"></a>Anforderungen
 
-Für dieses Feature funktioniert muss Ihre Umgebung die folgenden Anforderungen erfüllen:
+Damit dieses Feature funktioniert, muss Ihre Umgebung die folgenden Voraussetzungen erfüllen:
 
-- Der Container-Host muss Windows Server 2019 oder Windows 10, Version 1809 oder höher ausgeführt werden.
-- Der Container-Basis-Image darf [mcr.microsoft.com/windows:1809](https://hub.docker.com/_/microsoft-windowsfamily-windows) oder höher. Windows Server Core und Nano Server-Container-Images werden derzeit nicht unterstützt.
-- Der Container-Host muss Docker-Modul 19.03 oder höher ausgeführt werden.
-- Der Container-Host muss es sich um eine GPU ausgeführten Anzeige Treiber-Version WDDM 2.5 oder höher sein.
+- Auf dem Container Host muss Windows Server 2019 oder Windows 10, Version 1809 oder höher, ausgeführt werden.
+- Das Containerbasis Bild muss [MCR.Microsoft.com/Windows:1809](https://hub.docker.com/_/microsoft-windowsfamily-windows) oder neuer sein. Windows Server Core-und Nano Server-Container Bilder werden zurzeit nicht unterstützt.
+- Auf dem Container Host muss das docker Modul 19,03 oder höher ausgeführt werden.
+- Der Container-Host muss über eine GPU mit den Anzeigetreibern Version WDDM 2,5 oder höher verfügen.
 
-Um die Version WDDM Anzeige Treiber zu suchen, führen Sie das DirectX-Diagnosetool (dxdiag.exe) auf dem Hostcontainer. Suchen Sie in der Registerkarte "Anzeige" das Tool im Abschnitt "Drivers", wie unten angegeben.
+Führen Sie zum Überprüfen der WDDM-Version Ihrer Bildschirmtreiber das DirectX-Diagnose Tool (dxdiag. exe) auf dem Container Host aus. Schauen Sie im Reiter "Display" des Tools im Abschnitt "Treiber" nach, wie unten angegeben.
 
-![DxDiag](media/dxdiag.png)
+![Dxdiag](media/dxdiag.png)
 
-## <a name="run-a-container-with-gpu-acceleration"></a>Führen Sie einen Container mit GPU-Beschleunigung
+## <a name="run-a-container-with-gpu-acceleration"></a>Ausführen eines Containers mit GPU-Beschleunigung
 
-Um einen Container mit GPU-Beschleunigung zu starten, führen Sie den folgenden Befehl aus:
+Führen Sie den folgenden Befehl aus, um einen Container mit GPU-Beschleunigung zu starten:
 
 ```shell
 docker run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 mcr.microsoft.com/windows:1809
 ```
 
 > [!IMPORTANT]
-> DirectX (und alle Frameworks, die es imagebasierter) sind die einzigen APIs, die beschleunigt werden können mit einer GPU heute. 3. Party-Frameworks werden nicht unterstützt.
+> DirectX (und alle oben darauf integrierten Frameworks) sind die einzigen APIs, die heute mit einer GPU beschleunigt werden können. Frameworks von Drittanbietern werden nicht unterstützt.
 
-## <a name="hyper-v-isolated-windows-container-support"></a>Hyper-V-isolierten Windows-Container-Unterstützung
+## <a name="hyper-v-isolated-windows-container-support"></a>Unterstützung für Hyper-V-isolierte Windows-Container
 
-GPU-Beschleunigung für Workloads in Hyper-V-isolierten Windows-Containern ist derzeit nicht unterstützt.
+Die GPU-Beschleunigung für Arbeitslasten in Hyper-V-isolierten Windows-Containern wird heute nicht unterstützt.
 
-## <a name="hyper-v-isolated-linux-container-support"></a>Hyper-V-isolierten Linux-Container-Unterstützung
+## <a name="hyper-v-isolated-linux-container-support"></a>Unterstützung für Hyper-V-isolierte Linux-Container
 
-GPU-Beschleunigung für Workloads in Hyper-V-isolierten Linux-Container ist derzeit nicht unterstützt.
+Die GPU-Beschleunigung für Arbeitslasten in Hyper-V-isolierten Linux-Containern wird heute nicht unterstützt.
