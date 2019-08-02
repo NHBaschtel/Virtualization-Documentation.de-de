@@ -7,12 +7,12 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: kubernetes, 1,14, Linux, kompilieren
-ms.openlocfilehash: bdf1fd78bbbebcad3562872d9e71c961be6c64eb
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.openlocfilehash: a0b24782a0e511dfc8b6cf1a0c0bc24882ff977a
+ms.sourcegitcommit: 42cb47ba4f3e22163869d094bd0c9cff415a43b0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9883003"
+ms.lasthandoff: 08/02/2019
+ms.locfileid: "9884991"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -68,6 +68,12 @@ Benutzer unter Windows Server, Version 1903, können an den folgenden Registrier
 \\Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList
 ```
 
+### <a name="containers-on-my-flannel-host-gw-deployment-on-azure-cannot-reach-the-internet"></a>Container auf meinem Flanell-Host – GW-Bereitstellung auf Azure kann das Internet nicht erreichen ###
+Beim Bereitstellen von Flanell im Host-GW-Modus auf Azure müssen Pakete den Azure Physical Host Vswitch durchlaufen. Benutzer sollten für jedes Subnetz, das einem Knoten zugewiesen ist, [benutzerdefinierte Routen](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#user-defined) des Typs "Virtual Appliance" programmieren. Dies kann über das Azure-Portal erfolgen (siehe [hier](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)ein Beispiel) oder über `az` Azure CLI. Hier ist ein Beispiel UDR mit dem Namen "MyRoute" mit AZ-Befehlen für einen Knoten mit IP-10.0.0.4 und entsprechendem Pod-Subnetz 10.244.0.0/24:
+```
+az network route-table create --resource-group <my_resource_group> --name BridgeRoute 
+az network route-table route create  --resource-group <my_resource_group> --address-prefix 10.244.0.0/24 --route-table-name BridgeRoute  --name MyRoute --next-hop-type VirtualAppliance --next-hop-ip-address 10.0.0.4 
+```
 
 ### <a name="my-windows-pods-cannot-ping-external-resources"></a>Meine Windows-Pods können externe Ressourcen nicht anpingen ###
 Für Windows-Pods sind heute keine ausgehenden Regeln für das ICMP-Protokoll programmiert. TCP/UDP wird jedoch unterstützt. Wenn Sie versuchen, die Verbindung zu Ressourcen außerhalb des Clusters zu demonstrieren `ping <IP>` , `curl <IP>` ersetzen Sie die entsprechenden Befehle.
