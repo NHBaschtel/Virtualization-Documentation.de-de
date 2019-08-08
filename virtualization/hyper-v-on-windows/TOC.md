@@ -16,7 +16,7 @@
 ## [Erstellen eines virtuellen Switch](quick-start/connect-to-network.md)
 ## [Erstellen eines Integrationsdiensts](user-guide/make-integration-service.md)
 ## [Portieren von Hyper-V WMI](user-guide/refactor-wmiv1-to-wmiv2.md)
-## [Geschachtelte VMs in Azure virtuelle Netzwerke](user-guide/nested-virtualization-azure-virtual-network.md) 
+## [Geschachtelte VMs in virtuellen Azure-Netzwerken](user-guide/nested-virtualization-azure-virtual-network.md) 
 
 # Verweis
 ## [Hyper-V-Anforderungen](reference/hyper-v-requirements.md)
@@ -25,7 +25,7 @@
 ## [Hyper-V-Integrationsdienste](reference/integration-services.md)
 ## [Hyper-V-Architektur](reference/hyper-v-architecture.md)
 ## [Spezifikationen für Hypervisor](reference/tlfs.md)
-## [Hyper-V-Backup-Konzepte](reference/HyperVBackupApproaches.md)
+## [Hyper-V-Sicherungs Ansätze](reference/HyperVBackupApproaches.md)
 
 # Community und Support
 ## [Hyper-V-Foren](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)

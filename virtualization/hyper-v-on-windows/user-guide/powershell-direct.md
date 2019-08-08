@@ -8,22 +8,22 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
-ms.openlocfilehash: ea6b71200d3115ba3d156b2c133e1be2fa495261
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: ed96c7ba30c83906cd3245a279ab078229400d8d
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620918"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998727"
 ---
 # <a name="virtual-machine-automation-and-management-using-powershell"></a>Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
 
 Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in einem virtuellen Computer unter Windows 10 oder Windows Server 2016 von Ihrem Hyper-V-Host aus auszuführen – unabhängig von der Netzwerkkonfiguration oder den Einstellungen für die Remoteverwaltung.
 
-Hier sind einige Möglichkeiten, PowerShell Direct ausgeführt werden kann:
+Hier sind einige Möglichkeiten, wie Sie PowerShell Direct ausführen können:
 
-* [Als interaktive Sitzung mit dem Cmdlet Enter-PSSession](#create-and-exit-an-interactive-powershell-session)
-* [Verwenden als einmaligen Verwendung Abschnitt, der einen einzelnen Befehl oder ein Skript ausführen das Invoke-Command-cmdlet](#run-a-script-or-command-with-invoke-command)
-* [Als permanente Sitzung (Build 14280 und höher) mithilfe von New-PSSession, Copy-Item und Remove-PSSession-Cmdlets](#copy-files-with-new-pssession-and-copy-item)
+* [Als interaktive Sitzung mit dem Cmdlet "Enter-PSSession"](#create-and-exit-an-interactive-powershell-session)
+* [Als Single-Use-Abschnitt zum Ausführen eines einzelnen Befehls oder Skripts mit dem Cmdlet "Invoke-Command"](#run-a-script-or-command-with-invoke-command)
+* [Als permanente Sitzung (Build 14280 und höher) mithilfe der Cmdlets New-PSSession, Copy-Item und Remove-PSSession](#copy-files-with-new-pssession-and-copy-item)
 
 ## <a name="requirements"></a>Anforderungen
 **Betriebssystemanforderungen:**

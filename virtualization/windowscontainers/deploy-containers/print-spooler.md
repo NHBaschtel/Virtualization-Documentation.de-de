@@ -1,32 +1,32 @@
 ---
 title: Druckspooler in Windows-Containern
-description: Erläutert die aktuelle arbeiten Verhalten für den Druckspooler-Dienst in Windows-Container
-keywords: Docker, Container, Drucker, spoolerprozess
+description: Erläutert das aktuelle Arbeitsverhalten für den Druckspooler-Dienst in Windows-Containern
+keywords: docker, Container, Drucker, Spooler
 author: cwilhit
-ms.openlocfilehash: 48130bc6a826a45dfa49d0a3b4600d227f34704e
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: e104a87046545b90d244783aafb62ad9d151e14b
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9576661"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9999097"
 ---
 # <a name="print-spooler-in-windows-containers"></a>Druckspooler in Windows-Containern
 
-Anwendungen mit einer Abhängigkeit Druck-Dienste können erfolgreich mit Windows-Containern in Containern werden. Gibt es spezielle Anforderungen, die erfüllt sein müssen, um erfolgreich aktivieren Drucker-Service-Funktion. Dieses Handbuch erklärt, wie Sie Ihre Bereitstellung ordnungsgemäß konfigurieren.
+Anwendungen mit einer Abhängigkeit von Druckdiensten können mit Windows-Containern erfolgreich Containern werden. Es gibt spezielle Anforderungen, die erfüllt werden müssen, um die Drucker Dienstfunktionalität erfolgreich zu aktivieren. In diesem Leitfaden wird erläutert, wie Sie Ihre Bereitstellung richtig konfigurieren.
 
 > [!IMPORTANT]
-> Während der ersten Zugriff auf das Drucken erfolgreich in Containern funktioniert services, ist die Funktionalität in Form eingeschränkt. Einige Aktionen druckbezogener funktioniert möglicherweise nicht. Z. B. apps, die eine Abhängigkeit von Installieren von Druckertreibern in der Host haben können nicht werden in Containern da **Treiberinstallation aus innerhalb eines Containers wird nicht unterstützt**. Öffnen Sie unten Feedback, wenn Sie eine nicht unterstützte Druckfunktion finden, die in Containern unterstützt werden sollen.
+> Wenn der Zugriff auf die Druckdienste erfolgreich in Containern funktioniert, ist die Funktionalität in der Form limitiert; Einige druckbezogene Aktionen funktionieren möglicherweise nicht. Apps, die eine Abhängigkeit von der Installation von Druckertreibern in den Host haben, können beispielsweise nicht containeriert werden, da die **Treiberinstallation innerhalb eines Containers nicht unterstützt wird**. Bitte öffnen Sie unten ein Feedback, wenn Sie eine nicht unterstützte Druckfunktion finden, die in Containern unterstützt werden soll.
 
 ## <a name="setup"></a>Setup
 
-* Der Host sollte sein, Windows Server 2019 oder Windows 10 Pro/Enterprise October 2018 update oder höher.
-* Das Bild [mcr.microsoft.com/windows](https://hub.docker.com/_/microsoft-windowsfamily-windows) sollte die gezielte Basis-Image. Andere Windows-Container-Basisimages (z. B. Nano Server und Windows Server Core) nicht die Serverrolle drucken vorgenommen werden.
+* Der Host sollte Windows Server 2019 oder Windows 10 pro/Enterprise Oktober 2018 Update oder höher sein.
+* Das [MCR.Microsoft.com/Windows](https://hub.docker.com/_/microsoft-windowsfamily-windows) -Bild sollte das Ziel-Basis Bild sein. Andere Windows-Container-Basisbilder (wie Nano-Server und Windows Server Core) tragen nicht die Druck Server Rolle.
 
 ### <a name="hyper-v-isolation"></a>Hyper-V-Isolierung
 
-Es wird empfohlen, den Container mit Hyper-V-Isolierung ausgeführt. Wenn in diesem Modus ausgeführt wird, haben Sie möglichst viele Container wie ausgeführt mit Zugriff auf die Dienste gewünscht. Sie müssen nicht den spoolerprozess-Dienst auf dem Host ändern.
+Wir empfehlen, den Container mit Hyper-V-Isolierung auszuführen. Wenn Sie in diesem Modus ausgeführt werden, können Sie mit dem Zugriff auf die Druckdienste so viele Container wie gewünscht ausführen. Sie müssen den Spooler-Dienst auf dem Host nicht ändern.
 
-Sie können die Funktion mit dem folgenden PowerShell-Abfrage überprüfen:
+Sie können die Funktionalität mit der folgenden PowerShell-Abfrage überprüfen:
 
 ```PowerShell
 PS C:\Users\Administrator> docker run -it --isolation hyperv mcr.microsoft.com/windows:1809 powershell.exe
@@ -52,14 +52,14 @@ Fax                                            Local        Microsoft Shared Fax
 PS C:\>
 ```
 
-### <a name="process-isolation"></a>Prozessisolation
+### <a name="process-isolation"></a>Prozessisolierung
 
-Aufgrund der Natur gemeinsamer Kernel der Prozess-isolierten Container beschränkt aktuelles Verhalten den Benutzer nur **eine Instanz** des Dienstes spoolerprozess Drucker auf dem Host und alle Container untergeordneten ausgeführt. Wenn der Host die Drucker spoolerprozess ausgeführt hat, müssen Sie den Dienst auf dem Host vor Attemping zum Starten des Drucker-Diensts auf dem Gast beenden.
+Aufgrund des Shared-Kernel-Charakters von Prozess isolierten Containern schränkt das aktuelle Verhalten den Benutzer ein, dass nur **eine Instanz** des Druckerspooler-Diensts über den Host und alle zugehörigen Container-untergeordneten Elemente ausgeführt wird. Wenn der Druckerspooler auf dem Host ausgeführt wird, müssen Sie den Dienst auf dem Host beenden, bevor Sie Attemping, um den Drucker Dienst im Gast zu starten.
 
 > [!TIP]
-> Wenn Sie eines Containers starten und der spoolerprozess-Dienst im Container und dem Host gleichzeitig Abfragen, meldet beide ihren Zustand als "Running". Jedoch nicht deceived – des Containers wird nicht in der Lage, um eine Liste der verfügbaren Drucker abzufragen. Der Host spoolerprozess Dienst muss nicht ausgeführt werden. 
+> Wenn Sie einen Container starten und den Spooler-Dienst sowohl im Container als auch im Host gleichzeitig Abfragen, werden beide ihren Status als "Running" melden. Lassen Sie sich aber nicht täuschen – der Container kann keine Liste der verfügbaren Drucker Abfragen. Der Spooler-Dienst des Hosts darf nicht ausgeführt werden. 
 
-Um zu überprüfen, ob der Host den Drucker-Dienst ausgeführt wird, verwenden Sie die Abfrage in PowerShell folgenden:
+Um zu überprüfen, ob der Host den Drucker Dienst ausführt, verwenden Sie die Abfrage in PowerShell unten:
 
 ```PowerShell
 PS C:\Users\Administrator> Get-Service spooler
@@ -71,7 +71,7 @@ Running  spooler            Print Spooler
 PS C:\Users\Administrator>
 ```
 
-Um die auf dem Host beenden, verwenden Sie die folgenden Befehle in PowerShell folgenden:
+Wenn Sie den Spooler-Dienst auf dem Host beenden möchten, verwenden Sie die folgenden Befehle in PowerShell unten:
 
 ```PowerShell
 Stop-Service spooler

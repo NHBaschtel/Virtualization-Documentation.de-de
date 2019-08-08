@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 492e3b0ba3b1abe1109de3f6091f5b60831036df
-ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
+ms.openlocfilehash: 6480f0657d7def8d6da69bfc52ace81d08b0add4
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/10/2019
-ms.locfileid: "9622975"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998807"
 ---
 # <a name="advanced-network-options-in-windows"></a>Erweiterte Netzwerkoptionen für Windows
 
@@ -42,17 +42,17 @@ Wenn Sie die VLAN-ID für ein Netzwerk festlegen, wird damit die VLAN-Isolation 
 
 > Stellen Sie sicher, dass sich der Hostnetzwerkadapter (physisch) im Trunk-Modus befindet, damit alle markierten (tagged) Datenpakte vom vSwitch mit dem vNIC-Port (Containerendpunkt) im Zugriffsmodus auf dem richtigen VLAN verarbeitet werden können.
 
-## <a name="specify-outboundnat-policy-for-a-network"></a>Geben Sie OutboundNAT-Richtlinie für ein Netzwerk
+## <a name="specify-outboundnat-policy-for-a-network"></a>Angeben der OutboundNAT-Richtlinie für ein Netzwerk
 
-> Gilt für l2bridge-Netzwerken
+> Gilt für l2bridge-Netzwerke
 
-Normalerweise beim Erstellen einer `l2bridge` Container-Netzwerk mit `docker network create`, Container-Endpunkte haben keine HNS OutboundNAT Richtlinie angewendet, sich ergebenden in Containern, die nicht außen erreicht wird. Wenn Sie ein Netzwerk erstellen, können Sie mithilfe der `-o com.docker.network.windowsshim.enable_outboundnat=<true|false>` Option zum Anwenden der Richtlinie OutboundNAT HNS um Container Zugriff nach außen zu ermöglichen:
+Wenn Sie ein `l2bridge` Container Netzwerk mit verwenden `docker network create`, wird normalerweise auf Container Endpunkte keine HNS-OutboundNAT-Richtlinie angewendet, wodurch Container nicht in der Lage sind, die Außenwelt zu erreichen. Wenn Sie ein Netzwerk erstellen, können Sie die `-o com.docker.network.windowsshim.enable_outboundnat=<true|false>` Option zum Anwenden der OutboundNAT-HNS-Richtlinie verwenden, um Containern Zugriff auf die Außenwelt zu gewähren:
 
 ```
 C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true MyL2BridgeNetwork
 ```
 
-Wenn eine Reihe von Reisezielen (z. B. Container zu Container Konnektivität ist erforderlich), in denen wir NAT'ing erfolgen soll nicht vorhanden ist, müssen wir auch ein ExceptionList angeben:
+Wenn es eine Reihe von Zielen gibt (z.b. Container-Container-Konnektivität erforderlich ist), für die wir nicht möchten, dass NAT'ing eintritt, müssen wir auch eine exceptionliste angeben:
 
 ```
 C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true -o com.docker.network.windowsshim.outboundnat_exceptions=10.244.10.0/24
@@ -115,7 +115,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### <a name="linux-containers-on-windows"></a>Linux-Container unter Windows
 
-**NEU:** Wir arbeiten daran, Linux- und Windows-Container paralell ausführen zu können _ohne die Moby Linux VM_. Detaillierte Informationen finden Sie in diesem [Blogbeitrag über Informationen zu Linux-Containern für Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/). Nachfolgend finden Sie Informationen zum [Einstieg](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
+**NEU:** Wir arbeiten daran, Linux- und Windows-Container paralell ausführen zu können _ohne die Moby Linux VM_. Detaillierte Informationen finden Sie in diesem [Blogbeitrag über Informationen zu Linux-Containern für Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/). Hier erfahren Sie, wie [Sie beginnen](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux)können.
 > Hinweis: Die LCOW ist eine veralteter Moby Linux-VM, es wird der standardmäßige HNS "Nat"-interne vSwitch genutzt.
 
 #### <a name="moby-linux-vms-use-dockernat-switch-with-docker-for-windows-a-product-of-docker-cehttpswwwdockercomcommunity-edition"></a>Moby Linux-VMs verwendet DockerNAT-Switch mit Docker für Windows (ein Produkt der [Docker CE](https://www.docker.com/community-edition))
@@ -179,7 +179,7 @@ Es gibt drei Ansätze zum Lösen dieses Problems:
 PS C:\> restart-service hns
 PS C:\> restart-service docker
 ```
-* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die '--o-Option Option ist beschrieben im Abschnitt [Erstellen mehrerer transparenter Netzwerke auf einem einzelnen containerhost](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) dieses Dokuments.
+* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die Option "-o" wird im Abschnitt [Erstellen mehrerer transparenter Netzwerke auf einem einzelnen Container Host](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) Abschnitt dieses Dokuments weiter beschrieben.
 
 
 ## <a name="windows-server-2016-work-arounds"></a>Windows Server2016-Problemumgehungen 

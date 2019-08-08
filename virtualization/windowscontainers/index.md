@@ -1,6 +1,6 @@
 ---
-title: Container unter Windows-Dokumentation
-description: Dokumentation für die Ausführung von Containern unter Windows
+title: Container in der Windows-Dokumentation
+description: Dokumentation zum Ausführen von Containern unter Windows
 keywords: Docker, Container
 author: cwilhit
 ms.date: 05/02/2016
@@ -8,16 +8,16 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
-ms.openlocfilehash: 9ee2a0adad762aa3cee53f3b44210976259b693f
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 771a4ef644525334e9135b8605da74503c16f21b
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620698"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998767"
 ---
-# <a name="containers-on-windows-documentation"></a>Container unter Windows-Dokumentation
+# <a name="containers-on-windows-documentation"></a>Container in der Windows-Dokumentation
 
-Windows-Container ermöglichen die Virtualisierung auf Betriebssystemebene, die mehrerer isolierter Anwendungen auf einem einzigen System ausgeführt werden. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
+Windows-Container bieten Virtualisierung auf Betriebssystemebene, mit der mehrere isolierte Anwendungen auf einem einzelnen System ausgeführt werden können. Dieser Dokumentationssatz enthält Schnellstartanleitungen und Bereitstellungshandbücher sowie technische Details zu Verwaltungsvorgängen.
 
 ## <a name="getting-started"></a>Erste Schritte
 Erfahren Sie mehr über Container, und legen Sie direkt mit ihrer Verwendung los.
@@ -26,7 +26,7 @@ Erfahren Sie mehr über Container, und legen Sie direkt mit ihrer Verwendung los
 * [Verwenden von Containern mit Windows10](quick-start/quick-start-windows-10.md)
 
 ## <a name="deployment"></a>Bereitstellung
-Weitere Informationen zum Bereitstellen von Windows-Container unter Windows Server 2019
+Informationen zum Bereitstellen von Windows-Containern unter Windows Server 2019
 
 * [Systemanforderungen](deploy-containers/system-requirements.md)
 * [Bereitstellen von Containerhosts](deploy-containers/deploy-containers-on-server.md)
@@ -40,7 +40,7 @@ Hier finden Sie Informationen Sie zum Verwalten von Docker unter Windows.
 * [Containernetzwerk](container-networking/architecture.md)
 
 ## <a name="watch"></a>Überwachen
-Demos und Interviews mit dem Windows-Container-Team interessiert?
+Sind Sie an Demos und Interviews im Windows-Container Team interessiert?
 * [Kanal zu Containern](https://channel9.msdn.com/Blogs/containers)
 
 ## <a name="community"></a>Community

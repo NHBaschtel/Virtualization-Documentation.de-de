@@ -3,17 +3,17 @@ title: Gruppen verwaltete Dienstkonten für Windows-Container
 description: Gruppen verwaltete Dienstkonten für Windows-Container
 keywords: docker, Container, Active Directory, GMSA
 author: rpsqrd
-ms.date: 06/12/2019
+ms.date: 08/02/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: b908a35f63b2f25da3fb19c0f96b55fe3e513350
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.openlocfilehash: ec57152cf077f5007f4bf44a9ec902941c3bc749
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9883173"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998357"
 ---
 # <a name="group-managed-service-accounts-for-windows-containers"></a>Gruppen verwaltete Dienstkonten für Windows-Container
 
@@ -99,7 +99,7 @@ Nachdem Sie sich für den Namen Ihres gMSA entschieden haben, führen Sie die fo
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively
 
 # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
-# To install the AD module on Windows 10 version 1809 or later, run Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
+# To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
 # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
 # Create the security group
@@ -126,7 +126,7 @@ Jeder Container Host, auf dem ein Windows-Container mit einem gMSA ausgeführt w
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
-    # To install the AD module on Windows 10 version 1809 or later, run Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
+    # To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
     # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
     Test-ADServiceAccount WebApp01
@@ -146,7 +146,7 @@ So erstellen Sie eine Anmelde Informations Spezifikationsdatei auf dem Container
 
 1. Installieren der Remotetools für AD PowerShell
     - Führen Sie für Windows Server die **Installations-Cmdlets-Remote Server-AD-PowerShell**aus.
-    - Für Windows 10, Version 1809 oder höher, führen Sie die **Installations-WindowsCapability-Online-"Remote-Webdienste. ActiveDirectory. DS-LDS. Tools ~**~ ~ ~ 0.0.1.0" aus.
+    - Für Windows 10, Version 1809 oder höher, führen **Sie Add-WindowsCapability-Online-Name "Remote Host. ActiveDirectory. DS-LDS. Tools ~**~ ~ ~ 0.0.1.0" aus.
     - Informationen zu älteren Versionen von Windows 10 finden <https://aka.ms/rsat>Sie unter.
 2. Führen Sie das folgende Cmdlet aus, um die neueste Version des [CredentialSpec PowerShell](https://aka.ms/credspec)-Moduls zu installieren:
 
@@ -394,7 +394,7 @@ Wenn bei der Ausführung eines Containers mit einem gMSA Fehler auftreten, könn
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
-    # To install the AD module on Windows 10 version 1809 or later, run Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
+    # To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
     # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
     Test-ADServiceAccount WebApp01

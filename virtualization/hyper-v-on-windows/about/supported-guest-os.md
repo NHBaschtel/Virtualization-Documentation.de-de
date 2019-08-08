@@ -7,12 +7,12 @@ ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
-ms.openlocfilehash: e3255d236a3fbb5ac4d908143750b84e3db82ceb
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 25c72b910af15fc0b498a5b2abce72d32e6d1efd
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9621098"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9999037"
 ---
 # <a name="supported-windows-guests"></a>Unterstützte Windows-Gäste
 

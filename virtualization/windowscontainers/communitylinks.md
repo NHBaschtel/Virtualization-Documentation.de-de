@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: cfbb2542-fead-48e7-8318-4da92a7b5b6f
-ms.openlocfilehash: 55b428894b22ded48ce9db8f24928924964ce96d
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 338dd0570f1a2e73295b2bacf2c4282b3fdd7956
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620888"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998487"
 ---
 # <a name="community-videos-and-blogs"></a>Videos und Blogs der Community
 
@@ -21,7 +21,7 @@ Diese Seite enthält Links zu Videos und Blogs, die von Mitgliedern der Containe
 
 ## <a name="getting-started"></a>Erste Schritte
 
-[Führen Sie Linux- und Windows-Container unter Windows 10](https://stefanscherer.github.io/run-linux-and-windows-containers-on-windows-10/) - Stefan Scherer
+[Ausführen von Linux-und Windows-Containern unter Windows 10](https://stefanscherer.github.io/run-linux-and-windows-containers-on-windows-10/) – Stefan Scherer
 
 [Build and run your first Docker Windows Server container](https://blog.docker.com/2016/09/build-your-first-docker-windows-server-container/) (Ihren ersten Docker-Container unter Windows Server erstellen und ausführen) – Michael Friis
 
@@ -31,15 +31,15 @@ Diese Seite enthält Links zu Videos und Blogs, die von Mitgliedern der Containe
 
 [An Overview of .NET and Containers](https://blog.alexellis.io/docker-dotnet-containers/) (Übersicht über .NET und Container) – Alex Ellis
 
-[Wie Sie Windows-Desktopanwendungen Dockerize: 5 Schritten](https://blog.sixeyed.com/how-to-dockerize-windows-applications/) -Elton Stoneman
+[Dockerize von Windows-Anwendungen: die fünf Schritte](https://blog.sixeyed.com/how-to-dockerize-windows-applications/) – Elton Stoner
 
-[Modernisierung der .NET Framework-Apps mit Docker](https://www.pluralsight.com/courses/modernizing-dotnet-framework-apps-docker?clickid=UVL20JTFpzK6UDSX5n1b5zmyUkgWUPWOz3Pjwg0&irgwc=1&mpid=1197078&utm_source=impactradius&utm_medium=digital_affiliate&utm_campaign=1197078&aid=7010a000001xAKZAA2) - Elton Stoneman
+[Modernisierung von .NET Framework-apps mit docker](https://www.pluralsight.com/courses/modernizing-dotnet-framework-apps-docker?clickid=UVL20JTFpzK6UDSX5n1b5zmyUkgWUPWOz3Pjwg0&irgwc=1&mpid=1197078&utm_source=impactradius&utm_medium=digital_affiliate&utm_campaign=1197078&aid=7010a000001xAKZAA2) -Elton Stoner
 
 [Docker with Microsoft SQL 2016 + ASP.NET](https://blog.alexellis.io/docker-does-sql2016-aspnet/) (Docker mit Microsoft SQL 2016 + ASP.NET) – Alex Ellis
 
-[First look: Jenkins CI mit Windows-Container und Docker](https://blog.alexellis.io/continuous-integration-docker-windows-containers/) – Alex Ellis
+[Erster Blick: Jenkins CI mit Windows-Containern und docker](https://blog.alexellis.io/continuous-integration-docker-windows-containers/) -Alex Ellis
 
-[Packaging Redis für Windows-Container](https://blog.alexellis.io/packaging-windows-containers/) – Alex Ellis
+[Verpacken von Windows-Containern für Windows-Container](https://blog.alexellis.io/packaging-windows-containers/) – Alex Ellis
 
 [3 Steps to MSBuild with Docker](https://blog.alexellis.io/3-steps-to-msbuild-with-docker/) (3 Schritte zu MSBuild mit Docker) – Alex Ellis
 
@@ -47,9 +47,9 @@ Diese Seite enthält Links zu Videos und Blogs, die von Mitgliedern der Containe
 
 [Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://techcommunity.microsoft.com/t5/Containers/Use-Docker-Compose-and-Service-Discovery-on-Windows-to-scale-out/ba-p/382312) (Verwenden von Docker Compose und Service Discovery unter Windows, um ein Multi-Service-Containeranwendung zu skalieren) – Kallie Bracken und Jason Messer
 
-[PowerShell Desired State Configuration in Windows-Containern mithilfe von Docker](https://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/) - Nicholas Dille
+[PowerShell-Konfiguration des gewünschten Zustands in Windows-Containern mithilfe von Docker](https://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/) – Nicholas Dille
 
-[Ausführen von Neo4j in Windows-Container](https://glennsarti.github.io/blog/neo4j-nano-containers) – Glenn Sarti
+[Ausführen von neo4j in Windows](https://glennsarti.github.io/blog/neo4j-nano-containers) -Containern – Glenn Sarti
 
 ## <a name="configuration-and-managment"></a>Konfiguration und Verwaltung
 

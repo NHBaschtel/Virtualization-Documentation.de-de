@@ -19,4 +19,4 @@ Wir behalten uns alle anderen, hierin nicht ausdrücklich eingeräumten Rechte v
 
 Durch die Verwendung dieser Ergänzung akzeptieren Sie diese Bestimmungen an. Falls Sie die Bestimmungen nicht akzeptieren, sind Sie nicht berechtigt, die Ergänzung zu verwenden.
 
-Als Teil der ergänzenden Lizenzbedingungen für dieses Containerbetriebssystem-Image für Windows-Container, Sie darüber hinaus unterliegen der zugrunde liegenden Windows Server-Host Software-Lizenzbedingungen, die sich am befinden: https://www.microsoft.com/useterms.  
+Im Rahmen der zusätzlichen Lizenzbedingungen für dieses Container-Betriebssystemabbild für Windows-Container unterliegen Sie auch den zugrunde liegenden Windows Server-Host Software-Lizenzbedingungen, https://www.microsoft.com/usetermsdie sich unter:.  

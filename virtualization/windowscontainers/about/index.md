@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: fc50938d87aa49c3c57bf3b1172e69a6125ed96a
-ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
+ms.openlocfilehash: 1a66ef0fd07162f8bcd78b9bffa159d3f96e4763
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/28/2019
-ms.locfileid: "9680950"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998797"
 ---
 # <a name="about-windows-containers"></a>Informationen zu Windows-Containern
 
@@ -25,44 +25,17 @@ Stellen Sie sich nun vor, diese Küche in ein Gebäude so einfach wie zu schiebe
 
 ![Ein Wohnhaus aus zwei Stapeln von schwarzen Kästchen. Vier dieser Felder sind die gleichen gelben Kästchen, die im Beispiel für die Küche verwendet werden, und sind an willkürlichen stellen im gesamten Gebäude, während die restlichen entweder mehrfarbige Wohnzimmer oder leer sind und abgeblendet sind.](media/apartment.png)
 
-<<<<<<<-Kopf Warum sollten Sie hier aufhören? Sie können Ihr Gebäude ganz nach Ihren Wünschen anpassen. Füllen Sie es mit vielen Arten von Räumen, füllen Sie es mit identischen Räumen, oder mischen Sie die beiden.
-=======
-![](media/box1.png)
->>>>>>> Herkunft/Master
+Warum sollten Sie hier aufhören? Sie können Ihr Gebäude ganz nach Ihren Wünschen anpassen. Füllen Sie es mit vielen Arten von Räumen, füllen Sie es mit identischen Räumen, oder mischen Sie die beiden.
 
 Container fungieren wie dieser Raum, indem Sie eine APP so ausführen, wie wir Sie in unserer Küche zubereiten. Ein Container platziert eine APP und alles, was die APP benötigt, um in einem eigenen isolierten Feld ausgeführt zu werden. Die isolierte App kennt daher keine anderen apps oder Prozesse, die außerhalb ihres Containers vorhanden sind. Da der Container über alles verfügt, was die app ausführen muss, kann der Container an einer beliebigen Stelle verschoben werden, wobei nur die Ressourcen verwendet werden, die der Host bereitstellt, ohne die Ressourcen zu berühren, die für andere Container vorgesehen sind.
 
-<<<<<<<-Kopf im folgenden Video erfahren Sie mehr darüber, was Windows-Container für Sie tun können, und wie die Partnerschaft von Microsoft mit docker dazu beiträgt, eine reibungslose Umgebung für die Open-Source-Container Entwicklung zu erstellen: = = = = = = = =
-![](media/apartment.png)
->>>>>>> Herkunft/Master
+Im folgenden Video erfahren Sie mehr darüber, was Windows-Container für Sie tun können, und wie die Partnerschaft von Microsoft mit docker dazu beiträgt, eine reibungslose Umgebung für die Entwicklung von Open-Source-Containern zu schaffen:
 
 <iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## <a name="container-fundamentals"></a>Container-Grundlagen
 
-<<<<<<< Head lernen Sie einige Begriffe kennen, die Ihnen bei der Arbeit mit Windows-Containern nützlich sind: = = = = = = =
-## <a name="container-fundamentals"></a>Grundlegendes zu Containern
-
-Container sind eine isolierte, von Ressourcen gesteuerte und portierbare Laufzeitumgebung, die auf einem Hostcomputer oder virtuellen Computer ausgeführt wird. Anwendungen oder Prozesse, die in Containern ausgeführt werden, sind mit allen erforderlichen Abhängigkeiten und Konfigurationsdateien verpackt, so als ob außerhalb des Containers keine anderen Prozesse ausgeführt werden würden.
-
-Der Host des Containers stellt einen Satz von Ressourcen für den Container bereit, und der Container verwendet nur diese Ressourcen. Soweit der Container weiß, gibt es keine anderen Ressourcen außerhalb dessen, was er erhalten hat, und daher kann der Container keine Ressourcen berühren, die möglicherweise für einen benachbarten Container bereitgestellt wurden.
-
-Die folgenden grundlegenden Konzepte können nützlich sein, wenn Sie beginnen, Windows-Container zu erstellen und damit zu arbeiten.
-
-**Containerhost:** Physisches oder virtuelles Computersystem, das mit dem Windows-Containerfeature konfiguriert wurde. Auf dem Containerhost werden ein oder mehrere Windows-Container ausgeführt.
-
-**Containerimage:** Wenn z.B. durch eine Softwareinstallation das Dateisystem oder die Registrierung eines Containers geändert wird, werden diese Änderungen in einem Sandkasten erfasst. In vielen Fällen ist es wünschenswert, diesen Zustand zu erfassen, damit neue Container erstellt werden können, die diese Änderungen übernehmen. Das ist, was ein Image ausmacht. Sobald der Container beendet wurde, können Sie entweder diesen Sandkasten verwerfen oder ihn in ein neues Containerimage umwandeln. Angenommen, Sie haben mithilfe des Windows Server Core-Betriebssystemimages einen Container bereitgestellt. Anschließend installieren Sie MySQL in diesem Container. Das Erstellen eines neuen Images mithilfe dieses Containers resultiert in einer bereitstellbaren Version des Containers. Dieses Image enthält nur die erfolgten Änderungen (MySQL), fungiert jedoch als Ebene über dem Containerbetriebssystem-Image.
-
-**Sandkasten:** Nach dem Start eines Containers werden alle Schreibaktionen, z.B. Dateisystemänderungen, Registrierungsänderungen oder Softwareinstallationen, auf dieser Sandkastenebene erfasst.
-
-**Containerbetriebssystem-Image:** Container werden mithilfe von Images bereitgestellt. Das Containerbetriebssystem-Image ist die erste Ebene von möglicherweise vielen Imageebenen, die einen Container bilden. Das Image stellt die Betriebssystemumgebung bereit. Das Betriebssystemimage eines Containers ist unveränderlich. Das heißt, es bleibt immer gleich.
-
-**Containerrepository:** Bei jeder Erstellung eines Containerimages werden das Containerimage und dessen Abhängigkeiten in einem lokalen Repository gespeichert. Diese Images können auf dem Containerhost mehrfach wiederverwendet werden. Die Containerimages können auch in einer öffentlichen oder privaten Registrierung, wie z. B. DockerHub, gespeichert werden, damit sie in vielen verschiedenen Containerhosts verwendet werden können.
-
-![](media/containerfund.png)
-
-Wenn Sie sich mit virtuellen Computern auskennen, werden Ihnen die Ähnlichkeiten mit Containern auffallen. Ein Container, in dem ein Betriebssystem ausgeführt wird, verfügt über ein Dateisystem, und auf ihn kann über ein Netzwerk so zugegriffen werden, als handele es sich um ein physisches oder virtuelles Computersystem. Was Technologie und Konzepte anbelangt, unterscheiden sich Container jedoch sehr von virtuellen Computern.
->>>>>>> Herkunft/Master
+Lassen Sie uns einige Begriffe kennenlernen, die für die Arbeit mit Windows-Containern nützlich sind:
 
 - Container Host: ein physisches oder virtuelles Computersystem, das mit dem Windows-Container Feature konfiguriert wurde. Der Container Host führt mindestens einen Windows-Container aus.
 - Sandbox: der Layer, in dem alle Änderungen erfasst werden, die Sie während der Ausführung an dem Container vornehmen (wie Dateisystemänderungen, Registrierungsänderungen oder Softwareinstallationen).
@@ -86,11 +59,7 @@ Hyper-V-Isolierung erweitert die Isolierung, die von Windows Server-Containern b
 
 Das Ausführen eines Containers unter Windows mit oder ohne Hyper-V-Isolierung ist eine Lauf Zeit Entscheidung. Sie können den Container zunächst mit Hyper-V-Isolierung erstellen und dann später zur Laufzeit als Windows-Server Container ausführen.
 
-<<<<<<< KOPF
 ## <a name="container-users"></a>Container Benutzer
-=======
-![](media/docker.png)
->>>>>>> Herkunft/Master
 
 ### <a name="containers-for-developers"></a>Container für Entwickler
 

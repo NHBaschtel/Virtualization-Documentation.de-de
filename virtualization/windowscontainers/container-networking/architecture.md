@@ -1,5 +1,5 @@
 ---
-title: Windows-Container-Netzwerke
+title: Windows-Container Netzwerke
 description: Einfache Einführung in die Architektur der Windows-Container-Netzwerke.
 keywords: Docker, Container
 author: jmesser81
@@ -8,17 +8,17 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: ac0088995dfbda73351d39a494435c431e0939e7
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.openlocfilehash: cff56843a0eeb48ca5d19b694eb8eb4e758002aa
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9576331"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998457"
 ---
-# <a name="windows-container-networking"></a>Windows-Container-Netzwerke
+# <a name="windows-container-networking"></a>Windows-Container Netzwerke
 
 >[!IMPORTANT]
->Verweisen Sie bitte für allgemeine Docker-Netzwerkbefehle, Optionen und syntax.* ** mit Ausnahme der in [nicht unterstützte Features und Netzwerkoptionen](#unsupported-features-and-network-options), alle Docker-Netzwerkbefehle werden beschriebenen Fälle [Docker-Containernetzwerk](https://docs.docker.com/engine/userguide/networking/) unter Windows unterstützt mit der gleichen Syntax wie unter Linux. Allerdings die Netzwerkstapeln Windows und Linux unterscheiden und daher werden Sie feststellen, dass einige Linux-Netzwerkbefehle (z. B. Ifconfig) unter Windows nicht unterstützt werden.
+>Bitte verweisen Sie auf das [Dock Container-Netzwerk](https://docs.docker.com/engine/userguide/networking/) für allgemeine docker-Netzwerk Befehle,-Optionen und-Syntax. * * * mit Ausnahme von Fällen, die in nicht [unterstützten Features und Netzwerkoptionen](#unsupported-features-and-network-options)beschrieben sind, werden alle docker-Netzwerk Befehle unterstützt unter Windows mit der gleichen Syntax wie unter Linux. Die Windows-und Linux-Netzwerkstapel sind jedoch unterschiedlich, und als solche werden Sie feststellen, dass einige Linux-Netzwerk Befehle (beispielsweise ifconfig) unter Windows nicht unterstützt werden.
 
 ## <a name="basic-networking-architecture"></a>Grundlegende Netzwerkarchitektur
 
@@ -30,8 +30,8 @@ Wenn die Docker-Engine das erste Mal ausgeführt wird, wird ein standardmäßige
 
 ![Text](media/docker-network-ls.png)
 
-- Ein **interne** vSwitch ist ein, die nicht direkt mit einem Netzwerkadapter auf dem containerhost verbunden ist.
-- Ein **externer** vSwitch ist ein, die direkt mit einem Netzwerkadapter auf dem containerhost verbunden ist.
+- Eine **interne** Vswitch ist eine, die nicht direkt mit einem Netzwerkadapter auf dem Container Host verbunden ist.
+- Eine **externe** Vswitch ist eine direkt mit einem Netzwerkadapter auf dem Container Host verbunden.
 
 ![Text](media/get-vmswitch.png)
 
@@ -64,15 +64,15 @@ Der Host Network Service (HNS) mit der Host Compute Service (HCS) arbeiten zusam
 
 ## <a name="unsupported-features-and-network-options"></a>Nicht unterstützte Features und Netzwerkoptionen
 
-Die folgenden Netzwerkoptionen werden derzeit **nicht** unter Windows unterstützt:
+Die folgenden Netzwerkoptionen werden unter Windows derzeit **nicht** unterstützt:
 
-- Windows-Container angefügt l2bridge, NAT und überlagerungsnetzwerke unterstützt Kommunikation über IPv6-Stapel nicht.
-- Verschlüsselte Container Kommunikation über IPsec.
-- HTTP-Proxy-Unterstützung für Container.
-- Anfügen von Endpunkten in Hyper-V-Isolierung ausgeführt (hot-add).
-- Netzwerke auf virtualisierten Azure Infrastruktur über den Treiber transparentes Netzwerk.
+- Windows-Container, die an l2bridge-, NAT-und Overlay-Netzwerke angefügt sind, unterstützen keine Kommunikation über den IPv6-Stapel.
+- Verschlüsselte Container Kommunikation über IPSec.
+- HTTP-Proxy Unterstützung für Container.
+- Anfügen von Endpunkten an die Ausführung in der Hyper-V-Isolierung (Hot-Add).
+- Netzwerk für virtualisierte Azure-Infrastruktur über den transparenten Netzwerktreiber.
 
-| Befehl        | Nicht unterstützte Optionen   |
+| Befehl        | Nicht unterstützte Option   |
 |---------------|:--------------------:|
 | ``docker run``|   ``--ip6``, ``--dns-option`` |
 | ``docker network create``| ``--aux-address``, ``--internal``, ``--ip-range``, ``--ipam-driver``, ``--ipam-opt``, ``--ipv6``, ``--opt encrypted`` |

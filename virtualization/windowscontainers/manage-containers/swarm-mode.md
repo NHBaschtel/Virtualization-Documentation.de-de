@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
-ms.openlocfilehash: 5ab7f684bba9cfa73c59b58ce660d3d519be0b72
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 088bc844790d94d30f6b4b05c5cd189392f47e66
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9621438"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998277"
 ---
 # <a name="getting-started-with-swarm-mode"></a>Erste Schritte mit dem Schwarmmodus 
 
@@ -24,13 +24,13 @@ Der Schwarmmodus ist ein Docker-Feature, das Funktionen zur Orchestrierung von C
 Ein Schwarm besteht aus zwei Arten von Containerhosts: *Verwaltungsknoten* und *Arbeitsknoten*. Jeder Schwarm wird über einen Verwaltungsknoten initialisiert, und alle Docker-CLI-Befehle zur Steuerung und Überwachung eines Schwarms müssen auf einem seiner Verwaltungsknoten ausgeführt werden. Verwaltungsknoten können als „Wächter“ für den Schwarmstatus betrachtet werden. Sie bilden eine Konsensgruppe, die den Zustand der Dienste überwacht, die im Schwarm ausgeführt werden, und die dafür sorgt, dass der tatsächliche Zustand des Schwarms immer mit seinem beabsichtigten, vom Entwickler oder Admin definierten Zustand übereinstimmt. 
 
 >[!NOTE]
->Alle angegebenen Schwarm kann mehrere Verwaltungsknoten, aber es muss immer *mindestens eine*haben. 
+>Jeder gegebene Schwarm kann mehrere Manager-Knoten haben, aber er muss immer mindestens *einen*haben. 
 
 Arbeitsknoten werden vom Docker-Schwarm über Verwaltungsknoten orchestriert. Um einem Schwarm beizutreten, muss ein Arbeitsknoten ein „Beitrittstoken“ verwenden, das vom Verwaltungsknoten bei der Initialisierung des Schwarms generiert wurde. Arbeitsknoten erhalten einfach nur Aufgaben von Verwaltungsknoten und führen sie aus, sodass sie keine Kenntnis vom Schwarmzustand besitzen (und benötigen).
 
 ## <a name="swarm-mode-system-requirements"></a>Systemvoraussetzungen für den Schwarmmodus
 
-Mindestens einem physischen oder virtuellen Computersystem (verwenden Sie den vollen Funktionsumfang von Schwarm mindestens zwei Knoten empfohlen) unter **Windows 10 Creators Update** oder **Windows Server 2016** *mit allen aktuellen Updates\ **, Setup als ein Container-Host (Siehe das Thema, [Windows-Container unter Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) oder [Windows-Container unter Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) für mehr zum ersten Schritte mit Docker-Container unter Windows 10 details).
+Mindestens ein physisches oder virtuelles Computersystem (um die vollständige Funktionalität von Swarm zu verwenden, wird mindestens zwei Knoten empfohlen), auf dem **Windows 10 Creators-Update** oder **Windows Server 2016** *mit allen neuesten Updates ausgeführt wird \ **, Setup als Container Host (Weitere Informationen zu den ersten Schritten mit Andock Containern unter Windows 10 finden Sie im Thema [Windows-Container unter Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) oder [Windows-Containern auf Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) ).
 
 \***Hinweis**: Docker-Schwarm unter Windows Server2016 erfordert [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217)
 
@@ -53,7 +53,7 @@ Wenn dieser Befehl auf einem Containerhost ausgeführt wird, beginnt das Docker-
 
 ## <a name="adding-nodes-to-a-swarm"></a>Hinzufügen von Knoten zu einem Schwarm
 
-Mehrere Knoten sind *nicht* nutzen für den schwarmmodus und den überlagerungsnetzwerkmodus Features erforderlich. Alle Schwarm- und Überlagerungsfeatures können auf einem einzelnen Host verwendet werden, der im Schwarmmodus arbeitet. (Dabei kann es sich beispielsweise um einen Verwaltungsknoten handeln, auf dem der Schwarmmodus mit dem Befehl `docker swarm init` initialisiert wurde.)
+Mehrere Knoten sind *nicht* erforderlich, um den Swarm-Modus und die Features des Overlay-Netzwerkmodus zu nutzen. Alle Schwarm- und Überlagerungsfeatures können auf einem einzelnen Host verwendet werden, der im Schwarmmodus arbeitet. (Dabei kann es sich beispielsweise um einen Verwaltungsknoten handeln, auf dem der Schwarmmodus mit dem Befehl `docker swarm init` initialisiert wurde.)
 
 ### <a name="adding-workers-to-a-swarm"></a>Hinzufügen von Arbeitsknoten zu einem Schwarm
 
@@ -112,7 +112,7 @@ C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=
 Hierbei ist \<SERVICENAME\> der Name, den Sie dem Dienst zuweisen möchten. Mit diesem Namen referenzieren Sie den Dienst über die Dienstermittlung (die den systemeigenen DNS-Server von Docker verwendet). \<NETWORKNAME\> ist der Name des Netzwerks (beispielsweise „myOverlayNet“), mit dem Sie diesem Dienst verbinden möchten. \<CONTAINERIMAGE\> ist der Name des Containerimages, das den Dienst definiert.
 
 >[!NOTE]
->Das zweite Argument für diesen Befehl `--endpoint-mode dnsrr`, ist erforderlich, um das Docker-Modul, dass die DNS-Round-Robin-Richtlinie verwendet wird, um den Netzwerkdatenverkehr auf Container-Endpunkte zu verteilen. DNS-Round-Robin ist derzeit die einzige Lastenausgleichsstrategie, die unter Windows unterstützt wird.[Routing-Mesh](https://docs.docker.com/engine/swarm/ingress/) wird für Windows-Docker-Hosts noch nicht unterstützt, aber demnächst. Benutzer, die schon jetzt eine alternative Lastenausgleichsstrategie wünschen, können ein externes Lastenausgleichssystem (z.B. NGINX) einrichten und den [publish-Portmodus](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) des Schwarms verwenden, um Containerhostports für den Lastenausgleich verfügbar zu machen.
+>Das zweite Argument für diesen Befehl `--endpoint-mode dnsrr`ist erforderlich, um dem Andock Modul anzugeben, dass die DNS-Roundrobin-Richtlinie verwendet wird, um den Netzwerkdatenverkehr zwischen den Dienstcontainer Endpunkten auszugleichen. DNS-Round-Robin ist derzeit die einzige Lastenausgleichsstrategie, die unter Windows unterstützt wird.[Routing-Mesh](https://docs.docker.com/engine/swarm/ingress/) wird für Windows-Docker-Hosts noch nicht unterstützt, aber demnächst. Benutzer, die schon jetzt eine alternative Lastenausgleichsstrategie wünschen, können ein externes Lastenausgleichssystem (z.B. NGINX) einrichten und den [publish-Portmodus](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) des Schwarms verwenden, um Containerhostports für den Lastenausgleich verfügbar zu machen.
 
 ## <a name="scaling-a-service"></a>Skalieren eines Diensts
 Nachdem ein Dienst für einen Schwarmcluster bereitgestellt worden ist, werden die Containerinstanzen, aus denen dieser Dienst gebildet wird, im Cluster bereitgestellt. Standardmäßig beruht ein Dienst auf nur einer Containerinstanz, „Replikat“ oder „Task“ genannt. Jedoch kann ein Dienst mit mehreren Tasks erstellt werden – entweder mit der Option `--replicas` in der `docker service create`-Anweisung oder durch Skalieren des Diensts nach der Erstellung.
@@ -181,7 +181,7 @@ C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADD
 Um einen Dockerdienst auf einem vermischten OS-Schwarm-Cluster zu starten, muss unterscheiden werden können, welche Schwarm-Knoten auf dem Betriebssystems ausgeführt werden, das diesen Dienst unterstützten, und welche nicht. [Docker-Objektbeschriftungen](https://docs.docker.com/engine/userguide/labels-custom-metadata/) bieten eine praktische Möglichkeit zum Beschriften von Knoten, damit diese Dienste erstellt und so konfiguriert werden können, um nur auf den Knoten ausgeführt zu werden, die dem Betriebssystem entsprechen. 
 
 >[!NOTE]
->[Docker-objektbeschriftungen](https://docs.docker.com/engine/userguide/labels-custom-metadata/) kann verwendet werden, um Metadaten auf eine Vielzahl von Docker-Objekten (einschließlich containerimages, Container, Volumes und Netzwerke) und für eine Vielzahl von Zwecken (z. B. Beschriftungen können verwendet werden, um "Front-End" und "Back-End-Komponenten separate anzuwenden eine Anwendung mit der Bezeichnung dazu dienen Front-End-Microservices nur auf 'Front-End-' Secheduled werden Knoten und Back-End-Mircoservices nur auf Back-End mit der Bezeichnung Knoten geplant werden). In diesem Fall verwenden wir Beschriftungen für Knoten, um Knoten auf dem Windows-Betriebssystem von denen des Linux-Betriebssystems zu unterscheiden.
+>Andocker- [Objektbeschriftungen](https://docs.docker.com/engine/userguide/labels-custom-metadata/) können verwendet werden, um Metadaten auf eine Vielzahl von Andock Objekten (einschließlich Container Bildern, Containern, Volumes und Netzwerken) und für verschiedene Zwecke anzuwenden (beispielsweise können Etiketten verwendet werden, um "Front-End"-und "Back-End"-Komponenten zu trennen. eine Anwendung, indem die Front-End-secheduled nur auf "Front-End"-Knoten und auf dem Back-End-mircoservices nur auf "Back-End"-beschrifteten Knoten geplant werden. In diesem Fall verwenden wir Beschriftungen für Knoten, um Knoten auf dem Windows-Betriebssystem von denen des Linux-Betriebssystems zu unterscheiden.
 
 Verwenden Sie die folgende Syntax, um Ihre vorhandenen Schwarm-Knoten zu beschriften:
 

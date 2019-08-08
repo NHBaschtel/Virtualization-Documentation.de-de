@@ -7,12 +7,12 @@ ms.date: 07/25/2017
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 9cfb5cb062259e906ce499423619ec7a5b814ac9
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.openlocfilehash: 08efc1092777e5649ecce4d978b056a4df644564
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9620838"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998227"
 ---
 # <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
@@ -66,7 +66,7 @@ FROM microsoft/aspnetcore-build:1.1 AS build-env
 WORKDIR /app
 ```
 
-Als Nächstes kopieren wir die CSPROJ-Dateien in das Verzeichnis "/app" unseres temporären Containers. Wir tun dies, da CSPROJ-Dateien eine Liste von paketverweisen enthalten, die unser Projekt benötigt.
+Als Nächstes kopieren wir die CSPROJ-Dateien in das Verzeichnis "/app" unseres temporären Containers. Wir tun dies, weil csproj-Dateien eine Liste der Paket Bezüge enthalten, die unser Projekt benötigt.
 
 Nach dem Kopieren der Datei wird diese von Dotnet gelesen. Anschließend werden alle Abhängigkeiten und Tools abgerufen, die unser Projekt benötigt.
 
@@ -128,7 +128,7 @@ Klicken Sie in der Navigationsleiste auf „MvcMovie“. Dadurch gelangen Sie zu
 
 Wir haben mithilfe von Docker erfolgreich eine ASP.NET-Web-App konfiguriert und erstellt und diese erfolgreich in einem ausgeführten Container bereitgestellt. Aber Sie können noch weitere Schritte ausführen. Sie können die Web-App beispielsweise in weitere Komponenten aufteilen: einen Container, der die Web-API ausführt, einen Container, der das Front-End ausführt, und einen Container, der den SQL Server ausführt.
 
-Nun, da Sie den Stillstand von Containern haben, wechseln Sie draußen und erstellen Sie tolle in Containern Softwareprogramme damit!
+Nachdem Sie nun die Container hängen, gehen Sie dorthin und bauen Sie tolle Container-Software!
 
 > [!div class="nextstepaction"]
-> [Sehen Sie sich weitere Beispiele für container](../samples.md)
+> [Weitere Container Beispiele finden Sie hier.](../samples.md)

@@ -7,12 +7,12 @@ ms.date: 09/26/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
-ms.openlocfilehash: d3df0631a8a61db16ad207f49163a7304c5db717
-ms.sourcegitcommit: a7f9ab96be359afb37783bbff873713770b93758
+ms.openlocfilehash: 5fc9b5c9135e87a0d3246952c35c9755e9ad209e
+ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/28/2019
-ms.locfileid: "9681050"
+ms.lasthandoff: 08/07/2019
+ms.locfileid: "9998467"
 ---
 # <a name="windows-container-requirements"></a>Anforderungen von Windows-Containern
 
@@ -21,72 +21,21 @@ In diesem Leitfaden sind die Anforderungen für einen Windows-Container Host auf
 ## <a name="os-requirements"></a>Betriebssystemanforderungen
 
 - Das Windows-Container Feature steht nur unter Windows Server 2016 (Core und mit Desktop Experience), Windows 10 Professional und Enterprise (Anniversary Edition) und höher zur Verfügung.
-<<<<<<< KOPF
 - Die Hyper-v-Rolle muss installiert sein, bevor die Hyper-v-Isolierung ausgeführt werden kann.
 - Bei Windows Server-Containerhosts muss Windows auf Laufwerk c:\ installiert werden. Diese Einschränkung gilt nicht, wenn nur Hyper-V-isolierte Container bereitgestellt werden.
-=======
-- Die Hyper-v-Rolle muss vor dem Ausführen von Containern mit Hyper-v-Isolierung installiert werden.
-- Bei Windows Server-Containerhosts muss Windows auf Laufwerk c:\ installiert werden. Diese Einschränkung gilt nicht, wenn nur Hyper-V Container bereitgestellt werden.
->>>>>>> Herkunft/Master
 
 ## <a name="virtualized-container-hosts"></a>Virtualisierte Container Hosts
 
-<<<<<<< Kopf wenn ein Windows-Container Host von einem virtuellen Hyper-v-Computer ausgeführt wird und auch die Hyper-v-Isolierung hosten soll, muss die geschachtelte Virtualisierung aktiviert sein. Geschachtelte Virtualisierung hat die folgenden Voraussetzungen: = = = = Wenn ein Windows-Container Host von einem virtuellen Hyper-v-Computer ausgeführt wird und auch Container mit Hyper-v-Isolierung gehostet wird, muss die geschachtelte Virtualisierung aktiviert werden. Für die geschachtelte Virtualisierung ist Folgendes erforderlich:
->>>>>>> Herkunft/Master
+Wenn ein Windows-Container Host von einem virtuellen Hyper-v-Computer ausgeführt wird und auch die Hyper-v-Isolierung hosten soll, muss die geschachtelte Virtualisierung aktiviert sein. Für die geschachtelte Virtualisierung ist Folgendes erforderlich:
 
 - Mindestens 4GB verfügbarer Arbeitsspeicher (RAM) für den virtualisierten Hyper-V-Host
 - Windows Server 2019, Windows Server, Version 1803, Windows Server, Version 1709, Windows Server 2016 oder Windows 10 auf dem Hostsystem und Windows Server (Full, Core) auf dem virtuellen Computer.
 - Ein Prozessor mit Intel VT-x (dieses Feature steht zurzeit nur für Intel-Prozessoren zur Verfügung)
-<<<<<<< KOPF
 - Der Container-Host-VM benötigt auch mindestens zwei virtuelle Prozessoren.
 
 ## <a name="supported-base-images"></a>Unterstützte Basisbilder
 
-<a name="windows-containers-are-offered-with-four-container-base-images-windows-server-core-nano-server-windows-and-iot-core-not-all-configurations-support-both-os-images-this-table-details-the-supported-configurations"></a>Windows-Container werden mit vier Container-Basisbildern angeboten: Windows Server Core, Nano Server, Windows und vieles mehr. Nicht alle Konfigurationen unterstützen beide Betriebssystemimages. Diese Tabelle enthält Details zu den unterstützten Konfigurationen.
-=======
-- Die Containerhost-VM benötigt zudem mindestens 2 virtuelle Prozessoren.
-
-## <a name="supported-base-images"></a>Unterstützte Basisimages
-
 Windows-Container werden mit vier Container-Basisbildern angeboten: Windows Server Core, Nano Server, Windows und vieles mehr. Nicht alle Konfigurationen unterstützen beide Betriebssystemimages. Diese Tabelle enthält Details zu den unterstützten Konfigurationen.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
-<thead>
-<tr valign="top">
-<th><center>Hostbetriebssystem</center></th>
-<th><center>Windows Server-Container</center></th>
-<th><center>Hyper-V-Isolierung</center></th>
-</tr>
-</thead>
-<tbody>
-<tr valign="top">
-<td><center>Windows Server 2016/2019 (Standard oder Rechenzentrum)</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>Nano Server<a href="#warn-1">*</a></center></td>
-<td><center> Nano Server</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>Windows 10 Pro/Enterprise</center></td>
-<td><center>Windows<a href="#warn-2">**</a></center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>IoT Core</center></td>
-<td><center>IoT Core</center></td>
-<td><center>Nicht verfügbar</center></td>
-</tr>
-</tbody>
-</table>
-
-> [!Warning]  
-> <span id="warn-1">* Ab Windows Server steht Version 1709 Nano Server nicht mehr als Container-Host zur Verfügung.</span>
-
-> <span id="warn-2">* * Erfordert das Windows 10 October 2018-Update, und Sie fordern die Prozessisolierung direkt an `--isolation=process` , indem Sie die Kennzeichnung `docker run`verwenden, wenn Sie Ihre Container über ausführen.</span>
->>>>>>> Herkunft/Master
 
 |Host-Betriebssystem|Windows-Container|Hyper-V-Isolierung|
 |---------------------|-----------------|-----------------|
