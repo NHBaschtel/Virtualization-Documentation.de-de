@@ -3,18 +3,21 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 019dafe855e0fba696db4618a862ec086d435005
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.openlocfilehash: 84c78947284e18dac347bc04b1ea5fcd96e3a814
+ms.sourcegitcommit: c9062b2c75838fcac64e8cd9bcc75d2f1a324d76
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9882993"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "10008656"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
 Windows Server 2016 und Windows 10 Anniversary Update (beide Version 14393) waren die ersten Windows-Versionen, die Windows Server-Container erstellen und ausführen könnten. Container, die mit diesen Versionen erstellt wurden, können zwar mit neueren Versionen wie Windows Server Version 1709 ausgeführt werden, es gibt dabei aber ein paar Dinge zu beachten.
 
 Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Änderungen vornehmen, die sich auf die Kompatibilität auswirken können. Ältere Container werden auf neueren Hosts mit [Hyper-V-Isolierung](../manage-containers/hyperv-container.md)identisch ausgeführt und verwenden dieselbe (ältere) Kernel Version. Wenn Sie jedoch einen Container auf der Grundlage eines neueren Windows-Builds ausführen möchten, kann er nur auf dem neueren Host-Build ausgeführt werden.
+
+>[!NOTE]
+> \ * Windows Server, Version 1709 wird nicht mehr unterstützt. Weitere Informationen finden Sie unter [Basis-Image-Wartungs-Lebenszyklen](base-image-lifecycle.md).
 
 ## <a name="windows-server-version-1903-host-os-compatibility"></a>Windows Server, Version 1903, Hostbetriebssystem-Kompatibilität
 
@@ -23,7 +26,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server, Version 1903|Ja|Ja|
 |Windows Server 2019|Ja|Nein.|
 |Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
 |Windows Server 2016|Ja|Nein.|
 
 ## <a name="windows-server-2019-host-os-compatibility"></a>Windows Server 2019-Hostbetriebssystem-Kompatibilität
@@ -33,7 +36,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server, Version 1903|Nein|Nein|
 |Windows Server 2019|Ja|Ja|
 |Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
 |Windows Server 2016|Ja|Nein.|
 
 ## <a name="windows-server-version-1803-host-os-compatibility"></a>Windows Server, Version 1803, Hostbetriebssystem-Kompatibilität
@@ -43,18 +46,28 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server, Version 1903|Nein|Nein|
 |Windows Server 2019|Nein|Nein|
 |Windows Server, Version 1803|Ja|Ja|
-|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
 |Windows Server 2016|Ja|Nein.|
 
-## <a name="windows-server-version-1709-host-os-compatibility"></a>Windows Server, Version 1709, Hostbetriebssystem-Kompatibilität
+## <a name="windows-server-version-1709-host-os-compatibility"></a>Windows Server, Version 1709, Hostbetriebssystem-Kompatibilität *
 
 |Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
 |Windows Server, Version 1903|Nein|Nein|
 |Windows Server 2019|Nein|Nein|
 |Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709|Ja|Ja|
+|Windows Server, Version 1709 *|Ja|Ja|
 |Windows Server 2016|Ja|Nein.|
+
+## <a name="windows-server-2016-host-os-compatibility"></a>Windows Server 2016-Hostbetriebssystem-Kompatibilität
+
+|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|---|:---:|:---:|
+|Windows Server 2019, Version 1903|Nein|Nein|
+|Windows Server 2019|Nein|Nein|
+|Windows Server, Version 1803|Nein|Nein|
+|Windows Server, Version 1709 *|Nein|Nein|
+|Windows Server 2016|Ja|Ja|
 
 ## <a name="windows-10-version-1903-host-os-compatibility"></a>Windows 10, Version 1903, Hostbetriebssystem-Kompatibilität
 
@@ -63,7 +76,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server, Version 1903|Nein|Nein|
 |Windows Server 2019|Nein|Nein|
 |Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709|Nein|Nein|
+|Windows Server, Version 1709 *|Nein|Nein|
 |Windows Server 2016|Ja|Ja|
 
 ## <a name="windows-10-version-1809-host-os-compatibility"></a>Windows 10, Version 1809, Hostbetriebssystem-Kompatibilität
@@ -73,7 +86,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server, Version 1903|Nein|Nein|
 |Windows Server 2019|Ja|Nein.|
 |Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
 |Windows Server 2016|Ja|Nein.|
 
 ## <a name="windows-10-version-1803-host-os-compatibility"></a>Windows 10, Version 1803, Hostbetriebssystem-Kompatibilität
@@ -83,7 +96,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Serve, Version 1903|Nein|Nein|
 |Windows Server 2019|Nein|Nein|
 |Windows Server, Version 1803|Ja|Nein.||
-|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
 |Windows Server 2016|Ja|Nein.|
 
 ## <a name="windows-10-fall-creators-update-host-os-compatibility"></a>Windows 10 Fall Creators Update-Hostbetriebssystem-Kompatibilität
@@ -93,7 +106,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server, Version 1903|Nein|Nein|
 |Windows Server 2019|Nein|Nein|
 |Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
 |Windows Server 2016|Ja|Nein.|
 
 ## <a name="matching-container-host-version-with-container-image-versions"></a>Übereinstimmende Container-Host Version mit Container-Bildversionen
