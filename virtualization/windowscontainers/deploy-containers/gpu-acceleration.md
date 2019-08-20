@@ -3,18 +3,21 @@ title: GPU-Beschleunigung in Windows-Containern
 description: Welche Ebene der GPU-Beschleunigung in Windows-Containern vorhanden ist
 keywords: docker, Container, Geräte, Hardware
 author: cwilhit
-ms.openlocfilehash: 6e5010efee10f9b488cbeb57b14bc86f30c1e766
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.openlocfilehash: c6746b45caece9802134831eb6cb3da885957ac5
+ms.sourcegitcommit: 2f8fd4b2e7113fbb7c323d89f3c72df5e1a4437e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9883273"
+ms.lasthandoff: 08/20/2019
+ms.locfileid: "10045040"
 ---
 # <a name="gpu-acceleration-in-windows-containers"></a>GPU-Beschleunigung in Windows-Containern
 
 Für viele Container-Workloads bieten CPU-Rechenressourcen eine ausreichende Leistung. Bei einer bestimmten Arbeitsauslastung können jedoch die von GPUs (Grafik Verarbeitungseinheiten) bereitgestellten massiv parallelen Rechenleistung den Betrieb nach Größenordnungen beschleunigen, die Kosten senken und den Durchsatz enorm verbessern.
 
 GPUs sind bereits ein gängiges Tool für viele gängige Arbeitsauslastungen, von herkömmlicher Darstellung und Simulation bis hin zu maschineller Schulung und Rückschluss. Windows-Container unterstützen die GPU-Beschleunigung für DirectX und alle oben darauf integrierten Frameworks.
+
+> [!NOTE]
+> Dieses Feature ist in docker-Desktop, Version 2,1 und Andock Modul-Enterprise, Version 19,03 oder höher verfügbar.
 
 ## <a name="requirements"></a>Anforderungen
 
@@ -42,8 +45,12 @@ docker run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F9535
 
 ## <a name="hyper-v-isolated-windows-container-support"></a>Unterstützung für Hyper-V-isolierte Windows-Container
 
-Die GPU-Beschleunigung für Arbeitslasten in Hyper-V-isolierten Windows-Containern wird heute nicht unterstützt.
+Die GPU-Beschleunigung für Arbeitslasten in Hyper-V-isolierten Windows-Containern wird derzeit nicht unterstützt.
 
 ## <a name="hyper-v-isolated-linux-container-support"></a>Unterstützung für Hyper-V-isolierte Linux-Container
 
-Die GPU-Beschleunigung für Arbeitslasten in Hyper-V-isolierten Linux-Containern wird heute nicht unterstützt.
+Die GPU-Beschleunigung für Arbeitslasten in Hyper-V-isolierten Linux-Containern wird derzeit nicht unterstützt.
+
+## <a name="more-information"></a>Weitere Informationen
+
+Ein vollständiges Beispiel für eine in Containern vorhandene DirectX-APP, die die GPU-Beschleunigung nutzt, finden Sie unter [Beispiel für DirectX-Container](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx).

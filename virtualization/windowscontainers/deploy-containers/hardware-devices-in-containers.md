@@ -3,12 +3,12 @@ title: Geräte in Containern unter Windows
 description: Welche Geräteunterstützung ist für Container unter Windows vorhanden?
 keywords: docker, Container, Geräte, Hardware
 author: cwilhit
-ms.openlocfilehash: ee9c5da5ef87dceb3374977670da2ea50ea87382
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.openlocfilehash: 1ad63c158a42f116882c949b242274dde8d893fc
+ms.sourcegitcommit: 2f8fd4b2e7113fbb7c323d89f3c72df5e1a4437e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9883163"
+ms.lasthandoff: 08/20/2019
+ms.locfileid: "10045030"
 ---
 # <a name="devices-in-containers-on-windows"></a>Geräte in Containern unter Windows
 
@@ -77,13 +77,13 @@ Die folgenden Geräte (und deren Device Interface-Klassen-GUIDs) werden heute un
 </tbody>
 </table>
 
-> [!TIP]
-> Die oben aufgeführten Geräte sind die _einzigen_ Geräte, die heute in Windows-Containern unterstützt werden. Wenn Sie versuchen, andere Klassen-GUIDs zu übergeben, kann der Container nicht gestartet werden.
+> [!IMPORTANT]
+> Die Geräteunterstützung ist Treiber abhängig. Der Versuch, Klassen-GUIDs zu übergeben, die nicht in der obigen Tabelle definiert sind, kann zu einem undefinierten Verhalten führen.
 
 ## <a name="hyper-v-isolated-windows-container-support"></a>Unterstützung für Hyper-V-isolierte Windows-Container
 
-Geräte Zuweisungen und Geräte Freigaben für Arbeitslasten in Hyper-V-isolierten Windows-Containern werden heute nicht unterstützt.
+Die Gerätezuweisung und Gerätefreigabe für Arbeitslasten in Hyper-V-isolierten Windows-Containern wird derzeit nicht unterstützt.
 
 ## <a name="hyper-v-isolated-linux-container-support"></a>Unterstützung für Hyper-V-isolierte Linux-Container
 
-Geräte Zuweisungen und Geräte Freigaben für Arbeitslasten in Hyper-V-isolierten Linux-Containern werden heute nicht unterstützt.
+Die Gerätezuweisung und Gerätefreigabe für Arbeitslasten in Hyper-V-isolierten Linux-Containern wird derzeit nicht unterstützt.
