@@ -7,12 +7,12 @@ ms.date: 07/25/2017
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 08efc1092777e5649ecce4d978b056a4df644564
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 7ffc16e9d5b7c4b4a935a06c012b1d28b5e70f1a
+ms.sourcegitcommit: 27e9cd37beaf11e444767699886e5fdea5e1a2d0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998227"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "10058485"
 ---
 # <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
 
@@ -59,7 +59,8 @@ ENTRYPOINT ["dotnet", "MvcMovie.dll"]
 
 Die erste Gruppe von Zeilen deklariert, auf Grundlage von welchem Basisimage unser Container erstellt wird. Wenn das lokale System nicht bereits über dieses Image verfügt, versucht Docker automatisch, es abzurufen. Aspnetcore-Build enthält bereits die Abhängigkeiten zum Kompilieren unseres Projekts. Anschließend ändern wir das Arbeitsverzeichnis in unserem Container in „/App“, sodass alle nachfolgenden Befehle in unserer Dockerfile-Datei dort ausgeführt werden.
 
-_HINWEIS:_: Da wir unser Projekt erstellen müssen, ist dieser Container, den wir als Erstes erstellen, ein temporärer Container, den wir nur hierfür verwenden und am Ende wieder verwerfen.
+>[!NOTE]
+>Da wir unser Projekt erstellen müssen, handelt es sich bei diesem ersten Container, den wir erstellen, um einen temporären Container, den wir genau dazu verwenden werden, und ihn dann am Ende zu verwerfen.
 
 ```Dockerfile
 FROM microsoft/aspnetcore-build:1.1 AS build-env
@@ -84,7 +85,8 @@ RUN dotnet publish -c Release -o out
 
 Unser Projekt sollte nun erfolgreich kompiliert worden sein. Nun müssen wir unseren fertigen Container erstellen. Da die Anwendung ASP.NET ist, geben wir ein Image mit diesen Bibliotheken als Quelle an. Anschließend kopieren wir alle Dateien aus dem Ausgabeverzeichnis unseres temporären Containers in unseren finalen Container. Wir konfigurieren unseren Container für die Ausführung mit unserer neuen DLL, die wir beim Starten kompiliert haben.
 
-_HINWEIS_: Unser Basisimage für den finalen Container ist ähnlich, unterscheidet sich jedoch vom ```FROM```-Befehl oben – seine Bibliotheken können eine ASP.NET-App nicht _erstellen_, sondern nur ausführen.
+>[!NOTE]
+>Unser Basisbild für diesen letzten Container ist ähnlich, aber anders als ```FROM``` der obige Befehl--er verfügt nicht über die Bibliotheken, die eine ASP.net-APP _Erstellen_ können, sondern nur ausgeführt.
 
 ```Dockerfile
 FROM microsoft/aspnetcore:1.1
@@ -99,7 +101,8 @@ Wir haben jetzt erfolgreich einen sogenannten _mehrstufigen Build_ ausgeführt. 
 
 Nachdem die Dockerfile-Datei erstellt wurde, müssen wir Docker nur noch anweisen, die App zu erstellen und den Container auszuführen. Wir geben nun den Port zum Veröffentlichen an und vergeben das Tag „myapp“ für unseren Container. Führen Sie in PowerShell die folgenden Befehle aus.
 
-_Hinweis:_: Das aktuelle Arbeitsverzeichnis der PowerShell-Konsole muss das Verzeichnis sein, in dem sich die oben erstellte Docker-Datei befindet.
+>[!NOTE]
+>Das aktuelle Arbeitsverzeichnis ihrer PowerShell-Konsole muss das Verzeichnis sein, in dem sich der oben erstellte dockerfile befindet.
 
 ```Powershell
 docker build -t myasp .
@@ -120,7 +123,7 @@ Wenn Sie diesen Befehl ausführen, erhalten Sie die IP-Adresse Ihres ausgeführt
 
 Geben Sie diese IP-Adresse in einen beliebigen Webbrowser ein, und Sie sehen, wie die Anwendung erfolgreich in einem Container ausgeführt wird.
 
-<center style="margin: 25px">![](media/SampleAppScreenshot.png)</center>
+>![](media/SampleAppScreenshot.png)
 
 Klicken Sie in der Navigationsleiste auf „MvcMovie“. Dadurch gelangen Sie zu einer Webseite, auf der Sie Filmeinträge eingeben, bearbeiten und löschen können.
 

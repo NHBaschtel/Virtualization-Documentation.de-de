@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 84c78947284e18dac347bc04b1ea5fcd96e3a814
-ms.sourcegitcommit: c9062b2c75838fcac64e8cd9bcc75d2f1a324d76
+ms.openlocfilehash: 5fe1cca67c330cb59362e82762651d719708b526
+ms.sourcegitcommit: 27e9cd37beaf11e444767699886e5fdea5e1a2d0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "10008656"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "10058505"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
@@ -73,11 +73,11 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 
 |Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Nein|Nein|
-|Windows Server 2019|Nein|Nein|
-|Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709 *|Nein|Nein|
-|Windows Server 2016|Ja|Ja|
+|Windows Server, Version 1903|Ja|Nein.|
+|Windows Server 2019|Ja|Nein.|
+|Windows Server, Version 1803|Ja|Nein.|
+|Windows Server, Version 1709 *|Ja|Nein.|
+|Windows Server 2016|Ja|Nein.|
 
 ## <a name="windows-10-version-1809-host-os-compatibility"></a>Windows 10, Version 1809, Hostbetriebssystem-Kompatibilität
 
