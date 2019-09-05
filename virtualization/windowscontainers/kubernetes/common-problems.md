@@ -7,12 +7,12 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: kubernetes, 1,14, Linux, kompilieren
-ms.openlocfilehash: a0b24782a0e511dfc8b6cf1a0c0bc24882ff977a
-ms.sourcegitcommit: 42cb47ba4f3e22163869d094bd0c9cff415a43b0
+ms.openlocfilehash: b6e4e648ff050e13a0930f2834949867e44ce895
+ms.sourcegitcommit: d252f356a3de98f224e1550536810dfc75345303
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/02/2019
-ms.locfileid: "9884991"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "10069934"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -43,6 +43,9 @@ nssm set <Service Name> AppStderr C:\k\mysvc.log
 Weitere Informationen finden Sie unter offizielle [nssm-Verwendungs](https://nssm.cc/usage) Dokumente.
 
 ## <a name="common-networking-errors"></a>Häufige Netzwerkfehler ##
+
+### <a name="hostport-publishing-is-not-working"></a>HostPort Publishing funktioniert nicht ###
+Es ist derzeit nicht möglich, Ports mithilfe des Kubernetes `containers.ports.hostPort` -Felds zu veröffentlichen, da dieses Feld nicht von Windows cni-Plugins berücksichtigt wird. Bitte verwenden Sie DEPORT Publishing zurzeit, um Ports auf dem Knoten zu veröffentlichen.
 
 ### <a name="i-am-seeing-errors-such-as-hnscall-failed-in-win32-the-wrong-diskette-is-in-the-drive"></a>Ich sehe Fehler wie "hnsCall Fehler in Win32: die falsche Diskette befindet sich auf dem Laufwerk." ###
 Dieser Fehler kann auftreten, wenn Sie benutzerdefinierte Änderungen an HNS-Objekten vornehmen oder ein neues Windows Update installieren, das Änderungen an HNS einführt, ohne alte HNS-Objekte zu zerstören. Es gibt an, dass ein HNS-Objekt, das zuvor erstellt wurde, bevor ein Update mit der aktuell installierten HNS-Version nicht kompatibel ist.
