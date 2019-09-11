@@ -41,7 +41,12 @@
 ### [Andocker-Schwarm](manage-containers/swarm-mode.md)
 ### [Remote Verwaltung eines Windows-andockbaren Hosts](management/manage_remotehost.md)
 ## Workloads
-### [Gruppenverwaltete Dienstkonten](manage-containers/manage-serviceaccounts.md)
+### Gruppenverwaltete Dienstkonten
+#### [Erstellen Sie ein gMSA.](manage-containers/manage-serviceaccounts.md)
+#### [Konfigurieren der APP für die Verwendung eines gMSA](manage-containers/gmsa-configure-app.md)
+#### [Ausführen eines Containers mit einem gMSA](manage-containers/gmsa-run-container.md)
+#### [Orchestrieren von Containern mit einem gMSA](manage-containers/gmsa-orchestrate-containers.md)
+#### [Problembehandlung bei gMSAs](manage-containers/gmsa-troubleshooting.md)
 ### [Druckerdienste](deploy-containers/print-spooler.md)
 ## Networking
 ### [Übersicht](container-networking/architecture.md)
