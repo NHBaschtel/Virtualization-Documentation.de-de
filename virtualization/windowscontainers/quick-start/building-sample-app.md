@@ -1,48 +1,56 @@
 ---
-title: Erstellen einer Beispiel-App
-description: Hier erfahren Sie, wie Sie mithilfe von Containern eine Beispiel-App erstellen.
+title: Containerisieren einer .net Core-App
+description: Erfahren Sie, wie Sie eine .net Core-Beispiel-App mit Containern erstellen.
 keywords: Docker, Container
 author: cwilhit
-ms.date: 07/25/2017
+ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 7ffc16e9d5b7c4b4a935a06c012b1d28b5e70f1a
-ms.sourcegitcommit: 27e9cd37beaf11e444767699886e5fdea5e1a2d0
+ms.openlocfilehash: f5a51fd1211868195126f06d917c0bef6e496c3d
+ms.sourcegitcommit: f3b6b470dd9cde8e8cac7b13e7e7d8bf2a39aa34
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "10058485"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "10077471"
 ---
-# <a name="build-a-sample-app"></a>Erstellen einer Beispiel-App
+# <a name="containerize-a-net-core-app"></a>Containerisieren einer .net Core-App
 
-In dieser Übung wird gezeigt, wie Sie eine ASP.NET-Beispiel-App für die Ausführung in einem Container konvertieren. Informationen zum Einstieg mit Containern in Windows 10 erhalten Sie in der [Schnellstartanleitung für Windows 10](./quick-start-windows-10.md).
 
-Dieser Schnellstart bezieht sich speziell auf Windows10. Weitere Schnellstartdokumentation finden Sie links auf dieser Seite im Inhaltsverzeichnis. Da sich dieses Lernprogramm auf Container konzentriert, werden wir das Schreiben von Code hier auslassen und uns nur mit Containern befassen. Das gesamte Lernprogramm finden Sie in der [ASP.Net Core-Dokumentation](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/).
+In diesem Schnellstart erfahren Sie, wie Sie eine einfache .net Core-Anwendung Containern können. Sie können Folgendes tun:
 
-Wenn die Git-Quellcodeverwaltung auf Ihrem Computer nicht installiert ist, finden Sie sie hier: [Git](https://git-scm.com/download).
+> [!div class="checklist"]
+> * Klonen der Beispiel-App-Quelle von GitHub
+> * Erstellen eines dockerfile zum Erstellen eines Container Bilds mit der APP-Quelle
+> * Testen der Container .net Core-app in einer lokalen Andock Umgebung
+
+## <a name="before-you-begin"></a>Vorbemerkungen
+
+Dieser Schnellstart geht davon aus, dass Ihre Entwicklungsumgebung bereits für die Verwendung von Containern konfiguriert ist. Wenn Sie keine Umgebung für Container konfiguriert haben, besuchen Sie den [Windows 10-schnell Start](./quick-start-windows-10.md) , um zu erfahren, wie Sie beginnen können.
+
+Auf Ihrem Computer muss das git-Quellcodeverwaltungssystem installiert sein. Sie können es hier packen: [git](https://git-scm.com/download)
 
 ## <a name="getting-started"></a>Erste Schritte
 
-Dieses Beispielprojekt wurde mit [VSCode](https://code.visualstudio.com/) eingerichtet. Wir verwenden auch PowerShell. Den Democode finden wir auf GitHub. Sie können das Repository mit Git klonen oder das Projekt direkt herunterladen: [SampleASPContainerApp](https://github.com/cwilhit/SampleASPContainerApp).
+Der gesamte Container Beispiel-Quellcode wird unter der [Virtualization-Documentation](https://github.com/MicrosoftDocs/Virtualization-Documentation) git Repo in einem Ordner namens `windows-container-samples`gespeichert. Klonen Sie dieses git Repo in Ihr curent-Arbeitsverzeichnis.
 
 ```Powershell
-git clone https://github.com/cwilhit/SampleASPContainerApp.git
+git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
 ```
 
-Nun navigieren wir zum Projektverzeichnis und erstellen die Dockerfile-Datei. Ein [Dockerfile](https://docs.docker.com/engine/reference/builder/) ist wie ein Makefile – eine Liste von Anweisungen, die beschreiben, wie ein Containerimage erstellt werden soll.
+Navigieren Sie zu dem Beispielverzeichnis unter `<directory where clone occured>\Virtualization-Documentation\windows-container-samples\asp-net-getting-started` , und erstellen Sie einen Dockerfile. Eine [Dockerfile](https://docs.docker.com/engine/reference/builder/) ist wie ein Makefile – eine Liste mit Anweisungen, die das Containermodul anweisen, wie das Container Bild erstellt werden muss.
 
 ```Powershell
-#Create the dockerfile for our proj
-New-Item C:/Your/Proj/Location/Dockerfile -type file
+#Create the dockerfile for our project
+New-Item -name dockerfile -type file
 ```
 
-## <a name="writing-our-dockerfile"></a>Erstellen der Dockerfile-Datei
+## <a name="write-the-dockerfile"></a>Schreiben des dockerfile
 
-Nun öffnen wir (mit einem beliebigen Text-Editor) die Dockerfile-Datei, die wir im Projektstammordner erstellt haben, und fügen Logik hinzu. Dann gehen wir sie Zeile für Zeile durch, damit Sie sehen, was passiert.
+Öffnen Sie das soeben erstellte dockerfile (mit dem jeweils gewünschten Text-Editor), und fügen Sie den folgenden Inhalt hinzu.
 
 ```Dockerfile
-FROM microsoft/aspnetcore-build:1.1 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 WORKDIR /app
 
 COPY *.csproj ./
@@ -51,87 +59,82 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-FROM microsoft/aspnetcore:1.1
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "MvcMovie.dll"]
+ENTRYPOINT ["dotnet", "asp-net-getting-started.dll"]
 ```
 
-Die erste Gruppe von Zeilen deklariert, auf Grundlage von welchem Basisimage unser Container erstellt wird. Wenn das lokale System nicht bereits über dieses Image verfügt, versucht Docker automatisch, es abzurufen. Aspnetcore-Build enthält bereits die Abhängigkeiten zum Kompilieren unseres Projekts. Anschließend ändern wir das Arbeitsverzeichnis in unserem Container in „/App“, sodass alle nachfolgenden Befehle in unserer Dockerfile-Datei dort ausgeführt werden.
-
->[!NOTE]
->Da wir unser Projekt erstellen müssen, handelt es sich bei diesem ersten Container, den wir erstellen, um einen temporären Container, den wir genau dazu verwenden werden, und ihn dann am Ende zu verwerfen.
+Wir brechen es Zeile für Zeile ab und erläutern, was die einzelnen Anweisungen tun.
 
 ```Dockerfile
-FROM microsoft/aspnetcore-build:1.1 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 WORKDIR /app
 ```
 
-Als Nächstes kopieren wir die CSPROJ-Dateien in das Verzeichnis "/app" unseres temporären Containers. Wir tun dies, weil csproj-Dateien eine Liste der Paket Bezüge enthalten, die unser Projekt benötigt.
-
-Nach dem Kopieren der Datei wird diese von Dotnet gelesen. Anschließend werden alle Abhängigkeiten und Tools abgerufen, die unser Projekt benötigt.
+Die erste Gruppe von Zeilen deklariert, auf Grundlage von welchem Basisimage unser Container erstellt wird. Wenn das lokale System nicht bereits über dieses Image verfügt, versucht Docker automatisch, es abzurufen. Das `mcr.microsoft.com/dotnet/core/sdk:2.1` Paket "kommt" wird mit dem .net Core 2,1 SDK installiert, daher ist es Aufgabe des Erstellens von ASP .net Core-Projekten, die auf Version 2,1 ausgerichtet sind. Mit der nächsten Anweisung wird das Arbeitsverzeichnis in unserem Container so `/app`geändert, dass alle folgenden Befehle in diesem Kontext ausgeführt werden.
 
 ```Dockerfile
 COPY *.csproj ./
 RUN dotnet restore
 ```
 
-Nach dem Abrufen dieser Abhängigkeiten kopieren wir sie in den temporären Container. Wir weisen Dotnet anschließend an, unsere Anwendung mit einer Releasekonfiguration zu veröffentlichen, und geben den Ausgabepfad an.
+Als Nächstes kopieren diese Anweisungen die csproj-Dateien in das `build-env` Container `/app` Verzeichnis. Nach dem Kopieren dieser Datei liest .net davon und ruft dann alle Abhängigkeiten und Tools ab, die für unser Projekt erforderlich sind.
 
 ```Dockerfile
 COPY . ./
 RUN dotnet publish -c Release -o out
 ```
 
-Unser Projekt sollte nun erfolgreich kompiliert worden sein. Nun müssen wir unseren fertigen Container erstellen. Da die Anwendung ASP.NET ist, geben wir ein Image mit diesen Bibliotheken als Quelle an. Anschließend kopieren wir alle Dateien aus dem Ausgabeverzeichnis unseres temporären Containers in unseren finalen Container. Wir konfigurieren unseren Container für die Ausführung mit unserer neuen DLL, die wir beim Starten kompiliert haben.
+Nachdem .net alle Abhängigkeiten in den `build-env` Container gezogen hat, werden in der nächsten Anweisung alle Projekt Quelldateien in den Container kopiert. Wir empfehlen .net dann, unsere Anwendung mit einer Release-Konfiguration zu veröffentlichen und den Ausgabepfad in der.
 
->[!NOTE]
->Unser Basisbild für diesen letzten Container ist ähnlich, aber anders als ```FROM``` der obige Befehl--er verfügt nicht über die Bibliotheken, die eine ASP.net-APP _Erstellen_ können, sondern nur ausgeführt.
+Die Kompilierung sollte erfolgreich sein. Nun müssen wir das endgültige Bild erstellen. 
+
+> [!TIP]
+> Dieser Schnellstart erstellt ein .net Core-Projekt aus der Quelle. Beim Erstellen von Container Bildern empfiehlt es sich, _nur_ die Produktions Nutzlast und deren Abhängigkeiten in das Container Bild einzubeziehen. Wir möchten nicht, dass das .net Core-SDK in unserem endgültigen Bild enthalten ist, da wir nur die .net Core-Laufzeit benötigen, damit der dockerfile für die Verwendung eines temporären Containers geschrieben `build-env` wird, der mit dem SDK, das zum Erstellen der app aufgerufen wurde, verpackt ist.
 
 ```Dockerfile
-FROM microsoft/aspnetcore:1.1
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.1
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "MvcMovie.dll"]
+ENTRYPOINT ["dotnet", "asp-net-getting-started.dll"]
 ```
 
-Wir haben jetzt erfolgreich einen sogenannten _mehrstufigen Build_ ausgeführt. Zum Erstellen des Images haben wir den temporären Container verwendet und anschließend die veröffentlichte DLL in einen anderen Container verschoben. Dadurch wurde der letztendliche Speicherbedarf verringert. Wir möchten für die Ausführung dieses Containers nur die absolut erforderlichen Mindestabhängigkeiten festlegen. Wenn wir das erste Image verwenden würden, wären im Paket noch andere Ebenen (zum Erstellen von ASP.NET-Apps) enthalten, die nicht erforderlich sind und somit das Image nur unnötig vergrößern.
+Da es sich bei unserer Anwendung um ASP.net handelt, geben wir ein Bild an, in dem diese Runtime enthalten ist. Anschließend kopieren wir alle Dateien aus dem Ausgabeverzeichnis unseres temporären Containers in unseren finalen Container. Wir konfigurieren unseren Container so, dass er mit der neuen App als EntryPoint ausgeführt wird, wenn der Container gestartet wird.
 
-## <a name="running-the-app"></a>Ausführen der App
+Wir haben die dockerfile zum Ausführen eines _mehrstufigen Builds_geschrieben. Wenn die dockerfile ausgeführt wird, verwendet Sie den temporären Container `build-env`, mit dem .net Core 2,1 SDK, um die Beispiel-APP zu erstellen, und kopieren Sie dann die ausgegebenen Binärdateien in einen anderen Container, der nur die .net Core 2,1-Laufzeit enthält, sodass wir die Größe des Letzter Container.
 
-Nachdem die Dockerfile-Datei erstellt wurde, müssen wir Docker nur noch anweisen, die App zu erstellen und den Container auszuführen. Wir geben nun den Port zum Veröffentlichen an und vergeben das Tag „myapp“ für unseren Container. Führen Sie in PowerShell die folgenden Befehle aus.
+## <a name="run-the-app"></a>Ausführen der App
 
->[!NOTE]
->Das aktuelle Arbeitsverzeichnis ihrer PowerShell-Konsole muss das Verzeichnis sein, in dem sich der oben erstellte dockerfile befindet.
+Mit dem geschriebenen dockerfile können wir andocker auf unser dockerfile verweisen und es anweisen, unser Bild zu erstellen. 
+
+>[!IMPORTANT]
+>Der unten ausgeführte Befehl muss in dem Verzeichnis ausgeführt werden, in dem sich die dockerfile befindet.
 
 ```Powershell
-docker build -t myasp .
-docker run -d -p 5000:80 --name myapp myasp
+docker build -t my-asp-app .
 ```
 
-Damit wir sehen, wie unsere App ausgeführt wird, müssen wir die entsprechende Adresse aufrufen. Mithilfe dieses Befehls können wir die IP-Adresse abrufen.
+Führen Sie den folgenden Befehl aus, um den Container auszuführen.
 
 ```Powershell
- docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myapp
+docker run -d -p 5000:80 --name myapp my-asp-app
 ```
 
-Wenn Sie diesen Befehl ausführen, erhalten Sie die IP-Adresse Ihres ausgeführten Containers. Hier ist ein Beispiel dafür, wie die Ausgabe aussehen könnte:
+Lassen Sie uns diesen Befehl sezieren:
 
-```Powershell
- 172.19.172.12
-```
+* `-d` weist andocker tun, dass der Container "losgelöst" ausgeführt wird, was bedeutet, dass keine Konsole an die Konsole im Container angeschlossen ist. Der Container wird im Hintergrund ausgeführt. 
+* `-p 5000:80` weist andocker an, Port 5000 auf dem Host Port 80 im Container zuzuordnen. Jeder Container erhält seine eigene IP-Adresse. ASP .net hört standardmäßig auf Port 80. Port-Mapping ermöglicht es uns, zur IP-Adresse des Hosts am zugeordneten Port zu wechseln, und andocker leitet den gesamten Datenverkehr an den Ziel-Port innerhalb des Containers weiter.
+* `--name myapp` weist andocker an, diesem Container einen praktischen Namen für die Abfrage zu geben (anstatt die contaienr-ID nachschlagen zu müssen, die von Docker zur Laufzeit zugewiesen wurde).
+* `my-asp-app` ist das Bild, das von Docker ausgeführt werden soll. Dies ist das Container Bild, das als Höhepunkt des `docker build` Prozesses erstellt wurde.
 
-Geben Sie diese IP-Adresse in einen beliebigen Webbrowser ein, und Sie sehen, wie die Anwendung erfolgreich in einem Container ausgeführt wird.
+Öffnen Sie einen Webbrowser Webbrowser, und navigieren Sie `https://localhost:5000` zu, um von ihrer Containeranwendung begrüßt zu werden.
 
 >![](media/SampleAppScreenshot.png)
 
-Klicken Sie in der Navigationsleiste auf „MvcMovie“. Dadurch gelangen Sie zu einer Webseite, auf der Sie Filmeinträge eingeben, bearbeiten und löschen können.
-
 ## <a name="next-steps"></a>Nächste Schritte
 
-Wir haben mithilfe von Docker erfolgreich eine ASP.NET-Web-App konfiguriert und erstellt und diese erfolgreich in einem ausgeführten Container bereitgestellt. Aber Sie können noch weitere Schritte ausführen. Sie können die Web-App beispielsweise in weitere Komponenten aufteilen: einen Container, der die Web-API ausführt, einen Container, der das Front-End ausführt, und einen Container, der den SQL Server ausführt.
-
-Nachdem Sie nun die Container hängen, gehen Sie dorthin und bauen Sie tolle Container-Software!
+Wir haben erfolgreich eine ASP.net-Web-App Containern. Wenn Sie weitere App-Beispiele und deren zugeordnete dockerfiles anzeigen möchten, klicken Sie auf die Schaltfläche unten.
 
 > [!div class="nextstepaction"]
 > [Weitere Container Beispiele finden Sie hier.](../samples.md)

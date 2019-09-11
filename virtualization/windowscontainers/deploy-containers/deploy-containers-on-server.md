@@ -3,17 +3,17 @@ title: Bereitstellen von Windows-Containern unter Windows Server
 description: Bereitstellen von Windows-Containern unter Windows Server
 keywords: Docker, Container
 author: taylorb-microsoft
-ms.date: 09/26/2016
+ms.date: 09/09/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
-ms.openlocfilehash: e045539b189eb8cd1594da0784ab0c88e848c948
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 6e3996af36b4a710f9a12b3a1371138b053a43d8
+ms.sourcegitcommit: f3b6b470dd9cde8e8cac7b13e7e7d8bf2a39aa34
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998777"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "10077501"
 ---
 # <a name="container-host-deployment-windows-server"></a>Container Host Bereitstellung: Windows Server
 
@@ -97,13 +97,13 @@ docker pull mcr.microsoft.com/windows/nanoserver:1809
 Zum Installieren des Basisimages für Windows Server Core führen Sie folgenden Befehl aus:
 
 ```PowerShell
-docker pull microsoft/windowsservercore
+docker pull mcr.microsoft.com/windows/servercore:1607
 ```
 
 Zum Installieren des Basisimages für Nano Server führen Sie folgenden Befehl aus:
 
 ```PowerShell
-docker pull microsoft/nanoserver
+docker pull mcr.microsoft.com/windows/nanoserver:1803
 ```
 
 > Bitte lesen Sie den EULA für Windows Containers OS-Bild, das hier zu finden ist – [EULA](../images-eula.md).
