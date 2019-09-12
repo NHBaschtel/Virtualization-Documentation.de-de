@@ -38,6 +38,11 @@
 ### [Ausführen des ersten LCOW-Containers](quick-start/quick-start-windows-10-linux.md)
 
 # Konzepte
+## Windows-Container-Grundlagen
+### [Ressourcen Steuerelemente](manage-containers/resource-controls.md)
+### [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
+### [Versionskompatibilität](deploy-containers/version-compatibility.md)
+### [Container-Basisbilder](manage-containers/container-base-images.md)
 ## Docker
 ### [Docker-Modul unter Windows](manage-docker/configure-docker-daemon.md)
 ### [Andocker-Schwarm](manage-containers/swarm-mode.md)
@@ -60,11 +65,8 @@
 ## Geräte
 ### [Hardware Geräte](deploy-containers/hardware-devices-in-containers.md)
 ### [GPU-Beschleunigung](deploy-containers/gpu-acceleration.md)
-## [Ressourcen Steuerelemente](manage-containers/resource-controls.md)
-## [Hyper-V-Isolierung](manage-containers/hyperv-container.md)
 
 # Referenz
-## [Versionskompatibilität](deploy-containers/version-compatibility.md)
 ## [Basis-Lebenszyklus von Bildservice](deploy-containers/base-image-lifecycle.md)
 ## [Virenschutz Optimierung](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Tools für die Container Plattform](deploy-containers/containerd.md)
