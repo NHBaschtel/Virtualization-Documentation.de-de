@@ -7,30 +7,20 @@ ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: f5a51fd1211868195126f06d917c0bef6e496c3d
-ms.sourcegitcommit: f3b6b470dd9cde8e8cac7b13e7e7d8bf2a39aa34
+ms.openlocfilehash: 8165d9c7ee3744fae31711e28be028208140813e
+ms.sourcegitcommit: 868a64eb97c6ff06bada8403c6179185bf96675f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "10077471"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "10129270"
 ---
 # <a name="containerize-a-net-core-app"></a>Containerisieren einer .net Core-App
 
-
-In diesem Schnellstart erfahren Sie, wie Sie eine einfache .net Core-Anwendung Containern können. Sie können Folgendes tun:
-
-> [!div class="checklist"]
-> * Klonen der Beispiel-App-Quelle von GitHub
-> * Erstellen eines dockerfile zum Erstellen eines Container Bilds mit der APP-Quelle
-> * Testen der Container .net Core-app in einer lokalen Andock Umgebung
-
-## <a name="before-you-begin"></a>Vorbemerkungen
-
-Dieser Schnellstart geht davon aus, dass Ihre Entwicklungsumgebung bereits für die Verwendung von Containern konfiguriert ist. Wenn Sie keine Umgebung für Container konfiguriert haben, besuchen Sie den [Windows 10-schnell Start](./quick-start-windows-10.md) , um zu erfahren, wie Sie beginnen können.
+In diesem Segment wird davon ausgegangen, dass Ihre Entwicklungsumgebung bereits für Container konfiguriert ist. Wenn Sie keine Umgebung für Container konfiguriert haben, besuchen Sie "[Einrichten Ihrer Umgebung](./set-up-environment.md)", um zu erfahren, wie Sie beginnen können.
 
 Auf Ihrem Computer muss das git-Quellcodeverwaltungssystem installiert sein. Sie können es hier packen: [git](https://git-scm.com/download)
 
-## <a name="getting-started"></a>Erste Schritte
+## <a name="clone-the-sample-code"></a>Klonen des Beispielcodes
 
 Der gesamte Container Beispiel-Quellcode wird unter der [Virtualization-Documentation](https://github.com/MicrosoftDocs/Virtualization-Documentation) git Repo in einem Ordner namens `windows-container-samples`gespeichert. Klonen Sie dieses git Repo in Ihr curent-Arbeitsverzeichnis.
 

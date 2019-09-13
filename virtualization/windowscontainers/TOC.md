@@ -6,15 +6,9 @@
 ## [Häufig gestellte Fragen](about/faq.md)
 
 # Erste Schritte
-## Windows10
-### [Ausführen des ersten WCOW-Containers](quick-start/quick-start-windows-10.md)
-### [Erstellen einer Beispiel-App](quick-start/building-sample-app.md)
-## Windows Server
-### [Ausführen des ersten Windows Server-Containers](quick-start/quick-start-windows-server.md)
-### [Automatisieren von Container-Builds](quick-start/quick-start-images.md)
-## Windows-Insider
-### [Verwenden der Insider-Bilder](quick-start/Using-Insider-Container-Images.md)
-### [Erstellen und Ausführen einer Anwendung](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+## [Einrichten Ihrer Umgebung](quick-start/set-up-environment.md)
+## [Ausführen des ersten Containers](quick-start/run-your-first-container.md)
+## [Containerisieren einer Beispiel-App](quick-start/building-sample-app.md)
 
 # Lernprogramme
 ## Erstellen eines Windows-Containers

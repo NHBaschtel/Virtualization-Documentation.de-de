@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
-ms.openlocfilehash: 953dfaf71170de656f4e6ba5e91d524708d5a12a
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: c84a6652b5918238ee8ef6e1fa7a9b2aa596aefd
+ms.sourcegitcommit: 868a64eb97c6ff06bada8403c6179185bf96675f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998217"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "10129260"
 ---
 # <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
@@ -21,21 +21,20 @@ Das Andock Modul und der Client sind nicht im Lieferumfang von Windows enthalten
 
 ## <a name="install-docker"></a>Installieren von Docker
 
-Sie benötigen Andockfenster, um mit Windows-Containern arbeiten zu können. Docker besteht aus dem Docker-Modul (dockerd.exe) und dem Docker-Client (docker.exe). Die einfachste Möglichkeit, alles zu installieren, finden Sie in den Schnellstart Leit Fäden, die Ihnen helfen, alles einzurichten und ihren ersten Container auszuführen.
+Sie benötigen Andockfenster, um mit Windows-Containern arbeiten zu können. Docker besteht aus dem Docker-Modul (dockerd.exe) und dem Docker-Client (docker.exe). Die einfachste Möglichkeit, alles zu installieren, finden Sie im Schnellstarthandbuch, das Ihnen dabei hilft, alles einzurichten und ihren ersten Container auszuführen.
 
-- [Windows-Container unter Windows Server 2019](../quick-start/quick-start-windows-server.md)
-- [Windows-Container unter Windows 10](../quick-start/quick-start-windows-10.md)
+- [Installieren von Docker](../quick-start/set-up-environment.md)
 
 Informationen zu Skriptinstallationen finden Sie unter [Verwenden eines Skripts zum Installieren von Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
 
-Bevor Sie docker verwenden können, müssen Sie die Container Bilder installieren. Weitere Informationen finden Sie [im Schnellstarthandbuch für die Verwendung von Bildern](../quick-start/quick-start-images.md).
+Bevor Sie docker verwenden können, müssen Sie die Container Bilder installieren. Weitere Informationen finden Sie unter [Dokumente für unsere Containerbasis Bilder](../manage-containers/container-base-images.md).
 
 ## <a name="configure-docker-with-a-configuration-file"></a>Konfigurieren des andockfensters mit einer Konfigurationsdatei
 
 Die bevorzugte Methode zum Konfigurieren des Docker-Moduls in Windows ist die Verwendung einer Konfigurationsdatei. Die Konfigurationsdatei finden Sie unter „C:\ProgramData\Docker\config\daemon.json”. Sie können diese Datei erstellen, wenn Sie noch nicht vorhanden ist.
 
 >[!NOTE]
->Nicht jede verfügbare docker-Konfigurationsoption gilt für Andockfenster unter Windows. Das folgende Beispiel zeigt die Konfigurationsoptionen, die angewendet werden. Weitere Informationen zur Konfiguration des Andock Moduls finden Sie unter [Konfigurationsdatei](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file)des docker-Daemons.
+>Nicht jede verfügbare docker-Konfigurationsoption gilt für Andockfenster unter Windows. Das folgende Beispiel zeigt die Konfigurationsoptionen, die angewendet werden. Weitere Informationen zur Konfiguration des Andock Moduls finden Sie unter [Konfigurationsdatei des docker-Daemons](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
 ```json
 {
@@ -187,11 +186,11 @@ So deinstallieren Sie docker unter Windows 10
 
 - Wechseln Sie zu **Einstellungen** > -**apps** auf Ihrem Windows 10-Computer.
 - Suchen Sie unter **apps #a0 Features** **Andockfenster für Windows** .
-- Zu **docker für Windows** > **** -Deinstallation wechseln
+- Zu **docker für Windows** > -**Deinstallation** wechseln
 
 So deinstallieren Sie docker unter Windows Server 2016:
 
-Verwenden Sie in einer erhöhten PowerShell-Sitzung die Cmdlets Deinstallations **Paket** und Deinstallations **Modul** , um das docker Modul und den entsprechenden Paket Verwaltungsanbieter aus Ihrem System zu entfernen, wie im folgenden Beispiel gezeigt:
+Verwenden Sie in einer erhöhten PowerShell-Sitzung die Cmdlets **Deinstallationspaket** und **Deinstallations Modul** , um das docker Modul und den entsprechenden Paket Verwaltungsanbieter aus Ihrem System zu entfernen, wie im folgenden Beispiel gezeigt:
 
 ```powershell
 Uninstall-Package -Name docker -ProviderName DockerMsftProvider
@@ -224,7 +223,7 @@ Dies umfasst die Funktion "Container", die bei der Installation von Docker autom
 
 So entfernen Sie Windows-Features unter Windows 10:
 
-- Wechseln Sie zu Programme**und Funktionen** > der **System** > **** > Steuerung, um**Windows-Features zu aktivieren oder zu deaktivieren**.
+- Wechseln Sie **** > **zu Programme** > **und Funktionen** > der Systemsteuerung, um**Windows-Features zu aktivieren oder zu deaktivieren**.
 - Suchen Sie den Namen der Features, die Sie deaktivieren möchten – in diesem Fall **Container** und (optional) **Hyper-V**.
 - Deaktivieren Sie das Kontrollkästchen neben dem Namen des Features, das Sie deaktivieren möchten.
 - Wählen Sie **"OK"** aus.

@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
-ms.openlocfilehash: f23fe8c5e5ad9dc3257f8b99d239b5fc97607add
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 9fef74c029dc3efc220b1f9924d2695cdbaa61be
+ms.sourcegitcommit: 868a64eb97c6ff06bada8403c6179185bf96675f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998237"
+ms.lasthandoff: 09/13/2019
+ms.locfileid: "10129300"
 ---
 # <a name="dockerfile-on-windows"></a>Dockerfile unter Windows
 
@@ -31,7 +31,7 @@ Andocker-Build ist der Befehl Andock Modul, der einen Dockerfile verwendet und d
 
 In diesem Thema wird gezeigt, wie Sie Dockerfiles mit Windows-Containern verwenden, die grundlegende Syntax und die häufigsten Dockerfile-Anweisungen kennen.
 
-In diesem Dokument wird das Konzept der Container Bilder und der Container Bildebenen erläutert. Wenn Sie mehr über Bilder und Bildebenen erfahren möchten, lesen Sie [den Schnellstart-Leitfaden für Bilder](../quick-start/quick-start-images.md).
+In diesem Dokument wird das Konzept der Container Bilder und der Container Bildebenen erläutert. Wenn Sie mehr über Bilder und Bildebenen erfahren möchten, lesen Sie [Containerbasis Bilder](../manage-containers/container-base-images.md).
 
 Einen vollständigen Überblick über Dockerfiles finden Sie in der [Dockerfile-Referenz](https://docs.docker.com/engine/reference/builder/).
 
@@ -69,7 +69,7 @@ Dockerfile-Anweisungen geben dem Andock Modul die Anweisungen, die es zum Erstel
 
 ### <a name="from"></a>FROM
 
-Die `FROM`-Anweisung legt das Containerimage fest, das während der Erstellung des neuen Images verwendet wird. Beispielsweise wird bei Verwendung von Anweisung `FROM microsoft/windowsservercore` das resultierende Image vom Windows Server Core-Basisbetriebssystemimage abgeleitet und ist davon abhängig. Ist das angegebene Image nicht auf dem System vorhanden, auf dem der „Docker Build“-Prozess ausgeführt wird, versucht das Docker-Modul, das Image von einer öffentlichen oder privaten Imageregistrierung herunterzuladen.
+Die `FROM`-Anweisung legt das Containerimage fest, das während der Erstellung des neuen Images verwendet wird. Beispielsweise wird bei Verwendung von Anweisung `FROM mcr.microsoft.com/windows/servercore` das resultierende Image vom Windows Server Core-Basisbetriebssystemimage abgeleitet und ist davon abhängig. Ist das angegebene Image nicht auf dem System vorhanden, auf dem der „Docker Build“-Prozess ausgeführt wird, versucht das Docker-Modul, das Image von einer öffentlichen oder privaten Imageregistrierung herunterzuladen.
 
 Das Format aus der Anweisung lautet wie folgt:
 
@@ -332,7 +332,7 @@ Ausführlichere Informationen zur `CMD` Anweisung finden Sie in der [cmd-Referen
 
 ## <a name="escape-character"></a>Escapezeichen
 
-In vielen Fällen muss eine Dockerfile-Anweisung mehrere Zeilen umfassen. Dazu können Sie ein Escape-Zeichen verwenden. In einer Dockerfile-Anweisung wird als Escapezeichen standardmäßig ein umgekehrter Schrägstrich verwendet: `\`. Da es sich bei dem umgekehrten Schrägstrich aber auch um ein Dateipfad-Trennzeichen in Windows handelt, kann die Verwendung zum überspannen mehrerer Zeilen zu Problemen führen. Um dies zu umgehen, können Sie eine Parser-Direktive verwenden, um das Standard Escapezeichen zu ändern. Weitere Informationen zu Parser-Direktiven finden Sie unter [Parser](https://docs.docker.com/engine/reference/builder/#parser-directives)-Direktiven.
+In vielen Fällen muss eine Dockerfile-Anweisung mehrere Zeilen umfassen. Dazu können Sie ein Escape-Zeichen verwenden. In einer Dockerfile-Anweisung wird als Escapezeichen standardmäßig ein umgekehrter Schrägstrich verwendet: `\`. Da es sich bei dem umgekehrten Schrägstrich aber auch um ein Dateipfad-Trennzeichen in Windows handelt, kann die Verwendung zum überspannen mehrerer Zeilen zu Problemen führen. Um dies zu umgehen, können Sie eine Parser-Direktive verwenden, um das Standard Escapezeichen zu ändern. Weitere Informationen zu Parser-Direktiven finden Sie unter [Parser-Direktiven](https://docs.docker.com/engine/reference/builder/#parser-directives).
 
 Das folgende Beispiel zeigt eine einzelne Run-Anweisung, die mehrere Zeilen mit dem standardmäßigen Escapezeichen umfasst:
 
