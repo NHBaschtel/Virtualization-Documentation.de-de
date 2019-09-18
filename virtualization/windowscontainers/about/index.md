@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: 1a66ef0fd07162f8bcd78b9bffa159d3f96e4763
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: dbe0e629428bbd8ecfe3ec01bb1a69e3c9c3e231
+ms.sourcegitcommit: 9100d2218c160bbe9fbf24f3524c8ff5e3dd826c
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998797"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "10135343"
 ---
 # <a name="about-windows-containers"></a>Informationen zu Windows-Containern
 
@@ -42,8 +42,8 @@ Lassen Sie uns einige Begriffe kennenlernen, die für die Arbeit mit Windows-Con
 - Basis Bild: die erste Ebene in den Bildebenen eines Containers, die die Betriebssystemumgebung des Containers bereitstellt. Ein Basis Bild kann nicht geändert werden.
 - Container Bild: eine schreibgeschützte Vorlage mit Anweisungen zum Erstellen eines Containers. Bilder können auf einer einfachen, unveränderten Betriebssystemumgebung basieren, können aber auch aus der Sandbox eines geänderten Containers erstellt werden. Diese geänderten Bilder überlagern Ihre Änderungen auf der Basis Bild Ebene, und diese Ebenen können kopiert und auf andere Basisbilder erneut angewendet werden, um ein neues Bild mit denselben Änderungen zu erstellen.
 - Container-Repository: das lokale Repository, in dem Ihr Container Bild und seine Abhängigkeiten jedes Mal gespeichert werden, wenn Sie ein neues Bild erstellen. Sie können gespeicherte Bilder beliebig oft auf dem Container Host wieder verwenden. Sie können die Container Bilder auch in einer öffentlichen oder privaten Registrierung wie dem docker-Hub speichern, damit Sie für viele verschiedene Container Hosts verwendet werden können.
-- Container Orchestrator: ein Prozess, der eine große Anzahl von Containern automatisiert und verwaltet und wie Sie miteinander interagieren. Weitere Informationen finden Sie unter [Informationen zu Windows-Container](overview-container-orchestrators.md)-Orchestrators.
-- Docker: ein automatisierter Prozess, bei dem Container Bilder gepackt und geliefert werden. Weitere Informationen finden Sie in der [Übersicht](docker-overview.md)über Andock [Fenster, Andock Modul unter Windows oder auf](../manage-docker/configure-docker-daemon.md) der Docker- [Website](https://www.docker.com).
+- Container Orchestrator: ein Prozess, der eine große Anzahl von Containern automatisiert und verwaltet und wie Sie miteinander interagieren. Weitere Informationen finden Sie unter [Informationen zu Windows-Container-Orchestrators](overview-container-orchestrators.md).
+- Docker: ein automatisierter Prozess, bei dem Container Bilder gepackt und geliefert werden. Weitere Informationen finden Sie in der [Übersicht](docker-overview.md)über Andock [Fenster, Andock Modul unter Windows oder auf](../manage-docker/configure-docker-daemon.md) der [docker-Website](https://www.docker.com).
 
 ![Ein Flussdiagramm, das zeigt, wie Container erstellt werden. Die Anwendungs-und Basisbilder werden verwendet, um einen Sandkasten und ein neues Anwendungsbild zu erstellen, die auf dem Basis Bild überlagert sind, um einen neuen Container zu erstellen.](media/containerfund.png)
 
@@ -85,4 +85,4 @@ Möchten Sie die großartigen Möglichkeiten von Containern nutzen? Die folgende
 
 Informationen zum Einrichten eines Containers auf Windows Server finden Sie in der [Windows Server-Schnellstart](../quick-start/quick-start-windows-server.md)-Anleitung.
 
-Informationen zum Einrichten eines Containers unter Windows 10 finden Sie in der [Windows 10-Schnellstart](../quick-start/quick-start-windows-10.md)-Anleitung.
+Informationen zum Einrichten eines Containers unter Windows 10 finden Sie unter [Erste Schritte: Konfigurieren der Umgebung für Container](../quick-start/set-up-environment.md?tabs=Windows-10-Client).

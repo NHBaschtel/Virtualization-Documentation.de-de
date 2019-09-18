@@ -3,17 +3,17 @@ title: Linux-Container unter Windows
 description: Erfahren Sie mehr über die verschiedenen Möglichkeiten, wie Sie mit Hyper-V Linux-Container unter Windows ausführen können, als ob Sie systemeigen sind.
 keywords: LCOW, Linux-Container, Docker, Container
 author: scooley
-ms.date: 11/02/2018
+ms.date: 09/17/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
-ms.openlocfilehash: 0426b14c423c06a0f12ea91529ce794f7a972f47
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 14445f3e9d292dbdab28986e772d0c045fca1586
+ms.sourcegitcommit: 9100d2218c160bbe9fbf24f3524c8ff5e3dd826c
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998477"
+ms.lasthandoff: 09/18/2019
+ms.locfileid: "10135323"
 ---
 # <a name="linux-containers-on-windows"></a>Linux-Container unter Windows
 
@@ -21,8 +21,8 @@ Linux-Container bilden einen großen Prozentsatz des gesamten Container-Ökosyst
 
 Im Moment gibt es zwei Möglichkeiten, Linux-Container mit docker für Windows und Hyper-V auszuführen:
 
-1. Führen Sie Linux-Container in einer vollständigen Linux-VM aus – das ist das, was docker in der Regel heute macht.
-1. Ausführen von Linux-Containern mit [Hyper-V-Isolierung](../manage-containers/hyperv-container.md) (LCOW) – Dies ist eine neue Option in docker für Windows.
+- Führen Sie Linux-Container in einer vollständigen Linux-VM aus – das ist das, was docker in der Regel heute macht.
+- Ausführen von Linux-Containern mit [Hyper-V-Isolierung](../manage-containers/hyperv-container.md) (LCOW) – Dies ist eine neue Option in docker für Windows.
 
 In diesem Artikel wird erläutert, wie die einzelnen Ansätze funktionieren, bietet Anleitungen dazu, wann Sie welche Lösung auswählen und welche Arbeit in Bearbeitung ist.
 
@@ -30,7 +30,7 @@ In diesem Artikel wird erläutert, wie die einzelnen Ansätze funktionieren, bie
 
 Wenn Sie Linux-Container auf einem Linux-Computer ausführen möchten, folgen Sie den Anweisungen im Leitfaden für den Einstieg in das [docker-Handbuch](https://docs.docker.com/docker-for-windows/).
 
-Andocker konnte Linux-Container auf dem Windows-Desktop ausführen, da es zunächst in 2016 (bevor Hyper-v-Isolierung oder LCOW verfügbar waren) mithilfe eines auf Hyper-v ausgeführten [LinuxKit](https://github.com/linuxkit/linuxkit) -basierten virtuellen Computers veröffentlicht wurde.
+Docker konnte Linux-Container auf dem Windows-Desktop ausführen, da es zunächst in 2016 veröffentlicht wurde (bevor Hyper-v-Isolierung oder Linux-Container unter Windows verfügbar waren), und zwar mit einem [LinuxKit](https://github.com/linuxkit/linuxkit) -basierten virtuellen Computer, der unter Hyper-v ausgeführt wurde.
 
 In diesem Modell wird der andocker-Client auf dem Windows-Desktop ausgeführt, ruft aber den andocker-Daemon auf der Linux-VM auf.
 
@@ -47,9 +47,9 @@ Wenn Sie feststellen möchten, ob Sie mit Moby VM ausgeführt werden, überprüf
 
 ## <a name="linux-containers-with-hyper-v-isolation"></a>Linux-Container mit Hyper-V-Isolierung
 
-Um LCOW zu testen, folgen Sie den Anweisungen für Linux-Container in [diesem Leitfaden für erste Schritte](../quick-start/quick-start-windows-10.md) .
+Wenn Sie Linux-Container unter Windows (LCOW) testen möchten, folgen Sie den Anweisungen für Linux-Container unter Linux-Containern [unter Windows 10](../quick-start/quick-start-windows-10-linux.md).
 
-Linux-Container mit Hyper-V-Isolierung führen jeden Linux-Container (LCOW) in einer optimierten Linux-VM mit nur genügend Betriebssystem zum Ausführen von Containern aus.  Im Gegensatz zum Moby VM-Ansatz verfügt jede LCOW über einen eigenen Kernel und eine eigene VM-Sandbox.  Sie werden auch direkt von Docker unter Windows verwaltet.
+Linux-Container mit Hyper-V-Isolierung führen jeden Linux-Container in einer optimierten Linux-VM mit nur genügend Betriebssystem zum Ausführen von Containern aus. Im Gegensatz zum Moby VM-Ansatz verfügt jeder Linux-Container über einen eigenen Kernel und eine eigene VM-Sandbox. Sie werden auch direkt von Docker unter Windows verwaltet.
 
 ![Linux-Container mit Hyper-V-Isolierung (LCOW)](media/lcow-approach.png)
 
