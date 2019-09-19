@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: dbe0e629428bbd8ecfe3ec01bb1a69e3c9c3e231
-ms.sourcegitcommit: 9100d2218c160bbe9fbf24f3524c8ff5e3dd826c
+ms.openlocfilehash: 55fc032613b901ef1f5f9cf989891ceef99aac36
+ms.sourcegitcommit: 668d0c0a81e6d74d75a655be5a47c2bbc5e268de
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "10135343"
+ms.lasthandoff: 09/19/2019
+ms.locfileid: "10138511"
 ---
 # <a name="about-windows-containers"></a>Informationen zu Windows-Containern
 
@@ -81,8 +81,4 @@ In der folgenden Video Präsentation erhalten Sie eine ausführlichere Übersich
 
 ## <a name="try-windows-server-containers"></a>Testen von Windows Server-Containern
 
-Möchten Sie die großartigen Möglichkeiten von Containern nutzen? Die folgenden Artikel unterstützen Sie bei den ersten Schritten:
-
-Informationen zum Einrichten eines Containers auf Windows Server finden Sie in der [Windows Server-Schnellstart](../quick-start/quick-start-windows-server.md)-Anleitung.
-
-Informationen zum Einrichten eines Containers unter Windows 10 finden Sie unter [Erste Schritte: Konfigurieren der Umgebung für Container](../quick-start/set-up-environment.md?tabs=Windows-10-Client).
+Informationen zu den ersten Schritten mit Containern unter Windows Server oder Windows 10 finden Sie unter [Erste Schritte: Konfigurieren der Umgebung für Container](../quick-start/set-up-environment.md).

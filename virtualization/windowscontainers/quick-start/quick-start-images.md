@@ -8,14 +8,14 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
-ms.openlocfilehash: 01e687cfa2fd479eb87e5639581e1552ed801aef
-ms.sourcegitcommit: 9100d2218c160bbe9fbf24f3524c8ff5e3dd826c
+ms.openlocfilehash: 99b324c8cae5c8c8ed887b6e39d6818d9eddba15
+ms.sourcegitcommit: 668d0c0a81e6d74d75a655be5a47c2bbc5e268de
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "10135333"
+ms.lasthandoff: 09/19/2019
+ms.locfileid: "10138501"
 ---
-# <a name="automating-builds-and-saving-images"></a>Automatisieren von Builds und Speichern von Images
+# <a name="automating-builds-and-saving-images"></a>Automatisieren von Builds und Speichern von Bildern
 
 In der vorhergehenden Schnellstart-Anleitung für Windows Server wurde ein Windows-Container auf Basis eines bereits vorhandenen .NET Core-Beispiels erstellt. In dieser Übung wird gezeigt, wie Sie ein eigenes Container Bild aus einem Dockerfile erstellen und das Container Bild in der öffentlichen Registrierung des andockbaren Hubs speichern.
 
@@ -26,7 +26,7 @@ Dieser Schnellstart ist speziell für Windows Server-Container unter Windows Ser
 Stellen Sie bitte sicher, dass Sie die folgenden Voraussetzungen erfüllen:
 
 - Ein physisches oder virtuelles Computersystem, auf dem Windows Server 2019 oder Windows Server 2016 ausgeführt wird.
-- Konfigurieren Sie dieses System mit dem Windows-Container Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Windows-Container unter Windows Server](./quick-start-windows-server.md).
+- Konfigurieren Sie dieses System mit dem Windows-Container Feature und Docker. Eine exemplarische Vorgehensweise zu diesen Schritten finden Sie unter [Erste Schritte: Konfigurieren der Umgebung für Container](../quick-start/set-up-environment.md).
 - Eine Docker-ID – diese wird verwendet, um ein Containerimage mithilfe von Push an Docker Hub zu übertragen. Sollten Sie noch nicht über eine Docker-ID verfügen, können Sie diese über eine Registrierung bei [Docker Cloud](https://cloud.docker.com/) beziehen.
 
 ## <a name="container-image---dockerfile"></a>Container Bild – Dockerfile
@@ -159,4 +159,4 @@ docker pull <user>/iis-dockerfile
 In den folgenden Windows10-Lernprogrammen erfahren Sie, wie Sie eine ASP.NET-Beispielanwendung packen.
 
 > [!div class="nextstepaction"]
-> [Container unter Windows 10](./set-up-environment.md?tabs=Windows-10-Client)
+> [Container unter Windows 10](set-up-environment.md?tabs=Windows-10-Client)
