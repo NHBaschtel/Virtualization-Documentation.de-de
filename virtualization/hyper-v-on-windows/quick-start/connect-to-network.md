@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
-ms.openlocfilehash: 749251e67b4e2eaffba8e43638fe4f596b31bba5
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.openlocfilehash: 0139f51e909149dde59f4030c6571aee82fed27e
+ms.sourcegitcommit: 62fff5436770151a28b6fea2be3a8818564f3867
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9882903"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "10147243"
 ---
 # <a name="create-a-virtual-network"></a>Erstellen eines virtuellen Netzwerks
 
@@ -22,7 +22,7 @@ Ihre virtuellen Computer benötigen ein virtuelles Netzwerk, wenn ein Netzwerk a
 
 ## <a name="connect-virtual-machines-to-the-internet"></a>Verbinden von virtuellen Computern mit dem Internet
 
-Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen eines externen Switches zum Teilen des Netzwerks Ihres Computers mit den darauf ausgeführten virtuellen Computern
+Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen Sie einen externen Schalter, um das Netzwerk Ihres Computers mit den auf ihm ausgeführten virtuellen Computern zu teilen.
 
 In dieser Übung wird das Erstellen eines externen virtuellen Switches behandelt. Nach Abschluss der Übung verfügt Ihr Hyper-V-Host über einen virtuellen Switch, mit dem virtuelle Computer über die Netzwerkverbindung des Computers eine Verbindung mit dem Internet herstellen können. 
 
