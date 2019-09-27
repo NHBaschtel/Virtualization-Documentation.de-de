@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: 0aa93b721ab1279cb789e3a18cad04bb668d2644
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: af12aff787cf178ff80d5db15cc926266816882f
+ms.sourcegitcommit: 579349d7bc6a7dbf68445339c468ad8d2b87d7de
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998517"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "10152731"
 ---
 # <a name="frequently-asked-questions-about-containers"></a>Häufig gestellte Fragen zu Containern
 
@@ -46,7 +46,7 @@ Beginnend mit dem 2018-Update für Windows 10 Oktober können Sie einen Windows-
 Wenn Sie Ihre Windows-Container auf diese Weise ausführen möchten, müssen Sie sicherstellen, dass auf Ihrem Host Windows 10 Build 17763 + ausgeführt wird und Sie über eine Andock Version mit Engine 18,09 oder höher verfügen.
 
 > [!WARNING]
-> Dieses Feature ist nur für die Entwicklung/Testung vorgesehen. Sie sollten Windows Server weiterhin als Host für Produktionsbereitstellungen verwenden. Wenn Sie dieses Feature verwenden, müssen Sie auch sicherstellen, dass Ihre Host-und Container Versions Tags übereinstimmen, da der Container andernfalls möglicherweise nicht gestartet wird oder nicht definiertes Verhalten aufweist.
+> Dieses Feature ist nur für die Entwicklung und das Testen vorgesehen. Sie sollten Windows Server weiterhin als Host für Produktionsbereitstellungen verwenden. Wenn Sie dieses Feature verwenden, müssen Sie auch sicherstellen, dass Ihre Host-und Container Versions Tags übereinstimmen, da der Container andernfalls möglicherweise nicht gestartet wird oder nicht definiertes Verhalten aufweist.
 
 ## <a name="how-do-i-make-my-container-images-available-on-air-gapped-machines"></a>Wie kann ich meine Container Bilder auf Air-gapped-Computern zur Verfügung stellen?
 
