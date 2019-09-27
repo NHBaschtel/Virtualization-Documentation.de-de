@@ -1,5 +1,5 @@
 ---
-title: Informationen zu Windows-Container-Orchestrators
+title: Übersicht über die Windows-Container Orchestrierung
 description: Informationen zu Windows-Container-Orchestrators.
 keywords: Docker, Container
 author: Heidilohr
@@ -8,14 +8,14 @@ ms.date: 05/22/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 1ccf63b0ae55501ba32f8bdd61994e7f8006b5e6
-ms.sourcegitcommit: daf1d2b5879c382404fc4d59f1c35c88650e20f7
+ms.openlocfilehash: 99a3b47a9d80e21c246fb3b4f61d650557eb37fa
+ms.sourcegitcommit: e9dda81f1f68359ece9ef132a184a30880bcdb1b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/23/2019
-ms.locfileid: "9674885"
+ms.lasthandoff: 09/27/2019
+ms.locfileid: "10161787"
 ---
-# <a name="about-windows-container-orchestrators"></a>Informationen zu Windows-Container-Orchestrators
+# <a name="windows-container-orchestration-overview"></a>Übersicht über die Windows-Container Orchestrierung
 
 Aufgrund ihrer geringen Größe und Anwendungsausrichtung eignen sich Container ideal für Agile Bereitstellungsumgebungen und auf microservice basierende Architekturen. Eine Umgebung, die Container und Microserver verwendet, kann jedoch Hunderte oder Tausende von Komponenten aufweisen, die nachverfolgt werden können. Möglicherweise können Sie ein paar Dutzend virtuelle Maschinen oder physische Server manuell verwalten, aber es gibt keine Möglichkeit, eine Containerumgebung mit Produktionsmaßstab ohne Automatisierung ordnungsgemäß zu verwalten. Diese Aufgabe sollte auf Ihren Orchestrator zurückgehen, bei dem es sich um einen Prozess handelt, der eine große Anzahl von Containern automatisiert und verwaltet und wie Sie miteinander interagieren.
 
