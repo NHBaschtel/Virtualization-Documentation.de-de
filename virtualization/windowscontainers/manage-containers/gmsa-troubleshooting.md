@@ -2,18 +2,18 @@
 title: Problembehandlung bei gMSAs für Windows-Container
 description: Behandeln von Problemen mit Gruppen-Managed-Service-Konten (gMSAs) für Windows-Container
 keywords: docker, Container, Active Directory, GMSA, Group Managed Service-Konto, Gruppen-Managed-Service-Konten, Problembehandlung, Problembehandlung
-author: Heidilohr
-ms.date: 09/10/2019
+author: rpsqrd
+ms.date: 10/03/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: 00a0d9b1367da55b7669fc26a3eca303272967ab
-ms.sourcegitcommit: 5d4b6823b82838cb3b574da3cd98315cdbb95ce2
+ms.openlocfilehash: 89f255e307c2a48fd743d5abd1a49bba7703aaf3
+ms.sourcegitcommit: 22dcc1400dff44fb85591adf0fc443360ea92856
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2019
-ms.locfileid: "10079746"
+ms.lasthandoff: 10/12/2019
+ms.locfileid: "10209850"
 ---
 # <a name="troubleshoot-gmsas-for-windows-containers"></a>Problembehandlung bei gMSAs für Windows-Container
 
@@ -142,9 +142,43 @@ Eine vollständige Liste der von Active Directory verwendeten Ports finden Sie u
 
     Die Vertrauensüberprüfung sollte zurück `NERR_SUCCESS` gegeben werden, wenn die gMSA verfügbar ist und die Netzwerkkonnektivität dem Container ermöglicht, mit der Domäne zu kommunizieren. Wenn dies nicht der Fall ist, überprüfen Sie die Netzwerkkonfiguration des Hosts und des Containers. Beide müssen in der Lage sein, mit dem Domänencontroller zu kommunizieren.
 
-4. Stellen Sie sicher [, dass Ihre APP für die Verwendung von gMSA konfiguriert](gmsa-configure-app.md)ist. Das Benutzerkonto innerhalb des Containers ändert sich nicht, wenn Sie ein gMSA verwenden. Stattdessen verwendet das System Konto das gMSA, wenn es mit anderen Netzwerkressourcen kommuniziert. Dies bedeutet, dass Ihre APP als Netzwerkdienst oder lokales System ausgeführt werden muss, um die gMSA-Identität zu nutzen.
+4. Überprüfen Sie, ob der Container ein gültiges Kerberos-Ticket Genehmigungs Ticket (TGT) erhalten kann:
+
+    ```powershell
+    klist get krbtgt
+    ```
+
+    Dieser Befehl sollte "ein Ticket zu KRBTGT wurde erfolgreich abgerufen" zurückgeben und den zum Abrufen des Tickets verwendeten Domänencontroller auflisten. Wenn Sie in der Lage sind, eine TGT `nltest` zu erhalten, aber aus dem vorherigen Schritt fehlschlägt, kann dies ein Hinweis darauf sein, dass das gMSA-Konto falsch konfiguriert ist. Weitere Informationen finden Sie unter [Überprüfen des gMSA-Kontos](#check-the-gmsa-account) .
+
+    Wenn Sie innerhalb des Containers keine TGT abrufen können, kann dies auf DNS-oder Netzwerkverbindungsprobleme hindeuten. Stellen Sie sicher, dass der Container einen Domänencontroller mithilfe des Domänen-DNS-Namens auflösen kann und der Domänencontroller vom Container geroutet werden kann.
+
+5. Stellen Sie sicher [, dass Ihre APP für die Verwendung von gMSA konfiguriert](gmsa-configure-app.md)ist. Das Benutzerkonto innerhalb des Containers ändert sich nicht, wenn Sie ein gMSA verwenden. Stattdessen verwendet das System Konto das gMSA, wenn es mit anderen Netzwerkressourcen kommuniziert. Dies bedeutet, dass Ihre APP als Netzwerkdienst oder lokales System ausgeführt werden muss, um die gMSA-Identität zu nutzen.
 
     > [!TIP]
     > Wenn Sie einen `whoami` anderen Tool ausführen oder verwenden, um den aktuellen Benutzerkontext im Container zu identifizieren, wird der gMSA-Name nicht angezeigt. Dies liegt daran, dass Sie sich immer als lokaler Benutzer anstelle einer Domänenidentität beim Container anmelden. Das gMSA wird vom Computerkonto verwendet, wenn es mit Netzwerkressourcen kommuniziert, weshalb Ihre APP als Netzwerkdienst oder lokales System ausgeführt werden muss.
 
-5. Wenn Ihr Container anscheinend richtig konfiguriert ist, aber Benutzer oder andere Dienste nicht automatisch bei ihrer Container-App authentifiziert werden können, überprüfen Sie die SPNs in Ihrem gMSA-Konto. Clients finden das gMSA-Konto unter dem Namen, in dem Sie Ihre Anwendung erreichen. Dies kann bedeuten, dass Sie zusätzliche `host` SPNs für Ihre gMSA benötigen, wenn beispielsweise Clients eine Verbindung mit Ihrer APP über ein Lastenausgleichsmodul oder einen anderen DNS-Namen herstellen.
+### <a name="check-the-gmsa-account"></a>Überprüfen des gMSA-Kontos
+
+1. Wenn Ihr Container anscheinend richtig konfiguriert ist, aber Benutzer oder andere Dienste nicht automatisch bei ihrer Container-App authentifiziert werden können, überprüfen Sie die SPNs in Ihrem gMSA-Konto. Clients finden das gMSA-Konto unter dem Namen, in dem Sie Ihre Anwendung erreichen. Dies kann bedeuten, dass Sie zusätzliche `host` SPNs für Ihre gMSA benötigen, wenn beispielsweise Clients eine Verbindung mit Ihrer APP über ein Lastenausgleichsmodul oder einen anderen DNS-Namen herstellen.
+
+2. Stellen Sie sicher, dass der gMSA und der Container Host zur gleichen Active Directory-Domäne gehören. Der Container Host kann das gMSA-Kennwort nicht abrufen, wenn das gMSA zu einer anderen Domäne gehört.
+
+3. Stellen Sie sicher, dass nur ein Konto in Ihrer Domäne mit dem gleichen Namen wie Ihr gMSA vorhanden ist. gMSA-Objekten sind Dollarzeichen ($) an Ihre SAM-Kontonamen angefügt, sodass es möglich ist, dass ein gMSA-Objekt "Mein Konto $" und ein nicht verknüpftes Benutzerkonto mit dem Namen "Mein Konto" in der gleichen Domäne benannt werden. Dies kann zu Problemen führen, wenn der Domänencontroller oder die Anwendung den gMSA nach Namen nachschlagen muss. Mit dem folgenden Befehl können Sie die Anzeige nach ähnlich benannten Objekten durchsuchen:
+
+    ```powershell
+    # Replace "GMSANAMEHERE" with your gMSA account name (no trailing dollar sign)
+    Get-ADObject -Filter 'sAMAccountName -like "GMSANAMEHERE*"'
+    ```
+
+4. Wenn Sie für das gMSA-Konto eine uneingeschränkte Delegierung aktiviert haben, stellen Sie sicher, dass das userAccountControl `WORKSTATION_TRUST_ACCOUNT` - [Attribut](https://support.microsoft.com/en-us/help/305144/how-to-use-useraccountcontrol-to-manipulate-user-account-properties) weiterhin aktiviert ist. Dieses Flag ist für Netlogon im Container erforderlich, um mit dem Domänencontroller zu kommunizieren, wie es der Fall ist, wenn eine APP einen Namen in eine SID auflösen soll oder umgekehrt. Mit den folgenden Befehlen können Sie überprüfen, ob die Kennzeichnung richtig konfiguriert ist:
+
+    ```powershell
+    $gMSA = Get-ADServiceAccount -Identity 'yourGmsaName' -Properties UserAccountControl
+    ($gMSA.UserAccountControl -band 0x1000) -eq 0x1000
+    ```
+
+    Wenn die obigen Befehle zurück `False`gegeben werden, verwenden Sie die folgenden `WORKSTATION_TRUST_ACCOUNT` Optionen, um das Flag zur userAccountControl-Eigenschaft des gMSA-Kontos hinzuzufügen. Mit diesem Befehl werden auch die `NORMAL_ACCOUNT`, `INTERDOMAIN_TRUST_ACCOUNT`und `SERVER_TRUST_ACCOUNT` Flags aus der userAccountControl-Eigenschaft gelöscht.
+
+    ```powershell
+    Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = ($gmsa.userAccountControl -band 0x7FFFC5FF) -bor 0x1000 }
+    ```

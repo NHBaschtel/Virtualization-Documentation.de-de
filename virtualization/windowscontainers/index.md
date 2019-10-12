@@ -9,12 +9,12 @@ ms.topic: landing-page
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
-ms.openlocfilehash: d28f91ca5c0957a91c38d51b461449ef869f7493
-ms.sourcegitcommit: 868a64eb97c6ff06bada8403c6179185bf96675f
+ms.openlocfilehash: 9a5b08f87983e285418ae333e3a948af9911d73d
+ms.sourcegitcommit: 22dcc1400dff44fb85591adf0fc443360ea92856
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/13/2019
-ms.locfileid: "10129280"
+ms.lasthandoff: 10/12/2019
+ms.locfileid: "10209740"
 ---
 <div id="main" class="v2">
     <ul class="cardsY panelContent featuredContent">
@@ -47,7 +47,7 @@ ms.locfileid: "10129280"
                                 </div>
                             </div>
                             <div class="cardText">
-                                <h3>Schauen Sie sich unsere Container Bilder auf dem docker-Hub an</h3>
+                                <h3>Schauen Sie sich unsere Container Bilder auf dem docker-Hub an.</h3>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ ms.locfileid: "10129280"
                         <div class="cardText">
                             <h3 style="margin: 8px 0 2px 0;">Übersicht</h3>
                             <ul>
-                                <li><a href="/en-us/virtualization/windowscontainers/about/index" data-linktype="absolute-path">Container 101</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/about/index" data-linktype="absolute-path">Informationen zu Windows-Containern</a></li>
                                 <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/system-requirements" data-linktype="absolute-path">Systemanforderungen</a></li>
                                 <li><a href="/en-us/virtualization/windowscontainers/about/faq" data-linktype="absolute-path">Häufig gestellte Fragen</a></li>
                             </ul>
@@ -132,9 +132,9 @@ ms.locfileid: "10129280"
                             <h3 style="margin: 8px 0 2px 0;">Lernprogramme</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile" data-linktype="external">Erstellen eines Windows-Containers</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/kubernetes/getting-started-kubernetes-windows" data-linktype="external">Kubernetes unter Windows</a></li>
-                                <li><a href="/en-us/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">Dienststruktur unter Windows</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/linux-containers" data-linktype="external">Linux-Container unter Windows</a></li>
+                                <li><a href="/azure/aks/windows-container-cli" data-linktype="external">Auf AKS ausführen</a></li>
+                                <li><a href="/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">Auf Service Fabric ausführen</a></li>
+                                <li><a href="/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">Ausführen des Azure-App-Diensts</a></li>
                             </ul>
                         </div>
                     </div>
@@ -154,11 +154,8 @@ ms.locfileid: "10129280"
                             <h3 style="margin: 8px 0 2px 0;">Konzepte</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon" data-linktype="external">Docker</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/manage-containers/manage-serviceaccounts" data-linktype="external">Workloads</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/container-networking/architecture" data-linktype="external">Netzwerk</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/manage-containers/container-storage" data-linktype="external">Speicher</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/hardware-devices-in-containers" data-linktype="external">Geräte</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/manage-containers/hyperv-container" data-linktype="external">Hyper-V-Isolierung</a></li>
+                                <li><a href="/virtualization/windowscontainers/about/overview-container-orchestrators" data-linktype="external">Container-Orchestrierung</a></li>
+                                <li><a href="/virtualization/windowscontainers/manage-containers/container-base-images" data-linktype="external">Windows-Container-Grundlagen</a></li>
                             </ul>
                         </div>
                     </div>

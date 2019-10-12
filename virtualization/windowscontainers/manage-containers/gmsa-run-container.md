@@ -2,18 +2,18 @@
 title: Ausführen eines Containers mit einem gMSA
 description: Ausführen eines Windows-Containers mit einem Group Managed Service-Konto (gMSA)
 keywords: docker, Container, Active Directory, GMSA, Gruppen verwaltetes Dienstkonto, Gruppen verwaltete Dienstkonten
-author: Heidilohr
+author: rpsqrd
 ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: b9c0406b5fe9527d88365dabf0cfd10114c34c74
-ms.sourcegitcommit: 5d4b6823b82838cb3b574da3cd98315cdbb95ce2
+ms.openlocfilehash: 52625517748356251aa41115caebd7801ec3cdaf
+ms.sourcegitcommit: 22dcc1400dff44fb85591adf0fc443360ea92856
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2019
-ms.locfileid: "10079731"
+ms.lasthandoff: 10/12/2019
+ms.locfileid: "10209861"
 ---
 # <a name="run-a-container-with-a-gmsa"></a>Ausführen eines Containers mit einem gMSA
 
