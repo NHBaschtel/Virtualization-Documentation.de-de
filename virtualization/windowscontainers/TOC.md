@@ -2,6 +2,7 @@
 
 # Übersicht
 ## [Informationen zu Windows-Containern](about/index.md)
+## [Container vs. VMS](about/containers-vs-vm.md)
 ## [Systemanforderungen](deploy-containers/system-requirements.md)
 ## [Häufig gestellte Fragen](about/faq.md)
 
@@ -26,6 +27,8 @@
 ## Linux-Container unter Windows
 ### [Übersicht](deploy-containers/linux-containers.md)
 ### [Ausführen des ersten LCOW-Containers](quick-start/quick-start-windows-10-linux.md)
+## Verwenden von Containern mit dem Windows-Insider-Programm
+### [Übersicht](deploy-containers/insider-overview.md)
 
 # Konzepte
 ## Windows-Container-Grundlagen

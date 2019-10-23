@@ -11,7 +11,7 @@ Dieser Schnellstart ist spezifisch für Windows Server-Container im Windows Serv
 - Ein Computersystem (physisch oder virtuell) mit dem neuesten Builds von Windows Server aus dem Windows-Insider-Programm bzw. dem neuesten Build von Windows10 aus dem Windows-Insider-Programm.
 
 > [!IMPORTANT]
-> Sie müssen einen Build von Windows Server aus dem Windows Server Insider Preview-Programm oder einen Build von Windows 10 aus dem Windows Insider Preview-Programm verwenden, um das unten beschriebene Basis Bild zu verwenden. Wenn Sie keine dieser Builds verwenden, kann der Container nicht mit diesen Basisimages gestartet werden.
+> Für Windows muss die Hostbetriebssystem-Version der Container-Betriebssystemversion entsprechen. Wenn Sie einen Container auf der Grundlage eines neueren Windows-Builds ausführen möchten, stellen Sie sicher, dass Sie über einen entsprechenden Host Build verfügen. Andernfalls können Sie die Hyper-V-Isolierung verwenden, um ältere Container auf neuen Host Builds auszuführen. Weitere Informationen zur Kompatibilität der Windows-Container Version finden Sie in unseren Container-Dokumenten.
 
 ## <a name="install-docker-enterprise-edition-ee"></a>Installieren der Docker Enterprise Edition (EE)
 
@@ -48,29 +48,37 @@ Restart-Computer -Force
 
 ## <a name="install-base-container-image"></a>Installieren von Basiscontainerimages
 
-Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Wenn Sie am Windows-Insider-Programms teilnehmen, können Sie ebenfalls unsere neuesten Builds für die Basisimages testen. Unter den Insider-Basisimages stehen jetzt 4 auf Windows Server basierende Basisimages zur Verfügung. Weitere Informationen zu den verschiedenen Zwecken der einzelnen Basisimages finden Sie in der Tabelle unten:
+Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Wenn Sie am Windows-Insider-Programms teilnehmen, können Sie ebenfalls unsere neuesten Builds für die Basisimages testen. Mit den Insider-Basisbildern sind jetzt 6 verfügbare Basisbilder auf Grundlage von Windows Server verfügbar. Weitere Informationen zu den verschiedenen Zwecken der einzelnen Basisimages finden Sie in der Tabelle unten:
 
 | Basisbetriebssystemimages                       | Verwendungszweck                      |
 |-------------------------------------|----------------------------|
 | mcr.microsoft.com/windows/servercore         | Produktion und Entwicklung |
 | mcr.microsoft.com/windows/nanoserver              | Produktion und Entwicklung |
+| mcr.microsoft.com/windows/              | Produktion und Entwicklung |
 | mcr.microsoft.com/windows/servercore/insider | Nur Entwicklung           |
 | mcr.microsoft.com/windows/nanoserver/insider        | Nur Entwicklung           |
+| mcr.microsoft.com/windows/insider        | Nur Entwicklung           |
 
-Zum Aufrufen des Basisimages für Nano Server Insider führen Sie folgenden Befehl aus:
+Informationen zum Abrufen des Server Core-Insider-Basis Bilds finden Sie unter den am [Server Core Insider docker Hub Repo](https://hub.docker.com/_/microsoft-windows-servercore-insider) verfügbaren Tags (n), um das folgende Format zu verwenden:
 
 ```console
-docker pull mcr.microsoft.com/nanoserver/insider
+docker pull mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}
 ```
 
-Zum Aufrufen des Basisimages für Windows Server Core Insider führen Sie folgenden Befehl aus:
+Wenn Sie das Image des Nano-Server-Insider-Images ziehen möchten, lesen Sie die auf dem [Nano Server-Insider-andocker-Hub Repo](https://store.docker.com/_/microsoft-windows-nanoserver-insider) verfügbaren Tags (n), um das folgende Format zu verwenden:
 
 ```console
-docker pull mcr.microsoft.com/windows/servercore/insider
+docker pull mcr.microsoft.com/windows/nanoserver/insider:10.0.{build}.{revision}
+```
+
+Wenn Sie das Windows-Insider-Basis Bild abrufen möchten, lesen Sie die am [Windows Insider-docker-Hub-Repo-Hub-Depot](https://store.docker.com/_/microsoft-windows-insider) verwendeten Tags (s), um das folgende Format zu verwenden:
+
+```console
+docker pull mcr.microsoft.com/windows/insider:10.0.{build}.{revision}
 ```
 
 > [!IMPORTANT]
-> Bitte lesen Sie die [Nutzungsbedingungen für](https://www.microsoft.com/software-download/windowsinsiderpreviewserver)Windows-Container-Betriebssystem Bilder und das Windows-Insider-Programm. [](../EULA.md )
+> Bitte lesen Sie die [Nutzungsbedingungen für](https://www.microsoft.com/software-download/windowsinsiderpreviewserver)Windows-Container-Betriebs [System Bilder und](../EULA.md ) das Windows-Insider-Programm.
 
 ## <a name="next-steps"></a>Nächste Schritte
 
