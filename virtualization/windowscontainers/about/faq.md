@@ -3,29 +3,46 @@ title: Windows-Container – häufig gestellte Fragen
 description: Häufig gestellte Fragen zu Windows Server-Containern
 keywords: Docker, Container
 author: PatrickLang
-ms.date: 05/22/2019
+ms.date: 10/25/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: af12aff787cf178ff80d5db15cc926266816882f
-ms.sourcegitcommit: 579349d7bc6a7dbf68445339c468ad8d2b87d7de
+ms.openlocfilehash: 19ff54ec032d61b24aea9fec4f14e8fce301d33a
+ms.sourcegitcommit: 347d7c9d34f4c1d2473eb6c94c8ad6187318a037
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "10152731"
+ms.lasthandoff: 10/25/2019
+ms.locfileid: "10257952"
 ---
 # <a name="frequently-asked-questions-about-containers"></a>Häufig gestellte Fragen zu Containern
-
-## <a name="what-are-wcow-and-lcow"></a>Was sind WCOW und LCOW?
-
-WCOW ist für "Windows-Container unter Windows" kurz. LCOW ist für "Linux-Container unter Windows" kurz.
 
 ## <a name="whats-the-difference-between-linux-and-windows-server-containers"></a>Worin besteht der Unterschied zwischen Linux-und Windows Server-Containern?
 
 Sowohl Linux als auch Windows Server implementieren ähnliche Technologien in Ihren Kernel-und Core-Betriebssystemen. Der Unterschied ergibt sich aus der Plattform und Arbeitslasten, die innerhalb des Containers ausgeführt.  
 
 Wenn ein Kunde Windows Server-Container verwendet, kann er in vorhandene Windows-Technologien wie .net, ASP.net und PowerShell integriert werden.
+
+## <a name="what-are-the-prerequisites-for-running-containers-on-windows"></a>Was sind die Voraussetzungen für die Ausführung von Containern unter Windows?
+
+Container wurden mit Windows Server 2016 auf der Plattform eingeführt. Um Container verwenden zu können, benötigen Sie entweder Windows Server 2016 oder das Windows 10 Anniversary-Update (Version 1607) oder neuer. Lesen Sie die [System Voraussetzungen](../deploy-containers/system-requirements.md) , um mehr zu erfahren.
+
+## <a name="what-are-wcow-and-lcow"></a>Was sind WCOW und LCOW?
+
+WCOW ist für "Windows-Container unter Windows" kurz. LCOW ist für "Linux-Container unter Windows" kurz.
+
+## <a name="how-are-containers-licensed-is-there-a-limit-to-the-number-of-containers-i-can-run"></a>Wie werden Container lizenziert? Gibt es eine Grenze für die Anzahl der Container, die ich ausführen kann?
+
+Das Windows-Container Abbild- [EULA](../images-eula.md) beschreibt eine Verwendung, die von einem Benutzer mit einem gültig lizenzierten Hostbetriebssystem abhängt. Die Anzahl der Container, die ein Benutzer ausführen darf, hängt von der Hostbetriebssystem-Edition und dem [Isolationsmodus](../manage-containers/hyperv-container.md) ab, mit dem ein Container ausgeführt wird, sowie davon, ob diese Container für dev/Test-Zwecke oder in der Produktion ausgeführt werden.
+
+|Host Betriebssystem                                                         |Prozess isolierter Container Grenzwert                   |Hyper-V-isolierter Container Grenzwert                   |
+|----------------------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
+|Windows Server Standard                                         |Unbegrenzt                                          |2                                                  |
+|Windows Server Datacenter                                       |Unbegrenzt                                          |Unbegrenzt                                          |
+|Windows 10 pro und Enterprise                                   |Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|
+|Windows 10-Core und Enterprise)                             |Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|
+
+Die Verwendung der Windows Server-Container Bilder wird durchlesen der Anzahl der für diese [Edition](/windows-server/get-started-19/editions-comparison-19.md)unterstützten Virtualisierungs-Gäste bestimmt. Die Produktions Verwendung von Containern in einer viel-Edition von Windows hängt von zusätzlichen Lizenzeinschränkungen ab. Bitte lesen Sie den [EULA für Container Bilder](../images-eula.md) , um genau zu verstehen, was erlaubt ist und was nicht.
 
 ## <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Muss ich als Entwickler die APP für die einzelnen Containertypen neu schreiben?
 
@@ -34,10 +51,6 @@ Nein. Windows-Container Bilder sind sowohl in Windows Server-Containern als auch
 Ein Entwickler kann ein Container Bild mithilfe eines Windows Server-Containers erstellen und es in der Hyper-V-Isolierung oder umgekehrt bereitstellen, ohne andere Änderungen als die Angabe des entsprechenden Lauf Zeit Kennzeichens vorzunehmen.
 
 Windows Server-Container bieten eine größere Dichte und Leistung für den Fall, dass die Geschwindigkeit entscheidend ist, beispielsweise geringere Aufgliederungs Zeiten und schnellere Laufzeitleistung im Vergleich zu geschachtelten Konfigurationen. Die Hyper-V-Isolierung, getreu dem Namen, bietet eine größere Isolierung, um sicherzustellen, dass Code, der in einem Container ausgeführt wird, keine Kompromisse oder Auswirkungen auf das Hostbetriebssystem oder andere Container hat, die auf demselben Host ausgeführt werden. Dies ist nützlich für Multitenant-Szenarien mit Anforderungen für das Hosten von nicht vertrauenswürdigem Code, einschließlich SaaS-Anwendungen und Compute-Hosting.
-
-## <a name="what-are-the-prerequisites-for-running-containers-on-windows"></a>Was sind die Voraussetzungen für die Ausführung von Containern unter Windows?
-
-Container wurden mit Windows Server 2016 auf der Plattform eingeführt. Um Container verwenden zu können, benötigen Sie entweder Windows Server 2016 oder das Windows 10 Anniversary-Update (Version 1607) oder neuer.
 
 ## <a name="can-i-run-windows-containers-in-process-isolated-mode-on-windows-10-enterprise-or-professional"></a>Kann ich Windows-Container im Prozess isolierten Modus unter Windows 10 Enterprise oder Professional ausführen?
 
@@ -56,10 +69,6 @@ Dies kann die Dinge komplizieren, wenn Sie einen Air-gapped-Computer haben, der 
 
 > [!IMPORTANT]
 > Die Verwendung dieser Kennzeichnung steht ihrer Verpflichtung zur Einhaltung der Bestimmungen der Windows-Container-Basis Bildlizenz nicht entgegen; Sie dürfen keine Windows-Inhalte für die öffentliche oder fremde Weiterverteilung bereitstellen. Die Verwendung in ihrer eigenen Umgebung ist zulässig.
-
-## <a name="is-microsoft-participating-in-the-open-container-initiative-oci"></a>Nimmt Microsoft an der Open Container Initiative (OCI) teil?
-
-Um sicherzustellen, dass das Verpackungsformat weiterhin universell ist, hat docker vor kurzem die Open Container Initiative (OCI) organisiert, die darauf abzielt, die Container Verpackung weiterhin als Open-und Foundation-LED-Format zu sichern, wobei Microsoft als eines der Gründungsmitglieder dient.
 
 ## <a name="additional-feedback"></a>Weiteres Feedback
 
