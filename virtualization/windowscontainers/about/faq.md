@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
-ms.openlocfilehash: 19ff54ec032d61b24aea9fec4f14e8fce301d33a
-ms.sourcegitcommit: 347d7c9d34f4c1d2473eb6c94c8ad6187318a037
+ms.openlocfilehash: aeb2b5dd0d9df95ee417b3a160d10d4991304689
+ms.sourcegitcommit: 4b37076f988608b6bf1270497c24325993ef41d3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/25/2019
-ms.locfileid: "10257952"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "10264361"
 ---
 # <a name="frequently-asked-questions-about-containers"></a>Häufig gestellte Fragen zu Containern
 
@@ -40,9 +40,12 @@ Das Windows-Container Abbild- [EULA](../images-eula.md) beschreibt eine Verwendu
 |Windows Server Standard                                         |Unbegrenzt                                          |2                                                  |
 |Windows Server Datacenter                                       |Unbegrenzt                                          |Unbegrenzt                                          |
 |Windows 10 pro und Enterprise                                   |Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|
-|Windows 10-Core und Enterprise)                             |Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|
+|Windows 10-Core und Enterprise                             |Unbegrenzte                                         |Unbegrenzte                                          |
 
-Die Verwendung der Windows Server-Container Bilder wird durchlesen der Anzahl der für diese [Edition](/windows-server/get-started-19/editions-comparison-19.md)unterstützten Virtualisierungs-Gäste bestimmt. Die Produktions Verwendung von Containern in einer viel-Edition von Windows hängt von zusätzlichen Lizenzeinschränkungen ab. Bitte lesen Sie den [EULA für Container Bilder](../images-eula.md) , um genau zu verstehen, was erlaubt ist und was nicht.
+Die Verwendung der Windows Server-Container Bilder wird durchlesen der Anzahl der für diese [Edition](/windows-server/get-started-19/editions-comparison-19.md)unterstützten Virtualisierungs-Gäste bestimmt. <br/>
+
+>[!NOTE]
+>\ * Die Verwendung von Containern in einer viel-Edition von Windows hängt davon ab, ob Sie den Microsoft Commercial-Nutzungsbedingungen für Windows 10 Core-Lauf Zeit Bilder oder die Windows 10-Enterprise-Gerätelizenz ("Windows-Vertrag für kommerzielle Nutzung") zugestimmt haben. Zusätzliche Bestimmungen und Einschränkungen in den Windows-kommerziellen Vereinbarungen gelten für ihre Verwendung des Container Bilds in einer Produktionsumgebung. Bitte lesen Sie den [EULA für Container Bilder](../images-eula.md) , um genau zu verstehen, was erlaubt ist und was nicht.
 
 ## <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Muss ich als Entwickler die APP für die einzelnen Containertypen neu schreiben?
 
