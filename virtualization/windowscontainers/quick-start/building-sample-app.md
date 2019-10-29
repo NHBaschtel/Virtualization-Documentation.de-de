@@ -7,12 +7,12 @@ ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: cf8a14002e962242c34e9a10086120e6942d382b
-ms.sourcegitcommit: 6080b2c5053720490d374f6fb0daa870d5ddd4e8
+ms.openlocfilehash: db3caea3f7911ec6641930302198f976bd61240d
+ms.sourcegitcommit: da762ce138467e50dce22d5086ad407138b38e48
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/25/2019
-ms.locfileid: "10257774"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "10261829"
 ---
 # <a name="containerize-a-net-core-app"></a>Containerisieren einer .net Core-App
 
@@ -121,7 +121,7 @@ Lassen Sie uns diesen Befehl sezieren:
 * `--name myapp` weist andocker an, diesem Container einen praktischen Namen für die Abfrage zu geben (anstatt die contaienr-ID nachschlagen zu müssen, die von Docker zur Laufzeit zugewiesen wurde).
 * `my-asp-app` ist das Bild, das von Docker ausgeführt werden soll. Dies ist das Container Bild, das als Höhepunkt des `docker build` Prozesses erstellt wurde.
 
-Öffnen Sie einen Webbrowser Webbrowser, und navigieren Sie `https://localhost:5000` zu, um von ihrer Containeranwendung begrüßt zu werden.
+Öffnen Sie einen Webbrowser Webbrowser, und navigieren Sie `http://localhost:5000` zu, um von ihrer Containeranwendung begrüßt zu werden.
 
 >![](media/SampleAppScreenshot.png)
 
