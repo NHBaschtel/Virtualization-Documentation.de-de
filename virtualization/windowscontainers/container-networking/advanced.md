@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 6480f0657d7def8d6da69bfc52ace81d08b0add4
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: deea1bfbcd3032f52a6912eb0c36ba467d8b9a9c
+ms.sourcegitcommit: b38f6abb399c87c57e1bb146f3dbcdaefd991245
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998807"
+ms.lasthandoff: 11/05/2019
+ms.locfileid: "10276493"
 ---
 # <a name="advanced-network-options-in-windows"></a>Erweiterte Netzwerkoptionen für Windows
 
@@ -162,7 +162,6 @@ Wenn mehrere Netzwerke, die einen externen vSwitch für die Konnektivität verwe
 
 #### <a name="ip-assignment-on-stopped-vs-running-containers"></a>IP-Adresszuweisung auf Containern im angehaltenen Zustand im Vergleich zu ausgeführten Containern
 Die statische IP-Zuweisung erfolgt direkt im Netzwerkadapter des Containers und darf nur dann durchgeführt werden, wenn sich der Container im Zustand BEENDET befindet. Das Hinzufügen von Containernetzwerkadaptern im laufenden Betrieb (Hot-Add) sowie Änderungen am Netzwerkstapel werden während der Containerausführung nicht unterstützt (auf Windows Server 2016).
-> Hinweis: Dies wird im Windows 10 Creators Update geändert, da die Plattform jetzt "Live-Hinzufügen" unterstützt Diese Funktion wird E2E hervorheben, nachdem die [ausstehende Docker Pull-Anforderung](https://github.com/docker/libnetwork/pull/1661) zusammengeführt wird
 
 #### <a name="existing-vswitch-not-visible-to-docker-can-block-transparent-network-creation"></a>Ein bereits vorhandener vSwitch (nicht für Docker sichtbar) kann die Erstellung eines transparenten Netzwerks blockieren
 Sollten Fehler beim Erstellen eines transparenten Netzwerks auftreten, ist es möglich, dass ein externer vSwitch in Ihrem System existiert, der nicht automatisch von Docker erkannt wurde, und der verhindert, dass das transparente Netzwerk an den externen Netzwerkadapter Ihres Containerhosts gebunden wird. 
