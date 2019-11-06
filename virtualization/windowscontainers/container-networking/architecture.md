@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: cff56843a0eeb48ca5d19b694eb8eb4e758002aa
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 8d2ddb80aa05b511dbc8c9532654b18956e340da
+ms.sourcegitcommit: 7fd95333bd7fd2ef3627b0b5c558067e0bd0e09f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998457"
+ms.lasthandoff: 11/05/2019
+ms.locfileid: "10276515"
 ---
 # <a name="windows-container-networking"></a>Windows-Container Netzwerke
 
@@ -58,7 +58,7 @@ Der Host Network Service (HNS) mit der Host Compute Service (HCS) arbeiten zusam
 - NAT-Standardnetzwerk: HNS erstellt Regeln zur WinNAT-Portweiterleitung und Zuordnungen mit entsprechenden Windows-Firewall Zulassungsregeln
 - Alle anderen Netzwerke: HNS nutzt die VFP-Plattform für die Erstellung von Richtlinien
     - Dazu gehören: Lastenausgleich, ACLs, Kapselung usw.
-    - Suchen Sie nach unseren HNS-APIs und Schematas, die **bald veröffentlicht werden**.
+    - Schauen Sie sich die [hier](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top) veröffentlichten HNS-APIs und-Schemata an.
 
 ![Text](media/HNS-Management-Stack.png)
 
