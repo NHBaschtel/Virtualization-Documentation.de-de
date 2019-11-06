@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
-ms.openlocfilehash: 088bc844790d94d30f6b4b05c5cd189392f47e66
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 560e9ffc92728628268d7d557b8fa8428316c8ec
+ms.sourcegitcommit: 551b783410ba49b4d439e3da084986cceffcb7e0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998277"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "10278962"
 ---
 # <a name="getting-started-with-swarm-mode"></a>Erste Schritte mit dem Schwarmmodus 
 
@@ -112,7 +112,7 @@ C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=
 Hierbei ist \<SERVICENAME\> der Name, den Sie dem Dienst zuweisen möchten. Mit diesem Namen referenzieren Sie den Dienst über die Dienstermittlung (die den systemeigenen DNS-Server von Docker verwendet). \<NETWORKNAME\> ist der Name des Netzwerks (beispielsweise „myOverlayNet“), mit dem Sie diesem Dienst verbinden möchten. \<CONTAINERIMAGE\> ist der Name des Containerimages, das den Dienst definiert.
 
 >[!NOTE]
->Das zweite Argument für diesen Befehl `--endpoint-mode dnsrr`ist erforderlich, um dem Andock Modul anzugeben, dass die DNS-Roundrobin-Richtlinie verwendet wird, um den Netzwerkdatenverkehr zwischen den Dienstcontainer Endpunkten auszugleichen. DNS-Round-Robin ist derzeit die einzige Lastenausgleichsstrategie, die unter Windows unterstützt wird.[Routing-Mesh](https://docs.docker.com/engine/swarm/ingress/) wird für Windows-Docker-Hosts noch nicht unterstützt, aber demnächst. Benutzer, die schon jetzt eine alternative Lastenausgleichsstrategie wünschen, können ein externes Lastenausgleichssystem (z.B. NGINX) einrichten und den [publish-Portmodus](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) des Schwarms verwenden, um Containerhostports für den Lastenausgleich verfügbar zu machen.
+>Das zweite Argument für diesen Befehl `--endpoint-mode dnsrr`ist erforderlich, um dem Andock Modul anzugeben, dass die DNS-Roundrobin-Richtlinie verwendet wird, um den Netzwerkdatenverkehr zwischen den Dienstcontainer Endpunkten auszugleichen. Derzeit ist DNS Round-Robin die einzige Lastenausgleichs Strategie, die unter Windows Server 2016 unterstützt wird. [Routing Mesh](https://docs.docker.com/engine/swarm/ingress/) für Windows-Andockfenster Hosts wird unter Windows Server 2019 (und höher) unterstützt, jedoch nicht auf Windows Server 2016. Benutzer, die eine Alternative Lastenausgleichs Strategie auf Windows Server 2016 heute suchen, können ein externes Lastenausgleichsmodul (z.b. NGINX) einrichten und den [Publish-Port-Modus](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) von Swarm verwenden, um Container-Host-Ports verfügbar zu machen, über die der Datenverkehr ausgeglichen werden soll.
 
 ## <a name="scaling-a-service"></a>Skalieren eines Diensts
 Nachdem ein Dienst für einen Schwarmcluster bereitgestellt worden ist, werden die Containerinstanzen, aus denen dieser Dienst gebildet wird, im Cluster bereitgestellt. Standardmäßig beruht ein Dienst auf nur einer Containerinstanz, „Replikat“ oder „Task“ genannt. Jedoch kann ein Dienst mit mehreren Tasks erstellt werden – entweder mit der Option `--replicas` in der `docker service create`-Anweisung oder durch Skalieren des Diensts nach der Erstellung.
@@ -181,7 +181,7 @@ C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADD
 Um einen Dockerdienst auf einem vermischten OS-Schwarm-Cluster zu starten, muss unterscheiden werden können, welche Schwarm-Knoten auf dem Betriebssystems ausgeführt werden, das diesen Dienst unterstützten, und welche nicht. [Docker-Objektbeschriftungen](https://docs.docker.com/engine/userguide/labels-custom-metadata/) bieten eine praktische Möglichkeit zum Beschriften von Knoten, damit diese Dienste erstellt und so konfiguriert werden können, um nur auf den Knoten ausgeführt zu werden, die dem Betriebssystem entsprechen. 
 
 >[!NOTE]
->Andocker- [Objektbeschriftungen](https://docs.docker.com/engine/userguide/labels-custom-metadata/) können verwendet werden, um Metadaten auf eine Vielzahl von Andock Objekten (einschließlich Container Bildern, Containern, Volumes und Netzwerken) und für verschiedene Zwecke anzuwenden (beispielsweise können Etiketten verwendet werden, um "Front-End"-und "Back-End"-Komponenten zu trennen. eine Anwendung, indem die Front-End-secheduled nur auf "Front-End"-Knoten und auf dem Back-End-mircoservices nur auf "Back-End"-beschrifteten Knoten geplant werden. In diesem Fall verwenden wir Beschriftungen für Knoten, um Knoten auf dem Windows-Betriebssystem von denen des Linux-Betriebssystems zu unterscheiden.
+>[Andocker-Objektbeschriftungen](https://docs.docker.com/engine/userguide/labels-custom-metadata/) können verwendet werden, um Metadaten auf eine Vielzahl von Andock Objekten (einschließlich Container Bildern, Containern, Volumes und Netzwerken) und für verschiedene Zwecke anzuwenden (beispielsweise können Etiketten verwendet werden, um "Front-End"-und "Back-End"-Komponenten zu trennen. eine Anwendung, indem die Front-End-secheduled nur auf "Front-End"-Knoten und auf dem Back-End-mircoservices nur auf "Back-End"-beschrifteten Knoten geplant werden. In diesem Fall verwenden wir Beschriftungen für Knoten, um Knoten auf dem Windows-Betriebssystem von denen des Linux-Betriebssystems zu unterscheiden.
 
 Verwenden Sie die folgende Syntax, um Ihre vorhandenen Schwarm-Knoten zu beschriften:
 
@@ -224,10 +224,13 @@ C:\> docker service create --name=linux_s1 --endpoint-mode dnsrr --network testo
 ## <a name="limitations"></a>Einschränkungen
 Momentan gelten unter Windows noch folgende Einschränkungen für den Schwarmmodus:
 - Verschlüsselung auf der Datenschicht wird nicht unterstützt (d.h. Datenverkehr von Container zu Container mit der `--opt encrypted`-Option).
-- [Routing-Mesh](https://docs.docker.com/engine/swarm/ingress/) wird für Windows-Docker-Hosts noch nicht unterstützt, aber demnächst. Benutzer, die schon jetzt eine alternative Lastenausgleichsstrategie wünschen, können ein externes Lastenausgleichssystem (z.B. NGINX) einrichten und den [publish-Portmodus](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) des Schwarms verwenden, um Containerhostports für den Lastenausgleich verfügbar zu machen. Weitere Informationen dazu finden Sie weiter unten.
+- Das [Routing Gitter](https://docs.docker.com/engine/swarm/ingress/) für Windows-Andockfenster Hosts wird unter Windows Server 2016, jedoch nur ab Windows Server 2019, nicht unterstützt. Benutzer, die schon jetzt eine alternative Lastenausgleichsstrategie wünschen, können ein externes Lastenausgleichssystem (z.B. NGINX) einrichten und den [publish-Portmodus](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) des Schwarms verwenden, um Containerhostports für den Lastenausgleich verfügbar zu machen. Weitere Informationen dazu finden Sie weiter unten.
+
+ >[!NOTE]
+>Weitere Informationen zum Einrichten von Docker Swarm-Routing Netzen finden Sie in diesem [Blogbeitrag](https://docs.microsoft.com/en-us/virtualization/community/team-blog/2017/20170926-docker-s-routing-mesh-available-with-windows-server-version-1709)
 
 ## <a name="publish-ports-for-service-endpoints"></a>Veröffentlichen von Ports für Dienstendpunkte
-Die [Routing-Mesh](https://docs.docker.com/engine/swarm/ingress/)-Funktion von Docker-Swarm wird noch nicht auf Windows unterstützt. Benutzer, die Ports für ihre Dienstendpunkte veröffentlichen möchten, können dazu heute den publish-Portmodus verwenden. 
+ Benutzer, die Ports für Ihre Dienstendpunkte veröffentlichen möchten, können dies heute entweder mit dem Modus "Publish-Port" oder mit dem [Routing-Mesh](https://docs.docker.com/engine/swarm/ingress/) -Feature von Docker Swarm tun. 
 
 Um Host-Ports für die einzelnen Aufgaben-/Container-Endpunkte, die einen Dienst definieren, zu veröffentliche, verwenden Sie das `--publish mode=host,target=<CONTAINERPORT>`-Argument für den `docker service create`-Befehl:
 
