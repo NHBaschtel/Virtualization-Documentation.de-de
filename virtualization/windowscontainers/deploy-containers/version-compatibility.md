@@ -3,117 +3,101 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 5fe1cca67c330cb59362e82762651d719708b526
-ms.sourcegitcommit: 27e9cd37beaf11e444767699886e5fdea5e1a2d0
+ms.openlocfilehash: 74e708969a33b9d98b627165a9a47b8017ce2129
+ms.sourcegitcommit: 604323c8815860679cd13e96b2f533b7a0e83c23
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "10058505"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "10286524"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
-Windows Server 2016 und Windows 10 Anniversary Update (beide Version 14393) waren die ersten Windows-Versionen, die Windows Server-Container erstellen und ausführen könnten. Container, die mit diesen Versionen erstellt wurden, können zwar mit neueren Versionen wie Windows Server Version 1709 ausgeführt werden, es gibt dabei aber ein paar Dinge zu beachten.
+Windows Server 2016 und Windows 10 Anniversary Update (beide Version 14393) waren die ersten Windows-Versionen, die Windows Server-Container erstellen und ausführen könnten. Container, die mit diesen Versionen erstellt wurden, können mit neueren Versionen ausgeführt werden, es gibt jedoch ein paar Dinge, die Sie wissen müssen, bevor Sie beginnen.
 
 Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Änderungen vornehmen, die sich auf die Kompatibilität auswirken können. Ältere Container werden auf neueren Hosts mit [Hyper-V-Isolierung](../manage-containers/hyperv-container.md)identisch ausgeführt und verwenden dieselbe (ältere) Kernel Version. Wenn Sie jedoch einen Container auf der Grundlage eines neueren Windows-Builds ausführen möchten, kann er nur auf dem neueren Host-Build ausgeführt werden.
 
->[!NOTE]
-> \ * Windows Server, Version 1709 wird nicht mehr unterstützt. Weitere Informationen finden Sie unter [Basis-Image-Wartungs-Lebenszyklen](base-image-lifecycle.md).
+## <a name="windows-server-host-os-compatibility"></a>Windows Server-Hostbetriebssystem-Kompatibilität
 
-## <a name="windows-server-version-1903-host-os-compatibility"></a>Windows Server, Version 1903, Hostbetriebssystem-Kompatibilität
+<!-- start tab view -->
+# [<a name="windows-server-version-1909"></a>Windows Server, Version 1909](#tab/windows-server-1909)
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Ja|Ja|
-|Windows Server 2019|Ja|Nein.|
-|Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
+|Windows Server, Version 1909|&#10004;|&#10004;|
+|Windows Server, Version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
-## <a name="windows-server-2019-host-os-compatibility"></a>Windows Server 2019-Hostbetriebssystem-Kompatibilität
+# [<a name="windows-server-version-1903"></a>Windows Server, Version 1903](#tab/windows-server-1903)
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Nein|Nein|
-|Windows Server 2019|Ja|Ja|
-|Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
+|Windows Server, Version 1909|&#10060;|&#10060;|
+|Windows Server, Version 1903|&#10004;|&#10004;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
-## <a name="windows-server-version-1803-host-os-compatibility"></a>Windows Server, Version 1803, Hostbetriebssystem-Kompatibilität
+# [<a name="windows-server-2019"></a>Windows Server 2019](#tab/windows-server-2019)
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Nein|Nein|
-|Windows Server 2019|Nein|Nein|
-|Windows Server, Version 1803|Ja|Ja|
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
+|Windows Server, Version 1909|&#10060;|&#10060;|
+|Windows Server, Version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10004;|&#10004;|
+|Windows Server 2016|&#10004;|&#10060;|
 
-## <a name="windows-server-version-1709-host-os-compatibility"></a>Windows Server, Version 1709, Hostbetriebssystem-Kompatibilität *
+# [<a name="windows-server-2016"></a>Windows Server 2016](#tab/windows-server-2016)
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Nein|Nein|
-|Windows Server 2019|Nein|Nein|
-|Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709 *|Ja|Ja|
-|Windows Server 2016|Ja|Nein.|
+|Windows Server, Version 1909|&#10060;|&#10060;|
+|Windows Server, Version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10060;|&#10060;|
+|Windows Server 2016|&#10004;|&#10004;|
 
-## <a name="windows-server-2016-host-os-compatibility"></a>Windows Server 2016-Hostbetriebssystem-Kompatibilität
+---
+<!-- stop tab view -->
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+## <a name="windows-10-host-os-compatibility"></a>Windows 10-Hostbetriebssystem-Kompatibilität
+
+<!-- start tab view -->
+
+# [<a name="windows-10-version-1903"></a>Windows 10, Version 1903](#tab/windows-10-1903)
+
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server 2019, Version 1903|Nein|Nein|
-|Windows Server 2019|Nein|Nein|
-|Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709 *|Nein|Nein|
-|Windows Server 2016|Ja|Ja|
+|Windows Server, Version 1909|&#10060;|&#10060;|
+|Windows Server, Version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server, Version 1803|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
-## <a name="windows-10-version-1903-host-os-compatibility"></a>Windows 10, Version 1903, Hostbetriebssystem-Kompatibilität
+# [<a name="windows-10-version-1809"></a>Windows10, Version1809](#tab/windows-10-1809)
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Ja|Nein.|
-|Windows Server 2019|Ja|Nein.|
-|Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
+|Windows Server, Version 1909|&#10060;|&#10060;|
+|Windows Server, Version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
-## <a name="windows-10-version-1809-host-os-compatibility"></a>Windows 10, Version 1809, Hostbetriebssystem-Kompatibilität
+# [<a name="windows-10-version-1803"></a>Windows10, Version1803](#tab/windows-10-1803)
 
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
 |---|:---:|:---:|
-|Windows Server, Version 1903|Nein|Nein|
-|Windows Server 2019|Ja|Nein.|
-|Windows Server, Version 1803|Ja|Nein.|
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
+|Windows Server, Version 1909|&#10060;|&#10060;|
+|Windows Server, Version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10060;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
-## <a name="windows-10-version-1803-host-os-compatibility"></a>Windows 10, Version 1803, Hostbetriebssystem-Kompatibilität
-
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
-|---|:---:|:---:|
-|Windows Serve, Version 1903|Nein|Nein|
-|Windows Server 2019|Nein|Nein|
-|Windows Server, Version 1803|Ja|Nein.||
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
-
-## <a name="windows-10-fall-creators-update-host-os-compatibility"></a>Windows 10 Fall Creators Update-Hostbetriebssystem-Kompatibilität
-
-|Container-Betriebssystem|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
-|---|:---:|:---:|
-|Windows Server, Version 1903|Nein|Nein|
-|Windows Server 2019|Nein|Nein|
-|Windows Server, Version 1803|Nein|Nein|
-|Windows Server, Version 1709 *|Ja|Nein.|
-|Windows Server 2016|Ja|Nein.|
+---
+<!-- stop tab view -->
 
 ## <a name="matching-container-host-version-with-container-image-versions"></a>Übereinstimmende Container-Host Version mit Container-Bildversionen
 
 ### <a name="windows-server-containers"></a>Windows Server-Container
 
-Da Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel verwenden, muss das Basis Bild des Containers mit dem des Hosts übereinstimmen. Wenn die Versionen unterschiedlich sind, wird der Container möglicherweise gestartet, aber voll funktionssicher ist nicht garantiert. Das Windows-Betriebssystem verfügt über vier Versions Verwaltungsebenen: Major, Minor, Build und Revision. Beispielsweise hätte Version 10.0.14393.103 eine Hauptversion von 10, eine Nebenversion von 0, eine Buildnummer von 14393 und eine Überarbeitungsnummer von 103. Die Buildnummer ändert sich nur, wenn neue Versionen des Betriebssystems veröffentlicht werden, wie etwa Version 1709, 1803, Update für Fall Entwickler usw. Die Revisionsnummer wird aktualisiert, wenn Windows-Updates angewendet werden.
+Da Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel gemeinsam nutzen, muss die basisimage-Version des Containers mit dem des Hosts übereinstimmen. Wenn die Versionen unterschiedlich sind, wird der Container möglicherweise gestartet, aber voll funktionssicher ist nicht garantiert. Das Windows-Betriebssystem verfügt über vier Versions Verwaltungsebenen: Major, Minor, Build und Revision. Beispielsweise hätte Version 10.0.14393.103 eine Hauptversion von 10, eine Nebenversion von 0, eine Buildnummer von 14393 und eine Überarbeitungsnummer von 103. Die Buildnummer ändert sich nur, wenn neue Versionen des Betriebssystems veröffentlicht werden, wie etwa Version 1709, 1903 usw. Die Revisionsnummer wird aktualisiert, wenn Windows-Updates angewendet werden.
 
 #### <a name="build-number-new-release-of-windows"></a>Buildnummer (neue Version von Windows)
 
@@ -144,7 +128,7 @@ C:\>ver
 Microsoft Windows [Version 10.0.16299.125]
 ```
 
-Methode 2: Abfrage des folgenden Registrierungsschlüssels: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+Methode 2: Abfrage des folgenden Registrierungsschlüssels: HKEY_LOCAL_MACHINE \SOFTWARE\Microsoft\Windows NT\CurrentVersion
 
 Beispiel:
 
@@ -179,7 +163,7 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 Es gibt drei Möglichkeiten, diesen Fehler zu beheben:
 
 - Neuerstellen des Containers basierend auf der richtigen `mcr.microsoft.com/windows/nanoserver` Version von oder `mcr.microsoft.com/windows/servercore`
-- Wenn es sich um einen neueren Host handelt, führen Sie die Andock Leiste **Run--Isolation = HyperV... aus.**
+- Wenn es sich um einen neueren Host handelt, führen Sie die **Andock Leiste Run--Isolation = HyperV... aus.**
 - Führen Sie den Container auf einem anderen Host mit der gleichen Windows-Version aus.
 
 ## <a name="choose-which-container-os-version-to-use"></a>Auswählen der zu verwendenden Container-Betriebssystemversion
@@ -358,7 +342,7 @@ Wenn Sie mehr über die Verwendung von Diensteinschränkungen erfahren möchten,
 
 ## <a name="matching-versions-using-kubernetes"></a>Versionsabgleich mit Kubernetes
 
-Das gleiche Problem, das bei der Verwendung von Andock- [Swarm-Versionen](#matching-versions-using-docker-swarm) beschrieben wird, kann auftreten, wenn Pods in Kubernetes geplant werden. Dieses Problem kann mit ähnlichen Strategien vermieden werden:
+Das gleiche Problem, das bei der [Verwendung von Andock-Swarm-Versionen](#matching-versions-using-docker-swarm) beschrieben wird, kann auftreten, wenn Pods in Kubernetes geplant werden. Dieses Problem kann mit ähnlichen Strategien vermieden werden:
 
 - Erstellen Sie den Container auf der Grundlage der gleichen Betriebssystemversion in Entwicklung und Produktion neu. Informationen dazu finden Sie unter [Auswählen der zu verwendenden Container-Betriebssystemversion](#choose-which-container-os-version-to-use).
 - Verwenden Sie Knotenbeschriftungen und nodeSelectors, um sicherzustellen, dass Pods auf kompatiblen Knoten geplant werden, wenn sich sowohl Windows Server 2016-als auch Windows Server-Version 1709-Knoten im gleichen Cluster befinden.
