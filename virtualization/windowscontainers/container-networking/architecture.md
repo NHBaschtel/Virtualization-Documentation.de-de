@@ -8,17 +8,17 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 8d2ddb80aa05b511dbc8c9532654b18956e340da
-ms.sourcegitcommit: 7fd95333bd7fd2ef3627b0b5c558067e0bd0e09f
+ms.openlocfilehash: e9d4a9ac88c6853ce019a2469ee80688490b8fdf
+ms.sourcegitcommit: bb4ec1f05921f982c00bdb3ace6d9bc1d5355296
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "10276515"
+ms.lasthandoff: 11/18/2019
+ms.locfileid: "10297241"
 ---
 # <a name="windows-container-networking"></a>Windows-Container Netzwerke
 
 >[!IMPORTANT]
->Bitte verweisen Sie auf das [Dock Container-Netzwerk](https://docs.docker.com/engine/userguide/networking/) für allgemeine docker-Netzwerk Befehle,-Optionen und-Syntax. * * * mit Ausnahme von Fällen, die in nicht [unterstützten Features und Netzwerkoptionen](#unsupported-features-and-network-options)beschrieben sind, werden alle docker-Netzwerk Befehle unterstützt unter Windows mit der gleichen Syntax wie unter Linux. Die Windows-und Linux-Netzwerkstapel sind jedoch unterschiedlich, und als solche werden Sie feststellen, dass einige Linux-Netzwerk Befehle (beispielsweise ifconfig) unter Windows nicht unterstützt werden.
+>Bitte verweisen Sie auf das [docker-Container Netzwerk](https://docs.docker.com/engine/userguide/networking/) für allgemeine docker-Netzwerk Befehle,-Optionen und-Syntax. * * * mit Ausnahme von Fällen, die in nicht [unterstützten Features und Netzwerkoptionen](#unsupported-features-and-network-options)beschrieben sind, werden alle docker-Netzwerk Befehle unter Windows mit der gleichen Syntax wie unter Linux unterstützt. Die Windows-und Linux-Netzwerkstapel sind jedoch unterschiedlich, und als solche werden Sie feststellen, dass einige Linux-Netzwerk Befehle (beispielsweise ifconfig) unter Windows nicht unterstützt werden.
 
 ## <a name="basic-networking-architecture"></a>Grundlegende Netzwerkarchitektur
 
@@ -69,7 +69,7 @@ Die folgenden Netzwerkoptionen werden unter Windows derzeit **nicht** unterstüt
 - Windows-Container, die an l2bridge-, NAT-und Overlay-Netzwerke angefügt sind, unterstützen keine Kommunikation über den IPv6-Stapel.
 - Verschlüsselte Container Kommunikation über IPSec.
 - HTTP-Proxy Unterstützung für Container.
-- Anfügen von Endpunkten an die Ausführung in der Hyper-V-Isolierung (Hot-Add).
+- [Hostmodus](https://docs.docker.com/ee/ucp/interlock/config/host-mode-networking/) -Netzwerk 
 - Netzwerk für virtualisierte Azure-Infrastruktur über den transparenten Netzwerktreiber.
 
 | Befehl        | Nicht unterstützte Option   |
