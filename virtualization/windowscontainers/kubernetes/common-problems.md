@@ -7,12 +7,12 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: kubernetes, 1,14, Linux, kompilieren
-ms.openlocfilehash: b6e4e648ff050e13a0930f2834949867e44ce895
-ms.sourcegitcommit: d252f356a3de98f224e1550536810dfc75345303
+ms.openlocfilehash: 8bebc83e03fe919f6af3968b0e0463ab3c6bb987
+ms.sourcegitcommit: 6b925368d122ba600d7d4c73bd240cdcb915cccd
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "10069934"
+ms.lasthandoff: 11/22/2019
+ms.locfileid: "10305724"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -43,6 +43,19 @@ nssm set <Service Name> AppStderr C:\k\mysvc.log
 Weitere Informationen finden Sie unter offizielle [nssm-Verwendungs](https://nssm.cc/usage) Dokumente.
 
 ## <a name="common-networking-errors"></a>Häufige Netzwerkfehler ##
+
+### <a name="load-balancers-are-plumbed-inconsistently-across-the-cluster-nodes"></a>Lastenausgleichsgeräte werden inkonsistent über die Clusterknoten verteilt ###
+In der Konfiguration des (Standard-) Kuben-Proxys können Cluster, die 100 + Load-Balancer enthalten, die verfügbaren ephemeren (dynamischen) Ports aufgrund der großen Anzahl von Ports, die auf jedem Knoten für jeden (nicht-DSR-) Lastenausgleichsmodul reserviert sind, auslassen. Dies kann sich durch Fehler in einem Kuben-Proxy wie folgt manifestieren:
+```
+Policy creation failed: hcnCreateLoadBalancer failed in Win32: The specified port already exists.
+```
+
+Benutzer können dieses Problem identifizieren, indem Sie das [CollectLogs. ps1](https://github.com/microsoft/SDN/blob/master/Kubernetes/windows/debug/collectlogs.ps1) -Skript `*portrange.txt` ausführen und die Dateien konsultieren. In `reservedports.txt`wird auch eine heuristische Zusammenfassung generiert.
+
+Um dieses Problem zu beheben, können einige Schritte ausgeführt werden:
+1.  Für eine dauerhafte Lösung sollte der Lade Ausgleich für den Kuben-Proxy auf den [DSR-Modus](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710)eingestellt werden. Leider ist der DSR-Modus nur für neuere [Windows Server Insider Build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (oder höher) vollständig implementiert.
+2. Um dieses Problem zu umgehen, können Benutzer auch die standardmäßige Windows-Konfiguration von ephemeren Ports mithilfe `netsh int ipv4 dynamicportrange TCP <start_range> <end_range>`eines Befehls wie. *Warnung:* Das Überschreiben des standardmäßigen dynamischen Portbereichs kann Auswirkungen auf andere Prozesse/Dienste auf dem Host haben, die auf verfügbare TCP-Ports aus dem nicht ephemeren Bereich angewiesen sind, damit dieser Bereich sorgfältig ausgewählt werden sollte.
+3. Darüber hinaus arbeiten wir an einer skalierbaren Erweiterung für Lastenausgleichsfunktionen für nicht-DSR-Modi mithilfe der intelligenten Port Pool Freigabe, die über ein kumulatives Update in Q1 2020 freigegeben werden soll.
 
 ### <a name="hostport-publishing-is-not-working"></a>HostPort Publishing funktioniert nicht ###
 Es ist derzeit nicht möglich, Ports mithilfe des Kubernetes `containers.ports.hostPort` -Felds zu veröffentlichen, da dieses Feld nicht von Windows cni-Plugins berücksichtigt wird. Bitte verwenden Sie DEPORT Publishing zurzeit, um Ports auf dem Knoten zu veröffentlichen.
@@ -152,7 +165,7 @@ Es gibt zwei zurzeit bekannte Probleme, die zu Endpunkten führen können.
 2. Das zweite [bekannte Problem](https://github.com/docker/libnetwork/issues/1950) , bei dem Endpunkte auslaufen können, ist ein Parallelitäts Problem beim Speichern von Endpunkten. Um das Update zu erhalten, müssen Sie docker EE 18,09 oder höher verwenden.
 
 ### <a name="my-pods-cannot-launch-due-to-network-failed-to-allocate-for-range-errors"></a>Meine Pods können aufgrund der Fehler "Netzwerk: Fehler beim Zuweisen für Bereichsfehler" nicht gestartet werden ###
-Dies zeigt an, dass der IP-Adressraum auf dem Knoten aufgebraucht ist. Wenn Sie alle durch [](#my-endpointsips-are-leaking)gesickerten Endpunkte bereinigen möchten, migrieren Sie alle Ressourcen auf betroffenen Knoten, #a0 führen Sie die folgenden Befehle aus:
+Dies zeigt an, dass der IP-Adressraum auf dem Knoten aufgebraucht ist. Wenn Sie alle durch [gesickerten Endpunkte](#my-endpointsips-are-leaking)bereinigen möchten, migrieren Sie alle Ressourcen auf betroffenen Knoten, #a0 führen Sie die folgenden Befehle aus:
 ```
 c:\k\stop.ps1
 Get-HNSEndpoint | Remove-HNSEndpoint
@@ -160,7 +173,7 @@ Remove-Item -Recurse c:\var
 ```
 
 ### <a name="my-windows-node-cannot-access-my-services-using-the-service-ip"></a>Mein Windows-Knoten kann nicht mithilfe der Dienst-IP auf meine Dienste zugreifen. ###
-Dies ist eine bekannte Einschränkung für den aktuellen Netzwerkstapel unter Windows. Windows- *Pods* **** können jedoch auf die Dienst-IP zugreifen.
+Dies ist eine bekannte Einschränkung für den aktuellen Netzwerkstapel unter Windows. Windows- *Pods* **können jedoch** auf die Dienst-IP zugreifen.
 
 ### <a name="no-network-adapter-is-found-when-starting-kubelet"></a>Beim Start von Kubelet wird kein Netzwerkadapter gefunden. ###
 Der Windows-Netzwerkstack benötigt einen virtuellen Adapter, damit das Kubernetes-Netzwerk funktioniert. Wenn die folgenden Befehle keine Ergebnisse (in einer Admin-Shell) zurückgeben, ist die Erstellung eines virtuellen Netzwerks &mdash; eine notwendige Voraussetzung, damit Kubelet funktioniert &mdash; fehlgeschlagen.
@@ -170,7 +183,7 @@ Get-HnsNetwork | ? Name -ieq "cbr0"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 
-Häufig lohnt es sich, den [](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) Parameter InterfaceName des Skripts Start. ps1 zu ändern, wenn der Netzwerkadapter des Hosts nicht "Ethernet" ist. Konsultieren Sie andernfalls die Ausgabe des `start-kubelet.ps1` Skripts, um festzustellen, ob während der Erstellung des virtuellen Netzwerks Fehler auftreten. 
+Häufig lohnt es sich, den Parameter [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) des Skripts Start. ps1 zu ändern, wenn der Netzwerkadapter des Hosts nicht "Ethernet" ist. Konsultieren Sie andernfalls die Ausgabe des `start-kubelet.ps1` Skripts, um festzustellen, ob während der Erstellung des virtuellen Netzwerks Fehler auftreten. 
 
 ### <a name="pods-stop-resolving-dns-queries-successfully-after-some-time-alive"></a>Pods stoppen nach einiger Zeit die erfolgreiche Auflösung von DNS-Abfragen. ###
 Es gibt ein bekanntes Problem mit der DNS-Zwischenspeicherung im Netzwerkstapel von Windows Server, Version 1803 und darunter, die möglicherweise dazu führen, dass DNS-Anforderungen fehlschlagen. Um dieses Problem zu umgehen, können Sie mit den folgenden Registrierungsschlüsseln die Werte für den Max-TTL-Cache auf Null setzen:
