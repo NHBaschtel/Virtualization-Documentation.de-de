@@ -7,12 +7,12 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: kubernetes, 1,14, Linux, kompilieren
-ms.openlocfilehash: 54396f4b350fa7dfe59e073601f41b0a73f06dca
-ms.sourcegitcommit: 76dce6463e820420073dda2dbad822ca4a6241ef
+ms.openlocfilehash: 471731ec50c7c03816a956bd7aae859ad218be6d
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/25/2019
-ms.locfileid: "10307263"
+ms.lasthandoff: 12/03/2019
+ms.locfileid: "10332361"
 ---
 # Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -45,7 +45,7 @@ Weitere Informationen finden Sie unter offizielle [nssm-Verwendungs](https://nss
 ## Häufige Netzwerkfehler ##
 
 ### Lastenausgleichsgeräte werden inkonsistent über die Clusterknoten verteilt ###
-In der Konfiguration des (Standard-) Kuben-Proxys können Cluster mit 100 + Load-Balancern die verfügbaren ephemeren TCP-Ports (aka dynamischer Portbereich, der in der Regel Ports 49152 bis 65535 abdeckt) aufgrund der großen Anzahl von Ports, die auf jedem Knoten für jeden (nicht-DSR) Load Balancer reserviert sind. Dies kann sich durch Fehler in einem Kuben-Proxy wie folgt manifestieren:
+Unter Windows erstellt der Kuben-Proxy ein HNS-Lastenausgleichsmodul für jeden Kubernetes-Dienst im Cluster. In der Konfiguration des (Standard-) Kuben-Proxys können Knoten in Clustern, die viele (normalerweise 100 +) Last Verteilungspunkte enthalten, die verfügbaren ephemeren TCP-Ports auslassen (aka dynamischer Portbereich, der standardmäßig die Ports 49152 bis 65535 abdeckt. Dies ist auf die hohe Anzahl von Ports zurückzuführen, die auf jedem Knoten für jeden (nicht-DSR) Load Balancer reserviert sind. Dieses Problem kann sich durch Fehler in einem Kuben-Proxy wie folgt manifestieren:
 ```
 Policy creation failed: hcnCreateLoadBalancer failed in Win32: The specified port already exists.
 ```
@@ -55,9 +55,9 @@ Benutzer können dieses Problem identifizieren, indem Sie das [CollectLogs. ps1]
 Darüber `CollectLogs.ps1` hinaus wird in der HNS-Zuordnungslogik nachgeahmt, um die Verfügbarkeit der Port Poolzuordnung im ephemeren TCP- `reservedports.txt`Portbereich zu testen und den Erfolg/Fehler in zu melden. Das Skript reserviert 10 Bereiche von 64-TCP-ephemeren Ports (zum Emulieren des HNS-Verhaltens), zählt Reservierungs Erfolge #a0 Fehler und gibt dann die zugewiesenen Portbereiche frei. Eine Erfolgs Nummer, die kleiner als 10 ist, gibt an, dass dem temporären Pool der freie Speicherplatz knapp wird. Eine heuristische Zusammenfassung der Anzahl von 64-Port Reservierungen, die ungefähr verfügbar sind, wird ebenfalls `reservedports.txt`in generiert.
 
 Um dieses Problem zu beheben, können einige Schritte ausgeführt werden:
-1.  Für eine dauerhafte Lösung sollte der Lade Ausgleich für den Kuben-Proxy auf den [DSR-Modus](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710)eingestellt werden. Leider ist der DSR-Modus nur für neuere [Windows Server Insider Build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (oder höher) vollständig implementiert.
+1.  Für eine dauerhafte Lösung sollte der Lade Ausgleich für den Kuben-Proxy auf den [DSR-Modus](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710)eingestellt werden. Der DSR-Modus ist vollständig implementiert und steht nur für neuere [Windows Server Insider Build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (oder höher) zur Verfügung.
 2. Um dieses Problem zu umgehen, können Benutzer auch die standardmäßige Windows-Konfiguration von ephemeren Ports mithilfe `netsh int ipv4 set dynamicportrange TCP <start_port> <port_count>`eines Befehls wie. *Warnung:* Das Überschreiben des standardmäßigen dynamischen Portbereichs kann Auswirkungen auf andere Prozesse/Dienste auf dem Host haben, die auf verfügbare TCP-Ports aus dem nicht ephemeren Bereich angewiesen sind, damit dieser Bereich sorgfältig ausgewählt werden sollte.
-3. Darüber hinaus arbeiten wir an einer skalierbaren Erweiterung für Lastenausgleichsfunktionen für nicht-DSR-Modi mithilfe der intelligenten Port Pool Freigabe, die über ein kumulatives Update in Q1 2020 freigegeben werden soll.
+3. Es gibt eine Verbesserung der Skalierbarkeit für Lastenausgleichsfunktionen im nicht-DSR-Modus mithilfe der intelligenten Port Pool Freigabe, die über ein kumulatives Update in Q1 2020 freigegeben werden soll.
 
 ### HostPort Publishing funktioniert nicht ###
 Es ist derzeit nicht möglich, Ports mithilfe des Kubernetes `containers.ports.hostPort` -Felds zu veröffentlichen, da dieses Feld nicht von Windows cni-Plugins berücksichtigt wird. Bitte verwenden Sie DEPORT Publishing zurzeit, um Ports auf dem Knoten zu veröffentlichen.
