@@ -5,7 +5,7 @@
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_api",
       "build_source_folder": "virtualization/api",
       "build_output_subfolder": "virtualization-api",
-      "locale": "en-us",
+      "locale": "de-de",
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
@@ -21,7 +21,7 @@
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
       "build_source_folder": "virtualization/community",
       "build_output_subfolder": "virtualization-community",
-      "locale": "en-us",
+      "locale": "de-de",
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
@@ -35,7 +35,7 @@
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
       "build_source_folder": "virtualization/hyper-v-on-windows",
       "build_output_subfolder": "virtualization-hyperv_on_windows",
-      "locale": "en-us",
+      "locale": "de-de",
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
@@ -49,7 +49,7 @@
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
       "build_source_folder": "virtualization/windowscontainers",
       "build_output_subfolder": "virtualization-windowscontainers",
-      "locale": "en-us",
+      "locale": "de-de",
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
@@ -63,7 +63,7 @@
       "docset_name": "virtualization",
       "build_source_folder": "virtualization/landing-page",
       "build_output_subfolder": "virtualization",
-      "locale": "en-us",
+      "locale": "de-de",
       "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
