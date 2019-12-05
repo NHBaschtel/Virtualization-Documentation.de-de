@@ -9,7 +9,7 @@
       "build_output_subfolder": "virtualization-api",
       "locale": "de-de",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
@@ -24,7 +24,7 @@
       "build_output_subfolder": "virtualization-community",
       "locale": "de-de",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content"
       },
@@ -37,7 +37,7 @@
       "build_output_subfolder": "virtualization-hyperv_on_windows",
       "locale": "de-de",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content"
       },
@@ -50,7 +50,7 @@
       "build_output_subfolder": "virtualization-windowscontainers",
       "locale": "de-de",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content"
       },
@@ -63,7 +63,7 @@
       "build_output_subfolder": "virtualization",
       "locale": "de-de",
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
@@ -78,11 +78,16 @@
     "enderb@microsoft.com"
   ],
   "branches_to_filter": [
-    "master-oldev",
+       "master-oldev",
+    "master",
+    "master-sxs",
     "live-oldev",
-    "live-sxs"
+    "live"
   ],
   "skip_source_output_uploading": false,
+  "contribution_branch_mappings": {
+       "live-sxs": "live"
+  },
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
@@ -100,5 +105,7 @@
       }
     }
   ],
+    "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/Virtualization-Documentation.de-de/",
+  "git_repository_branch_open_to_public_contributors": "live",
   "need_generate_pdf_url_template": false
 }
