@@ -15,6 +15,9 @@
     ],
     "externalReference": [
     ],
+    "globalMetadata": {
+      "disable_contribution_on_translation_quality": ["MTE95","MTE75","MT"]
+          },
     "template": "op.html",
     "dest": "virtualization/community"
   }
