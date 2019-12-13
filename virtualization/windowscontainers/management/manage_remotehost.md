@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 0cc1b621-1a92-4512-8716-956d7a8fe495
-ms.openlocfilehash: 2e1fec6aa7149c801b1c72a0f8a346ca879015c2
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: b975c593bd5c736ec3e7e1e21b76b2f6a2c8f8a4
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998197"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909650"
 ---
 # <a name="remote-management-of-a-windows-docker-host"></a>Remoteverwaltung eines Windows-Docker-Hosts
 
@@ -23,7 +23,7 @@ Die Schritte dazu sind sehr einfach:
 
 * Erstellen Sie die Zertifikate auf dem Server mit [Dockertls](https://hub.docker.com/r/stefanscherer/dockertls-windows/). Wenn Sie Zertifikate mit einer IP-Adresse erstellen, sollten Sie eine statische IP-Adresse verwenden, um zu verhindern, dass die Zertifikate neu erstellt werden müssen, wenn sich die IP-Adresse ändert.
 
-* Starten Sie den Docker-Dienst neu: `Restart-Service Docker`
+* Starten Sie den docker-Dienst neu `Restart-Service Docker`
 * Machen Sie die Docker-TLS-Ports 2375 und 2376 durch Erstellen einer NSG Regel verfügbar, die eingehenden Datenverkehr zulässt. Beachten Sie, dass für sichere Verbindungen nur 2376 erforderlich ist.  
   Das Portal sollte eine NSG-Konfiguration wie folgt anzeigen:  
   ![NGSs](media/nsg.png)  
@@ -32,8 +32,8 @@ Die Schritte dazu sind sehr einfach:
 ```
 New-NetFirewallRule -DisplayName 'Docker SSL Inbound' -Profile @('Domain', 'Public', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 2376
 ```
-* Kopieren Sie die Dateien `ca.pem`, „cert.pem“ und „key.pem“ aus dem Benutzer-Docker-Ordner auf Ihrem Computer (z.B. `c:\users\chris\.docker`) auf den lokalen Computer. Sie können z.B. mit STRG+C und STRG+V die Dateien einer RDP-Sitzung verwenden. 
-* Stellen Sie sicher, dass Sie eine Verbindung mit dem Remote-Docker-Host herstellen können. Führen Sie Folgendes aus:
+* Kopieren Sie die Dateien `ca.pem`, „cert.pem“ und „key.pem“ aus dem Benutzer-Docker-Ordner auf Ihrem Computer (z. B. `c:\users\chris\.docker`) auf den lokalen Computer. Sie können z. B. mit STRG+C und STRG+V die Dateien einer RDP-Sitzung verwenden. 
+* Stellen Sie sicher, dass Sie eine Verbindung mit dem Remote-Docker-Host herstellen können. Führen Sie  aus.
 ```
 docker -D -H tcp://wsdockerhost.southcentralus.cloudapp.azure.com:2376 --tlsverify --tlscacert=c:\
 users\foo\.docker\client\ca.pem --tlscert=c:\users\foo\.docker\client\cert.pem --tlskey=c:\users\foo\.doc

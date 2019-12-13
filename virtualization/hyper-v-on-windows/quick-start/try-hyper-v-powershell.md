@@ -1,7 +1,7 @@
 ---
 title: Arbeiten mit Hyper-V und Windows PowerShell
 description: Arbeiten mit Hyper-V und Windows PowerShell
-keywords: Windows 10, Hyper-V
+keywords: Windows 10, Hyper-V
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
@@ -9,11 +9,11 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
 ms.openlocfilehash: d53bdce3438c6dafe3a1e0350c7a5df30ff8210b
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9883123"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911510"
 ---
 # <a name="working-with-hyper-v-and-windows-powershell"></a>Arbeiten mit Hyper-V und Windows PowerShell
 
@@ -21,7 +21,7 @@ Nachdem Sie sich mit den Grundlagen der Bereitstellung von Hyper-V sowie dem Ers
 
 ### <a name="return-a-list-of-hyper-v-commands"></a>Zurückgeben einer Liste von Hyper-V-Befehle
 
-1. Klicken Sie auf die Windows-Schaltfläche „Start“, und geben Sie **PowerShell** ein.
+1. Klicken Sie auf der Windows-Schaltfläche „Start“, und geben Sie **powershell** ein.
 2. Führen Sie den folgenden Befehl aus, um eine durchsuchbare Liste mit PowerShell-Befehlen anzuzeigen, die für das PowerShell-Modul für Hyper-V verfügbar sind.
 
  ```powershell
@@ -31,7 +31,7 @@ Get-Command -Module hyper-v | Out-GridView
 
   ![](./media/command_grid.png)
 
-3. Um weitere Informationen zu einem bestimmten PowerShell-Befehl zu erhalten, verwenden Sie `Get-Help`. Bei Ausführen des folgenden Befehls werden z.B. Informationen zum Hyper-V-Befehl `Get-VM` zurückgegeben.
+3. Um weitere Informationen zu einem bestimmten PowerShell-Befehl zu erhalten, verwenden Sie `Get-Help`. Bei Ausführen des folgenden Befehls werden z. B. Informationen zum Hyper-V-Befehl `Get-VM` zurückgegeben.
 
   ```powershell
   Get-Help Get-VM
@@ -65,9 +65,9 @@ Mit `Get-VM` können Sie eine Liste virtueller Computer zurückgeben.
  Get-VM | where {$_.State -eq 'Off'}
  ```
 
-### <a name="start-and-shut-down-virtual-machines"></a>Starten und Herunterfahren von virtuellen Maschinen
+### <a name="start-and-shut-down-virtual-machines"></a>Starten und Herunterfahren virtueller Computer
 
-1. Um einen bestimmten virtuellen Computer zu starten, führen Sie den folgenden Befehl mit dem Namen des virtuellen Computers:
+1. Um einen bestimmten virtuellen Computer zu starten, führen Sie den folgenden Befehl mit dem Namen des virtuellen Computers aus:
 
  ```powershell
  Start-VM -Name <virtual machine name>
@@ -115,7 +115,7 @@ Im folgenden Beispiel wird das Erstellen ein neues virtuellen Computers in der P
   New-VM @VM
  ```
 
-## <a name="wrap-up-and-references"></a>Wrappen und Verweise
+## <a name="wrap-up-and-references"></a>Zusammenfassung und Referenzen
 
-Dieses Dokument hat einige einfache Schritte zum Explorer das Hyper-V-PowerShell-Modul sowie einige Beispielszenarios gezeigt. Weitere Informationen zum PowerShell-Modul für Hyper-V finden Sie in der [Referenz zu Hyper-V-Cmdlets in Windows PowerShell](https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps).  
+In diesem Dokument wurden einige einfache Schritte mit dem PowerShell-Modul für Hyper-V sowie verschiedene Beispielszenarien vorgestellt. Weitere Informationen zum PowerShell-Modul für Hyper-V finden Sie in der [Referenz zu Hyper-V-Cmdlets in Windows PowerShell](https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps).  
  

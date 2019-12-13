@@ -1,7 +1,7 @@
 ---
-title: Systemanforderungen von Hyper-V unter Windows10
-description: Systemanforderungen von Hyper-V unter Windows10
-keywords: Windows 10, Hyper-V
+title: Systemanforderungen von Hyper-V unter Windows 10
+description: Systemanforderungen von Hyper-V unter Windows 10
+keywords: Windows 10, Hyper-V
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
@@ -9,33 +9,33 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
 ms.openlocfilehash: d4e3f7c1e94d0162ae9ee6251d9c6d8cc51bf1d3
-ms.sourcegitcommit: c4a3f88d1663dd19336bfd4ede0368cb18550ac7
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "9883073"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911220"
 ---
-# <a name="windows-10-hyper-v-system-requirements"></a>Systemanforderungen von Hyper-V unter Windows10
+# <a name="windows-10-hyper-v-system-requirements"></a>Systemanforderungen von Hyper-V unter Windows 10
 
-Hyper-V steht in der 64-Bit-Version von Windows 10 pro, Enterprise und Education zur Verfügung. Hyper-V erfordert eine Adressübersetzung der zweiten Ebene (SLAT) – diese ist in der aktuellen Generation der 64-Bit-Prozessoren von Intel und AMD vorhanden.
+Hyper-V ist in der 64-Bit-Version von Windows 10 pro, Enterprise und Education verfügbar. Hyper-V erfordert eine Adressübersetzung der zweiten Ebene (SLAT) – diese ist in der aktuellen Generation der 64-Bit-Prozessoren von Intel und AMD vorhanden.
 
-Auf einem Host mit 4GB RAM können Sie drei bis vier virtuelle Computer ausführen. Für weitere virtuelle Computer benötigen Sie allerdings weitere Ressourcen. Am anderen Ende des Spektrums können Sie auch, abhängig von der physischen Hardware, große virtuelle Computer mit 32Prozessoren und 512GB RAM erstellen.
+Auf einem Host mit 4 GB RAM können Sie drei bis vier virtuelle Computer ausführen. Für weitere virtuelle Computer benötigen Sie allerdings weitere Ressourcen. Am anderen Ende des Spektrums können Sie auch, abhängig von der physischen Hardware, große virtuelle Computer mit 32 Prozessoren und 512 GB RAM erstellen.
 
 ## <a name="operating-system-requirements"></a>Betriebssystemanforderungen
 
 Die Rolle „Hyper-V“ kann bei diesen Versionen von Windows 10 aktiviert werden:
 
-- Windows 10 Enterprise
-- Windows10Pro
+- Windows 10 Enterprise
+- Windows 10 Pro
 - Windows 10 Education
 
 Die Rolle „Hyper-V“ kann bei diesen Versionen **nicht** installiert werden:
 
 - Windows 10 Home
-- Windows 10 Mobile
+- Windows 10 Mobile
 - Windows 10 Mobile Enterprise
 
->Windows 10 Home Edition kann auf Windows 10 pro aktualisiert werden. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
+>Für Windows 10 Home Edition kann ein Upgrade auf Windows 10 pro durchgeführt werden. Öffnen Sie dazu **Einstellungen** > **Update und Sicherheit** > **Aktivierung**. Hier können Sie den Store besuchen und ein Upgrade erwerben.
 
 ## <a name="hardware-requirements"></a>Hardwareanforderungen
 

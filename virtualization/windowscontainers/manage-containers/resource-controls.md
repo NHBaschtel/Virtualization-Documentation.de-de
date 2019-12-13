@@ -9,11 +9,11 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ms.openlocfilehash: 3e9f7e3208222cd6c0f512c5f892453ac6e6980c
-ms.sourcegitcommit: 73134bf279f3ed18235d24ae63cdc2e34a20e7b7
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "10107874"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910170"
 ---
 # <a name="implementing-resource-controls-for-windows-containers"></a>Implementieren von Ressourcensteuerungen für Windows-Container
 Pro Container und pro Ressource können diverse Steuerungen implementiert werden.  Standardmäßig unterliegen ausgeführte Container einer typischen Windows-Ressourcenverwaltung, die im Allgemeinen auf einer gleichberechtigten Verteilung basiert. Ein Entwickler oder Administrator kann die Ressourcennutzung jedoch durch die Konfiguration der einzelnen Steuerungselemente begrenzen oder beeinflussen.  Gesteuert werden können die Ressourcen CPU/Prozessor, Arbeitsspeicher/RAM, Datenträger/Speicher und Networking/Durchsatz.
@@ -28,38 +28,38 @@ Dieser Abschnitt enthält für jede Ressource eine Zuordnung zwischen der Docker
 |  | |
 | ----- | ------|
 | *Arbeitsspeicher* ||
-| Docker-Schnittstelle | [--memory](https://docs.docker.com/engine/admin/resource_constraints/#memory) |
-| HCS-Schnittstelle | [MemoryMaximumInMB](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
+| Docker-Schnittstelle | [--Arbeitsspeicher](https://docs.docker.com/engine/admin/resource_constraints/#memory) |
+| HCS-Schnittstelle | [Memorymaximuminmb](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-_jobobject_basic_limit_information) |
 | Hyper-V-Isolierung | Arbeitsspeicher des virtuellen Computers |
-| _Hinweis zur Hyper-V-Isolation in Windows Server2016: Wenn Sie eine Memory-Cap verwenden, werden Sie bemerken, dass der Container den durch die Cap festgelegten Speicher zunächst zuweist und dann beginnt, ihn an den Container-Host zurückzugeben.  In späteren Versionen (ab 1709) wurde dieses Verhalten optimiert._ |
+| _Beachten Sie in Bezug auf die Hyper-V-Isolation in Windows Server 2016: Wenn Sie ein Arbeitsspeicher Limit verwenden, sehen Sie, dass der Container anfänglich die Cap-Menge des Arbeitsspeichers zuweist und dann erneut an den Container Host zurückgegeben wird.  In höheren Versionen (1709 oder höher) wurde dies optimiert._ |
 | ||
 | *CPU (Anzahl)* ||
-| Docker-Schnittstelle | [--cpus](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
+| Docker-Schnittstelle | [--CPUs](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
 | HCS-Schnittstelle | [ProcessorCount](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | Simuliert mit [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information)* |
 | Hyper-V-Isolierung | Anzahl verfügbarer virtueller Prozessoren |
 | ||
 | *CPU (Prozent)* ||
-| Docker-Schnittstelle | [--cpu-percent](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
-| HCS-Schnittstelle | [ProcessorMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
+| Docker-Schnittstelle | [--CPU-Prozent](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
+| HCS-Schnittstelle | [Processormaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP](https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information) |
 | Hyper-V-Isolierung | Hypervisor-Limits für virtuelle Prozessoren |
 | ||
 | *CPU (Freigaben)* ||
-| Docker-Schnittstelle | [--cpu-shares](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
-| HCS-Schnittstelle | [ProcessorWeight](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
+| Docker-Schnittstelle | [--CPU-Freigaben](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
+| HCS-Schnittstelle | [Processorweight](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | [JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED](https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-_jobobject_cpu_rate_control_information) |
 | Hyper-V-Isolierung | Hypervisor-Gewichtungen für virtuelle Prozessoren |
 | ||
-| *Speicher (Image)* ||
-| Docker-Schnittstelle | [--io-maxbandwidth/--io-maxiops](https://docs.docker.com/edge/engine/reference/commandline/run/#usage) |
-| HCS-Schnittstelle | [StorageIOPSMaximum und StorageBandwidthMaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
+| *Speicher (Bild)* ||
+| Docker-Schnittstelle | [--IO-MaxBandwidth/--IO-maxiops](https://docs.docker.com/edge/engine/reference/commandline/run/#usage) |
+| HCS-Schnittstelle | [Storageiopsmaximum und storagebandwidthmaximum](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://docs.microsoft.com/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | Hyper-V-Isolierung | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://docs.microsoft.com/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | ||
 | *Speicher (Volumes)* ||
-| Docker-Schnittstelle | [--storage-opt size=](https://docs.docker.com/edge/engine/reference/commandline/run/#set-storage-driver-options-per-container) |
+| Docker-Schnittstelle | [--Storage-opt size =](https://docs.docker.com/edge/engine/reference/commandline/run/#set-storage-driver-options-per-container) |
 | HCS-Schnittstelle | [StorageSandboxSize](https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Gemeinsamer Kernel | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://docs.microsoft.com/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |
 | Hyper-V-Isolierung | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://docs.microsoft.com/windows/desktop/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information) |

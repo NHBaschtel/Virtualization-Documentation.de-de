@@ -1,7 +1,7 @@
 ---
-title: Erstellen von gMSAs für Windows-Container
-description: Erstellen von Gruppen-Managed-Service-Konten (gMSAs) für Windows-Container
-keywords: docker, Container, Active Directory, GMSA, Gruppen verwaltetes Dienstkonto, Gruppen verwaltete Dienstkonten
+title: Erstellen von gmsas für Windows-Container
+description: Erstellen von Gruppen verwalteten Dienst Konten (Group Managed Service Accounts, gmsas) für Windows-Container.
+keywords: docker, Container, Active Directory, GMSA, Gruppen verwaltetes Dienst Konto, Gruppen verwaltete Dienst Konten
 author: rpsqrd
 ms.date: 09/10/2019
 ms.topic: article
@@ -9,91 +9,91 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ms.openlocfilehash: 9ed9029e534d56bfe1830281d0bfd3ddde0cee9e
-ms.sourcegitcommit: 5d4b6823b82838cb3b574da3cd98315cdbb95ce2
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2019
-ms.locfileid: "10079664"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910250"
 ---
-# <a name="create-gmsas-for-windows-containers"></a>Erstellen von gMSAs für Windows-Container
+# <a name="create-gmsas-for-windows-containers"></a>Erstellen von gmsas für Windows-Container
 
-In Windows-basierten Netzwerken werden in der Regel Active Directory (AD) verwendet, um die Authentifizierung und Autorisierung zwischen Benutzern, Computern und anderen Netzwerkressourcen zu vereinfachen. Entwickler von Unternehmensanwendungen entwerfen Ihre apps oft so, dass Sie AD-integriert sind und auf Domänen verbundenen Servern ausgeführt werden, um die integrierte Windows-Authentifizierung zu nutzen, die es Benutzern und anderen Diensten erleichtert, sich automatisch und transparent bei die Anwendung mit ihren Identitäten
+Windows-basierte Netzwerke verwenden häufig Active Directory (AD), um die Authentifizierung und Autorisierung zwischen Benutzern, Computern und anderen Netzwerkressourcen zu vereinfachen. Entwickler von Unternehmensanwendungen entwerfen Ihre apps häufig so, dass Sie AD-integriert sind und auf in die Domäne eingebundenen Servern ausgeführt werden, um die integrierte Windows-Authentifizierung nutzen zu können. Dadurch können sich Benutzer und andere Dienste automatisch und transparent bei anmelden. die Anwendung mit ihren Identitäten.
 
-Obwohl Windows-Container keine Domäne sein können, können Sie weiterhin Active Directory-Domänenidentitäten verwenden, um verschiedene Authentifizierungsszenarien zu unterstützen.
+Obwohl Windows-Container nicht in die Domäne aufgenommen werden können, können Sie weiterhin Active Directory Domänen Identitäten verwenden, um verschiedene Authentifizierungs Szenarien zu unterstützen.
 
-Um dies zu erreichen, können Sie einen Windows-Container für die Ausführung mit einem [Group Managed Service-Konto](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA) konfigurieren, bei dem es sich um eine spezielle Art von Dienstkonto handelt, das in Windows Server 2012 eingeführt wurde, damit mehrere Computer eine Identität freigeben können, ohne dass um sein Kennwort zu kennen.
+Um dies zu erreichen, können Sie einen Windows-Container so konfigurieren, dass er mit einem [Gruppen verwalteten Dienst Konto (Group Managed Service Account](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) , GMSA) ausgeführt wird. dabei handelt es sich um einen speziellen Dienst Kontotyp, der in Windows Server 2012 eingeführt wurde
 
-Wenn Sie einen Container mit einem gMSA ausführen, ruft der Container Host das gMSA-Kennwort von einem Active Directory-Domänencontroller ab und übergibt ihn an die Containerinstanz. Der Container verwendet die gMSA-Anmeldeinformationen, wenn sein Computerkonto (System) auf Netzwerkressourcen zugreifen muss.
+Wenn Sie einen Container mit einem GMSA ausführen, ruft der Container Host das GMSA-Kennwort von einem Active Directory Domänen Controller ab und übergibt es an die Container Instanz. Der Container verwendet die GMSA-Anmelde Informationen immer dann, wenn das Computer Konto (System) auf Netzwerkressourcen zugreifen muss.
 
-In diesem Artikel wird erläutert, wie Sie mit der Verwendung von Active Directory Group Managed Service-Konten mit Windows-Containern beginnen.
+In diesem Artikel wird erläutert, wie Sie mit der Verwendung Active Directory Gruppen verwalteten Dienst Konten mit Windows-Containern beginnen.
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
-Wenn Sie einen Windows-Container mit einem Group Managed Service-Konto ausführen möchten, benötigen Sie Folgendes:
+Zum Ausführen eines Windows-Containers mit einem Gruppen verwalteten Dienst Konto benötigen Sie Folgendes:
 
-- Eine Active Directory-Domäne mit mindestens einem Domänencontroller, auf dem Windows Server 2012 oder höher ausgeführt wird. Für die Verwendung von gMSAs sind keine Anforderungen an die Gesamtstruktur-oder Domänenfunktionsebene vorhanden, die gMSA-Kennwörter können jedoch nur von Domänencontrollern mit Windows Server 2012 oder höher verteilt werden. Weitere Informationen finden Sie unter [Active Directory-Anforderungen für gMSAs](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
-- Berechtigung zum Erstellen eines gMSA-Kontos. Wenn Sie ein gMSA-Konto erstellen möchten, müssen Sie ein Domänen Administrator sein oder ein Konto verwenden, dem die Berechtigung *msDS-GroupManagedServiceAccount Objekte erstellen* delegiert wurde.
-- Zugriff auf das Internet, um das CredentialSpec PowerShell-Modul herunterzuladen. Wenn Sie in einer getrennten Umgebung arbeiten, können Sie [das Modul](https://docs.microsoft.com/powershell/module/powershellget/save-module?view=powershell-5.1) auf einem Computer mit Internetzugriff speichern und auf Ihren Entwicklungscomputer oder ihren Container Host kopieren.
+- Eine Active Directory Domäne, bei der mindestens ein Domänen Controller unter Windows Server 2012 oder höher ausgeführt wird. Es gibt keine Anforderungen an die Gesamtstruktur-oder Domänen Funktionsebene für die Verwendung von gmsas, aber die GMSA-Kenn Wörter können nur von Domänen Controllern mit Windows Server 2012 oder höher verteilt werden. Weitere Informationen finden Sie unter [Active Directory Anforderungen für gmsas](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
+- Berechtigung zum Erstellen eines GMSA-Kontos. Zum Erstellen eines GMSA-Kontos müssen Sie ein Domänen Administrator sein oder über ein Konto verfügen, dem die Berechtigung *Create MSDS-groupmanagedserviceaccount Objects* delegiert wurde.
+- Internet Zugriff zum Herunterladen des PowerShell-Moduls "fidentialspec". Wenn Sie in einer getrennten Umgebung arbeiten, können Sie [das Modul](https://docs.microsoft.com/powershell/module/powershellget/save-module?view=powershell-5.1) auf einem Computer mit Internet Zugriff speichern und auf den Entwicklungs Computer oder den Container Host kopieren.
 
-## <a name="one-time-preparation-of-active-directory"></a>Einmalige Vorbereitung von Active Directory
+## <a name="one-time-preparation-of-active-directory"></a>Einmalige Vorbereitung Active Directory
 
-Wenn Sie noch kein gMSA in Ihrer Domäne erstellt haben, müssen Sie den Key Distribution Service (KDS)-Stammschlüssel generieren. Der KDS ist für das Erstellen, drehen und Freigeben des gMSA-Kennworts für autorisierte Hosts verantwortlich. Wenn ein Container Host die gMSA zum Ausführen eines Containers verwenden muss, wird er mit dem KDS Kontakt aufnehmen, um das aktuelle Kennwort abzurufen.
+Wenn Sie in Ihrer Domäne nicht bereits ein GMSA erstellt haben, müssen Sie den Schlüssel Verteilungsdienst-Stamm Schlüssel (Key Distribution Service, KDS) generieren. Die KDS ist für das Erstellen, drehen und Freigeben des GMSA-Kennworts auf autorisierten Hosts verantwortlich. Wenn ein Container Host das GMSA zum Ausführen eines Containers verwenden muss, wird er mit den KDS kontaktiert, um das aktuelle Kennwort abzurufen.
 
-Wenn Sie überprüfen möchten, ob der KDS-Stammschlüssel bereits erstellt wurde, führen Sie das folgende PowerShell-Cmdlet als Domänenadministrator auf einem Domänencontroller oder Domänenmitglied aus, auf dem die AD PowerShell-Tools installiert sind:
+Um zu überprüfen, ob der KDS-Stamm Schlüssel bereits erstellt wurde, führen Sie das folgende PowerShell-Cmdlet als Domänen Administrator auf einem Domänen Controller oder Domänen Mitglied aus, auf dem die AD PowerShell-Tools installiert sind:
 
 ```powershell
 Get-KdsRootKey
 ```
 
-Wenn der Befehl eine Schlüssel-ID zurückgibt, sind Sie ganz eingestellt und können mit dem Abschnitt [Erstellen eines verwalteten Dienstkontos](#create-a-group-managed-service-account) fortfahren. Andernfalls fahren Sie fort, um den KDS-Stammschlüssel zu erstellen.
+Wenn der Befehl eine Schlüssel-ID zurückgibt, sind Sie alle festgelegt und können den Abschnitt [Erstellen eines Gruppen verwalteten Dienst Kontos](#create-a-group-managed-service-account) überspringen. Andernfalls fahren Sie fort, um den KDS-Stamm Schlüssel zu erstellen.
 
-Führen Sie in einer Produktionsumgebung oder Testumgebung mit mehreren Domänencontrollern das folgende Cmdlet in PowerShell als Domänen Administrator aus, um den KDS-Stammschlüssel zu erstellen.
+Führen Sie in einer Produktionsumgebung oder Testumgebung mit mehreren Domänen Controllern das folgende Cmdlet in PowerShell als Domänen Administrator aus, um den KDS-Stamm Schlüssel zu erstellen.
 
 ```powershell
 # For production environments
 Add-KdsRootKey -EffectiveImmediately
 ```
 
-Obwohl der Befehl impliziert, dass der Schlüssel sofort wirksam wird, müssen Sie 10 Stunden warten, bevor der KDS-Stammschlüssel repliziert und für die Verwendung auf allen Domänencontrollern zur Verfügung steht.
+Obwohl der Befehl impliziert, dass der Schlüssel sofort wirksam wird, müssen Sie 10 Stunden warten, bis der KDS-Stamm Schlüssel repliziert wurde und für die Verwendung auf allen Domänen Controllern verfügbar ist.
 
-Wenn Sie nur über einen Domänencontroller in Ihrer Domäne verfügen, können Sie den Vorgang beschleunigen, indem Sie den Schlüssel so festlegen, dass er vor 10 Stunden gültig ist.
+Wenn Sie nur über einen Domänen Controller in Ihrer Domäne verfügen, können Sie den Prozess beschleunigen, indem Sie den Schlüssel vor 10 Stunden festlegen.
 
 >[!IMPORTANT]
->Verwenden Sie diese Methode in einer Produktionsumgebung nicht.
+>Verwenden Sie dieses Verfahren nicht in einer Produktionsumgebung.
 
 ```powershell
 # For single-DC test environments ONLY
 Add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 ```
 
-## <a name="create-a-group-managed-service-account"></a>Erstellen eines Gruppen verwalteten Dienstkontos
+## <a name="create-a-group-managed-service-account"></a>Gruppenverwaltetes Dienstkonto erstellen
 
-Jeder Container, der die integrierte Windows-Authentifizierung verwendet, benötigt mindestens eine gMSA. Der primäre gMSA wird immer dann verwendet, wenn apps, die als System oder als Netzwerkdienst ausgeführt werden, auf Ressourcen im Netzwerk zugreifen. Der Name des gMSA wird unabhängig vom dem Container zugewiesenen Hostname im Netzwerk als Name des Containers bezeichnet. Container können auch mit zusätzlichen gMSAs konfiguriert werden, falls Sie einen Dienst oder eine Anwendung im Container als eine andere Identität aus dem Container Computerkonto ausführen möchten.
+Jeder Container, der die integrierte Windows-Authentifizierung verwendet, benötigt mindestens ein GMSA. Das primäre GMSA wird immer dann verwendet, wenn apps, die als System oder Netzwerkdienst ausgeführt werden, auf Ressourcen im Netzwerk zugreifen. Der Name des GMSA wird zum Container Namen im Netzwerk, unabhängig vom Hostnamen, der dem Container zugewiesen ist. Container können auch mit zusätzlichen gmsas konfiguriert werden, falls Sie einen Dienst oder eine Anwendung im Container als eine andere Identität als das Container Computer Konto ausführen möchten.
 
-Wenn Sie eine gMSA erstellen, erstellen Sie auch eine freigegebene Identität, die gleichzeitig auf vielen verschiedenen Computern verwendet werden kann. Der Zugriff auf das gMSA-Kennwort ist durch eine Active Directory-Zugriffssteuerungsliste geschützt. Wir empfehlen, eine Sicherheitsgruppe für jedes gMSA-Konto zu erstellen und die entsprechenden Container Hosts zur Sicherheitsgruppe hinzuzufügen, um den Zugriff auf das Kennwort zu begrenzen.
+Wenn Sie ein GMSA erstellen, erstellen Sie auch eine freigegebene Identität, die gleichzeitig auf vielen verschiedenen Computern verwendet werden kann. Der Zugriff auf das GMSA-Kennwort wird durch eine Active Directory Access Control Liste geschützt. Es wird empfohlen, eine Sicherheitsgruppe für jedes GMSA-Konto zu erstellen und die entsprechenden Container Hosts der Sicherheitsgruppe hinzuzufügen, um den Zugriff auf das Kennwort einzuschränken.
 
-Da Container keine Dienstprinzipalnamen (Service Principal Names, SPN) automatisch registrieren, müssen Sie schließlich mindestens einen Host-SPN für Ihr gMSA-Konto erstellen.
+Da Container nicht automatisch Dienst Prinzipal Namen (SPN) registrieren, müssen Sie schließlich mindestens einen Host-SPN für Ihr GMSA-Konto erstellen.
 
-In der Regel wird der Host-oder http-SPN mit dem gleichen Namen wie das gMSA-Konto registriert, doch müssen Sie möglicherweise einen anderen Dienstnamen verwenden, wenn Clients auf die Containeranwendung hinter einem Lastenausgleichsmodul oder einem DNS-Namen zugreifen, der sich vom gMSA-Namen unterscheidet.
+In der Regel wird der Host oder der HTTP-SPN mit dem gleichen Namen wie das GMSA-Konto registriert, aber Sie müssen möglicherweise einen anderen Dienstnamen verwenden, wenn Clients auf die Containeranwendung hinter einem Load Balancer oder einem DNS-Namen, der sich vom GMSA-Namen unterscheidet, zugreifen.
 
-Wenn beispielsweise das gMSA-Konto den Namen "WebApp01" hat `mysite.contoso.com`, Ihre Benutzer jedoch auf die Website zugreifen, sollten Sie `http/mysite.contoso.com` einen SPN für das gMSA-Konto registrieren.
+Wenn das GMSA-Konto z. b. den Namen "WebApp01" hat, die Benutzer aber auf `mysite.contoso.com`auf die Website zugreifen, sollten Sie einen `http/mysite.contoso.com` SPN für das GMSA-Konto registrieren.
 
-Für einige Anwendungen sind möglicherweise zusätzliche SPNs für Ihre eindeutigen Protokolle erforderlich. Zum Beispiel erfordert SQL Server den `MSSQLSvc/hostname` SPN.
+Für einige Anwendungen sind möglicherweise zusätzliche SPNs für Ihre eindeutigen Protokolle erforderlich. Beispielsweise ist für SQL Server der `MSSQLSvc/hostname` SPN erforderlich.
 
-In der folgenden Tabelle sind die erforderlichen Attribute zum Erstellen eines gMSA aufgelistet.
+In der folgenden Tabelle sind die für das Erstellen eines GMSA erforderlichen Attribute aufgeführt.
 
-|gMSA-Eigenschaft | Erforderlicher Wert | Beispiel |
+|GMSA (Eigenschaft) | Erforderlicher Wert | Beispiel |
 |--------------|----------------|--------|
-|Name | Einen beliebigen gültigen Kontonamen. | `WebApp01` |
-|DNSHostName | Der Domänenname, der an den Kontonamen angefügt wurde. | `WebApp01.contoso.com` |
-|ServicePrincipalNames | Setzen Sie mindestens den Host-SPN, und fügen Sie bei Bedarf weitere Protokolle hinzu. | `'host/WebApp01', 'host/WebApp01.contoso.com'` |
+|Name | Ein beliebiger gültiger Kontoname. | `WebApp01` |
+|DNSHostName | Der Domänen Name, der an den Kontonamen angehängt wird. | `WebApp01.contoso.com` |
+|ServicePrincipalNames | Legen Sie mindestens den Host-SPN fest, und fügen Sie ggf. weitere Protokolle hinzu. | `'host/WebApp01', 'host/WebApp01.contoso.com'` |
 |PrincipalsAllowedToRetrieveManagedPassword | Die Sicherheitsgruppe, die Ihre Container Hosts enthält. | `WebApp01Hosts` |
 
-Nachdem Sie sich für den Namen Ihres gMSA entschieden haben, führen Sie die folgenden Cmdlets in PowerShell aus, um die Sicherheitsgruppe und gMSA zu erstellen.
+Nachdem Sie sich für den Namen des GMSA entschieden haben, führen Sie die folgenden Cmdlets in PowerShell aus, um die Sicherheitsgruppe und GMSA zu erstellen.
 
 > [!TIP]
-> Sie müssen ein Konto verwenden, das zur Sicherheitsgruppe " **Domänenadministratoren** " gehört, oder die Berechtigung zum Erstellen von **msDS-GroupManagedServiceAccount-Objekten** delegiert wurde, um die folgenden Befehle auszuführen.
-> Das Cmdlet [New-ADServiceAccount](https://docs.microsoft.com/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps) ist Teil der AD PowerShell-Tools aus den [Remote Server-Verwaltungstools](https://aka.ms/rsat).
+> Sie müssen ein Konto verwenden, das der Sicherheitsgruppe " **Domänen-Admins** " angehört oder die **Create MSDS-groupmanagedserviceaccount Objects** -Berechtigung zum Ausführen der folgenden Befehle delegiert hat.
+> Das Cmdlet " [New-ADServiceAccount](https://docs.microsoft.com/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps) " ist Teil der AD PowerShell-Tools von [Remoteserver-Verwaltungstools](https://aka.ms/rsat).
 
 ```powershell
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively
@@ -112,17 +112,17 @@ New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -Servi
 Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01", "ContainerHost02", "ContainerHost03"
 ```
 
-Wir empfehlen, separate gMSA-Konten für Ihre dev-, Test-und Produktionsumgebungen zu erstellen.
+Es wird empfohlen, separate GMSA-Konten für Ihre Entwicklungs-, Test-und Produktionsumgebungen zu erstellen.
 
 ## <a name="prepare-your-container-host"></a>Vorbereiten des Container Hosts
 
-Jeder Container Host, auf dem ein Windows-Container mit einem gMSA ausgeführt wird, muss der Domäne beigetreten sein und Zugriff auf das gMSA-Kennwort haben.
+Jeder Container Host, auf dem ein Windows-Container mit einem GMSA ausgeführt wird, muss in die Domäne aufgenommen werden und Zugriff haben, um das GMSA-Kennwort abzurufen.
 
-1. Fügen Sie Ihren Computer zu Ihrer Active Directory-Domäne hinzu.
-2. Stellen Sie sicher, dass Ihr Host zur Sicherheitsgruppe gehört, die den Zugriff auf das gMSA-Kennwort steuert.
-3. Starten Sie den Computer neu, damit er seine neue Gruppenmitgliedschaft erhält.
-4. Einrichten des [andockbaren Desktops für Windows 10](https://docs.docker.com/docker-for-windows/install/) oder [Andocken für Windows Server](https://docs.docker.com/install/windows/docker-ee/)
-5. Empfohlen Überprüfen Sie, ob der Host das gMSA-Konto verwenden kann, indem Sie [Test-ADServiceAccount](https://docs.microsoft.com/powershell/module/activedirectory/test-adserviceaccount)ausführen. Wenn der Befehl " **false**" zurückgibt, folgen Sie den [Anweisungen zur Fehlerbehebung](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa).
+1. Fügen Sie Ihren Computer Ihrer Active Directory Domäne hinzu.
+2. Stellen Sie sicher, dass Ihr Host der Sicherheitsgruppe angehört, die den Zugriff auf das GMSA-Kennwort steuert
+3. Starten Sie den Computer neu, damit die neue Gruppenmitgliedschaft abgerufen wird.
+4. Richten Sie [docker Desktop für Windows 10](https://docs.docker.com/docker-for-windows/install/) oder [docker für Windows Server](https://docs.docker.com/install/windows/docker-ee/)ein.
+5. Empfohlen Vergewissern Sie sich, dass der Host das GMSA-Konto verwenden kann, indem Sie [Test-ADServiceAccount](https://docs.microsoft.com/powershell/module/activedirectory/test-adserviceaccount)ausführen. Wenn der Befehl **false**zurückgibt, befolgen Sie die [Anweisungen zur Problem](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa)Behandlung.
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
@@ -134,45 +134,45 @@ Jeder Container Host, auf dem ein Windows-Container mit einem gMSA ausgeführt w
 
 ## <a name="create-a-credential-spec"></a>Erstellen einer Anmelde Informations Spezifikation
 
-Eine Anmeldeinformationen-spec-Datei ist ein JSON-Dokument, das Metadaten zu den gMSA-Konten enthält, die ein Container verwenden soll. Indem Sie die Identity-Konfiguration vom Container-Bild getrennt halten, können Sie ändern, welche gMSA der Container verwendet, indem Sie einfach die Spezifikationsdatei für die Anmeldeinformationen austauschen, keine Codeänderungen erforderlich.
+Eine Datei mit Anmelde Informationen ist ein JSON-Dokument, das Metadaten zu den GMSA-Konten enthält, die von einem Container verwendet werden sollen. Wenn Sie die Identitäts Konfiguration getrennt vom Container Image aufbewahren, können Sie ändern, welche GMSA der Container verwendet, indem Sie einfach die Datei mit den Anmelde Informationen austauschen, ohne dass Codeänderungen erforderlich sind.
 
-Die Datei für die Anmeldeinformationen wird mithilfe des [CredentialSpec PowerShell-Moduls](https://aka.ms/credspec) auf einem Domänen verbundenen Container Host erstellt.
-Nachdem Sie die Datei erstellt haben, können Sie Sie auf andere Container Hosts oder ihren Container Orchestrator kopieren.
-Die Datei mit den Anmeldeinformationen enthält keine Geheimnisse, wie etwa das gMSA-Kennwort, da der Container Host die gMSA im Auftrag des Containers abruft.
+Die Datei mit den Anmelde Informationen wird mithilfe des [PowerShell-Moduls "PowerShell](https://aka.ms/credspec) " in einem in die Domäne eingebundenen Container Host erstellt.
+Nachdem Sie die Datei erstellt haben, können Sie Sie auf andere Container Hosts oder Ihren containerorchestrator kopieren.
+Die Datei mit den Anmelde Informationen enthält keine geheimen Schlüssel, wie z. b. das GMSA-Kennwort, da der Container Host das GMSA im Auftrag des Containers abruft.
 
-Docker erwartet, dass die Anmeldeinformationsdatei unter dem **CredentialSpecs** -Verzeichnis im docker-Datenverzeichnis zu finden ist. In einer Standardinstallation finden Sie diesen Ordner unter `C:\ProgramData\Docker\CredentialSpecs`.
+Docker erwartet, dass sich die Datei mit den Anmelde Informationen im Verzeichnis "| **dentialspecs** " im Verzeichnis "docker Data" befindet. In einer Standardinstallation finden Sie diesen Ordner unter `C:\ProgramData\Docker\CredentialSpecs`.
 
-So erstellen Sie eine Anmelde Informations Spezifikationsdatei auf dem Container Host:
+So erstellen Sie eine Datei mit Anmelde Informations Spezifikationen auf dem Container Host:
 
-1. Installieren der Remotetools für AD PowerShell
-    - Führen Sie für Windows Server die **Installations-Cmdlets-Remote Server-AD-PowerShell**aus.
-    - Für Windows 10, Version 1809 oder höher, führen **Sie Add-WindowsCapability-Online-Name "Remote Host. ActiveDirectory. DS-LDS. Tools ~**~ ~ ~ 0.0.1.0" aus.
-    - Informationen zu älteren Versionen von Windows 10 finden <https://aka.ms/rsat>Sie unter.
-2. Führen Sie das folgende Cmdlet aus, um die neueste Version des [CredentialSpec PowerShell-Moduls](https://aka.ms/credspec)zu installieren:
+1. Installieren der RSAT-AD PowerShell-Tools
+    - Führen Sie für Windows Server **install-Windows Feature RSAT-AD-PowerShell**aus.
+    - Führen Sie für Windows 10, Version 1809 oder höher, **Add-windowscapability-Online-Name "RSAT. ActiveDirectory. DS-LDS. Tools ~ ~ ~ ~ 0.0.1.0"** aus.
+    - Informationen zu älteren Versionen von Windows 10 finden Sie unter <https://aka.ms/rsat>.
+2. Führen Sie das folgende Cmdlet aus, um die neueste Version des [PowerShell-Moduls "PowerShell](https://aka.ms/credspec)" zu installieren:
 
     ```powershell
     Install-Module CredentialSpec
     ```
 
-    Wenn Sie keinen Internetzugriff auf dem Container Host haben, führen `Save-Module CredentialSpec` Sie einen Computer mit Internetverbindung aus, und kopieren Sie den `C:\Program Files\WindowsPowerShell\Modules` Modulordner an einen `$env:PSModulePath` anderen Speicherort auf dem Container Host.
+    Wenn Sie auf dem Container Host keinen Internet Zugriff haben, führen Sie `Save-Module CredentialSpec` auf einem mit dem Internet verbundenen Computer aus, und kopieren Sie den Modul Ordner auf `C:\Program Files\WindowsPowerShell\Modules` oder einen anderen Speicherort in `$env:PSModulePath` auf dem Container Host.
 
-3. Führen Sie das folgende Cmdlet aus, um die neue Spezifikationsdatei für Anmeldeinformationen zu erstellen:
+3. Führen Sie das folgende Cmdlet aus, um die neue Spezifikation für Anmelde Informationen zu erstellen:
 
     ```powershell
     New-CredentialSpec -AccountName WebApp01
     ```
 
-    Standardmäßig erstellt das Cmdlet eine cred-Spezifikation unter Verwendung des angegebenen gMSA-namens als Computerkonto für den Container. Die Datei wird im docker CredentialSpecs-Verzeichnis mit der gMSA-Domäne und dem Kontonamen für den Dateinamen gespeichert.
+    Standardmäßig erstellt das Cmdlet mit dem bereitgestellten GMSA-Namen als Computer Konto für den Container eine "and"-Spezifikation. Die Datei wird im Verzeichnis "docker condentialspecs" mit der GMSA-Domäne und dem Kontonamen für den Dateinamen gespeichert.
 
-    Sie können eine Anmelde Informations Spezifikation erstellen, die zusätzliche gMSA-Konten enthält, wenn Sie einen Dienst oder einen Prozess als sekundäre gMSA im Container ausführen. Verwenden Sie dazu den `-AdditionalAccounts` Parameter:
+    Sie können eine Spezifikation für die Anmelde Informationen erstellen, die zusätzliche GMSA-Konten enthält, wenn Sie einen Dienst oder Prozess als sekundäres GMSA im Container ausführen. Verwenden Sie hierzu den `-AdditionalAccounts`-Parameter:
 
     ```powershell
     New-CredentialSpec -AccountName WebApp01 -AdditionalAccounts LogAgentSvc, OtherSvc
     ```
 
-    Eine vollständige Liste der unterstützten Parameter `Get-Help New-CredentialSpec`finden Sie unter.
+    Führen Sie `Get-Help New-CredentialSpec`aus, um eine vollständige Liste unterstützter Parameter zu erhalten.
 
-4. Sie können eine Liste aller Anmeldeinformationen und deren vollständigen Pfad mit dem folgenden Cmdlet anzeigen:
+4. Mit dem folgenden Cmdlet können Sie eine Liste aller Spezifikationen für Anmelde Informationen und deren vollständigen Pfad anzeigen:
 
     ```powershell
     Get-CredentialSpec
@@ -180,15 +180,15 @@ So erstellen Sie eine Anmelde Informations Spezifikationsdatei auf dem Container
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-Nachdem Sie Ihr gMSA-Konto eingerichtet haben, können Sie es wie folgt verwenden:
+Nachdem Sie Ihr GMSA-Konto eingerichtet haben, können Sie es für Folgendes verwenden:
 
-- [Konfigurieren von apps](gmsa-configure-app.md)
+- [Konfigurieren von Apps](gmsa-configure-app.md)
 - [Ausführen von Containern](gmsa-run-container.md)
-- [Orchestrierungs Container](gmsa-orchestrate-containers.md)
+- [Orchestrieren von Containern](gmsa-orchestrate-containers.md)
 
-Wenn während des Setups Probleme auftreten, finden Sie in unserem [Leitfaden zur Problembehandlung](gmsa-troubleshooting.md) mögliche Lösungen.
+Wenn während des Setups Probleme auftreten, finden Sie in unserem [Handbuch zur Problem](gmsa-troubleshooting.md) Behandlung mögliche Lösungen.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-- Weitere Informationen zu gMSAs finden Sie in der [Übersicht über Gruppen verwaltete Dienstkonten](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
-- Schauen Sie sich für eine Video Demonstration unsere [aufgezeichnete Demo](https://youtu.be/cZHPz80I-3s?t=2672) von Ignite 2016 an.
+- Weitere Informationen zu gmsas finden Sie unter [Gruppen verwaltete Dienst Konten: Übersicht](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
+- Sehen Sie sich für eine Video Demonstration unsere [aufgezeichnete Demo](https://youtu.be/cZHPz80I-3s?t=2672) von Ignite 2016 an.

@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
-ms.openlocfilehash: 16d2794688d60757ef1321d687f6a987ccf0b581
-ms.sourcegitcommit: 62fff5436770151a28b6fea2be3a8818564f3867
+ms.openlocfilehash: 1de86a2492ca899dc3fb932e0d57927fa4000fd0
+ms.sourcegitcommit: 15b5ab92b7b8e96c180767945fdbb2963c3f6f88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "10147233"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74911710"
 ---
 # <a name="troubleshooting"></a>Problembehandlung
 
@@ -27,10 +27,51 @@ Eine Liste aller Tests, die das Skript ausführt sowie allgemeine Lösungen, fin
 Wenn das nicht hilft, suchen Sie die Quelle des Problems, posten Sie die Ausgabe Ihres Skripts im [Containerforum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers). Dies ist der beste Ort, um Hilfe von der Community zu erhalten, zu der auch Windows Insiders und Entwickler gehören.
 
 
-## <a name="finding-logs"></a>Suchen von Protokollen
+### <a name="finding-logs"></a>Suchen von Protokollen
 Es gibt mehrere Dienste, die zum Verwalten von Windows-Containern verwendet werden. Im nächsten Abschnitt wird gezeigt, wie Sie Protokolle für jeden Dienst erhalten.
 
-# <a name="docker-engine"></a>Docker-Modul
+## <a name="docker-container-logs"></a>Docker-Container Protokolle 
+Der `docker logs`-Befehl ruft die Protokolle eines Containers aus stdout/stderr ab, die standardmäßigen Anwendungsprotokoll-Speicherorte für Linux-Anwendungen. Windows-Anwendungen melden sich in der Regel nicht bei stdout/stderr an. Stattdessen melden Sie sich unter anderem bei etw, Ereignisprotokollen oder Protokolldateien an. 
+
+Der [Protokoll Monitor](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor), ein von Microsoft unterstütztes Open Source-Tool, ist jetzt auf GitHub verfügbar. Der Protokoll Monitor Bridges Windows-Anwendungsprotokolle auf stdout/stderr. Der Protokoll Monitor wird über eine Konfigurationsdatei konfiguriert. 
+
+### <a name="log-monitor-usage"></a>Protokoll Monitor Verwendung
+
+"LogMonitor. exe" und "logmonitorconfig. JSON" müssen beide im selben LogMonitor-Verzeichnis enthalten sein. 
+
+Der Protokoll Monitor kann entweder in einem shellnutzungsmuster verwendet werden:
+
+```
+SHELL ["C:\\LogMonitor\\LogMonitor.exe", "cmd", "/S", "/C"]
+CMD c:\windows\system32\ping.exe -n 20 localhost
+```
+
+Oder ein entryPoint-Verwendungs Muster:
+
+```
+ENTRYPOINT C:\LogMonitor\LogMonitor.exe c:\windows\system32\ping.exe -n 20 localhost
+```
+
+Beide Beispiel Verwendungen wrappen die Ping. exe-Anwendung. Andere Anwendungen (z [. b. IIS). Servicemonitor]( https://github.com/microsoft/IIS.ServiceMonitor)) kann auf ähnliche Weise mit dem Protokoll Monitor (Log Monitor) eingefügt werden:
+
+```
+COPY LogMonitor.exe LogMonitorConfig.json C:\LogMonitor\
+WORKDIR /LogMonitor
+SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe"]
+ 
+# Start IIS Remote Management and monitor IIS
+ENTRYPOINT      Start-Service WMSVC; `
+                    C:\ServiceMonitor.exe w3svc;
+```
+
+
+Der Protokoll Monitor startet die umschließende Anwendung als untergeordneten Prozess und überwacht die stdout-Ausgabe der Anwendung.
+
+Beachten Sie, dass im shellnutzungsmuster die CMD-/EntryPoint-Anweisung im shellformular und nicht in der exec-Form angegeben werden sollte. Wenn die Exec-Form der cmd-/EntryPoint-Anweisung verwendet wird, wird die Shell nicht gestartet, und das Protokoll Monitor Tool wird nicht innerhalb des Containers gestartet.
+
+Weitere Informationen zur Verwendung finden Sie im [Log Monitor-wiki](https://github.com/microsoft/windows-container-tools/wiki). Beispiel Konfigurationsdateien für wichtige Windows-Container Szenarien (IIS usw.) finden Sie im [GitHub](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor/src/LogMonitor/sample-config-files)-Repository. Zusätzlichen Kontext finden Sie in diesem [Blogbeitrag](https://techcommunity.microsoft.com/t5/Containers/Windows-Containers-Log-Monitor-Opensource-Release/ba-p/973947).
+
+## <a name="docker-engine"></a>Docker-Modul
 Das Docker-Modul protokolliert in das Windows-„Anwendungsereignisprotokoll“, statt in eine Datei. Diese Protokolle können mithilfe von Windows PowerShell einfach gelesen, sortiert und gefiltert werden.
 
 Beispielsweise werden dadurch die Protokolle des Docker-Moduls der letzten fünf Minuten angezeigt, angefangen mit dem ältesten.
@@ -45,7 +86,7 @@ Dies könnte auch einfach in eine CSV-Datei weitergeleitet werden, um dort von e
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.CSV
 ```
 
-## <a name="enabling-debug-logging"></a>Aktivieren der Debugprotokollierung
+### <a name="enabling-debug-logging"></a>Aktivieren der Debugprotokollierung
 Sie können auch die Protokollierung auf Debugebene im Docker-Modul aktivieren. Dies kann für die Problembehandlung hilfreich sein, wenn reguläre Protokolle nicht genügend Informationen enthalten.
 
 Öffnen Sie zunächst eine Eingabeaufforderung mit erhöhten Rechten, führen Sie dann `sc.exe qc docker` aus, um die aktuelle Befehlszeile für den Docker-Dienst zu erhalten.
@@ -71,7 +112,7 @@ Modifizieren Sie den aktuellen `BINARY_PATH_NAME`:
 - Fügen Sie für " das Escapezeichen \ hinzu
 - Schließen Sie den gesamten Befehl in Anführungszeichen (") ein
 
-Führen Sie anschließend `sc.exe config docker binpath=`, gefolgt von der neuen Zeichenfolge, aus. Beispiel: 
+Führen Sie anschließend `sc.exe config docker binpath=`, gefolgt von der neuen Zeichenfolge, aus. Zum Beispiel: 
 ```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
@@ -91,9 +132,9 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-## <a name="obtaining-stack-dump"></a>Abrufen des Stapel Dumps
+### <a name="obtaining-stack-dump"></a>Abrufen von Stapel Abbildern
 
-Im Allgemeinen ist dies nur nützlich, wenn Sie von Microsoft-Support oder andocker-Entwicklern ausdrücklich angefordert werden. Es kann verwendet werden, um die Diagnose einer Situation zu unterstützen, in der Andockfenster anscheinend aufgehängt wurde. 
+Im Allgemeinen ist dies nur hilfreich, wenn Sie vom Microsoft Support explizit angefordert werden, oder docker-Entwickler. Sie kann verwendet werden, um die Diagnose einer Situation zu unterstützen, in der Docker anscheinend nicht reagiert hat. 
 
 Herunterladen von [Docker-Signal.exe](https://github.com/jhowardmsft/docker-signal).
 
@@ -102,27 +143,27 @@ Syntax:
 docker-signal --pid=$((Get-Process dockerd).Id)
 ```
 
-Die Ausgabedatei befindet sich im Daten-Root-Verzeichnis, in dem docker ausgeführt wird. Das Standardverzeichnis ist `C:\ProgramData\Docker`. Das aktuelle Verzeichnis kann durch Ausführen von `docker info -f "{{.DockerRootDir}}"` bestätigt werden.
+Die Ausgabedatei befindet sich im Daten Stammverzeichnis, in dem docker ausgeführt wird. Das Standardverzeichnis ist `C:\ProgramData\Docker`. Das aktuelle Verzeichnis kann durch Ausführen von `docker info -f "{{.DockerRootDir}}"` bestätigt werden.
 
-Die Datei ist `goroutine-stacks-<timestamp>.log`.
+Die Datei wird `goroutine-stacks-<timestamp>.log`.
 
-Beachten Sie `goroutine-stacks*.log` , dass keine persönlichen Informationen enthalten sind.
+Beachten Sie, dass `goroutine-stacks*.log` keine persönlichen Informationen enthält.
 
 
-# <a name="host-compute-service"></a>Hostcomputedienst
+## <a name="host-compute-service"></a>Hostcomputedienst
 Das Docker-Modul ist von einem Windows-spezifischen Hostcomputedienst abhängig. Dieser verfügt über separate Protokolle: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 
 Sie werden in der Ereignisansicht angezeigt und können auch mit PowerShell abgefragt werden.
 
-Beispiel:
+Zum Beispiel:
 ```PowerShell
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
 ```
 
-## <a name="capturing-hcs-analyticdebug-logs"></a>Erfassen von HCS Analyse-/Debug-Protokollen
+### <a name="capturing-hcs-analyticdebug-logs"></a>Erfassen von HCS Analyse-/Debug-Protokollen
 
 Um Analyse-/Debug-Protokolle für Hyper-V-Compute zu aktivieren und auf `hcslog.evtx` zu speichern.
 
@@ -139,7 +180,7 @@ wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 ```
 
-## <a name="capturing-hcs-verbose-tracing"></a>Aufzeichnen ausführlicher HCS-Protokollierung
+### <a name="capturing-hcs-verbose-tracing"></a>Aufzeichnen ausführlicher HCS-Protokollierung
 
 In der Regel ist sie nur dann nützlich, wenn sie vom Microsoft Support angefordert wird. 
 

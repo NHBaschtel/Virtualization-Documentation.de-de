@@ -1,5 +1,5 @@
 ---
-title: Windows-Container Networking
+title: Windows-Containernetzwerk
 description: Erweitertes Networking für Windows-Container.
 keywords: Docker, Container
 author: jmesser81
@@ -9,11 +9,11 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ms.openlocfilehash: deea1bfbcd3032f52a6912eb0c36ba467d8b9a9c
-ms.sourcegitcommit: b38f6abb399c87c57e1bb146f3dbcdaefd991245
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "10276493"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910710"
 ---
 # <a name="advanced-network-options-in-windows"></a>Erweiterte Netzwerkoptionen für Windows
 
@@ -33,7 +33,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 > Gilt für transparente und l2bridge-Netzwerktreiber
 
-Wenn Sie eine VLAN-ID für ein Netzwerk festlegen möchten, verwenden Sie die Option `-o com.docker.network.windowsshim.vlanid=<VLAN ID>`für den Befehl `docker network create`. Sie können z.B. folgenden Befehl verwenden, um ein transparentes Netzwerk mit einer ID VLAN 11 zu erstellen:
+Wenn Sie eine VLAN-ID für ein Netzwerk festlegen möchten, verwenden Sie die Option `-o com.docker.network.windowsshim.vlanid=<VLAN ID>`für den Befehl `docker network create`. Sie können z. B. folgenden Befehl verwenden, um ein transparentes Netzwerk mit einer ID VLAN 11 zu erstellen:
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
@@ -42,17 +42,17 @@ Wenn Sie die VLAN-ID für ein Netzwerk festlegen, wird damit die VLAN-Isolation 
 
 > Stellen Sie sicher, dass sich der Hostnetzwerkadapter (physisch) im Trunk-Modus befindet, damit alle markierten (tagged) Datenpakte vom vSwitch mit dem vNIC-Port (Containerendpunkt) im Zugriffsmodus auf dem richtigen VLAN verarbeitet werden können.
 
-## <a name="specify-outboundnat-policy-for-a-network"></a>Angeben der OutboundNAT-Richtlinie für ein Netzwerk
+## <a name="specify-outboundnat-policy-for-a-network"></a>Angeben der outboundnat-Richtlinie für ein Netzwerk
 
 > Gilt für l2bridge-Netzwerke
 
-Wenn Sie ein `l2bridge` Container Netzwerk mit verwenden `docker network create`, wird normalerweise auf Container Endpunkte keine HNS-OutboundNAT-Richtlinie angewendet, wodurch Container nicht in der Lage sind, die Außenwelt zu erreichen. Wenn Sie ein Netzwerk erstellen, können Sie die `-o com.docker.network.windowsshim.enable_outboundnat=<true|false>` Option zum Anwenden der OutboundNAT-HNS-Richtlinie verwenden, um Containern Zugriff auf die Außenwelt zu gewähren:
+Wenn Sie ein `l2bridge` Container-Netzwerk mithilfe von `docker network create`erstellen, wird für Container Endpunkte normalerweise nicht die Richtlinie HNS-outboundnat angewendet, was dazu führt, dass Container die Außenwelt nicht erreichen können. Wenn Sie ein Netzwerk erstellen, können Sie die `-o com.docker.network.windowsshim.enable_outboundnat=<true|false>`-Option verwenden, um die outboundnat HNS-Richtlinie anzuwenden, um Containern den Zugriff auf die Außenwelt zu gestatten:
 
 ```
 C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true MyL2BridgeNetwork
 ```
 
-Wenn es eine Reihe von Zielen gibt (z.b. Container-Container-Konnektivität erforderlich ist), für die wir nicht möchten, dass NAT'ing eintritt, müssen wir auch eine exceptionliste angeben:
+Wenn eine Gruppe von Zielen (z. b. eine Container-zu-Container-Konnektivität erforderlich) für den Speicherort ist, an dem wir nicht möchten, müssen wir auch eine ExceptionList angeben:
 
 ```
 C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true -o com.docker.network.windowsshim.outboundnat_exceptions=10.244.10.0/24
@@ -72,7 +72,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.netw
 
 > Gilt für alle Netzwerktreiber mit Ausnahme von "NAT"  
 
-Verwenden Sie zum Binden eines Netzwerks (angeschlossen über den virtuellen Hyper-V-Switch) an eine bestimmte Netzwerkschnittstelle die Option `-o com.docker.network.windowsshim.interface=<Interface>` für den Befehl `docker network create`. Sie können z.B. die folgende Anweisung verwenden, um ein transparentes Netzwerk zu erstellen, das an die Netzwerkschnittstelle „Ethernet 2“ angeschlossen ist:
+Verwenden Sie zum Binden eines Netzwerks (angeschlossen über den virtuellen Hyper-V-Switch) an eine bestimmte Netzwerkschnittstelle die Option `-o com.docker.network.windowsshim.interface=<Interface>` für den Befehl `docker network create`. Sie können z. B. die folgende Anweisung verwenden, um ein transparentes Netzwerk zu erstellen, das an die Netzwerkschnittstelle „Ethernet 2“ angeschlossen ist:
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" TransparentNet2
@@ -115,12 +115,12 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### <a name="linux-containers-on-windows"></a>Linux-Container unter Windows
 
-**NEU:** Wir arbeiten daran, Linux- und Windows-Container paralell ausführen zu können _ohne die Moby Linux VM_. Detaillierte Informationen finden Sie in diesem [Blogbeitrag über Informationen zu Linux-Containern für Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/). Hier erfahren Sie, wie [Sie beginnen](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux)können.
+**NEU:** Wir arbeiten daran, Linux- und Windows-Container paralell ausführen zu können _ohne die Moby Linux VM_. Detaillierte Informationen finden Sie in diesem [Blogbeitrag über Informationen zu Linux-Containern für Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/). Hier finden [Sie](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux)Informationen zu den ersten Schritten.
 > Hinweis: Die LCOW ist eine veralteter Moby Linux-VM, es wird der standardmäßige HNS "Nat"-interne vSwitch genutzt.
 
 #### <a name="moby-linux-vms-use-dockernat-switch-with-docker-for-windows-a-product-of-docker-cehttpswwwdockercomcommunity-edition"></a>Moby Linux-VMs verwendet DockerNAT-Switch mit Docker für Windows (ein Produkt der [Docker CE](https://www.docker.com/community-edition))
 
-Docker für Windows (der Windows-Treiber für die Docker CE-Engine) auf Windows10 verwendet einen interne vSwitch mit dem Namen "DockerNAT", um Moby Linux-VMs mit dem Containerhost zu verbinden. Entwickler, die Moby Linux VMs unter Windows verwenden sollten beachten, dass ihre Hosts den DockerNAT-vSwitch anstelle des "nat"-vSwitches verwenden, der vom HNS-Dienst erstellt wird (dies ist der Standardswitch für Windows-Container).
+Docker für Windows (der Windows-Treiber für die Docker CE-Engine) auf Windows 10 verwendet einen interne vSwitch mit dem Namen "DockerNAT", um Moby Linux-VMs mit dem Containerhost zu verbinden. Entwickler, die Moby Linux VMs unter Windows verwenden sollten beachten, dass ihre Hosts den DockerNAT-vSwitch anstelle des "nat"-vSwitches verwenden, der vom HNS-Dienst erstellt wird (dies ist der Standardswitch für Windows-Container).
 
 
 
@@ -144,7 +144,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 ```
 
 #### <a name="remember-to-specify---subnet-and---gateway-when-using-static-ip-assignment"></a>Denken Sie daran, bei der Verwendung einer statischen IP-Zuordnung *‑‑Subnetz* und *‑‑Gateway* anzugeben
-Wenn Sie die statische IP-Adresszuweisung verwenden, müssen Sie zunächst sicherstellen, dass die Parameter *--subnet* und *--gateway* beim Erstellen des Netzwerks festgelegt sind. Subnetz- und Gateway-IP-Adresse sollten den Netzwerkeinstellungen für den Containerhost (d. h. für das physische Netzwerk) entsprechen. Hier sehen Sie, wie Sie z.B., wie Sie ein transparentes Netzwerk erstellen und dann einen Endpunkt auf diesem Netzwerk mithilfe der statischen IP-Adresszuweisung ausführen können:
+Wenn Sie die statische IP-Adresszuweisung verwenden, müssen Sie zunächst sicherstellen, dass die Parameter *--subnet* und *--gateway* beim Erstellen des Netzwerks festgelegt sind. Subnetz- und Gateway-IP-Adresse sollten den Netzwerkeinstellungen für den Containerhost (d. h. für das physische Netzwerk) entsprechen. Hier sehen Sie, wie Sie z. B., wie Sie ein transparentes Netzwerk erstellen und dann einen Endpunkt auf diesem Netzwerk mithilfe der statischen IP-Adresszuweisung ausführen können:
 
 ```
 # Example: Create a transparent network using static IP assignment
@@ -158,7 +158,7 @@ C:\> docker run -it --network=MyTransparentNet --ip=10.123.174.105 windowsserver
 Es wird nur eine statische IP-Adresszuweisung mit Container-Netzwerken unterstützt, die mithilfe des l2bridge-Treibers erstellt wurden. Wie bereits erwähn: denken Sie daran, die *‑‑Subnetz* und *‑‑Gateway*-Parameter zu verwenden, um ein Netzwerk zu erstellen, das für statische IP-Adresszuweisungen konfiguriert ist.
 
 #### <a name="networks-that-leverage-external-vswitch-must-each-have-their-own-network-adapter"></a>Netzwerke, die externe vSwitches nutzen müssen jeweils über eigene Netzwerkadapter verfügen.
-Wenn mehrere Netzwerke, die einen externen vSwitch für die Konnektivität verwenden (z.B. Transparent, L2-Brücke, L2 Transparent), auf dem gleichen Containerhost erstellt werden, muss jedes über einen eigenen Netzwerkadapter verfügen. 
+Wenn mehrere Netzwerke, die einen externen vSwitch für die Konnektivität verwenden (z. B. Transparent, L2-Brücke, L2 Transparent), auf dem gleichen Containerhost erstellt werden, muss jedes über einen eigenen Netzwerkadapter verfügen. 
 
 #### <a name="ip-assignment-on-stopped-vs-running-containers"></a>IP-Adresszuweisung auf Containern im angehaltenen Zustand im Vergleich zu ausgeführten Containern
 Die statische IP-Zuweisung erfolgt direkt im Netzwerkadapter des Containers und darf nur dann durchgeführt werden, wenn sich der Container im Zustand BEENDET befindet. Das Hinzufügen von Containernetzwerkadaptern im laufenden Betrieb (Hot-Add) sowie Änderungen am Netzwerkstapel werden während der Containerausführung nicht unterstützt (auf Windows Server 2016).
@@ -178,12 +178,12 @@ Es gibt drei Ansätze zum Lösen dieses Problems:
 PS C:\> restart-service hns
 PS C:\> restart-service docker
 ```
-* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die Option "-o" wird im Abschnitt [Erstellen mehrerer transparenter Netzwerke auf einem einzelnen Container Host](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) Abschnitt dieses Dokuments weiter beschrieben.
+* Eine andere Möglichkeit ist die Verwendung der Option „-o com.docker.network.windowsshim.interface“, um den externen vSwitch des transparenten Netzworks an einen bestimmten Netzwerkadapter zu binden, der noch nicht auf dem Containerhost in Gebrauch ist (z.B. ein anderer Netzwerkadapter als der, der vom vSwitch verwendet wird, der Out-of-Band erstellt wurde). Die Option "-o" wird weiter unten im Abschnitt [Erstellen mehrerer transparenter Netzwerke auf einem einzelnen Container Host](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) in diesem Dokument beschrieben.
 
 
-## <a name="windows-server-2016-work-arounds"></a>Windows Server2016-Problemumgehungen 
+## <a name="windows-server-2016-work-arounds"></a>Windows Server 2016-Problemumgehungen 
 
-Obwohl wir auch weiterhin neue Funktionen hinzufügen und die Entwicklung vorantreiben, können einige dieser Funktionen nicht auf ältere Plattformen rückportiert werden. Der beste Aktionsplan ist das neueste Updates für Windows10 und Windows Server.  Im folgenden Abschnitt werden einige Problemumgehungen und die Vorsichtsmaßnahmen erklärt, die für ältere Versionen von Windows10 (d.h. vor dem 1704 Creators Update) und Windows Server2016 gelten.
+Obwohl wir auch weiterhin neue Funktionen hinzufügen und die Entwicklung vorantreiben, können einige dieser Funktionen nicht auf ältere Plattformen rückportiert werden. Der beste Aktionsplan ist das neueste Updates für Windows 10 und Windows Server.  Im folgenden Abschnitt werden einige Problemumgehungen und die Vorsichtsmaßnahmen erklärt, die für ältere Versionen von Windows 10 (d. h. vor dem 1704 Creators Update) und Windows Server 2016 gelten.
 
 ### <a name="multiple-nat-networks-on-ws2016-container-host"></a>Mehrere NAT-Netzwerke auf WS2016-Containerhost
 

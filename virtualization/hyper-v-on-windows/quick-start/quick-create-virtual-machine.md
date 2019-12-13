@@ -7,18 +7,18 @@ ms.date: 04/07/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
-ms.openlocfilehash: 6035143bc1449bc4a8e9bb7a4484b4c5329e6d3c
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 970e92def02e5386d38a2e72d5ef921aa8321fdf
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998627"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911400"
 ---
 # <a name="create-a-virtual-machine-with-hyper-v"></a>Erstellen eines virtuellen Computers mit Hyper-V
 
 Erstellen Sie einen virtuellen Computer und installieren Sie sein Betriebssystem.
 
-Wir haben neue Tools für die Erstellung virtueller Computer erstellt, damit die Anweisungen in den letzten drei Versionen erheblich geändert wurden.
+Wir haben neue Tools zum Erstellen virtueller Computer erstellt, sodass sich die Anweisungen in den letzten drei Releases erheblich geändert haben.
 
 Wählen Sie Ihr Betriebssystem für die richtigen Anweisungen:
 
@@ -44,16 +44,16 @@ So erstellen Sie einen neuen virtuelle Computer im Fall Creators Update:
 
     1. Wenn Sie Ihr eigenes Bild verwenden, um einen virtuellen Computer zu erstellen, wählen Sie **Lokalinstallationsquelle** aus.
     1. Wählen Sie **Installationsquelle ändern**.
-      ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/change-source.png)
+      ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/change-source.png)
     1. Wählen Sie die ISO- oder VHDX-Datei, die Sie in einem neuen virtuellen Computer aktivieren möchten.
     1. Wenn das Bild ein Linux-Bild ist, deaktivieren Sie die Option für den sicheren Start.
-      ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/toggle-secure-boot.png)
+      ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/toggle-secure-boot.png)
 
 1. Wählen Sie „Erstellen Sie Ihren virtuellen Computer”
 
 Das war's.  Die Schnellerfassung kümmert sich um den Rest.
 
-## <a name="windows-10-creators-update-windows-10-version-1703"></a>Windows 10 Creators-Update (Windows 10, Version 1703)
+## <a name="windows-10-creators-update-windows-10-version-1703"></a>Windows 10 Creators Update (Windows 10, Version 1703)
 
 ![Screenshot der Schnellerfassungs-UI](media/quickcreatesteps_inked.jpg)
 
@@ -81,7 +81,7 @@ Der virtuelle Computer sollte etwa wie folgt aussehen:
 
 > **Hinweis:** Um Windows auf einem virtuellen Computer ausführen zu können, benötigen Sie eine separate Lizenz, es sei denn, Sie führen eine Volumenlizenzversion von Windows aus. Das Betriebssystem des virtuellen Computers ist unabhängig vom Betriebssystem des Hosts.
 
-## <a name="before-windows-10-creators-update-windows-10-version-1607-and-earlier"></a>Vor dem Windows 10 Creators-Update (Windows 10, Version 1607 und früher)
+## <a name="before-windows-10-creators-update-windows-10-version-1607-and-earlier"></a>Vor Windows 10 Creators Update (Windows 10, Version 1607 und früher)
 
 Wenn Sie nicht das Windows 10 Creators Update oder höher verwenden, folgen Sie stattdessen dem Assistent für neue virtuelle Computer:
 

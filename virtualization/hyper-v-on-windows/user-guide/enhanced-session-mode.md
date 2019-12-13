@@ -1,25 +1,25 @@
 ---
 title: Gerätefreigabe für virtuelle Windows-Computer
 description: Diese Schnellstartanleitung führt Sie durch die Freigabe von Geräten für virtuelle Hyper-V-Computer (USB, Audio, Mikrofon und bereitgestellte Laufwerke).
-keywords: Windows10, Hyper-V
+keywords: Windows 10, Hyper-V
 ms.author: scooley
 ms.date: 10/20/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d1aeb9cb-b18f-43cb-a568-46b33346a188
-ms.openlocfilehash: c891a723d43a9e6e0a0a8bc7bfc2b47a960732d1
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 52d51fca03f454a311a123f20e5aeda9376fdc3d
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998947"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911070"
 ---
 # <a name="share-devices-with-your-virtual-machine"></a>Gerätefreigabe für Ihren virtuellen Computer
 
 > Nur verfügbar für virtuelle Windows-Computer.
 
-Mit dem erweiterten Sitzungsmodus kann sich Hyper-V mit virtuellen Computer via RDP (Remotedesktopprotokoll) verbinden.  Dies verbessert nicht nur die Anzeige virtueller Computer, die Verbindung mit RDP ermöglicht auch, dass der virtuelle Computer Geräte für Ihren Computer freigeben kann.  Da dies unter Windows10 standardmäßig aktiviert ist, verwenden Sie für die Verbindung mit Ihren virtuellen Windows-Computern wahrscheinlich bereits RDP.  In diesem Artikel werden einige der Vorteile und verborgenen Optionen im Dialogfeld für die Verbindungseinstellungen beschrieben.
+Mit dem erweiterten Sitzungsmodus kann sich Hyper-V mit virtuellen Computer via RDP (Remotedesktopprotokoll) verbinden.  Dies verbessert nicht nur die Anzeige virtueller Computer, die Verbindung mit RDP ermöglicht auch, dass der virtuelle Computer Geräte für Ihren Computer freigeben kann.  Da dies unter Windows 10 standardmäßig aktiviert ist, verwenden Sie für die Verbindung mit Ihren virtuellen Windows-Computern wahrscheinlich bereits RDP.  In diesem Artikel werden einige der Vorteile und verborgenen Optionen im Dialogfeld für die Verbindungseinstellungen beschrieben.
 
 RDP/Erweiterter Sitzungsmodus:
 
@@ -30,7 +30,7 @@ RDP/Erweiterter Sitzungsmodus:
 * Ermöglicht die Gerätefreigabe.
   * Mikrofon/Lautsprecher
   * USB-Geräte
-  * Datenträger (z.B. "C:")
+  * Datenträger (z. B. "C:")
   * Drucker
 
 In diesem Artikel erfahren Sie, wie Sie Ihren Sitzungstyp anzeigen, den erweiterten Sitzungsmodus aufrufen und Ihre Sitzungseinstellungen konfigurieren.
@@ -57,7 +57,7 @@ So geben Sie Geräte für den virtuellen Computer frei oder ändern diese Standa
 
 Standardmäßig geben virtuelle Computer, die den erweiterten Sitzungsmodus verwenden, Drucker und Zwischenablage frei und übergeben Smartcard- und andere Sicherheitsgeräte an den virtuellen Computer, damit Sie sichere Anmeldetools vom virtuellen Computer verwenden können.
 
-Wählen Sie zum Freigeben anderer Geräten, z.B. USB-Geräte oder Laufwerk "C:", im Menü die Option "Mehr...":  
+Wählen Sie zum Freigeben anderer Geräten, z. B. USB-Geräte oder Laufwerk "C:", im Menü die Option "Mehr...":  
 ![](media/esm-more-devices.png)
 
 Hier können Sie die Geräte auswählen, die Sie für den virtuellen Computer freigeben möchten.  Das Systemlaufwerk (Windows C:) ist besonders hilfreich für die Dateifreigabe.  

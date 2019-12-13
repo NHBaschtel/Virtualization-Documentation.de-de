@@ -6,21 +6,21 @@ ms.date: 11/02/2018
 ms.topic: get-started-article
 ms.prod: containers
 description: Kompilieren und übergreifendes Kompilieren von Kubernetes-Binärdateien aus der Quelle.
-keywords: Kubernetes, 1.12, Linux, kompilieren
+keywords: kubernetes, 1,12, Linux, kompilieren
 ms.openlocfilehash: 40bf7e65a8910cdab095abb269aa0a92508189cd
-ms.sourcegitcommit: 0deb653de8a14b32a1cfe3e1d73e5d3f31bbe83b
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "9574821"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909870"
 ---
 # <a name="compiling-kubernetes-binaries"></a>Kompilieren von Kubernetes-Binärdateien #
 Das Kompilieren von Kubernetes erfordert eine funktionierende Go-Umgebung. Diese Seite erläutert mehrere Möglichkeiten zum Kompilieren von Linux-Binärdateien und zum übergreifenden Kompilieren von Windows-Binärdateien.
 > [!NOTE] 
-> Diese Seite ist vollständig freiwilligen und nur für interessierte Kubernetes-Entwickler, die mit den neuesten & größte Quellcode experimentieren möchten enthalten.
+> Diese Seite ist vollständig freiwillig und nur für interessierte Kubernetes Entwickler, die mit dem neuesten & größten Quellcode experimentieren möchten.
 
 > [!tip]
-> Erhalt von Benachrichtigungen über die neuesten Entwicklungen können Sie abonnieren [@kubernetes-announce](https://groups.google.com/forum/#!forum/kubernetes-announce).
+> Um Benachrichtigungen zu den neuesten Entwicklungen zu erhalten, können Sie [@kubernetes-announce](https://groups.google.com/forum/#!forum/kubernetes-announce)abonnieren.
 
 ## <a name="installing-go"></a>Installieren von Go ##
 Der Einfachheit halber wird Go in einem temporären, benutzerdefinierten Speicherort installiert:
@@ -47,11 +47,11 @@ Führen Sie `go env` aus, um sicherzustellen, dass die Pfade ordnungsgemäß fes
 Verwenden Sie zum Kopieren der Windows-Binärdateien in den entsprechenden Knoten ein visuelles Tool wie [WinSCP](https://winscp.net/eng/download.php) oder ein Befehlszeilentool wie [pscp](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), um diese in das Verzeichnis `C:\k` zu übertragen.
 
 
-## <a name="building-locally"></a>Lokal erstellen ##
+## <a name="building-locally"></a>Lokales aufbauen ##
 > [!Tip]  
 > Vermeiden Sie den Fehler "Zugriff verweigert", indem Sie das Linux `kubelet` zuerst und entsprechend den Anweisungen unter [`acs-engine`](https://github.com/Azure/acs-engine/blob/master/scripts/build-windows-k8s.sh#L176) erstellen:
 >  
-> _Aufgrund eines scheinbaren Fehlers im Kubernetes-Buildsystem von Windows muss zunächst eine Linux-Binärdatei erstellt werden, um `_output/bin/deepcopy-gen` zu generieren. Ein Erstellen auf Windows ohne diesen Vorgang generiert eine leere `deepcopy-gen`._
+> _Aufgrund eines Fehlers im Windows-Buildsystem Kubernetes muss zunächst eine Linux-Binärdatei erstellt werden, um `_output/bin/deepcopy-gen`zu generieren. Durch das Erstellen auf Windows-e/a wird eine leere `deepcopy-gen`generiert._
 
 Rufen Sie zunächst das Kubernetes-Repository ab:
 

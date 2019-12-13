@@ -9,11 +9,11 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
 ms.openlocfilehash: 0139f51e909149dde59f4030c6571aee82fed27e
-ms.sourcegitcommit: 62fff5436770151a28b6fea2be3a8818564f3867
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "10147243"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909480"
 ---
 # <a name="create-a-virtual-network"></a>Erstellen eines virtuellen Netzwerks
 
@@ -22,7 +22,7 @@ Ihre virtuellen Computer benötigen ein virtuelles Netzwerk, wenn ein Netzwerk a
 
 ## <a name="connect-virtual-machines-to-the-internet"></a>Verbinden von virtuellen Computern mit dem Internet
 
-Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen Sie einen externen Schalter, um das Netzwerk Ihres Computers mit den auf ihm ausgeführten virtuellen Computern zu teilen.
+Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen Sie einen externen Switch, um das Netzwerk Ihres Computers für die virtuellen Maschinen freizugeben, die auf ihm ausgeführt werden.
 
 In dieser Übung wird das Erstellen eines externen virtuellen Switches behandelt. Nach Abschluss der Übung verfügt Ihr Hyper-V-Host über einen virtuellen Switch, mit dem virtuelle Computer über die Netzwerkverbindung des Computers eine Verbindung mit dem Internet herstellen können. 
 
@@ -41,7 +41,7 @@ Wenn die Suche den Hyper-V-Manager nicht findet, sind Hyper-V oder die Hyper-V-V
 
 6. Klicken Sie auf die Schaltfläche **Virtuellen Switch erstellen**.
 
-7. Geben Sie unter „Eigenschaften für virtuelle Switches“ dem neuen Switch einen Namen, z.B. **Externer VM-Switch**.
+7. Geben Sie unter „Eigenschaften für virtuelle Switches“ dem neuen Switch einen Namen, z. B. **Externer VM-Switch**.
 
 8. Stellen Sie unter „Verbindungstyp“ sicher, dass **Externes Netzwerk** ausgewählt wurde.
 
@@ -97,10 +97,10 @@ Im [Benutzerhandbuch für NAT-Networking](../user-guide/setup-nat-network.md) fi
 
 ### <a name="the-two-switch-approach"></a>Zwei Switches verwenden
 
-Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen Drahtlosnetzwerken und einem kabelgebundenen Netzwerk wechseln, möchten Sie möglicherweise einen virtuellen Switch für Ethernet-und WLAN-Netzwerkkarten erstellen.  Je nachdem, wie der Laptop eine Verbindung mit dem Netzwerk herstellt, können Sie Ihre virtuellen Computer zwischen diesen Schaltern ändern. Virtuelle Maschinen wechseln nicht automatisch zwischen Wired und Wireless. 
+Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen drahtlosen Netzwerken und einem verkabelten Netzwerk wechseln, empfiehlt es sich, einen virtuellen Switch für die Ethernet-und drahtlos Netzwerkkarten zu erstellen.  Je nachdem, wie der Laptop mit dem Netzwerk verbunden ist, können Sie die virtuellen Computer zwischen diesen Switches ändern. Virtuelle Computer wechseln nicht automatisch zwischen verkabelt und drahtlos. 
 
 >[!IMPORTANT]
->Der zwei-Switch-Ansatz unterstützt keine externen Vswitch über WLAN-Karte und sollte nur zu Testzwecken verwendet werden.
+>Der Ansatz mit zwei Switches unterstützt keine externe Vswitch-over-Wireless-Karte und sollte nur zu Testzwecken verwendet werden.
 
 ## <a name="next-step---create-a-virtual-machine"></a>Nächster Schritt: Erstellen eines virtuellen Computers
-[Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md)
+[Einen virtuellen Windows-Computer erstellen](create-virtual-machine.md)

@@ -1,7 +1,7 @@
 ---
 title: Spezifikationen für Hypervisor
 description: Spezifikationen für Hypervisor
-keywords: Windows 10, Hyper-V
+keywords: Windows 10, Hyper-V
 author: allenma
 ms.date: 06/26/2018
 ms.topic: article
@@ -9,11 +9,11 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: aee64ad0-752f-4075-a115-2d6b983b4f49
 ms.openlocfilehash: afbbcf120961081191aaf9051866427c9ce1478e
-ms.sourcegitcommit: 34d8b2ca5eebcbdb6958560b1f4250763bee5b48
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "9621278"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911180"
 ---
 # <a name="hypervisor-specifications"></a>Spezifikationen für Hypervisor
 
@@ -26,10 +26,10 @@ Mit der Funktionsspezifikation der obersten Ebene (Top-Level Functional Specific
 #### <a name="download"></a>Herunterladen
 Version | Dokument
 --- | ---
-Windows Server 2016 (Revision C) | [Hypervisor Top Level Functional Specification v5.0c.pdf](https://github.com/MicrosoftDocs/Virtualization-Documentation/raw/live/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v5.0C.pdf)
-Windows Server 2012 R2 (Revision B) | [Hypervisor Top Level Functional Specification v4.0b.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v4.0b.pdf)
-WindowsServer 2012 | [Hypervisor Top Level Functional Specification v3.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v3.0.pdf)
-Windows Server 2008 R2 | [Hypervisor Top Level Functional Specification v2.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v2.0.pdf)
+Windows Server 2016 (Revision C) | [Hypervisor-Funktionsspezifikation der obersten Ebene v 5.0 c. PDF](https://github.com/MicrosoftDocs/Virtualization-Documentation/raw/live/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v5.0C.pdf)
+Windows Server 2012 R2 (Revision B) | [Hypervisor-Funktionsspezifikation der obersten Ebene v 4.0 b. PDF](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v4.0b.pdf)
+Windows Server 2012 | [Hypervisor-Funktionsspezifikation der obersten Ebene v 3.0. PDF](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v3.0.pdf)
+Windows Server 2008 R2 | [Hypervisor-Funktionsspezifikation der obersten Ebene v 2.0. PDF](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v2.0.pdf)
 
 ## <a name="requirements-for-implementing-the-microsoft-hypervisor-interface"></a>Anforderungen für die Implementierung der Microsoft-Hypervisorschnittstelle
 
@@ -37,4 +37,4 @@ Die TLFS beschreibt vollständig alle Aspekte der Microsoft-spezifischen Hypervi
 
 #### <a name="download"></a>Herunterladen
 
-[Requirements for Implementing the Microsoft Hypervisor Interface.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Requirements%20for%20Implementing%20the%20Microsoft%20Hypervisor%20Interface.pdf)
+[Anforderungen für die Implementierung der Microsoft Hypervisor Interface. PDF](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Requirements%20for%20Implementing%20the%20Microsoft%20Hypervisor%20Interface.pdf)

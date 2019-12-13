@@ -9,23 +9,23 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 ms.openlocfilehash: 6e3996af36b4a710f9a12b3a1371138b053a43d8
-ms.sourcegitcommit: f3b6b470dd9cde8e8cac7b13e7e7d8bf2a39aa34
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "10077501"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909900"
 ---
 # <a name="container-host-deployment-windows-server"></a>Container Host Bereitstellung: Windows Server
 
-Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. In diesem Dokument wird erläutert, wie Sie einen Windows-Containerhost entweder für Windows Server2016 oder für Windows Server Core2016 auf einem physischen oder virtuellen System bereitstellen.
+Für die Bereitstellung eines Windows-Containerhosts sind je nach Betriebssystem und Typ des Hostsystems (physisch oder virtuell) unterschiedliche Schritte erforderlich. In diesem Dokument wird erläutert, wie Sie einen Windows-Containerhost entweder für Windows Server 2016 oder für Windows Server Core 2016 auf einem physischen oder virtuellen System bereitstellen.
 
 ## <a name="install-docker"></a>Installieren von Docker
 
-Für die Arbeit mit Windows-Containern ist Docker erforderlich. Andockfenster besteht aus dem Andock Modul und dem docker-Client.
+Für die Arbeit mit Windows-Containern ist Docker erforderlich. Docker besteht aus der Docker-Engine und dem docker-Client.
 
-Zum Installieren von Docker verwenden wir das [PowerShell-Modul für OneGet-Anbieter](https://github.com/OneGet/MicrosoftDockerProvider). Der Anbieter aktiviert die Container Funktion auf Ihrem Computer und installiert den Docker, für den ein Neustart erforderlich ist.
+Zum Installieren von Docker verwenden wir das [PowerShell-Modul oneget-Anbieter](https://github.com/OneGet/MicrosoftDockerProvider). Der Anbieter aktiviert die containerfunktion auf dem Computer und installiert Docker, was einen Neustart erfordert.
 
-Öffnen Sie eine erhöhte PowerShell-Sitzung, und führen Sie die folgenden Cmdlets aus.
+Öffnen Sie eine PowerShell-Sitzung mit erhöhten Rechten und führen Sie die folgenden Cmdlets aus.
 
 Installieren Sie das PowerShell-Modul „OneGet“.
 
@@ -45,54 +45,54 @@ Wenn die Installation abgeschlossen ist, starten Sie den Computer neu.
 Restart-Computer -Force
 ```
 
-## <a name="install-a-specific-version-of-docker"></a>Installieren einer bestimmten Version von Docker
+## <a name="install-a-specific-version-of-docker"></a>Installieren Sie eine bestimmte Version von Docker.
 
-Für docker EE für Windows Server stehen derzeit zwei Kanäle zur Verfügung:
+Zurzeit sind zwei Kanäle für docker EE für Windows Server verfügbar:
 
-* `17.06` – Verwenden Sie diese Version, wenn Sie docker Enterprise Edition (Andock Modul, UCP, DTR) verwenden. `17.06` ist die Standardeinstellung.
-* `18.03` – Verwenden Sie diese Version, wenn Sie nur das docker EE-Modul ausführen.
+* `17.06`: Verwenden Sie diese Version, wenn Sie die Docker Enterprise Edition (docker-Engine, UCP, DTR) verwenden. Standardmäßig ist `17.06` festgelegt.
+* `18.03`: Verwenden Sie diese Version, wenn Sie die Docker EE-Engine allein ausführen.
 
-Verwenden Sie das `RequiredVersion` Flag, um eine bestimmte Version zu installieren:
+Verwenden Sie das `RequiredVersion`-Flag, um eine bestimmte Version zu installieren:
 
 ```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion 18.03
 ```
 
-Für die Installation bestimmter docker EE-Versionen muss möglicherweise ein Update für zuvor installierte DockerMsftProvider-Module erforderlich sein. So aktualisieren Sie Folgendes:
+Für die Installation bestimmter docker EE-Versionen ist möglicherweise ein Update der zuvor installierten dockermsftprovider-Module erforderlich. So aktualisieren Sie Folgendes:
 
 ```PowerShell
 Update-Module DockerMsftProvider
 ```
 
-## <a name="update-docker"></a>Docker aktualisieren
+## <a name="update-docker"></a>Aktualisieren von Docker
 
-Wenn Sie das docker EE-Modul von einem früheren Kanal zu einem späteren Kanal aktualisieren müssen, verwenden Sie `-Update` die `-RequiredVersion` Flags und:
+Wenn Sie die Docker-EE-Engine von einem früheren Kanal auf einen späteren Kanal aktualisieren müssen, verwenden Sie die `-Update`-und `-RequiredVersion`-Flags:
 
 ```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -RequiredVersion 18.03
 ```
 
-## <a name="install-base-container-images"></a>Installieren von Basis Container Bildern
+## <a name="install-base-container-images"></a>Installieren von Basis Container Images
 
 Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als Containerbetriebssystem verfügbar. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Sie eigene Images auf docker.com).
 
-Mit der Veröffentlichung von Windows Server 2019 werden Microsoft-Container Bilder in eine neue Registrierung mit der Bezeichnung Microsoft Container Registry verschoben. Von Microsoft veröffentlichte Container Bilder sollten weiterhin über den docker-Hub erkannt werden. Für neue Container Bilder, die mit Windows Server 2019 und darüber hinaus veröffentlicht wurden, sollten Sie Sie aus dem "Sie" herausziehen. Für ältere Container Bilder, die vor Windows Server 2019 veröffentlicht wurden, sollten Sie Sie weiterhin aus der Registrierung des Dockers ziehen.
+Mit der Veröffentlichung von Windows Server 2019 werden Container Images, die von Microsoft stammen, in eine neue Registrierung namens Microsoft Container Registry verschoben. Von Microsoft veröffentlichte Container Images sollten weiterhin über den docker-Hub erkannt werden. Bei neuen, mit Windows Server 2019 und darüber veröffentlichten Container Images sollten Sie diese aus der MCR abrufen. Für ältere Container Images, die vor Windows Server 2019 veröffentlicht wurden, sollten Sie Sie weiterhin von der Docker-Registrierung abrufen.
 
 ### <a name="windows-server-2019-and-newer"></a>Windows Server 2019 und höher
 
-Führen Sie die folgenden Schritte aus, um das Basisabbild "Windows Server Core" zu installieren:
+Führen Sie Folgendes aus, um das Basis Image "Windows Server Core" zu installieren:
 
 ```PowerShell
 docker pull mcr.microsoft.com/windows/servercore:ltsc2019
 ```
 
-Führen Sie die folgenden Schritte aus, um das Basisabbild "Nano Server" zu installieren:
+Führen Sie Folgendes aus, um das Basis Image "Nano Server" zu installieren:
 
 ```PowerShell
 docker pull mcr.microsoft.com/windows/nanoserver:1809
 ```
 
-### <a name="windows-server-2016-versions-1607-1803"></a>Windows Server 2016 (Versionen 1607-1803)
+### <a name="windows-server-2016-versions-1607-1803"></a>Windows Server 2016 (Version 1607-1803)
 
 Zum Installieren des Basisimages für Windows Server Core führen Sie folgenden Befehl aus:
 
@@ -106,11 +106,11 @@ Zum Installieren des Basisimages für Nano Server führen Sie folgenden Befehl a
 docker pull mcr.microsoft.com/windows/nanoserver:1803
 ```
 
-> Bitte lesen Sie den EULA für Windows Containers OS-Bild, das hier zu finden ist – [EULA](../images-eula.md).
+> Lesen Sie die Windows-Container-EULA für Betriebssystem Images, die Sie hier finden – [EULA](../images-eula.md).
 
-## <a name="hyper-v-isolation-host"></a>Hyper-V-Isolierungs Host
+## <a name="hyper-v-isolation-host"></a>Hyper-V-Isolations Host
 
-Sie müssen über die Hyper-v-Rolle verfügen, um die Hyper-v-Isolierung ausführen zu können. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization).
+Sie müssen über die Hyper-v-Rolle verfügen, um die Hyper-v-Isolation ausführen zu können. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization).
 
 ### <a name="nested-virtualization"></a>Geschachtelte Virtualisierung
 
@@ -132,7 +132,7 @@ Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 
 ### <a name="enable-the-hyper-v-role"></a>Aktivieren der Hyper-V-Rolle
 
-Um das Hyper-V-Feature mithilfe von PowerShell zu aktivieren, führen Sie das folgende Cmdlet in einer erhöhten PowerShell-Sitzung aus.
+Um das Hyper-V-Feature mithilfe von PowerShell zu aktivieren, führen Sie das folgende Cmdlet in einer PowerShell-Sitzung mit erhöhten Rechten aus.
 
 ```PowerShell
 Install-WindowsFeature hyper-v

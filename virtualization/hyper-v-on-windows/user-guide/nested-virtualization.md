@@ -1,19 +1,19 @@
 ---
 title: Geschachtelte Virtualisierung
 description: Geschachtelte Virtualisierung
-keywords: Windows 10, Hyper-V
+keywords: Windows 10, Hyper-V
 author: johncslack
 ms.date: 12/18/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
-ms.openlocfilehash: f819ac04773188525af202d370ba271a2d93e259
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 625a9b36ff782c86065ef3d9124708e5716e066f
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998917"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910930"
 ---
 # <a name="run-hyper-v-in-a-virtual-machine-with-nested-virtualization"></a>Ausführen von Hyper-V auf einem virtuellen Computer mit geschachtelter Virtualisierung
 
@@ -23,7 +23,7 @@ Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
-* Sowohl der Hyper-V-Host als auch der Gast müssen Windows Server2016/Windows10 Anniversary Update oder höher ausführen.
+* Sowohl der Hyper-V-Host als auch der Gast müssen Windows Server 2016/Windows 10 Anniversary Update oder höher ausführen.
 * VM-Konfigurationsversion 8.0 oder höher.
 * Ein Intel-Prozessor mit VT-x- und EPT-Technologie – die Schachtelung ist derzeit **nur Intel**.
 * Es gibt einige Unterschiede bei virtuellen Netzwerken für sekundäre virtuelle Computer. Weitere Informationen finden Sie unter "Geschachtelte VM-Netzwerke".

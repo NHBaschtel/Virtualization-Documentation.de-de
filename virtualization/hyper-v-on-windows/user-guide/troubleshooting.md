@@ -1,19 +1,19 @@
 ---
 title: Problembehandlung für Hyper-V unter Windows 10
 description: Problembehandlung für Hyper-V unter Windows 10
-keywords: Windows 10, Hyper-V
+keywords: Windows 10, Hyper-V
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: f0ec8eb4-ffc4-4bf1-9a19-7a8c3975b359
-ms.openlocfilehash: bdb9feeb2452f2784a3b814e85dc72f3b967a9d3
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 03bbb4494bbbd790f16c4b6afef387905f7c6c83
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998867"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910890"
 ---
 # <a name="troubleshoot-hyper-v-on-windows-10"></a>Problembehandlung für Hyper-V unter Windows 10
 
@@ -28,8 +28,8 @@ Wenn Sie den Prüfpunkt von VMConnect verwenden und den Prüfpunkttyp im Hyper-V
 Schließen Sie VMConnect, und öffnen Sie es erneut, um den richtigen Prüfpunkttyp festzulegen.
 
 ## <a name="when-i-try-to-create-a-virtual-hard-disk-on-a-flash-drive-an-error-message-is-displayed"></a>Beim Versuch, eine virtuelle Festplatte auf einem USB-Speicherstick zu erstellen, wird eine Fehlermeldung angezeigt.
-Hyper-V unterstützt keine mit FAT/FAT32 formatierten Laufwerke, da diese Dateisysteme keinen Zugriffssteuerungslisten (ACLs) bieten und Dateien nur bis maximal 4GB unterstützen. Mit ExFAT formatierte Datenträger bieten nur eine eingeschränkte ACL-Funktionalität und werden daher auch aus Sicherheitsgründen nicht unterstützt.
-Die in PowerShell angezeigte Fehlermeldung lautet: Fehler beim Erstellen von '\[Pfad, VHD\]': Der angeforderte Vorgang konnte aufgrund einer Dateisystemeinschränkung nicht abgeschlossen werden. (0x80070299).
+Hyper-V unterstützt keine mit FAT/FAT32 formatierten Laufwerke, da diese Dateisysteme keinen Zugriffssteuerungslisten (ACLs) bieten und Dateien nur bis maximal 4 GB unterstützen. Mit ExFAT formatierte Datenträger bieten nur eine eingeschränkte ACL-Funktionalität und werden daher auch aus Sicherheitsgründen nicht unterstützt.
+Die in PowerShell angezeigte Fehlermeldung lautet: „Fehler beim Erstellen von '\[Pfad, VHD\]': Der angeforderte Vorgang konnte aufgrund einer Dateisystemeinschränkung nicht abgeschlossen werden (0x80070299).“
 
 Verwenden Sie stattdessen ein mit NTFS formatiertes Laufwerk. 
 

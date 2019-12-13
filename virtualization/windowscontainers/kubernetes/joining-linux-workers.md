@@ -1,38 +1,38 @@
 ---
-title: Linux-Knoten beitreten
+title: Beitreten zu Linux-Knoten
 author: daschott
 ms.author: daschott
 ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
-description: Hinzufügen eines Linux-Knotens zu einem Kubernetes-Cluster mit v1.14.
-keywords: Kubernetes, 1.14, Windows, erste Schritte
+description: Hinzufügen eines Linux-Knotens zu einem Kubernetes-Cluster mit v 1,14.
+keywords: kubernetes, 1,14, Windows, Getting Started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ms.openlocfilehash: 88207939c82bfe8ffa0b088cfd61cf4ab22cb10a
-ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/10/2019
-ms.locfileid: "9622945"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909950"
 ---
 # <a name="joining-linux-nodes-to-a-cluster"></a>Hinzufügen von Linux-Knoten zu einem Cluster
 
-Wenn Sie die [Einrichtung eines Kubernetes-master-Knotens](creating-a-linux-master.md) und [Ihrer Projektmappe gewünschte Netzwerk ausgewählt](network-topologies.md)haben, sind Sie bereit, Linux-Knoten zum Cluster beizutreten. Dies erfordert einige [Vorbereitung auf den Linux-Knoten](joining-linux-workers.md#preparing-a-linux-node) , bevor Sie einbinden.
+Nachdem Sie [einen Kubernetes-Master Knoten eingerichtet](creating-a-linux-master.md) und [die gewünschte Netzwerklösung ausgewählt](network-topologies.md)haben, können Sie Linux-Knoten zu Ihrem Cluster hinzufügen. Dies erfordert vor dem Beitritt einen gewissen [Vorbereitungs Aufwand für den Linux-Knoten](joining-linux-workers.md#preparing-a-linux-node) .
 > [!tip]
-> Die Linux-Anweisungen sind für **Ubuntu 16.04**zugeschnitten. Andere Linux-Distributionen, die zum Ausführen von Kubernetes zertifiziert sollte auch entsprechende Befehle bieten, die Sie ersetzen können. Sie können auch erfolgreich mit Windows ausgeführt werden.
+> Die Linux-Anweisungen sind auf **Ubuntu 16,04**zugeschnitten. Andere Linux-Distributionen, die zum Ausführen von Kubernetes zertifiziert sind, sollten auch entsprechende Befehle anbieten, die Sie ersetzen können. Sie werden auch erfolgreich mit Windows zusammenarbeiten.
 
 ## <a name="preparing-a-linux-node"></a>Vorbereiten eines Linux-Knotens
 
 > [!NOTE]
-> Sofern nicht explizit anders angegeben, führen Sie alle Befehle in einer **mit erhöhten Rechten, Root-Benutzer-Shell**.
+> Wenn nicht anders angegeben, führen Sie alle Befehle in einer **Shell mit erhöhten Rechten**aus.
 
-Rufen Sie zunächst in eine Stamm-Shell:
+Holen Sie sich zuerst eine root-Shell:
 
 ```bash
 sudo –s
 ```
 
-Stellen Sie sicher, dass Ihre Computer auf dem neuesten Stand ist:
+Stellen Sie sicher, dass Ihr Computer auf dem neuesten Stand ist:
 
 ```bash
 apt-get update && apt-get upgrade
@@ -40,7 +40,7 @@ apt-get update && apt-get upgrade
 
 ## <a name="install-docker"></a>Installieren von Docker
 
-Um Container verwendet werden können, benötigen Sie eine Container-Engine, z. B. Docker. Um die neueste Version zu erhalten, können Sie [diese Anweisungen](https://docs.docker.com/install/linux/docker-ce/ubuntu/) für die Installation von Docker verwenden. Sie können überprüfen, ob diese Docker wird durch Ausführen ordnungsgemäß installiert `hello-world` Image:
+Um Container verwenden zu können, benötigen Sie eine Container-Engine, z. b. Docker. Um die neueste Version zu erhalten, können Sie [diese Anweisungen](https://docs.docker.com/install/linux/docker-ce/ubuntu/) für die Docker-Installation verwenden. Sie können überprüfen, ob docker ordnungsgemäß installiert ist, indem Sie `hello-world` Abbild ausführen:
 
 ```bash
 docker run hello-world
@@ -48,10 +48,10 @@ docker run hello-world
 
 ## <a name="install-kubeadm"></a>Installieren von kubeadm
 
-Herunterladen `kubeadm` Binärdateien für Ihre Linux-Distributionen und Initialisieren des Clusters.
+Laden Sie `kubeadm` Binärdateien für Ihre Linux-Distribution herunter, und initialisieren Sie Ihren Cluster.
 
 > [!Important]  
-> Je nach Linux-Distribution müssen Sie möglicherweise ersetzen `kubernetes-xenial` unten mit dem richtigen [Codename](https://wiki.ubuntu.com/Releases).
+> Abhängig von Ihrer Linux-Distribution müssen Sie möglicherweise `kubernetes-xenial` unten durch den richtigen [Codenamen](https://wiki.ubuntu.com/Releases)ersetzen.
 
 ``` bash
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -61,58 +61,58 @@ EOF
 apt-get update && apt-get install -y kubelet kubeadm kubectl 
 ```
 
-## <a name="disable-swap"></a>Deaktivieren der SwapChain
+## <a name="disable-swap"></a>Austausch deaktivieren
 
-Kubernetes unter Linux erfordert Swap-Bereich deaktiviert ist:
+Kubernetes unter Linux erfordert, dass der Auslagerungs Bereich ausgeschaltet wird:
 
 ``` bash
 nano /etc/fstab  # (remove a line referencing 'swap.img' , if it exists)
 swapoff -a
 ```
 
-## <a name="flannel-only-enable-bridged-ipv4-traffic-to-iptables"></a>(Nur Flannel) Überbrückte IPv4-Datenverkehr zu Iptables aktivieren
+## <a name="flannel-only-enable-bridged-ipv4-traffic-to-iptables"></a>(Nur Flannel) Aktivieren des überbrückten IPv4-Datenverkehrs in iptables
 
-Wenn Sie Flannel als Ihr Netzwerk Lösung ausgewählt haben, die empfiehlt es sich um aktivieren, Überbrückte IPv4-Datenverkehr zu Iptables Ketten. Sie sollten [dies für den Master bereits getan](network-topologies.md#flannel-in-host-gateway-mode) haben und nun müssen sie für den Linux-Knoten, die für den Beitritt Steuerelementlogik wiederholen. Es ist möglich, mit dem folgenden Befehl:
+Wenn Sie die Option "Flannel" als Netzwerklösung gewählt haben, empfiehlt es sich, den überbrückten IPv4-Datenverkehr an iptables Sie sollten [dies bereits für den Master ausgeführt](network-topologies.md#flannel-in-host-gateway-mode) haben und ihn nun für den Linux-Knoten wiederholen, der beitreten möchte. Dies kann mithilfe des folgenden Befehls erfolgen:
 
 ``` bash
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 
-## <a name="copy-kubernetes-certificate"></a>Kopieren Sie Kubernetes-Zertifikat
+## <a name="copy-kubernetes-certificate"></a>Kubernetes Zertifikat kopieren
 
-**Als reguläre, (nicht-Root) Benutzer**, die folgenden 3 Schritte.
+Führen Sie die folgenden drei Schritte **als regulärer Benutzer (Benutzer ohne Stamm)** aus.
 
-1. Erstellen Sie Kubernetes für Linux-Verzeichnis:
+1. Erstellen Sie Kubernetes für das Linux-Verzeichnis:
 
 ```bash
 mkdir -p $HOME/.kube
 ```
 
-2. Kopieren Sie die Zertifikatdatei Kubernetes (`$HOME/.kube/config`) [Master](./creating-a-linux-master.md#collect-cluster-information) und speichern Sie als `$HOME/.kube/config` auf die Worker.
+2. Kopieren Sie die Kubernetes-Zertifikatsdatei (`$HOME/.kube/config`) [vom Master](./creating-a-linux-master.md#collect-cluster-information) , und speichern Sie Sie als `$HOME/.kube/config` auf dem Worker.
 
 > [!tip]
-> Scp-basierten Tools wie z. B. [WinSCP](https://winscp.net/eng/download.php) können Sie die Konfigurationsdatei zwischen Knoten übertragen.
+> Sie können SCP-basierte Tools wie [WinSCP](https://winscp.net/eng/download.php) verwenden, um die Konfigurationsdatei zwischen Knoten zu übertragen.
 
-3. Legen Sie Dateibesitz der kopierten Konfigurationsdatei wie folgt:
+3. Legen Sie den Dateibesitz der kopierten Konfigurationsdatei wie folgt fest:
 
 ``` bash
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-## <a name="joining-node"></a>Wenn Knoten
+## <a name="joining-node"></a>Beitreten zum Knoten
 
-Um dem Cluster beizutreten, führen Sie abschließend die `kubeadm join` [wir bereits erwähnt nach unten](./creating-a-linux-master.md#initialize-master) **als Root**Befehl:
+Zum Schluss führen Sie den `kubeadm join` Befehl aus, den [Sie zuvor notiert](./creating-a-linux-master.md#initialize-master) haben, um den Cluster zu **erhalten:**
 
 ```bash
 kubeadm join <Master_IP>:6443 --token <some_token> --discovery-token-ca-cert-hash <some_hash>
 ```
 
-Falls erfolgreich, sollten Sie ähnliche Ausgabe folgt sehen:
+Wenn erfolgreich, sollte eine ähnliche Ausgabe angezeigt werden:
 
 ![Text](./media/node-join.png)
 
 ## <a name="next-steps"></a>Nächste Schritte
 
-In diesem Abschnitt behandelt wir so Linux-Worker mit unseren Kubernetes-Cluster zu verknüpfen. Jetzt sind Sie bereit für Schritt 6:
+In diesem Abschnitt wird beschrieben, wie Sie Linux-Worker mit unserem Kubernetes-Cluster verknüpfen. Nun sind Sie bereit für Schritt 6:
 > [!div class="nextstepaction"]
-> [Bereitstellen von Kubernetes-Ressourcen](./deploying-resources.md)
+> [Bereitstellen von Kubernetes Ressourcen](./deploying-resources.md)

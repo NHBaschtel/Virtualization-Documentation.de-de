@@ -5,53 +5,53 @@ ms.author: daschott
 ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
-description: Erstellen einen neuen Kubernetes Cluster-Master.
-keywords: Kubernetes, 1,14, master, linux
+description: Erstellen eines Kubernetes-Cluster Masters
+keywords: kubernetes, 1,14, Master, Linux
 ms.openlocfilehash: b1ec23b039ce6f5c42859452ecf3a8a5b35e006c
-ms.sourcegitcommit: aaf115a9de929319cc893c29ba39654a96cf07e1
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 05/10/2019
-ms.locfileid: "9622955"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910420"
 ---
 # <a name="creating-a-kubernetes-master"></a>Erstellen eines Kubernetes-Masters #
 > [!NOTE]
-> Dieses Handbuch wurde auf Kubernetes v1.14 überprüft. Aufgrund der Version auftretenden Unbeständigkeit von Kubernetes Version kann in diesem Abschnitt Annahmen machen, die nicht für alle zukünftigen Versionen "true" enthalten. Offiziellen Dokumentation für die Initialisierung von Kubernetes-Master mit Kubeadm finden Sie [hier](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Aktivieren Sie einfach [scheduling vermischten OS-Abschnitt](#enable-mixed-os-scheduling) oben in diesem an.
+> Dieses Handbuch wurde auf Kubernetes v 1.14 überprüft. Aufgrund der Volatilität von Kubernetes von Version zu Version kann dieser Abschnitt Annahmen treffen, die für alle zukünftigen Versionen nicht wahr sind. Die offizielle Dokumentation für die Initialisierung von Kubernetes Masters mithilfe von kubeadm finden Sie [hier](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Aktivieren Sie einfach auf der Grundlage dieses Abschnitts den Bereich für die [Planung gemischter Betriebssysteme](#enable-mixed-os-scheduling) .
 
 > [!NOTE]  
-> Ein vor kurzem aktualisierter Linux-Computer ist erforderlich, um nachvollziehen; Kubernetes master-Ressourcen wie [Kube-Dns](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), [Kube-Scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)und [Kube-Apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) nicht zu Windows noch portiert wurden. 
+> Ein kürzlich aktualisierter Linux-Computer muss folgendermaßen befolgt werden. Kubernetes Master Ressourcen wie [Kube-DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), [Kube-Scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)und [Kube-APISERVER](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) wurden noch nicht in Windows portiert. 
 
 > [!tip]
-> Die Linux-Anweisungen sind für **Ubuntu 16.04**zugeschnitten. Andere Linux-Distributionen, die zum Ausführen von Kubernetes zertifiziert sollte auch entsprechende Befehle bieten, die Sie ersetzen können. Sie können auch erfolgreich mit Windows ausgeführt werden.
+> Die Linux-Anweisungen sind auf **Ubuntu 16,04**zugeschnitten. Andere Linux-Distributionen, die zum Ausführen von Kubernetes zertifiziert sind, sollten auch entsprechende Befehle anbieten, die Sie ersetzen können. Sie werden auch erfolgreich mit Windows zusammenarbeiten.
 
 
 ## <a name="initialization-using-kubeadm"></a>Initialisierung mit kubeadm ##
-Sofern nicht explizit anders angegeben, führen Sie alle Befehle unten als **Root**aus.
+Wenn nicht anders angegeben, führen Sie alle unten aufgeführten Befehle als **root**aus.
 
-Rufen Sie zunächst in einer erhöhten Root-Shell:
+Steigen Sie zunächst in eine Shell mit erhöhten Rechten ein:
 
 ```bash
 sudo –s
 ```
 
-Stellen Sie sicher, dass Ihre Computer auf dem neuesten Stand ist:
+Stellen Sie sicher, dass Ihr Computer auf dem neuesten Stand ist:
 
 ```bash
 apt-get update -y && apt-get upgrade -y
 ```
 
 ### <a name="install-docker"></a>Installieren von Docker ###
-Um Container verwendet werden können, benötigen Sie eine Container-Engine, z. B. Docker. Um die neueste Version zu erhalten, können Sie [diese Anweisungen](https://docs.docker.com/install/linux/docker-ce/ubuntu/) für die Installation von Docker verwenden. Sie können überprüfen, ob diese Docker ordnungsgemäß installiert ist, mit einem `hello-world` Container:
+Um Container verwenden zu können, benötigen Sie eine Container-Engine, z. b. Docker. Um die neueste Version zu erhalten, können Sie [diese Anweisungen](https://docs.docker.com/install/linux/docker-ce/ubuntu/) für die Docker-Installation verwenden. Sie können überprüfen, ob docker ordnungsgemäß installiert ist, indem Sie einen `hello-world` Container ausführen:
 
 ```bash
 docker run hello-world
 ```
 
 ### <a name="install-kubeadm"></a>Installieren von kubeadm ###
-Herunterladen `kubeadm` Binärdateien für Ihre Linux-Distributionen und Initialisieren des Clusters.
+Laden Sie `kubeadm` Binärdateien für Ihre Linux-Distribution herunter, und initialisieren Sie Ihren Cluster.
 
 > [!Important]  
-> Je nach Linux-Distribution müssen Sie möglicherweise ersetzen `kubernetes-xenial` unten mit dem richtigen [Codename](https://wiki.ubuntu.com/Releases).
+> Abhängig von Ihrer Linux-Distribution müssen Sie möglicherweise `kubernetes-xenial` unten durch den richtigen [Codenamen](https://wiki.ubuntu.com/Releases)ersetzen.
 
 ```bash
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -61,64 +61,64 @@ EOF
 apt-get update && apt-get install -y kubelet kubeadm kubectl 
 ```
 
-### <a name="prepare-the-master-node"></a>Vorbereiten der master-Knotens ###
-Kubernetes unter Linux erfordert Swap-Bereich deaktiviert ist:
+### <a name="prepare-the-master-node"></a>Vorbereiten des Master Knotens ###
+Kubernetes unter Linux erfordert, dass der Auslagerungs Bereich ausgeschaltet wird:
 
 ```bash
 nano /etc/fstab  # (remove a line referencing 'swap.img' , if it exists)
 swapoff -a 
 ```
 
-### <a name="initialize-master"></a>Initialisieren Sie master ###
-Notieren Sie Ihre Clustersubnetz (z. B. 10.244.0.0/16) und die Dienst-Subnetz (z. B. 10.96.0.0/12), und initialisieren Sie Ihre Master Kubeadm verwenden:
+### <a name="initialize-master"></a>Master initialisieren ###
+Notieren Sie sich Ihr Clustersubnetz (z. b. 10.244.0.0/16) und das dienstsubnetz (z. b. 10.96.0.0/12), und initialisieren Sie den Master mithilfe von kubeadm:
 
 ```bash
 kubeadm init --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12
 ```
 
-Dieser Vorgang kann einige Minuten dauern. Nachdem abgeschlossen, sollten Sie sehen einen Bildschirm wie dieser bestätigt, dass Ihre Master initialisiert wurde:
+Dieser Vorgang kann einige Minuten dauern. Nach Abschluss des Vorgangs sollte ein Bildschirm wie dieser angezeigt werden, der bestätigt, dass Ihr Master initialisiert wurde:
 
 ![Text](media/kubeadm-init.png)
 
 > [!tip]
-> Sie sollten diesen Kubeadm Beitritt Befehl beachten. Sollte das Token Kubeadm ablaufen, können Sie `kubeadm token create --print-join-command` um ein neues Token zu erstellen.
+> Beachten Sie diesen kubeadm Join-Befehl. Das kubeadm-Token läuft ab. Sie können `kubeadm token create --print-join-command` verwenden, um ein neues Token zu erstellen.
 
 > [!tip]
-> Wenn Sie eine gewünschte Kubernetes-Version Sie verwenden möchten, übergeben Sie die `--kubernetes-version` Flag zum Kubeadm.
+> Wenn Sie über eine gewünschte Kubernetes-Version verfügen, die Sie verwenden möchten, können Sie das `--kubernetes-version`-Flag an kubeadm übergeben.
 
-Wir sind noch nicht fertig. Mit `kubectl` wie ein normaler Benutzer, führen Sie die folgenden __**in einer unelevated, nicht-Root-Benutzer-Shell**__
+Das ist noch nicht abgeschlossen. Um `kubectl` als normalen Benutzer zu verwenden, führen Sie den folgenden Befehl  __**in einer nicht erhöhten, nicht stammenden Benutzershell aus** .__
 
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-Jetzt können Sie Kubectl bearbeiten oder Anzeigen von Informationen über Ihre Cluster.
+Nun können Sie kubectl zum Bearbeiten oder Anzeigen von Informationen über Ihren Cluster verwenden.
 
-### <a name="enable-mixed-os-scheduling"></a>Aktivieren Sie die Planung vermischten OS ###
-Standardmäßig werden bestimmte Kubernetes-Ressourcen so geschrieben, dass sie auf allen Knoten geplant sind. Allerdings möchten nicht in einer Multi-BS-Umgebung wir Linux-Ressourcen zu beeinträchtigen, oder auf Windows-Knoten und umgekehrt Double geplant werden. Aus diesem Grund müssen wir [Selektoren](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector) Beschriftungen anwenden. 
+### <a name="enable-mixed-os-scheduling"></a>Aktivieren von Zeitplänen für gemischte Betriebssysteme ###
+Standardmäßig werden bestimmte Kubernetes-Ressourcen so geschrieben, dass Sie auf allen Knoten geplant sind. In einer Umgebung mit mehreren Betriebssystemen möchten wir jedoch nicht, dass Linux-Ressourcen auf Windows-Knoten beeinträchtigt werden, und umgekehrt. Aus diesem Grund müssen wir [nodäselector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector) -Bezeichnungen anwenden. 
 
-In diesem Zusammenhang werden wir uns hier Linux patch Kube-Proxy [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) Linux nur bestimmt.
+In diesem Zusammenhang wird das Linux-Kube-Proxy- [daemonset](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) nur auf das Linux-Ziel aktualisiert.
 
-Zunächst erstellen wir ein Verzeichnis zum Speichern von .yaml Manifestdateien:
+Erstellen Sie zunächst ein Verzeichnis, in dem die YAML-Manifest-Dateien gespeichert werden:
 ```bash
 mkdir -p kube/yaml && cd kube/yaml
 ```
 
-Überprüfen Sie, ob die Updatestrategie von `kube-proxy` DaemonSet auf [RollingUpdate](https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/)festgelegt ist:
+Vergewissern Sie sich, dass die Aktualisierungs Strategie von `kube-proxy` daemonset auf [rollingupdate](https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/)festgelegt ist:
 
 ```bash
 kubectl get ds/kube-proxy -o go-template='{{.spec.updateStrategy.type}}{{"\n"}}' --namespace=kube-system
 ```
 
-Als Nächstes Patchen Sie der DaemonSet durch [Diese Selektoren](https://github.com/Microsoft/SDN/tree/master/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml) herunterladen und wenden Sie an, um nur Linux als Ziel:
+Als nächstes Patchen Sie den daemonset, indem Sie [diesen nodeselector](https://github.com/Microsoft/SDN/tree/master/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml) herunterladen und auf nur Ziel-Linux anwenden:
 
 ```bash
 wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml
 kubectl patch ds/kube-proxy --patch "$(cat node-selector-patch.yml)" -n=kube-system
 ```
 
-Sobald der erfolgreich, sollten Sie "Knotenselektoren" angezeigt, der `kube-proxy` und alle anderen DaemonSets festgelegt `beta.kubernetes.io/os=linux`
+Nach erfolgreicher Ausführung sollten "knotenselektoren" von `kube-proxy` und alle anderen daemonsets auf festgelegt werden `beta.kubernetes.io/os=linux`
 
 ```bash
 kubectl get ds -n kube-system
@@ -126,33 +126,33 @@ kubectl get ds -n kube-system
 
 ![Text](media/kube-proxy-ds.png)
 
-### <a name="collect-cluster-information"></a>Sammeln von Clusterinformationen ###
-So verknüpfen Sie erfolgreich zukünftige Knoten mit dem Master, sollten Sie die folgende Informationen nachzuverfolgen:
-  1. `kubeadm join` Befehl Ausgabe ([hier](#initialize-master))
+### <a name="collect-cluster-information"></a>Sammeln von Cluster Informationen ###
+Um dem Master erfolgreich zukünftige Knoten hinzuzufügen, sollten Sie die folgenden Informationen nachverfolgen:
+  1. `kubeadm join` Befehl aus der Ausgabe ([hier](#initialize-master))
     * Beispiel: `kubeadm join <Master_IP>:6443 --token <some_token> --discovery-token-ca-cert-hash <some_hash>`
-  2. Cluster-Subnetz, die während der definierten `kubeadm init` ([hier](#initialize-master))
+  2. Während der `kubeadm init` definierte Clustersubnetze ([hier](#initialize-master))
     * Beispiel: `10.244.0.0/16`
-  3. Dienst-Subnetz, die während der definierten `kubeadm init` ([hier](#initialize-master))
+  3. Während der `kubeadm init` definierte dienstsubnetze ([hier](#initialize-master))
     * Beispiel: `10.96.0.0/12`
-    * Kann auch mit gefunden werden `kubectl cluster-info dump | grep -i service-cluster-ip-range`
+    * Kann auch mit `kubectl cluster-info dump | grep -i service-cluster-ip-range` gefunden werden.
   4. Kube-DNS-Dienst-IP 
     * Beispiel: `10.96.0.10`
-    * Finden Sie in "Cluster-IP-" Feld mit `kubectl get svc/kube-dns -n kube-system`
-  5. Kubernetes `config` Datei nach der `kubeadm init` ([hier](#initialize-master)). Wenn Sie die Anweisungen befolgt, kann dies in den folgenden Pfaden gefunden werden:
+    * Sie finden ihn im Feld "Cluster-IP" unter Verwendung `kubectl get svc/kube-dns -n kube-system`
+  5. Kubernetes `config` Datei generiert, die nach `kubeadm init` ([hier](#initialize-master)) generiert wurde. Wenn Sie die Anweisungen befolgt haben, finden Sie diese in den folgenden Pfaden:
     * `/etc/kubernetes/admin.conf`
     * `$HOME/.kube/config`
 
 ## <a name="verifying-the-master"></a>Überprüfen des Masters ##
 Nach ein paar Minuten sollte das System folgenden Status aufweisen:
 
-  - Unter `kubectl get pods -n kube-system`, werden für die [Kubernetes master-Komponenten](https://kubernetes.io/docs/concepts/overview/components/#master-components) in Pods `Running` Zustand.
-  - Aufrufen `kubectl cluster-info` zeigt Informationen über den Kubernetes API-Masterserver neben den Add-Ons DNS an.
+  - Unter `kubectl get pods -n kube-system`werden Pods für die [Kubernetes-Master Komponenten](https://kubernetes.io/docs/concepts/overview/components/#master-components) in `Running` Zustand angezeigt.
+  - Beim Aufrufen von `kubectl cluster-info` werden neben DNS-Addons auch Informationen zum Kubernetes-Master-API-Server angezeigt.
   
 > [!tip]
-> Da Kubeadm nicht Netzwerk einrichten DNS-Pods möglicherweise weiterhin `ContainerCreating` oder `Pending` Zustand. Sie werden zu wechseln, `Running` Status nach dem [Auswählen einer Lösung](./network-topologies.md).
+> Da kubeadm keine Netzwerke eingibt, können sich DNS-Pods weiterhin in `ContainerCreating` oder `Pending` Status befinden. Nachdem Sie [eine Netzwerklösung ausgewählt](./network-topologies.md)haben, wechseln Sie zu `Running` Zustand.
 
 ## <a name="next-steps"></a>Nächste Schritte ## 
-In diesem Abschnitt behandelt wir zum Einrichten eines Kubeadm mit Kubernetes-Masters. Jetzt sind Sie bereit für Schritt 3:
+In diesem Abschnitt wird beschrieben, wie Sie einen Kubernetes-Master mithilfe von kubeadm einrichten. Nun sind Sie bereit für Schritt 3:
 
 > [!div class="nextstepaction"]
-> [Auswählen einer Lösung](./network-topologies.md)
+> [Auswählen einer Netzwerklösung](./network-topologies.md)

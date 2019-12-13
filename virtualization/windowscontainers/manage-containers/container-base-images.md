@@ -1,6 +1,6 @@
 ---
-title: Windows-Container-Basisbilder
-description: Eine Übersicht über die Windows-Containerbasis Bilder und deren Verwendung.
+title: Windows-Container-Basis Images
+description: Eine Übersicht über die Windows-Containerbasis Images und deren Verwendung.
 keywords: Docker, Container, Hashes
 author: patricklang
 ms.date: 09/25/2019
@@ -9,15 +9,15 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ms.openlocfilehash: 2a69fbace51589cce08476bd68fdb5c34a7907e6
-ms.sourcegitcommit: d0411b05d1ef7328a770766b84fd0743f9d9c237
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "10254270"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909780"
 ---
-# <a name="container-base-images"></a>Container-Basisbilder
+# <a name="container-base-images"></a>Container Basis Images
 
-Windows bietet vier Containerbasis Bilder, aus denen Benutzer erstellen können. Jedes Basisbild weist eine andere Variante des Windows-Betriebssystems auf, hat einen anderen Speicherplatz auf dem Datenträger und hat eine unterschiedliche Menge des Windows-API-Satzes.
+Windows bietet vier Containerbasis Images, aus denen Benutzer erstellen können. Jedes Basis Image unterscheidet sich vom Windows-Betriebssystem, unterscheidet sich von Datenträgern und unterscheidet sich von der Größe des Windows-API-Satzes.
 
 <ul class="columns is-multiline has-margin-left-none has-margin-bottom-none has-padding-top-medium">
     <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
@@ -54,7 +54,7 @@ Windows bietet vier Containerbasis Bilder, aus denen Benutzer erstellen können.
                         <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Nano Server</h3>
                     </div>
                     <div class="is-size-7 has-margin-top-small has-line-height-reset">
-                        <p>Für .net Core-Anwendungen konzipiert.</p>
+                        <p>Basiert auf .net Core-Anwendungen.</p>
                     </div>
                 </div>
             </article>
@@ -91,10 +91,10 @@ Windows bietet vier Containerbasis Bilder, aus denen Benutzer erstellen können.
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
                     <div class="has-padding-bottom-none">
-                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">WindowsIoT Core</h3>
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows IOT Core</h3>
                     </div>
                     <div class="is-size-7 has-margin-top-small has-line-height-reset">
-                        <p>Speziell für viele Anwendungen konzipiert.</p>
+                        <p>Speziell für IOT-Anwendungen.</p>
                     </div>
                 </div>
             </article>
@@ -102,46 +102,46 @@ Windows bietet vier Containerbasis Bilder, aus denen Benutzer erstellen können.
     </li>
 </ul>
 
-## <a name="image-discovery"></a>Bild Ermittlung
+## <a name="image-discovery"></a>Image Ermittlung
 
-Alle Windows-Container-Basisbilder sind über den [docker-Hub](https://hub.docker.com/_/microsoft-windows-base-os-images)auffindbar. Die Windows-Containerbasis Bilder selbst werden von [MCR.Microsoft.com](https://azure.microsoft.com/en-us/services/container-registry/), der Microsoft-Container Registrierung ("Microsoft Container Registry"), bereitgestellt. Aus diesem Grund sehen die Pull-Befehle für die Windows-Containerbasis Bilder wie folgt aus:
+Alle Windows-Container-Basis Images können über [docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images)erkannt werden. Die Windows-Containerbasis Images selbst werden von [MCR.Microsoft.com](https://azure.microsoft.com/en-us/services/container-registry/), dem Microsoft Container Registry (MCR), bedient. Aus diesem Grund sehen die Pull-Befehle für die Windows-Containerbasis Images wie folgt aus:
 
 ```code
 docker pull mcr.microsoft.com/windows/servercore:ltsc2019
 ```
 
-Das "Sie"-Element verfügt nicht über eine eigene Katalog Erfahrung und unterstützt vorhandene Kataloge wie docker-Hub. Dank des globalen Footprints von Azure und einer Kombination aus Azure CDN bietet das "" "-Symbol eine Bild Zieh Erfahrung, die konsistent und schnell ist. Azure-Kunden, die ihre Arbeitslasten in Azure ausführen, profitieren von Verbesserungen in der Netzwerkleistung sowie einer engen Integration mit der Quelle für Microsoft-Container Bilder, Azure Marketplace und der wachsenden Anzahl von Diensten in Azure, die das Angebot Container als Bereitstellungspaket Format.
+Die MCR verfügt nicht über eine eigene Katalog Umgebung und soll vorhandene Kataloge wie docker Hub unterstützen. Dank des globalen Speicherplatzes von Azure und der Verbindung mit Azure CDN bietet MCR eine konsistente und schnelle Image Pull-Funktion. Azure-Kunden, die ihre Workloads in Azure ausführen, profitieren von den Leistungsverbesserungen im Netzwerk sowie von der engen Integration mit dem MCR (der Quelle für Microsoft-Container Images), Azure Marketplace und der wachsenden Anzahl von Diensten in Azure, die Container als Bereitstellungs Paketformat.
 
-## <a name="choosing-a-base-image"></a>Auswählen eines Basis Bilds
+## <a name="choosing-a-base-image"></a>Auswählen eines Basis Images
 
-Wie wählen Sie das richtige Basis Bild aus, auf dem Sie aufbauen möchten? Für die meisten Benutzer `Windows Server Core` und `Nanoserver` ist das am besten geeignete Bild, das verwendet werden soll.
+Wie wählen Sie das richtige Basis Image aus, auf dem erstellt werden soll? Für die meisten Benutzer sind `Windows Server Core` und `Nanoserver` das geeignetste zu verwendende Image.
 
-### <a name="guidelines"></a>Anleitungen
+### <a name="guidelines"></a>Richtlinien
 
- Wenn Sie das gewünschte Bild abgleichen möchten, finden Sie hier einige Richtlinien, die Ihnen helfen, Ihre Wahl zu steuern:
+ Obwohl Sie das gewünschte Image als Ziel verwenden können, finden Sie hier einige Richtlinien, die Ihnen helfen, Ihre Wahl zu steuern:
 
-- **Erfordert Ihre Anwendung das vollständige .NET Framework?** Wenn die Antwort auf diese Frage "Ja" lautet, sollten `Windows Server Core`Sie eine Zielvorgabe erreichen.
-- **Erstellen Sie auf der Grundlage von .net Core eine Windows-App?** Wenn die Antwort auf diese Frage "Ja" lautet, sollten `Nanoserver`Sie eine Zielvorgabe erreichen.
-- **Erstellen Sie eine viel-Anwendung?** Wenn die Antwort auf diese Frage "Ja" lautet, sollten `IoT Core`Sie eine Zielvorgabe erreichen.
-- **Fehlt für das Windows Server Core-Container Abbild eine Abhängigkeit, die Ihre APP benötigt?** Wenn die Antwort auf diese Frage ja lautet, sollten Sie versuchen, ein `Windows`Ziel zu erreichen. Dieses Bild ist viel größer als die anderen Basisbilder, aber es enthält viele der wichtigsten Windows-Bibliotheken (wie die GDI-Bibliothek).
-- **Sind Sie ein Windows-Insider?** Wenn ja, sollten Sie die Verwendung der Insider-Version der Bilder in Frage stellen. Weitere Informationen finden Sie unten unter "Basisbilder für Windows-Insider".
+- **Ist für Ihre Anwendung das vollständige .NET Framework erforderlich?** Wenn die Antwort auf diese Frage "yes" lautet, sollten Sie `Windows Server Core`als Ziel festlegen.
+- **Entwickeln Sie eine Windows-APP, die auf .net Core basiert?** Wenn die Antwort auf diese Frage "yes" lautet, sollten Sie `Nanoserver`als Ziel festlegen.
+- **Wird eine IOT-Anwendung aufgebaut?** Wenn die Antwort auf diese Frage "yes" lautet, sollten Sie `IoT Core`als Ziel festlegen.
+- **Fehlt dem Windows Server Core-Container Image eine Abhängigkeit, die Ihre APP benötigt?** Wenn die Antwort auf diese Frage "yes" lautet, sollten Sie versuchen, auf `Windows`zu Zielen. Dieses Bild ist wesentlich größer als die anderen Basis Images, aber es enthält viele der Windows-Kernbibliotheken (z. b. die GDI-Bibliothek).
+- **Sind Sie Windows-Insider?** Wenn ja, sollten Sie die Verwendung der Insider-Version der Images in Erwägung gezogen. Weitere Informationen finden Sie unten unter "Basis Images für Windows-Insider".
 
 > [!TIP]
-> Viele Windows-Benutzer möchten Anwendungen containerisieren, die eine Abhängigkeit von .net aufweisen. Zusätzlich zu den hier beschriebenen vier Basisbildern veröffentlicht Microsoft mehrere Windows-Container Bilder, die mit beliebten Microsoft-Frameworks vorkonfiguriert sind, beispielsweise ein [.NET Framework](https://hub.docker.com/_/microsoft-dotnet-framework) -Abbild und das [ASP .net](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) -Abbild.
+> Viele Windows-Benutzer möchten Anwendungen, die eine Abhängigkeit von .net aufweisen, containerisieren. Zusätzlich zu den vier hier beschriebenen Basis Images veröffentlicht Microsoft mehrere Windows-Container Images, die mit beliebten Microsoft-Frameworks, wie z. b. dem [.NET Framework](https://hub.docker.com/_/microsoft-dotnet-framework) -Image und dem [ASP .net](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) -Image, vorkonfiguriert sind.
 
-### <a name="base-images-for-windows-insiders"></a>Basisbilder für Windows-Insider
+### <a name="base-images-for-windows-insiders"></a>Basis Images für Windows-Insider
 
-Microsoft bietet "Insider"-Versionen der einzelnen Containerbasis Bilder. Diese Insider-Container Bilder tragen die neueste und beste Funktionsentwicklung in unseren Container Bildern. Wenn Sie einen Host ausführen, bei dem es sich um eine Insider Version von Windows (entweder Windows Insider oder Windows Server Insider) handelt, ist es vorzuziehen, diese Bilder zu verwenden. Die Insider-Bilder sind im docker-Hub verfügbar:
+Microsoft stellt "Insider"-Versionen für jedes Containerbasis Image bereit. Diese Insider-Container Images enthalten die neueste und größte Featureentwicklung in unseren Container Images. Beim Ausführen eines Hosts, bei dem es sich um eine Insider Version von Windows handelt (entweder Windows Insider oder Windows Server Insider), empfiehlt es sich, diese Images zu verwenden. Die Insider-Images sind auf dem docker-Hub verfügbar:
 
 - [mcr.microsoft.com/windows/servercore/insider](https://hub.docker.com/_/microsoft-windows-servercore-insider)
 - [mcr.microsoft.com/windows/nanoserver/insider](https://hub.docker.com/_/microsoft-windows-nanoserver-insider)
 - [mcr.microsoft.com/windows/iotcore/insider](https://hub.docker.com/_/microsoft-windows-iotcore-insider)
 - [mcr.microsoft.com/windows/insider](https://hub.docker.com/_/microsoft-windows-insider)
 
-Lesen Sie [Verwenden von Containern mit dem Windows-Insider-Programm](../deploy-containers/insider-overview.md) , um weitere Informationen zu erhalten.
+Weitere Informationen finden Sie unter [Verwenden von Containern mit dem Windows-Insider-Programm](../deploy-containers/insider-overview.md) .
 
-### <a name="windows-server-core-vs-nanoserver"></a>Windows Server Core vs. Server
+### <a name="windows-server-core-vs-nanoserver"></a>Windows Server Core im Vergleich zu NanoServer
 
-`Windows Server Core` und `Nanoserver` sind die am häufigsten verwendeten Basisbilder für das Ziel. Der Hauptunterschied zwischen diesen Bildern besteht darin, dass der Server eine wesentlich kleinere API-Oberfläche aufweist. PowerShell, WMI und der Windows-Wartungsstapel sind im Image des Servers nicht vorhanden.
+`Windows Server Core` und `Nanoserver` sind die gängigsten Basis Images, die als Ziel dienen. Der Hauptunterschied zwischen diesen Images besteht darin, dass NanoServer eine deutlich kleinere API-Oberfläche aufweist. PowerShell, WMI und der Windows-Wartungs Stapel fehlen im NanoServer-Image.
 
-Der Server wurde so konzipiert, dass er gerade genügend API-Oberfläche zum Ausführen von apps bereitstellt, die eine Abhängigkeit von .net Core oder anderen modernen Open-Source-Frameworks aufweisen. Als Kompromiss zur kleineren API-Oberfläche hat das Image des Servers einen deutlich kleineren Speicherplatz als die restlichen Windows-Basisbilder. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).
+NanoServer wurde erstellt, um genau genug API-Oberfläche zum Ausführen von apps bereitzustellen, die eine Abhängigkeit von .net Core oder anderen modernen Open Source-Frameworks aufweisen. Als Kompromiss zur kleineren API-Oberfläche hat das NanoServer-Image einen erheblich geringeren Speicherbedarf als die restlichen Windows-Basis Images. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).

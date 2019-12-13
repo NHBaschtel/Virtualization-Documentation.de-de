@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
-ms.openlocfilehash: 6568b68a77fc5506b58249caea44ec78e3e44de2
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: 762b82f3714651ffb488f682581680c9526404a8
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998937"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911150"
 ---
 # <a name="hyper-v-integration-services"></a>Hyper-V-Integrationsdienste
 
@@ -29,13 +29,13 @@ Dieser Artikel stellt eine Referenz für jeden in Windows verfügbaren Integrati
 
 | Name | Name des Windows-Diensts | Name des Linux-Daemons |  Beschreibung | Auswirkung auf die VM, wenn deaktiviert |
 |:---------|:---------|:---------|:---------|:---------|
-| [Hyper-V Taktdienst](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Berichtet, dass der virtuelle Computer fehlerfrei ausgeführt wird. | Variiert |
+| [Hyper-V-Taktdienst](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Berichtet, dass der virtuelle Computer fehlerfrei ausgeführt wird. | Variiert |
 | [Hyper-V-Dienst zum Herunterfahren des Gasts](#hyper-v-guest-shutdown-service) | vmicshutdown | hv_utils |  Ermöglicht es dem Host, das Herunterfahren des virtuellen Computers auszulösen. | **Hoch** |
-| [Hyper-V-Zeitsynchronisierungsdienst](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronisiert die Uhr des virtuellen Computers mit der Uhr des Hostcomputers. | **Hoch** |
-| [Hyper-V-Datenaustauschdienst (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Bietet ein Verfahren zum Austausch von grundlegenden Metadaten zwischen dem virtuellen Computer und dem Host. | Mittel |
+| [Hyper-V-Dienst für Zeitsynchronisierung](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronisiert die Uhr des virtuellen Computers mit der Uhr des Hostcomputers. | **Hoch** |
+| [Hyper-V-Datenaustausch Dienst (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Bietet ein Verfahren zum Austausch von grundlegenden Metadaten zwischen dem virtuellen Computer und dem Host. | Mittel |
 | [Hyper-V-Volumeschattenkopie-Anforderer](#hyper-v-volume-shadow-copy-requestor) | vmicvss | hv_vss_daemon | Ermöglicht dem Volumeschattenkopie-Dienst, den virtuellen Computer zu sichern, ohne ihn herunterzufahren. | Variiert |
-| [Hyper-V-Gastdienstschnittstelle](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Stellt eine Schnittstelle für den Hyper-V-Host zum Kopieren von Dateien zu oder von dem virtuellen Computer bereit. | Niedrig |
-| [Hyper-V-Dienst PowerShell Direct](#hyper-v-powershell-direct-service) | vmicvmsession | nicht verfügbar | Bietet eine Möglichkeit zum Verwalten der virtuellen Computer mit PowerShell ohne eine Netzwerkverbindung. | Niedrig |  
+| [Hyper-V-Gastschnittstelle](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Stellt eine Schnittstelle für den Hyper-V-Host zum Kopieren von Dateien zu oder von dem virtuellen Computer bereit. | Niedrig |
+| [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | nicht verfügbar | Bietet eine Möglichkeit zum Verwalten der virtuellen Computer mit PowerShell ohne eine Netzwerkverbindung. | Niedrig |  
 
 
 ## <a name="hyper-v-heartbeat-service"></a>Hyper-V Taktdienst
@@ -74,7 +74,7 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 **Name des Linux-Daemons:** hv_utils  
 **Beschreibung:** ermöglicht dem Hyper-V-Host, das Herunterfahren des virtuellen Computers anzufordern.  Der Host kann die Abschaltung des virtuellen Computers immer erzwingen, was aber aber mehr dem Ziehen des Netzsteckers als dem normalen Herunterfahren entspricht.  
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
-**Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahren sind ein schweres abschalten, was zu Datenverlust oder Datenbeschädigungen führen kann.  
+**Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahr Vorgänge sind eine harte Stromversorgung, was zu Datenverlusten oder Daten Beschädigungen führen kann.  
 
 
 ## <a name="hyper-v-time-synchronization-service"></a>Hyper-V-Zeitsynchronisierungsdienst
@@ -126,7 +126,7 @@ Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://docs.m
 **Hinzugefügt in:** Windows Server 2012 R2, Windows 8.1  
 **Auswirkung:** Wenn der Dienst deaktiviert ist, kann der Host keine Dateien zum oder vom Gast mithilfe von `Copy-VMFile` kopieren.  Erfahren Sie mehr über das [Cmdlet Copy-VMFile](https://docs.microsoft.com/powershell/module/hyper-v/copy-vmfile?view=win10-ps).  
 
-**Hinweise:**  
+**Anmerkungen:**  
 Standardmäßig deaktiviert  Weitere Informationen finden Sie unter [PowerShell Direct mithilfe von Copy-Item](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item). 
 
 
@@ -138,7 +138,7 @@ Standardmäßig deaktiviert  Weitere Informationen finden Sie unter [PowerShell 
 **Hinzugefügt in:** Windows Server TP3, Windows 10  
 **Auswirkung:** Das Deaktivieren dieses Diensts verhindert, dass der Host mittels PowerShell Direct eine Verbindung mit dem virtuellen Computer herstellen kann.  
 
-**Hinweise:**  
+**Anmerkungen:**  
 Der Name des Dienstes war ursprünglich „Hyper-V-VM-Sitzungsdienst“.  
 PowerShell Direct befindet sich in der aktiven Entwicklung und ist nur auf Windows 10/Windows Server Technical Preview 3 oder späteren Hosts/Gästen verfügbar.
 
@@ -147,5 +147,5 @@ PowerShell Direct ermöglicht die Verwaltung von PowerShell innerhalb eines virt
 [Weitere Informationen zu PowerShell Direct](../user-guide/powershell-direct.md).  
 
 **Benutzerhandbücher:**  
-* [Ausführen eines Skripts in einem virtuellen Computer](../user-guide/powershell-direct.md#run-a-script-or-command-with-invoke-command)
-* [Kopieren von Dateien zu und aus einem virtuellen Computer](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item)
+* [Ausführen eines Skripts auf einem virtuellen Computer](../user-guide/powershell-direct.md#run-a-script-or-command-with-invoke-command)
+* [Kopieren von Dateien in und von einer virtuellen Maschine](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item)

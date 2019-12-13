@@ -1,6 +1,6 @@
 ---
 title: Erstellen einer benutzerdefinierten virtuellen Computergalerie
-description: Erstellen Sie Ihre eigenen Einträge in der virtuellen Computergalerie im Windows10 Creators Update und höher.
+description: Erstellen Sie Ihre eigenen Einträge in der virtuellen Computergalerie im Windows 10 Creators Update und höher.
 keywords: Windows 10, Hyper-V, schnelles Erstellen, virtuelle Computergalerie
 ms.author: scooley
 ms.date: 05/04/2018
@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
-ms.openlocfilehash: 1348b9923d9de1314818f13414abdacee2cb9735
-ms.sourcegitcommit: cdf127747cfcb839a8abf50a173e628dcfee02db
+ms.openlocfilehash: c7a6462b331f469148eb4cf5a0a2740c9929fa29
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/07/2019
-ms.locfileid: "9998607"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74911060"
 ---
 # <a name="create-a-custom-virtual-machine-gallery"></a>Erstellen einer benutzerdefinierten virtuellen Computergalerie
 
@@ -21,7 +21,7 @@ ms.locfileid: "9998607"
 
 Im Fall Creators Update wurde die Schnellerfassung erweitert, um virtuelle Computergalerie zu enthalten.
 
-![Quick Create-VM-Galerie mit benutzerdefinierten Bildern](media/vmgallery.png)
+![Schnellerfassung VM-Galerie mit benutzerdefinierten Bildern](media/vmgallery.png)
 
 Neben den von Microsoft- und Microsoft-Partnern bereitgestellten Bildern kann die Galerie auch Ihre eigene Bilder anzeigen.
 
@@ -41,7 +41,7 @@ Die Liste der virtuellen Computer, die Sie in der Galerie finden, ist der gesamt
 
 Registrierungsschlüssel: `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization`
 
-Name des Wertes: `GalleryLocations`
+Wertname: `GalleryLocations`
 
 Typ: `REG_MULTI_SZ`
 
@@ -52,7 +52,7 @@ Virtuelle Computer in der Galerie können entweder ein Datenträger-Image (.iso)
 Virtuelle Computer, die von einer virtuellen Festplatte erstellt werden, haben Konfigurationsanforderungen:
 
 1. Zur Unterstützung von UEFI-Firmware erstellt. Wenn sie mit Hyper-V erstellt wurden, ist dies eine VM der Generation 2.
-1. Die virtuelle Festplatte sollte mindestens 20GB sein – Denken Sie daran, das dies die maximale Größe ist.  Hyper-V verwendet keinen Speicherplatz, den der virtuellen Computer nicht aktiv verwendet.
+1. Die virtuelle Festplatte sollte mindestens 20 GB sein – Denken Sie daran, das dies die maximale Größe ist.  Hyper-V verwendet keinen Speicherplatz, den der virtuellen Computer nicht aktiv verwendet.
 
 ### <a name="testing-a-new-vm-image"></a>Testen eines neuem VM-Images
 
@@ -61,12 +61,12 @@ Die VM-Galerie erstellt virtuelle Computer mit demselben Mechanismus wie die Ins
 So überprüfen Sie, dass das Bild eines virtuellen Computers gestartet und ausgeführt wird:
 
 1. Öffnen Sie die VM-Galerie (Hyper-V Schnellerfassung), und wählen Sie **Lokalinstallationsquelle** aus.
-  ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/use-local-source.png)
+  ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/use-local-source.png)
 1. Wählen Sie **Installationsquelle ändern**.
-  ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/change-source.png)
+  ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/change-source.png)
 1. Wählen Sie die .ISO- oder .VHDX-Datei, die in der Galerie verwendet werden soll.
 1. Wenn das Bild ein Linux-Bild ist, deaktivieren Sie die Option für den sicheren Start.
-  ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/toggle-secure-boot.png)
+  ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/toggle-secure-boot.png)
 1. Erstellen eines virtuellen Computers  Wenn der virtuelle Computer ordnungsgemäß gestartet wird, ist er für die Galerie bereit.
 
 ## <a name="build-a-new-gallery-source"></a>Erstellen einer neuen Galeriequelle
@@ -75,13 +75,13 @@ Im nächsten Schritt wird eine neue Galeriequelle erstellt.  Mit dieser JSON-Dat
 
 Textinformationen:
 
-![Beschriftete Galerietextorte](media/gallery-text.png)
+![Position des Texts der Galeriebezeichnung](media/gallery-text.png)
 
 * **Name** – erforderlich – dies ist der Name, der in der linken Spalte sowie am oberen Rand der VM-Ansicht angezeigt wird.
 * **Herausgeber** - erforderlich
 * **Beschreibung** – erforderlich – Liste der Zeichenfolgen, die den virtuellen Computer beschreiben.
 * **Version** - erforderlich
-* LastUpdated – Standardeinstellung ist Montag, 1.Januar0001.
+* LastUpdated – Standardeinstellung ist Montag, 1. Januar 0001.
 
   Das Format ist: yyyy-mm-ddThh:mm:ssZ
 
@@ -99,11 +99,11 @@ Bilder:
 
 * **Logo** - erforderlich
 * symbol
-* Miniaturansicht
+* thumbnail
 
 Und natürlich Ihr virtueller Computer (.iso oder .vhdx).
 
-Um die Hashwerte zu generieren, können Sie den folgenden PowerShell-Befehl verwenden:
+Um die Hashes zu generieren, können Sie den folgenden PowerShell-Befehl verwenden:
 
   ``` PowerShell
   Get-FileHash -Path .\TMLogo.jpg -Algorithm SHA256
@@ -113,12 +113,12 @@ Die folgende JSON-Vorlage enthält Startelemente und das Galerieschema.  Wenn Si
 
 [!code-json[main](../../../hyperv-tools/vmgallery/vm-gallery-template.json)]
 
-## <a name="connect-your-gallery-to-the-vm-gallery-ui"></a>Verbinden der Galerie mit der VM-Galeriebenutzeroberfläche
+## <a name="connect-your-gallery-to-the-vm-gallery-ui"></a>Verbinden Sie Ihre Galerie mit der VM-Galerie-Benutzeroberfläche
 
 Die einfachste Möglichkeit, Ihre VM-Galeriequelle der benutzerdefinierten Galerie hinzuzufügen ist, sie dem Registrierungs-Editor hinzuzufügen.
 
 1. Öffnen Sie **regedit.exe**
-1. Navigieren Sie zu `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\`
+1. Wechseln Sie zu `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\`.
 1. Suchen Sie nach `GalleryLocations`.
 
     Wenn sie bereits vorhanden ist, fahren Sie im Menü **Bearbeiten** mit der Option **ändern** fort.
@@ -135,7 +135,7 @@ Die einfachste Möglichkeit, Ihre VM-Galeriequelle der benutzerdefinierten Galer
 
 Die VM-Galerie bietet die Fehlerberichterstattung in der Windows-Ereignisanzeige.  Überprüfung auf Fehler:
 
-1. Öffnen Sie die Ereignisanzeige
+1. Öffnen Sie die Ereignisanzeige.
 1. Wechseln Sie zu **Windows-Protokolle** -> **Anwendung**.
 1. Suchen Sie nach Ereignissen von der Quelle VMCreate.
 
@@ -143,4 +143,4 @@ Die VM-Galerie bietet die Fehlerberichterstattung in der Windows-Ereignisanzeige
 
 In GitHub stehen einige Galerieskripts und Hilfsprogramme zur Verfügung [Link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
 
-Einen Beispieleintrag für die Galerie finden Sie [hier](https://go.microsoft.com/fwlink/?linkid=851584).  Dies ist die JSON-Datei, die die Inbox-Galerie definiert.
+Informationen finden Sie im Beispieleintrag der Galerie [hier](https://go.microsoft.com/fwlink/?linkid=851584).  Dies ist die JSON-Datei, die die Inbox-Galerie definiert.

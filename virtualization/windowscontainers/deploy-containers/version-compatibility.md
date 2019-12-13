@@ -4,51 +4,51 @@ description: Hier erfahren Sie, wie Windows Container versionsübergreifend erst
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
 ms.openlocfilehash: 1f068cd011b2172e75c240d566473ccab25d984a
-ms.sourcegitcommit: 48ede8f27e089926b5b867037f31d14500af84ce
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/14/2019
-ms.locfileid: "10296030"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74910480"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
-Windows Server 2016 und Windows 10 Anniversary Update (beide Version 14393) waren die ersten Windows-Versionen, die Windows Server-Container erstellen und ausführen könnten. Container, die mit diesen Versionen erstellt wurden, können mit neueren Versionen ausgeführt werden, es gibt jedoch ein paar Dinge, die Sie wissen müssen, bevor Sie beginnen.
+Windows Server 2016 und Windows 10 Anniversary Update (beide Version 14393) waren die ersten Windows-Releases, die Windows Server-Container erstellen und ausführen konnten. Mit diesen Versionen erstellter Container können auf neueren Versionen ausgeführt werden, aber es gibt einige Dinge, die Sie kennen müssen, bevor Sie beginnen.
 
-Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Änderungen vornehmen, die sich auf die Kompatibilität auswirken können. Ältere Container werden auf neueren Hosts mit [Hyper-V-Isolierung](../manage-containers/hyperv-container.md)identisch ausgeführt und verwenden dieselbe (ältere) Kernel Version. Wenn Sie jedoch einen Container auf der Grundlage eines neueren Windows-Builds ausführen möchten, kann er nur auf dem neueren Host-Build ausgeführt werden.
+Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Änderungen vornehmen, die sich auf die Kompatibilität auswirken können. Ältere Container werden auf neueren Hosts mit [Hyper-V-Isolation](../manage-containers/hyperv-container.md)identisch ausgeführt und verwenden dieselbe (ältere) Kernel Version. Wenn Sie jedoch einen Container basierend auf einem neueren Windows-Build ausführen möchten, kann er nur auf dem neueren hostbuild ausgeführt werden.
 
-## <a name="windows-server-host-os-compatibility"></a>Windows Server-Hostbetriebssystem-Kompatibilität
+## <a name="windows-server-host-os-compatibility"></a>Windows Server-Host Betriebssystem Kompatibilität
 
 <!-- start tab view -->
-# [<a name="windows-server-version-1909"></a>Windows Server, Version 1909](#tab/windows-server-1909)
+# <a name="windows-server-version-1909tabwindows-server-1909"></a>[Windows Server, Version 1909](#tab/windows-server-1909)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10004;|&#10004;|
 |Windows Server, Version 1903|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [<a name="windows-server-version-1903"></a>Windows Server, Version 1903](#tab/windows-server-1903)
+# <a name="windows-server-version-1903tabwindows-server-1903"></a>[Windows Server, Version 1903](#tab/windows-server-1903)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10060;|&#10060;|
 |Windows Server, Version 1903|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [<a name="windows-server-2019"></a>Windows Server 2019](#tab/windows-server-2019)
+# <a name="windows-server-2019tabwindows-server-2019"></a>[Windows Server 2019](#tab/windows-server-2019)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10060;|&#10060;|
 |Windows Server, Version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [<a name="windows-server-2016"></a>Windows Server 2016](#tab/windows-server-2016)
+# <a name="windows-server-2016tabwindows-server-2016"></a>[Windows Server 2016](#tab/windows-server-2016)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10060;|&#10060;|
 |Windows Server, Version 1903|&#10060;|&#10060;|
@@ -58,31 +58,31 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 ---
 <!-- stop tab view -->
 
-## <a name="windows-10-host-os-compatibility"></a>Windows 10-Hostbetriebssystem-Kompatibilität
+## <a name="windows-10-host-os-compatibility"></a>Windows 10-Host Betriebssystem Kompatibilität
 
 <!-- start tab view -->
 
-# [<a name="windows-10-version-1909"></a>Windows 10, Version 1909](#tab/windows-10-1909)
+# <a name="windows-10-version-1909tabwindows-10-1909"></a>[Windows 10, Version 1909](#tab/windows-10-1909)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10004;|&#10060;|
 |Windows Server, Version 1903|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [<a name="windows-10-version-1903"></a>Windows 10, Version 1903](#tab/windows-10-1903)
+# <a name="windows-10-version-1903tabwindows-10-1903"></a>[Windows 10, Version 1903](#tab/windows-10-1903)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10060;|&#10060;|
 |Windows Server, Version 1903|&#10004;|&#10060;|
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# [<a name="windows-10-version-1809"></a>Windows10, Version1809](#tab/windows-10-1809)
+# <a name="windows-10-version-1809tabwindows-10-1809"></a>[Windows 10, Version 1809](#tab/windows-10-1809)
 
-|Container-Basisabbild-Betriebssystemversion|Unterstützt die Hyper-V-Isolierung|Unterstützt die Prozessisolierung|
+|Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
 |Windows Server, Version 1909|&#10060;|&#10060;|
 |Windows Server, Version 1903|&#10060;|&#10060;|
@@ -92,31 +92,31 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 ---
 <!-- stop tab view -->
 
-## <a name="matching-container-host-version-with-container-image-versions"></a>Übereinstimmende Container-Host Version mit Container-Bildversionen
+## <a name="matching-container-host-version-with-container-image-versions"></a>Übereinstimmende Container Host Version mit Container Image Versionen
 
 ### <a name="windows-server-containers"></a>Windows Server-Container
 
-Da Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel gemeinsam nutzen, muss die basisimage-Version des Containers mit dem des Hosts übereinstimmen. Wenn die Versionen unterschiedlich sind, wird der Container möglicherweise gestartet, aber voll funktionssicher ist nicht garantiert. Das Windows-Betriebssystem verfügt über vier Versions Verwaltungsebenen: Major, Minor, Build und Revision. Beispielsweise hätte Version 10.0.14393.103 eine Hauptversion von 10, eine Nebenversion von 0, eine Buildnummer von 14393 und eine Überarbeitungsnummer von 103. Die Buildnummer ändert sich nur, wenn neue Versionen des Betriebssystems veröffentlicht werden, wie etwa Version 1709, 1903 usw. Die Revisionsnummer wird aktualisiert, wenn Windows-Updates angewendet werden.
+Da Windows Server-Container und der zugrunde liegende Host einen einzelnen Kernel gemeinsam nutzen, muss die Betriebssystemversion des Basis Images des Containers mit der des Hosts identisch sein. Wenn die Versionen unterschiedlich sind, kann der Container gestartet werden, aber die vollständige Funktionalität ist nicht garantiert. Das Windows-Betriebssystem verfügt über vier Ebenen der Versionsverwaltung: Hauptversion, neben Version, Build und Revision. Die Version 10.0.14393.103 hätte z. b. eine Hauptversion von 10, eine neben Version von 0, eine Buildnummer 14393 und eine Revisionsnummer von 103. Die Buildnummer ändert sich nur, wenn neue Versionen des Betriebssystems veröffentlicht werden, z. b. Version 1709, 1903 usw. Die Revisionsnummer wird aktualisiert, wenn Windows-Updates angewendet werden.
 
 #### <a name="build-number-new-release-of-windows"></a>Buildnummer (neue Version von Windows)
 
-Windows Server-Container werden nicht mehr gestartet, wenn die Buildnummer zwischen dem Container Host und dem Container Bild unterschiedlich ist. Wenn beispielsweise der Container Host Version 10.0.14393. * (Windows Server 2016) und das Container Bildversion 10.0.16299. * (Windows Server, Version 1709) ist, wird der Container nicht gestartet.  
+Das Starten von Windows Server-Containern ist blockiert, wenn die Buildnummer zwischen dem Container Host und dem Container Image unterschiedlich ist. Wenn der Container Host z. b. Version 10.0.14393. * (Windows Server 2016) und das Container Image Version 10.0.16299. * (Windows Server-Version 1709) ist, wird der Container nicht gestartet.  
 
-#### <a name="revision-number-patching"></a>Revisionsnummer (Patchen)
+#### <a name="revision-number-patching"></a>Revisionsnummer (Patching)
 
-Windows-Server Container werden beim Starten nicht blockiert, wenn die Revisionsnummern des Container Hosts und des Container Bilds unterschiedlich sind. Wenn beispielsweise der Container-Host Version 10.0.14393.1914 (Windows Server 2016 mit KB4051033 angewendet) ist und das Container Bildversion 10.0.14393.1944 (Windows Server 2016 mit angewendetem KB4053579) ist, wird das Bild weiterhin gestartet, obwohl deren Überarbeitung Zahlen sind unterschiedlich.
+Das Starten von Windows Server-Containern ist nicht blockiert, wenn die Revisionsnummern des Container Hosts und des Container Images unterschiedlich sind. Wenn der Container Host z. b. Version 10.0.14393.1914 (Windows Server 2016 mit KB4051033 angewendet) und das Container Image Version 10.0.14393.1944 (Windows Server 2016 mit KB4053579 angewendet) ist, wird das Abbild auch dann noch gestartet, wenn die Revision die Zahlen unterscheiden sich.
 
-Bei Windows Server 2016-basierten Hosts oder Bildern muss die Revision des Container Bilds mit dem Host übereinstimmen, der in einer unterstützten Konfiguration gespeichert werden soll. Für Hosts oder Bilder, die Windows Server, Version 1709 und höher, verwenden, gilt diese Regel jedoch nicht, und das Host-und Container Abbild muss keine übereinstimmenden Überarbeitungen aufweisen. Wir empfehlen, dass Sie Ihre Systeme über die neuesten Patches und Updates auf dem neuesten Stand halten.
+Bei Windows Server 2016-basierten Hosts oder Images muss die Revision des Container Images mit dem Host in einer unterstützten Konfiguration identisch sein. Für Hosts oder Images, die Windows Server, Version 1709 und höher verwenden, gilt diese Regel jedoch nicht, und für das Host-und Container Image müssen keine übereinstimmenden Revisionen vorhanden sein. Wir empfehlen Ihnen, ihre Systeme mit den neuesten Patches und Updates auf dem neuesten Stand zu halten.
 
 #### <a name="practical-application"></a>Praktische Anwendung
 
-Beispiel 1: auf dem Container Host wird Windows Server 2016 mit angewendeter KB4041691 ausgeführt. Jeder Windows Server-Container, der für diesen Host bereitgestellt wird, muss auf den Basisbildern der Version 10.0.14393.1770-Container basieren. Wenn Sie KB4053579 auf den Hostcontainer anwenden, müssen Sie auch die Bilder aktualisieren, um sicherzustellen, dass Sie vom Hostcontainer unterstützt werden.
+Beispiel 1: auf dem Container Host wird Windows Server 2016 mit angewendetem KB4041691 ausgeführt. Jeder Windows Server-Container, der auf diesem Host bereitgestellt wird, muss auf der Version 10.0.14393.1770 Containerbasis Images basieren. Wenn Sie KB4053579 auf den Host Container anwenden, müssen Sie auch die Images aktualisieren, um sicherzustellen, dass Sie vom Host Container unterstützt werden.
 
-Beispiel 2: auf dem Container Host wird Windows Server, Version 1709, ausgeführt, auf den KB4043961 angewendet wurde. Jeder Windows Server-Container, der für diesen Host bereitgestellt wird, muss auf einem 10.0.16299-Containerbasis Bild (Windows Server Version 1709) basieren, muss aber nicht mit dem Host KB übereinstimmen. Wenn KB4054517 auf den Host angewendet wird, werden die Container Bilder weiterhin unterstützt, aber wir empfehlen, diese zu aktualisieren, um potenzielle Sicherheitsprobleme zu beheben.
+Beispiel 2: auf dem Container Host wird die Windows Server-Version 1709 mit angewendetem KB4043961 ausgeführt. Jeder auf diesem Host bereitgestellte Windows Server-Container muss auf einem Containerbasis Image von Windows Server Version 1709 (10.0.16299) basieren, muss jedoch nicht mit dem Host KB identisch sein. Wenn KB4054517 auf den Host angewendet wird, werden die Container Images weiterhin unterstützt, es wird jedoch empfohlen, Sie zu aktualisieren, um potenzielle Sicherheitsprobleme zu beheben.
 
 #### <a name="querying-version"></a>Abfrageversion
 
-Methode 1: in Version 1709 eingeführt, geben der Befehl "cmd-Eingabeaufforderung" und " **ver** " nun die Überarbeitungs Details zurück.
+Methode 1: wird in Version 1709 eingeführt, die cmd-Eingabeaufforderung und der **ver** -Befehl geben nun die Revisions Details zurück.
 
 ```batch
 Microsoft Windows [Version 10.0.16299.125]
@@ -127,9 +127,9 @@ C:\>ver
 Microsoft Windows [Version 10.0.16299.125]
 ```
 
-Methode 2: Abfrage des folgenden Registrierungsschlüssels: HKEY_LOCAL_MACHINE \SOFTWARE\Microsoft\Windows NT\CurrentVersion
+Methode 2: Abfragen des folgenden Registrierungsschlüssels: HKEY_LOCAL_MACHINE \SOFTWARE\Microsoft\Windows NT\CurrentVersion
 
-Beispiel:
+Zum Beispiel:
 
 ```batch
 C:\>reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion" /v BuildLabEx
@@ -143,11 +143,11 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 14393.321.amd64fre.rs1_release_inmarket.161004-2338
 ```
 
-Wenn Sie überprüfen möchten, welche Version von Ihrem Basisbild verwendet wird, überprüfen Sie die Tags im docker-Hub oder in der Abbildungs-Hashtabelle, die in der Bildbeschreibung angegeben ist. Auf der Seite " [Windows 10-Updateverlauf](https://support.microsoft.com/help/12387/windows-10-update-history) " werden die einzelnen Builds und Versionen veröffentlicht.
+Überprüfen Sie die Tags auf dem docker-Hub oder die Image Hash Tabelle, die in der Image Beschreibung enthalten ist, um zu überprüfen, welche Version von Ihrem Basis Image verwendet wird Die Seite [Windows 10 Update History](https://support.microsoft.com/help/12387/windows-10-update-history) listet auf, wann die einzelnen Builds und Revisionen veröffentlicht wurden.
 
-### <a name="hyper-v-isolation-for-containers"></a>Hyper-V-Isolierung für Container
+### <a name="hyper-v-isolation-for-containers"></a>Hyper-V-Isolation für Container
 
-Sie können Windows-Container mit oder ohne Hyper-V-Isolierung ausführen. Hyper-V-Isolation erstellt mithilfe eines optimierten VMs eine Sicherheitsbegrenzung um den Container herum. Im Gegensatz zu standardmäßigen Windows-Containern, die den Kernel zwischen Containern und dem Host freigeben, verfügt jeder isolierte Hyper-V-Container über eine eigene Instanz des Windows-Kernels. Das bedeutet, dass Sie unterschiedliche Betriebssystemversionen im Container-Host und-Bild haben können (Weitere Informationen finden Sie in der folgenden Kompatibilitätsmatrix).  
+Sie können Windows-Container mit oder ohne Hyper-V-Isolation ausführen. Hyper-V-Isolation erstellt mithilfe eines optimierten VMs eine Sicherheitsbegrenzung um den Container herum. Anders als bei standardmäßigen Windows-Containern, die den Kernel zwischen Containern und dem Host gemeinsam nutzen, verfügt jeder isolierte Hyper-V-Container über eine eigene Instanz des Windows-Kernels. Dies bedeutet, dass Sie unterschiedliche Betriebssystemversionen im Container Host und Image haben können (Weitere Informationen finden Sie in der folgenden Kompatibilitäts Matrix).  
 
 Um einen Container mit Hyper-V-Isolierung auszuführen, fügen Sie einfach das Tag `--isolation=hyperv` zu Ihrem Docker-Ausführungsbefehl hinzu.
 
@@ -161,37 +161,37 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 
 Es gibt drei Möglichkeiten, diesen Fehler zu beheben:
 
-- Neuerstellen des Containers basierend auf der richtigen `mcr.microsoft.com/windows/nanoserver` Version von oder `mcr.microsoft.com/windows/servercore`
-- Wenn es sich um einen neueren Host handelt, führen Sie die **Andock Leiste Run--Isolation = HyperV... aus.**
-- Führen Sie den Container auf einem anderen Host mit der gleichen Windows-Version aus.
+- Erstellen Sie den Container auf der Grundlage der richtigen Version von `mcr.microsoft.com/windows/nanoserver` oder `mcr.microsoft.com/windows/servercore`
+- Wenn der Host neuer ist, führen Sie " **docker Run--Isolation = HyperV...** " aus.
+- Versuchen Sie, den Container auf einem anderen Host mit derselben Windows-Version auszuführen.
 
 ## <a name="choose-which-container-os-version-to-use"></a>Auswählen der zu verwendenden Container-Betriebssystemversion
 
 >[!NOTE]
->Ab dem 16. April 2019 wird das Tag "aktuell" nicht mehr für die [Windows base-Container Bilder](https://hub.docker.com/_/microsoft-windows-base-os-images)veröffentlicht oder verwaltet. Bitte deklarieren Sie beim ziehen oder verweisen auf Bilder aus diesen Repos eine bestimmte Kategorie.
+>Ab dem 16. April 2019 wird das Tag "Latest" nicht mehr für die [Windows-Basis Betriebssystem-Container Images](https://hub.docker.com/_/microsoft-windows-base-os-images)veröffentlicht oder verwaltet. Deklarieren Sie ein bestimmtes Tag, wenn Sie Bilder aus diesen Repos abrufen oder darauf verweisen.
 
-Sie müssen wissen, welche Version Sie für ihren Container verwenden müssen. Wenn Sie beispielsweise Windows Server, Version 1809, als Container Betriebssystem verwenden möchten und über die neuesten Patches verfügen möchten, sollten Sie das Tag `1809` verwenden, wenn Sie angeben, welche Version der Container Bilder des Basisbetriebssystems Sie benötigen, wie in diesem Fall:
+Sie müssen wissen, welche Version Sie für ihren Container verwenden müssen. Wenn Sie z. b. die Windows Server-Version 1809 als Container Betriebssystem verwenden möchten und die neuesten Patches dafür benötigen, sollten Sie den Tag `1809` verwenden, wenn Sie die gewünschte Version des Basis Betriebssystem-Container Images angeben:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/nanoserver:1809
 ...
 ```
 
-Wenn Sie jedoch einen bestimmten Patch von Windows Server, Version 1809, wünschen, können Sie die KB-Nummer in der Kategorie angeben. Wenn Sie beispielsweise ein Nano Server-Basisbetriebssystem-Container Abbild von Windows Server, Version 1809, abrufen möchten, auf das das KB4493509 angewendet wurde, geben Sie es wie folgt an:
+Wenn Sie jedoch einen bestimmten Patch der Windows Server-Version 1809 möchten, können Sie die KB-Nummer im-Tag angeben. Um z. b. ein Nano Server-Basis Betriebssystem-Container Image von Windows Server Version 1809 mit angewendetem KB4493509 zu erhalten, geben Sie es wie folgt an:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/nanoserver:1809-KB4493509
 ...
 ```
 
-Sie können auch die exakten Patches angeben, die Sie mit dem zuvor verwendeten Schema benötigen, indem Sie die Betriebssystemversion im Tag angeben:
+Sie können auch die benötigten Patches mit dem zuvor verwendeten Schema angeben, indem Sie die Betriebssystemversion im Tag angeben:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
 ...
 ```
 
-Die Server Core-Basisbilder, die auf Windows Server 2019 und Windows Server 2016 basieren, sind [LTSC-Versionen (Long Term Servicing Channel)](https://docs.microsoft.com/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) . Wenn Sie beispielsweise Windows Server 2019 als Container Betriebssystem Ihres Server Core-Images benötigen und die neuesten Patches dafür haben möchten, können Sie LTSC-Versionen wie folgt angeben:
+Die Server Core-Basis Images, die auf Windows Server 2019 und Windows Server 2016 basieren, sind [LTSC-Releases (Long-Term Service Channel)](https://docs.microsoft.com/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) . Wenn Sie z. b. Windows Server 2019 als Container Betriebssystem des Server Core-Images benötigen und über die neuesten Patches verfügen möchten, können Sie LTSC-Releases wie folgt angeben:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -200,22 +200,22 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 ## <a name="matching-versions-using-docker-swarm"></a>Versionsabgleich mit Docker-Schwarm
 
-Andocker Swarm verfügt derzeit nicht über eine integrierte Methode, um die Version von Windows anzupassen, die ein Container für einen Host mit der gleichen Version verwendet. Wenn Sie den Dienst für die Verwendung eines neueren Containers aktualisieren, wird er erfolgreich ausgeführt.
+Docker Swarm verfügt derzeit nicht über eine integrierte Methode, um die Version von Fenstern abzugleichen, die ein Container für einen Host mit derselben Version verwendet. Wenn Sie den Dienst so aktualisieren, dass ein neuerer Container verwendet wird, wird er erfolgreich ausgeführt.
 
-Wenn Sie mehrere Versionen von Windows über einen längeren Zeitraum ausführen müssen, gibt es zwei Möglichkeiten: entweder konfigurieren Sie die Windows-Hosts so, dass immer die Hyper-V-Isolierung verwendet wird, oder verwenden Sie Beschriftungs Einschränkungen.
+Wenn Sie mehrere Versionen von Windows für einen längeren Zeitraum ausführen müssen, gibt es zwei Ansätze, die Sie ergreifen können: Konfigurieren Sie die Windows-Hosts so, dass Sie immer die Hyper-V-Isolation verwenden, oder verwenden Sie Bezeichnungs Einschränkungen.
 
 ### <a name="finding-a-service-that-wont-start"></a>Suchen eines Diensts, der nicht gestartet wird
 
-Wenn ein Dienst nicht gestartet wird, sehen Sie, dass `MODE` der `replicated` Wert `REPLICAS` für "ist" jedoch bei 0 hängen bleibt. Führen Sie die folgenden Befehle aus, um festzustellen, ob es sich bei der Betriebssystemversion um ein Problem handelt:
+Wenn ein Dienst nicht gestartet wird, werden Sie feststellen, dass die `MODE` `replicated` ist, `REPLICAS` jedoch bei 0 hängen bleibt. Um festzustellen, ob die Betriebssystemversion das Problem ist, führen Sie die folgenden Befehle aus:
 
-Führen Sie den **Andock Dienst ls** aus, um den Dienstnamen zu finden:
+Führen Sie **docker Service ls** aus, um den Dienstnamen zu finden:
 
 ```dockerfile
 ID                  NAME                MODE                REPLICAS            IMAGE                                             PORTS
 xh6mwbdq2uil        angry_liskov        replicated          0/1                 microsoft/iis:windowsservercore-10.0.14393.1715
 ```
 
-Führen Sie den **Andock Dienst PS (Dienstname)** aus, um den Status und die neuesten Versuche zu erhalten:
+Führen Sie den **docker-Dienst PS (Dienst Name)** aus, um den Status und die neuesten Versuche zu erhalten:
 
 ```dockerfile
 C:\Program Files\Docker>docker service ps angry_liskov
@@ -228,7 +228,7 @@ ytnnv80p03xx         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14
 xeqkxbsao57w         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14393.1715   WIN-BSTMQDRQC2E     Shutdown            Failed about a minute ago   "starting container failed: co…"
 ```
 
-Wenn Sie sehen `starting container failed: ...`, wird der vollständige Fehler mit dem **docker Dienst PS--No-trunc (Containername)** angezeigt:
+Wenn `starting container failed: ...`angezeigt wird, können Sie den vollständigen Fehler mit dem **docker-Dienst PS--No-trunc (Container Name)** sehen:
 
 ```dockerfile
 C:\Program Files\Docker>docker service ps --no-trunc angry_liskov
@@ -237,11 +237,11 @@ dwsd6sjlwsgic5vrglhtxu178   angry_liskov.1       microsoft/iis:windowsservercore
 y5blbdum70zoh1f6uhx5nxsfv    \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14393.1715@sha256:868bca7e89e1743792e15f78edb5a73070ef44eae6807dc3f05f9b94c23943d5   WIN-BSTMQDRQC2E     Shutdown            Failed 39 seconds ago             "starting container failed: container e7b5d3adba7e510569c18d8e55f7c689d7cb92be40a516c91b363e27f84604d0 encountered an error during CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101) extra info: {"SystemType":"Container","Name":"e7b5d3adba7e510569c18d8e55f7c689d7cb92be40a516c91b363e27f84604d0","Owner":"docker","VolumePath":"\\\\?\\Volume{2443d38a-1379-4bcf-a4b7-fc6ad4cd7b65}","IgnoreFlushesDuringBoot":true,"LayerFolderPath":"C:\\ProgramData\\docker\\windowsfilter\\e7b5d3adba7e510569c18d8e55f7c689d7cb92be40a516c91b363e27f84604d0","Layers":[{"ID":"bcf2630f-ea95-529b-b33c-e5cdab0afdb4","Path":"C:\\ProgramData\\docker\\windowsfilter\\200235127f92416724ae1d53ed3fdc86d78767132d019bdda1e1192ee4cf3ae4"},{"ID":"e3ea10a8-4c2f-5b93-b2aa-720982f116f6","Path":"C:\\ProgramData\\docker\\windowsfilter\\0ccc9fa71a9f4c5f6f3bc8134fe3533e454e09f453de662cf99ab5d2106abbdc"},{"ID":"cff5391f-e481-593c-aff7-12e080c653ab","Path":"C:\\ProgramData\\docker\\windowsfilter\\a49576b24cd6ec4a26202871c36c0a2083d507394a3072186133131a72601a31"},{"ID":"499cb51e-b891-549a-b1f4-8a25a4665fbd","Path":"C:\\ProgramData\\docker\\windowsfilter\\fdf2f52c4323c62f7ff9b031c0bc3af42cf5fba91098d51089d039fb3e834c08"},{"ID":"1532b584-8431-5b5a-8735-5e1b4fe9c2a9","Path":"C:\\ProgramData\\docker\\windowsfilter\\b2b88bc2a47abcc682e422507abbba9c9b6d826d34e67b9e4e3144cc125a1f80"},{"ID":"a64b8da5-cd6e-5540-bc73-d81acae6da54","Path":"C:\\ProgramData\\docker\\windowsfilter\\5caaedbced1f546bccd01c9d31ea6eea4d30701ebba7b95ee8faa8c098a6845a"}],"HostName":"e7b5d3adba7e","HvPartition":false,"EndpointList":["298bb656-8800-4948-a41c-1b0500f3d94c"],"AllowUnqualifiedDNSQuery":true}"
 ```
 
-Dies ist derselbe Fehler wie `CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101)`.
+Dies ist der gleiche Fehler wie `CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101)`.
 
 ### <a name="fix---update-the-service-to-use-a-matching-version"></a>Problembehebung: Aktualisieren des Diensts für die Verwendung einer übereinstimmenden Version
 
-Bei Docker-Schwarm gibt es zwei Dinge zu berücksichtigen. Wenn Sie über eine verfassen-Datei mit einem Dienst verfügen, der ein Bild verwendet, das Sie nicht erstellt haben, sollten Sie den Verweis entsprechend aktualisieren. Beispiel:
+Bei Docker-Schwarm gibt es zwei Dinge zu berücksichtigen. Wenn Sie über eine Compose-Datei mit einem Dienst verfügen, der ein Image verwendet, das Sie nicht erstellt haben, möchten Sie den Verweis entsprechend aktualisieren. Zum Beispiel:
 
 ``` yaml
 version: '3'
@@ -252,7 +252,7 @@ services:
 ...
 ```
 
-Die andere Überlegung ist, wenn das Bild, auf das Sie verweisen, eines ist, das Sie selbst erstellt haben (beispielsweise "Contoso/myImage"):
+Der andere Aspekt ist, wenn das Image, auf das Sie zeigen, ein solches Image ist, das Sie selbst erstellt haben (z. b. "Configuration Manager"):
 
 ```yaml
 version: '3'
@@ -263,19 +263,19 @@ services:
 ...
 ```
 
-In diesem Fall sollten Sie die unter [Fehler aus nicht übereinstimmenden Versionen](#errors-from-mismatched-versions) beschriebene Methode verwenden, um diese dockerfile anstelle der Andock-verfassen-Zeile zu ändern.
+In diesem Fall sollten Sie die in [Fehlern von nicht übereinstimmenden Versionen](#errors-from-mismatched-versions) beschriebene Methode verwenden, um diese dockerfile-Datei anstelle der Docker-Compose-Zeile zu ändern.
 
 ### <a name="mitigation---use-hyper-v-isolation-with-docker-swarm"></a>Lösung: Hyper-V-Isolierung mit Docker-Schwarm
 
-Es gibt einen Vorschlag zur Unterstützung der Verwendung der Hyper-V-Isolierung pro Container, aber der Code ist noch nicht fertig. Unter [GitHub](https://github.com/moby/moby/issues/31616) können Sie den Fortschritt verfolgen. Bis dahin müssten die Hosts so konfiguriert werden, dass sie immer mit Hyper-V-Isolierung ausgeführt werden.
+Es gibt einen Vorschlag, die Verwendung der Hyper-V-Isolation pro Container zu unterstützen, aber der Code wird noch nicht ausgeführt. Unter [GitHub](https://github.com/moby/moby/issues/31616) können Sie den Fortschritt verfolgen. Bis dahin müssten die Hosts so konfiguriert werden, dass sie immer mit Hyper-V-Isolierung ausgeführt werden.
 
 Dies erfordert eine Änderung der Docker-Dienstkonfiguration und einen anschließenden Neustart des Docker-Moduls.
 
-1. Bearbeiten Sie `C:\ProgramData\docker\config\daemon.json`
-2. Fügen Sie eine Zeile hinzu mit `"exec-opts":["isolation=hyperv"]`
+1. Bearbeiten Sie `C:\ProgramData\docker\config\daemon.json`.
+2. Fügen Sie eine Zeile mit `"exec-opts":["isolation=hyperv"]`
 
     >[!NOTE]
-    >Die Datei "Daemon. JSON" ist standardmäßig nicht vorhanden. Wenn Sie im Verzeichnis feststellen, dass dies der Fall ist, müssen Sie die Datei erstellen. Dann möchten Sie Folgendes kopieren:
+    >Die Datei "Daemon. JSON" ist standardmäßig nicht vorhanden. Wenn Sie im Verzeichnis feststellen, dass dies der Fall ist, müssen Sie die Datei erstellen. Anschließend möchten Sie Folgendes kopieren:
 
     ```JSON
     {
@@ -283,14 +283,14 @@ Dies erfordert eine Änderung der Docker-Dienstkonfiguration und einen anschlie�
     }
     ```
 
-3. Schließen Sie die Datei, und speichern Sie Sie, und starten Sie dann das Andock Modul neu, indem Sie die folgenden Cmdlets in PowerShell ausführen:
+3. Schließen und speichern Sie die Datei, und starten Sie die Docker-Engine neu, indem Sie die folgenden Cmdlets in PowerShell ausführen:
 
     ```powershell
     Stop-Service docker
     Start-Service docker
     ```
 
-4. Nachdem Sie den Dienst neu gestartet haben, starten Sie die Container. Sobald Sie ausgeführt werden, können Sie die Isolationsstufe eines Containers überprüfen, indem Sie den Container mit dem folgenden Cmdlet überprüfen:
+4. Nachdem Sie den Dienst neu gestartet haben, starten Sie Ihre Container. Nachdem Sie ausgeführt wurden, können Sie die Isolationsstufe eines Containers überprüfen, indem Sie den Container mit dem folgenden Cmdlet überprüfen:
 
     ```powershell
     docker inspect --format='{{json .HostConfig.Isolation}}' $instanceNameOrId
@@ -300,18 +300,18 @@ Es wird entweder "process" oder "hyperv" zurückgegeben. Wenn Sie "daemon.json" 
 
 ### <a name="mitigation---use-labels-and-constraints"></a>Lösung: Verwenden von Labels und Einschränkungen
 
-Hier erfahren Sie, wie Sie Bezeichnungen und Einschränkungen verwenden, um Versionen zuzuordnen:
+So verwenden Sie Bezeichnungen und Einschränkungen, um Versionen abzugleichen:
 
-1. Fügen Sie jedem Knotenbeschriftungen hinzu.
+1. Fügen Sie jedem Knoten Bezeichnungen hinzu.
 
-    Fügen Sie auf jedem Knoten zwei Beschriftungen hinzu `OS` : `OsVersion`und. Es wird hier davon ausgegangen, dass sie lokal ausgeführt werden, es kann aber auch so geändert werden, dass sie auf einem Remote-Host ausgeführt werden.
+    Fügen Sie auf jedem Knoten zwei Bezeichnungen hinzu: `OS` und `OsVersion`. Es wird hier davon ausgegangen, dass sie lokal ausgeführt werden, es kann aber auch so geändert werden, dass sie auf einem Remote-Host ausgeführt werden.
 
     ```powershell
     docker node update --label-add OS="windows" $ENV:COMPUTERNAME
     docker node update --label-add OsVersion="$((Get-ComputerInfo).OsVersion)" $ENV:COMPUTERNAME
     ```
 
-    Anschließend können Sie diese überprüfen, indem Sie den Befehl **docker Knoten überprüfen** ausführen, der die neu hinzugefügten Beschriftungen anzeigen soll:
+    Anschließend können Sie diese überprüfen, indem Sie den Befehl " **docker Node** Check" ausführen, der die neu hinzugefügten Bezeichnungen anzeigt:
 
     ```yaml
            "Spec": {
@@ -324,9 +324,9 @@ Hier erfahren Sie, wie Sie Bezeichnungen und Einschränkungen verwenden, um Vers
             }
     ```
 
-2. Hinzufügen einer Diensteinschränkung
+2. Fügen Sie eine Dienst Einschränkung hinzu.
 
-    Nachdem Sie nun jeden Knoten beschriftet haben, können Sie Einschränkungen aktualisieren, die die Platzierung von Diensten bestimmen. Ersetzen Sie im folgenden Beispiel "contoso_service" durch den Namen ihres tatsächlichen Diensts:
+    Nachdem Sie die einzelnen Knoten bezeichnet haben, können Sie Einschränkungen aktualisieren, die die Platzierung von Diensten bestimmen. Ersetzen Sie im folgenden Beispiel "contoso_service" durch den Namen Ihres eigentlichen Dienstanbieter:
 
     ```powershell
     docker service update \
@@ -337,21 +337,21 @@ Hier erfahren Sie, wie Sie Bezeichnungen und Einschränkungen verwenden, um Vers
 
     Dies erzwingt und schränkt den Ort ein, an dem ein Knoten ausgeführt werden kann.
 
-Wenn Sie mehr über die Verwendung von Diensteinschränkungen erfahren möchten, lesen Sie den [Dienst Referenz erstellen](https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints-constraint).
+Weitere Informationen zur Verwendung von Dienst Einschränkungen finden Sie in der Referenz zum [Service Create](https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints-constraint).
 
 ## <a name="matching-versions-using-kubernetes"></a>Versionsabgleich mit Kubernetes
 
-Das gleiche Problem, das bei der [Verwendung von Andock-Swarm-Versionen](#matching-versions-using-docker-swarm) beschrieben wird, kann auftreten, wenn Pods in Kubernetes geplant werden. Dieses Problem kann mit ähnlichen Strategien vermieden werden:
+Das gleiche Problem, das in [übereinstimmenden Versionen mithilfe von Docker Swarm](#matching-versions-using-docker-swarm) beschrieben wird, kann auftreten, wenn Pods in Kubernetes eingeplant werden. Dieses Problem kann mit ähnlichen Strategien vermieden werden:
 
-- Erstellen Sie den Container auf der Grundlage der gleichen Betriebssystemversion in Entwicklung und Produktion neu. Informationen dazu finden Sie unter [Auswählen der zu verwendenden Container-Betriebssystemversion](#choose-which-container-os-version-to-use).
-- Verwenden Sie Knotenbeschriftungen und nodeSelectors, um sicherzustellen, dass Pods auf kompatiblen Knoten geplant werden, wenn sich sowohl Windows Server 2016-als auch Windows Server-Version 1709-Knoten im gleichen Cluster befinden.
+- Erstellen Sie den Container auf der Grundlage derselben Betriebssystemversion in der Entwicklungs-und Produktionsumgebung neu. Informationen zur Vorgehensweise finden Sie unter [Auswählen der zu verwendenden Container Betriebssystemversion](#choose-which-container-os-version-to-use).
+- Verwenden Sie Knoten Bezeichnungen und nodeselectors, um sicherzustellen, dass Pods auf kompatiblen Knoten geplant sind, wenn sich die Knoten Windows Server 2016 und Windows Server, Version 1709, im gleichen Cluster befinden.
 - Verwenden von separaten Clustern basierend auf der Betriebssystemversion
 
 ### <a name="finding-pods-failed-on-os-mismatch"></a>Suchen der Pods, die wegen Betriebssysteminkonsistenz fehlgeschlagen sind
 
-In diesem Fall enthielt eine Bereitstellung einen Pod, der auf einem Knoten mit einer nicht übereinstimmenden Betriebssystemversion geplant war, und ohne Hyper-V-Isolierung aktiviert.
+In diesem Fall enthielt eine Bereitstellung einen Pod, der auf einem Knoten mit einer nicht übereinstimmenden Betriebssystemversion und ohne aktivierter Hyper-V-Isolation geplant wurde.
 
-Der gleiche Fehler wird in den Ereignissen angezeigt, die mit `kubectl describe pod <podname>` abgerufen werden. Nach mehreren versuchen wird wahrscheinlich der Pod-Status `CrashLoopBackOff`angezeigt.
+Der gleiche Fehler wird in den Ereignissen angezeigt, die mit `kubectl describe pod <podname>` abgerufen werden. Nach einigen versuchen wird der Pod-Status wahrscheinlich `CrashLoopBackOff`.
 
 ```
 $ kubectl -n plang describe pod fabrikamfiber.web-789699744-rqv6p
@@ -413,11 +413,11 @@ Events:
   32m           11s             139     kubelet, 38519acs9011   spec.containers{fabrikamfiberweb}       Warning         BackOff                 Back-off restarting failed container
 ```
 
-### <a name="mitigation---using-node-labels-and-nodeselector"></a>Abschwächung – Verwenden von Knotenbeschriftungen und nodeSelector
+### <a name="mitigation---using-node-labels-and-nodeselector"></a>Entschärfung: Verwenden von Knoten Bezeichnungen und nodäselector
 
-Führen Sie **kubectl Get-Knoten** aus, um eine Liste aller Knoten abzurufen. Anschließend können Sie **kubectl DESCRIBE-Knoten (Knotenname)** ausführen, um weitere Informationen zu erhalten.
+Führen Sie **kubectl Get Node** aus, um eine Liste aller Knoten zu erhalten. Anschließend können Sie den Knoten " **kubectl-Beschreibung" (Knoten Name)** ausführen, um weitere Details zu erhalten.
 
-Im folgenden Beispiel werden zwei Windows-Knoten unterschiedliche Versionen ausgeführt:
+Im folgenden Beispiel werden zwei Windows-Knoten unterschiedliche Versionen ausführen:
 
 ```
 $ kubectl get node
@@ -483,20 +483,20 @@ System Info:
 
 ```
 
-In diesem Beispiel wird gezeigt, wie die Versionen übereinstimmen:
+Verwenden Sie dieses Beispiel, um zu veranschaulichen, wie Sie den Versionen entsprechen:
 
-1. Notieren Sie sich die einzelnen `Kernel Version` Knotennamen und die Systeminformationen.
+1. Notieren Sie sich jeden Knoten Namen und `Kernel Version` aus den Systeminformationen.
 
-    In unserem Beispiel sieht die Info wie folgt aus:
+    In unserem Beispiel sehen die Informationen wie folgt aus:
 
     Name         | Version
     -------------|--------------------------------------------------------
     38519acs9010 | 14393.1715.amd64fre.rs1_release_inmarket.170906-1810
     38519acs9011 | 16299.0.amd64fre.rs3_release.170922-1354
 
-2. Fügen Sie jedem Knoten namens `beta.kubernetes.io/osbuild` ein Label hinzu. Für Windows Server 2016 müssen sowohl Haupt-als auch Nebenversionen (14393,1715 in diesem Beispiel) ohne Hyper-V-Isolierung unterstützt werden. Windows Server, Version 1709, benötigt nur die Hauptversion (in diesem Beispiel 16299).
+2. Fügen Sie jedem Knoten namens `beta.kubernetes.io/osbuild` ein Label hinzu. Windows Server 2016 erfordert, dass sowohl Haupt-als auch neben Versionen (in diesem Beispiel 14393,1715) ohne Hyper-V-Isolation unterstützt werden. Die Windows Server-Version 1709 benötigt nur die Hauptversion (in diesem Beispiel 16299).
 
-    In diesem Beispiel sieht der Befehl zum Hinzufügen der Beschriftungen wie folgt aus:
+    In diesem Beispiel sieht der Befehl zum Hinzufügen der Bezeichnungen wie folgt aus:
 
     ```
     $ kubectl label node 38519acs9010 beta.kubernetes.io/osbuild=14393.1715
@@ -509,7 +509,7 @@ In diesem Beispiel wird gezeigt, wie die Versionen übereinstimmen:
 
     ```
 
-3. Überprüfen Sie, ob die Beschriftungen vorhanden sind, indem Sie **kubectl Get Nodes--Show-Labels**ausführen.
+3. Überprüfen Sie, ob die Bezeichnungen vorhanden sind, indem Sie **kubectl Get Nodes--Show-Labels**ausführen.
 
     In diesem Beispiel sieht die Ausgabe wie folgt aus:
 
@@ -523,9 +523,9 @@ In diesem Beispiel wird gezeigt, wie die Versionen übereinstimmen:
     k8s-master-38519084-0       Ready                      3d        v1.7.7                     beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=k8s-master-38519084-0,kubernetes.io/role=master
     ```
 
-4. Hinzufügen von Knoten Auswahlen zu Bereitstellungen In diesem Beispielfall fügen wir eine `nodeSelector` der Container Spezifikation mit `beta.kubernetes.io/os` = Windows und `beta.kubernetes.io/osbuild` = 14393. * oder 16299 hinzu, um dem vom Container verwendeten Basisbetriebssystem zu entsprechen.
+4. Hinzufügen von knotenselektoren zu bereit Stellungen In diesem Beispiel Fall fügen wir der Container Spezifikation mit `beta.kubernetes.io/os` = Windows und `beta.kubernetes.io/osbuild` = 14393. * oder 16299 eine `nodeSelector` hinzu, um das vom Container verwendete Basis Betriebssystem abzugleichen.
 
-    Hier ein vollständiges Beispiel für die Ausführung eines Containers, der für Windows Server2016 erstellt wurde:
+    Hier ein vollständiges Beispiel für die Ausführung eines Containers, der für Windows Server 2016 erstellt wurde:
 
     ```yaml
     apiVersion: extensions/v1beta1
@@ -560,7 +560,7 @@ In diesem Beispiel wird gezeigt, wie die Versionen übereinstimmen:
     status: {}
     ```
 
-    Der Pod kann nun mit der aktualisierten Bereitstellung starten. Die Knoten Auswahlen werden ebenfalls angezeigt `kubectl describe pod <podname>`, sodass Sie diesen Befehl ausführen können, um zu überprüfen, ob er hinzugefügt wurde.
+    Der Pod kann nun mit der aktualisierten Bereitstellung starten. Die Knoten Selektoren werden auch in `kubectl describe pod <podname>`angezeigt, sodass Sie diesen Befehl ausführen können, um zu überprüfen, ob Sie hinzugefügt wurden.
 
     Die Ausgabe für unser Beispiel lautet wie folgt:
 
