@@ -1,6 +1,6 @@
 ---
 title: Informationen zu Windows-Containern
-description: Container sind eine Technologie zum Verpacken und Ausführen von apps – einschließlich Windows-apps – in verschiedenen Umgebungen lokal und in der Cloud. In diesem Thema wird erläutert, wie Microsoft, Windows und Azure Sie beim entwickeln und Bereitstellen von apps in Containern unterstützen, einschließlich der Verwendung von andocker und Azure Kubernetes-Dienst.
+description: Bei Containern handelt es sich um eine Technologie zum Verpacken und Ausführen von Apps (einschließlich Windows-Apps), die in verschiedenen Umgebungen lokal und in der Cloud eingesetzt werden können. In diesem Thema wird erläutert, wie Microsoft, Windows und Azure Sie beim Entwickeln und Bereitstellen von Apps in Containern unterstützen, einschließlich der Verwendung von Docker und Azure Kubernetes Service.
 keywords: Docker, Container
 author: taylorb-microsoft
 ms.date: 10/22/2019
@@ -8,105 +8,105 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-ms.openlocfilehash: acce214cc8991f20c979b6dbe636590416841cb9
-ms.sourcegitcommit: d0411b05d1ef7328a770766b84fd0743f9d9c237
-ms.translationtype: MT
+ms.openlocfilehash: 4fad299db2c897a6be860ef0cc71e80969c75357
+ms.sourcegitcommit: 8dedb887b038fbff872327f51c7416454b301b86
+ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "10254290"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "74909410"
 ---
 # <a name="windows-and-containers"></a>Windows und Container
 
-Container sind eine Technologie zum Verpacken und Ausführen von Windows-und Linux-Anwendungen in verschiedenen Umgebungen lokal und in der Cloud. Container bieten eine vereinfachte, isolierte Umgebung, die das entwickeln, bereitstellen und Verwalten von apps vereinfacht. Container werden schnell gestartet und beendet, sodass Sie ideal für apps sind, die sich schnell an die sich ändernde Nachfrage anpassen müssen. Die einfache Art von Containern macht Sie auch zu einem nützlichen Tool zur Erhöhung der Dichte und Nutzung Ihrer Infrastruktur.
+Bei Containern handelt es sich um eine Technologie zum Verpacken und Ausführen von Windows- und Linux-Anwendungen, die in verschiedenen Umgebungen lokal und in der Cloud eingesetzt werden können. Container stellen eine schlanke, isolierte Umgebung bereit, in der Apps einfacher entwickelt, bereitgestellt und verwaltet werden können. Container werden schnell gestartet und beendet. Sie eignen sich daher ideal für Apps, die sich schnell an einen sich ändernden Bedarf anpassen müssen. Die schlanke Natur von Containern macht sie auch zu einem nützlichen Tool zum Erhöhen der Dichte und Auslastung Ihrer Infrastruktur.
 
-![Grafik, die zeigt, wie Container in der Cloud oder lokal ausgeführt werden können, unterstützt monolithische Apps oder microservices, die in nahezu jeder Sprache geschrieben sind.](media/about-3-box.png)
+![Abbildung, die zeigt, wie Container in der Cloud oder lokal ausgeführt werden können, wobei monolithische Apps oder in nahezu jeder Sprache geschriebene Microservices unterstützt werden.](media/about-3-box.png)
 
-## <a name="the-microsoft-container-ecosystem"></a>Das Microsoft-Container-Ökosystem
+## <a name="the-microsoft-container-ecosystem"></a>Das Microsoft-Containerökosystem
 
-Microsoft bietet eine Reihe von Tools und Plattformen, die Sie beim entwickeln und Bereitstellen von apps in Containern unterstützen:
+Microsoft bietet eine Reihe von Tools und Plattformen, die Sie beim Entwickeln und Bereitstellen von Apps in Containern unterstützen:
 
-- <strong>Ausführen von Windows-basierten oder Linux-basierten Containern unter Windows 10</strong> für die Entwicklung und das Testen mithilfe des [andockbaren Desktops](https://store.docker.com/editions/community/docker-ce-desktop-windows), in dem die in Windows integrierte Containerfunktionalität verwendet wird. Sie können auch [Container nativ unter Windows Server ausführen](../quick-start/set-up-environment.md?tabs=Windows-Server).
-- <strong>Entwickeln, testen, veröffentlichen und Bereitstellen von Windows-basierten Containern</strong> mithilfe der [leistungsstarken Container Unterstützung in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview) und [Visual Studio-Code](https://code.visualstudio.com/docs/azure/docker), die Unterstützung für andocker, andocker Compose, Kubernetes, Helm und andere nützliche Funktionen beinhalten Technologien.
-- <strong>Veröffentlichen Sie Ihre apps als Container Bilder</strong> im öffentlichen DockerHub, damit Sie von anderen verwendet werden können, oder von einer privaten [Azure Container-Registrierung](https://azure.microsoft.com/services/container-registry/) für die eigene Entwicklung und Bereitstellung Ihrer Organisation, indem Sie direkt in Visual Studio und Visual Studio-Code pushen und ziehen. .
-- <strong>Bereitstellen von Containern in einer Skala auf Azure</strong> oder anderen Clouds:
+- <strong>Führen Sie Windows-oder Linux-basierte Container unter Windows 10</strong> für Entwicklung und Tests mit [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) aus. Dabei werden in Windows integrierte Containerfunktionen verwendet. Sie können Container auch [nativ unter Windows Server ausführen](../quick-start/set-up-environment.md?tabs=Windows-Server).
+- <strong>Entwickeln, Testen, Veröffentlichen und Bereitstellen von Windows-basierten Containern</strong> mithilfe der [leistungsfähigen Containerunterstützung in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview) und [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), die Unterstützung für Docker, Docker Compose, Kubernetes, Helm und andere nützliche Technologien umfasst.
+- <strong>Veröffentlichen Sie Ihre Apps als Containerimages</strong> auf dem öffentlichen DockerHub, damit sie von anderen Benutzern verwendet werden können, oder in einer privaten [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) für eigene Entwicklung und Bereitstellung durch Ihre Organisation, indem Sie Push- und Pullvorgänge direkt in Visual Studio und Visual Studio Code durchführen.
+- <strong>Stellen Sie Container im richtigen Maßstab in Azure</strong> oder anderen Clouds bereit:
 
-  - Ziehen Sie Ihre APP (Container Bild) aus einer Container Registrierung wie der Azure Container-Registrierung, und stellen Sie Sie dann mithilfe eines Orchestrators wie [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in der Vorschau für Windows-basierte Apps) oder Azure-Dienst bereit, und verwalten Sie Sie. [ Stoff](https://docs.microsoft.com/azure/service-fabric/).
-  - Der Azure Kubernetes-Dienst stellt Container auf Azure Virtual Machines bereit und verwaltet Sie im Maßstab, ganz gleich, ob es sich um Dutzende Container, Hunderte oder sogar Tausende handelt. Auf den virtuellen Azure-Computern wird entweder ein angepasstes Windows Server-Abbild (wenn Sie eine Windows-basierte App bereitstellen) oder ein angepasstes Ubuntu Linux-Abbild ausgeführt (wenn Sie eine Linux-basierte App bereitstellen).
-- <strong>Bereitstellen von Containern lokal</strong> mithilfe [des Azure-Stapels mit dem AKS-Modul](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in Preview mit Linux-Containern) oder [Azure Stack mit openshift](https://docs.microsoft.com/azure/virtual-machines/linux/openshift-azure-stack). Sie können Kubernetes auch selbst unter Windows Server einrichten (siehe [Kubernetes unter Windows](../kubernetes/getting-started-kubernetes-windows.md)), und wir arbeiten an der Unterstützung für die Ausführung von [Windows-Containern auf der RedHat openshift-Container Plattform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) .
+  - Pullen Sie Ihre App (Containerimage) aus einer Containerregistrierung, z.B. aus Azure Container Registry, und stellen Sie sie dann im richtigen Maßstab mithilfe eines Orchestrators (etwa [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (als Vorschau für Windows-basierte Apps verfügbar) oder [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/)) bereit, und verwalten Sie sie.
+  - Azure Kubernetes Service stellt Container auf virtuellen Azure-Computern bereit und verwaltet sie im richtigen Maßstab unabhängig davon, ob es sich um Dutzende, Hunderte oder sogar Tausende von Containern handelt. Die virtuellen Azure-Computer führen entweder ein benutzerdefiniertes Windows Server-Image (wenn Sie eine Windows-basierte App bereitstellen) oder ein benutzerdefiniertes Ubuntu Linux-Image (wenn Sie eine Linux-basierte App bereitstellen) aus.
+- <strong>Stellen Sie Container lokal</strong> mithilfe von [Azure Stack mit der AKS-Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (als Vorschau mit Linux-Containern verfügbar) oder [Azure Stack mit OpenShift](https://docs.microsoft.com/azure/virtual-machines/linux/openshift-azure-stack) bereit. Sie können Kubernetes auch selbst unter Windows Server einrichten (siehe [Kubernetes unter Windows](../kubernetes/getting-started-kubernetes-windows.md)). Außerdem arbeiten wir an Unterstützung für die Ausführung von [Windows-Containern auf der RedHat OpenShift-Containerplattform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821).
 
 ## <a name="how-containers-work"></a>Funktionsweise von Containern
 
-Ein Container ist ein isoliertes, leichtes Silo zum Ausführen einer Anwendung auf dem Hostbetriebssystem. Container bauen auf dem Kernel des Hostbetriebssystems auf (was als Vergrabenes Sanitärsystem des Betriebssystems zu sehen ist), wie in diesem Diagramm dargestellt.
+Ein Container ist ein isoliertes, schlankes Silo zum Ausführen einer Anwendung auf dem Hostbetriebssystem. Container bauen auf dem Kernel des Hostbetriebssystems auf (der als die verborgene Struktur des Betriebssystems betrachtet werden kann), wie in dieser Abbildung gezeigt.
 
-![Architektonisches Diagramm, das zeigt, wie Container auf dem Kernel ausgeführt werden](media/container-diagram.svg)
+![Architekturabbildung, die zeigt, wie Container über dem Kernel ausgeführt werden.](media/container-diagram.svg)
 
-Während ein Container den Kernel des Hostbetriebssystems freigibt, erhält der Container keinen uneingeschränkten Zugriff darauf. Stattdessen erhält der Container eine isolierte – und in einigen Fällen virtualisierte – Ansicht des Systems. Beispielsweise kann ein Container auf eine virtualisierte Version des Dateisystems und der Registrierung zugreifen, doch alle Änderungen wirken sich nur auf den Container aus und werden beim Beenden verworfen. Zum Speichern von Daten kann der Container persistenten Speicher wie einen [Azure-Datenträger](https://azure.microsoft.com/services/storage/disks/) oder eine Dateifreigabe (einschließlich [Azure-Dateien](https://azure.microsoft.com/services/storage/files/)) bereitstellen.
+Auch wenn ein Container den Kernel des Hostbetriebssystems ebenfalls verwendet, erhält der Container keinen uneingeschränkten Zugriff darauf. Stattdessen erhält der Container eine isolierte (und in einigen Fällen virtualisierte) Ansicht des Systems. Ein Container kann z.B. auf eine virtualisierte Version des Dateisystems und der Registrierung zugreifen, aber alle Änderungen wirken sich nur auf den Container aus und werden verworfen, wenn er beendet wird. Zum Speichern von Daten kann der Container permanenten Speicher einbinden, z.B. einen [Azure-Datenträger](https://azure.microsoft.com/services/storage/disks/) oder eine Dateifreigabe (einschließlich [Azure Files](https://azure.microsoft.com/services/storage/files/)).
 
-Ein Container baut auf dem Kernel auf, aber der Kernel bietet nicht alle APIs und Dienste, die eine APP ausführen muss – die meisten von Ihnen werden von Systemdateien (Bibliotheken) bereitgestellt, die über dem Kernel im Benutzermodus ausgeführt werden. Da ein Container aus der Benutzermodus-Umgebung des Hosts isoliert ist, benötigt der Container eine eigene Kopie dieser Benutzermodus-Systemdateien, die in einem sogenannten Basis Bild verpackt sind. Das Basis Bild dient als grundlegende Ebene, auf der der Container erstellt wird, und bietet ihm Betriebssystemdienste, die nicht vom Kernel bereitgestellt werden. Aber wir werden uns später noch mehr über Container Bilder unterhalten.
+Ein Container basiert auf dem Kernel, aber der Kernel stellt nicht alle APIs und Dienste bereit, die eine App ausführen muss – die meisten dieser Komponenten werden von Systemdateien (Bibliotheken) bereitgestellt, die über dem Kernel im Benutzermodus ausgeführt werden. Da ein Container von der Benutzermodusumgebung des Hosts isoliert ist, benötigt der Container seine eigene Kopie dieser Benutzermodus-Systemdateien, die in ein als Basisimage bezeichnetes Paket gepackt werden. Das Basisimage dient als grundlegende Ebene, auf der Ihr Container erstellt wird, und stellt Betriebssystemdienste für ihn bereit, die nicht vom Kernel bereitgestellt werden. Wir werden Containerimages später ausführlicher erläutern.
 
-## <a name="containers-vs-virtual-machines"></a>Container vs. virtuelle Maschinen
+## <a name="containers-vs-virtual-machines"></a>Container im Vergleich zu virtuellen Computern
 
-Im Gegensatz zu einem Container führt ein virtueller Computer (VMS) ein vollständiges Betriebssystem – einschließlich des eigenen Kernels – aus, wie in diesem Diagramm dargestellt.
+Im Gegensatz zu einem Container führt ein virtueller Computer (VM) ein vollständiges Betriebssystem (einschließlich seines eigenen Kernels) aus, wie diese Abbildung zeigt.
 
-![Architekturdiagramm, das zeigt, wie VMS neben dem Hostbetriebssystem ein vollständiges Betriebssystem ausführen](media/virtual-machine-diagram.svg)
+![Architekturabbildung, die zeigt, wie VMs ein vollständiges Betriebssystem neben dem Hostbetriebssystem ausführen.](media/virtual-machine-diagram.svg)
 
-Container und virtuelle Maschinen haben jeweils ihre Verwendung – in der Tat verwenden viele Bereitstellungen von Containern virtuelle Maschinen als Hostbetriebssystem, anstatt direkt auf der Hardware zu laufen, insbesondere beim Ausführen von Containern in der Cloud.
+Container und virtuelle Computer haben jeweils einen eigenen Verwendungszweck: In der Tat verwenden viele Implementierungen von Containern virtuelle Computer als Hostbetriebssystem, anstatt direkt auf der Hardware ausgeführt zu werden, insbesondere wenn Container in der Cloud ausgeführt werden.
 
-Weitere Informationen zu den Ähnlichkeiten und unterschieden dieser komplementären Technologien finden Sie unter [Container vs. virtuelle Computer](containers-vs-vm.md).
+Weitere Informationen zu den Ähnlichkeiten und Unterschieden dieser sich ergänzenden Technologien finden Sie unter [Container im Vergleich zu virtuellen Computern](containers-vs-vm.md).
 
-## <a name="container-images"></a>Container Bilder
+## <a name="container-images"></a>Containerimages
 
-Alle Container werden aus Container Bildern erstellt. Container Bilder sind ein Bündel von Dateien, die in einem Stapel von Ebenen organisiert sind, die sich auf Ihrem lokalen Computer oder in einer Remote Container Registrierung befinden. Das Container Bild besteht aus den Betriebssystemdateien des Benutzermodus, die für die Unterstützung Ihrer APP, Ihrer APP, aller Runtimes oder Abhängigkeiten Ihrer APP sowie aller anderen Konfigurationsdateien erforderlich sind, die Ihre APP ordnungsgemäß ausführen muss.
+Alle Container werden aus Containerimages erstellt. Containerimages sind eine Sammlung von Dateien, die in einem Stapel von Schichten organisiert sind. Sie befinden sich auf Ihrem lokalen Computer oder in einer Remotecontainerregistrierung. Das Containerimage besteht aus den Benutzermodus-Betriebssystemdateien, die zur Unterstützung Ihrer App, aller Laufzeiten und Abhängigkeiten Ihrer App erforderlich sind, sowie aus anderen Konfigurationsdateien, die Ihre App für die ordnungsgemäße Ausführung benötigt.
 
-Microsoft bietet mehrere Bilder (sogenannte Basisbilder) an, die Sie als Ausgangspunkt zum Erstellen eines eigenen Container Bilds verwenden können:
+Microsoft bietet mehrere Images (als Basisimages bezeichnet), die Sie als Ausgangspunkt für das Erstellen eines eigenen Containerimages verwenden können:
 
-* <strong>Windows</strong> – enthält den vollständigen Satz von Windows-APIs und-Systemdiensten (minus Serverrollen).
-* <strong>Windows Server Core</strong> – ein kleineres Bild, das eine Teilmenge der Windows Server-APIs enthält, nämlich das vollständige .NET Framework. Es enthält auch die meisten Serverrollen, aber leider nur wenige, nicht Faxserver.
-* <strong>Nano Server</strong> – das kleinste Windows Server-Abbild mit Unterstützung für die .net Core-APIs und einige Server Rollen.
-* <strong>Windows 10-Core</strong> – eine Windows-Version, die von Hardwareherstellern für kleine Internet-Geräte verwendet wird, die Arm-oder x86/x64-Prozessoren ausführen.
+* <strong>Windows</strong>: Enthält den vollständigen Satz der Windows-APIs und Systemdienste (ausgenommen Serverrollen).
+* <strong>Windows Server Core</strong>: Ein kleineres Image, das eine Teilmenge der Windows Server-APIs enthält (nämlich die vollständige Version von .NET Framework). Es umfasst auch die meisten Serverrollen, aber leider nicht den Faxserver.
+* <strong>Nano Server</strong>: Das kleinste Windows Server-Image mit Unterstützung für die .NET Core-APIs und einige Serverrollen.
+* <strong>Windows 10 IoT Core</strong>: Eine Version von Windows, die von Hardwareherstellern für kleine IoT-Geräte verwendet wird, auf denen ARM- oder x86/x64-Prozessoren ausgeführt werden.
 
-Wie bereits erwähnt, bestehen Container Bilder aus einer Reihe von Ebenen. Jede Ebene enthält eine Reihe von Dateien, die, wenn Sie zusammen überlagert sind, Ihr Container Bild darstellen. Aufgrund der mehrstufigen Beschaffenheit von Containern müssen Sie nicht immer auf ein basisimage Zielen, um einen Windows-Container zu erstellen. Stattdessen können Sie ein anderes Bild anvisieren, das bereits das gewünschte Framework trägt. Das .net-Team veröffentlicht beispielsweise ein [.net Core-Abbild](https://hub.docker.com/_/microsoft-dotnet-core) , das die .net Core-Laufzeit trägt. Sie erspart Benutzern das Duplizieren des Installationsprozesses von .net Core – stattdessen können Sie die Layer dieses Container Bilds wieder verwenden. Das .net Core-Abbild selbst basiert auf dem Nano-Server.
+Wie bereits erwähnt, bestehen Containerimages aus einer Reihe von Schichten. Jede Schicht enthält einen Satz von Dateien, die das Containerimage darstellen, wenn Sie überlagert werden. Aufgrund der überlagerten Natur von Containern müssen Sie nicht immer ein Basisimage zum Erstellen eines Windows-Containers als Ziel verwenden. Stattdessen können Sie ein anderes Image als Ziel verwenden, das das gewünschte Framework bereits enthält. Das .NET-Team veröffentlicht z.B. ein [.NET Core-Image](https://hub.docker.com/_/microsoft-dotnet-core), das die .NET Core-Laufzeit enthält. Die Benutzer müssen die Installation von .NET Core daher nicht duplizieren – stattdessen können Sie die Schichten dieses Containerimages wiederverwenden. Das .NET Core-Image selbst basiert auf Nano Server.
 
-Weitere Informationen finden Sie unter [Container Basisbilder](../manage-containers/container-base-images.md).
+Weitere Informationen finden Sie unter [Containerbasisimages](../manage-containers/container-base-images.md).
 
-## <a name="container-users"></a>Container Benutzer
+## <a name="container-users"></a>Containerbenutzer
 
 ### <a name="containers-for-developers"></a>Container für Entwickler
 
-Container helfen Entwicklern, schnellere apps zu erstellen und zu versenden. Mit Containern können Entwickler ein Container Bild erstellen, das in Sekunden gleichmäßig in verschiedenen Umgebungen bereitgestellt wird. Container fungieren als einfache Methode zum Freigeben von Code in Teams und zum Bootstrap einer Entwicklungsumgebung, ohne dass sich dies auf das Host-Dateisystem auswirkt.
+Container helfen Entwicklern, Apps mit höherer Qualität schneller zu entwickeln und auszuliefern. Mit Containern können Entwickler ein Containerimage erstellen, das innerhalb von Sekunden identisch in Umgebungen bereitgestellt werden kann. Container fungieren als einfache Methode, um Code für mehrere Teams freizugeben und eine Entwicklungsumgebung zu starten, ohne dass sich dies auf das Hostdateisystem auswirkt.
 
-Container sind portabel und vielseitig, können apps ausführen, die in einer beliebigen Sprache geschrieben sind, und Sie sind mit jedem Computer kompatibel, auf dem Windows 10, Version 1607 oder höher oder Windows 2016 oder höher ausgeführt wird. Entwickler können einen Container lokal auf Ihrem Laptop oder Desktop erstellen und testen und dann das gleiche Container Abbild in der privaten Cloud, öffentlichen Cloud oder dem Dienstanbieter des Unternehmens bereitstellen. Die natürliche Agilität von Containern unterstützt moderne App-Entwicklungsmuster in großflächigen virtualisierten Cloud-Umgebungen.
+Container sind portabel und vielseitig einsetzbar, können in jeder Sprache geschriebene Apps ausführen und sind mit jedem Computer kompatibel, auf dem Windows 10 (Version 1607 oder höher) oder Windows Server 2016 oder höher ausgeführt wird. Entwickler können einen Container lokal auf ihrem Laptop oder Desktop erstellen und testen und dann das gleiche Containerimage in der privaten Cloud ihres Unternehmens, einer öffentlichen Cloud oder über einen Dienstanbieter bereitstellen. Die natürliche Agilität von Containern unterstützt moderne Muster für die Entwicklung von Apps in großen, virtualisierten Cloudumgebungen.
 
 ### <a name="containers-for-it-professionals"></a>Container für IT-Experten
 
-Mithilfe von Containern können Administratoren Infrastrukturen erstellen, die einfacher zu aktualisieren und zu warten sind und die Hardwareressourcen umfassender nutzen. IT-Experten können Container verwenden, um standardisierte Umgebungen für Ihre Entwicklungs-, QA-und Produktionsteams bereitzustellen. Durch die Verwendung von Containern können Systemadministratoren die Unterschiede bei den Betriebssysteminstallationen und der zugrunde liegenden Infrastruktur abstrahieren.
+Mithilfe von Containern können Administratoren eine Infrastruktur erstellen, die einfacher zu aktualisieren und zu verwalten ist und die Hardwareressourcen besser nutzt. IT-Experten können Container verwenden, um standardisierte Umgebungen für ihre Entwicklungs-, Qualitätssicherungs- und Produktionsteams bereitzustellen. Mithilfe von Containern können Systemadministratoren Unterschiede bei Betriebssysteminstallationen und der zugrunde liegenden Infrastruktur abstrahieren.
 
-## <a name="container-orchestration"></a>Container-Orchestrierung
+## <a name="container-orchestration"></a>Containerorchestrierung
 
-Bei der Einrichtung einer Container basierten Umgebung sind Orchestrators ein wichtiger Bestandteil der Infrastruktur. Zwar können Sie ein paar Container manuell mithilfe von Docker und Windows verwalten, doch Apps verwenden häufig fünf, zehn oder sogar Hunderte von Containern, an denen Orchestrators teilnehmen.
+Orchestratoren sind beim Einrichten einer containerbasierten Umgebung ein wichtiger Teil der Infrastruktur. Obwohl Sie einige Container manuell mithilfe von Docker und Windows verwalten können, nutzen Apps häufig fünf, zehn oder sogar Hunderte von Containern, für die Orchestratoren eingesetzt werden.
 
-Container-Orchestrators wurden für die Verwaltung von Containern im Maßstab und in der Produktion entwickelt. Orchestrators bieten Funktionen für:
+Containerorchestratoren wurden entwickelt, um die Verwaltung von Containern im richtigen Maßstab und in der Produktion zu erleichtern. Orchestratoren stellen Funktionen für Folgendes bereit:
 
-- Bereitstellen im Maßstab
-- Arbeits Auslastungsplanung
-- Statusüberwachung
-- Fehler beim Failover eines Knotens
-- Nach oben oder unten skalieren
-- Networking
+- Bereitstellung im richtigen Maßstab
+- Planung der Workload
+- Systemüberwachung
+- Failover bei einem Knotenausfall
+- Zentrales Hoch- oder Herunterskalieren
+- Netzwerk
 - Dienstermittlung
 - Koordinieren von App-Upgrades
-- Cluster Knoten Affinität
+- Clusterknotenaffinität
 
-Es gibt viele verschiedene Orchestrators, die Sie mit Windows-Containern verwenden können. die folgenden Optionen werden von Microsoft bereitgestellt:
-- [Azure Kubernetes-Dienst (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) – verwenden eines verwalteten Azure Kubernetes-Diensts
-- [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/) – verwenden eines verwalteten Diensts
-- [Azure-Stack mit dem AKS-Modul](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) – Verwenden des Azure Kubernetes-Diensts lokal
-- [Kubernetes unter Windows](../kubernetes/getting-started-kubernetes-windows.md) – Einrichten von Kubernetes yourself unter Windows
+Es gibt viele verschiedene Orchestratoren, die Sie mit Windows-Containern verwenden können. Im Folgenden finden Sie die von Microsoft bereitgestellten Optionen:
+- [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes): Verwenden Sie einen verwalteten Kubernetes-Dienst.
+- [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/): Verwenden Sie einen verwalteten Dienst.
+- [Azure Stack mit der AKS-Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview): Verwenden Sie Azure Kubernetes Service lokal.
+- [Kubernetes unter Windows](../kubernetes/getting-started-kubernetes-windows.md): Richten Sie Kubernetes selbst unter Windows ein.
 
 ## <a name="try-containers-on-windows"></a>Testen von Containern unter Windows
 
-Die ersten Schritte mit Containern unter Windows Server oder Windows 10 finden Sie unter den folgenden Themen:
+Informationen zu den ersten Schritten mit Containern unter Windows Server oder Windows 10 finden Sie in den folgenden Ressourcen:
 > [!div class="nextstepaction"]
 > [Erste Schritte: Konfigurieren der Umgebung für Container](../quick-start/set-up-environment.md)
 
-Hilfe bei der Entscheidung, welche Azure Services für Ihr Szenario geeignet sind, finden Sie unter [Azure Container Services](https://azure.microsoft.com/product-categories/containers/) und [auswählen, welche Azure-Dienste zum Hosten der Anwendung verwendet](https://docs.microsoft.com/azure/architecture/guide/technology-choices/compute-decision-tree)werden sollen.
+Hilfe bei der Entscheidung, welche Azure-Dienste für Ihr Szenario geeignet sind, finden Sie unter [Azure Container Services](https://azure.microsoft.com/product-categories/containers/) und [Auswählen, welche Azure-Dienste zum Hosten Ihrer Anwendung verwendet werden sollten](https://docs.microsoft.com/azure/architecture/guide/technology-choices/compute-decision-tree).

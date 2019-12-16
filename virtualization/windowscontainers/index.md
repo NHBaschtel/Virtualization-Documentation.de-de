@@ -1,6 +1,6 @@
 ---
 layout: LandingPage
-title: Container in der Windows-Dokumentation
+title: Dokumentation zu Containern unter Windows
 description: Dokumentation zum Ausführen von Containern unter Windows
 keywords: Docker, Container
 author: cwilhit
@@ -10,11 +10,11 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
 ms.openlocfilehash: 9a5b08f87983e285418ae333e3a948af9911d73d
-ms.sourcegitcommit: 22dcc1400dff44fb85591adf0fc443360ea92856
-ms.translationtype: MT
+ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/12/2019
-ms.locfileid: "10209740"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74909160"
 ---
 <div id="main" class="v2">
     <ul class="cardsY panelContent featuredContent">
@@ -47,7 +47,7 @@ ms.locfileid: "10209740"
                                 </div>
                             </div>
                             <div class="cardText">
-                                <h3>Schauen Sie sich unsere Container Bilder auf dem docker-Hub an.</h3>
+                                <h3>Sehen Sie sich unsere Containerimages auf Docker Hub an.</h3>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ ms.locfileid: "10209740"
                                 </div>
                             </div>
                             <div class="cardText">
-                                <h3>Lesen Sie den Container-Blog.</h3>
+                                <h3>Lesen Sie den Blog zu Containern.</h3>
                             </div>
                         </div>
                     </div>
@@ -73,9 +73,9 @@ ms.locfileid: "10209740"
             </a>
         </li>
     </ul>
-    <h1>Container in der Windows-Dokumentation</h1>
+    <h1>Dokumentation zu Containern unter Windows</h1>
     <br/>
-    <div class="abstract">Windows-Container ermöglichen es Benutzern, Anwendungen mit ihren Abhängigkeiten zu verpacken und die Virtualisierung auf Betriebssystemebene zu nutzen, um schnelle, vollständig isolierte Umgebungen auf einem einzelnen System bereitzustellen. Erfahren Sie, wie Sie Windows-Container mit unseren Schnellstart Leit Fäden, Bereitstellungsleitfäden und Beispielen verwenden.</div>
+    <div class="abstract">Mithilfe von Windows-Containern können Benutzer Anwendungen mit ihren Abhängigkeiten verpacken und Virtualisierung auf Betriebssystemebene nutzen, um schnelle, vollständig isolierte Umgebungen in einem einzigen System bereitzustellen. Erfahren Sie mehr über die Verwendung von Windows-Containern mit unseren Schnellstartanleitungen, Bereitstellungsleitfäden und Beispielen.</div>
     <ul class="cardsW panelContent featuredContent">
         <li>
             <div class="cardSize">
@@ -110,8 +110,8 @@ ms.locfileid: "10209740"
                         <div class="cardText">
                             <h3 style="margin: 8px 0 2px 0;">Erste Schritte</h3>
                             <ul>
-                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/set-up-environment" data-linktype="external">Einrichten Ihrer Umgebung</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/run-your-first-container" data-linktype="external">Ausführen des ersten Containers</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/set-up-environment" data-linktype="external">Einrichten der Umgebung</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/run-your-first-container" data-linktype="external">Ausführen Ihres ersten Containers</a></li>
                                 <li><a href="/en-us/virtualization/windowscontainers/quick-start/building-sample-app" data-linktype="external">Containerisieren einer Beispiel-App</a></li>
                             </ul>
                         </div>
@@ -132,9 +132,9 @@ ms.locfileid: "10209740"
                             <h3 style="margin: 8px 0 2px 0;">Lernprogramme</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile" data-linktype="external">Erstellen eines Windows-Containers</a></li>
-                                <li><a href="/azure/aks/windows-container-cli" data-linktype="external">Auf AKS ausführen</a></li>
-                                <li><a href="/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">Auf Service Fabric ausführen</a></li>
-                                <li><a href="/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">Ausführen des Azure-App-Diensts</a></li>
+                                <li><a href="/azure/aks/windows-container-cli" data-linktype="external">Ausführung unter AKS</a></li>
+                                <li><a href="/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">Ausführung unter Service Fabric</a></li>
+                                <li><a href="/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">Ausführung unter Azure App Service</a></li>
                             </ul>
                         </div>
                     </div>
@@ -154,8 +154,8 @@ ms.locfileid: "10209740"
                             <h3 style="margin: 8px 0 2px 0;">Konzepte</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon" data-linktype="external">Docker</a></li>
-                                <li><a href="/virtualization/windowscontainers/about/overview-container-orchestrators" data-linktype="external">Container-Orchestrierung</a></li>
-                                <li><a href="/virtualization/windowscontainers/manage-containers/container-base-images" data-linktype="external">Windows-Container-Grundlagen</a></li>
+                                <li><a href="/virtualization/windowscontainers/about/overview-container-orchestrators" data-linktype="external">Containerorchestrierung</a></li>
+                                <li><a href="/virtualization/windowscontainers/manage-containers/container-base-images" data-linktype="external">Grundlagen von Windows-Containern</a></li>
                             </ul>
                         </div>
                     </div>
@@ -172,11 +172,11 @@ ms.locfileid: "10209740"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3 style="margin: 8px 0 2px 0;">Referenz</h3>
+                            <h3 style="margin: 8px 0 2px 0;">Verweis</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility" data-linktype="external">Versionskompatibilität</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/base-image-lifecycle" data-linktype="external">Image Servicing Lifecycles</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/images-eula" data-linktype="external">EULA für Container-Betriebssystem Bilder</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/base-image-lifecycle" data-linktype="external">Wartungslebenszyklen von Images</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/images-eula" data-linktype="external">Lizenzbedingungen für Containerbetriebssystem-Image</a></li>
                             </ul>
                         </div>
                     </div>
@@ -197,7 +197,7 @@ ms.locfileid: "10209740"
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/samples" data-linktype="external">Beispiele</a></li>
                                 <li><a href="/en-us/virtualization/windowscontainers/troubleshooting" data-linktype="external">Problembehandlung</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/communitylinks" data-linktype="external">Community-Videos und-Blogs</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/communitylinks" data-linktype="external">Videos und Blogs der Community</a></li>
                             </ul>
                         </div>
                     </div>
