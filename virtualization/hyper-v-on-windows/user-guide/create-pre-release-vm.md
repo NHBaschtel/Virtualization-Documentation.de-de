@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 426c87cc-fa50-4b8d-934e-0b653d7dea7d
-ms.openlocfilehash: 8f1c1b96fe88f46a24b8ebb46d4f387c9717f6ba
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 725466f657ae8fc4f14813822e90657e12d26fa6
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74911160"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439557"
 ---
 # <a name="try-pre-release-features-for-hyper-v"></a>Testen von Features der Vorabversion für Hyper-V
 
@@ -47,6 +47,6 @@ Hier einige weitere Beispiele, in denen Sie das Flag „-Prerelease“ verwenden
 
  Die Beispiele in diesen Artikeln funktionieren für Hyper-V-Hosts, auf denen Windows 10 oder Windows Server 2016 Technical Preview ausgeführt wird. Zurzeit können Sie das Flag „-Prerelease“ nur verwenden, um einen virtuellen Computer mit Vorabversion auf Hyper-V-Hosts zu erstellen, auf denen Windows Server 2016 Technical Preview ausgeführt wird.
 
-## <a name="see-also"></a>Weitere Informationen
+## <a name="see-also"></a>Siehe auch
 -  [Blog zum Thema Virtualisierung](https://techcommunity.microsoft.com/t5/Virtualization/bg-p/Virtualization): Erfahren Sie mehr zu verfügbaren Vorabfeatures und dazu, wie Sie diese ausprobieren können.
 - [Supported virtual machine configuration versions](https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server#BKMK_SupportedConfigVersions) (Unterstützte Konfigurationsversionen für virtuelle Computer): Erfahren Sie, wie Sie die Konfigurationsversion des virtuellen Computers überprüfen und welche Versionen von Microsoft unterstützt werden.

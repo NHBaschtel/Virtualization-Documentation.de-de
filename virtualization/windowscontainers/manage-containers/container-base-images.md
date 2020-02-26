@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
-ms.openlocfilehash: 2a69fbace51589cce08476bd68fdb5c34a7907e6
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 9884cc0ae2d2f398d2dc2fb1997a70493a6de6c0
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909780"
+ms.lasthandoff: 01/28/2020
+ms.locfileid: "76764177"
 ---
 # <a name="container-base-images"></a>Container Basis Images
 
@@ -144,4 +144,4 @@ Weitere Informationen finden Sie unter [Verwenden von Containern mit dem Windows
 
 `Windows Server Core` und `Nanoserver` sind die gängigsten Basis Images, die als Ziel dienen. Der Hauptunterschied zwischen diesen Images besteht darin, dass NanoServer eine deutlich kleinere API-Oberfläche aufweist. PowerShell, WMI und der Windows-Wartungs Stapel fehlen im NanoServer-Image.
 
-NanoServer wurde erstellt, um genau genug API-Oberfläche zum Ausführen von apps bereitzustellen, die eine Abhängigkeit von .net Core oder anderen modernen Open Source-Frameworks aufweisen. Als Kompromiss zur kleineren API-Oberfläche hat das NanoServer-Image einen erheblich geringeren Speicherbedarf als die restlichen Windows-Basis Images. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).
+NanoServer wurde erstellt, um genau genug API-Oberfläche zum Ausführen von apps bereitzustellen, die eine Abhängigkeit von .net Core oder anderen modernen Open Source-Frameworks aufweisen. Als Kompromiss zur kleineren API-Oberfläche hat das NanoServer-Image einen erheblich geringeren Speicherbedarf als die restlichen Windows-Basis Images. Aufbauend auf Nano Server können Sie nach Bedarf jederzeit Ebenen hinzufügen. Ein Beispiel hierfür finden Sie unter [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1909/amd64/Dockerfile).

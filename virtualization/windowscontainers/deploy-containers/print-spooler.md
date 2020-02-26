@@ -3,12 +3,12 @@ title: Druck Spooler in Windows-Containern
 description: Erläutert das aktuelle Arbeitsverhalten für den Druckspoolerdienst in Windows-Containern.
 keywords: docker, Container, Drucker, Spooler
 author: cwilhit
-ms.openlocfilehash: 48130bc6a826a45dfa49d0a3b4600d227f34704e
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: e104a87046545b90d244783aafb62ad9d151e14b
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910530"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439537"
 ---
 # <a name="print-spooler-in-windows-containers"></a>Druck Spooler in Windows-Containern
 
@@ -52,7 +52,7 @@ Fax                                            Local        Microsoft Shared Fax
 PS C:\>
 ```
 
-### <a name="process-isolation"></a>Prozessisolation
+### <a name="process-isolation"></a>Prozess Isolation
 
 Aufgrund der gemeinsamen Kernel Natur von Prozess isolierten Containern beschränkt das aktuelle Verhalten den Benutzer auf die Ausführung von nur **einer Instanz** des Druckerspoolerdiensts auf dem Host und allen zugehörigen untergeordneten Containern. Wenn der Druckerspooler auf dem Host ausgeführt wird, müssen Sie den Dienst auf dem Host anhalten, bevor Sie den Drucker Dienst im Gast starten.
 

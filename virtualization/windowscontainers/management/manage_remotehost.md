@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 0cc1b621-1a92-4512-8716-956d7a8fe495
-ms.openlocfilehash: b975c593bd5c736ec3e7e1e21b76b2f6a2c8f8a4
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 2e1fec6aa7149c801b1c72a0f8a346ca879015c2
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909650"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439517"
 ---
 # <a name="remote-management-of-a-windows-docker-host"></a>Remoteverwaltung eines Windows-Docker-Hosts
 
@@ -33,7 +33,7 @@ Die Schritte dazu sind sehr einfach:
 New-NetFirewallRule -DisplayName 'Docker SSL Inbound' -Profile @('Domain', 'Public', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 2376
 ```
 * Kopieren Sie die Dateien `ca.pem`, „cert.pem“ und „key.pem“ aus dem Benutzer-Docker-Ordner auf Ihrem Computer (z. B. `c:\users\chris\.docker`) auf den lokalen Computer. Sie können z. B. mit STRG+C und STRG+V die Dateien einer RDP-Sitzung verwenden. 
-* Stellen Sie sicher, dass Sie eine Verbindung mit dem Remote-Docker-Host herstellen können. Führen Sie  aus.
+* Stellen Sie sicher, dass Sie eine Verbindung mit dem Remote-Docker-Host herstellen können. Ausführen
 ```
 docker -D -H tcp://wsdockerhost.southcentralus.cloudapp.azure.com:2376 --tlsverify --tlscacert=c:\
 users\foo\.docker\client\ca.pem --tlscert=c:\users\foo\.docker\client\cert.pem --tlskey=c:\users\foo\.doc

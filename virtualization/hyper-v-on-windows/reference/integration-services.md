@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
-ms.openlocfilehash: 762b82f3714651ffb488f682581680c9526404a8
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 6568b68a77fc5506b58249caea44ec78e3e44de2
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74911150"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439567"
 ---
 # <a name="hyper-v-integration-services"></a>Hyper-V-Integrationsdienste
 
@@ -25,20 +25,20 @@ Dieser Artikel stellt eine Referenz für jeden in Windows verfügbaren Integrati
 * [Verwalten von Integrationsdiensten](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services)
 
 
-## <a name="quick-reference"></a>Kurzübersicht
+## <a name="quick-reference"></a>Kurzreferenz
 
 | Name | Name des Windows-Diensts | Name des Linux-Daemons |  Beschreibung | Auswirkung auf die VM, wenn deaktiviert |
 |:---------|:---------|:---------|:---------|:---------|
 | [Hyper-V-Taktdienst](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Berichtet, dass der virtuelle Computer fehlerfrei ausgeführt wird. | Variiert |
-| [Hyper-V-Dienst zum Herunterfahren des Gasts](#hyper-v-guest-shutdown-service) | vmicshutdown | hv_utils |  Ermöglicht es dem Host, das Herunterfahren des virtuellen Computers auszulösen. | **Hoch** |
-| [Hyper-V-Dienst für Zeitsynchronisierung](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronisiert die Uhr des virtuellen Computers mit der Uhr des Hostcomputers. | **Hoch** |
+| [Hyper-V-Dienst zum Herunterfahren des Gasts](#hyper-v-guest-shutdown-service) | vmicshutdown | hv_utils |  Ermöglicht es dem Host, das Herunterfahren des virtuellen Computers auszulösen. | **Hochrangiger** |
+| [Hyper-V-Dienst für Zeitsynchronisierung](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronisiert die Uhr des virtuellen Computers mit der Uhr des Hostcomputers. | **Hochrangiger** |
 | [Hyper-V-Datenaustausch Dienst (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Bietet ein Verfahren zum Austausch von grundlegenden Metadaten zwischen dem virtuellen Computer und dem Host. | Mittel |
 | [Hyper-V-Volumeschattenkopie-Anforderer](#hyper-v-volume-shadow-copy-requestor) | vmicvss | hv_vss_daemon | Ermöglicht dem Volumeschattenkopie-Dienst, den virtuellen Computer zu sichern, ohne ihn herunterzufahren. | Variiert |
 | [Hyper-V-Gastschnittstelle](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Stellt eine Schnittstelle für den Hyper-V-Host zum Kopieren von Dateien zu oder von dem virtuellen Computer bereit. | Niedrig |
 | [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | nicht verfügbar | Bietet eine Möglichkeit zum Verwalten der virtuellen Computer mit PowerShell ohne eine Netzwerkverbindung. | Niedrig |  
 
 
-## <a name="hyper-v-heartbeat-service"></a>Hyper-V Taktdienst
+## <a name="hyper-v-heartbeat-service"></a>Hyper-V-Taktdienst
 
 **Name des Windows-Diensts:** vmicheartbeat  
 **Name des Linux-Daemons:** hv_utils  
@@ -74,16 +74,16 @@ Das Feld `Status` wird vom Taktdienst bestimmt.
 **Name des Linux-Daemons:** hv_utils  
 **Beschreibung:** ermöglicht dem Hyper-V-Host, das Herunterfahren des virtuellen Computers anzufordern.  Der Host kann die Abschaltung des virtuellen Computers immer erzwingen, was aber aber mehr dem Ziehen des Netzsteckers als dem normalen Herunterfahren entspricht.  
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
-**Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, kann der Host kein normales Herunterfahren im virtuellen Computer auslösen.  Alle Herunterfahr Vorgänge sind eine harte Stromversorgung, was zu Datenverlusten oder Daten Beschädigungen führen kann.  
+**Auswirkung:** **Wenn diese** Option deaktiviert ist, kann der Host kein freundliches Herunterfahren innerhalb des virtuellen Computers auslöst.  Alle Herunterfahr Vorgänge sind eine harte Stromversorgung, was zu Datenverlusten oder Daten Beschädigungen führen kann.  
 
 
-## <a name="hyper-v-time-synchronization-service"></a>Hyper-V-Zeitsynchronisierungsdienst
+## <a name="hyper-v-time-synchronization-service"></a>Hyper-V-Dienst für Zeitsynchronisierung
 
 **Name des Windows-Diensts:** vmictimesync  
 **Name des Linux-Daemons:** hv_utils  
 **Beschreibung:** synchronisiert die Systemuhr des virtuellen Computers mit der Systemuhr des physischen Computers.  
 **Hinzugefügt in:** Windows Server 2012, Windows 8  
-**Auswirkung:** **Gravierende Auswirkungen** Wenn der Dienst deaktiviert ist, weicht die Uhr des virtuellen Computers unkontrolliert ab.  
+**Auswirkung:** **hohe Beeinträchtigung** , wenn diese deaktiviert ist, wird die Uhr des virtuellen Computers nicht mehr abweichen.  
 
 
 ## <a name="hyper-v-data-exchange-service-kvp"></a>Hyper-V-Datenaustauschdienst (KVP)
@@ -118,7 +118,7 @@ Der Integrationsdienst für den Volumeschattenkopie-Anforderer wird für den Vol
 Weitere Informationen zur Volumeschattenkopie erhalten Sie [hier](https://docs.microsoft.com/previous-versions/windows/desktop/virtual/backing-up-and-restoring-virtual-machines).
 
 
-## <a name="hyper-v-guest-service-interface"></a>Hyper-V-Gastdienstschnittstelle
+## <a name="hyper-v-guest-service-interface"></a>Hyper-V-Gastschnittstelle
 
 **Name des Windows-Diensts:** vmicguestinterface  
 **Name des Linux-Daemons:** hv_fcopy_daemon  

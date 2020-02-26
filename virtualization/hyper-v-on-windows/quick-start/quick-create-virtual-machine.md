@@ -7,12 +7,12 @@ ms.date: 04/07/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
-ms.openlocfilehash: 970e92def02e5386d38a2e72d5ef921aa8321fdf
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 6035143bc1449bc4a8e9bb7a4484b4c5329e6d3c
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74911400"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439627"
 ---
 # <a name="create-a-virtual-machine-with-hyper-v"></a>Erstellen eines virtuellen Computers mit Hyper-V
 
@@ -86,4 +86,4 @@ Der virtuelle Computer sollte etwa wie folgt aussehen:
 Wenn Sie nicht das Windows 10 Creators Update oder höher verwenden, folgen Sie stattdessen dem Assistent für neue virtuelle Computer:
 
 1. [Erstellen eines virtuellen Netzwerks](connect-to-network.md)
-1. [Erstellen eines neuen virtuellen Computers](create-virtual-machine.md)
+1. [Neuen virtuellen Computer erstellen](create-virtual-machine.md)

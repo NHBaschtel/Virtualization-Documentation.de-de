@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
-ms.openlocfilehash: 74e22702aa4be30055b3f4f48c7fac926d793095
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 3107eb48dc9c75224b0c9dd9b436af6f0f451871
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909920"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439277"
 ---
 # <a name="container-platform-tools-on-windows"></a>Container Platt Form Tools unter Windows
 
@@ -55,7 +55,7 @@ Zu den funktionalen unterschieden zwischen Runc und runhcs zählen folgende:
   * Windows-und Linux [-Hyper-V-Isolation](../manage-containers/hyperv-container.md)
   * Windows-Prozess Container (Container Image muss dem Container Host entsprechen)
 
-**Verwendung:**
+**Ungs**
 
 ``` cmd
 runhcs run [ -b bundle ] <container-id>

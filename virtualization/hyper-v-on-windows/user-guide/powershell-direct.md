@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
-ms.openlocfilehash: ea6b71200d3115ba3d156b2c133e1be2fa495261
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: ed96c7ba30c83906cd3245a279ab078229400d8d
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910920"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439547"
 ---
 # <a name="virtual-machine-automation-and-management-using-powershell"></a>Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
 
@@ -25,7 +25,7 @@ Es folgen einige Möglichkeiten, wie Sie PowerShell Direct ausführen können:
 * [Als Einzel Verwendungs Abschnitt zum Ausführen eines einzelnen Befehls oder Skripts mithilfe des Cmdlets "Aufruf-Command"](#run-a-script-or-command-with-invoke-command)
 * [Als dauerhafte Sitzung (Build 14280 und höher) mithilfe der Cmdlets "New-PSSession", "Copy-Item" und "Remove-PSSession"](#copy-files-with-new-pssession-and-copy-item)
 
-## <a name="requirements"></a>Anforderungen
+## <a name="requirements"></a>Voraussetzungen
 **Betriebssystemanforderungen:**
 * Host: Windows 10, Windows Server 2016 oder höher mit Hyper-V.
 * Gast- bzw. virtueller Computer: Windows 10, Windows Server 2016 oder höher.
@@ -69,7 +69,7 @@ Wenn die Sitzung gestartet wird, werden die eingegebenen Befehle auf dem virtuel
   
   Jeder Befehl wird auf dem virtuellen Computer ausgeführt. Um dies zu testen, können Sie `ipconfig` oder `hostname` ausführen, um sicherzustellen, dass diese Befehle tatsächlich auf dem virtuellen Computer ausgeführt werden.
   
-4. Wenn Sie fertig sind, führen Sie den folgenden Befehl zum Schließen der Sitzung aus:  
+4. Wenn Sie fertig sind, führen Sie den folgenden Befehl aus, um die Sitzung zu schließen:  
   
    ``` PowerShell
    Exit-PSSession 

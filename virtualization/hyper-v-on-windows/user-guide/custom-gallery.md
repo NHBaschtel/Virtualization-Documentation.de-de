@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
-ms.openlocfilehash: c7a6462b331f469148eb4cf5a0a2740c9929fa29
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 1348b9923d9de1314818f13414abdacee2cb9735
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74911060"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439712"
 ---
 # <a name="create-a-custom-virtual-machine-gallery"></a>Erstellen einer benutzerdefinierten virtuellen Computergalerie
 
@@ -99,7 +99,7 @@ Bilder:
 
 * **Logo** - erforderlich
 * symbol
-* thumbnail
+* Miniaturansicht
 
 Und natürlich Ihr virtueller Computer (.iso oder .vhdx).
 
@@ -118,7 +118,7 @@ Die folgende JSON-Vorlage enthält Startelemente und das Galerieschema.  Wenn Si
 Die einfachste Möglichkeit, Ihre VM-Galeriequelle der benutzerdefinierten Galerie hinzuzufügen ist, sie dem Registrierungs-Editor hinzuzufügen.
 
 1. Öffnen Sie **regedit.exe**
-1. Wechseln Sie zu `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\`.
+1. Navigieren Sie zu `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\`
 1. Suchen Sie nach `GalleryLocations`.
 
     Wenn sie bereits vorhanden ist, fahren Sie im Menü **Bearbeiten** mit der Option **ändern** fort.

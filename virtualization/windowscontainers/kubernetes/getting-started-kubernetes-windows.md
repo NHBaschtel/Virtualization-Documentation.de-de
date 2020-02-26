@@ -8,12 +8,12 @@ ms.prod: containers
 description: Hinzufügen eines Windows-Knotens zu einem Kubernetes-Cluster mit v 1,14.
 keywords: kubernetes, 1,14, Windows, Getting Started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
-ms.openlocfilehash: c380f5dc10430a94959718a5ce92f311603db733
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 18734f102042ec951255061dcd82229e18d29a15
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910360"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439527"
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows
 
@@ -32,7 +32,7 @@ Diese Seite bietet einen Überblick über die ersten Schritte mit Kubernetes unt
 >[!TIP]
 >Wenn Sie einen Cluster in Azure bereitstellen möchten, macht das Open Source-Tool AKS-Engine dies leicht. Weitere Informationen finden Sie in unserer exemplarischen Vorgehens [Weise.](https://github.com/Azure/aks-engine/blob/master/docs/topics/windows.md)
 
-## <a name="prerequisites"></a>Voraussetzungen
+## <a name="prerequisites"></a>Erforderliche Komponenten
 
 ### <a name="plan-ip-addressing-for-your-cluster"></a>Planen der IP-Adressierung für Ihren Cluster
 
@@ -41,7 +41,7 @@ Diese Seite bietet einen Überblick über die ersten Schritte mit Kubernetes unt
 | Subnetz/Adressbereich | Beschreibung | Standardwert |
 | --------- | ------------- | ------------- |
 | <a name="service-subnet-def"></a>**Dienstsubnetz** | Ein nicht Routing fähiges, rein virtuelles Subnetz, das von Pods zum einheitlichen Zugriff auf Dienste verwendet wird, ohne die Netzwerktopologie zu kümmern. Es wird von `kube-proxy` von/auf routingfähige Adressbereiche übersetzt, die auf diesen Knoten ausgeführt werden. | "10.96.0.0/12" |
-| <a name="cluster-subnet-def"></a>**Clustersubnetz** |  Hierbei handelt es sich um ein globales Subnetz, das von allen Pods im Cluster verwendet wird. Jedem Knoten wird ein kleineres/24-Subnetz zugewiesen, das von seinen Pods verwendet werden kann. Es muss groß genug sein, um alle im Cluster verwendeten Pods aufnehmen zu können. So wird die *mindestens erforderliche* Subnetzgröße berechnet: `(number of nodes) + (number of nodes * maximum pods per node that you configure)` <p/>Beispiel für einen Cluster mit 5 Knoten für 100 Pods pro Knoten: `(5) + (5 *  100) = 505`.  | "10.244.0.0/16" |
+| <a name="cluster-subnet-def"></a>**Clustersubnetz** |  Hierbei handelt es sich um ein globales Subnetz, das von allen Pods im Cluster verwendet wird. Jedem Knoten wird ein kleineres/24-Subnetz zugewiesen, das von seinen Pods verwendet werden kann. Es muss groß genug sein, um alle im Cluster verwendeten Pods aufnehmen zu können. So berechnen Sie die *minimale* subnetzgröße: `(number of nodes) + (number of nodes * maximum pods per node that you configure)` <p/>Beispiel für einen Cluster mit 5 Knoten für 100 Pods pro Knoten: `(5) + (5 *  100) = 505`.  | "10.244.0.0/16" |
 | **Kubernetes DNS-Dienst-IP** | Die IP-Adresse des "Kube-DNS"-Dienstanbieter, der für die DNS-Auflösung & Cluster Dienst Ermittlung verwendet wird. | "10.96.0.10" |
 
 > [!NOTE]

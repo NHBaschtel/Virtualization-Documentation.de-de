@@ -7,12 +7,12 @@ ms.date: 02/15/2019
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
-ms.openlocfilehash: e1b6b55b2e17ac4f0883078748d75f6d4b9fcafa
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: bad59fcc65bf66ab3c6dc940a17111e46a9bc226
+ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909460"
+ms.lasthandoff: 02/18/2020
+ms.locfileid: "77439697"
 ---
 # <a name="install-hyper-v-on-windows-10"></a>Installieren von Hyper-V unter Windows 10
 
@@ -24,8 +24,8 @@ Hyper-V kann in vielerlei Hinsicht aktiviert werden, beispielsweise mithilfe der
 ## <a name="check-requirements"></a>Voraussetzungen:
 
 * Windows 10 Enterprise, pro oder Education
-* 64-Bit-Prozessor mit Second Level Address Translation (SLAT).
-* CPU-Unterstützung für die Erweiterung für den VM-Überwachungsmodus (VT-c bei Intel-CPUs).
+* 64-Bit-Prozessor mit Second Level-Adressübersetzung (SLAT).
+* CPU-Unterstützung für VM Monitor Mode Extension (VT-c auf Intel CPUs).
 * Mindestens 4 GB Speicher.
 
 Die Hyper-V-Rolle kann unter Windows 10 Home **nicht** installiert werden.
@@ -52,9 +52,9 @@ Starten Sie neu, wenn die Installation abgeschlossen ist.
 
 Das Tool DISM (Deployment Image Servicing and Management, Abbildverwaltung für die Bereitstellung) dient zum Konfigurieren von Windows und Windows-Images.  Mit DISM ist es u. a. möglich, Windows-Features zu aktivieren, während das Betriebssystem ausgeführt wird.
 
-So aktivieren Sie die Hyper-V-Rolle mithilfe von DISM:
+So aktivieren Sie die Hyper-V-Rolle mithilfe von DISM
 
-1. Starten Sie eine PowerShell- oder Befehlszeilensitzung als Administrator.
+1. Öffnen Sie ein PowerShell oder CMD-Sitzung als Administrator.
 
 1. Geben Sie den folgenden Befehl ein:
 
@@ -72,7 +72,7 @@ Weitere Informationen zu DISM finden Sie in der [technischen Referenz zu DISM](<
 
 2. Wählen Sie auf der rechten Seite unter Verwandte Einstellungen die Option **Programme und Funktionen** aus. 
 
-3. Wählen Sie **Windows-Features aktivieren oder deaktivieren** aus.
+3. Wählen Sie **Windows-Funktionen ein- oder ausschalten** aus.
 
 4. Wählen Sie **Hyper-V** aus, und klicken Sie auf **OK**.
 
