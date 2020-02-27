@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 1f068cd011b2172e75c240d566473ccab25d984a
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 32d40997ffef47e4eae2d06303f45522623a5e54
+ms.sourcegitcommit: 530712469552a1ef458883001ee748bab2c65ef7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910480"
+ms.lasthandoff: 02/26/2020
+ms.locfileid: "77628945"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
@@ -19,7 +19,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 ## <a name="windows-server-host-os-compatibility"></a>Windows Server-Host Betriebssystem Kompatibilität
 
 <!-- start tab view -->
-# <a name="windows-server-version-1909tabwindows-server-1909"></a>[Windows Server, Version 1909](#tab/windows-server-1909)
+# <a name="windows-server-version-1909"></a>[Windows Server, Version 1909](#tab/windows-server-1909)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -28,7 +28,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# <a name="windows-server-version-1903tabwindows-server-1903"></a>[Windows Server, Version 1903](#tab/windows-server-1903)
+# <a name="windows-server-version-1903"></a>[Windows Server, Version 1903](#tab/windows-server-1903)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -37,7 +37,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# <a name="windows-server-2019tabwindows-server-2019"></a>[Windows Server 2019](#tab/windows-server-2019)
+# <a name="windows-server-2019"></a>[Windows Server 2019](#tab/windows-server-2019)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -46,7 +46,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server 2019|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# <a name="windows-server-2016tabwindows-server-2016"></a>[Windows Server 2016](#tab/windows-server-2016)
+# <a name="windows-server-2016"></a>[Windows Server 2016](#tab/windows-server-2016)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -62,7 +62,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 
 <!-- start tab view -->
 
-# <a name="windows-10-version-1909tabwindows-10-1909"></a>[Windows 10, Version 1909](#tab/windows-10-1909)
+# <a name="windows-10-version-1909"></a>[Windows 10, Version 1909](#tab/windows-10-1909)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -71,7 +71,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# <a name="windows-10-version-1903tabwindows-10-1903"></a>[Windows 10, Version 1903](#tab/windows-10-1903)
+# <a name="windows-10-version-1903"></a>[Windows 10, Version 1903](#tab/windows-10-1903)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -80,7 +80,7 @@ Da wir die Windows-Containerfeatures stetig verbessern, mussten wir einige Ände
 |Windows Server 2019|&#10004;|&#10060;|
 |Windows Server 2016|&#10004;|&#10060;|
 
-# <a name="windows-10-version-1809tabwindows-10-1809"></a>[Windows 10, Version 1809](#tab/windows-10-1809)
+# <a name="windows-10-version-1809"></a>[Windows 10, Version 1809](#tab/windows-10-1809)
 
 |Betriebssystemversion für Container Basis Image|Unterstützt die Hyper-V-Isolation|Unterstützt Prozess Isolation|
 |---|:---:|:---:|
@@ -104,15 +104,17 @@ Das Starten von Windows Server-Containern ist blockiert, wenn die Buildnummer zw
 
 #### <a name="revision-number-patching"></a>Revisionsnummer (Patching)
 
-Das Starten von Windows Server-Containern ist nicht blockiert, wenn die Revisionsnummern des Container Hosts und des Container Images unterschiedlich sind. Wenn der Container Host z. b. Version 10.0.14393.1914 (Windows Server 2016 mit KB4051033 angewendet) und das Container Image Version 10.0.14393.1944 (Windows Server 2016 mit KB4053579 angewendet) ist, wird das Abbild auch dann noch gestartet, wenn die Revision die Zahlen unterscheiden sich.
+Das Starten von Windows Server 2016-basierten Containern ist blockiert, wenn sich die Revisionsnummern des Container Hosts und des Container Images unterscheiden. Beispielsweise, wenn der Container Host Version 10.0.14393 ist. **1914** (Windows Server 2016 mit angewendetem KB4051033) und das Container Image Version 10.0.14393. **1944** (Windows Server 2016 mit angewendetem KB4053579), dann wird das Abbild nicht gestartet.
 
-Bei Windows Server 2016-basierten Hosts oder Images muss die Revision des Container Images mit dem Host in einer unterstützten Konfiguration identisch sein. Für Hosts oder Images, die Windows Server, Version 1709 und höher verwenden, gilt diese Regel jedoch nicht, und für das Host-und Container Image müssen keine übereinstimmenden Revisionen vorhanden sein. Wir empfehlen Ihnen, ihre Systeme mit den neuesten Patches und Updates auf dem neuesten Stand zu halten.
+Für Hosts oder Images, die Windows Server, Version 1809 und höher verwenden, gilt diese Regel jedoch nicht, und für das Host-und Container Image müssen keine übereinstimmenden Revisionen vorhanden sein. 
+
+Wir empfehlen Ihnen, ihre Systeme (Host und Container) mit den neuesten Patches und Updates auf dem neuesten Stand zu halten, damit Sie sicher bleiben.
 
 #### <a name="practical-application"></a>Praktische Anwendung
 
 Beispiel 1: auf dem Container Host wird Windows Server 2016 mit angewendetem KB4041691 ausgeführt. Jeder Windows Server-Container, der auf diesem Host bereitgestellt wird, muss auf der Version 10.0.14393.1770 Containerbasis Images basieren. Wenn Sie KB4053579 auf den Host Container anwenden, müssen Sie auch die Images aktualisieren, um sicherzustellen, dass Sie vom Host Container unterstützt werden.
 
-Beispiel 2: auf dem Container Host wird die Windows Server-Version 1709 mit angewendetem KB4043961 ausgeführt. Jeder auf diesem Host bereitgestellte Windows Server-Container muss auf einem Containerbasis Image von Windows Server Version 1709 (10.0.16299) basieren, muss jedoch nicht mit dem Host KB identisch sein. Wenn KB4054517 auf den Host angewendet wird, werden die Container Images weiterhin unterstützt, es wird jedoch empfohlen, Sie zu aktualisieren, um potenzielle Sicherheitsprobleme zu beheben.
+Beispiel 2: auf dem Container Host wird die Windows Server-Version 1809 mit angewendetem KB4534273 ausgeführt. Jeder auf diesem Host bereitgestellte Windows Server-Container muss auf einem Containerbasis Image von Windows Server Version 1809 (10.0.17763) basieren, muss jedoch nicht mit dem Host KB identisch sein. Wenn KB4534273 auf den Host angewendet wird, werden die Container Images weiterhin unterstützt, es wird jedoch empfohlen, Sie zu aktualisieren, um potenzielle Sicherheitsprobleme zu beheben.
 
 #### <a name="querying-version"></a>Abfrageversion
 
@@ -129,7 +131,7 @@ Microsoft Windows [Version 10.0.16299.125]
 
 Methode 2: Abfragen des folgenden Registrierungsschlüssels: HKEY_LOCAL_MACHINE \SOFTWARE\Microsoft\Windows NT\CurrentVersion
 
-Zum Beispiel:
+Beispiel:
 
 ```batch
 C:\>reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion" /v BuildLabEx
@@ -241,7 +243,7 @@ Dies ist der gleiche Fehler wie `CreateContainer: failure in a Windows system ca
 
 ### <a name="fix---update-the-service-to-use-a-matching-version"></a>Problembehebung: Aktualisieren des Diensts für die Verwendung einer übereinstimmenden Version
 
-Bei Docker-Schwarm gibt es zwei Dinge zu berücksichtigen. Wenn Sie über eine Compose-Datei mit einem Dienst verfügen, der ein Image verwendet, das Sie nicht erstellt haben, möchten Sie den Verweis entsprechend aktualisieren. Zum Beispiel:
+Bei Docker-Schwarm gibt es zwei Dinge zu berücksichtigen. Wenn Sie über eine Compose-Datei mit einem Dienst verfügen, der ein Image verwendet, das Sie nicht erstellt haben, möchten Sie den Verweis entsprechend aktualisieren. Beispiel:
 
 ``` yaml
 version: '3'
@@ -271,7 +273,7 @@ Es gibt einen Vorschlag, die Verwendung der Hyper-V-Isolation pro Container zu u
 
 Dies erfordert eine Änderung der Docker-Dienstkonfiguration und einen anschließenden Neustart des Docker-Moduls.
 
-1. Bearbeiten Sie `C:\ProgramData\docker\config\daemon.json`.
+1. `C:\ProgramData\docker\config\daemon.json` bearbeiten
 2. Fügen Sie eine Zeile mit `"exec-opts":["isolation=hyperv"]`
 
     >[!NOTE]

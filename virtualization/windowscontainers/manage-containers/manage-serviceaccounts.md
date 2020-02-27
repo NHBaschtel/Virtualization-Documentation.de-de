@@ -3,17 +3,17 @@ title: Erstellen von gmsas für Windows-Container
 description: Erstellen von Gruppen verwalteten Dienst Konten (Group Managed Service Accounts, gmsas) für Windows-Container.
 keywords: docker, Container, Active Directory, GMSA, Gruppen verwaltetes Dienst Konto, Gruppen verwaltete Dienst Konten
 author: rpsqrd
-ms.date: 09/10/2019
+ms.date: 01/03/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: 9ed9029e534d56bfe1830281d0bfd3ddde0cee9e
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 36061cfc491dd9dd581d1e6bce92a29e4a6f217d
+ms.sourcegitcommit: 530712469552a1ef458883001ee748bab2c65ef7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910250"
+ms.lasthandoff: 02/26/2020
+ms.locfileid: "77628935"
 ---
 # <a name="create-gmsas-for-windows-containers"></a>Erstellen von gmsas für Windows-Container
 
@@ -27,7 +27,7 @@ Wenn Sie einen Container mit einem GMSA ausführen, ruft der Container Host das 
 
 In diesem Artikel wird erläutert, wie Sie mit der Verwendung Active Directory Gruppen verwalteten Dienst Konten mit Windows-Containern beginnen.
 
-## <a name="prerequisites"></a>Voraussetzungen
+## <a name="prerequisites"></a>Erforderliche Komponenten
 
 Zum Ausführen eines Windows-Containers mit einem Gruppen verwalteten Dienst Konto benötigen Sie Folgendes:
 
@@ -109,7 +109,7 @@ New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -G
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Hosts"
 
 # Add your container hosts to the security group
-Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01", "ContainerHost02", "ContainerHost03"
+Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01$", "ContainerHost02$", "ContainerHost03$"
 ```
 
 Es wird empfohlen, separate GMSA-Konten für Ihre Entwicklungs-, Test-und Produktionsumgebungen zu erstellen.
@@ -164,13 +164,19 @@ So erstellen Sie eine Datei mit Anmelde Informations Spezifikationen auf dem Con
 
     Standardmäßig erstellt das Cmdlet mit dem bereitgestellten GMSA-Namen als Computer Konto für den Container eine "and"-Spezifikation. Die Datei wird im Verzeichnis "docker condentialspecs" mit der GMSA-Domäne und dem Kontonamen für den Dateinamen gespeichert.
 
-    Sie können eine Spezifikation für die Anmelde Informationen erstellen, die zusätzliche GMSA-Konten enthält, wenn Sie einen Dienst oder Prozess als sekundäres GMSA im Container ausführen. Verwenden Sie hierzu den `-AdditionalAccounts`-Parameter:
+    Wenn Sie die Datei in einem anderen Verzeichnis speichern möchten, verwenden Sie den `-Path`-Parameter:
+
+    ```powershell
+    New-CredentialSpec -AccountName WebApp01 -Path "C:\MyFolder\WebApp01_CredSpec.json"
+    ```
+
+    Sie können auch eine Spezifikation für die Anmelde Informationen erstellen, die zusätzliche GMSA-Konten enthält, wenn Sie einen Dienst oder Prozess als sekundäres GMSA im Container ausführen. Verwenden Sie hierzu den `-AdditionalAccounts`-Parameter:
 
     ```powershell
     New-CredentialSpec -AccountName WebApp01 -AdditionalAccounts LogAgentSvc, OtherSvc
     ```
 
-    Führen Sie `Get-Help New-CredentialSpec`aus, um eine vollständige Liste unterstützter Parameter zu erhalten.
+    Führen Sie `Get-Help New-CredentialSpec -Full`aus, um eine vollständige Liste unterstützter Parameter zu erhalten.
 
 4. Mit dem folgenden Cmdlet können Sie eine Liste aller Spezifikationen für Anmelde Informationen und deren vollständigen Pfad anzeigen:
 
@@ -182,13 +188,13 @@ So erstellen Sie eine Datei mit Anmelde Informations Spezifikationen auf dem Con
 
 Nachdem Sie Ihr GMSA-Konto eingerichtet haben, können Sie es für Folgendes verwenden:
 
-- [Konfigurieren von Apps](gmsa-configure-app.md)
+- [Konfigurieren von apps](gmsa-configure-app.md)
 - [Ausführen von Containern](gmsa-run-container.md)
 - [Orchestrieren von Containern](gmsa-orchestrate-containers.md)
 
 Wenn während des Setups Probleme auftreten, finden Sie in unserem [Handbuch zur Problem](gmsa-troubleshooting.md) Behandlung mögliche Lösungen.
 
-## <a name="additional-resources"></a>Zusätzliche Ressourcen
+## <a name="additional-resources"></a>Weitere Ressourcen
 
 - Weitere Informationen zu gmsas finden Sie unter [Gruppen verwaltete Dienst Konten: Übersicht](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
 - Sehen Sie sich für eine Video Demonstration unsere [aufgezeichnete Demo](https://youtu.be/cZHPz80I-3s?t=2672) von Ignite 2016 an.
