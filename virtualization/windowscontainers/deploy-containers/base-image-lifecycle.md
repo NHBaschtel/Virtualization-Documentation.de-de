@@ -8,12 +8,12 @@ ms.date: 06/17/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: bb5e5fabadde421de9d420edd2fc921457432930
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 27672f6a8e71989bfd47fe9810dfd429eedd9206
+ms.sourcegitcommit: 379eb650f6af90f5963e2fcf9de7196238fbe9fa
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909990"
+ms.lasthandoff: 02/27/2020
+ms.locfileid: "77705685"
 ---
 # <a name="base-image-servicing-lifecycles"></a>Lebenszyklus der Basis Image Wartung
 
@@ -29,7 +29,7 @@ In der folgenden Tabelle werden die einzelnen Basis Image Typen, der zugehörige
 |---------------------------------|-----------------|-------|--------|------------|---------------------------|---------------------|
 |Server Core, Nano Server, Windows|Halbjährlich      |1909   |18363   |12.11.2019  |11.05.2021                 |N/V                  |
 |Server Core, Nano Server, Windows|Halbjährlich      |1903   |18362   |05/21/2019  |08.12.2020                 |N/V                  |
-|Server Core                      |Langfristig        |1809   |17763   |13.11.2018  |09.01.2024                 |09.01.2029           |
+|Server Core                      |Langfristig        |2019   |17763   |13.11.2018  |09.01.2024                 |09.01.2029           |
 |Server Core, Nano Server, Windows|Halbjährlich      |1809   |17763   |13.11.2018  |05/12/2020                 |N/V                  |
 |Server Core, Nano Server         |Halbjährlich      |1803   |17134   |30.04.2018  |12.11.2019                 |N/V                  |
 |Server Core, Nano Server         |Halbjährlich      |1709   |16299   |17.10.2017  |09.04.2019                 |N/V                  |
