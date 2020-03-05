@@ -3,12 +3,12 @@ title: Übersicht über Container Speicher
 description: So können Windows Server-Container Host- und andere Speichertypen verwenden
 keywords: Container, Volume, Speicher, Mount, Binden von Bereitstellungen
 author: cwilhit
-ms.openlocfilehash: fba08de884d59cc1b656895ec2b7078ba3975269
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: f758877f1131813fe4637a01c03b49d7a18a83c4
+ms.sourcegitcommit: db085db8a54664184a2f7cfa01d00598a1c66992
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910270"
+ms.lasthandoff: 03/04/2020
+ms.locfileid: "78288672"
 ---
 # <a name="container-storage-overview"></a>Übersicht über Container Speicher
 
@@ -43,7 +43,7 @@ Sie sollten keine Dateien der Schichtverzeichnisse ändern – diese werden sorg
 
 Beim Ausführen von Containern können die meisten NTFS-Vorgänge, mit Ausnahme der Transaktionen, verwendet werden. Dies beinhaltet das Festlegen von ACLs, wobei alle ACLs innerhalb des Containers geprüft werden. Wenn Prozesse mit mehreren Benutzern in einem Container ausgeführt werden sollen, können Sie Benutzer in Ihrer `Dockerfile`mit `RUN net user /create ...` erstellen, Dateizugriffssteuerungslisten festlegen und dann Vorgänge für diesen Benutzer mithilfe der [Dockerfile-USER-Direktive](https://docs.docker.com/engine/reference/builder/#user) konfigurieren.
 
-## <a name="persistent-storage"></a>Persistent Storage
+## <a name="persistent-storage"></a>Dauerhafte Speicherung
 
 Windows-Container unterstützen Mechanismen zum Bereitstellen von persistentem Speicher über Bindungs Aufstellungen und Volumes. Weitere Informationen finden Sie unter [persistente Speicherung in Containern](./persistent-storage.md).
 
@@ -60,7 +60,7 @@ Befehlszeile: `docker run --storage-opt "size=50GB" mcr.microsoft.com/windows/se
 Oder Sie können die Docker-Konfigurationsdatei direkt ändern:
 
 ```Docker Configuration File
-"storage-opts": [
+"storage-opt": [
     "size=50GB"
   ]
 ```
