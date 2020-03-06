@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: 46eefb03f8f5a53333f5e7eca7074ab34e72a767
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: cd16f496b85c0977af0d40142768833acadea0f4
+ms.sourcegitcommit: 6f505becbafb1e9785c67d6b0715c4c3af074116
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910070"
+ms.lasthandoff: 03/05/2020
+ms.locfileid: "78338044"
 ---
 # <a name="windows-container-network-drivers"></a>Treiber für Windows-Container Netzwerk  
 
@@ -48,9 +48,8 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
   2. L2bridge Network ist mit einem neuen benutzerdefinierten IP-Subnetz konfiguriert.
   
   In Configuration 2 müssen Benutzer einen Endpunkt auf dem Host Netzwerk Depot hinzufügen, das als Gateway fungiert, und Routing Funktionen für das angegebene Präfix konfigurieren. 
-  > Erfordert: erfordert Windows Server 2016, Windows 10 Creators Update oder eine spätere Version.
-
-  > Erfordert: [outboundnat-Richtlinie](./advanced.md#specify-outboundnat-policy-for-a-network) für externe Konnektivität.
+  >[!TIP]
+  >Weitere Informationen zum Konfigurieren und Installieren von l2bridge finden Sie [hier](https://techcommunity.microsoft.com/t5/networking-blog/l2bridge-container-networking/ba-p/1180923).
 
 - **l2tunnel** ähnlich wie bei l2bridge _sollte dieser Treiber jedoch nur in einem Microsoft Cloud Stapel (Azure) verwendet werden_. Pakete, die aus einem Container kommen, werden an den Virtualisierungshost gesendet, wenn SDN-Richtlinien angewendet werden.
 
@@ -61,7 +60,7 @@ Die folgende Tabelle zeigt, wie die Netzwerkkonnektivität für interne (Contain
 
 ### <a name="networking-modesdocker-drivers"></a>Netzwerk Modi/docker-Treiber
 
-  | Docker-Netzwerktreiber für Windows | Typische Verwendung | Container-zu-Container (einzelner Knoten) | Container-zu-extern (einzelner Knoten + mehrere Knoten) | Container-zu-Container (mehrere Knoten) |
+  | Docker-Netzwerktreiber für Windows | Typische Verwendungen | Container-zu-Container (einzelner Knoten) | Container-zu-extern (einzelner Knoten + mehrere Knoten) | Container-zu-Container (mehrere Knoten) |
   |-------------------------------|:------------:|:------------------------------------:|:------------------------------------------------:|:-----------------------------------:|
   | **NAT (Standard)** | Für Entwickler geeignet | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li> Cross-Subnetz: nicht unterstützt (nur ein internes NAT-Präfix)</li></ul> | Weitergeleitet durch Management-vNIC (WinNAT-gebunden) | Nicht direkt unterstützt: Verfügbarmachen von Ports über Host ist erforderlich |
   | **Sichtigen** | Gut für Entwickler oder kleine Bereitstellungen | <ul><li>Gleiches Subnetz: Überbrückte Verbindung über Hyper-V Virtual Switch</li><li>Subnetzübergreifend: Weitergeleitet vom Container-Host</li></ul> | Vom Container-Host mit direktem Zugriff (physischer) Netzwerkadapter weitergeleitet | Vom Container-Host mit direktem Zugriff (physischer) Netzwerkadapter weitergeleitet |
@@ -88,6 +87,6 @@ Die Dienstermittlung wird nur für bestimmte Windows-Netzwerktreiber unterstütz
 |  | Lokale Dienstermittlung  | Globale Dienstermittlung |
 | :---: | :---------------     |  :---                |
 | nat | JA | JA mit Docker EE |  
-| overlay | JA | Ja mit docker EE oder Kube-DNS |
+| Überlagerung | JA | Ja mit docker EE oder Kube-DNS |
 | transparent | NEIN | NEIN |
 | l2bridge | NEIN | Ja mit Kube-DNS |
