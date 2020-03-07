@@ -8,11 +8,11 @@ ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: kubernetes, 1,14, Linux, kompilieren
 ms.openlocfilehash: 471731ec50c7c03816a956bd7aae859ad218be6d
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.sourcegitcommit: 6f505becbafb1e9785c67d6b0715c4c3af074116
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910450"
+ms.lasthandoff: 03/05/2020
+ms.locfileid: "78338058"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -101,7 +101,7 @@ Für Windows-Pods gibt es keine ausgehenden Regeln, die heute für das ICMP-Prot
 
 Wenn weiterhin Probleme auftreten, verdient die Netzwerkkonfiguration in " [cni. conf](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/cni/config/cni.conf) " eine gewisse Aufmerksamkeit. Diese statische Datei kann immer bearbeitet werden, die Konfiguration wird auf alle neu erstellten Kubernetes-Ressourcen angewendet.
 
-Weshalb?
+Warum?
 Eine der Kubernetes-Netzwerk Anforderungen (siehe [Kubernetes-Modell](https://kubernetes.io/docs/concepts/cluster-administration/networking/)) ist, dass die Cluster Kommunikation intern ohne NAT erfolgt. Um diese Anforderung zu erfüllen, haben wir eine [Ausnahmeliste](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/cni/config/cni.conf#L20) für die gesamte Kommunikation, bei der wir nicht möchten, dass ausgehende NAT stattfindet. Dies bedeutet jedoch auch, dass Sie die externe IP-Adresse ausschließen müssen, die Sie aus der ExceptionList Abfragen möchten. Nur dann wird der Datenverkehr, der von Ihren Windows-Pods stammt, ordnungsgemäß entfernt, um eine Antwort von der Außenwelt zu erhalten. In diesem Zusammenhang sollte die ExceptionList in `cni.conf` wie folgt aussehen:
 ```conf
 "ExceptionList": [
@@ -112,7 +112,7 @@ Eine der Kubernetes-Netzwerk Anforderungen (siehe [Kubernetes-Modell](https://ku
 ```
 
 ### <a name="my-windows-node-cannot-access-a-nodeport-service"></a>Mein Windows-Knoten kann nicht auf einen nodeport-Dienst zugreifen. ###
-Der lokale nodeport-Zugriff über den Knoten selbst schlägt fehl. Dies ist eine bekannte Einschränkung. Der nodeport-Zugriff funktioniert von anderen Knoten oder externen Clients.
+Der lokale nodeport-Zugriff über den Knoten selbst schlägt fehl. Es handelt sich um eine bekannte Einschränkung. Der nodeport-Zugriff funktioniert von anderen Knoten oder externen Clients.
 
 ### <a name="after-some-time-vnics-and-hns-endpoints-of-containers-are-being-deleted"></a>Nach einiger Zeit werden vNICs und HNS-Endpunkte von Containern gelöscht. ###
 Dieses Problem kann verursacht werden, wenn der `hostname-override`-Parameter nicht an [Kube-Proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)übergeben wird. Um dieses Problem zu beheben, müssen Benutzer den Hostnamen wie folgt an den Kube-Proxy übergeben:
