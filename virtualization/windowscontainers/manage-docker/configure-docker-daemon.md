@@ -9,11 +9,11 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ms.openlocfilehash: c84a6652b5918238ee8ef6e1fa7a9b2aa596aefd
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.sourcegitcommit: 6f505becbafb1e9785c67d6b0715c4c3af074116
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910160"
+ms.lasthandoff: 03/05/2020
+ms.locfileid: "78338074"
 ---
 # <a name="docker-engine-on-windows"></a>Docker-Modul unter Windows
 
@@ -137,7 +137,7 @@ Wenn Sie sich beim docker-Host angemeldet haben und die Docker-Befehle lokal aus
 
 ## <a name="proxy-configuration"></a>Proxykonfiguration
 
-Erstellen Sie eine Windows-Umgebungsvariable namens `HTTP_PROXY` oder `HTTPS_PROXY` und den Wert der Proxyinformationen, um Proxyinformationen für `docker search` und `docker pull` festzulegen. Sie können dies in PowerShell tun, indem Sie einen Befehl ähnlich dem folgenden verwenden:
+Erstellen Sie eine Windows-Umgebungsvariable namens `docker search` oder `docker pull` und den Wert der Proxyinformationen, um Proxyinformationen für `HTTP_PROXY` und `HTTPS_PROXY` festzulegen. Sie können dies in PowerShell tun, indem Sie einen Befehl ähnlich dem folgenden verwenden:
 
 ```powershell
 [Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://username:password@proxy:port/", [EnvironmentVariableTarget]::Machine)
