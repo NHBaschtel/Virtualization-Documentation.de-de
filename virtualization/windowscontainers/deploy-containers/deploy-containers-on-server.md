@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
-ms.openlocfilehash: 6e3996af36b4a710f9a12b3a1371138b053a43d8
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 9899a2d76bfa1fe312e3bd983f60d09d77c272e9
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909900"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853911"
 ---
 # <a name="container-host-deployment-windows-server"></a>Container Host Bereitstellung: Windows Server
 
@@ -49,7 +49,7 @@ Restart-Computer -Force
 
 Zurzeit sind zwei Kanäle für docker EE für Windows Server verfügbar:
 
-* `17.06`: Verwenden Sie diese Version, wenn Sie die Docker Enterprise Edition (docker-Engine, UCP, DTR) verwenden. Standardmäßig ist `17.06` festgelegt.
+* `17.06`: Verwenden Sie diese Version, wenn Sie die Docker Enterprise Edition (docker-Engine, UCP, DTR) verwenden. `17.06` ist die Standardeinstellung.
 * `18.03`: Verwenden Sie diese Version, wenn Sie die Docker EE-Engine allein ausführen.
 
 Verwenden Sie das `RequiredVersion`-Flag, um eine bestimmte Version zu installieren:
@@ -76,7 +76,8 @@ Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -Re
 
 Vor der Arbeit mit Windows-Containern muss ein Basisimage installiert werden. Basisimages sind mit Windows Server Core oder Nano Server als Containerbetriebssystem verfügbar. Ausführliche Informationen zu Docker-Containerimages finden Sie unter [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/) (Erstellen Sie eigene Images auf docker.com).
 
-Mit der Veröffentlichung von Windows Server 2019 werden Container Images, die von Microsoft stammen, in eine neue Registrierung namens Microsoft Container Registry verschoben. Von Microsoft veröffentlichte Container Images sollten weiterhin über den docker-Hub erkannt werden. Bei neuen, mit Windows Server 2019 und darüber veröffentlichten Container Images sollten Sie diese aus der MCR abrufen. Für ältere Container Images, die vor Windows Server 2019 veröffentlicht wurden, sollten Sie Sie weiterhin von der Docker-Registrierung abrufen.
+> [!TIP]
+> Mit der Auswirkung von Mai 2018 und der Bereitstellung eines konsistenten und vertrauenswürdigen Erwerbs Erlebnisses werden fast alle Container Images von Microsoft aus dem Microsoft-Container Registry _MCR.Microsoft.com_, während gleichzeitig der aktuelle Ermittlungsprozess über [_docker Hub_](https://hub.docker.com/publishers/microsoftowner)verwaltet wird.
 
 ### <a name="windows-server-2019-and-newer"></a>Windows Server 2019 und höher
 
@@ -112,7 +113,7 @@ docker pull mcr.microsoft.com/windows/nanoserver:1803
 
 Sie müssen über die Hyper-v-Rolle verfügen, um die Hyper-v-Isolation ausführen zu können. Wenn der Windows-Containerhost selbst ein virtueller Hyper-V-Computer ist, muss die geschachtelte Virtualisierung aktiviert werden, bevor die Hyper-V-Rolle installiert werden kann. Weitere Informationen dazu finden Sie unter [Geschachtelte Virtualisierung](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization).
 
-### <a name="nested-virtualization"></a>Geschachtelte Virtualisierung
+### <a name="nested-virtualization"></a>Netzwerkvirtualisierung
 
 Das folgende Skript konfiguriert die geschachtelte Virtualisierung für den Containerhost. Dieses Skript wird auf dem übergeordneten Hyper-V-Computer ausgeführt. Stellen Sie sicher, dass der virtuelle Containerhostcomputer ausgeschaltet ist, wenn dieses Skript ausgeführt wird.
 

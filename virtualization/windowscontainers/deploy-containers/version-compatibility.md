@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 32d40997ffef47e4eae2d06303f45522623a5e54
-ms.sourcegitcommit: 530712469552a1ef458883001ee748bab2c65ef7
+ms.openlocfilehash: 326a56789d07f601beceebed01fdc3d49bc7471e
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/26/2020
-ms.locfileid: "77628945"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853864"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
@@ -137,7 +137,7 @@ Beispiel:
 C:\>reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion" /v BuildLabEx
 ```
 
-```batch
+```powershell
 Windows PowerShell
 Copyright (C) 2016 Microsoft Corporation. All rights reserved.
 
@@ -174,28 +174,28 @@ Es gibt drei Möglichkeiten, diesen Fehler zu beheben:
 
 Sie müssen wissen, welche Version Sie für ihren Container verwenden müssen. Wenn Sie z. b. die Windows Server-Version 1809 als Container Betriebssystem verwenden möchten und die neuesten Patches dafür benötigen, sollten Sie den Tag `1809` verwenden, wenn Sie die gewünschte Version des Basis Betriebssystem-Container Images angeben:
 
-``` dockerfile
+```dockerfile
 FROM mcr.microsoft.com/windows/nanoserver:1809
 ...
 ```
 
 Wenn Sie jedoch einen bestimmten Patch der Windows Server-Version 1809 möchten, können Sie die KB-Nummer im-Tag angeben. Um z. b. ein Nano Server-Basis Betriebssystem-Container Image von Windows Server Version 1809 mit angewendetem KB4493509 zu erhalten, geben Sie es wie folgt an:
 
-``` dockerfile
+```dockerfile
 FROM mcr.microsoft.com/windows/nanoserver:1809-KB4493509
 ...
 ```
 
 Sie können auch die benötigten Patches mit dem zuvor verwendeten Schema angeben, indem Sie die Betriebssystemversion im Tag angeben:
 
-``` dockerfile
+```dockerfile
 FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
 ...
 ```
 
 Die Server Core-Basis Images, die auf Windows Server 2019 und Windows Server 2016 basieren, sind [LTSC-Releases (Long-Term Service Channel)](https://docs.microsoft.com/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) . Wenn Sie z. b. Windows Server 2019 als Container Betriebssystem des Server Core-Images benötigen und über die neuesten Patches verfügen möchten, können Sie LTSC-Releases wie folgt angeben:
 
-``` dockerfile
+```dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 ...
 ```

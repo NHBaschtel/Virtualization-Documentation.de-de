@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
-ms.openlocfilehash: 52625517748356251aa41115caebd7801ec3cdaf
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: b997cf79cdf7f1782b6299198859714563c45f8c
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909760"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853934"
 ---
 # <a name="run-a-container-with-a-gmsa"></a>Ausführen eines Containers mit einem GMSA
 
@@ -49,7 +49,7 @@ Wenn der Verbindungsstatus des vertrauenswürdigen Domänen Controllers und der 
 Sie können die GMSA-Identität innerhalb des Containers überprüfen, indem Sie den folgenden Befehl ausführen und den Client Namen überprüfen:
 
 ```powershell
-PS C:\> klist get krbtgt
+PS C:\> klist get webapp01
 
 Current LogonId is 0:0xaa79ef8
 A ticket to krbtgt has been retrieved successfully.
@@ -96,7 +96,7 @@ d----l        2/27/2019   8:09 PM                contoso.com
 
 Zusätzlich zum Ausführen von Containern können Sie gmsas auch für Folgendes verwenden:
 
-- [Konfigurieren von Apps](gmsa-configure-app.md)
+- [Konfigurieren von apps](gmsa-configure-app.md)
 - [Orchestrieren von Containern](gmsa-orchestrate-containers.md)
 
 Wenn während des Setups Probleme auftreten, finden Sie in unserem [Handbuch zur Problem](gmsa-troubleshooting.md) Behandlung mögliche Lösungen.

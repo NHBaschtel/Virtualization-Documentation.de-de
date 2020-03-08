@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1ecb85a6-d938-4c30-a29b-d18bd007ba08
-ms.openlocfilehash: efd180c458457da1cea6b379e21ba3a37083d15a
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: b7944e34cab66df07df0ccc78947a774d775c9a7
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910960"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853944"
 ---
 # <a name="configure-nested-vms-to-communicate-with-resources-in-an-azure-virtual-network"></a>Konfigurieren von virtuellen Computern für die Kommunikation mit Ressourcen in einem virtuellen Azure-Netzwerk
 
@@ -75,7 +75,7 @@ Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren 
 
 ## <a name="create-the-second-network-interface"></a>Erstellen der zweiten Netzwerkschnittstelle
 1. Nachdem die Bereitstellung der VM abgeschlossen ist, navigieren Sie im Azure-Portal zu der VM.
-2. Beenden des virtuellen Computers
+2. Die VM wird beendet.
 3. Nach dem Beenden wechseln Sie unter "Einstellungen" zu "Netzwerk".
 4. "Netzwerkschnittstelle anfügen"
 5. "Netzwerkschnittstelle erstellen"
@@ -91,7 +91,7 @@ Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren 
 ## <a name="setting-up-hyper-v"></a>Einrichten von Hyper-V
 1. Remote Verbindung mit Ihrem Host
 2. Öffnen einer PowerShell-Eingabeaufforderung mit erhöhten Rechten
-3. Führen Sie den folgenden Befehl aus: `Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart`
+3. Führen Sie den folgenden Befehl aus `Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart`
 4. Dadurch wird der Host neu gestartet.
 5. Stellen Sie erneut eine Verbindung mit dem Host her, um mit dem Rest des Setups fortzufahren.
 
@@ -124,7 +124,7 @@ Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren 
 3. Klicken Sie im Assistenten auf "weiter", aktivieren Sie die radiale Schaltfläche "benutzerdefinierte Konfiguration", und wählen Sie "weiter" aus.
 4. Überprüfen Sie "NAT" und "LAN-Routing", und wählen Sie "weiter" und dann "Fertigstellen". Wenn Sie aufgefordert werden, den Dienst zu starten, gehen Sie so vor.
 5. Navigieren Sie nun zum Knoten "IPv4", und erweitern Sie ihn, sodass der NAT-Knoten verfügbar gemacht wird.
-6. Klicken Sie mit der rechten Maustaste auf "NAT", und wählen Sie "neue Schnittstelle". und wählen Sie "Ethernet" aus. Dies sollte Ihre erste NIC mit der IP-Adresse "10.0.0.4" sein.
+6. Klicken Sie mit der rechten Maustaste auf "NAT", und wählen Sie "neue Schnittstelle". Wählen Sie "Ethernet" aus. Dies sollte Ihre erste NIC mit der IP-Adresse "10.0.0.4" sein, und wählen Sie die öffentliche Schnittstelle mit dem Internet verbinden aus, und aktivieren Sie NAT auf dieser Schnittstelle. 
 7. Nun müssen einige statische Routen erstellt werden, um den LAN-Datenverkehr über die zweite NIC zu erzwingen. Gehen Sie hierzu zum Knoten "statische Routen" unter "IPv4".
 8. Anschließend erstellen wir die folgenden Routen.
     * Route 1
@@ -154,13 +154,13 @@ Ausführliche Informationen zum Erstellen und Verwalten von Routen in Azure find
 5. Nennen Sie die Routing Tabelle, in meinem Fall "Routes-for-netsted-VMS".
 6. Stellen Sie sicher, dass Sie das Abonnement auswählen, in dem sich auch Ihre Hyper-V-Hosts befinden.
 7. Erstellen Sie entweder eine neue Ressourcengruppe, oder wählen Sie eine vorhandene aus, und stellen Sie sicher, dass die Region, in der Sie die Routing Tabelle erstellen, dieselbe Region ist, in der sich der Hyper-V-Host befindet.
-8. Wählen Sie „Erstellen“.
+8. Wählen Sie "erstellen" aus.
 
 ## <a name="configuring-the-route-table"></a>Konfigurieren der Routing Tabelle
 
 1. Navigieren Sie zu der Routentabelle, die wir soeben erstellt haben. Sie können dies erreichen, indem Sie in der Suchleiste oben im Portal auf der Suchleiste nach dem Namen der Routentabelle suchen.
 2. Nachdem Sie die Routing Tabelle ausgewählt haben, wechseln Sie auf dem Blatt zu "Routen".
-3. Wählen Sie „Hinzufügen“ aus.
+3. Wählen Sie "hinzufügen" aus.
 4. Benennen Sie Ihre Route, und ich habe "netsted-VMS" erhalten.
 5. Geben Sie für Adress Präfix den IP-Adressbereich für das "Floating"-Subnetz ein. In diesem Fall wäre es 10.0.2.0/24.
 6. Wählen Sie für "Typ des nächsten Hops" die Option "virtuelles Gerät" aus, und geben Sie dann die IP-Adresse für die zweite NIC der Hyper-V-Hosts ein 10.0.1.4, und wählen Sie dann "OK" aus.
@@ -223,6 +223,6 @@ Die Umgebung in dieser Anleitung umfasst die folgenden Konfigurationen. Dieser A
         * Ziel: 10.0.2.0/24
         * Nächster Hop: virtuelles Gerät 10.0.1.4
 
-## <a name="conclusion"></a>Abschluss
+## <a name="conclusion"></a>Schlussfolgerung
 
 Sie sollten jetzt in der Lage sein, einen virtuellen Computer (sogar einen virtuellen 32-Bit-Computer) auf Ihrem Hyper-V-Host bereitzustellen und ihn von einem lokalen Standort und innerhalb von Azure aus zugänglich zu lassen.

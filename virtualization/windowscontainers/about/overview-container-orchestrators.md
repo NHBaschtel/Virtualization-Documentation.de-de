@@ -8,16 +8,16 @@ ms.date: 05/22/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 99a3b47a9d80e21c246fb3b4f61d650557eb37fa
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 23dd1e56ba68a679945779f5e7dbc15225412934
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910720"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853905"
 ---
 # <a name="windows-container-orchestration-overview"></a>Übersicht über die Windows-Container Orchestrierung
 
-Aufgrund ihrer geringen Größe und Anwendungs Ausrichtung eignen sich Container ideal für Agile-Übermittlungs Umgebungen und auf microservice basierende Architekturen. Eine Umgebung, in der Container und-Server verwendet werden, kann jedoch Hunderte oder Tausende von Komponenten enthalten, die nachverfolgt werden können. Möglicherweise sind Sie in der Lage, einige Dutzend virtuelle Computer oder physische Server manuell zu verwalten, aber es gibt keine Möglichkeit, eine Container Umgebung in der Produktionsumgebung ohne Automatisierung ordnungsgemäß zu verwalten. Diese Aufgabe sollte in ihren Orchestrator fallen, einem Prozess, bei dem eine große Anzahl von Containern automatisiert und verwaltet wird und wie Sie miteinander interagieren.
+Aufgrund ihrer geringen Größe und Anwendungs Ausrichtung eignen sich Container ideal für Agile-Übermittlungs Umgebungen und auf microservice basierende Architekturen. Eine Umgebung, in der Container und-Dienste verwendet werden, kann jedoch Hunderte oder Tausende von Komponenten enthalten, die nachverfolgt werden können. Möglicherweise sind Sie in der Lage, einige Dutzend virtuelle Computer oder physische Server manuell zu verwalten, aber es gibt keine Möglichkeit, eine Container Umgebung in der Produktionsumgebung ohne Automatisierung ordnungsgemäß zu verwalten. Diese Aufgabe sollte in ihren Orchestrator fallen, einem Prozess, bei dem eine große Anzahl von Containern automatisiert und verwaltet wird und wie Sie miteinander interagieren.
 
 Orchestratoren führen die folgenden Aufgaben aus:
 

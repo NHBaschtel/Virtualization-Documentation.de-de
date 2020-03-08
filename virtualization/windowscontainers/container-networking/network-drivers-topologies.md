@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
-ms.openlocfilehash: cd16f496b85c0977af0d40142768833acadea0f4
-ms.sourcegitcommit: 6f505becbafb1e9785c67d6b0715c4c3af074116
+ms.openlocfilehash: f54c715f474c50c4b3073912adc4e0ab1c42d662
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/05/2020
-ms.locfileid: "78338044"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853924"
 ---
 # <a name="windows-container-network-drivers"></a>Treiber für Windows-Container Netzwerk  
 
@@ -42,6 +42,14 @@ Zusätzlich zur Nutzung des standardmäßigen NAT-Netzwerks, das von Docker unte
 
   >[!NOTE]
   >Unter Windows Server 2019 nutzen Überlagerungs Netzwerke, die von Docker Swarm erstellt wurden, VFP-NAT-Regeln für ausgehende Verbindungen. Dies bedeutet, dass ein bestimmter Container 1 IP-Adresse erhält. Dies bedeutet auch, dass ICMP-basierte Tools wie `ping` oder `Test-NetConnection` mit ihren TCP/UDP-Optionen in Debuggingsituationen konfiguriert werden sollten.
+
+- **l2bridge** ähnlich wie `transparent` Netzwerkmodus werden Container, die mit einem Netzwerk verbunden sind, das mit dem Treiber "l2bridge" erstellt wurde, über einen *externen* Hyper-V-Switch mit dem physischen Netzwerk verbunden. Der Unterschied in l2bridge besteht darin, dass Container Endpunkte die gleiche Mac-Adresse wie der Host aufweisen, da der Vorgang für die Übersetzung der Layer-2-Adressübersetzung (Mac Re-Write) bei eingehenden und ausgehenden Daten erfolgt. In Clustering-Szenarien trägt dies zu einer Verringerung der Belastung von Switches bei, die Mac-Adressen von manchmal kurzlebigen Containern erlernen müssen. L2bridge-Netzwerke können auf zwei verschiedene Arten konfiguriert werden:
+  1. L2bridge Network ist mit dem gleichen IP-Subnetz wie der Container Host konfiguriert.
+  2. L2bridge Network ist mit einem neuen benutzerdefinierten IP-Subnetz konfiguriert.
+  
+  In Configuration 2 müssen Benutzer einen Endpunkt auf dem Host Netzwerk Depot hinzufügen, das als Gateway fungiert, und Routing Funktionen für das angegebene Präfix konfigurieren. 
+  > Erfordert: erfordert Windows Server 2016, Windows 10 Creators Update oder eine spätere Version.
+
 
 - **l2bridge** ähnlich wie `transparent` Netzwerkmodus werden Container, die mit einem Netzwerk verbunden sind, das mit dem Treiber "l2bridge" erstellt wurde, über einen *externen* Hyper-V-Switch mit dem physischen Netzwerk verbunden. Der Unterschied in l2bridge besteht darin, dass Container Endpunkte die gleiche Mac-Adresse wie der Host aufweisen, da der Vorgang für die Übersetzung der Layer-2-Adressübersetzung (Mac Re-Write) bei eingehenden und ausgehenden Daten erfolgt. In Clustering-Szenarien trägt dies zu einer Verringerung der Belastung von Switches bei, die Mac-Adressen von manchmal kurzlebigen Containern erlernen müssen. L2bridge-Netzwerke können auf zwei verschiedene Arten konfiguriert werden:
   1. L2bridge Network ist mit dem gleichen IP-Subnetz wie der Container Host konfiguriert.

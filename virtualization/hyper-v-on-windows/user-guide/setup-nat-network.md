@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
-ms.openlocfilehash: e69775c15359645f3659c9bee3562733415228d5
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 1652c3bcb32ddbc4e05e8821d0e646a76a2fd4f0
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909430"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853964"
 ---
 # <a name="set-up-a-nat-network"></a>Einrichten eines NAT-Netzwerks
 
@@ -43,13 +43,13 @@ Aus allen diesen Gründen ist NAT-Networking in der Containertechnologie sehr ge
 ## <a name="create-a-nat-virtual-network"></a>Erstellen eines virtuellen NAT-Netzwerks
 Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
-1.  Öffnen Sie eine PowerShell-Konsole als Administrator.  
+1. Öffnen Sie eine PowerShell-Konsole als Administrator.  
 
 2. Erstellen Sie einen internen Switch.
 
-  ``` PowerShell
-  New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
-  ```
+    ```powershell
+    New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
+    ```
 
 3. Suchen Sie den Schnittstellenindex des virtuelles Switches, den Sie gerade erstellt haben.
 
@@ -57,7 +57,7 @@ Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
     Die Ausgabe sollte etwa wie folgt aussehen:
 
-    ```
+    ```console
     PS C:\> Get-NetAdapter
 
     Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
@@ -72,56 +72,56 @@ Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
 4. Konfigurieren Sie das NAT-Gateway mit [New-NetIPAddress](https://docs.microsoft.com/powershell/module/nettcpip/New-NetIPAddress).  
 
-  Dies ist der generische Befehl:
-  ``` PowerShell
-  New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
-  ```
+    Dies ist der generische Befehl:
+    ```powershell
+    New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
+    ```
 
-  Um das Gateway zu konfigurieren, benötigen Sie ein paar Informationen über Ihr Netzwerk:  
-  * **IPAddress** – Die NAT-Gateway-IP gibt die zu verwendende IPv4- oder IPv6-Adresse an.  
-    Die generische Form ist „a.b.c.1“ (z. B. 172.16.0.1).  Die letzte Position muss nicht 1 sein, ist es jedoch in der Regel (basierend auf der Präfixlänge).
+    Um das Gateway zu konfigurieren, benötigen Sie ein paar Informationen über Ihr Netzwerk:  
+    * **IPAddress** – Die NAT-Gateway-IP gibt die zu verwendende IPv4- oder IPv6-Adresse an.  
+      Die generische Form ist „a.b.c.1“ (z. B. 172.16.0.1).  Die letzte Position muss nicht 1 sein, ist es jedoch in der Regel (basierend auf der Präfixlänge).
 
-    192.168.0.1 ist eine gängige Gateway-IP.  
+      192.168.0.1 ist eine gängige Gateway-IP.  
 
-  * **PrefixLength** – Die NAT-Subnetzpräfixlänge definiert die lokale Subnetzgröße (Subnetzmaske) für NAT.
-    Die Subnetzpräfixlänge ist ein Ganzzahlwert zwischen 0 und 32.
+    * **Prefixlength** : die NAT-Subnetzpräfixlänge definiert die Größe des lokalen NAT-Subnetzes (Subnetzmaske).
+      Die Subnetzpräfixlänge ist ein Ganzzahlwert zwischen 0 und 32.
 
-    0 würde das gesamte Internet zuordnen, 32 würde nur eine zugeordnete IP zulassen.  Die gängigen Werte reichen von 24 bis 12, je nachdem, wie viele IP-Adressen der NAT zugeordnet werden müssen.
+      0 würde das gesamte Internet zuordnen, 32 würde nur eine zugeordnete IP zulassen.  Die gängigen Werte reichen von 24 bis 12, je nachdem, wie viele IP-Adressen der NAT zugeordnet werden müssen.
 
-    Eine gängige PrefixLength ist 24 – Dies ist die Subnetzmaske 255.255.255.0
+      Eine gängige PrefixLength ist 24 – Dies ist die Subnetzmaske 255.255.255.0
 
-  * **InterfaceIndex** – ifIndex ist der Schnittstellenindex des virtuellen Switches, die Sie im vorherigen Schritt bestimmt haben.
+    * **InterfaceIndex** – ifIndex ist der Schnittstellenindex des virtuellen Switches, die Sie im vorherigen Schritt bestimmt haben.
 
-  Führen Sie Folgendes aus, um das NAT-Gateway zu erstellen.
+    Führen Sie Folgendes aus, um das NAT-Gateway zu erstellen.
 
-  ``` PowerShell
-  New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
-  ```
+    ```powershell
+    New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
+    ```
 
 5. Konfigurieren Sie das NAT-Netzwerk mit [New-NetNat](https://docs.microsoft.com/powershell/module/netnat/New-NetNat).  
 
-  Dies ist der generische Befehl:
+    Dies ist der generische Befehl:
 
-  ``` PowerShell
-  New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>
-  ```
+    ```powershell
+    New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>
+    ```
 
-  Um das Gateway zu konfigurieren, müssen Sie Informationen über das Netzwerk und das NAT-Gateway bereitstellen:  
-  * **Name** – NATOutsideName beschreibt den Namen des NAT-Netzwerks.  Hiermit entfernen Sie das NAT-Netzwerk.
+    Um das Gateway zu konfigurieren, müssen Sie Informationen über das Netzwerk und das NAT-Gateway bereitstellen:  
+    * **Name** – NATOutsideName beschreibt den Namen des NAT-Netzwerks.  Hiermit entfernen Sie das NAT-Netzwerk.
 
-  * **InternalIPInterfaceAddressPrefix** – Das NAT-Subnetzpräfix beschreibt sowohl das NAT-Gateway-IP-Präfix von oben als auch die NAT-Subnetzpräfixlänge von oben.
+    * **InternalIPInterfaceAddressPrefix** – Das NAT-Subnetzpräfix beschreibt sowohl das NAT-Gateway-IP-Präfix von oben als auch die NAT-Subnetzpräfixlänge von oben.
 
     Die generische Form ist „a.b.c.0/NAT-Subnetzpräfixlänge“.
 
     In diesem Beispiel verwenden wir von oben „192.168.0.0/24“.
 
-  Führen Sie für unser Beispiel Folgendes aus, um das NAT-Netzwerk einzurichten:
+    Führen Sie für unser Beispiel Folgendes aus, um das NAT-Netzwerk einzurichten:
 
-  ``` PowerShell
-  New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
-  ```
+    ```powershell
+    New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
+    ```
 
-Gratulation!  Sie haben jetzt ein virtuelles NAT-Netzwerk!  Um dem NAT-Netzwerk einen virtuellen Computer hinzuzufügen, befolgen Sie bitte diese [Anweisungen](#connect-a-virtual-machine).
+Herzlichen Glückwunsch!  Sie haben jetzt ein virtuelles NAT-Netzwerk!  Um dem NAT-Netzwerk einen virtuellen Computer hinzuzufügen, befolgen Sie bitte diese [Anweisungen](#connect-a-virtual-machine).
 
 ## <a name="connect-a-virtual-machine"></a>Herstellen einer Verbindung mit einem virtuellen Computer
 
@@ -203,52 +203,55 @@ Schließlich sollten Sie über zwei interne vSwitches verfügen – einen namens
 In dieser Anleitung wird vorausgesetzt, dass keine anderen NATs auf dem Host vorhanden sind. Allerdings setzen Anwendungen und Dienste die Verwendung einer NAT voraus und erstellen diese möglicherweise beim Setup. Da Windows (WinNAT) nur ein internes NAT-Subnetzpräfix unterstützt, setzt der Versuch, mehrere NATs zu erstellen, das System in einen unbekannten Zustand.
 
 Um herauszufinden, ob dies das Problem ist, stellen Sie sicher, dass Sie über nur eine NAT verfügen:
-``` PowerShell
+```powershell
 Get-NetNat
 ```
 
 Wenn bereits eine NAT vorhanden ist, löschen Sie sie.
-``` PowerShell
+```powershell
 Get-NetNat | Remove-NetNat
 ```
 Stellen Sie sicher, dass Sie nur über einen „internen“ VM-Switch für die Anwendung oder das Feature (z. B. Windows-Container) verfügen. Notieren Sie den Namen des vSwitches.
-``` PowerShell
+```powershell
 Get-VMSwitch
 ```
 
-Prüfen Sie, ob private IP-Adressen (z. B. die NAT-Standard-Gateway-IP-Adresse – in der Regel „*.1“) der alten NAT noch einem Adapter zugewiesen sind.
-``` PowerShell
+Überprüfen Sie, ob private IP-Adressen vorhanden sind (z. b. NAT-Standard Gateway-IP-Adresse – normalerweise _x_. _y_. _z_1) aus der alten NAT noch einem Adapter zugewiesen
+```powershell
 Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
 
 Wenn eine alte private IP-Adresse verwendet wird, löschen Sie sie.
-``` PowerShell
+```powershell
 Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <IPAddress>
 ```
 
 **Entfernen mehrerer NATs**  
 Wir haben Berichte über die versehentliche Erstellung mehrerer NAT-Netzwerke erhalten. Die Ursache ist ein Fehler in den letzten Builds: Windows Server 2016 Technical Preview 5 und Windows 10 Insider Preview. Wenn nach Ausführung von „docker network ls“ oder „Get-ContainerNetwork“ mehrere NAT-Netzwerke vorhanden sind, führen Sie über eine PowerShell mit erhöhten Berechtigungen den folgenden Befehl aus:
 
+```powershell
+$keys = Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+foreach($key in $keys)
+{
+   if ($key.GetValue("FriendlyName") -eq 'nat')
+   {
+      $newKeyPath = $KeyPath+"\"+$key.PSChildName
+      Remove-Item -Path $newKeyPath -Recurse
+   }
+}
+Remove-NetNat -Confirm:$false
+Get-ContainerNetwork | Remove-ContainerNetwork
+Get-VmSwitch -Name nat | Remove-VmSwitch # failure is expected
+Stop-Service docker
+Set-Service docker -StartupType Disabled
 ```
-PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
-PS> $keys = get-childitem $KeyPath
-PS> foreach($key in $keys)
-PS> {
-PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
-PS>    {
-PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
-PS>       Remove-Item -Path $newKeyPath -Recurse
-PS>    }
-PS> }
-PS> remove-netnat -Confirm:$false
-PS> Get-ContainerNetwork | Remove-ContainerNetwork
-PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
-PS> Stop-Service docker
-PS> Set-Service docker -StartupType Disabled
-Reboot Host
-PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automaticac
-PS> Start-Service docker 
+
+Starten Sie das Betriebssystem neu, bevor Sie die nachfolgenden Befehle ausführen (`Restart-Computer`).
+
+```powershell
+Get-NetNat | Remove-NetNat
+Set-Service docker -StartupType Automatic
+Start-Service docker 
 ```
 
 In diesem [-Installationshandbuch für mehrere Anwendungen mit gleicher NAT](#multiple-applications-using-the-same-nat) finden Sie Informationen zum Neuerstellen Ihrer NAT-Umgebung, falls erforderlich. 

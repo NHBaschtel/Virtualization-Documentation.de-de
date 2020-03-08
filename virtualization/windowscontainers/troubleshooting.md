@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
-ms.openlocfilehash: 1de86a2492ca899dc3fb932e0d57927fa4000fd0
-ms.sourcegitcommit: 15b5ab92b7b8e96c180767945fdbb2963c3f6f88
+ms.openlocfilehash: 549209c40c2332bdc197375ce4e501467280fa18
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "74911710"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853885"
 ---
 # <a name="troubleshooting"></a>Problembehandlung
 
@@ -112,7 +112,7 @@ Modifizieren Sie den aktuellen `BINARY_PATH_NAME`:
 - Fügen Sie für " das Escapezeichen \ hinzu
 - Schließen Sie den gesamten Befehl in Anführungszeichen (") ein
 
-Führen Sie anschließend `sc.exe config docker binpath=`, gefolgt von der neuen Zeichenfolge, aus. Zum Beispiel: 
+Führen Sie anschließend `sc.exe config docker binpath=`, gefolgt von der neuen Zeichenfolge, aus. Beispiel: 
 ```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
@@ -136,7 +136,7 @@ sc.exe stop docker
 
 Im Allgemeinen ist dies nur hilfreich, wenn Sie vom Microsoft Support explizit angefordert werden, oder docker-Entwickler. Sie kann verwendet werden, um die Diagnose einer Situation zu unterstützen, in der Docker anscheinend nicht reagiert hat. 
 
-Herunterladen von [Docker-Signal.exe](https://github.com/jhowardmsft/docker-signal).
+Herunterladen von [Docker-Signal.exe](https://github.com/moby/docker-signal).
 
 Syntax:
 ```PowerShell
@@ -155,9 +155,9 @@ Das Docker-Modul ist von einem Windows-spezifischen Hostcomputedienst abhängig.
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 
-Sie werden in der Ereignisansicht angezeigt und können auch mit PowerShell abgefragt werden.
+Sie sind in Ereignisanzeige sichtbar und können auch mit PowerShell abgefragt werden.
 
-Zum Beispiel:
+Beispiel:
 ```PowerShell
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 

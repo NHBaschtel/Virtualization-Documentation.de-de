@@ -1,21 +1,21 @@
 ---
-title: Linux-Container unter Windows
-description: Erfahren Sie mehr über verschiedene Möglichkeiten, wie Sie Hyper-V zum Ausführen von Linux-Containern unter Windows verwenden können, als ob Sie System eigen sind.
-keywords: Lkuh, Linux-Container, Docker, Container
+title: Linux-Container unter Windows 10
+description: Erfahren Sie mehr über die verschiedenen Möglichkeiten, wie Sie Hyper-V zum Ausführen von Linux-Containern unter Windows 10 verwenden können, als ob Sie System eigen sind.
+keywords: Lkuh, Linux-Container, Docker, Container, Windows 10
 author: scooley
 ms.date: 09/17/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
-ms.openlocfilehash: 14445f3e9d292dbdab28986e772d0c045fca1586
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 843bd0ab7ccf3a227482ba3a3d2677e36b395b29
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910570"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78854014"
 ---
-# <a name="linux-containers-on-windows"></a>Linux-Container unter Windows
+# <a name="linux-containers-on-windows-10"></a>Linux-Container unter Windows 10
 
 Linux-Container bilden einen großen Anteil des gesamten containerökosystems und sind grundlegend für Entwickler-und Produktionsumgebungen.  Da Container einen Kernel mit dem Container Host gemeinsam nutzen, ist das direkte Ausführen von Linux-Containern unter Windows keine Option[*](linux-containers.md#other-options-we-considered).  An dieser Stelle kommt die Virtualisierung ins Spiel.
 
@@ -23,6 +23,8 @@ Derzeit gibt es zwei Möglichkeiten zum Ausführen von Linux-Containern mit dock
 
 - Ausführen von Linux-Containern in einer vollständigen Linux-VM: Dies erfolgt in der Regel von Docker.
 - Ausführen von Linux-Containern mit [Hyper-V-Isolation](../manage-containers/hyperv-container.md) (lkuh): Dies ist eine neue Option in docker für Windows.
+
+> _Das Ausführen von Linux-Containern unter einem Windows Server-Betriebssystem befindet sich derzeit noch in einer experimentellen Phase. Um dies zu testen, wird eine zusätzliche Lizenzierung für das docker EE-Programm benötigt. **Der Rest dieses Artikels bezieht sich nur auf Windows 10**._
 
 In diesem Artikel wird die Funktionsweise der einzelnen Ansätze beschrieben. Außerdem erhalten Sie Anleitungen dazu, wann welche Lösung ausgewählt und welche Aufgaben in Bearbeitung sind.
 
@@ -47,7 +49,7 @@ Um festzustellen, ob Sie mit dem virtuellen Computer "Moby" arbeiten, überprüf
 
 ## <a name="linux-containers-with-hyper-v-isolation"></a>Linux-Container mit Hyper-V-Isolation
 
-Wenn Sie Linux-Container unter Windows (lkuh) testen möchten, befolgen Sie die Anweisungen für Linux-Container unter Linux-Container [unter Windows 10](../quick-start/quick-start-windows-10-linux.md).
+Wenn Sie Linux-Container unter Windows 10 testen möchten (LCOW10), befolgen Sie die Anweisungen für Linux-Container unter Linux-Container [unter Windows 10](../quick-start/quick-start-windows-10-linux.md). 
 
 Linux-Container mit Hyper-V-Isolation führen jeden Linux-Container in einer optimierten Linux-VM mit nur ausreichend Betriebssystem aus, um Container auszuführen. Im Gegensatz zum "Moby VM"-Ansatz hat jeder Linux-Container seinen eigenen Kernel und seinen eigenen VM-Sandkasten. Sie werden auch direkt von Docker unter Windows verwaltet.
 
@@ -74,10 +76,10 @@ Folgende Vorgänge funktionieren momentan nicht für gebunden bereitgestellte Vo
 * MkNod
 * XAttrWalk
 * XAttrCreate
-* Lock
+* Sperren
 * Getlock
 * Auth
-* Flush
+* Leerung
 * INotify
 
 Es gibt auch einige Vorgänge, die nicht vollständig implementiert werden:

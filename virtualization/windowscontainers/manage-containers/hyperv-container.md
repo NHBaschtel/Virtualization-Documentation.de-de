@@ -8,18 +8,18 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
-ms.openlocfilehash: fa95ffe1c699a2c837076fcc1b662f6b792b7dfb
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 362805fa230f461414ccc53643644f6c1b3474a8
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909750"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853954"
 ---
 # <a name="isolation-modes"></a>Isolations Modi
 
 Windows-Container bieten zwei unterschiedliche Modi für die Lauf Zeit Isolation: `process`-und `Hyper-V`-Isolation. Container, die in beiden Isolations Modi ausgeführt werden, werden gleich erstellt, verwaltet und funktionieren identisch. Sie erzeugen und nutzen auch die gleichen Containerimages. Der Unterschied zwischen den Isolations Modi besteht darin, welcher Isolations Grad zwischen dem Container, dem Host Betriebssystem und allen anderen Containern, die auf diesem Host ausgeführt werden, erstellt wird.
 
-## <a name="process-isolation"></a>Prozessisolation
+## <a name="process-isolation"></a>Prozess Isolation
 
 Dies ist der "herkömmliche" Isolations Modus für Container, der in der [Übersicht über Windows-Container](../about/index.md)beschrieben wird. Bei der Prozess Isolation werden mehrere Container Instanzen gleichzeitig auf einem angegebenen Host ausgeführt, wobei die Isolation durch Namespace-, Ressourcen Steuerungs-und Prozess Isolations Technologien gewährleistet ist. Bei der Ausführung in diesem Modus verwenden Container denselben Kernel gemeinsam mit dem Host und einander.  Dies entspricht ungefähr der Art und Weise, wie Linux-Container ausgeführt werden.
 
@@ -40,7 +40,7 @@ Das Verwalten von Hyper-V-isolierten Containern mit docker ist nahezu identisch 
 docker run -it --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 cmd
 ```
 
-Um einen Container mit gründlicher Prozess Isolation zu erstellen, verwenden Sie den `--isolation`-Parameter, um `--isolation=process`festzulegen.
+Um einen Container mit Prozess Isolation über Docker zu erstellen, verwenden Sie den `--isolation`-Parameter, um `--isolation=process`festzulegen.
 
 ```cmd
 docker run -it --isolation=process mcr.microsoft.com/windows/servercore:ltsc2019 cmd

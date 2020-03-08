@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
-ms.openlocfilehash: d3375cd912097f85f0a350b8f329c008323cab37
-ms.sourcegitcommit: cea415924b7b6a690d0ba9ff31beed30e9c187d2
+ms.openlocfilehash: ebc9be132f05c20eb8daf9b5e6713b9258012305
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2020
-ms.locfileid: "76750191"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853988"
 ---
 # <a name="windows-10-hyper-v-system-requirements"></a>Systemanforderungen von Hyper-V unter Windows 10
 
@@ -51,12 +51,23 @@ Die folgenden Elemente müssen im BIOS des Systems aktiviert sein:
 
 ## <a name="verify-hardware-compatibility"></a>Prüfen der Hardwarekompatibilität
 
-Öffnen Sie zum Überprüfen der Kompatibilität PowerShell oder eine Eingabeaufforderung (cmd.exe), und geben Sie **systeminfo** ein. Wenn alle aufgelisteten Hyper-V-Anforderungen den Wert **Ja** haben, kann die Rolle „Hyper-V“ auf Ihrem System ausgeführt werden. Wenn für ein Element **Nein** zurückgegeben wird, überprüfen Sie die in diesem Dokument aufgeführten Anforderungen und nehmen, sofern möglich, Anpassungen vor.
+Nachdem Sie das Betriebssystem und die Hardwareanforderungen überprüft haben, überprüfen Sie die Hardware Kompatibilität in Windows, indem Sie eine PowerShell-Sitzung oder ein Eingabe Aufforderungs Fenster (cmd. exe) öffnen, **System Info**eingeben und dann den Abschnitt "Hyper-V-Anforderungen" überprüfen. Wenn alle aufgelisteten Hyper-V-Anforderungen den Wert **Ja** haben, kann die Rolle „Hyper-V“ auf Ihrem System ausgeführt werden. Wenn für ein Element **Nein** zurückgegeben wird, überprüfen Sie die in diesem Dokument aufgeführten Anforderungen und nehmen, sofern möglich, Anpassungen vor.
 
 ![](media/SystemInfo-upd.png)
 
-Wenn Sie **systeminfo** auf einem vorhandenen Hyper-V-Host ausführen, enthält der Abschnitt „Hyper-V-Anforderungen“ Folgendes:
+## <a name="final-check"></a>Abschließende Prüfung
 
-```
-Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
-```
+Wenn alle Betriebssystem-, Hardware-und Kompatibilitätsanforderungen erfüllt sind, wird in der **Systemsteuerung** **Hyper-V** angezeigt: Aktivieren oder deaktivieren Sie Windows-Funktionen, und es werden zwei Optionen angeboten.
+
+1. Hyper-V-Plattform
+1. Hyper-V-Verwaltungstools
+
+![](media/hyper_v_feature_screenshot.png)
+
+> [!NOTE] Wenn in der Systemsteuerung **Windows Hypervisor Platform** anstelle von **Hyper-v** angezeigt wird **: Windows-Features aktivieren oder > deaktivieren** Sie das System möglicherweise nicht mit Hyper-v kompatibel, und überprüfen Sie dann die Anforderungen.
+>
+>Wenn Sie **systeminfo** auf einem vorhandenen Hyper-V-Host ausführen, enthält der Abschnitt „Hyper-V-Anforderungen“ Folgendes:
+>
+>```
+>Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+>```

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
-ms.openlocfilehash: a664b5b8eb87adffdf7eba3ffca9f4194128df80
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 551d405d836cfb16b587ef78bc2d5f5abbd8648f
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74909570"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78853814"
 ---
 # <a name="get-started-run-your-first-windows-container"></a>Erste Schritte: Ausführen Ihres ersten Windows-Containers
 
@@ -22,7 +22,7 @@ In diesem Thema wird beschrieben, wie Sie Ihren ersten Windows-Container nach de
 
 ## <a name="install-a-container-base-image"></a>Installieren eines Containerbasis Images
 
-Alle Container werden aus Container Images erstellt. Microsoft bietet verschiedene Starter Images, die als Basis Images bezeichnet werden, um eine Auswahl zu treffen (Weitere Informationen finden Sie unter [Container Basis Images](../manage-containers/container-base-images.md)). Durch diese Vorgehensweise wird das Lightweight Nano Server-Basis Image abgerufen (heruntergeladen und installiert).
+Alle Container werden aus Containerimages erstellt. Microsoft bietet verschiedene Starter Images, die als Basis Images bezeichnet werden, um eine Auswahl zu treffen (Weitere Informationen finden Sie unter [Container Basis Images](../manage-containers/container-base-images.md)). Durch diese Vorgehensweise wird das Lightweight Nano Server-Basis Image abgerufen (heruntergeladen und installiert).
 
 1. Öffnen Sie ein Eingabe Aufforderungs Fenster (z. b. die integrierte Eingabeaufforderung, PowerShell oder das [Windows-Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab)), und führen Sie dann den folgenden Befehl aus, um das Basis Image herunterzuladen und zu installieren:
 
@@ -33,7 +33,7 @@ Alle Container werden aus Container Images erstellt. Microsoft bietet verschiede
    > [!TIP]
    > Wenn eine Fehlermeldung angezeigt wird, die `no matching manifest for unknown in the manifest list entries`lautet, stellen Sie sicher, dass docker nicht für das Ausführen von Linux-Containern konfiguriert ist.
 
-2. Nachdem das Herunterladen des Images abgeschlossen ist – Lesen Sie die Lizenzbedingungen, während Sie warten – überprüfen Sie, ob das System auf Ihrem System vorhanden ist, indem [Sie das lokale](../images-eula.md) docker-Image-Repository Abfragen Wenn Sie den Befehl `docker images` ausführen, wird eine Liste der installierten Images zurückgegeben.
+2. Nachdem das Herunterladen des Images abgeschlossen ist – lesen [Sie die Lizenz](../images-eula.md) Bedingungen, während Sie warten – überprüfen Sie das vorhanden sein Ihres Systems, indem Sie das lokale docker-imagerepository Abfragen. Wenn Sie den Befehl `docker images` ausführen, wird eine Liste der installierten Images zurückgegeben.
 
    Im folgenden finden Sie ein Beispiel für die Ausgabe, die das Nano Server-Image zeigt.
 

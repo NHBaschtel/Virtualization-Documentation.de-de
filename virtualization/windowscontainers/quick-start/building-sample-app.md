@@ -8,12 +8,12 @@ ms.date: 11/12/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: fab0dc46ddcc8c82a010d408032e5f3c4cea8d69
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.openlocfilehash: 587e8de5f0d593f92f6301c87bf68e08a8bbd839
+ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74910140"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78854004"
 ---
 # <a name="containerize-a-net-core-app"></a>Containerisieren einer .net Core-App
 
@@ -71,7 +71,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 WORKDIR /app
 ```
 
-Die erste Gruppe von Zeilen deklariert, auf Grundlage von welchem Basisimage unser Container erstellt wird. Wenn das lokale System nicht bereits über dieses Image verfügt, versucht Docker automatisch, es abzurufen. Die `mcr.microsoft.com/dotnet/core/sdk:2.1` wird mit installiertem .net Core 2,1 SDK verpackt und ist daher die Aufgabe, ASP .net Core-Projekte mit der Zielversion 2,1 zu entwickeln. Mit der nächsten Anweisung wird das Arbeitsverzeichnis in unserem Container so geändert, dass es `/app`wird, sodass alle Befehle, die dieser Anweisung folgen, in diesem Kontext ausgeführt werden.
+Die erste Gruppe von Zeilen deklariert, auf Grundlage von welchem Basisimage unser Container erstellt wird. Wenn das lokale System nicht bereits über dieses Image verfügt, versucht Docker automatisch, es abzurufen. Die `mcr.microsoft.com/dotnet/core/sdk:2.1` wird mit installiertem .net Core 2,1 SDK verpackt. es ist also Aufgabe, ASP .net Core-Projekte mit der Zielversion 2,1 zu entwickeln. Mit der nächsten Anweisung wird das Arbeitsverzeichnis in unserem Container so geändert, dass es `/app`wird, sodass alle Befehle, die dieser Anweisung folgen, in diesem Kontext ausgeführt werden.
 
 ```Dockerfile
 COPY *.csproj ./
@@ -103,7 +103,7 @@ Da es sich bei der Anwendung um ASP.net handelt, geben wir ein Bild an, das dies
 
 Wir haben die dockerfile-Datei geschrieben, um einen _mehrstufigen Build_auszuführen. Wenn die dockerfile-Datei ausgeführt wird, wird der temporäre Container (`build-env`) mit dem .net Core 2,1 SDK verwendet, um die Beispiel-APP zu erstellen und dann die ausgegebenen Binärdateien in einen anderen Container zu kopieren, der nur die .net Core 2,1-Laufzeit enthält, sodass wir die Größe des letzten Containers minimiert haben.
 
-## <a name="build-and-run-the-app"></a>Erstellen und Ausführen der App
+## <a name="build-and-run-the-app"></a>App erstellen und ausführen
 
 Nachdem Sie die dockerfile-Datei geschrieben haben, können wir docker auf unsere dockerfile-Datei verweisen und Sie darüber informieren, das Image zu erstellen und dann auszuführen:
 
@@ -126,7 +126,7 @@ Nachdem Sie die dockerfile-Datei geschrieben haben, können wir docker auf unser
    * `--name myapp` weist docker an, diesem Container einen geeigneten Namen für die Abfrage zu übergeben (anstatt die von Docker zur Laufzeit zugewiesene kontaienr-ID zu überprüfen).
    * `my-asp-app` ist das Image, das von Docker ausgeführt werden soll. Dies ist das Container Image, das als Höhepunkt des `docker build` Prozesses erzeugt wird.
 
-3. Öffnen Sie einen Webbrowser Webbrowser, und navigieren Sie zu `http://localhost:5000`, um Ihre containerisierte Anwendung anzuzeigen, wie in diesem Screenshot gezeigt:
+3. Öffnen Sie einen Webbrowser, und navigieren Sie zu `http://localhost:5000`, um Ihre containerisierte Anwendung anzuzeigen, wie in diesem Screenshot gezeigt:
 
    >![ASP.net Core Webseite, die auf dem localhost in einem Container ausgeführt wird](media/SampleAppScreenshot.png)
 
@@ -148,4 +148,4 @@ Nachdem Sie die dockerfile-Datei geschrieben haben, können wir docker auf unser
 2. Nachdem Sie Ihre APP in der Container Registrierung veröffentlicht haben, besteht der nächste Schritt in der Bereitstellung der app in einem Kubernetes-Cluster, den Sie mit Azure Kubernetes Service erstellen.
 
    > [!div class="nextstepaction"]
-   > [Schnellstart: Bereitstellen eines AKS-Clusters (Azure Kubernetes Service) über die Azure-Befehlszeilenschnittstelle](https://docs.microsoft.com/azure/aks/windows-container-cli)
+   > [Erstellen eines Kubernetes-Clusters](https://docs.microsoft.com/azure/aks/windows-container-cli)
