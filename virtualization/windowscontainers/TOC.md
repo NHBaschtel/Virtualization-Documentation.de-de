@@ -35,6 +35,7 @@
 ### [Containerbasisimages](manage-containers/container-base-images.md)
 ### [Isolationsmodi](manage-containers/hyperv-container.md)
 ### [Versionskompatibilität](deploy-containers/version-compatibility.md)
+### [Aktualisieren von Containern](deploy-containers/update-containers.md)
 ### [Ressourcensteuerung](manage-containers/resource-controls.md)
 ## Docker
 ### [Docker-Engine unter Windows](manage-docker/configure-docker-daemon.md)
