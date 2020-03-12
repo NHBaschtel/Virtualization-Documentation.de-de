@@ -3,12 +3,12 @@ title: Versionskompatibilität von Windows-Containern
 description: Hier erfahren Sie, wie Windows Container versionsübergreifend erstellen und ausführen kann.
 keywords: Metadaten, Container, Version
 author: taylorb-microsoft
-ms.openlocfilehash: 326a56789d07f601beceebed01fdc3d49bc7471e
-ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
+ms.openlocfilehash: 917c07e13d6a0ec5b5e73213da4dc4f04ec0d9bb
+ms.sourcegitcommit: 8eedfdc1fda9d0abb36e28dc2b5fb39891777364
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78853864"
+ms.lasthandoff: 03/10/2020
+ms.locfileid: "79027865"
 ---
 # <a name="windows-container-version-compatibility"></a>Kompatibilität der Windows-Container Version
 
@@ -104,11 +104,16 @@ Das Starten von Windows Server-Containern ist blockiert, wenn die Buildnummer zw
 
 #### <a name="revision-number-patching"></a>Revisionsnummer (Patching)
 
-Das Starten von Windows Server 2016-basierten Containern ist blockiert, wenn sich die Revisionsnummern des Container Hosts und des Container Images unterscheiden. Beispielsweise, wenn der Container Host Version 10.0.14393 ist. **1914** (Windows Server 2016 mit angewendetem KB4051033) und das Container Image Version 10.0.14393. **1944** (Windows Server 2016 mit angewendetem KB4053579), dann wird das Abbild nicht gestartet.
+Windows Server-Container unterstützen derzeit keine Szenarien, in denen Windows Server 2016-basierte Container in einem System ausgeführt werden, in dem sich die Revisionsnummern des Container Hosts und des Container Images unterscheiden. Beispielsweise, wenn der Container Host Version 10.0.14393 ist. **1914** (Windows Server 2016 mit angewendetem KB4051033) und das Container Image Version 10.0.14393. **1944** (Windows Server 2016 mit angewendetem KB4053579), dann wird das Abbild möglicherweise nicht gestartet.
 
-Für Hosts oder Images, die Windows Server, Version 1809 und höher verwenden, gilt diese Regel jedoch nicht, und für das Host-und Container Image müssen keine übereinstimmenden Revisionen vorhanden sein. 
+Für Hosts oder Images, die Windows Server, Version 1809 und höher verwenden, gilt diese Regel jedoch nicht, und der Host und das Container Image müssen keine übereinstimmenden Revisionen aufweisen.
 
 Wir empfehlen Ihnen, ihre Systeme (Host und Container) mit den neuesten Patches und Updates auf dem neuesten Stand zu halten, damit Sie sicher bleiben.
+
+>[!NOTE]
+>Bei der Verwendung von Windows Server-Containern mit dem 11. Februar 2020-Sicherheitsupdate Release (auch als "2B" bezeichnet) oder neueren monatlichen Sicherheitsupdate Releases treten möglicherweise Probleme auf. Weitere Informationen finden Sie in [diesem Artikel](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) .  
+>
+>Wir empfehlen Ihnen dringend, Host und Container mit den neuesten Patches und Updates zu aktualisieren, damit Sie sicher und kompatibel bleiben. Wichtige Anleitungen zum Aktualisieren von Windows-Containern finden Sie unter [Aktualisieren von Windows Server-Containern](update-containers.md).
 
 #### <a name="practical-application"></a>Praktische Anwendung
 
