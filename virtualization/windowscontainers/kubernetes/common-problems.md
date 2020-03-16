@@ -7,12 +7,12 @@ ms.topic: troubleshooting
 ms.prod: containers
 description: Lösungen für allgemeine Probleme beim Bereitstellen von Kubernetes und beim Beitritt zu Windows-Knoten.
 keywords: kubernetes, 1,14, Linux, kompilieren
-ms.openlocfilehash: 471731ec50c7c03816a956bd7aae859ad218be6d
-ms.sourcegitcommit: 6f505becbafb1e9785c67d6b0715c4c3af074116
+ms.openlocfilehash: 19b467b657708627dcb6ca93b64fa292d3db8de8
+ms.sourcegitcommit: 8eedfdc1fda9d0abb36e28dc2b5fb39891777364
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/05/2020
-ms.locfileid: "78338058"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402921"
 ---
 # <a name="troubleshooting-kubernetes"></a>Problembehandlung für Kubernetes #
 Diese Seite führt Sie durch mehrere Probleme beim Setup, Networking oder der Bereitstellung von Kubernetes.
@@ -112,7 +112,10 @@ Eine der Kubernetes-Netzwerk Anforderungen (siehe [Kubernetes-Modell](https://ku
 ```
 
 ### <a name="my-windows-node-cannot-access-a-nodeport-service"></a>Mein Windows-Knoten kann nicht auf einen nodeport-Dienst zugreifen. ###
-Der lokale nodeport-Zugriff über den Knoten selbst schlägt fehl. Es handelt sich um eine bekannte Einschränkung. Der nodeport-Zugriff funktioniert von anderen Knoten oder externen Clients.
+Der lokale nodeport-Zugriff über den Knoten selbst schlägt aufgrund einer Entwurfs Beschränkung auf Windows Server 2019 fehl. Der nodeport-Zugriff funktioniert von anderen Knoten oder externen Clients.
+
+### <a name="my-windows-node-stops-routing-thourgh-nodeports-after-i-scaled-down-my-pods"></a>Mein Windows-Knoten beendet das Routing von "thourgh"-nodeports nach dem Herunterskalieren der Pods ###
+Aufgrund einer Entwurfs Beschränkung muss mindestens ein Pod auf dem Windows-Knoten ausgeführt werden, damit die nodeport-Weiterleitung funktioniert.
 
 ### <a name="after-some-time-vnics-and-hns-endpoints-of-containers-are-being-deleted"></a>Nach einiger Zeit werden vNICs und HNS-Endpunkte von Containern gelöscht. ###
 Dieses Problem kann verursacht werden, wenn der `hostname-override`-Parameter nicht an [Kube-Proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/)übergeben wird. Um dieses Problem zu beheben, müssen Benutzer den Hostnamen wie folgt an den Kube-Proxy übergeben:

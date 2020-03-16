@@ -9,11 +9,11 @@ description: Hinzufügen eines Windows-Knotens zu einem Kubernetes-Cluster mit v
 keywords: kubernetes, 1,14, Windows, Getting Started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ms.openlocfilehash: 18734f102042ec951255061dcd82229e18d29a15
-ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
+ms.sourcegitcommit: 8eedfdc1fda9d0abb36e28dc2b5fb39891777364
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/18/2020
-ms.locfileid: "77439527"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402891"
 ---
 # <a name="kubernetes-on-windows"></a>Kubernetes unter Windows
 
