@@ -10,7 +10,7 @@ ms.service: windows-10-hyperv
 ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
 ms.openlocfilehash: 1652c3bcb32ddbc4e05e8821d0e646a76a2fd4f0
 ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/06/2020
 ms.locfileid: "78853964"
@@ -28,7 +28,7 @@ Anforderungen:
 * Windows 10 Anniversary Update oder höher
 * Hyper-V-Rolle ist aktiviert (Anweisungen [hier](../quick-start/enable-hyper-v.md))
 
-> **Hinweis:** Derzeit steht Ihnen nur ein NAT-Netzwerk pro Host zur Verfügung. Weitere Informationen zur Windows-NAT-Implementierung (WinNAT), zu Funktionen und Einschränkungen finden Sie im Blog [WinNAT capabilities and limitations](https://techcommunity.microsoft.com/t5/Virtualization/Windows-NAT-WinNAT-Capabilities-and-limitations/ba-p/382303) (Stärken und Schwächen von WinNAT).
+> **Hinweis:**  Derzeit steht Ihnen nur ein NAT-Netzwerk pro Host zur Verfügung. Weitere Informationen zur Windows-NAT-Implementierung (WinNAT), zu Funktionen und Einschränkungen finden Sie im Blog [WinNAT capabilities and limitations](https://techcommunity.microsoft.com/t5/Virtualization/Windows-NAT-WinNAT-Capabilities-and-limitations/ba-p/382303) (Stärken und Schwächen von WinNAT).
 
 ## <a name="nat-overview"></a>NAT-Überblick
 NAT ermöglicht einem virtuellen Computer unter Verwendung der IP-Adresse des Hostcomputers und eines Ports über einen internen virtuellen Hyper-V-Switch Zugriff auf Netzwerkressourcen.
@@ -53,7 +53,7 @@ Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
 3. Suchen Sie den Schnittstellenindex des virtuelles Switches, den Sie gerade erstellt haben.
 
-    Sie können den Schnittstellen Index ermitteln, indem Sie ausführen `Get-NetAdapter`
+    Sie können den Schnittstellenindex ermitteln, indem Sie `Get-NetAdapter` ausführen.
 
     Die Ausgabe sollte etwa wie folgt aussehen:
 
@@ -83,7 +83,7 @@ Betrachten wir nun die Einrichtung eines neuen NAT-Netzwerks.
 
       192.168.0.1 ist eine gängige Gateway-IP.  
 
-    * **Prefixlength** : die NAT-Subnetzpräfixlänge definiert die Größe des lokalen NAT-Subnetzes (Subnetzmaske).
+    * **PrefixLength** – Die Präfixlänge des NAT-Subnetzes definiert die lokale Subnetzgröße (Subnetzmaske) für NAT.
       Die Subnetzpräfixlänge ist ein Ganzzahlwert zwischen 0 und 32.
 
       0 würde das gesamte Internet zuordnen, 32 würde nur eine zugeordnete IP zulassen.  Die gängigen Werte reichen von 24 bis 12, je nachdem, wie viele IP-Adressen der NAT zugeordnet werden müssen.
@@ -132,7 +132,7 @@ Da WinNAT nicht selbst IP-Adressen reserviert und einem Endpunkt (z. B. einer VM
 
 ## <a name="configuration-example-attaching-vms-and-containers-to-a-nat-network"></a>Konfigurationsbeispiel: Anfügen von VMs und Containern an ein NAT-Netzwerk
 
-_Wenn Sie mehrere VMS und Container an eine einzelne NAT Anfügen müssen, müssen Sie sicherstellen, dass das interne NAT-Subnetzpräfix groß genug ist, um die IP-Adressbereiche abzudecken, die von verschiedenen Anwendungen oder Diensten zugewiesen werden (z. b. docker für Windows und Windows-Container – HNS). Hierfür ist entweder die Zuweisung von IP-Adressen auf Anwendungsebene und die Netzwerkkonfiguration oder die manuelle Konfiguration erforderlich, die von einem Administrator durchgeführt werden muss, und es wird garantiert, dass vorhandene IP-Zuweisungen auf demselben Host nicht erneut verwendet werden._
+_Wenn Sie mehrere VMs und Containern an ein einzelnes NAT anfügen müssen, ist sicherzustellen, dass das NAT-interne Subnetzpräfix für die IP-Bereiche groß genug ist, die verschiedenen Anwendungen oder Diensten (z. B. Docker für Windows und Windows-Container, HNS) zugewiesen sind. Dieser Vorgang erfordert entweder eine Zuweisung von IP-Adressen auf Anwendungsebene und Netzwerkkonfiguration oder eine manuelle Konfiguration, die von einem Administrator vorgenommen werden muss und sicherstellt, dass vorhandene IP-Adresszuweisungen nicht auf demselben Host wiederverwendet werden._
 
 ### <a name="docker-for-windows-linux-vm-and-windows-containers"></a>Docker für Windows (Linux-VM) und Windows-Container
 Die nachstehend beschriebene Lösung ermöglicht sowohl Docker für Windows (in Linux-VM ausgeführten Linux-Containern) und Windows-Containern die gemeinsame Nutzung derselben WinNAT-Instanz unter Verwendung getrennter interner vSwitches. Konnektivität zwischen Linux- und Windows-Containern ist gegeben.
@@ -148,7 +148,7 @@ PS C:\> Get-NetNat | Remove-NetNAT (again, this will remove the NAT but keep the
 PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>
 PS C:\> Start-Service docker
 ```
-Docker/HNS weist Windows-Containern IPS zu, und der Administrator weist den VMS IP-Adressen aus dem Unterschieds Satz der beiden zu.
+Docker/HNS weist Windows-Containern IP-Adressen zu. Der Administrator weist VMs IP-Adressen aus dem Differenzsatz der beiden zu.
 
 Der Benutzer hat das Feature „Windows-Container“ mit ausgeführtem Docker-Modul installiert und möchte nun VMs mit dem NAT-Netzwerk verbinden.
 ```
@@ -162,7 +162,7 @@ PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared pre
 PS C:\> New-VirtualSwitch -Type internal (attach VMs to this new vSwitch)
 PS C:\> Start-Service docker
 ```
-Docker/HNS weist Windows-Containern IPS zu, und der Administrator weist den VMS IP-Adressen aus dem Unterschieds Satz der beiden zu.
+Docker/HNS weist Windows-Containern IP-Adressen zu. Der Administrator weist VMs IP-Adressen aus dem Differenzsatz der beiden zu.
 
 Am Ende verfügen Sie über zwei interne VM-Switches und einem NetNat, das von diesen gemeinsam verwendet wird.
 
@@ -170,29 +170,29 @@ Am Ende verfügen Sie über zwei interne VM-Switches und einem NetNat, das von d
 
 In einigen Szenarien müssen mehrere Anwendungen oder Dienste die gleiche NAT verwenden. In diesem Fall muss der folgende Workflow eingehalten werden, damit mehrere Anwendungen/Dienste ein größeres NAT-internes Subnetzpräfix verwenden können.
 
-**_In diesem Beispiel wird die Docker 4-VM mit Windows-docker Beta-Linux zusammen mit dem Windows-Container Feature auf demselben Host ausführlich erläutert. Dieser Workflow kann geändert werden._**
+**_Als Beispiel erläutern wir ausführlich, wie Docker 4 Windows – Docker Beta – Linux VM mit dem Windows-Container-Feature auf dem gleichen Host koexistieren. Dieser Workflow unterliegt Änderungen._**
 
 1. C:\> net stop docker
 2. Stop Docker4Windows MobyLinux VM
 3. PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork -force
 4. PS C:\> Get-NetNat | Remove-NetNat  
-   *Entfernt alle zuvor vorhandenen Container Netzwerke (d. h. löscht Vswitch, löscht netnat, bereinigt)*  
+   *Entfernt bereits vorhandene Containernetzwerke (d. h. löscht vSwitch, löscht NetNat, bereinigt).*  
 
 5. New-ContainerNetwork -Name nat -Mode NAT –subnetprefix 10.0.76.0/24 (Dieses Subnetz wird für das Windows-Container-Feature verwendet.) *Erstellt internen vSwitch namens „nat“*  
-   *Erstellt das NAT-Netzwerk mit dem Namen "NAT" mit IP-Präfix 10.0.76.0/24*  
+   *Erstellt NAT-Netzwerk mit dem Namen „nat“ mit IP-Präfix 10.0.76.0/24*  
 
 6. Remove-NetNAT  
-   *Entfernt sowohl dockernat-als auch NAT-NAT-Netzwerke (behält interne vSwitches bei)*  
+   *Entfernt DockerNAT- und Nat-Netzwerke (behält interne vSwitches bei)*  
 
 7. New-NetNat -Name DockerNAT -InternalIPInterfaceAddressPrefix 10.0.0.0/17 (Dadurch entsteht ein größeres NAT-Netzwerk, das D4W und Container gemeinsam nutzen.)  
-   *Erstellt das NAT-Netzwerk mit dem Namen dockernat mit größerem Präfix 10.0.0.0/17*  
+   *Erstellt ein NAT-Netzwerk mit dem Namen DockerNAT mit größeren Präfix 10.0.0.0/17*  
 
 8. Run Docker4Windows (MobyLinux.ps1)  
-   *Erstellt einen internen Vswitch-dockernat.*  
-   *Erstellt das NAT-Netzwerk mit dem Namen "dockernat" mit IP-Präfix 10.0.75.0/24.*  
+   *Erstellt internes vSwitch-DockerNAT*  
+   *Erstellt ein NAT-Netzwerk mit dem Namen „DockerNAT“ mit IP-Präfix 10.0.75.0/24*  
 
 9. Net start docker  
-   *Docker verwendet das benutzerdefinierte NAT-Netzwerk als Standard zum Verbinden von Windows-Containern.*  
+   *Docker verwendet das benutzerdefinierte NAT-Netzwerk als Standard zur Verbindung mit Windows-Containern.*  
 
 Schließlich sollten Sie über zwei interne vSwitches verfügen – einen namens „DockerNAT“ und einen anderen namens „NAT“. Bei Ausführung von Get-NetNat erhalten Sie nur die Bestätigung eines NAT-Netzwerks (10.0.0.0/17). IP-Adressen für Windows-Container werden durch den Windows Host Network Service (HNS) aus dem Subnetz 10.0.76.0/24 zugewiesen. IP-Adressen für Docker 4 Windows werden basierend auf dem vorhandenen Skript „MobyLinux.ps1“ aus dem Subnetz 10.0.75.0/24 zugewiesen.
 
@@ -216,7 +216,7 @@ Stellen Sie sicher, dass Sie nur über einen „internen“ VM-Switch für die A
 Get-VMSwitch
 ```
 
-Überprüfen Sie, ob private IP-Adressen vorhanden sind (z. b. NAT-Standard Gateway-IP-Adresse – normalerweise _x_. _y_. _z_1) aus der alten NAT noch einem Adapter zugewiesen
+Überprüfen Sie, ob private IP-Adressen (z. B. die NAT-Standard-Gateway-IP-Adresse – in der Regel _x_._y_._z_.1) des alten NAT noch einem Adapter zugewiesen sind.
 ```powershell
 Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
@@ -256,5 +256,5 @@ Start-Service docker
 
 In diesem [-Installationshandbuch für mehrere Anwendungen mit gleicher NAT](#multiple-applications-using-the-same-nat) finden Sie Informationen zum Neuerstellen Ihrer NAT-Umgebung, falls erforderlich. 
 
-## <a name="references"></a>Verweise
+## <a name="references"></a>Referenzen
 Erfahren Sie mehr über [NAT-Netzwerke](https://en.wikipedia.org/wiki/Network_address_translation).

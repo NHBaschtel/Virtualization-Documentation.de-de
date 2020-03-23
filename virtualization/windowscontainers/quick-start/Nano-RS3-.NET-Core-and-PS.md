@@ -10,7 +10,7 @@ Verwenden Sie „docker build”, um den Container von einer Dockerfile zu erste
 docker run microsoft/nanoserver-insider cmd /c echo Hello World!
 ```
 
-Sie können mithilfe von [Dockerfiles unter Windows](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile) komplexere Anwendungen erstellen, und zwar mit Dockerfilesyntax wie z. B. FROM, RUN, COPY, ADD, CMD, usw. Während bestimmte Befehle nicht direkt von diesem Basis-Image ausgeführt werden können, können Sie jetzt Containerimages erstellen, die nur die Elemente enthalten, die Sie für Ihre Anwendung benötigen.
+Sie können komplexere Anwendungen mit [Dockerfile-Dateien unter Windows](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile) erstellen und dabei Dockerfile-Syntax wie FROM, RUN, COPY, ADD, CMD usw. verwenden.  Obwohl Sie nicht in der Lage sind, bestimmte Befehle direkt von diesem Basisimage auszuführen, können Sie nun Containerimages erstellen, die nur die Elemente enthalten, die Sie benötigen, damit Ihre Anwendung funktioniert.
 
 Da .NET Core und PowerShell nicht mehr im Nano Server-Container-Basisbetriebssystemimage verfügbar sind, ist es eine Herausforderung, den Container mit einem Inhalt in komprimiertem Zip-Format zu erstellen. Mit der Funktion für eine [mehrstufige Build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/), die in Docker 17.05 verfügbar ist, können Sie PowerShell in einem anderen Container zum Entzippen und Kopieren des Inhalts in einen anderen Nano-Container nutzen. Dieser Ansatz kann verwendet werden, um einen .NET Core-Container und einen PowerShell-Container zu erstellen. 
 

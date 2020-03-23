@@ -1,5 +1,5 @@
 ---
-title: Informationen zu docker
+title: Informationen zu Docker
 description: Erfahren Sie mehr über Docker.
 keywords: Docker, Container
 author: Heidilohr
@@ -10,25 +10,25 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.openlocfilehash: cdb7771a1293e7c3fd505103f0010bdfba47cc31
 ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74910790"
 ---
-# <a name="about-docker"></a>Informationen zu docker
+# <a name="about-docker"></a>Informationen zu Docker
 
-Informationen zu Containern erwähnen zwangsläufig auch Docker. Die Docker-Engine ist ein Container-Management-Toolset, das Container Images verpackt und bereitstellt. Die resultierenden Images können überall als Container, unabhängig davon, ob Sie lokal, in der Cloud oder auf einem persönlichen Computer ausgeführt werden, ausgeführt werden.
+Informationen zu Containern erwähnen zwangsläufig auch Docker. Die Docker-Engine ist ein Containerverwaltungstool, das Containerimages verpackt und übermittelt. Die sich ergebenden Images können überall als Container ausgeführt werden: lokal, in der Cloud oder auf einem PC.
 
 ![](media/docker.png)
 
-Sie können einen Windows Server-Container mit [docker](https://www.docker.com) wie jeden anderen Container verwalten.
+Ein Windows Server-Container kann wie jeder andere Container mit [Docker](https://www.docker.com) verwaltet werden.
 
-Das Konzept der Namespace Isolation und der Ressourcenkontrolle über einen Container ist für einen längeren Zeitraum aufgetreten und wurde zu den BSD-Jails, Solaris-Zonen und dem grundlegenden Unix-change root-Mechanismus (chroot) zurückgekehrt. Docker stellt eine solide Grundlage für die Entwicklung durch ein gemeinsames Toolset, Paket Modell und einen Bereitstellungs Mechanismus dar, die die Containerisierung und die Verteilung von Anwendungen vereinfachen. Diese Anwendungen können dann an einer beliebigen Stelle auf einem Linux-Host und in Windows ausgeführt werden.
+Das Konzept von Isolierung von Namespaces und Ressourcenkontrolle durch einen Container ist nicht wirklich neu und geht zurück auf BSD Jails, Solaris Zones und den grundlegenden UNIX-Mechanismus „change root“ (chroot). Docker stellt eine solide Grundlage für die Entwicklung durch ein allgemeines Toolset, ein Verpackungsmodell und einen Bereitstellungsmechanismus zur Verfügung, die die Containerisierung und die Verteilung von Anwendungen vereinfachen. Diese Anwendungen können dann auf einem beliebigen Linux-Host und in Windows ausgeführt werden.
 
-Ein allgegenwärtiges Verpackungs Modell und eine Bereitstellungs Technologie vereinfachen die Verwaltung, indem die gleichen Verwaltungs Befehle für jeden Host angeboten werden, wodurch eine einmalige Gelegenheit für nahtlose devops entsteht. Sie können auch ein docker-Image erstellen, das in wenigen Sekunden in jeder Umgebung bereitgestellt wird, egal, ob es sich um einen Desktop eines Entwicklers, einen Testcomputer oder eine Gruppe von Produktions Computern handelt. Dies hat ein riesiges und wachsendes Ökosystem von Anwendungen entwickelt, die in docker-Containern mit dockerhub verpackt sind, und zwar mit der öffentlichen Anwendungs Registrierung in Containern, die Docker verwaltet.
+Ein weit verbreitetes Verpackungsmodell und eine Bereitstellungstechnologie vereinfachen die Verwaltung durch Verfügbarkeit derselben Verwaltungsbefehle auf beliebigen Hosts, sodass der Weg für reibungslose DevOps-Vorgänge geebnet wird. Sie können auch ein Docker-Image erstellen, das in Sekundenschnelle in jeder Umgebung identisch bereitgestellt werden kann, und zwar unabhängig davon, ob es sich um den Desktop eines Entwicklers, einen Testcomputer oder eine Gruppe von Produktionscomputern handelt. Mittlerweile gibt es eine riesiges und weiter wachsendes Ökosystem von Anwendungen, die in Docker-Containern gepackt sind, und zwar in DockerHub, der von Docker verwalteten öffentlichen containerisierten Anwendungsregistrierung.
 
-Im folgenden wird das Ökosystem der Anwendungen erläutert und erläutert, wie Sie auf docker-Konzepten aufbauen können, um einen Entwicklungs-und Bereitstellungs Workflow zu erstellen, der für Ihre Anforderungen geeignet ist.
+Befassen wir uns nun mit diesem Ökosystem und damit, wie Sie auf Docker-Konzepten aufbauen können, um einen Entwicklungs- und Bereitstellungsworkflow entsprechend Ihren Anforderungen einzurichten.
 
 ## <a name="get-started-with-docker"></a>Erste Schritte mit Docker
 
-Informationen zum Erstellen von Containern mit docker finden Sie unter [docker-Engine unter Windows](../manage-docker/configure-docker-daemon.md). Weitere ausführliche Informationen zur Verwendung von Docker finden Sie auf [der Docker-Website](https://www.docker.com) .
+Informationen zum Erstellen von Containern mit Docker finden Sie unter [Docker-Engine unter Windows](../manage-docker/configure-docker-daemon.md). Ausführlichere Informationen zur Verwendung von Docker finden Sie auch auf der [Docker-Website](https://www.docker.com).

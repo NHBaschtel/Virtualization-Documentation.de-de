@@ -10,69 +10,69 @@ ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ms.openlocfilehash: 405b2abc43a4ae2c546de351679deb755e4a9317
 ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74910800"
 ---
 # <a name="frequently-asked-questions-about-containers"></a>Häufig gestellte Fragen zu Containern
 
-## <a name="whats-the-difference-between-linux-and-windows-server-containers"></a>Worin besteht der Unterschied zwischen Linux-und Windows Server-Containern?
+## <a name="whats-the-difference-between-linux-and-windows-server-containers"></a>Worin besteht der Unterschied zwischen Linux- und Windows Server-Containern?
 
-Linux und Windows Server implementieren beide ähnliche Technologien in Ihren Kernel-und Kern Betriebssystemen. Der Unterschied ergibt sich aus der Plattform und Arbeitslasten, die innerhalb des Containers ausgeführt.  
+Linux- und Windows Server-Container implementieren beide ähnliche Technologien in ihrem Kernel und Kernbetriebssystemen. Der Unterschied ergibt sich aus der Plattform und Arbeitslasten, die innerhalb des Containers ausgeführt.  
 
-Wenn ein Kunde Windows Server-Container verwendet, kann er in vorhandene Windows-Technologien wie .net, ASP.net und PowerShell integriert werden.
+Wenn ein Kunde Windows Server-Container verwendet, ist eine Integration in vorhandene Windows-Technologien wie u. a. .NET, ASP.NET und PowerShell möglich.
 
 ## <a name="what-are-the-prerequisites-for-running-containers-on-windows"></a>Was sind die Voraussetzungen für die Ausführung von Containern unter Windows?
 
-Container wurden mit Windows Server 2016 in die Plattform eingeführt. Zum Verwenden von Containern benötigen Sie entweder Windows Server 2016 oder das Windows 10 Anniversary Update (Version 1607) oder höher. Weitere Informationen finden Sie in den [System Anforderungen](../deploy-containers/system-requirements.md) .
+Container wurden mit Windows Server 2016 auf der Plattform eingeführt. Zum Verwenden von Containern benötigen Sie entweder Windows Server 2016 oder das Windows 10 Anniversary Update (Version 1607) oder höher. Weitere Informationen finden Sie in den [Systemanforderungen](../deploy-containers/system-requirements.md).
 
-## <a name="what-are-wcow-and-lcow"></a>Was sind wkuh und lkuh?
+## <a name="what-are-wcow-and-lcow"></a>Was sind WCOW und LCOW?
 
-Wkuh ist für Windows-Container unter Windows kurz. Lkuh ist für "Linux-Container unter Windows" kurz.
+WCOW ist die Kurzform von „Windows-Container unter Windows“ (Windows Containers On Windows). LCOW ist die Kurzform von „Linux-Container unter Windows“ (Linux Containers On Windows).
 
-## <a name="how-are-containers-licensed-is-there-a-limit-to-the-number-of-containers-i-can-run"></a>Wie werden Container lizenziert? Gibt es eine Beschränkung für die Anzahl der Container, die ich ausführen kann?
+## <a name="how-are-containers-licensed-is-there-a-limit-to-the-number-of-containers-i-can-run"></a>Wie werden Container lizenziert? Gibt es eine Einschränkung bezüglich der Anzahl von Containern, die ich ausführen kann?
 
-Das Windows-Container Image [EULA](../images-eula.md) beschreibt eine Verwendung, die davon abhängt, dass ein Benutzer über ein ordnungsgemäß lizenziertes Host Betriebssystem verfügt. Die Anzahl der Container, die ein Benutzer ausführen darf, hängt von der Host-Betriebssystem Edition und dem [Isolations Modus](../manage-containers/hyperv-container.md) ab, mit dem ein Container ausgeführt wird, sowie davon, ob diese Container für Entwicklungs-/Testzwecke oder in der Produktionsumgebung ausgeführt werden.
+Die [EULA](../images-eula.md) für Windows Containerimages beschreibt ein Nutzung, die verlangt, dass der Benutzer über ein Hostbetriebssystem mit einer gültigen Lizenz verfügt. Die Anzahl der Container, die ein Benutzer ausführen darf, hängt von der Edition des Hostbetriebssystems und dem [Isolationsmodus](../manage-containers/hyperv-container.md) ab, mit dem ein Container ausgeführt wird, sowie davon, ob diese Container zu Entwicklungs-/Testzwecken oder in der Produktion ausgeführt werden.
 
-|Hostbetriebssystem                                                         |Limit für Prozess isolierte Container                   |Limit für durch Hyper-V-isolierte Container                   |
+|Hostbetriebssystem                                                         |Grenzwert für prozessisolierte Container                   |Grenzwert für Hyper-V-isolierte Container                   |
 |----------------------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
 |Windows Server Standard                                         |Unbegrenzt                                          |2                                                  |
 |Windows Server Datacenter                                       |Unbegrenzt                                          |Unbegrenzt                                          |
-|Windows 10 pro und Enterprise                                   |Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|Unbegrenzt *(nur für Test-oder Entwicklungszwecke)*|
-|Windows 10 IOT Core und Enterprise                             |Grenzenlos                                         |Grenzenlos                                          |
+|Windows 10 Pro und Enterprise                                   |Unbegrenzt *(nur für Test- oder Entwicklungszwecke)*|Unbegrenzt *(nur für Test- oder Entwicklungszwecke)*|
+|Windows 10 IoT Core und Enterprise                             |Unbegrenzt*                                         |Unbegrenzt*                                          |
 
-Die Verwendung des Windows Server-Container Images wird durchlesen der Anzahl der für diese [Edition](/windows-server/get-started-19/editions-comparison-19.md)unterstützten Virtualisierungshosts ermittelt. <br/>
+Die Nutzung von Windows Server-Containerimages wird durch Lesen der Anzahl der Virtualisierungsgäste bestimmt, die für die betreffende [Edition](/windows-server/get-started-19/editions-comparison-19.md) unterstützt werden. <br/>
 
 >[!NOTE]
->\*Produktions Nutzung von Containern in einer IOT-Edition von Windows ist abhängig davon, ob Sie die kommerziellen Nutzungsbedingungen von Microsoft für Windows 10 Core-Lauf Zeit Images oder die Windows 10 IOT Enterprise-Geräte Lizenz ("Windows IOT-Handelsvereinbarung") zugestimmt haben. Zusätzliche Nutzungsbedingungen in den Windows IOT-Handelsvereinbarungen gelten für die Verwendung des Container Images in einer Produktionsumgebung. Lesen Sie das [Container Image EULA](../images-eula.md) , um genau zu verstehen, was zulässig ist und was nicht.
+>\*Die Verwendung von Containern in einer IoT-Edition von Windows ist abhängig davon, ob Sie die kommerziellen Nutzungsbedingungen von Microsoft für Windows 10 Core-Laufzeitimages oder der Windows 10 IoT Enterprise-Gerätelizenz („Kommerzielle Windows IoT-Vereinbarung“) zugestimmt haben. Zusätzliche Bestimmungen und Einschränkungen in den kommerziellen Windows-Vereinbarungen gelten für die Verwendung von Containerimages in einer Produktionsumgebung. Lesen Sie die [Containerimage-EULA](../images-eula.md), um genau zu verstehen, was zulässig und was unzulässig ist.
 
-## <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Muss ich als Entwickler meine APP für jeden Containertyp umschreiben?
+## <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Muss ich als Entwickler meine App für jeden Containertyp neu schreiben?
 
-Nein. Windows-Container Images sind für Windows Server-Container und Hyper-V-Isolation üblich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht des Entwicklers sind Windows Server-Container und Hyper-V-Isolation zwei Arten desselben. Sie bieten die gleiche Entwicklungs-, Programmierungs-und Verwaltungsfunktionen und sind offen und erweiterbar und enthalten die gleiche Ebene der Integration und Unterstützung mit Docker.
+Nein Windows-Containerimages sind für Windows Server-Container und Hyper-V-Isolierung gleich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht des Entwicklers sind Windows Server-Container und Hyper-V-Isolierung zwei Varianten der gleichen Sache. Sie bieten die gleiche Entwicklungs-, Programmier- und Verwaltungserfahrung, sind offen und erweiterbar und beinhalten das gleiche Maß an Integration und Unterstützung wie Docker.
 
-Ein Entwickler kann ein Container Image mithilfe eines Windows Server-Containers erstellen und in Hyper-V-Isolation oder umgekehrt ohne andere Änderungen als die Angabe des entsprechenden Laufzeitflags bereitstellen.
+Ein Entwickler kann ein Containerimage unter Verwendung eines Windows Server-Containers erstellen und es in Hyper-V-Isolierung oder umgekehrt bereitstellen, ohne dass irgendwelche Änderungen vorgenommen werden müssen, außer der Angabe des entsprechenden Laufzeitflags.
 
-Windows Server-Container bieten höhere Dichte und Leistung, wenn die Geschwindigkeit entscheidend ist, wie z. b. eine niedrigere aufzurufende Zeit und eine schnellere Laufzeitleistung im Vergleich zu den in der Umgebung Die Hyper-V-Isolation, die auf den Namen zutreffen, bietet eine größere Isolation und stellt sicher, dass der Code, der in einem Container ausgeführt wird, nicht beeinträchtigt wird oder Auswirkungen auf das Host Betriebssystem oder andere auf demselben Host ausgeführt wird. Dies ist hilfreich für mehr Instanzen fähige Szenarien mit Anforderungen für das Hosting von nicht vertrauenswürdigem Code, einschließlich SaaS-Anwendungen und computehosting.
+Windows Server-Container bieten eine größere Dichte und Leistung, wenn es auf Geschwindigkeit ankommt, z. B. eine geringere Hochfahrzeit und eine schnellere Laufzeitleistung im Vergleich zu geschachtelten Konfigurationen. Die Hyper-V-Isolierung bietet, wie der Name schon sagt, eine stärkere Isolierung, die sicherstellt, dass Code, der in einem Container ausgeführt wird, das Hostbetriebssystem oder andere Container, die auf demselben Host ausgeführt werden, nicht kompromittieren oder beeinträchtigen kann. Dies ist hilfreich für mehrinstanzenfähige Szenarien (mit Anforderungen für das Hosten von nicht vertrauenswürdigem Code), einschließlich SaaS-Anwendungen und Computehosting.
 
-## <a name="can-i-run-windows-containers-in-process-isolated-mode-on-windows-10"></a>Kann ich Windows-Container unter Windows 10 im Prozess isolierten Modus ausführen?
+## <a name="can-i-run-windows-containers-in-process-isolated-mode-on-windows-10"></a>Kann ich Windows-Container unter Windows 10 im prozessisolierten Modus ausführen?
 
-Ab dem Windows 10-Update vom Oktober 2018 können Sie einen Windows-Container mit Prozess Isolation ausführen. Sie müssen jedoch zunächst die Prozess Isolation direkt anfordern, indem Sie das `--isolation=process`-Flag verwenden, wenn Sie Ihre Container mit `docker run`ausführen. Die Prozess Isolation ist kompatibel mit Windows 10 pro, Windows 10 Enterprise, Windows 10 IOT Core und Windows 10 IOT Enterprise.
+Ab dem Windows 10-Update vom Oktober 2018 können Sie einen Windows-Container mit Prozessisolierung ausführen. Sie müssen jedoch zunächst Prozessisolierung direkt anfordern, indem Sie das Flag `--isolation=process` verwenden, wenn Sie Ihre Container mit `docker run` ausführen. Prozessisolierung ist mit Windows 10 Pro, Windows 10 Enterprise, Windows 10 IoT Core und Windows 10 IoT Enterprise kompatibel.
 
-Wenn Sie Ihre Windows-Container auf diese Weise ausführen möchten, müssen Sie sicherstellen, dass auf dem Host Windows 10 Build 17763 und höher ausgeführt wird und Sie über eine docker-Version mit der Engine 18,09 oder höher verfügen.
+Wenn Sie Ihre Windows-Container auf diese Weise ausführen möchten, müssen Sie sicherstellen, dass auf dem Host Windows 10 Build 17763 und höher ausgeführt wird und Sie über eine Docker-Version mit der Engine 18.09 oder höher verfügen.
 
 > [!WARNING]
-> Abgesehen von auf IOT Core-und IOT Enterprise-Hosts (nachdem Sie weitere Bedingungen und Einschränkungen akzeptiert haben) ist dieses Feature nur für Entwicklung und Tests gedacht. Sie sollten weiterhin Windows Server als Host für Produktions Bereitstellungen verwenden. Wenn Sie diese Funktion verwenden, müssen Sie auch sicherstellen, dass die Host-und Container Versions Tags Stimmen, da andernfalls der Container nicht gestartet werden kann oder nicht definiertes Verhalten aufweist.
+> Abgesehen von IoT Core- und IoT Enterprise-Hosts (nachdem Sie weitere Bestimmungen und Einschränkungen akzeptiert haben) ist dieses Feature nur für Entwicklung und Tests gedacht. Sie sollten weiterhin Windows Server als Host für Produktionsbereitstellungen verwenden. Wenn Sie diese Funktion verwenden, müssen Sie auch sicherstellen, dass die Host- und Containerversionstags übereinstimmen, da andernfalls der Container ggf. nicht gestartet wird oder nicht definiertes Verhalten aufweist.
 
-## <a name="how-do-i-make-my-container-images-available-on-air-gapped-machines"></a>Gewusst wie die Verfügbarkeit meiner Container Images auf abgelösten Computern?
+## <a name="how-do-i-make-my-container-images-available-on-air-gapped-machines"></a>Wie stelle ich meine Containerimages auf Air-Gap-Computern zur Verfügung?
 
-Windows-Containerbasis Images enthalten Artefakte, deren Verteilung durch eine Lizenz eingeschränkt ist. Wenn Sie auf diesen Images aufbauen und Sie per Push an eine private oder öffentliche Registrierung übermittelt haben, werden Sie feststellen, dass die Basisebene niemals per Push übermittelt wird Stattdessen wird das Konzept einer fremden Ebene verwendet, die auf die tatsächliche Basisschicht im Azure-cloudspeicher verweist.
+Windows-Containerbasisimages enthalten Artefakte, deren Weitergabe durch eine Lizenz eingeschränkt ist. Wenn Sie mit diesen Images Builds erstellen und sie in eine private oder öffentliche Registrierung pushen, werden Sie feststellen, dass die Basisebene niemals gepusht wird Stattdessen wird das Konzept einer Fremdebene verwendet, die auf die tatsächliche Basisebene im Azure-Cloudspeicher verweist.
 
-Dies kann die Dinge erschweren, wenn Sie einen Computer mit einem Computer haben, der nur Bilder von der Adresse Ihrer privaten Container Registrierung abrufen kann. In diesem Fall ist es nicht möglich, die fremd Schicht zu befolgen, um das Basis Image zu erhalten. Um das Verhalten der fremd Schicht zu überschreiben, können Sie das `--allow-nondistributable-artifacts`-Flag im docker-Daemon verwenden.
+Dies kann die Dinge erschweren, wenn Sie einen Air-Gap-Computer verwenden, der nur Images von der Adresse Ihrer privaten Containerregistrierung abrufen kann. In diesem Fall funktioniert es nicht, der Fremdebene zu folgen, um das Basisimage abzurufen. Um das Verhalten der Fremdebene außer Kraft zu setzen, können Sie das `--allow-nondistributable-artifacts`-Flag im Docker-Daemon verwenden.
 
 > [!IMPORTANT]
-> Die Verwendung dieses Flags schließt Ihre Verpflichtung nicht aus, die Bedingungen der Windows-Container-Basis Image Lizenz einzuhalten. Sie dürfen keinen Windows-Inhalt für die öffentliche oder Drittanbieter Verteilung bereitstellen. Die Verwendung in ihrer eigenen Umgebung ist zulässig.
+> Die Verwendung dieses Flags schließt Ihre Verpflichtung nicht aus, die Bedingungen der Lizenz für Windows-Containerbasisimages einzuhalten. Sie dürfen keinen Windows-Inhalt für die öffentliche oder Drittanbieterverteilung bereitstellen. Die Verwendung in ihrer eigenen Umgebung ist zulässig.
 
 ## <a name="additional-feedback"></a>Zusätzliches Feedback
 
-Möchten Sie den FAQ etwas hinzufügen? Öffnen Sie im Abschnitt "Kommentare" ein neues Feedback Problem, oder richten Sie eine Pull Request für diese Seite mit GitHub ein.
+Möchten Sie den FAQ etwas hinzufügen? Öffnen Sie im Abschnitt „Kommentare“ ein neues Issue für Feedback, oder richten Sie einen Pull Request für diese Seite mit GitHub ein.

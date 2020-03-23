@@ -10,7 +10,7 @@ ms.service: windows-10-hyperv
 ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
 ms.openlocfilehash: 0139f51e909149dde59f4030c6571aee82fed27e
 ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74909480"
@@ -22,7 +22,7 @@ Ihre virtuellen Computer benötigen ein virtuelles Netzwerk, wenn ein Netzwerk a
 
 ## <a name="connect-virtual-machines-to-the-internet"></a>Verbinden von virtuellen Computern mit dem Internet
 
-Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen Sie einen externen Switch, um das Netzwerk Ihres Computers für die virtuellen Maschinen freizugeben, die auf ihm ausgeführt werden.
+Hyper-V unterstützt drei Arten virtueller Switches – externe, interne und private. Erstellen Sie einen externen Switch zum Teilen des Netzwerks Ihres Computers mit den darin ausgeführten virtuellen Computern.
 
 In dieser Übung wird das Erstellen eines externen virtuellen Switches behandelt. Nach Abschluss der Übung verfügt Ihr Hyper-V-Host über einen virtuellen Switch, mit dem virtuelle Computer über die Netzwerkverbindung des Computers eine Verbindung mit dem Internet herstellen können. 
 
@@ -97,10 +97,10 @@ Im [Benutzerhandbuch für NAT-Networking](../user-guide/setup-nat-network.md) fi
 
 ### <a name="the-two-switch-approach"></a>Zwei Switches verwenden
 
-Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen drahtlosen Netzwerken und einem verkabelten Netzwerk wechseln, empfiehlt es sich, einen virtuellen Switch für die Ethernet-und drahtlos Netzwerkkarten zu erstellen.  Je nachdem, wie der Laptop mit dem Netzwerk verbunden ist, können Sie die virtuellen Computer zwischen diesen Switches ändern. Virtuelle Computer wechseln nicht automatisch zwischen verkabelt und drahtlos. 
+Wenn Sie Windows 10 Hyper-V auf einem Laptop ausführen und häufig zwischen einem Drahtlosnetzwerk und einem kabelgebundenen Netzwerk wechseln, empfiehlt es sich, einen virtuellen Switch für die Ethernet-Netzwerkkarte und einen für die WLAN-Netzwerkkarte zu erstellen.  Je nachdem, wie der Laptop mit dem Netzwerk verbunden ist, können Sie Ihre virtuellen Computer zwischen diesen Switches umschalten. Virtuelle Computer wechseln nicht automatisch zwischen kabelgebundenen und drahtlosen Netzwerken. 
 
 >[!IMPORTANT]
->Der Ansatz mit zwei Switches unterstützt keine externe Vswitch-over-Wireless-Karte und sollte nur zu Testzwecken verwendet werden.
+>Der Ansatz mit zwei Switches unterstützt keinen externen vSwitch über die Drahtloskarte und sollte nur zu Testzwecken verwendet werden.
 
 ## <a name="next-step---create-a-virtual-machine"></a>Nächster Schritt: Erstellen eines virtuellen Computers
-[Einen virtuellen Windows-Computer erstellen](create-virtual-machine.md)
+[Erstellen eines virtuellen Windows-Computers](create-virtual-machine.md)

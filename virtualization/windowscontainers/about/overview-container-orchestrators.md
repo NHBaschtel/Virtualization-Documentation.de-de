@@ -1,6 +1,6 @@
 ---
-title: Übersicht über die Windows-Container Orchestrierung
-description: Erfahren Sie mehr über Windows-containerorchestratoren.
+title: Übersicht über die Windows-Containerorchestrierung
+description: Erfahren Sie mehr über Windows-Containerorchestratoren.
 keywords: Docker, Container
 author: Heidilohr
 ms.author: helohr
@@ -10,36 +10,36 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.openlocfilehash: 23dd1e56ba68a679945779f5e7dbc15225412934
 ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/06/2020
 ms.locfileid: "78853905"
 ---
-# <a name="windows-container-orchestration-overview"></a>Übersicht über die Windows-Container Orchestrierung
+# <a name="windows-container-orchestration-overview"></a>Übersicht über die Windows-Containerorchestrierung
 
-Aufgrund ihrer geringen Größe und Anwendungs Ausrichtung eignen sich Container ideal für Agile-Übermittlungs Umgebungen und auf microservice basierende Architekturen. Eine Umgebung, in der Container und-Dienste verwendet werden, kann jedoch Hunderte oder Tausende von Komponenten enthalten, die nachverfolgt werden können. Möglicherweise sind Sie in der Lage, einige Dutzend virtuelle Computer oder physische Server manuell zu verwalten, aber es gibt keine Möglichkeit, eine Container Umgebung in der Produktionsumgebung ohne Automatisierung ordnungsgemäß zu verwalten. Diese Aufgabe sollte in ihren Orchestrator fallen, einem Prozess, bei dem eine große Anzahl von Containern automatisiert und verwaltet wird und wie Sie miteinander interagieren.
+Aufgrund ihrer geringen Größe und der Ausrichtung der Anwendung sind Container für flexible Übermittlungsumgebungen und Architekturen optimal geeignet, die auf Microservices basieren. Eine Umgebung, in der Container und Microservices verwendet werden, kann jedoch Hunderte oder Tausende von Komponenten enthalten, die nachverfolgt werden müssen. Sie können eventuell einige Dutzend virtuelle Computer oder physische Server manuell verwalten, es ist allerdings unmöglich, eine Containerumgebung der Großserienproduktion ordnungsgemäß zu verwalten, ohne diese zu automatisieren. Diese Aufgabe sollte Ihr Orchestrator übernehmen. Dies ist ein Prozess, der eine große Anzahl von Containern automatisiert und verwaltet und bestimmt, wie sie miteinander interagieren.
 
-Orchestratoren führen die folgenden Aufgaben aus:
+Orchestratoren können die folgenden Aufgaben ausführen:
 
-- Zeitplanung: bei Angabe eines Container Images und einer Ressourcen Anforderung findet der Orchestrator einen geeigneten Computer, auf dem der Container ausgeführt werden soll.
-- Affinität/antiaffinität: Geben Sie an, ob eine Gruppe von Containern für die Leistung oder weit auseinander geführt werden soll, um die Verfügbarkeit zu unterscheiden.
-- Statusüberwachung: Achten Sie auf Containerfehler und planen Sie diese automatisch erneut.
-- Failover: verfolgen Sie, was auf jedem Computer ausgeführt wird, und planen Sie Container von fehlgeschlagenen Computern auf fehlerfreie Knoten.
-- Skalierung: Fügen Sie Container Instanzen hinzu, oder entfernen Sie diese, um Sie manuell oder automatisch abzugleichen.
-- Netzwerk: Geben Sie ein Überlagerungs Netzwerk an, mit dem Container auf mehrere Host Computer verteilt werden.
-- Dienstermittlung: Ermöglichen Sie den Containern, sich auch dann gegenseitig automatisch zu suchen, wenn diese zwischen Hostcomputern wechseln und sich die IP-Adressen ändern.
-- Koordinierte Anwendungsupgrades: Verwalten Sie Containerupgrades, um die Ausfallzeiten der Anwendung zu vermeiden und ermöglichen Sie ein Rollback, wenn ein Fehler auftritt.
+- Planung: Bei Vorliegen eines Containerimages und einer Ressourcenanforderung sucht der Orchestrator nach einem geeigneten Computer, auf dem der Container ausgeführt werden soll.
+- Affinität/Antiaffinität: Geben Sie an, ob eine Gruppe von Containern aufgrund von Leistung nah beieinander oder aufgrund von Verfügbarkeit weit entfernt ausgeführt wird.
+- Integritätsüberwachung: Achten Sie auf Containerfehler, und planen Sie diese automatisch erneut.
+- Failover: Behalten Sie den Überblick über die auf jedem Computer ausgeführten Aufgaben, und planen Sie die Container von fehlerhaften Computern erneut auf fehlerfreien Knoten.
+- Skalierung: Fügen Sie Containerinstanzen bei Bedarf hinzu, oder entfernen Sie diese entweder manuell oder automatisch.
+- Netzwerk: Stellen Sie ein Überlagerungsnetzwerk für die Koordination der Container bereit, damit diese auf mehreren Hostcomputern miteinander kommunizieren.
+- Dienstermittlung: Ermöglichen Sie den Containern, sich auch dann gegenseitig automatisch zu ermitteln, wenn diese zwischen Hostcomputern verschoben werden und sich IP-Adressen ändern.
+- Koordinierte Anwendungsupgrades: Verwalten Sie Containerupgrades, um Ausfallzeiten der Anwendung zu vermeiden, und ermöglichen Sie ein Rollback, wenn ein Fehler auftritt.
 
-## <a name="orchestrator-types"></a>Orchestrator-Typen
+## <a name="orchestrator-types"></a>Orchestratortypen
 
-Azure bietet zwei containerorchestratoren: Azure Kubernetes Service (AKS) und Service Fabric.
+Azure bietet zwei Containerorchestratoren: Azure Kubernetes Service (AKS) und Service Fabric.
 
-[Azure Kubernetes Service (AKS)](/azure/aks/) vereinfacht das Erstellen, konfigurieren und Verwalten eines Clusters mit virtuellen Computern, die zum Ausführen von Container Anwendungen vorkonfiguriert sind. Dies ermöglicht es Ihnen, Ihre vorhandenen Fähigkeiten zu nutzen und sich auf ein großes und wachsendes Fachwissen der Community zu verlassen, um Container basierte Anwendungen auf Microsoft Azure bereitzustellen und zu verwalten. Mithilfe von AKS können Sie die Vorteile der Features von Azure für Unternehmen nutzen, während Sie weiterhin die Portabilität von Anwendungen über Kubernetes und das docker-Image Format aufrechterhalten.
+Mithilfe von [Azure Kubernetes Service (AKS)](/azure/aks/) kann ein Cluster aus virtuellen Computern erstellt, konfiguriert und verwaltet werden, die zum Ausführen von Anwendungen in Containern vorkonfiguriert wurden. Dadurch können Sie Ihre bereits vorhandenen Kenntnisse nutzen sowie vom großen und ständig wachsenden Fachwissen der Community profitieren, um auf Containern basierende Anwendungen in Microsoft Azure bereitzustellen und zu verwalten. Mit AKS können Sie für Unternehmen geeignete Funktionen von Azure nutzen und gleichzeitig die Anwendungsportabilität über Kubernetes und das Docker-Imageformat beibehalten.
 
 [Azure Service Fabric](/azure/service-fabric/) ist eine Plattform für verteilte Systeme, mit der das Verpacken, Bereitstellen und Verwalten von skalierbaren und zuverlässigen Microservices und Containern vereinfacht wird. Service Fabric behandelt die großen Herausforderungen bei der Entwicklung und Verwaltung von systemeigenen Cloudanwendungen. Entwickler und Administratoren können komplexe Infrastrukturprobleme vermeiden und sich auf die Implementierung kritischer, anspruchsvoller Workloads konzentrieren, die skalierbar, zuverlässig und überschaubar sind. Service Fabric ist die Plattform der nächsten Generation für das Erstellen und Verwalten von Anwendungen der Ebene 1, der Unternehmensklasse und der Cloudebene, die im Container ausgeführt werden.
 
 ## <a name="getting-started"></a>Erste Schritte
 
-Informationen zu den ersten Schritten bei der Bereitstellung von Azure Kubernetes Service finden Sie im [Kubernetes-Installationshandbuch](../kubernetes/getting-started-kubernetes-windows.md)
+Informationen zu den ersten Schritten bei der Bereitstellung von Azure Kubernetes Service finden Sie im [Kubernetes-Setupleitfaden](../kubernetes/getting-started-kubernetes-windows.md).
 
-Informationen zu den ersten Schritten bei der Bereitstellung von Azure Service Fabric finden Sie im [Service Fabric Schnellstart](/azure/service-fabric/service-fabric-quickstart-containers.md).
+Informationen zu den ersten Schritten bei der Bereitstellung von Azure Service Fabric finden Sie im [Service Fabric-Schnellstart](/azure/service-fabric/service-fabric-quickstart-containers.md).

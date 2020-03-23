@@ -9,7 +9,7 @@ ms.prod: windows-10-hyperv
 ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
 ms.openlocfilehash: 94ac197f5bc660e52d215fa132eae78f521e1c30
 ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74911650"
@@ -97,7 +97,7 @@ Um die Erstellung des virtuellen Computers abzuschließen, müssen Sie den virtu
 
 2. Klicken Sie in VMConnect auf die grüne Startschaltfläche. Dies entspricht dem Drücken der Einschalttaste eines physischen Computers. Sie werden möglicherweise aufgefordert, eine beliebige Taste zu drücken, um von CD oder DVD zu starten. Befolgen Sie diese Aufforderung.
 
-  > **Hinweis:** Sie müssen möglicherweise in das VMConnect-Fenster klicken, um sicherzustellen, dass Ihre Tastatureingaben an den virtuellen Computer gesendet werden.
+  > **Hinweis:** Sie müssen möglicherweise im VMConnect-Fenster klicken, um sicherzustellen, dass Ihre Tastatureingaben an den virtuellen Computer gesendet werden.
 
 3. Der virtuelle Computer wird mit der Setup-Phase gestartet. Durchlaufen Sie die Installation wie auf einem physischen Computer.
 

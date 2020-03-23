@@ -10,14 +10,14 @@ ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ms.openlocfilehash: 9fef74c029dc3efc220b1f9924d2695cdbaa61be
 ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74909660"
 ---
 # <a name="dockerfile-on-windows"></a>Dockerfile unter Windows
 
-Die Docker-Engine enthält Tools zum Automatisieren der Erstellung von Container Images. Obwohl Sie Container Images manuell erstellen können, indem Sie den `docker commit`-Befehl ausführen, bietet die Übernahme eines automatisierten Abbild Erstellungs Prozesses zahlreiche Vorteile, darunter:
+Die Docker-Engine umfasst Tools, die das Erstellen von Containerimages automatisieren. Containerimages können zwar manuell mit dem Befehl `docker commit` erstellt werden, doch die Verwendung eines automatisierten Imageerstellungsprozesses bietet viele Vorteile, unter anderem:
 
 - Speichern von Containerimages als Code.
 - Schnelle und präzise Neuerstellung von Containerimages für Wartung und Aktualisierung.
@@ -25,22 +25,22 @@ Die Docker-Engine enthält Tools zum Automatisieren der Erstellung von Container
 
 Die Docker-Komponenten, die diese Automatisierung steuern, sind die Dockerfile-Datei und der `docker build`-Befehl.
 
-Die dockerfile-Datei ist eine Textdatei, die die Anweisungen enthält, die zum Erstellen eines neuen Container Images erforderlich sind. Diese Anweisungen beinhalten die Identifikation eines vorhandenen Images, das als Basis verwendet werden kann, Befehle, die während des Erstellungsprozesses ausgeführt werden, und einen Befehl, der bei der Bereitstellung neuer Instanzen des Containerimages ausgeführt wird.
+Die Dockerfile-Datei ist eine Textdatei mit Anweisungen, die erforderlich sind, um ein neues Containerimage zu erstellen. Diese Anweisungen beinhalten die Identifikation eines vorhandenen Images, das als Basis verwendet werden kann, Befehle, die während des Erstellungsprozesses ausgeführt werden, und einen Befehl, der bei der Bereitstellung neuer Instanzen des Containerimages ausgeführt wird.
 
-Docker Build ist der Docker-Engine-Befehl, der eine dockerfile-Datei nutzt und den Image Erstellungs Prozess auslöst.
+„Docker Build“ ist der Befehl der Docker-Engine, der eine Dockerfile-Datei nutzt und den Imageerstellungsprozess auslöst.
 
-In diesem Thema erfahren Sie, wie Sie dockerfiles mit Windows-Containern verwenden, die grundlegende Syntax verstehen und die gängigsten dockerfile-Anweisungen verwenden.
+In diesem Thema erfahren Sie, wie Sie Dockerfile-Dateien mit Windows-Containern verwenden, die grundlegende Syntax verstehen und die gängigsten Dockerfile-Anweisungen verwenden.
 
-In diesem Dokument wird das Konzept von Container Images und Container Image Ebenen erörtert. Weitere Informationen zu Images und Bildschichten finden Sie unter [Containerbasis Images](../manage-containers/container-base-images.md).
+In diesem Dokument wird das Konzept von Containerimages und Containerimageebenen erörtert. Weitere Informationen zu Images und Imageebenen finden Sie unter [Containerbasisimages](../manage-containers/container-base-images.md).
 
-Einen umfassenden Einblick in dockerfiles finden Sie in der [dockerfile-Referenz](https://docs.docker.com/engine/reference/builder/).
+Umfassende Informationen zu Dockerfile-Dateien finden Sie in der [Dockerfile-Referenz](https://docs.docker.com/engine/reference/builder/).
 
 ## <a name="basic-syntax"></a>Grundlegende Syntax
 
 In ihrer grundlegendsten Form kann eine Dockerfile-Datei sehr einfach sein. Das folgende Beispiel erstellt ein neues Image, das IIS und eine „Hello World“-Website beinhaltet. Dieses Beispiel enthält Kommentare (mit `#` gekennzeichnet), die jeden Schritt erläutern. Die nachfolgenden Abschnitte dieses Artikels gehen ausführlicher auf Dockerfile-Syntaxregeln und -Anweisungen ein.
 
 >[!NOTE]
->Es muss eine dockerfile-Datei ohne Erweiterung erstellt werden. Um dies in Windows zu tun, erstellen Sie die Datei mit dem Editor Ihrer Wahl, und speichern Sie Sie dann mit der Notation "dockerfile" (einschließlich der Anführungszeichen).
+>Eine Dockerfile-Datei muss ohne Erweiterung erstellt werden. In Windows erstellen Sie die Datei mit einem Editor Ihrer Wahl und speichern sie dann als "Dockerfile" (einschließlich der Anführungszeichen).
 
 ```dockerfile
 # Sample Dockerfile
@@ -61,11 +61,11 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-Weitere Beispiele für dockerfiles für Windows finden Sie unter [dockerfile für Windows-Repository](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
+Weitere Beispiele für Dockerfile-Dateien für Windows finden Sie im [Repository „Dockerfile for Windows“](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
 
 ## <a name="instructions"></a>Anweisungen
 
-Dockerfile-Anweisungen stellen der Docker-Engine die Anweisungen zur Verfügung, die zum Erstellen eines Container Images erforderlich sind. Diese Anweisungen werden nacheinander und in der richtigen Reihenfolge ausgeführt. In den folgenden Beispielen finden Sie die am häufigsten verwendeten Anweisungen in dockerfiles. Eine umfassende Liste der dockerfile-Anweisungen finden Sie in der [dockerfile-Referenz](https://docs.docker.com/engine/reference/builder/).
+Dockerfile-Anweisungen informieren die Docker-Engine über die erforderlichen Schritte zum Erstellen eines Containerimages. Diese Anweisungen werden einzeln der Reihe nach ausgeführt. In den folgenden Beispielen finden Sie die am häufigsten verwendeten Anweisungen in Dockerfile-Dateien. Eine umfassende Liste der Dockerfile-Anweisungen finden Sie in der [Dockerfile-Referenz](https://docs.docker.com/engine/reference/builder/).
 
 ### <a name="from"></a>FROM
 
@@ -77,20 +77,20 @@ Das Format der FROM-Anweisung sieht wie folgt aus:
 FROM <image>
 ```
 
-Im folgenden finden Sie ein Beispiel für den from-Befehl:
+Hier sehen Sie ein Beispiel für den FROM-Befehl:
 
-So laden Sie die ltsc2019-Version von Windows Server Core vom Microsoft Container Registry (MCR) herunter:
+Laden Sie die Version ltsc2019 von Windows Server Core aus Microsoft Container Registry (MCR) herunter:
 ```
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 ```
 
-Ausführlichere Informationen finden Sie in der [from-Referenz](https://docs.docker.com/engine/reference/builder/#from).
+Weitere Informationen finden Sie in der [FROM-Referenz](https://docs.docker.com/engine/reference/builder/#from).
 
 ### <a name="run"></a>RUN
 
 Die `RUN`-Anweisung gibt Befehle an, die ausgeführt und im neuen Containerimage erfasst werden sollen. Diese Befehle können Elemente wie das Installieren von Software sowie das Erstellen von Dateien, Verzeichnissen und Umgebungskonfigurationen enthalten.
 
-Die Run-Anweisung sieht wie folgt aus:
+Die RUN-Anweisung sieht wie folgt aus:
 
 ```dockerfile
 # exec form
@@ -102,9 +102,9 @@ RUN ["<executable>", "<param 1>", "<param 2>"]
 RUN <command>
 ```
 
-Der Unterschied zwischen dem exec-und dem shellformular besteht darin, wie die `RUN` Anweisung ausgeführt wird. Bei Verwendung des Exec-Formats wird das angegebene Programm explizit ausgeführt.
+Das Exec- und Shell-Format unterscheiden sich darin, wie die `RUN`-Anweisung ausgeführt wird. Bei Verwendung des Exec-Formats wird das angegebene Programm explizit ausgeführt.
 
-Im folgenden finden Sie ein Beispiel für das Exec-Formular:
+Das folgende Beispiel zeigt das Exec-Format:
 
 ```
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -112,7 +112,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN ["powershell", "New-Item", "c:/test"]
 ```
 
-Das resultierende Image führt den `powershell New-Item c:/test` Befehl aus:
+Das sich ergebende Image führt den Befehl `powershell New-Item c:/test` aus:
 
 ```dockerfile
 docker history doc-exe-method
@@ -121,7 +121,7 @@ IMAGE               CREATED             CREATED BY                    SIZE      
 b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
 ```
 
-Im folgenden Beispiel wird der gleiche Vorgang in shellform ausgeführt:
+Im Gegensatz dazu wird im folgenden Beispiel der gleiche Vorgang im Shell-Format ausgeführt:
 
 ```
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -129,7 +129,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN powershell New-Item c:\test
 ```
 
-Das resultierende Bild verfügt über eine Run-Anweisung `cmd /S /C powershell New-Item c:\test`.
+Das sich ergebende Image weist eine Ausführungsanweisung `cmd /S /C powershell New-Item c:\test` auf.
 
 ```dockerfile
 docker history doc-shell-method
@@ -138,7 +138,7 @@ IMAGE               CREATED             CREATED BY                              
 062a543374fc        19 seconds ago      cmd /S /C powershell New-Item c:\test   30.76 MB
 ```
 
-### <a name="considerations-for-using-run-with-windows"></a>Überlegungen zur Verwendung von Run with Windows
+### <a name="considerations-for-using-run-with-windows"></a>Überlegungen zur Verwendung von RUN mit Windows
 
 Wenn unter Windows die `RUN`-Anweisung mit dem Exec-Format verwendet wird, müssen umgekehrte Schrägstriche mit Escapezeichen versehen werden.
 
@@ -146,97 +146,97 @@ Wenn unter Windows die `RUN`-Anweisung mit dem Exec-Format verwendet wird, müss
 RUN ["powershell", "New-Item", "c:\\test"]
 ```
 
-Wenn das Zielprogramm ein Windows Installer ist, müssen Sie das Setup über das `/x:<directory>`-Flag extrahieren, bevor Sie das eigentliche (unbeaufsichtigte) Installationsverfahren starten können. Sie müssen auch warten, bis der Befehl beendet wird, bevor Sie etwas anderes tun. Andernfalls wird der Prozess vorzeitig beendet, ohne etwas zu installieren. Weitere Informationen finden Sie im folgenden Beispiel.
+Wenn das Zielprogramm ein Windows-Installer ist, müssen Sie das Setup über das `/x:<directory>`-Flag extrahieren, bevor Sie das eigentliche (unbeaufsichtigte) Installationsverfahren starten können. Sie müssen außerdem warten, bis der Befehl beendet wird, bevor Sie eine andere Aktion ausführen. Andernfalls endet der Vorgang vorzeitig, ohne dass etwas installiert wurde. Weitere Informationen finden Sie im folgenden Beispiel.
 
-#### <a name="examples-of-using-run-with-windows"></a>Beispiele für die Verwendung von Run with Windows
+#### <a name="examples-of-using-run-with-windows"></a>Beispiele für die Verwendung von RUN mit Windows
 
-Die folgende dockerfile-Beispieldatei verwendet die-Funktion zum Installieren von IIS im Container Image:
+Die folgende Dockerfile-Beispieldatei verwendet DISM zum Installieren von IIS im Containerimage:
 
 ```dockerfile
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
-In diesem Beispiel wird das verteilbare Paket von Visual Studio installiert. `Start-Process` und der Parameter `-Wait` werden verwendet, um das Installationsprogramm auszuführen. Dadurch wird sichergestellt, dass die Installation abgeschlossen wird, bevor Sie mit der nächsten Anweisung in der dockerfile-Datei fortfahren.
+In diesem Beispiel wird das verteilbare Paket von Visual Studio installiert. `Start-Process` und der Parameter `-Wait` werden verwendet, um das Installationsprogramm auszuführen. Dadurch wird gewährleistet, dass die Installation abgeschlossen wird, bevor in der Dockerfile-Datei mit der nächsten Anweisung begonnen wird.
 
 ```dockerfile
 RUN powershell.exe -Command Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
 ```
 
-Ausführliche Informationen zur Run-Anweisung finden Sie in der [Run-Referenz](https://docs.docker.com/engine/reference/builder/#run).
+Ausführliche Informationen zur RUN-Anweisung finden Sie in der [RUN-Referenz](https://docs.docker.com/engine/reference/builder/#run).
 
 ### <a name="copy"></a>KOPIEREN
 
-Die `COPY` Anweisung kopiert Dateien und Verzeichnisse in das Dateisystem des Containers. Die Dateien und Verzeichnisse müssen sich in einem Pfad befinden, der relativ zur dockerfile-Datei ist.
+Die `COPY`-Anweisung kopiert Dateien und Verzeichnisse in das Dateisystem des Containers. Die Dateien und Verzeichnisse müssen sich in einem zur Dockerfile-Datei relativen Pfad befinden.
 
-Das Format der `COPY` Anweisung lautet wie folgt:
+Das Format der `COPY`-Anweisung sieht wie folgt aus:
 
 ```dockerfile
 COPY <source> <destination>
 ```
 
-Wenn die Quelle oder das Ziel Leerzeichen enthält, schließen Sie den Pfad in eckige Klammern und doppelte Anführungszeichen ein, wie im folgenden Beispiel gezeigt:
+Wenn die Quelle oder das Ziel Leerzeichen enthalten, schließen Sie den Pfad in eckige Klammern und doppelte Anführungszeichen ein. Das folgende Beispiel zeigt dies:
 
 ```dockerfile
 COPY ["<source>", "<destination>"]
 ```
 
-#### <a name="considerations-for-using-copy-with-windows"></a>Überlegungen zur Verwendung von Copy mit Windows
+#### <a name="considerations-for-using-copy-with-windows"></a>Überlegungen zur Verwendung von COPY mit Windows
 
-Unter Windows müssen im Zielformat Schrägstriche verwendet werden. Diese `COPY` Anweisungen sind z. b. gültig:
+Unter Windows müssen im Zielformat Schrägstriche verwendet werden. Dies sind z. B. gültige `COPY`-Anweisungen:
 
 ```dockerfile
 COPY test1.txt /temp/
 COPY test1.txt c:/temp/
 ```
 
-In der Zwischenzeit funktionieren folgende Formate mit umgekehrten Schrägstrichen nicht:
+Folgende Formate mit umgekehrten Schrägstrichen funktionieren jedoch nicht:
 
 ```dockerfile
 COPY test1.txt c:\temp\
 ```
 
-#### <a name="examples-of-using-copy-with-windows"></a>Beispiele für die Verwendung von Copy mit Windows
+#### <a name="examples-of-using-copy-with-windows"></a>Beispiele für die Verwendung von COPY mit Windows
 
-Im folgenden Beispiel wird der Inhalt des Quell Verzeichnisses einem Verzeichnis mit dem Namen `sqllite` im Container Image hinzugefügt:
+Im folgenden Beispiel wird der Inhalt des Quellverzeichnisses in ein Verzeichnis namens `sqllite` kopiert, das sich im Containerimage befindet:
 
 ```dockerfile
 COPY source /sqlite/
 ```
 
-Im folgenden Beispiel werden alle Dateien, die mit config beginnen, dem `c:\temp`-Verzeichnis des Container Images hinzugefügt:
+Im folgenden Beispiel werden alle Dateien, die mit „config“ beginnen, dem Verzeichnis `c:\temp` des Containerimages hinzugefügt:
 
 ```dockerfile
 COPY config* c:/temp/
 ```
 
-Ausführlichere Informationen zur `COPY`-Anweisung finden Sie in der [Referenz zum Kopieren](https://docs.docker.com/engine/reference/builder/#copy).
+Ausführliche Informationen zur `COPY`-Anweisung finden Sie in der [COPY-Referenz](https://docs.docker.com/engine/reference/builder/#copy).
 
-### <a name="add"></a>HINZUFÜGEN
+### <a name="add"></a>ADD
 
-Die Add-Anweisung ähnelt der Copy-Anweisung, aber mit noch mehr Funktionen. Die `ADD`-Anweisung kann nicht nur Dateien vom Host in das Containerimage kopieren, sondern auch von einem Remotestandort aus mit einer URL-Spezifikation.
+Die ADD-Anweisung ähnelt der COPY-Anweisung, weist aber noch mehr Funktionen auf. Die `ADD`-Anweisung kann nicht nur Dateien vom Host in das Containerimage kopieren, sondern auch von einem Remotestandort aus mit einer URL-Spezifikation.
 
-Das Format der `ADD` Anweisung lautet wie folgt:
+Das Format der `ADD`-Anweisung sieht wie folgt aus:
 
 ```dockerfile
 ADD <source> <destination>
 ```
 
-Wenn die Quelle oder das Ziel Leerzeichen enthält, schließen Sie den Pfad in eckige Klammern und doppelte Anführungszeichen ein:
+Wenn die Quelle oder das Ziel Leerzeichen enthalten, schließen Sie den Pfad in eckige Klammern und doppelte Anführungszeichen ein:
 
 ```dockerfile
 ADD ["<source>", "<destination>"]
 ```
 
-#### <a name="considerations-for-running-add-with-windows"></a>Überlegungen zum Ausführen von Add with Windows
+#### <a name="considerations-for-running-add-with-windows"></a>Überlegungen zur Ausführung von ADD mit Windows
 
-Unter Windows müssen im Zielformat Schrägstriche verwendet werden. Diese `ADD` Anweisungen sind z. b. gültig:
+Unter Windows müssen im Zielformat Schrägstriche verwendet werden. Dies sind z. B. gültige `ADD`-Anweisungen:
 
 ```dockerfile
 ADD test1.txt /temp/
 ADD test1.txt c:/temp/
 ```
 
-In der Zwischenzeit funktionieren folgende Formate mit umgekehrten Schrägstrichen nicht:
+Folgende Formate mit umgekehrten Schrägstrichen funktionieren jedoch nicht:
 
 ```dockerfile
 ADD test1.txt c:\temp\
@@ -244,39 +244,39 @@ ADD test1.txt c:\temp\
 
 Außerdem erweitert die `ADD`-Anweisung unter Linux komprimierte Pakete beim Kopieren. Diese Funktionalität ist in Windows nicht verfügbar.
 
-#### <a name="examples-of-using-add-with-windows"></a>Beispiele für die Verwendung von Add with Windows
+#### <a name="examples-of-using-add-with-windows"></a>Beispiele für die Verwendung von ADD mit Windows
 
-Im folgenden Beispiel wird der Inhalt des Quell Verzeichnisses einem Verzeichnis mit dem Namen `sqllite` im Container Image hinzugefügt:
+Im folgenden Beispiel wird der Inhalt des Quellverzeichnisses in ein Verzeichnis namens `sqllite` kopiert, das sich im Containerimage befindet:
 
 ```dockerfile
 ADD source /sqlite/
 ```
 
-Im folgenden Beispiel werden alle Dateien, die mit "config" beginnen, dem `c:\temp`-Verzeichnis des Container Images hinzugefügt.
+Im folgenden Beispiel werden alle Dateien, die mit „config“ beginnen, dem Verzeichnis `c:\temp` des Containerimages hinzugefügt.
 
 ```dockerfile
 ADD config* c:/temp/
 ```
 
-Im folgenden Beispiel wird python für Windows in das `c:\temp`-Verzeichnis des Container Images heruntergeladen.
+In diesem Beispiel wird Python für Windows in das Verzeichnis `c:\temp` des Containerimages heruntergeladen.
 
 ```dockerfile
 ADD https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe /temp/python-3.5.1.exe
 ```
 
-Ausführlichere Informationen zur `ADD`-Anweisung finden Sie in der [Add-Referenz](https://docs.docker.com/engine/reference/builder/#add).
+Ausführlichere Informationen zur `ADD`-Anweisung finden Sie in der [ADD-Referenz](https://docs.docker.com/engine/reference/builder/#add).
 
 ### <a name="workdir"></a>WORKDIR
 
 Die `WORKDIR`-Anweisung legt ein Arbeitsverzeichnis für andere Dockerfile-Anweisungen wie z.B. `RUN` und `CMD` sowie das Arbeitsverzeichnis für ausgeführte Instanzen des Containerimages fest.
 
-Das Format der `WORKDIR` Anweisung lautet wie folgt:
+Das Format der `WORKDIR`-Anweisung sieht wie folgt aus:
 
 ```dockerfile
 WORKDIR <path to working directory>
 ```
 
-#### <a name="considerations-for-using-workdir-with-windows"></a>Überlegungen zur Verwendung von WorkDir mit Windows
+#### <a name="considerations-for-using-workdir-with-windows"></a>Überlegungen zur Verwendung von WORKDIR mit Windows
 
 Wenn das Arbeitsverzeichnis unter Windows einen umgekehrten Schrägstrich enthält, muss es mit Escapezeichen versehen werden.
 
@@ -290,13 +290,13 @@ WORKDIR c:\\windows
 WORKDIR c:\\Apache24\\bin
 ```
 
-Ausführliche Informationen zur `WORKDIR`-Anweisung finden Sie in der [WorkDir-Referenz](https://docs.docker.com/engine/reference/builder/#workdir).
+Ausführliche Informationen zur `WORKDIR`-Anweisung finden Sie in der [WORKDIR-Referenz](https://docs.docker.com/engine/reference/builder/#workdir).
 
 ### <a name="cmd"></a>CMD
 
-Die `CMD`-Anweisung legt den Standardbefehl fest, der bei der Bereitstellung einer Instanz des Containerimages ausgeführt werden soll. Wenn der Container beispielsweise einen nginx-Webserver als Host verwendet, können die `CMD` Anweisungen zum Starten des Webservers mit einem Befehl wie `nginx.exe`enthalten. Wenn mehrere `CMD`-Anweisungen in einer Dockerfile-Datei angegeben sind, wird nur die letzte ausgewertet.
+Die `CMD`-Anweisung legt den Standardbefehl fest, der bei der Bereitstellung einer Instanz des Containerimages ausgeführt werden soll. Wenn der Container beispielsweise einen NGINX-Webserver hostet, könnte `CMD` Anweisungen zum Starten des Webservers mit einem Befehl wie `nginx.exe` enthalten. Wenn mehrere `CMD`-Anweisungen in einer Dockerfile-Datei angegeben sind, wird nur die letzte ausgewertet.
 
-Das Format der `CMD` Anweisung lautet wie folgt:
+Das Format der `CMD`-Anweisung sieht wie folgt aus:
 
 ```dockerfile
 # exec form
@@ -308,9 +308,9 @@ CMD ["<executable", "<param>"]
 CMD <command>
 ```
 
-#### <a name="considerations-for-using-cmd-with-windows"></a>Überlegungen zur Verwendung von cmd mit Windows
+#### <a name="considerations-for-using-cmd-with-windows"></a>Überlegungen zur Verwendung von CMD mit Windows
 
-Unter Windows müssen in Dateipfaden, die in der `CMD`-Anweisung angegeben werden, Schrägstriche oder mit Escapezeichen versehene umgekehrte Schrägstriche `\\` verwendet werden. Die folgenden `CMD` Anweisungen sind gültig:
+Unter Windows müssen in Dateipfaden, die in der `CMD`-Anweisung angegeben werden, Schrägstriche oder mit Escapezeichen versehene umgekehrte Schrägstriche `\\` verwendet werden. Die folgenden Anweisungen sind gültige `CMD`-Anweisungen:
 
 ```dockerfile
 # exec form
@@ -328,13 +328,13 @@ Das folgende Format ohne die entsprechenden Schrägstriche funktioniert jedoch n
 CMD c:\Apache24\bin\httpd.exe -w
 ```
 
-Ausführlichere Informationen zur `CMD`-Anweisung finden Sie in der [cmd-Referenz](https://docs.docker.com/engine/reference/builder/#cmd).
+Ausführlichere Informationen zur `CMD`-Anweisung finden Sie in der [CMD-Referenz](https://docs.docker.com/engine/reference/builder/#cmd).
 
 ## <a name="escape-character"></a>Escapezeichen
 
-In vielen Fällen muss eine dockerfile-Anweisung mehrere Zeilen umfassen. Zu diesem Zweck können Sie ein Escapezeichen verwenden. In einer Dockerfile-Anweisung wird als Escapezeichen standardmäßig ein umgekehrter Schrägstrich verwendet: `\`. Da der umgekehrte Schrägstrich jedoch auch ein Dateipfad Trennzeichen in Windows ist, kann die Verwendung für mehrere Zeilen zu Problemen führen. Um dies zu umgehen, können Sie eine parserdirektive verwenden, um das Standardescapezeichen zu ändern. Weitere Informationen zu parserdirektiven finden Sie unter [Parser-Direktiven](https://docs.docker.com/engine/reference/builder/#parser-directives).
+Eine Dockerfile-Anweisung muss häufig mehrere Zeilen umfassen. Zu diesem Zweck können Sie ein Escapezeichen verwenden. In einer Dockerfile-Anweisung wird als Escapezeichen standardmäßig ein umgekehrter Schrägstrich verwendet: `\`. Da der umgekehrte Schrägstrich jedoch auch ein Trennzeichen für Dateipfade in Windows ist, kann seine Verwendung zur Angabe von mehreren Zeilen zu Problemen führen. Als Problemumgehung können Sie eine Parserdirektive zum Ändern des Standardescapezeichens verwenden. Weitere Informationen zu Parserdirektiven finden Sie unter [Parserdirektiven](https://docs.docker.com/engine/reference/builder/#parser-directives).
 
-Im folgenden Beispiel wird eine einzelne Lauf Anweisung gezeigt, die mehrere Zeilen mit dem Standardescapezeichen umfasst:
+Das folgende Beispiel zeigt eine einzelne RUN-Anweisung, die mehrere Zeilen umfasst und für die das Standardescapezeichen verwendet wird:
 
 ```
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -349,7 +349,7 @@ RUN powershell.exe -Command \
 Platzieren Sie zum Ändern des Escapezeichens eine Escape-Parser-Anweisung in der ersten Zeile der Dockerfile-Datei. Dies wird im folgenden Beispiel veranschaulicht.
 
 >[!NOTE]
->Es können nur zwei Werte als Escapezeichen verwendet werden: `\` und `` ` ``.
+>Nur zwei Werte können als Escapezeichen verwendet werden: `\` und `` ` ``.
 
 ```dockerfile
 # escape=`
@@ -363,13 +363,13 @@ RUN powershell.exe -Command `
     Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-Weitere Informationen zur Escape-Parser-Direktive finden Sie unter [Escape-Parser-Direktive](https://docs.docker.com/engine/reference/builder/#escape).
+Weitere Informationen zur Escape-Parserdirektive finden Sie unter [Escape-Parserdirektive](https://docs.docker.com/engine/reference/builder/#escape).
 
 ## <a name="powershell-in-dockerfile"></a>PowerShell in Dockerfile
 
 ### <a name="powershell-cmdlets"></a>PowerShell-Cmdlets
 
-PowerShell-Cmdlets können mit dem `RUN`-Vorgang in einer dockerfile-Datei ausgeführt werden.
+PowerShell-Cmdlets können mit dem `RUN`-Vorgang in einer Dockerfile-Datei ausgeführt werden.
 
 ```
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -377,9 +377,9 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 ```
 
-### <a name="rest-calls"></a>Rest-Aufrufe
+### <a name="rest-calls"></a>REST-Aufrufe
 
-Das PowerShell-Cmdlet "`Invoke-WebRequest`" kann beim Sammeln von Informationen oder Dateien aus einem Webdienst nützlich sein. Wenn Sie z. b. ein Image erstellen, das python enthält, können Sie `$ProgressPreference` auf `SilentlyContinue` festlegen, um schnellere Downloads zu erzielen, wie im folgenden Beispiel gezeigt.
+Das PowerShell-Cmdlet `Invoke-WebRequest` kann beim Erfassen von Informationen oder Dateien von einem Webdienst hilfreich sein. Wenn Sie z. B. ein Image erstellen, das Python enthält, können Sie `$ProgressPreference` auf `SilentlyContinue` festlegen, um schnellere Downloads zu erreichen, wie im folgenden Beispiel gezeigt wird.
 
 ```
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
@@ -408,14 +408,14 @@ RUN powershell.exe -Command \
 ```
 
 >[!NOTE]
->Der WebClient wird von Nano Server derzeit nicht unterstützt.
+>Nano Server unterstützt WebClient zurzeit nicht.
 
 ### <a name="powershell-scripts"></a>PowerShell-Skripts
 
-In einigen Fällen kann es hilfreich sein, ein Skript in die Container zu kopieren, die Sie während der Abbild Erstellung verwenden, und dann das Skript aus dem Container heraus auszuführen.
+In einigen Fällen kann es hilfreich sein, ein Skript in die Container zu kopieren, die Sie während des Vorgangs der Imageerstellung verwende, und das Skript dann aus dem Container heraus auszuführen.
 
 >[!NOTE]
->Dadurch wird das Zwischenspeichern von Bildebenen eingeschränkt und die Lesbarkeit der dockerfile-Datei verringert.
+>Hierdurch wird das Zwischenspeichern von Imageebenen eingeschränkt und die Lesbarkeit der Dockerfile-Datei verringert.
 
 In diesem Beispiel wird ein Skript vom Buildcomputer mithilfe der `ADD`-Anweisung in den Container kopiert. Dieses Skript wird dann mit der RUN-Anweisung ausgeführt.
 
@@ -425,23 +425,23 @@ ADD script.ps1 /windows/temp/script.ps1
 RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 ```
 
-## <a name="docker-build"></a>Docker-Build
+## <a name="docker-build"></a>Docker build
 
-Nachdem eine dockerfile-Datei erstellt und auf dem Datenträger gespeichert wurde, können Sie `docker build` ausführen, um das neue Image zu erstellen. Der `docker build`-Befehl unterstützt verschiedene optionale Parameter und einen Pfad zur Dockerfile-Datei. Eine vollständige Dokumentation zu docker Build, einschließlich einer Liste aller Buildoptionen, finden Sie in der [buildreferenz](https://docs.docker.com/engine/reference/commandline/build/#build).
+Sobald Sie eine Dockerfile-Datei erstellt und auf der Festplatte gespeichert haben, können Sie `docker build` ausführen, um das neue Image zu erstellen. Der `docker build`-Befehl unterstützt verschiedene optionale Parameter und einen Pfad zur Dockerfile-Datei. Eine vollständige Dokumentation zu Docker Build einschließlich einer Liste aller Buildoptionen finden Sie in der [Build-Referenz](https://docs.docker.com/engine/reference/commandline/build/#build).
 
-Das Format des `docker build` Befehls lautet wie folgt:
+Das Format des Befehls `docker build` sieht wie folgt aus:
 
 ```dockerfile
 docker build [OPTIONS] PATH
 ```
 
-Beispielsweise wird mit dem folgenden Befehl ein Image mit dem Namen "IIS" erstellt.
+Der folgende Befehl erstellt z. B. ein Image mit dem Namen „iis“.
 
 ```dockerfile
 docker build -t iis .
 ```
 
-Wenn der Buildprozess initiiert wurde, zeigt die Ausgabe den Status an und gibt alle ausgelösten Fehler zurück.
+Wenn der Buildprozess eingeleitet wurde, wird der Status ausgegeben, und ggf. werden Fehlermeldungen zurückgegeben.
 
 ```dockerfile
 C:\> docker build -t iis .
@@ -472,7 +472,7 @@ Removing intermediate container 9a26b8bcaa3a
 Successfully built e2aafdfbe392
 ```
 
-Das Ergebnis ist ein neues Container Image, das in diesem Beispiel den Namen "IIS" hat.
+Das Ergebnis ist ein neues Containerimage, das in diesem Beispiel den Namen „iis“ trägt.
 
 ```dockerfile
 docker images
@@ -482,7 +482,7 @@ iis                 latest              e2aafdfbe392        About a minute ago  
 windowsservercore   latest              6801d964fda5        4 months ago         0 B
 ```
 
-## <a name="further-reading-and-references"></a>Weitere Informationen und Verweise
+## <a name="further-reading-and-references"></a>Weitere Informationen und Referenzen
 
-- [Optimieren von dockerfiles und docker Build für Windows](optimize-windows-dockerfile.md)
+- [Optimieren von Dockerfile-Dateien und Docker build für Windows](optimize-windows-dockerfile.md)
 - [Dockerfile-Referenz](https://docs.docker.com/engine/reference/builder/)

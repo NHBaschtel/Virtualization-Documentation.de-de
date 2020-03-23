@@ -1,7 +1,7 @@
 ---
-title: Konfigurieren von virtuellen Computern für die direkte Kommunikation mit Ressourcen in einer Azure-Virtual Network
+title: Konfigurieren geschachtelter VMs für die direkte Kommunikation mit Ressourcen in einem Azure Virtual Network
 description: Geschachtelte Virtualisierung
-keywords: Windows 10, Hyper-v, Azure
+keywords: Windows 10, Hyper-V, Azure
 author: mrajess
 ms.date: 12/10/2018
 ms.topic: article
@@ -10,54 +10,54 @@ ms.service: windows-10-hyperv
 ms.assetid: 1ecb85a6-d938-4c30-a29b-d18bd007ba08
 ms.openlocfilehash: b7944e34cab66df07df0ccc78947a774d775c9a7
 ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 03/06/2020
 ms.locfileid: "78853944"
 ---
-# <a name="configure-nested-vms-to-communicate-with-resources-in-an-azure-virtual-network"></a>Konfigurieren von virtuellen Computern für die Kommunikation mit Ressourcen in einem virtuellen Azure-Netzwerk
+# <a name="configure-nested-vms-to-communicate-with-resources-in-an-azure-virtual-network"></a>Konfigurieren geschachtelter VMs für die Kommunikation mit Ressourcen in einem Azure Virtual Network
 
-Die ursprüngliche Anleitung zum Bereitstellen und Konfigurieren von geschachtelten virtuellen Computern in Azure erfordert, dass Sie über einen NAT-Switch auf diese VMS zugreifen. Dies stellt verschiedene Einschränkungen dar:
+Die ursprüngliche Anleitung zum Bereitstellen und Konfigurieren von geschachtelten virtuellen Computern in Azure erfordert, dass Sie über einen NAT-Switch auf diese VMs zugreifen. Daraus ergeben sich verschiedene Einschränkungen:
 
-1. Geschachtelte VMs können nicht auf lokale Ressourcen oder innerhalb eines Azure-Virtual Network zugreifen.
-2. Lokale Ressourcen oder Ressourcen in Azure können nur über eine NAT auf die geschachtelten VMS zugreifen. Dies bedeutet, dass mehrere Gäste denselben Port nicht gemeinsam verwenden können.
+1. Geschachtelte VMs können nicht auf lokale Ressourcen oder innerhalb eines Azure Virtual Network zugreifen.
+2. Lokale Ressourcen oder Ressourcen in Azure können nur über eine NAT auf die geschachtelten VMs zugreifen. Dies bedeutet, dass mehrere Gäste denselben Port nicht gemeinsam verwenden können.
 
-In diesem Dokument wird eine Bereitstellung erläutert, bei der wir RRAS, benutzerdefinierte Routen, ein Subnetz für die ausgehende NAT verwenden, um den Zugriff auf das Gast Betriebssystem zuzulassen, und einen "unverankerten" Adressraum, um zuzulassen, dass sich das Verhalten von virtuellen Computern und die Kommunikation wie jeder andere virtuelle Computer verhält. direkt in einem vnet in Azure bereitgestellt.
+In diesem Dokument wird eine Bereitstellung untersucht, bei der wir RRAS, benutzerdefinierte Routen sowie ein Subnetz für ausgehende NAT, um Gastinternetzugriff zu ermöglichen, und einen „schwebenden“ Adressraum verwenden, damit sich geschachtelte VMs wie jeder andere virtuelle Computer verhalten und kommunizieren können, der direkt in einem VNET in Azure bereitgestellt wird.
 
-Bevor Sie mit diesem Leitfaden beginnen, sollten Sie Folgendes tun:
+Bevor Sie mit diesem Leitfaden beginnen, sollten folgendermaßen vorgehen:
 
-1. Lesen Sie die [hier bereitgestellten Anleitungen](https://docs.microsoft.com/azure/virtual-machines/windows/nested-virtualization) zur schsted Virtualisierung.
+1. Lesen Sie die [hier bereitgestellten Anleitungen](https://docs.microsoft.com/azure/virtual-machines/windows/nested-virtualization) zur geschachtelter Virtualisierung.
 2. Lesen Sie den gesamten Artikel vor der Implementierung.
 
-## <a name="high-level-overview-of-what-were-doing-and-why"></a>Allgemeine Übersicht über das, was wir tun und warum
-* Wir erstellen einen geschachtelten virtuellen Computer mit zwei NICs. 
-* Eine NIC wird verwendet, um unsere virtuellen Computer mit Internet Zugriff über NAT bereitzustellen, und die andere NIC wird zum Weiterleiten von Datenverkehr von unserem internen Switch an Ressourcen außerhalb des Hypervisors verwendet. Jede NIC muss sich in einer anderen Routing Domäne befinden, d. h. ein anderes Subnetz.
-* Dies bedeutet, dass wir eine Virtual Network mit mindestens drei Subnetzen benötigen. Eine für NAT, eine für das LAN-Routing und eine, die nicht verwendet wird, aber für unsere virtuellen Computer "reserviert" ist. Die Namen, die wir für die Subnetze in diesem Dokument verwenden, sind "NAT", "Hyper-V-LAN" und "ghosted".
-* Die Größe dieser Subnetze liegt nach ihrem Ermessen, aber es gibt einige Überlegungen. Die Größe der "ghosted"-Subnetze bestimmt, wie viele IPS für Ihre virtuellen Computer vorhanden sind. Außerdem bestimmen die Größe der Subnetze "NAT" und "Hyper-V-LAN", wie viele IPS für Hypervisoren vorhanden sind. Daher könnten Sie technisch gesehen sehr kleine Subnetze erstellen, wenn Sie nur einen oder zwei Hypervisoren planen.
-* Hintergrund: bei den virtuellen Computern wird DHCP nicht aus dem vnet empfangen, mit dem der Host verbunden ist, auch wenn Sie einen internen oder externen Switch konfigurieren. 
+## <a name="high-level-overview-of-what-were-doing-and-why"></a>Allgemeiner Überblick über unsere Vorgehensweise und die Gründe dafür
+* Wir erstellen einen virtuellen Computer mit zwei NICs, der schachtelungsfähig ist. 
+* Eine NIC wird verwendet, um unseren geschachtelten VMs den Internetzugang über NAT zu ermöglichen, und die andere NIC wird verwendet, um den Verkehr von unserem internen Switch zu Ressourcen außerhalb des Hypervisors zu leiten. Jede NIC muss sich in einer anderen Routingdomäne (also in einem anderen Subnetz) befinden.
+* Das bedeutet, dass wir ein virtuelles Netzwerk mit mindestens drei Subnetzen benötigen. Eines für NAT, eines für LAN-Routing und eines, das nicht verwendet wird, sondern für unsere geschachtelten VMs „reserviert“ ist. Die Namen, die wir für die Subnetze in diesem Dokument verwenden, sind „NAT“, „Hyper-V-LAN“ und „Ghosted“.
+* Die Größe dieser Subnetze liegt in Ihrem Ermessen, aber es gibt einige Überlegungen dazu. Die Größe der „Ghosted“-Subnetze bestimmt, wie viele IP-Adressen für Ihre virtuellen Computer vorhanden sind. Außerdem bestimmt die Größe der „NAT“- und „Hyper-V-LAN“-Subnetze, wie viele IP-Adressen für Hypervisoren vorhanden sind. Daher könnten Sie hier technisch gesehen sehr kleine Subnetze erstellen, wenn Sie nur einen oder zwei Hypervisoren planen.
+* Hintergrund: Geschachtelte VMs empfangen DHCP selbst dann NICHT aus dem VNET, mit dem der Host verbunden ist, wenn Sie einen internen oder externen Switch konfigurieren. 
   * Dies bedeutet, dass der Hyper-V-Host DHCP bereitstellen muss.
-* Der Hyper-v-Host kennt die derzeit zugewiesenen Leases im vnet nicht. um eine Situation zu vermeiden, in der der Host eine bereits bestehende IP-Adresse zuweist, müssen wir einen Block von IP-Adressen für die Verwendung durch den Hyper-v-Host zuordnen. Auf diese Weise können wir ein doppeltes IP-Szenario vermeiden.
-  * Der von uns gewählte IP-Block entspricht einem Subnetz innerhalb desselben vnets, in dem sich Ihr Hyper-V befindet.
-  * Dies soll einem vorhandenen Subnetz entsprechen, wenn BGP-Ankündigungen über eine expressroute-Verbindung verarbeitet werden sollen. Wenn wir soeben einen IP-Adressbereich für den Hyper-V-Host erstellt haben, müssten wir eine Reihe statischer Routen erstellen, um den lokalen Clients die Kommunikation mit den virtuellen Computern zu ermöglichen. Dies bedeutet, dass dies keine feste Anforderung ist, da Sie einen IP-Adressbereich für die virtuellen Computer erstellen und dann alle Routen erstellen können, die zum Weiterleiten von Clients an den Hyper-V-Host für diesen Bereich benötigt werden.
-* Wir erstellen einen internen Switch in Hyper-V und weisen dann die neu erstellte Schnittstelle einer IP-Adresse in einem Bereich zu, der für DHCP reserviert wurde. Diese IP-Adresse wird als Standard Gateway für unsere virtuellen Computer verwendet und zum Weiterleiten zwischen dem internen Switch und der NIC des Hosts verwendet, der mit dem vnet verbunden ist.
-* Wir installieren die Routing-und RAS-Rolle auf dem Host, wodurch der Host in einen Router verwandelt wird.  Dies ist erforderlich, um die Kommunikation zwischen Ressourcen zuzulassen, die sich außerhalb des Hosts und der virtuellen Computer befinden.
-* Wir werden anderen Ressourcen mitteilen, wie Sie auf diese virtuellen Computer zugreifen können. Dies erfordert, dass eine benutzerdefinierte Routing Tabelle erstellt wird, die eine statische Route für den IP-Adressbereich enthält, in dem sich die virtuellen Computer befinden. Diese statische Route verweist auf die IP-Adresse für den Hyper-V.
-* Anschließend platzieren Sie diese UDR im gatewaysubnetz, damit von der lokalen Umgebung stammende Clients wissen, wie wir unsere virtuellen Computer erreichen.
-* Außerdem platzieren Sie diese UDR in jedem anderen Subnetz innerhalb von Azure, das eine Verbindung mit den geschachtelten VMS erfordert.
-* Für mehrere Hyper-V-Hosts würden Sie zusätzliche "Floating" Subnetze erstellen und der UDR eine zusätzliche statische Route hinzufügen.
-* Wenn Sie einen Hyper-v-Host außer Betrieb nehmen, löschen Sie das "unverankerte" Subnetz und Entfernen dieses, und entfernen Sie die statische Route aus der UDR. wenn es sich um den letzten Hyper-v-Host handelt, entfernen Sie die UDR vollständig.
+* Der Hyper-V-Host kennt die derzeit zugewiesenen Leases im VNET nicht. Um eine Situation zu vermeiden, in der der Host eine bereits bestehende IP-Adresse zuweist, müssen wir einen Block von IP-Adressen für die Verwendung nur durch den Hyper-V-Host zuordnen. Auf diese Weise können wir ein Szenario mit doppelten IP-Adressen vermeiden.
+  * Der von ausgewählte Block von IP-Adressen entspricht einem Subnetz innerhalb desselben VNETs, in dem sich Ihr Hyper-V befindet.
+  * Der Grund, warum wir möchten, dass dies einem vorhandenen Subnetz entspricht, ist die Rückabwicklung von BGP-Ankündigungen über eine ExpressRoute. Wenn wir soeben einen IP-Adressbereich für den Hyper-V-Host erstellt haben, müssten wir eine Reihe statischer Routen erstellen, um den lokalen Clients die Kommunikation mit den geschachtelten VMs zu ermöglichen. Dies bedeutet, dass dies keine feste Anforderung ist, da Sie einen IP-Adressbereich für die geschachtelten VMs erstellen und dann alle Routen erstellen können, die zum Weiterleiten von Clients an den Hyper-V-Host für diesen Bereich benötigt werden.
+* Wir erstellen einen internen Switch in Hyper-V und weisen dann der neu erstellten Schnittstelle eine IP-Adresse in einem Bereich zu, der für DHCP reserviert wurde. Diese IP-Adresse wird zum Standardgateway für unsere geschachtelten VMs und zum Weiterleiten zwischen dem internen Switch und der NIC des Hosts verwendet, der mit dem VNET verbunden ist.
+* Wir installieren die Rolle „Routing und RAS“ auf dem Host, wodurch der Host zu einem Router wird.  Dies ist erforderlich, um die Kommunikation zwischen Ressourcen zuzulassen, die für den Host und die geschachtelten VMs extern sind.
+* Wir informieren die anderen Ressourcen, wie sie auf diese geschachtelten VMs zugreifen können. Dies erfordert, dass eine benutzerdefinierte Routingtabelle erstellt wird, die eine statische Route für den IP-Adressbereich enthält, in dem sich die geschachtelten VMs befinden. Diese statische Route verweist auf die IP-Adresse für den Hyper-V-Host.
+* Anschließend platzieren Sie diese UDR im Gatewaysubnetz, damit aus der lokalen Umgebung stammende Clients wissen, wie sie die geschachtelten VMs erreichen.
+* Außerdem platzieren Sie diese UDR in jedem anderen Subnetz innerhalb von Azure, das eine Verbindung mit den geschachtelten VMs erfordert.
+* Für mehrere Hyper-V-Hosts würden Sie zusätzliche „schwebende“ Subnetze erstellen und der UDR eine zusätzliche statische Route hinzufügen.
+* Wenn Sie einen Hyper-V-Host außer Betrieb nehmen, löschen Sie unser „schwebendes“ Subnetz und entfernen diese statische Route aus der UDR. Wenn es sich um den letzten Hyper-V-Host handelt, entfernen Sie die UDR vollständig.
 
 ## <a name="creating-the-host"></a>Erstellen des Hosts
 
-Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren (z. b. VM-Name, Ressourcengruppe usw.).
+Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren (z. B. VM-Name, Ressourcengruppe usw.), vermeiden.
 
-1. Navigieren Sie zu Portal.Azure.com
-2. Klicken Sie oben links auf "Ressource erstellen".
-3. Wählen Sie in der beliebten Spalte "Windows Server 2016 VM" aus.
-4. Wählen Sie auf der Registerkarte "Grundlagen" eine VM-Größe aus, die für die Netzwerkvirtualisierung geeignet ist.
-5. Wechseln Sie zur Registerkarte "Netzwerk".
-6. Erstellen Sie eine neue Virtual Network mit der folgenden Konfiguration:
-    * Vnet-Adressraum: 10.0.0.0/22
+1. Navigieren Sie zu portal.Azure.com.
+2. Klicken Sie oben links auf „Ressource erstellen“.
+3. Wählen Sie in der Spalte „Beliebt“ die Option „Windows Server 2016.VM“ aus.
+4. Wählen Sie auf der Registerkarte „Grundlagen“ unbedingt eine VM-Größe aus, die für geschachtelte Virtualisierung geeignet ist.
+5. Navigieren Sie zur Registerkarte „Netzwerk“.
+6. Erstellen Sie ein neues virtuelles Netzwerk mit der folgenden Konfiguration.
+    * VNET-Adressraum: 10.0.0.0/22
     * Subnetz 1
         * Name: NAT
         * Adressraum: 10.0.0.0/24
@@ -65,164 +65,164 @@ Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren 
         * Name: Hyper-V-LAN
         * Adressraum: 10.0.1.0/24
     * Subnetz 3
-        * Name: ghosted
+        * Name: Ghosted
         * Adressraum: 10.0.2.0/24
     * Subnetz 4
-        * Name: Azure-VMS
+        * Name: Azure-VMs
         * Adressraum: 10.0.3.0/24
-7. Stellen Sie sicher, dass Sie das NAT-Subnetz für die VM ausgewählt haben
-8. Wechseln Sie zu "überprüfen und erstellen", und wählen Sie "erstellen" aus.
+7. Stellen Sie sicher, dass Sie das NAT-Subnetz für die VM ausgewählt haben.
+8. Navigieren Sie zu „Überprüfen und erstellen“, und wählen Sie „Erstellen“ aus.
 
 ## <a name="create-the-second-network-interface"></a>Erstellen der zweiten Netzwerkschnittstelle
-1. Nachdem die Bereitstellung der VM abgeschlossen ist, navigieren Sie im Azure-Portal zu der VM.
-2. Die VM wird beendet.
-3. Nach dem Beenden wechseln Sie unter "Einstellungen" zu "Netzwerk".
-4. "Netzwerkschnittstelle anfügen"
-5. "Netzwerkschnittstelle erstellen"
-6. Geben Sie einen Namen ein (dabei spielt es keine Rolle, wie Sie ihn benennen, aber denken Sie daran, ihn zu merken).
-7. Wählen Sie "Hyper-V-LAN" für das Subnetz aus.
-8. Wählen Sie dieselbe Ressourcengruppe aus, in der sich Ihr Host befindet.
-9. Stelle
-10. Dadurch gelangen Sie zurück zum vorherigen Bildschirm. Stellen Sie sicher, dass die neu erstellte Netzwerkschnittstelle ausgewählt ist, und wählen Sie "OK" aus.
-11. Wechseln Sie zurück zum Bereich "Übersicht", und starten Sie den virtuellen Computer erneut, sobald die vorherige Aktion abgeschlossen ist.
-12. Navigieren Sie zur zweiten NIC, die wir soeben erstellt haben. Sie finden Sie in der zuvor ausgewählten Ressourcengruppe.
-13. Wechseln Sie zu "IP-Konfigurationen", und schalten Sie "IP-Weiterleitung" in "aktiviert" um, und speichern Sie die Änderung.
+1. Nachdem die Bereitstellung der VM abgeschlossen ist, navigieren Sie im Azure-Portal zu dieser VM.
+2. Beenden Sie die VM.
+3. Nach dem Beenden navigieren Sie unter „Einstellungen“ zu „Netzwerk“.
+4. „Netzwerkschnittstelle anfügen“
+5. „Netzwerkschnittstelle erstellen“
+6. Geben Sie ihr einen Namen ein (dabei spielt es keine Rolle, wie Sie sie benennen, aber merken Sie sich den Namen).
+7. Wählen Sie „Hyper-V-LAN“ als Subnetz aus.
+8. Wählen Sie unbedingt dieselbe Ressourcengruppe aus, in der sich Ihr Host befindet.
+9. „Erstellen“
+10. Dadurch gelangen Sie zurück zum vorherigen Bildschirm. Stellen Sie sicher, dass die neu erstellte Netzwerkschnittstelle ausgewählt ist, und wählen Sie dann „OK“ aus.
+11. Wechseln Sie zurück zum Bereich „Übersicht“, und starten Sie die VM erneut, sobald die vorherige Aktion abgeschlossen wurde.
+12. Navigieren Sie zur zweiten NIC, die wir soeben erstellt haben. Sie finden sie in der zuvor ausgewählten Ressourcengruppe.
+13. Navigieren Sie zu „IP-Konfigurationen“, und schalten Sie „IP-Weiterleitung“ in „Aktiviert“ um. Speichern Sie die Änderung.
 
 ## <a name="setting-up-hyper-v"></a>Einrichten von Hyper-V
-1. Remote Verbindung mit Ihrem Host
-2. Öffnen einer PowerShell-Eingabeaufforderung mit erhöhten Rechten
-3. Führen Sie den folgenden Befehl aus `Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart`
+1. Stellen Sie eine Remoteverbindung mit Ihrem Host her.
+2. Öffnen Sie eine PowerShell-Eingabeaufforderung mit erhöhten Rechten.
+3. Führen Sie den folgenden Befehl aus: `Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart`.
 4. Dadurch wird der Host neu gestartet.
 5. Stellen Sie erneut eine Verbindung mit dem Host her, um mit dem Rest des Setups fortzufahren.
 
-## <a name="creating-our-virtual-switch"></a>Der virtuelle Switch wird erstellt.
+## <a name="creating-our-virtual-switch"></a>Erstellen des virtuellen Switch
 
 1. Öffnen Sie PowerShell im Verwaltungsmodus.
-2. Erstellen Sie einen internen Switch: `New-VMSwitch -Name "NestedSwitch" -SwitchType Internal`
-3. Zuweisen der neu erstellten Schnittstelle zu einer IP-Adresse: `New-NetIPAddress –IPAddress 10.0.2.1 -PrefixLength 24 -InterfaceAlias "vEthernet (NestedSwitch)"`
+2. Erstellen Sie einen internen Switch: `New-VMSwitch -Name "NestedSwitch" -SwitchType Internal`.
+3. Weisen Sie der neu erstellten Schnittstelle eine IP-Adresse zu: `New-NetIPAddress –IPAddress 10.0.2.1 -PrefixLength 24 -InterfaceAlias "vEthernet (NestedSwitch)"`.
 
 ## <a name="install-and-configure-dhcp"></a>Installieren und Konfigurieren von DHCP
 
-*Viele Personen übersehen diese Komponente, wenn Sie zum ersten Mal versuchen, die geschlagene Virtualisierung zu verwenden. Anders als bei lokalen Standorten, in denen Ihre Gast-VMS DHCP von dem Netzwerk empfangen, auf dem sich der Host befindet, muss für die virtuellen Computer in Azure DHCP über den Host bereitgestellt werden, auf dem Sie ausgeführt werden. Oder Sie müssen jedem virtuellen Computer, der nicht skalierbar ist, statisch eine IP-Adresse zuweisen.*
+*Viele Benutzer übersehen diese Komponente, wenn Sie zum ersten Mal versuchen, geschachtelte Virtualisierung zu verwenden. Anders als in lokalen Umgebungen, in denen Ihre Gast-VMs DHCP von dem Netzwerk empfangen, in dem sich der Host befindet, muss für geschachtelte VMs in Azure DHCP über den Host bereitgestellt werden, auf dem sie ausgeführt werden. Alternativ müssen Sie jeder geschachtelten VM statisch eine IP-Adresse zuweisen (nicht skalierbar).*
 
-1. Installieren Sie die DHCP-Rolle: `Install-WindowsFeature DHCP -IncludeManagementTools`
-2. Erstellen Sie den DHCP-Bereich: `Add-DhcpServerV4Scope -Name "Nested VMs" -StartRange 10.0.2.2 -EndRange 10.0.2.254 -SubnetMask 255.255.255.0`
-3. Konfigurieren Sie die DNS-und standardgatewayoptionen für den Bereich: `Set-DhcpServerV4OptionValue -DnsServer 168.63.129.16 -Router 10.0.2.1`
-    * Stellen Sie sicher, dass Sie einen gültigen DNS-Server eingeben, wenn die Namensauflösung funktionieren soll. In diesem Fall verwende ich [das rekursive DNS von Azure](https://docs.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
+1. Installieren Sie die DHCP-Rolle: `Install-WindowsFeature DHCP -IncludeManagementTools`.
+2. Erstellen Sie den DHCP-Bereich: `Add-DhcpServerV4Scope -Name "Nested VMs" -StartRange 10.0.2.2 -EndRange 10.0.2.254 -SubnetMask 255.255.255.0`.
+3. Konfigurieren Sie die DNS- und Standardgatewayoptionen für den Bereich: `Set-DhcpServerV4OptionValue -DnsServer 168.63.129.16 -Router 10.0.2.1`.
+    * Stellen Sie sicher, dass Sie einen gültigen DNS-Server eingeben, wenn die Namensauflösung funktionieren soll. In diesem Fall verwende ich [rekursiven DNS von Azure](https://docs.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
 
-## <a name="installing-remote-access"></a>Installieren des Remote Zugriffs
+## <a name="installing-remote-access"></a>Installieren von Remotezugriff
 
-1. Öffnen Sie Server-Manager, und wählen Sie "Rollen und Features hinzufügen" aus.
-2. Wählen Sie "weiter", bis Sie zu "Server Rollen" gelangen.
-3. Aktivieren Sie "Remote Zugriff", und klicken Sie auf "weiter", bis Sie zu "Rollen Dienste" gelangen.
-4. Aktivieren Sie "Routing", wählen Sie "Features hinzufügen", und klicken Sie dann auf "weiter" und dann auf "installieren". Beenden Sie den Assistenten, und warten Sie, bis die Installation beendet ist.
+1. Öffnen Sie Server-Manager, und wählen Sie dann „Rollen und Features hinzufügen“ aus.
+2. Klicken Sie auf „Weiter“, bis Sie zum Abschnitt „Serverrollen“ gelangen.
+3. Aktivieren Sie „Remotezugriff“, und klicken Sie auf „Weiter“, bis Sie zu „Rollendienste“ gelangen.
+4. Aktivieren Sie „Routing“, wählen Sie „Features hinzufügen“ aus, und klicken Sie dann auf „Weiter“ und auf „Installieren“. Beenden Sie den Assistenten, und warten Sie, bis die Installation abgeschlossen wurde.
 
-## <a name="configuring-remote-access"></a>Konfigurieren des Remote Zugriffs
+## <a name="configuring-remote-access"></a>Konfigurieren von Remotezugriff
 
-1. Öffnen Sie Server-Manager, wählen Sie "Tools" aus, und wählen Sie dann "Routing und Remote Zugriff" aus.
-2. Auf der linken Seite des Bereichs Routing-und RAS-Verwaltung wird ein Symbol mit dem Namen Ihres Servers angezeigt. Klicken Sie mit der rechten Maustaste darauf, und wählen Sie "Konfigurieren und Aktivieren von Routing und Remote Zugriff" aus.
-3. Klicken Sie im Assistenten auf "weiter", aktivieren Sie die radiale Schaltfläche "benutzerdefinierte Konfiguration", und wählen Sie "weiter" aus.
-4. Überprüfen Sie "NAT" und "LAN-Routing", und wählen Sie "weiter" und dann "Fertigstellen". Wenn Sie aufgefordert werden, den Dienst zu starten, gehen Sie so vor.
-5. Navigieren Sie nun zum Knoten "IPv4", und erweitern Sie ihn, sodass der NAT-Knoten verfügbar gemacht wird.
-6. Klicken Sie mit der rechten Maustaste auf "NAT", und wählen Sie "neue Schnittstelle". Wählen Sie "Ethernet" aus. Dies sollte Ihre erste NIC mit der IP-Adresse "10.0.0.4" sein, und wählen Sie die öffentliche Schnittstelle mit dem Internet verbinden aus, und aktivieren Sie NAT auf dieser Schnittstelle. 
-7. Nun müssen einige statische Routen erstellt werden, um den LAN-Datenverkehr über die zweite NIC zu erzwingen. Gehen Sie hierzu zum Knoten "statische Routen" unter "IPv4".
+1. Öffnen Sie Server-Manager, und wählen Sie „Extras“ und dann „Routing und RAS“ aus.
+2. Auf der linken Seite des Verwaltungsbereichs „Routing-und RAS“ wird ein Symbol neben dem Namen Ihres Servers angezeigt. Klicken Sie mit der rechten Maustaste darauf, und wählen Sie „Routing und RAS konfigurieren und aktivieren“ aus.
+3. Klicken Sie im Assistenten auf „Weiter“, aktivieren Sie die strahlenförmige Schaltfläche für „Benutzerdefinierte Konfiguration“, und wählen Sie dann „Weiter“ aus.
+4. Aktivieren Sie „NAT“ und „LAN-Routing“, und wählen Sie dann „Weiter“ und „Fertig stellen“ aus. Wenn Sie aufgefordert werden, den Dienst zu starten, starten Sie ihn.
+5. Navigieren Sie nun zum Knoten „IPv4“, und erweitern Sie ihn so, dass der Knoten „NAT“ verfügbar wird.
+6. Klicken Sie mit der rechten Maustaste auf „NAT“, und wählen Sie „Neue Schnittstelle“ und „Ethernet“ aus. Dies sollte Ihre erste NIC mit der IP-Adresse „10.0.0.4“ sein. Wählen Sie „Öffentliche Schnittstelle mit dem Internet verbinden“ und „NAT für diese Schnittstelle aktivieren“ aus. 
+7. Nun müssen wir einige statische Routen erstellen, um LAN-Datenverkehr aus der zweiten NIC zu entfernen. Zu diesem Zweck navigieren Sie zum Knoten „Statische Routen“ unter „IPv4“.
 8. Anschließend erstellen wir die folgenden Routen.
     * Route 1
         * Schnittstelle: Ethernet
         * Ziel: 10.0.0.0
-        * Netzwerk Maske: 255.255.255.0
+        * Netzwerkmaske: 255.255.255.0
         * Gateway: 10.0.0.1
         * Metrik: 256
-        * Hinweis: Wir legen dies hier ab, damit die primäre NIC auf den Datenverkehr reagieren kann, der für die eigene Schnittstelle vorgesehen ist. Wenn dies nicht der Fall ist, würde die folgende Route dazu führen, dass der Datenverkehr für NIC 1 an NIC 2 weitergeleitet wird. Dadurch wird eine asymmetrische Route erstellt. 10.0.0.1 ist die IP-Adresse, die Azure dem NAT-Subnetz zuweist. In Azure wird die erste verfügbare IP-Adresse in einem Bereich als Standard Gateway verwendet. Wenn Sie also 192.168.0.0/24 für das NAT-Subnetz verwendet haben, wäre das Gateway 192.168.0.1. Bei der Weiterleitung der spezifischeren Route gewinnt das, was bedeutet, dass diese Route die nachfolgende Route aufsetzt.
+        * Hinweis: Wir legen dies hier fest, damit die primäre NIC auf an sie gerichteten Datenverkehr reagieren und aus der eigenen Schnittstelle entfernen kann. Wenn dies hier nicht festgelegt würde, würde die folgende Route dazu führen, dass für NIC 1 gedachter Datenverkehr aus NIC 2 gesendet wird. Dadurch würde eine asymmetrische Route erstellt. 10.0.0.1 ist die IP-Adresse, die Azure dem NAT-Subnetz zuweist. In Azure verwendet die erste verfügbare IP-Adresse in einem Bereich als Standardgateway. Wenn Sie also 192.168.0.0/24 für das NAT-Subnetz verwendet haben, wäre das Gateway 192.168.0.1. Beim Routing gewinnt die spezifischere Route, was bedeutet, dass diese Route Vorrang vor der nachfolgenden Route besitzt.
 
-    * Route 2
-        * Schnittstelle: Ethernet 2
+    * Route 2
+        * Schnittstelle: Ethernet 2
         * Ziel: 10.0.0.0
-        * Netzwerk Maske: 255.255.252.0
+        * Netzwerkmaske: 255.255.252.0
         * Gateway: 10.0.1.1
         * Metrik: 256
-        * Hinweis: Dies ist eine catch all-Route für den Datenverkehr, der für unser Azure-vnet gedacht ist. Dadurch wird der Datenverkehr über die zweite NIC erzwungen. Sie müssen zusätzliche Routen für andere Bereiche hinzufügen, auf die die netsted VMS zugreifen sollen. Wenn Sie also das lokale Netzwerk "172.16.0.0/22" verwenden, benötigen Sie eine andere Route zum Senden des Datenverkehrs an die zweite NIC des Hypervisors.
+        * Hinweis: Dies ist eine Abfangroute für den gesamten Datenverkehr für unser Azure-VNET. Dadurch wird Datenverkehr aus der zweiten NIC entfernt. Sie müssen zusätzliche Routen für andere Bereiche hinzufügen, auf die die geschachtelten VMs zugreifen sollen. Wenn Sie also das lokale Netzwerk 172.16.0.0/22 verwenden, benötigen Sie eine andere Route zum Senden dieses Datenverkehrs aus der zweiten NIC des Hypervisors.
 
-## <a name="creating-a-route-table-within-azure"></a>Erstellen einer Routentabelle in Azure
+## <a name="creating-a-route-table-within-azure"></a>Erstellen einer Routingtabelle in Azure
 
-Ausführliche Informationen zum Erstellen und Verwalten von Routen in Azure finden Sie in [diesem Artikel](https://docs.microsoft.com/azure/virtual-network/tutorial-create-route-table-portal) .
+Ausführliche Informationen zum Erstellen und Verwalten von Routen in Azure finden Sie in [diesem Artikel](https://docs.microsoft.com/azure/virtual-network/tutorial-create-route-table-portal).
 
 1. Navigieren Sie zu https://portal.azure.com.
-2. Wählen Sie in der oberen linken Ecke "Ressource erstellen" aus.
-3. Geben Sie im Suchfeld "Routing Tabelle" ein, und drücken Sie die EINGABETASTE.
-4. Das oberste Ergebnis ist Routing Tabelle, wählen Sie diese aus, und wählen Sie dann "erstellen" aus.
-5. Nennen Sie die Routing Tabelle, in meinem Fall "Routes-for-netsted-VMS".
-6. Stellen Sie sicher, dass Sie das Abonnement auswählen, in dem sich auch Ihre Hyper-V-Hosts befinden.
-7. Erstellen Sie entweder eine neue Ressourcengruppe, oder wählen Sie eine vorhandene aus, und stellen Sie sicher, dass die Region, in der Sie die Routing Tabelle erstellen, dieselbe Region ist, in der sich der Hyper-V-Host befindet.
-8. Wählen Sie "erstellen" aus.
+2. Wählen Sie in der oberen linken Ecke „Ressource erstellen“ aus.
+3. Geben Sie im Suchfeld „Routingtabelle“ ein, und drücken Sie die EINGABETASTE.
+4. Das oberste Ergebnis ist die Routingtabelle. Wählen Sie diese aus, und wählen Sie dann „Erstellen“ aus.
+5. Benennen Sie die Routingtabelle. In meinem Fall habe ich den Namen „Routes-for-nested-VMs“ verwendet.
+6. Stellen Sie sicher, dass Sie das gleiche Abonnement auswählen, in dem sich auch Ihre Hyper-V-Hosts befinden.
+7. Erstellen Sie entweder eine neue Ressourcengruppe, oder wählen Sie eine vorhandene aus, und stellen Sie sicher, dass die Region, in der Sie die Routingtabelle erstellen, dieselbe Region ist, in der sich der Hyper-V-Host befindet.
+8. Wählen Sie „Erstellen“ aus.
 
-## <a name="configuring-the-route-table"></a>Konfigurieren der Routing Tabelle
+## <a name="configuring-the-route-table"></a>Konfigurieren der Routingtabelle
 
-1. Navigieren Sie zu der Routentabelle, die wir soeben erstellt haben. Sie können dies erreichen, indem Sie in der Suchleiste oben im Portal auf der Suchleiste nach dem Namen der Routentabelle suchen.
-2. Nachdem Sie die Routing Tabelle ausgewählt haben, wechseln Sie auf dem Blatt zu "Routen".
-3. Wählen Sie "hinzufügen" aus.
-4. Benennen Sie Ihre Route, und ich habe "netsted-VMS" erhalten.
-5. Geben Sie für Adress Präfix den IP-Adressbereich für das "Floating"-Subnetz ein. In diesem Fall wäre es 10.0.2.0/24.
-6. Wählen Sie für "Typ des nächsten Hops" die Option "virtuelles Gerät" aus, und geben Sie dann die IP-Adresse für die zweite NIC der Hyper-V-Hosts ein 10.0.1.4, und wählen Sie dann "OK" aus.
-7. Wählen Sie nun auf dem Blatt "Subnetze" aus. dieser wird direkt unterhalb von "Routen" angezeigt.
-8. Wählen Sie "zuordnen", und wählen Sie dann das vnet "nsted-Fun" aus. Wählen Sie dann das Subnetz "Azure-VMS" aus, und wählen Sie "OK" aus.
-9. Führen Sie den gleichen Prozess für das Subnetz aus, in dem sich auch der Hyper-V-Host befindet, sowie für alle anderen Subnetze, die auf die geclusterte VMS zugreifen müssen. Wenn verbunden 
+1. Navigieren Sie zu der Routingtabelle, die wir soeben erstellt haben. Sie können dazu in der Suchleiste oben im Portal nach dem Namen der Routingtabelle suchen.
+2. Nachdem Sie die Routingtabelle ausgewählt haben, navigieren Sie auf dem Blatt zu „Routen“.
+3. Wählen Sie „Hinzufügen“ aus.
+4. Benennen Sie Ihre Route. Ich habe mich für „Nested-VMs“ entschieden.
+5. Geben Sie als Adresspräfix den IP-Adressbereich für das „schwebende“ Subnetz ein. In diesem Fall wäre dies 10.0.2.0/24.
+6. Wählen Sie als „Typ des nächsten Hops“ die Option „Virtuelles Gerät“ aus, und geben Sie dann die IP-Adresse für die zweite NIC der Hyper-V-Hosts (10.0.1.4) ein, und wählen Sie anschließend „OK“ aus.
+7. Wählen Sie nun auf dem Blatt „Subnetze“ aus. Diese Option befindet sich direkt unterhalb von „Routen“.
+8. Wählen Sie „Zuordnen“ aus, und wählen Sie dann das VNET „Nested-Fun“ aus. Wählen Sie anschließend das Subnetz „Azure-VMs“ aus, und klicken Sie auf „OK“.
+9. Führen Sie den gleichen Vorgang für das Subnetz aus, in dem sich der Hyper-V-Host befindet, sowie für alle anderen Subnetze, die auf die geschachtelten VMs zugreifen müssen. Wenn verbunden 
 
-# <a name="end-state-configuration-reference"></a>Referenz zum Endzustands Konfigurations Referenz
-Die Umgebung in dieser Anleitung umfasst die folgenden Konfigurationen. Dieser Abschnitt ist als Verweis zu verwenden.
+# <a name="end-state-configuration-reference"></a>Referenz zur Endzustandskonfiguration
+Die Umgebung in diesem Leitfaden weist die folgenden Konfigurationen auf. Dieser Abschnitt soll als Referenz verwendet werden.
 
-1. Informationen zu Azure Virtual Network.
-    * Vnet-Konfiguration auf hoher Ebene.
-        * Name: netsted-Fun
+1. Azure Virtual Network-Informationen.
+    * VNET-Konfiguration auf hoher Ebene.
+        * Name: Nested-Fun
         * Adressraum: 10.0.0.0/22
-        * Hinweis: Dies wird aus vier Subnetzen bestehen. Außerdem werden diese Bereiche nicht in Stein festgelegt. Sie können Ihre Umgebung aber auch nach Wunsch ansprechen. 
+        * Hinweis: Diese Umgebung besteht aus vier Subnetzen. Außerdem sind diese Bereiche nicht in Stein gemeißelt. Sie können Ihre Umgebung nach Ihren Wünschen gestalten. 
 
-    * Allgemeine Konfiguration für das erste Subnetz.
+    * Konfiguration des ersten Subnetzes auf hoher Ebene.
         * Name: NAT
         * Adressraum: 10.0.0.0/24
-        * Hinweis: an dieser Stelle befindet sich die primäre NIC für Hyper-V-Hosts. Diese wird verwendet, um die ausgehende NAT für die virtuellen Computer zu verarbeiten. Es ist das Gateway des Internets für Ihre virtuellen Computer.
+        * Hinweis: Hier befindet sich die primäre NIC des Hyper-V-Hosts. Wird verwendet, um die ausgehende NAT für die geschachtelten VMs zu verarbeiten. Dies ist das Gateway zum Internet für Ihre geschachtelten VMs.
 
-    * Allgemeine Konfiguration für das zweite Subnetz.
+    * Konfiguration des zweiten Subnetzes auf hoher Ebene.
         * Name: Hyper-V-LAN
         * Adressraum: 10.0.1.0/24
-        * Hinweis: für den Hyper-v-Host wird eine zweite NIC verwendet, die zum Verarbeiten des Routings zwischen den nicht-Internetressourcen außerhalb des Hyper-v-Hosts verwendet wird.
+        * Hinweis:  Der Hyper-V-Host verfügt über eine zweite NIC, die zum Verarbeiten des Routings zwischen den geschachtelten VMs und Nicht-Internetressourcen außerhalb des Hyper-V-Hosts verwendet wird.
 
-    * Allgemeine Konfiguration für das dritte Subnetz.
-        * Name: ghosted
+    * Konfiguration des dritten Subnetzes auf hoher Ebene.
+        * Name: Ghosted
         * Adressraum: 10.0.2.0/24
-        * Hinweis: Hierbei handelt es sich um ein "Unverankertes" Subnetz. Der Adressraum wird von unseren virtuellen Computern genutzt und ist vorhanden, um Routen Ankündigungen zurück an den lokalen Standort zu verarbeiten. In diesem Subnetz werden tatsächlich keine VMs bereitgestellt.
+        * Hinweis:  Dabei handelt es sich um ein „schwebendes“ Subnetz. Der Adressraum wird von unseren geschachtelten VMs genutzt und ist vorhanden, um Routenankündigungen zurück an die lokale Umgebung zu verarbeiten. In diesem Subnetz werden tatsächlich keine VMs bereitgestellt.
 
-    * Allgemeine Konfiguration für das vierte Subnetz.
-        * Name: Azure-VMS
+    * Konfiguration des vierten Subnetzes auf hoher Ebene.
+        * Name: Azure-VMs
         * Adressraum: 10.0.3.0/24
-        * Hinweis: Subnetz mit Azure-VMS.
+        * Hinweis: Ein Subnetz mit Azure-VMs.
 
 1. Der Hyper-V-Host verfügt über die folgenden NIC-Konfigurationen.
     * Primäre NIC 
         * IP-Adresse: 10.0.0.4
         * Subnetzmaske: 255.255.255.0
-        * Standard Gateway: 10.0.0.1
-        * DNS: für DHCP konfiguriert
+        * Standardgateway: 10.0.0.1
+        * DNS: Für DHCP konfiguriert
         * IP-Weiterleitung aktiviert: Nein
 
     * Sekundäre NIC
         * IP-Adresse: 10.0.1.4
         * Subnetzmaske: 255.255.255.0
-        * Standard Gateway: leer
-        * DNS: für DHCP konfiguriert
+        * Standardgateway: Leer
+        * DNS: Für DHCP konfiguriert
         * IP-Weiterleitung aktiviert: Ja
 
     * Von Hyper-V erstellte NIC für internen virtuellen Switch
         * IP-Adresse: 10.0.2.1
         * Subnetzmaske: 255.255.255.0
-        * Standard Gateway: leer
+        * Standardgateway: Leer
 
-3. Unsere Routing Tabelle verfügt über eine einzelne Regel.
+3. Unsere Routingtabelle verfügt über eine einzelne Regel.
     * Regel 1
-        * Name: netsted VMS
+        * Name: Geschachtelte VMs
         * Ziel: 10.0.2.0/24
-        * Nächster Hop: virtuelles Gerät 10.0.1.4
+        * Nächster Hop: Virtuelles Gerät: 10.0.1.4
 
-## <a name="conclusion"></a>Schlussfolgerung
+## <a name="conclusion"></a>Schlussbemerkung
 
-Sie sollten jetzt in der Lage sein, einen virtuellen Computer (sogar einen virtuellen 32-Bit-Computer) auf Ihrem Hyper-V-Host bereitzustellen und ihn von einem lokalen Standort und innerhalb von Azure aus zugänglich zu lassen.
+Sie sollten jetzt in der Lage sein, einen virtuellen Computer (sogar eine 32-Bit-VM!) auf Ihrem Hyper-V-Host bereitzustellen und den Zugriff darauf aus einer lokalen Umgebung und aus Azure zu ermöglichen.

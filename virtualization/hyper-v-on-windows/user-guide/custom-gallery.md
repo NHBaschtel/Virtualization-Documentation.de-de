@@ -1,7 +1,7 @@
 ---
-title: Erstellen einer benutzerdefinierten virtuellen Computergalerie
-description: Erstellen Sie Ihre eigenen Einträge in der virtuellen Computergalerie im Windows 10 Creators Update und höher.
-keywords: Windows 10, Hyper-V, schnelles Erstellen, virtuelle Computergalerie
+title: Erstellen eines benutzerdefinierten VM-Katalogs
+description: Erstellen Sie Ihre eigenen Einträge im VM-Katalog im Windows 10 Creators Update und höher.
+keywords: Windows 10, Hyper-V, Schnellerfassung, virtueller Computer, Katalog
 ms.author: scooley
 ms.date: 05/04/2018
 ms.topic: article
@@ -10,34 +10,34 @@ ms.service: windows-10-hyperv
 ms.assetid: d9238389-7028-4015-8140-27253b156f37
 ms.openlocfilehash: 1348b9923d9de1314818f13414abdacee2cb9735
 ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/18/2020
 ms.locfileid: "77439712"
 ---
-# <a name="create-a-custom-virtual-machine-gallery"></a>Erstellen einer benutzerdefinierten virtuellen Computergalerie
+# <a name="create-a-custom-virtual-machine-gallery"></a>Erstellen eines benutzerdefinierten VM-Katalogs
 
-> Windows 10 Fall Creators Update oder höher.
+> Windows 10 Fall Creators Update oder höher.
 
-Im Fall Creators Update wurde die Schnellerfassung erweitert, um virtuelle Computergalerie zu enthalten.
+Im Fall Creators Update wurde die Schnellerfassung um einen VM-Katalog erweitert.
 
-![Schnellerfassung VM-Galerie mit benutzerdefinierten Bildern](media/vmgallery.png)
+![Schnellerfassung: VM-Katalog mit benutzerdefinierten Images](media/vmgallery.png)
 
-Neben den von Microsoft- und Microsoft-Partnern bereitgestellten Bildern kann die Galerie auch Ihre eigene Bilder anzeigen.
+Neben den von Microsoft- und Microsoft-Partnern bereitgestellten Images kann der Katalog auch Ihre eigene Images auflisten.
 
 In diesem Artikel finden Sie weitere Details zu:
 
-* Erstellen von virtuellen Computern, die mit der Galerie kompatibel sind.
-* Erstellen einer neuen Galeriequelle.
-* Hinzufügen Ihrer benutzerdefinierten Galeriequelle zur Galerie.
+* Erstellen von virtuellen Computern, die mit dem Katalog kompatibel sind.
+* Erstellen einer neuen Katalogquelle.
+* Hinzufügen Ihrer benutzerdefinierten Katalogquelle zum Katalog.
 
-## <a name="gallery-architecture"></a>Galeriearchitektur
+## <a name="gallery-architecture"></a>Katalogarchitektur
 
-Die VM-Galerie ist eine grafische Ansicht für eine Gruppe von virtuellen Computerquellen, die in der Windows-Registrierung definiert sind.  Jede virtuelle Computerquelle ist ein Pfad (lokaler Pfad oder URI) auf eine JSON-Datei mit virtuellen Computern als Listenelemente.
+Der VM-Katalog ist eine grafische Ansicht für eine Gruppe von VM-Quellen, die in der Windows-Registrierung definiert sind.  Jede VM-Quelle ist ein Pfad (lokaler Pfad oder URI) zu einer JSON-Datei mit virtuellen Computern als Listenelemente.
 
-Die Liste der virtuellen Computer, die Sie in der Galerie finden, ist der gesamte Inhalt der ersten Quelle, gefolgt von den Inhalten der zweiten Quelle usw., bis alle verfügbaren virtuellen Computer aufgelistet sind.  Die Liste wird dynamisch erstellt, jedes Mal, wenn Sie die Galerie starten.
+Die Liste der virtuellen Computer, die Sie im Katalog sehen, ist der gesamte Inhalt der ersten Quelle, gefolgt von den Inhalten der zweiten Quelle usw., bis alle verfügbaren virtuellen Computer aufgelistet wurden.  Die Liste wird jedes Mal, wenn Sie den Katalog starten, dynamisch erstellt.
 
-![Galeriearchitektur](media/vmgallery-architecture.png)
+![Katalogarchitektur](media/vmgallery-architecture.png)
 
 Registrierungsschlüssel: `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization`
 
@@ -45,102 +45,102 @@ Wertname: `GalleryLocations`
 
 Typ: `REG_MULTI_SZ`
 
-## <a name="create-gallery-compatible-virtual-machines"></a>Erstellen einer Galerie, die mit virtuellen Computern kompatibel ist
+## <a name="create-gallery-compatible-virtual-machines"></a>Erstellen von virtuellen Computern, die mit dem Katalog kompatibel sind
 
-Virtuelle Computer in der Galerie können entweder ein Datenträger-Image (.iso) oder eine virtuelle Festplatte (.vhdx) sein.
+Virtuelle Computer im Katalog können entweder ein Datenträgerimage (ISO-Datei) oder eine virtuelle Festplatte (VHDX-Datei) sein.
 
-Virtuelle Computer, die von einer virtuellen Festplatte erstellt werden, haben Konfigurationsanforderungen:
+Virtuelle Computer, die von einer virtuellen Festplatte erstellt werden, weisen einige Konfigurationsanforderungen auf:
 
-1. Zur Unterstützung von UEFI-Firmware erstellt. Wenn sie mit Hyper-V erstellt wurden, ist dies eine VM der Generation 2.
-1. Die virtuelle Festplatte sollte mindestens 20 GB sein – Denken Sie daran, das dies die maximale Größe ist.  Hyper-V verwendet keinen Speicherplatz, den der virtuellen Computer nicht aktiv verwendet.
+1. Erstellt für Unterstützung von UEFI-Firmware. Wenn sie mit Hyper-V erstellt wurden, handelt es sich um eine VM der Generation 2.
+1. Die virtuelle Festplatte sollte mindestens 20 GB groß sein – denken Sie daran, das dies die maximale Größe ist.  Hyper-V belegt keinen Speicherplatz, den der virtuellen Computer nicht aktiv verwendet.
 
 ### <a name="testing-a-new-vm-image"></a>Testen eines neuem VM-Images
 
-Die VM-Galerie erstellt virtuelle Computer mit demselben Mechanismus wie die Installation von einer lokalen Installationsquelle.
+Der VM-Katalog erstellt virtuelle Computer mit demselben Mechanismus wie bei der Installation von einer lokalen Installationsquelle.
 
-So überprüfen Sie, dass das Bild eines virtuellen Computers gestartet und ausgeführt wird:
+So bestätigen Sie, dass ein VM-Image gestartet und ausgeführt wird:
 
-1. Öffnen Sie die VM-Galerie (Hyper-V Schnellerfassung), und wählen Sie **Lokalinstallationsquelle** aus.
-  ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/use-local-source.png)
-1. Wählen Sie **Installationsquelle ändern**.
-  ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/change-source.png)
-1. Wählen Sie die .ISO- oder .VHDX-Datei, die in der Galerie verwendet werden soll.
-1. Wenn das Bild ein Linux-Bild ist, deaktivieren Sie die Option für den sicheren Start.
-  ![Schaltfläche, um eine lokale Installationsquelle zu verwenden](media/toggle-secure-boot.png)
-1. Erstellen eines virtuellen Computers  Wenn der virtuelle Computer ordnungsgemäß gestartet wird, ist er für die Galerie bereit.
+1. Öffnen Sie den VM-Katalog (Hyper-V-Schnellerfassung), und wählen Sie **Lokale Installationsquelle** aus.
+  ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/use-local-source.png)
+1. Wählen Sie **Installationsquelle ändern** aus.
+  ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/change-source.png)
+1. Wählen Sie die ISO- oder VHDX-Datei aus, die im Katalog verwendet werden soll.
+1. Wenn das Image ein Linux-Image ist, deaktivieren Sie die Option für sicheren Start.
+  ![Schaltfläche zum Verwenden einer lokalen Installationsquelle](media/toggle-secure-boot.png)
+1. Erstellen die den virtuellen Computer.  Wenn der virtuelle Computer ordnungsgemäß gestartet wird, ist er für den Katalog bereit.
 
-## <a name="build-a-new-gallery-source"></a>Erstellen einer neuen Galeriequelle
+## <a name="build-a-new-gallery-source"></a>Erstellen einer neuen Katalogquelle
 
-Im nächsten Schritt wird eine neue Galeriequelle erstellt.  Mit dieser JSON-Datei werden die virtuellen Computer aufgelistet und alle zusätzlichen Informationen hinzufügt, die Sie in der Galerie sehen.
+Im nächsten Schritt wird eine neue Katalogquelle erstellt.  Mit dieser JSON-Datei werden die virtuellen Computer aufgelistet und alle zusätzlichen Informationen hinzufügt, die Sie im Katalog sehen.
 
 Textinformationen:
 
-![Position des Texts der Galeriebezeichnung](media/gallery-text.png)
+![Beschriftete Textpositionen des Katalogs](media/gallery-text.png)
 
-* **Name** – erforderlich – dies ist der Name, der in der linken Spalte sowie am oberen Rand der VM-Ansicht angezeigt wird.
-* **Herausgeber** - erforderlich
-* **Beschreibung** – erforderlich – Liste der Zeichenfolgen, die den virtuellen Computer beschreiben.
-* **Version** - erforderlich
-* LastUpdated – Standardeinstellung ist Montag, 1. Januar 0001.
+* **Name**: Erforderlich. Dies ist der Name, der in der linken Spalte sowie am oberen Rand der VM-Ansicht angezeigt wird.
+* **Herausgeber**: Erforderlich.
+* **Beschreibung**: Erforderlich. Die Liste der Zeichenfolgen, die den virtuellen Computer beschreiben.
+* **Version**: Erforderlich.
+* lastUpdated: Standardeinstellung ist Montag, 1. Januar 0001.
 
-  Das Format ist: yyyy-mm-ddThh:mm:ssZ
+  Das Format ist: jjjj-mm-ttThh:mm:ssZ
 
-  Der folgende PowerShell-Befehl gibt das heutige Datum im richtigen Forma tan und fügt es in die Zwischenablage ein:
+  Der folgende PowerShell-Befehl gibt das heutige Datum im richtigen Format an und fügt es in die Zwischenablage ein:
 
   ``` PowerShell
   Get-Date -UFormat "%Y-%m-%dT%TZ" | clip.exe
   ```
 
-* Gebietsschema – die Standardeinstellung ist leer.
+* Gebietsschema: Die Standardeinstellung ist leer.
 
 Bilder:
 
-![Position des Bilds der Galeriebezeichnung](media/gallery-pictures.png)
+![Beschriftete Bildpositionen des Katalogs](media/gallery-pictures.png)
 
-* **Logo** - erforderlich
+* **Logo**: Erforderlich.
 * symbol
 * Miniaturansicht
 
-Und natürlich Ihr virtueller Computer (.iso oder .vhdx).
+Und natürlich Ihr virtueller Computer (ISO- oder VHDX-Datei).
 
-Um die Hashes zu generieren, können Sie den folgenden PowerShell-Befehl verwenden:
+Zum Generieren der Hashwerte können Sie den folgenden PowerShell-Befehl verwenden:
 
   ``` PowerShell
   Get-FileHash -Path .\TMLogo.jpg -Algorithm SHA256
   ```
 
-Die folgende JSON-Vorlage enthält Startelemente und das Galerieschema.  Wenn Sie sie in VSCode bearbeiten, wird automatisch IntelliSense bereitgestellt.
+Die folgende JSON-Vorlage enthält Startelemente und das Schema des Katalogs.  Wenn Sie sie in VSCode bearbeiten, wird automatisch IntelliSense bereitgestellt.
 
 [!code-json[main](../../../hyperv-tools/vmgallery/vm-gallery-template.json)]
 
-## <a name="connect-your-gallery-to-the-vm-gallery-ui"></a>Verbinden Sie Ihre Galerie mit der VM-Galerie-Benutzeroberfläche
+## <a name="connect-your-gallery-to-the-vm-gallery-ui"></a>Verbinden Ihres Katalogs mit der Benutzeroberfläche des VM-Katalogs
 
-Die einfachste Möglichkeit, Ihre VM-Galeriequelle der benutzerdefinierten Galerie hinzuzufügen ist, sie dem Registrierungs-Editor hinzuzufügen.
+Die einfachste Möglichkeit, Ihre benutzerdefinierte VM-Katalogquelle dem VM-Katalog hinzuzufügen, besteht in der Verwendung des Registrierungs-Editors.
 
-1. Öffnen Sie **regedit.exe**
-1. Navigieren Sie zu `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\`
-1. Suchen Sie nach `GalleryLocations`.
+1. Öffnen Sie **regedit.exe**.
+1. Navigieren Sie zu `Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\`.
+1. Suchen Sie nach dem `GalleryLocations`-Element.
 
-    Wenn sie bereits vorhanden ist, fahren Sie im Menü **Bearbeiten** mit der Option **ändern** fort.
+    Wenn es bereits vorhanden ist, fahren Sie im Menü **Bearbeiten** mit der Option **Ändern** fort.
 
-    Wenn sie nicht bereits vorhanden ist, gehen Sie zum Menü **Bearbeiten** und navigieren Sie auf **Neu** zu **mehrteiliger Zeichenfolgenwert**
+    Wenn es noch nicht vorhanden ist, navigieren Sie zum Menü **Bearbeiten**, und navigieren Sie dann über **Neu** zu **Wert der mehrteiligen Zeichenfolge**.
 
-1. Fügen Sie Ihre Galerie dem Registrierungsschlüssel `GalleryLocations` hinzu.
+1. Fügen Sie Ihren Katalog dem Registrierungsschlüssel `GalleryLocations` hinzu.
 
-    ![Galerie-Registrierungsschlüssel mit dem neuen Element](media/new-gallery-uri.png)
+    ![Katalogregistrierungsschlüssel mit dem neuen Element](media/new-gallery-uri.png)
 
 ## <a name="troubleshooting"></a>Problembehandlung
 
-### <a name="check-for-errors-loading-gallery"></a>Fehler beim Laden der Galerie überprüfen
+### <a name="check-for-errors-loading-gallery"></a>Überprüfen auf Fehler beim Laden des Katalogs
 
-Die VM-Galerie bietet die Fehlerberichterstattung in der Windows-Ereignisanzeige.  Überprüfung auf Fehler:
+Der VM-Katalog bietet Fehlerberichterstattung in der Windows-Ereignisanzeige.  Überprüfung auf Fehler:
 
 1. Öffnen Sie die Ereignisanzeige.
-1. Wechseln Sie zu **Windows-Protokolle** -> **Anwendung**.
-1. Suchen Sie nach Ereignissen von der Quelle VMCreate.
+1. Navigieren Sie zu **Windows-Protokolle** -> **Anwendung**.
+1. Suchen Sie nach Ereignissen aus der Quelle VMCreate.
 
 ## <a name="resources"></a>Ressourcen
 
-In GitHub stehen einige Galerieskripts und Hilfsprogramme zur Verfügung [Link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
+In GitHub stehen einige Katalogskripts und Hilfsprogramme zur Verfügung [Link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
 
-Informationen finden Sie im Beispieleintrag der Galerie [hier](https://go.microsoft.com/fwlink/?linkid=851584).  Dies ist die JSON-Datei, die die Inbox-Galerie definiert.
+Einen Katalogbeispieleintrag finden Sie [hier](https://go.microsoft.com/fwlink/?linkid=851584).  Dies ist die JSON-Datei, die den Posteingangskatalog definiert.

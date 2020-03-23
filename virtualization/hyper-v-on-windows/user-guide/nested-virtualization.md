@@ -10,7 +10,7 @@ ms.service: windows-10-hyperv
 ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 ms.openlocfilehash: f819ac04773188525af202d370ba271a2d93e259
 ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/18/2020
 ms.locfileid: "77439347"
@@ -21,7 +21,7 @@ Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem
 
 ![](./media/HyperVNesting.png)
 
-## <a name="prerequisites"></a>Erforderliche Komponenten
+## <a name="prerequisites"></a>Voraussetzungen
 
 * Sowohl der Hyper-V-Host als auch der Gast müssen Windows Server 2016/Windows 10 Anniversary Update oder höher ausführen.
 * VM-Konfigurationsversion 8.0 oder höher.
@@ -31,13 +31,13 @@ Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem
 
 ## <a name="configure-nested-virtualization"></a>Konfigurieren der geschachtelten Virtualisierung
 
-1. Erstellen einer virtuellen Maschine Siehe die obigen erforderlichen Komponenten zum Bestimmen der erforderlichen Betriebssystem- und VM-Versionen.
+1. Erstellen Sie einen virtuellen Computer. Siehe die obigen erforderlichen Komponenten zum Bestimmen der erforderlichen Betriebssystem- und VM-Versionen.
 2. Während der virtuelle Computer den Status AUS hat, führen Sie den folgenden Befehl auf dem physischen Hyper-V-Host aus. Dadurch wird die geschachtelte Virtualisierung auf dem virtuellen Computer aktiviert.
 
 ```
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 ```
-3. Starten Sie einen virtuellen Computer.
+3. Starten des virtuellen Computers
 4. Installieren Sie Hyper-V auf dem virtuellen Computer ebenso wie auf einem physischen Server. Weitere Informationen zum Installieren von Hyper-V finden Sie unter [Installieren von Hyper-V](../quick-start/enable-hyper-v.md).
 
 ## <a name="disable-nested-virtualization"></a>Deaktivieren der geschachtelten Virtualisierung

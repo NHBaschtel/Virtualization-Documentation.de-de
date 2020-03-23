@@ -10,7 +10,7 @@ ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 ms.openlocfilehash: ed96c7ba30c83906cd3245a279ab078229400d8d
 ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 02/18/2020
 ms.locfileid: "77439547"
@@ -21,21 +21,21 @@ Sie können PowerShell Direct verwenden, um beliebige PowerShell-Befehle in eine
 
 Es folgen einige Möglichkeiten, wie Sie PowerShell Direct ausführen können:
 
-* [Als interaktive Sitzung mit dem Enter-PSSession-Cmdlet](#create-and-exit-an-interactive-powershell-session)
-* [Als Einzel Verwendungs Abschnitt zum Ausführen eines einzelnen Befehls oder Skripts mithilfe des Cmdlets "Aufruf-Command"](#run-a-script-or-command-with-invoke-command)
-* [Als dauerhafte Sitzung (Build 14280 und höher) mithilfe der Cmdlets "New-PSSession", "Copy-Item" und "Remove-PSSession"](#copy-files-with-new-pssession-and-copy-item)
+* [Als interaktive Sitzung mit dem Cmdlet Enter-PSSession](#create-and-exit-an-interactive-powershell-session)
+* [Als Einzelverwendungsabschnitt zum Ausführen eines einzelnen Befehls oder Skripts mit dem Cmdlet Invoke-Command](#run-a-script-or-command-with-invoke-command)
+* [Als dauerhafte Sitzung (Build 14280 und höher) mit den Cmdlets New-PSSession, Copy-Item und Remove-PSSession](#copy-files-with-new-pssession-and-copy-item)
 
-## <a name="requirements"></a>Voraussetzungen
+## <a name="requirements"></a>Anforderungen
 **Betriebssystemanforderungen:**
 * Host: Windows 10, Windows Server 2016 oder höher mit Hyper-V.
-* Gast- bzw. virtueller Computer: Windows 10, Windows Server 2016 oder höher.
+* Gastcomputer/virtueller Computer: Windows 10, Windows Server 2016 oder höher.
 
 Wenn Sie ältere virtuelle Computer verwalten, verwenden Sie die Verbindung mit virtuellen Computern (VMConnect) oder [Konfigurieren Sie ein virtuelles Netzwerk für den virtuellen Computer](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc816585(v=ws.10)). 
 
-**Konfigurations Anforderungen:**    
+**Konfigurationsanforderungen:**    
 * Der virtuelle Computer muss lokal auf dem Host ausgeführt werden.
 * Der virtuelle Computer muss gestartet sein und mit mindestens einem konfigurierten Benutzerprofil ausgeführt werden.
-* Sie müssen am Hostcomputer als Hyper-V-Administrator angemeldet sein.
+* Sie müssen in dem Hostcomputer als Hyper-V-Administrator angemeldet sein.
 * Sie müssen gültige Anmeldeinformationen für den virtuellen Computer angeben.
 
 -------------
@@ -69,13 +69,13 @@ Wenn die Sitzung gestartet wird, werden die eingegebenen Befehle auf dem virtuel
   
   Jeder Befehl wird auf dem virtuellen Computer ausgeführt. Um dies zu testen, können Sie `ipconfig` oder `hostname` ausführen, um sicherzustellen, dass diese Befehle tatsächlich auf dem virtuellen Computer ausgeführt werden.
   
-4. Wenn Sie fertig sind, führen Sie den folgenden Befehl aus, um die Sitzung zu schließen:  
+4. Wenn Sie fertig sind, führen Sie den folgenden Befehl zum Schließen der Sitzung aus:  
   
    ``` PowerShell
    Exit-PSSession 
    ``` 
 
-> Hinweis: Wenn keine Verbindung für die Sitzung hergestellt werden kann, lesen Sie den Abschnitt [Problembehandlung](#troubleshooting), um mögliche Ursachen herauszufinden. 
+> Hinweis:  Wenn keine Verbindung für die Sitzung hergestellt werden kann, lesen Sie den Abschnitt [Problembehandlung](#troubleshooting), um mögliche Ursachen herauszufinden. 
 
 Weitere Informationen zu diesen Cmdlets finden Sie unter [Enter-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Enter-PSSession?view=powershell-5.1) und [Exit-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Exit-PSSession?view=powershell-5.1). 
 
@@ -128,7 +128,7 @@ Permanente PowerShell-Sitzungen sind unglaublich nützlich, wenn Sie Skripts sch
 
 Ebenso behalten Sitzungen ihren Zustand bei.  Da permanente Sitzungen – wie der Name schon sagt – dauerhaft sind, werden jegliche Variablen, die in einer Sitzung erstellt oder an eine Sitzung übergeben wurden, über mehrere Aufrufe hinweg beibehalten. Für die Arbeit mit permanenten Sitzungen sind verschiedene Tools verfügbar.  In diesem Beispiel werden [New-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/New-PSSession?view=powershell-5.1) und [Copy-Item](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Management/Copy-Item?view=powershell-5.1) verwendet, um Daten vom Host auf einen virtuellen Computer und von einem virtuellen Computer auf den Host zu verschieben.
 
-**Um eine Sitzung zu erstellen, kopieren Sie die Dateien:**  
+**So erstellen Sie eine Sitzung und kopieren anschließend Dateien:**  
 
 1. Öffnen Sie PowerShell auf dem Hyper-V-Host als Administrator.
 
@@ -174,7 +174,7 @@ PowerShell Direct zeigt eine kleine Menge von Fehlermeldungen an.  Es folgen die
 
 ### <a name="-vmname-or--vmid-parameters-dont-exist"></a>Parameter „-VMName“ oder „-VMID“ nicht vorhanden
 **Problem:**  
-`Enter-PSSession`, `Invoke-Command`oder `New-PSSession` haben keinen `-VMName`-oder `-VMId` Parameter.
+`Enter-PSSession`, `Invoke-Command` oder `New-PSSession` weisen keinen Parameter `-VMName` oder `-VMId` auf.
 
 **Mögliche Ursachen:**  
 Der wahrscheinlichste Grund ist, dass PowerShell Direct von Ihrem Hostbetriebssystem nicht unterstützt wird.
@@ -194,7 +194,7 @@ $PSVersionTable.PSVersion
 ```
 
 
-### <a name="error-a-remote-session-might-have-ended"></a>Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
+### <a name="error-a-remote-session-might-have-ended"></a>„Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
 > **Hinweis:**  
 Bei Eingabe von „Enter-PSSession“ auf Hosts mit Builds zwischen 10240 und 12400 werden alle unten stehenden Fehler als „Eine Remotesitzung wurde möglicherweise beendet.“ gemeldet.
 
@@ -219,7 +219,7 @@ New-PSSession : An error has occurred which Windows PowerShell cannot handle. A 
 ```
 
 **Mögliche Ursachen:**
-* Einer der oben aufgeführten Gründe: alle sind gleichermaßen auf `New-PSSession`  
+* Einer der oben genannten Gründe – alle sind gleichermaßen anwendbar für `New-PSSession`  
 * Ein Fehler in aktuellen Builds. Anmeldeinformationen müssen explizit mithilfe von `-Credential` übergeben werden.  Wenn dies passiert, reagiert der gesamte Dienst im Gastbetriebssystem nicht mehr und muss neu gestartet werden.  Sie können mit Enter-PSSession überprüfen, ob die Sitzung noch verfügbar ist.
 
 Um das Problem mit den Anmeldeinformationen zu umgehen, melden Sie sich mithilfe von VMConnect am virtuellen Computer an, öffnen Sie PowerShell, und starten Sie den vmicvmsession-Dienst mithilfe des folgenden PowerShell-Befehls neu:
@@ -228,21 +228,21 @@ Um das Problem mit den Anmeldeinformationen zu umgehen, melden Sie sich mithilfe
 Restart-Service -Name vmicvmsession
 ```
 
-### <a name="error-parameter-set-cannot-be-resolved"></a>Fehler: Parametersatz kann nicht aufgelöst werden.
+### <a name="error-parameter-set-cannot-be-resolved"></a>„Fehler: Parametersatz kann nicht aufgelöst werden.
 **Fehlermeldung:**  
 ``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
 ```
 
 **Mögliche Ursachen:**  
-* beim Herstellen einer Verbindung mit virtuellen Maschinen wird `-RunAsAdministrator` nicht unterstützt.
+* `-RunAsAdministrator` wird beim Herstellen von Verbindungen mit virtuellen Computern nicht unterstützt.
      
   Beim Verbinden mit einem Windows-Container erlaubt das Flag `-RunAsAdministrator` Administratorverbindungen ohne explizite Anmeldeinformationen.  Da virtuelle Computer dem Host keinen impliziten Administratorzugriff gewähren, müssen Sie die Anmeldeinformationen explizit eingeben.
 
 Administratoranmeldeinformationen können dem virtuellen Computer über den Parameter `-Credential` übergeben oder auf Aufforderung manuell eingegeben werden.
 
 
-### <a name="error-the-credential-is-invalid"></a>Fehler: Die Anmeldeinformationen sind ungültig.
+### <a name="error-the-credential-is-invalid"></a>„Fehler: Die Anmeldeinformationen sind ungültig.
 
 **Fehlermeldung:**  
 ```
@@ -253,9 +253,9 @@ Enter-PSSession : The credential is invalid.
 * Die Gastanmeldeinformationen konnten nicht überprüft werden.
   * Die angegebenen Anmeldeinformationen sind falsch.
   * Es gibt keine Benutzerkonten auf dem Gast (das Betriebssystem wurde noch nicht gestartet)
-  * Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)>).
+  * Wenn Sie die Verbindung als Administrator herstellen:  Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)>).
   
-### <a name="error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine"></a>Fehler: Der Parameter „VMName“ kann nicht in einen virtuellen Computer aufgelöst werden.
+### <a name="error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine"></a>„Fehler: Der Eingabeparameter VMName kann nicht in einen virtuellen Computer aufgelöst werden.
 
 **Fehlermeldung:**  
 ```

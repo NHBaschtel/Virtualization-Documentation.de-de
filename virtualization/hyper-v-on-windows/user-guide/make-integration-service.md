@@ -9,7 +9,7 @@ ms.prod: windows-10-hyperv
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 ms.openlocfilehash: 89a36ee87bce1da18852f0ebff248e239165eb7d
 ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/04/2019
 ms.locfileid: "74911030"
@@ -48,7 +48,7 @@ Anforderungen:
 * [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) – vorinstalliert in Visual Studio 2015 mit Update 3 oder höher.
 * Ein Computer, auf dem eines der o. g. Host-Betriebssysteme ausgeführt wird, und mindestens ein virtueller Computer (zum Testen der Anwendung).
 
-> **Hinweis:** Die API für Hyper-V-Sockets wurde in Windows 10 Anniversary Update öffentlich verfügbar. Anwendungen, die hvsocket verwenden, können auf jedem Windows 10-Host und-Gast ausgeführt werden, Sie können jedoch nur mit einem Windows SDK später als Build 14290 entwickelt werden.
+> **Hinweis:** Die API für Hyper-V-Sockets wurde mit Windows 10 Anniversary Update öffentlich verfügbar. Anwendungen, die HVSocket verwenden, sind auf jedem Host und Gast unter Windows 10 ausführbar, können jedoch nur einem Windows SDK ab Build 14290 entwickelt werden.
 
 ## <a name="register-a-new-application"></a>Registrieren einer neuen Anwendung
 Damit Sie Hyper-V-Sockets verwenden können, muss die Anwendung in der Registrierung des Hyper-V-Hosts registriert werden.
@@ -73,7 +73,7 @@ $service.PSChildName | clip.exe
 ```
 
 
-**Registrierungs Speicherort und-Informationen:**
+**Registrierungsschlüssel und Informationen:**
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```
@@ -96,7 +96,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
         ElementName    REG_SZ    Your Service Friendly Name
 ```
 
-> **Hinweis:** Die Dienst-GUID für ein Linux-Gastbetriebssystem verwendet das VSOCK-Protokoll, in über ein `svm_cid` und `svm_port` anstatt eines GUIDs handelt. Um diese Inkonsistenz mit Windows zu überbrücken, wird die bekannte GUID als Dienstvorlage auf dem Host verwendet, der an einen Port auf dem Gast übersetzt wird. Um die die Dienst-GUID anzupassen, ändern Sie einfach die erste "00000000" auf der gewünschten Portnummer. Beispiel: "00000ac9" ist Port 2761.
+> **Hinweis:** Die Dienst-GUID für ein Linux-Gastbetriebssystem verwendet das VSOCK-Protokoll, mit dem die Adressierung über `svm_cid` und `svm_port` anstatt über GUIDs erfolgt. Um diese Inkonsistenz mit Windows zu überbrücken, wird die bekannte GUID als Dienstvorlage auf dem Host verwendet, der in einen Port auf dem Gast übersetzt wird. Um die die Dienst-GUID anzupassen, ändern Sie einfach die erste "00000000" in die gewünschte Portnummer. Beispiel: „00000ac9“ ist Port 2761.
 > ```C++
 > // Hyper-V Socket Linux guest VSOCK template GUID
 > struct __declspec(uuid("00000000-facb-11e6-bd58-64006a7986d3")) VSockTemplate{};
@@ -108,7 +108,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 > ```
 >
 
-> **Tipp:** Mit folgender Anweisung können Sie eine GUID in PowerShell generieren und in die Zwischenablage kopieren:
+> **Tipp:**  Mit folgender Anweisung können Sie eine GUID in PowerShell generieren und in die Zwischenablage kopieren:
 >``` PowerShell
 >(New-Guid).Guid | clip.exe
 >```
@@ -132,9 +132,9 @@ int socket(int domain, int type, int protocol);
 ```
 
 Für ein Hyper-V-Socket:
-* Adressfamilie: `AF_HYPERV` (Windows) oder `AF_VSOCK` (Linux-Gastbetriebssysteme)
+* Adressfamilie: `AF_HYPERV` (Windows) oder `AF_VSOCK` (Linux-Gastbetriebssystem)
 * Typ: `SOCK_STREAM`
-* Protokoll – `HV_PROTOCOL_RAW` (Windows) oder `0` (Linux-Gastbetriebssysteme)
+* Protokoll – `HV_PROTOCOL_RAW` (Windows) oder `0` (Linux-Gastbetriebssystem)
 
 
 Hier sehen Sie eine Beispieldeklaration/-instanziierung:
@@ -165,7 +165,7 @@ int bind(int sockfd, const struct sockaddr *addr,
          socklen_t addrlen);
 ```
 
-Im Gegensatz zur Socketadresse (sockaddr) für eine standardmäßige IP-Adressfamilie (`AF_INET`), die aus der IP-Adresse des Hostcomputers und einer Portnummer auf diesem Host besteht, setzt sich die Socketadresse für `AF_HYPERV` aus der ID des virtuellen Computers und der zuvor definierten Anwendungs-ID zusammen, um eine Verbindung herzustellen. Wenn die Bindung von einem Linux-Gastbetriebssystem geschieht, verwendet `AF_VSOCK``svm_cid` und `svm_port`.
+Im Gegensatz zur Socketadresse (sockaddr) für eine standardmäßige IP-Adressfamilie (`AF_INET`), die aus der IP-Adresse des Hostcomputers und einer Portnummer auf diesem Host besteht, setzt sich die Socketadresse für `AF_HYPERV` aus der ID des virtuellen Computers und der zuvor definierten Anwendungs-ID zusammen, um eine Verbindung herzustellen. Wenn die Bindung von einem Linux-Gastbetriebssystem erfolgt, verwendet `AF_VSOCK``svm_cid` und `svm_port`.
 
 Da Hyper-V-Sockets nicht von einen Netzwerkstapel, TCP/IP, DNS usw. abhängen, benötigt der Socket-Endpunkt ein Format ohne IP-Adresse und Hostnamen, mit dem die Verbindung dennoch eindeutig beschrieben wird.
 
@@ -216,17 +216,17 @@ Es stehen auch verschiedene Platzhalter für VM-IDs zur Verfügung, wenn keine V
 | HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Übergeordnete Adresse. Bei Verwenden dieser VmId wird eine Verbindung mit der übergeordneten Partition des Connectors hergestellt.* |
 
 
-\* `HV_GUID_PARENT` das übergeordnete Element eines virtuellen Computers ist sein Host.  Das übergeordnete Element eines Containers ist der Host des Containers.
+\* `HV_GUID_PARENT` Das übergeordnete Element eines virtuellen Computers ist sein Host.  Das übergeordnete Element eines Containers ist der Host des Containers.
 Beim Herstellen einer Verbindung mithilfe eines Containers, in dem ein virtueller Computer ausgeführt wird, erfolgt eine Verbindung mit der VM, die den Container hostet.
-Beim Überwachen auf diese VM-ID werden Verbindungen von folgenden Quellen akzeptiert: (in Containern): Containerhost.
-(Innerhalb der VM: Containerhost/kein Container): VM-Host.
-(Außerhalb der VM: Containerhost/kein Container): Nicht unterstützt.
+Beim Überwachen auf diese VM-ID werden Verbindungen von folgenden Quellen akzeptiert: (In Containern): Containerhost.
+(In VM: (Containerhost/kein Container): VM-Host.
+(Nicht in VM: (Containerhost/kein Container): Nicht unterstützt.
 
 ## <a name="supported-socket-commands"></a>Unterstützte Socketbefehle
 
 Socket() Bind() Connect() Send() Listen() Accept()
 
 ## <a name="useful-links"></a>Nützliche Links
-[Vervollständigen der Winsock-API](https://docs.microsoft.com/windows/desktop/WinSock/winsock-functions)
+[Vollständige WinSock-API](https://docs.microsoft.com/windows/desktop/WinSock/winsock-functions)
 
-[Hyper-V-Integration Services Referenz](../reference/integration-services.md)
+[Referenz für Hyper-V-Integrationsdienste](../reference/integration-services.md)
