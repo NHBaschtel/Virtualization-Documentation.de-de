@@ -8,14 +8,17 @@ ms.date: 06/17/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.openlocfilehash: 27672f6a8e71989bfd47fe9810dfd429eedd9206
-ms.sourcegitcommit: 379eb650f6af90f5963e2fcf9de7196238fbe9fa
+ms.openlocfilehash: 2dcd228af0984b55162894555fa21f9e02dd1934
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/27/2020
-ms.locfileid: "77705685"
+ms.lasthandoff: 04/15/2020
+ms.locfileid: "81395743"
 ---
 # <a name="base-image-servicing-lifecycles"></a>Lebenszyklus der Basis Image Wartung
+
+> [!Note]  
+> Microsoft hat das geplante Ende der Support-und Wartungsdaten für eine Reihe von Produkten verzögert, damit Personen und Organisationen ihre Aufmerksamkeit auf die Beibehaltung der Geschäftskontinuität konzentrieren können. Weitere Informationen finden Sie im Eintrag [Lebenszyklus Änderungen am Ende des Supports und Wartungsterminen](https://support.microsoft.com/en-us/help/4557164/lifecycle-changes-to-end-of-support-and-servicing-dates) ab dem 14. April 2020.
 
 Windows-Container-Basis Images basieren entweder auf halbjährlichen Kanal Releases oder auf langfristigen Wartungs Kanälen von Windows Server. In diesem Artikel erfahren Sie, wie lange der Support für verschiedene Versionen von Basis Images von beiden Kanälen dauern wird.
 
@@ -30,7 +33,7 @@ In der folgenden Tabelle werden die einzelnen Basis Image Typen, der zugehörige
 |Server Core, Nano Server, Windows|Halbjährlich      |1909   |18363   |12.11.2019  |11.05.2021                 |N/V                  |
 |Server Core, Nano Server, Windows|Halbjährlich      |1903   |18362   |05/21/2019  |08.12.2020                 |N/V                  |
 |Server Core                      |Langfristig        |2019   |17763   |13.11.2018  |09.01.2024                 |09.01.2029           |
-|Server Core, Nano Server, Windows|Halbjährlich      |1809   |17763   |13.11.2018  |05/12/2020                 |N/V                  |
+|Server Core, Nano Server, Windows|Halbjährlich      |1809   |17763   |13.11.2018  |11/10/2020                 |N/V                  |
 |Server Core, Nano Server         |Halbjährlich      |1803   |17134   |30.04.2018  |12.11.2019                 |N/V                  |
 |Server Core, Nano Server         |Halbjährlich      |1709   |16299   |17.10.2017  |09.04.2019                 |N/V                  |
 |Server Core                      |Langfristig        |1607   |14393   |15.10.2016  |11.01.2022                 |11.01.2027           |
