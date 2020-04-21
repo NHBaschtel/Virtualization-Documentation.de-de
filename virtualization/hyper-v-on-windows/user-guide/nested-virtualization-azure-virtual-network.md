@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: 1ecb85a6-d938-4c30-a29b-d18bd007ba08
-ms.openlocfilehash: b7944e34cab66df07df0ccc78947a774d775c9a7
-ms.sourcegitcommit: ac923217ee2f74f08df2b71c2a4c57b694f0d7c3
+ms.openlocfilehash: 63007d21fcc046f384405c7d85143bfc576ecc07
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78853944"
+ms.lasthandoff: 04/15/2020
+ms.locfileid: "81395753"
 ---
 # <a name="configure-nested-vms-to-communicate-with-resources-in-an-azure-virtual-network"></a>Konfigurieren geschachtelter VMs für die Kommunikation mit Ressourcen in einem Azure Virtual Network
 
@@ -121,7 +121,7 @@ Ich werde alle Konfigurationswerte, die auf persönliche Einstellungen basieren 
 
 1. Öffnen Sie Server-Manager, und wählen Sie „Extras“ und dann „Routing und RAS“ aus.
 2. Auf der linken Seite des Verwaltungsbereichs „Routing-und RAS“ wird ein Symbol neben dem Namen Ihres Servers angezeigt. Klicken Sie mit der rechten Maustaste darauf, und wählen Sie „Routing und RAS konfigurieren und aktivieren“ aus.
-3. Klicken Sie im Assistenten auf „Weiter“, aktivieren Sie die strahlenförmige Schaltfläche für „Benutzerdefinierte Konfiguration“, und wählen Sie dann „Weiter“ aus.
+3. Klicken Sie im Assistenten auf „Weiter“, aktivieren Sie „Benutzerdefinierte Konfiguration“, und wählen Sie dann „Weiter“ aus.
 4. Aktivieren Sie „NAT“ und „LAN-Routing“, und wählen Sie dann „Weiter“ und „Fertig stellen“ aus. Wenn Sie aufgefordert werden, den Dienst zu starten, starten Sie ihn.
 5. Navigieren Sie nun zum Knoten „IPv4“, und erweitern Sie ihn so, dass der Knoten „NAT“ verfügbar wird.
 6. Klicken Sie mit der rechten Maustaste auf „NAT“, und wählen Sie „Neue Schnittstelle“ und „Ethernet“ aus. Dies sollte Ihre erste NIC mit der IP-Adresse „10.0.0.4“ sein. Wählen Sie „Öffentliche Schnittstelle mit dem Internet verbinden“ und „NAT für diese Schnittstelle aktivieren“ aus. 
