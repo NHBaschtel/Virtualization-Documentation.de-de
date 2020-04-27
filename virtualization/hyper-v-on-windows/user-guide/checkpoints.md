@@ -9,10 +9,10 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
 ms.openlocfilehash: 8cdbd7b9881c973b6b5d269f986a03bdb21e276a
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
+ms.lasthandoff: 04/24/2020
 ms.locfileid: "74911230"
 ---
 # <a name="using-checkpoints-to-revert-virtual-machines-to-a-previous-state"></a>Zurücksetzen virtueller Computer in einen vorherigen Zustand mithilfe von Prüfpunkten
