@@ -8,10 +8,10 @@ ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
 ms.openlocfilehash: 25c72b910af15fc0b498a5b2abce72d32e6d1efd
-ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/18/2020
+ms.lasthandoff: 04/24/2020
 ms.locfileid: "77439597"
 ---
 # <a name="supported-windows-guests"></a>Unterstützte Windows-Gäste
@@ -32,11 +32,11 @@ Um unterstützt zu werden, müssen alle Betriebssysteme (Gast und Host) auf dem 
 
 ## <a name="supported-guest-operating-systems"></a>Unterstützte Gastbetriebssysteme
 
-| Gastbetriebssystem |  Maximale Anzahl virtueller Prozessoren | Hinweise |
+| Gastbetriebssystem |  Maximale Anzahl virtueller Prozessoren | Anmerkungen |
 |:-----|:-----|:-----|
-| Windows 10 | 32 |Der erweiterte Sitzungsmodus funktioniert nicht unter Windows 10 Home Edition |
+| Windows 10 | 32 |Der erweiterte Sitzungsmodus funktioniert nicht unter Windows 10 Home Edition |
 | Windows 8.1 | 32 | |
-| Windows 8 | 32 ||
+| Windows 8 | 32 ||
 | Windows 7 mit Service Pack 1 (SP 1) | 4 | Ultimate, Enterprise und Professional Edition (32-Bit und 64-Bit). |
 | Windows 7 | 4 | Ultimate, Enterprise und Professional Edition (32-Bit und 64-Bit). |
 | Windows Vista mit Service Pack 2 (SP2) | 2 | Business, Enterprise und Ultimate einschließlich N- und KN-Editionen. |
@@ -44,7 +44,7 @@ Um unterstützt zu werden, müssen alle Betriebssysteme (Gast und Host) auf dem 
 | [Windows Server (halbjährlicher Kanal)](https://docs.microsoft.com/windows-server/get-started/semi-annual-channel-overview) | 64 | |
 | Windows Server 2019 | 64 | |
 | Windows Server 2016 | 64 | |
-| Windows Server 2012 R2 | 64 | |
+| Windows Server 2012 R2 | 64 | |
 | Windows Server 2012 | 64 | |
 | Windows Server 2008 R2 mit Service Pack 1 (SP 1) | 64 | Datacenter, Enterprise, Standard und Web Edition. |
 | Windows Server 2008 mit Service Pack 2 (SP 2) | 4 | Datacenter, Enterprise, Standard und Web Edition (32-Bit und 64-Bit). |

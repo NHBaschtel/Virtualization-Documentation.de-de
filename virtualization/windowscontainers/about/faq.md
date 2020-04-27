@@ -9,10 +9,10 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ms.openlocfilehash: 405b2abc43a4ae2c546de351679deb755e4a9317
-ms.sourcegitcommit: 1ca9d7562a877c47f227f1a8e6583cb024909749
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/04/2019
+ms.lasthandoff: 04/24/2020
 ms.locfileid: "74910800"
 ---
 # <a name="frequently-asked-questions-about-containers"></a>Häufig gestellte Fragen zu Containern
@@ -49,7 +49,7 @@ Die Nutzung von Windows Server-Containerimages wird durch Lesen der Anzahl der V
 
 ## <a name="as-a-developer-do-i-have-to-rewrite-my-app-for-each-type-of-container"></a>Muss ich als Entwickler meine App für jeden Containertyp neu schreiben?
 
-Nein Windows-Containerimages sind für Windows Server-Container und Hyper-V-Isolierung gleich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht des Entwicklers sind Windows Server-Container und Hyper-V-Isolierung zwei Varianten der gleichen Sache. Sie bieten die gleiche Entwicklungs-, Programmier- und Verwaltungserfahrung, sind offen und erweiterbar und beinhalten das gleiche Maß an Integration und Unterstützung wie Docker.
+Nein. Windows-Containerimages sind für Windows Server-Container und Hyper-V-Isolierung gleich. Die Auswahl des Containertyps erfolgt beim Starten des Containers. Aus Sicht des Entwicklers sind Windows Server-Container und Hyper-V-Isolierung zwei Varianten der gleichen Sache. Sie bieten die gleiche Entwicklungs-, Programmier- und Verwaltungserfahrung, sind offen und erweiterbar und beinhalten das gleiche Maß an Integration und Unterstützung wie Docker.
 
 Ein Entwickler kann ein Containerimage unter Verwendung eines Windows Server-Containers erstellen und es in Hyper-V-Isolierung oder umgekehrt bereitstellen, ohne dass irgendwelche Änderungen vorgenommen werden müssen, außer der Angabe des entsprechenden Laufzeitflags.
 

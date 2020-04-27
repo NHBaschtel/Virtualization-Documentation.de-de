@@ -9,10 +9,10 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 ms.openlocfilehash: ed96c7ba30c83906cd3245a279ab078229400d8d
-ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/18/2020
+ms.lasthandoff: 04/24/2020
 ms.locfileid: "77439547"
 ---
 # <a name="virtual-machine-automation-and-management-using-powershell"></a>Automatisierung und Verwaltung virtueller Computer mithilfe von PowerShell
@@ -28,14 +28,14 @@ Es folgen einige Möglichkeiten, wie Sie PowerShell Direct ausführen können:
 ## <a name="requirements"></a>Anforderungen
 **Betriebssystemanforderungen:**
 * Host: Windows 10, Windows Server 2016 oder höher mit Hyper-V.
-* Gastcomputer/virtueller Computer: Windows 10, Windows Server 2016 oder höher.
+* Gast- bzw. virtueller Computer: Windows 10, Windows Server 2016 oder höher.
 
 Wenn Sie ältere virtuelle Computer verwalten, verwenden Sie die Verbindung mit virtuellen Computern (VMConnect) oder [Konfigurieren Sie ein virtuelles Netzwerk für den virtuellen Computer](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc816585(v=ws.10)). 
 
 **Konfigurationsanforderungen:**    
 * Der virtuelle Computer muss lokal auf dem Host ausgeführt werden.
 * Der virtuelle Computer muss gestartet sein und mit mindestens einem konfigurierten Benutzerprofil ausgeführt werden.
-* Sie müssen in dem Hostcomputer als Hyper-V-Administrator angemeldet sein.
+* Sie müssen am Hostcomputer als Hyper-V-Administrator angemeldet sein.
 * Sie müssen gültige Anmeldeinformationen für den virtuellen Computer angeben.
 
 -------------
@@ -75,7 +75,7 @@ Wenn die Sitzung gestartet wird, werden die eingegebenen Befehle auf dem virtuel
    Exit-PSSession 
    ``` 
 
-> Hinweis:  Wenn keine Verbindung für die Sitzung hergestellt werden kann, lesen Sie den Abschnitt [Problembehandlung](#troubleshooting), um mögliche Ursachen herauszufinden. 
+> Hinweis: Wenn keine Verbindung für die Sitzung hergestellt werden kann, lesen Sie den Abschnitt [Problembehandlung](#troubleshooting), um mögliche Ursachen herauszufinden. 
 
 Weitere Informationen zu diesen Cmdlets finden Sie unter [Enter-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Enter-PSSession?view=powershell-5.1) und [Exit-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Exit-PSSession?view=powershell-5.1). 
 
@@ -194,7 +194,7 @@ $PSVersionTable.PSVersion
 ```
 
 
-### <a name="error-a-remote-session-might-have-ended"></a>„Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
+### <a name="error-a-remote-session-might-have-ended"></a>Fehler: Eine Remotesitzung wurde möglicherweise getrennt.
 > **Hinweis:**  
 Bei Eingabe von „Enter-PSSession“ auf Hosts mit Builds zwischen 10240 und 12400 werden alle unten stehenden Fehler als „Eine Remotesitzung wurde möglicherweise beendet.“ gemeldet.
 
@@ -228,7 +228,7 @@ Um das Problem mit den Anmeldeinformationen zu umgehen, melden Sie sich mithilfe
 Restart-Service -Name vmicvmsession
 ```
 
-### <a name="error-parameter-set-cannot-be-resolved"></a>„Fehler: Parametersatz kann nicht aufgelöst werden.
+### <a name="error-parameter-set-cannot-be-resolved"></a>Fehler: Parametersatz kann nicht aufgelöst werden.
 **Fehlermeldung:**  
 ``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
@@ -242,7 +242,7 @@ Enter-PSSession : Parameter set cannot be resolved using the specified named par
 Administratoranmeldeinformationen können dem virtuellen Computer über den Parameter `-Credential` übergeben oder auf Aufforderung manuell eingegeben werden.
 
 
-### <a name="error-the-credential-is-invalid"></a>„Fehler: Die Anmeldeinformationen sind ungültig.
+### <a name="error-the-credential-is-invalid"></a>Fehler: Die Anmeldeinformationen sind ungültig.
 
 **Fehlermeldung:**  
 ```
@@ -253,9 +253,9 @@ Enter-PSSession : The credential is invalid.
 * Die Gastanmeldeinformationen konnten nicht überprüft werden.
   * Die angegebenen Anmeldeinformationen sind falsch.
   * Es gibt keine Benutzerkonten auf dem Gast (das Betriebssystem wurde noch nicht gestartet)
-  * Wenn Sie die Verbindung als Administrator herstellen:  Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)>).
+  * Wenn Sie die Verbindung als Administrator herstellen: Der Administrator wurde nicht als aktiver Benutzer festgelegt.  Weitere Informationen finden Sie [hier](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)>).
   
-### <a name="error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine"></a>„Fehler: Der Eingabeparameter VMName kann nicht in einen virtuellen Computer aufgelöst werden.
+### <a name="error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine"></a>Fehler: Der Parameter „VMName“ kann nicht in einen virtuellen Computer aufgelöst werden.
 
 **Fehlermeldung:**  
 ```

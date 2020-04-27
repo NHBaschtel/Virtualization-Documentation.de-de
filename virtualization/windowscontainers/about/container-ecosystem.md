@@ -9,13 +9,13 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
 ms.openlocfilehash: 67fdbd813fbd2fa2911d8f5aff6637a85b9855ec
-ms.sourcegitcommit: 16744984ede5ec94cd265b6bff20aee2f782ca88
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/18/2020
+ms.lasthandoff: 04/24/2020
 ms.locfileid: "77439317"
 ---
-# <a name="about-building-container-ecosystems"></a>Informationen zum Erstellen von Containerökosystemen
+# <a name="about-building-container-ecosystems"></a>Informationen zu Erstellen von Containerökosystemen
 
 Um zu verstehen, warum das Erstellen eines Containerökosystems so wichtig ist, sehen wir uns zunächst seine Komponenten an.
 

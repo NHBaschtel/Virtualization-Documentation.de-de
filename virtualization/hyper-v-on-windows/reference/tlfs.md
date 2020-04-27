@@ -9,10 +9,10 @@ ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
 ms.assetid: aee64ad0-752f-4075-a115-2d6b983b4f49
 ms.openlocfilehash: 6af2002d06258e2a4d89d1f5d2698d22d2f46049
-ms.sourcegitcommit: b140ac14124e4bee3c7f31a7f8274d4a0ccb2dda
+ms.sourcegitcommit: 16ebc4f00773d809fae84845208bd1dcf08a889c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 04/08/2020
+ms.lasthandoff: 04/24/2020
 ms.locfileid: "80929966"
 ---
 # <a name="hypervisor-specifications"></a>Spezifikationen für Hypervisor
