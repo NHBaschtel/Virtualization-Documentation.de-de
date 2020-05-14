@@ -25,7 +25,7 @@ Die geschachtelte Virtualisierung ist ein Feature, mit dem Sie Hyper-V auf einem
 
 * Sowohl der Hyper-V-Host als auch der Gast müssen Windows Server 2016/Windows 10 Anniversary Update oder höher ausführen.
 * VM-Konfigurationsversion 8.0 oder höher.
-* Ein Intel-Prozessor mit VT-x- und EPT-Technologie – die Schachtelung ist derzeit **nur Intel**.
+* Ein Intel-Prozessor mit VT-x- und EPT-Technologie – die Schachtelung funktioniert derzeit **nur auf Intel Prozessoren**.
 * Es gibt einige Unterschiede bei virtuellen Netzwerken für sekundäre virtuelle Computer. Weitere Informationen finden Sie unter "Geschachtelte VM-Netzwerke".
 
 
